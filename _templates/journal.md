@@ -21,6 +21,10 @@ date: {{date:YYYY-MM-DD}}
 
 -
 
+## Controllo del vault
+
+-
+
 ## Esito dei task
 
 | Task | Esito |

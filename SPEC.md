@@ -1,6 +1,6 @@
 # SPEC · Second Brain BlueAge (personale)
 
-Versione 1.2 · 22/10/2026 · Owner: Lorenzo Curione
+Versione 1.3 · 22/10/2026 · Owner: Lorenzo Curione
 
 Questo file è la specifica di riferimento del vault. Ogni sessione Claude Code che costruisce o modifica il sistema parte da qui. Le modifiche alla specifica si fanno con una PR dedicata.
 
@@ -46,13 +46,14 @@ Vincoli dell'ambiente cloud da rispettare:
 │   ├── settings.json        hook e permessi
 │   ├── commands/            comandi manuali (sezione 8)
 │   ├── agents/              agenti specializzati (sezione 9)
+│   ├── scripts/             script di servizio (controllo del vault, 4.4)
 │   └── skills/              skill (sezione 10)
 ├── .state/
 │   └── ingest.json          stato dell'ingestion (sezione 6.1)
 ├── inbox/                   catture rapide da smistare
 ├── projects/<slug>/
-│   ├── _index.md            scheda progetto: stato, attività, prossimi passi
-│   └── log.md               cronologia degli avanzamenti
+│   ├── <slug>.md            scheda progetto: stato, attività, prossimi passi
+│   └── <slug>-log.md        cronologia degli avanzamenti
 ├── clients/<slug>.md        clienti e prospect (Manini, Meccanotecnica Umbra, Velo-CE…)
 ├── people/<slug>.md         persone (interne ed esterne)
 ├── topics/<slug>.md         prodotti, offerte, metodi (AI Foundation Program, Pulse, COMPASS…)
@@ -74,12 +75,12 @@ Scritture per cartella, per ridurre i conflitti git:
 
 | Chi scrive | Dove |
 |---|---|
-| Task di ingestion | `sources/`, `journal/`, `.state/`, e in aggiunta (solo righe nuove) `projects/*/log.md` e le sezioni "Attività" di `projects/*/_index.md` |
-| Ingestion lanciata da una sessione interattiva (`/ingest`, `/ingest-file`) | Come il task di ingestion, più: creazione di note nuove in `people/`, `clients/`, `topics/` e `inbox/`; righe nuove in `## Fonti` (o `## Interazioni recenti` per le persone) di quelle esistenti |
+| Task di ingestion | `sources/`, `journal/`, `.state/`, note nuove in `people/` (partecipanti delle mail), e in aggiunta (solo righe nuove) `## Interazioni recenti` di `people/*.md`, `projects/<slug>/<slug>-log.md` e le sezioni "Attività" di `projects/<slug>/<slug>.md` |
+| Ingestion lanciata da una sessione interattiva (`/ingest`, `/ingest-file`) | Come il task di ingestion, più: creazione di note nuove in `clients/`, `topics/` e `inbox/`; righe nuove in `## Fonti` (o `## Interazioni recenti` per le persone) di quelle esistenti |
 | Curator | `proposals/`, `sessions/` |
 | Sessioni interattive | Ovunque |
 
-Nei task schedulati l'ingestion non crea persone, clienti e temi: scrive comunque il wikilink nella nota fonte e propone la creazione nel digest del giorno. I progetti non si creano mai in automatico.
+Nei task schedulati l'ingestion crea le persone ma non clienti e temi: per questi scrive comunque il wikilink nella nota fonte e propone la creazione nel digest del giorno. Prima di creare una persona cerca una nota con la stessa email; se trova solo un nome simile, non crea e segnala il possibile doppione nel digest. I progetti non si creano mai in automatico.
 
 ## 4. Regole delle note
 
@@ -87,7 +88,7 @@ Nei task schedulati l'ingestion non crea persone, clienti e temi: scrive comunqu
 
 - Lingua: italiano.
 - Nomi file: slug minuscolo con trattini (`entrata-merci-manini.md`).
-- Collegamenti: wikilink Obsidian `[[slug]]`. Ogni nota in `sources/` deve collegarsi ad almeno un progetto, cliente o tema, tramite i campi `projects`, `clients` e `topics` del frontmatter.
+- Collegamenti: wikilink Obsidian `[[slug]]`. Lo slug è il nome del file senza `.md`, quindi la scheda di un progetto si chiama come la sua cartella (`projects/corso-ai-manini/corso-ai-manini.md`) e `[[corso-ai-manini]]` la apre. Ogni nota in `sources/` deve collegarsi ad almeno un progetto, cliente o tema, tramite i campi `projects`, `clients` e `topics` del frontmatter.
 - Frontmatter YAML obbligatorio su ogni nota, con i campi del suo tipo (4.2).
 - Una nota descrive, non copia: riassunto, punti chiave, numeri, decisioni, azioni. Per il dettaglio si legge l'originale tramite il connettore.
 
@@ -163,7 +164,7 @@ outcome: <una riga>
 
 Corpo della nota sessione: `## Obiettivo`, `## Decisioni`, `## File toccati`, `## Aperti`.
 
-**Log di progetto** (`projects/<slug>/log.md`)
+**Log di progetto** (`projects/<slug>/<slug>-log.md`)
 ```yaml
 ---
 type: project-log
@@ -225,7 +226,7 @@ date: 2026-10-22
 ---
 ```
 
-Corpo: `## Novità ingerite`, `## Attività in scadenza`, `## Decisioni`, `## Scartate`, `## Esito dei task`.
+Corpo: `## Novità ingerite`, `## Attività in scadenza`, `## Decisioni`, `## Scartate`, `## Controllo del vault`, `## Esito dei task`.
 
 **Cattura** (`inbox/`)
 ```yaml
@@ -254,7 +255,21 @@ I template di tutti i tipi sono in `_templates/`. Se uno schema cambia, si aggio
 - Una nota per famiglia di documenti, non per versione.
 - Chiave della famiglia: cartella + nome normalizzato, togliendo i suffissi di versione (`_v15`, `v2`, `- v001`), le date e l'estensione.
 - La nota punta sempre all'ultima versione (`current`) e tiene lo storico in `versions`.
-- Quando arriva una nuova versione, il riassunto si rigenera e le differenze rilevanti vanno nel `log.md` del progetto collegato.
+- Quando arriva una nuova versione, il riassunto si rigenera e le differenze rilevanti vanno nel `<slug>-log.md` del progetto collegato.
+
+### 4.4 Controllo del vault
+
+Lo script `python3 .claude/scripts/controlla-vault.py` verifica le note e stampa un rapporto in markdown (con `--indice` aggiunge l'elenco di progetti, clienti, persone e temi). Esce con codice 1 se trova errori.
+
+| Livello | Cosa controlla |
+|---|---|
+| Errore | Frontmatter mancante o non valido; `type` sconosciuto o nella cartella sbagliata; campi del template mancanti; valori fuori dagli elenchi ammessi (es. `status`); nomi file non in slug; slug duplicati; scheda progetto con nome diverso dalla cartella; wikilink del frontmatter verso note inesistenti; fonti senza progetto, cliente o tema; stessa email su due persone; stessa `family`, `item_id` o `conversation_id` su due note; voci di `.state/ingest.json` che puntano a note inesistenti |
+| Avviso | Campi non previsti dal template; wikilink nel testo verso note inesistenti; nomi quasi uguali nella stessa categoria (possibili doppioni); persone senza email; documenti SharePoint/OneDrive non registrati nello stato |
+
+Quando si esegue:
+- prima di ogni commit, da sessioni interattive e task: gli errori introdotti si correggono prima del push;
+- nella riconciliazione settimanale (6.4), con l'esito nel digest;
+- a richiesta con `/controlla`.
 
 ## 5. Perimetro delle fonti
 
@@ -310,7 +325,7 @@ Per le prime 2 settimane le mail scartate vanno elencate nel digest giornaliero,
 4. Per ogni file:
    - se `items[id].last_modified` è uguale a quello attuale, salta;
    - altrimenti leggi il contenuto con `read_resource`, individua la famiglia (4.3) e crea o aggiorna la nota.
-5. Aggiorna i progetti, clienti e temi collegati (le righe nuove vanno in `log.md`).
+5. Aggiorna i progetti, clienti e temi collegati (le righe nuove vanno in `<slug>-log.md`).
 6. Imposta `watermark` all'ultimo `lastModifiedDateTime` processato con successo. Se un file fallisce, il watermark non lo supera.
 7. Commit e push su `main` (sezione 11).
 
@@ -339,7 +354,8 @@ Limite di lettura: oltre 30 pagine o slide, leggi le prime 30 e imposta `partial
    - ID non più presenti: la nota passa a `status: removed`;
    - `webUrl` cambiato (file spostato o rinominato): aggiorna la nota;
    - file presenti ma mai ingeriti: mettili in coda per la prossima ingestion.
-3. Scrivi l'esito nel digest del giorno.
+3. Esegui il controllo del vault (4.4) e riporta errori e avvisi in `## Controllo del vault` del digest.
+4. Scrivi l'esito nel digest del giorno.
 
 ### 6.5 Primo caricamento
 
@@ -384,6 +400,7 @@ Ogni task:
 | `/chiudi-sessione` | Scrive il diario della sessione in `sessions/` e fa commit e push |
 | `/cattura <testo>` | Nota rapida in `inbox/` |
 | `/smista` | Smista `inbox/` nei progetti e nei temi |
+| `/controlla` | Controllo del vault (4.4): errori, possibili doppioni e indice per categoria, con le correzioni proposte |
 
 **Chat di claude.ai nel vault.** Nella chat basta chiedere "salva il riassunto di questa chat nel mio OneDrive in BlueAge/_chat". Il connettore M365 carica il file, e l'ingestion lo trasforma in una nota di tipo `session` con `surface: claude-ai`.
 
@@ -420,7 +437,7 @@ Risponde alle domande sulla knowledge:
 
 I file prodotti dalle skill (pptx, mp4, png) non vanno nel repo. Si caricano su SharePoint o OneDrive con il connettore, e la nota del progetto ne riporta il link. Il `.gitignore` esclude `*.pptx`, `*.mp4` e `*.png` in tutto il vault, tranne dentro `.claude/skills/` (dove stanno gli asset delle skill). Di conseguenza nemmeno le immagini incollate nelle note Obsidian entrano nel repo.
 
-Prerequisito: lo script di setup dell'ambiente cloud installa le dipendenze delle skill (es. `python-pptx`).
+Prerequisito: lo script di setup dell'ambiente cloud installa le dipendenze delle skill (es. `python-pptx`) e `pyyaml` per il controllo del vault.
 
 ## 11. Workflow git
 

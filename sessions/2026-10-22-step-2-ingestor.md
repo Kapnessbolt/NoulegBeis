@@ -3,7 +3,7 @@ type: session
 date: 2026-10-22
 surface: cloud
 topics: ["[[blueage]]", "[[pulse]]"]
-outcome: Step 2 completato: agente ingestor, comandi /ingest e /ingest-file, prima nota ingerita (Company Profile v24)
+outcome: "Step 2 completato: agente ingestor, comandi /ingest e /ingest-file, prima nota ingerita (Company Profile v24)"
 ---
 
 # Step 2 · agente ingestor e comandi di ingestion
