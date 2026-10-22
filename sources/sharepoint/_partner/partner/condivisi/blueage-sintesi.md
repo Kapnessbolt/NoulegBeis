@@ -17,8 +17,8 @@ status: active
 partial: false
 ingested_at: 2026-10-22T14:10:50Z
 projects: []
-clients: []
-topics: ["[[blueage]]", "[[pulse]]", "[[ai-nei-processi]]", "[[business-central-ai]]", "[[compass]]", "[[giornata-in-azienda]]"]
+clients: ["[[cellularline]]"]
+topics: ["[[blueage]]", "[[pulse]]", "[[ai-nei-processi]]", "[[business-central-ai]]", "[[compass]]", "[[giornata-in-azienda]]", "[[parts-radar]]", "[[manager-operativo]]"]
 tags: [deck, sintesi, posizionamento, sales, partner, fuori-perimetro]
 ---
 

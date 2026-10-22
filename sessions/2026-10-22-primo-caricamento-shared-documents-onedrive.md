@@ -30,12 +30,13 @@ Ingerire la libreria Shared Documents di `sites/internal` (lotto 3) e la cartell
 - `topics/`: pulse, blueage (punti chiave), le altre solo `## Fonti`
 - `inbox/2026-10-22-proposta-progetto-mtu-ai-foundation.md`
 - `.state/ingest.json`: 2 item OneDrive, watermark ancora null
+- Dopo il campione: `sources/sharepoint/salesmarketing/deck/blueage-companyprofile.md` (nuova versione), 8 note in `clients/`, 3 in `topics/`, collegamenti aggiunti in 11 fonti
 
 ## Aperti
 
-- [ ] La SPEC (5.2, 8), CLAUDE.md e l'ingestor citano `BlueAge/_chat/`, ma la cartella ora si chiama `00_chat/`: serve una PR di allineamento
-- [ ] Il `BlueAge_CompanyProfile.pdf` del sito partner è del 2026-10-19 e ha un incipit diverso dalla v24 del 2026-10-01 su SalesMarketing: potrebbe essere una versione più nuova non ancora caricata su SalesMarketing
-- [ ] `pulse-i-en` va allineata alla K: EBITDA del caso reale 2,8 M€ contro 2,35 M€
-- [ ] Proposte degli agenti: cliente Bertazzoni (prospect Pulse, incontro del 2026-07-30); note cliente per i prospect già incontrati (MC Bride, Loacker, Gotha, Fresenius Kabi, Eurochef, B. Braun); temi Parts Radar, manager operativo / fractional, Cellularline (caso storico di Pulse), TwoTeam (partner per le implementazioni enterprise)
-- [ ] Fuori perimetro su OneDrive: `Attachments/Ipotesi Formazione IT.docx`, forse il programma del gruppo IT Manini
+- [ ] SPEC (5.2, 8, 13) e CLAUDE.md citano `BlueAge/_chat/`, ma la cartella ora si chiama `00_chat/`. L'utente ha approvato la PR (SPEC 1.9, con anche `01_Materiale clienti/`), ma il commit è stato bloccato dal permesso sulle modifiche alle istruzioni: le modifiche sono pronte nello stash del branch `claude/trusting-carson-ipguvp`
+- [x] Company Profile: l'utente conferma che la copia del sito partner (2026-10-19) è la versione più nuova; ora è la `current` di [[blueage-companyprofile]], con la v24 nello storico
+- [x] `pulse-i-en` va allineata alla K (EBITDA del caso reale 2,8 M€ contro 2,35 M€): l'utente ne ha preso atto
+- [x] Proposte approvate dall'utente e create: clienti [[bertazzoni]], [[mc-bride]], [[loacker]], [[gotha]], [[fresenius-kabi]], [[eurochef]], [[b-braun]] (prospect) e [[cellularline]] (caso storico di Pulse, `da-verificare`); temi [[parts-radar]], [[manager-operativo]], [[twoteam]] (`da-verificare`: è un partner, non un tema in senso stretto)
+- [x] `Attachments/Ipotesi Formazione IT.docx` nella radice di OneDrive resta fuori (decisione dell'utente)
 - [ ] Prossimo lotto: Outlook, ultimi 60 giorni

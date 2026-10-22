@@ -17,7 +17,7 @@ partial: true
 ingested_at: 2026-10-22T14:10:50Z
 projects: []
 clients: []
-topics: ["[[blueage]]", "[[pulse]]", "[[trade-spending]]", "[[ai-nei-processi]]", "[[business-central-ai]]", "[[compass]]"]
+topics: ["[[blueage]]", "[[pulse]]", "[[trade-spending]]", "[[ai-nei-processi]]", "[[business-central-ai]]", "[[compass]]", "[[parts-radar]]", "[[manager-operativo]]"]
 tags: [deck, portafoglio, sales, partner, fuori-perimetro]
 ---
 

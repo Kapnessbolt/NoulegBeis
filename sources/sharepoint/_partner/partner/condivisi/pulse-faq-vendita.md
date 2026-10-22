@@ -16,7 +16,7 @@ status: active
 partial: false
 ingested_at: 2026-10-22T14:10:50Z
 projects: []
-clients: []
+clients: ["[[bertazzoni]]", "[[cellularline]]"]
 topics: ["[[pulse]]"]
 tags: [faq, obiezioni, playbook-partner, sales, finanza-agevolata, fuori-perimetro]
 ---

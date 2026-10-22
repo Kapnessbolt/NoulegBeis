@@ -16,7 +16,7 @@ partial: false
 ingested_at: 2026-10-22T14:10:50Z
 projects: []
 clients: []
-topics: ["[[blueage]]", "[[pulse]]", "[[ai-nei-processi]]"]
+topics: ["[[blueage]]", "[[pulse]]", "[[ai-nei-processi]]", "[[manager-operativo]]"]
 tags: [condizioni-commerciali, canale, partner, pricing, fuori-perimetro]
 ---
 

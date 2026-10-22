@@ -16,7 +16,7 @@ partial: false
 ingested_at: 2026-10-22T13:25:37Z
 projects: ["[[velo-ce-progetto-dynamics]]"]
 clients: ["[[velo-ce]]"]
-topics: ["[[business-central-ai]]"]
+topics: ["[[business-central-ai]]", "[[manager-operativo]]"]
 tags: [velo-ce, business-central, quotazione, stato-informazioni, rischi, interno]
 ---
 

@@ -17,7 +17,7 @@ partial: false
 ingested_at: 2026-10-22T14:10:50Z
 projects: []
 clients: []
-topics: ["[[pulse]]", "[[blueage]]", "[[ai-foundation-program]]"]
+topics: ["[[pulse]]", "[[blueage]]", "[[ai-foundation-program]]", "[[twoteam]]"]
 tags: [deck, presentazione, inglese, sales, incentivi, partner, fuori-perimetro]
 ---
 

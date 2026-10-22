@@ -20,7 +20,7 @@ partial: false
 ingested_at: 2026-10-22T14:10:50Z
 projects: []
 clients: []
-topics: ["[[blueage]]", "[[pulse]]", "[[giornata-in-azienda]]"]
+topics: ["[[blueage]]", "[[pulse]]", "[[giornata-in-azienda]]", "[[manager-operativo]]"]
 tags: [one-pager, posizionamento, sales, partner, fuori-perimetro]
 ---
 

@@ -15,7 +15,7 @@ status: active
 partial: false
 ingested_at: 2026-10-22T14:10:50Z
 projects: []
-clients: []
+clients: ["[[mc-bride]]", "[[loacker]]", "[[gotha]]", "[[fresenius-kabi]]", "[[eurochef]]", "[[b-braun]]"]
 topics: ["[[pulse]]", "[[blueage]]", "[[giornata-in-azienda]]"]
 tags: [pipeline, partner, prospect, sviluppo-commerciale, fuori-perimetro]
 ---

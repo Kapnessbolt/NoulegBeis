@@ -16,7 +16,7 @@ partial: false
 ingested_at: 2026-10-22T13:25:33Z
 projects: ["[[velo-ce-progetto-dynamics]]"]
 clients: ["[[velo-ce]]"]
-topics: []
+topics: ["[[parts-radar]]", "[[twoteam]]"]
 tags: [regole, skill, metodo, glossario, transcript, interno]
 ---
 
