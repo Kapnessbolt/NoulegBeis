@@ -1,4 +1,4 @@
-# Task `digest` · ogni giorno alle 08:10 (Europe/Rome)
+# Task `digest` · ogni giorno alle 07:45 (Europe/Rome)
 
 Nessun connettore. Prima leggi `.claude/routines/_comune.md` e seguilo.
 

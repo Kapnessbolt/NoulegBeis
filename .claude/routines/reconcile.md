@@ -1,4 +1,4 @@
-# Task `reconcile` · ogni domenica alle 20:10 (Europe/Rome)
+# Task `reconcile` · ogni domenica alle 08:45 (Europe/Rome)
 
 Connettore: Microsoft 365. Prima leggi `.claude/routines/_comune.md` e seguilo.
 

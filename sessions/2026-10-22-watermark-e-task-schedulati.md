@@ -21,6 +21,7 @@ Chiudere i punti aperti di [[2026-10-22-primo-caricamento-outlook]]: watermark e
 - Step 4: i task schedulati creati da una sessione cloud nascono senza repository e senza connettori (in questa organizzazione non si passano i connettori da sessione). Provata una sessione di servizio unica a cui legare i 4 task: funzionava, ma l'utente preferisce una sessione nuova per ogni giro. Task e sessione di servizio rimossi; l'utente crea i 4 task dall'interfaccia di claude.ai, con repository e connettore Microsoft 365, e come prompt il file della procedura.
 - Nelle sessioni cloud il connettore Microsoft 365 può avere un nome tecnico (`mcp__<uuid>__*`) diverso da quello dichiarato dall'agente `ingestor` (`mcp__Microsoft_365__*`): le procedure in `.claude/routines/` fanno eseguire l'ingestor direttamente dalla sessione.
 - Cancellato su richiesta dell'utente il task disattivato `placeholder`, legato al PC pcita1881.
+- Task creati dall'utente dall'interfaccia, una sessione nuova per giro: `ingest-sharepoint` ogni giorno 06:50 (Opus 5.5), `ingest-outlook` 07:05 (Opus 5.5) e `ingest-outlook 2` 13:15, `Digest` 07:45 (Sonnet 5.5), `Reconcile` domenica 08:45 (Sonnet 5.5). Orari diversi da SPEC §7, da allineare con la PR sulla SPEC.
 - L'ingestor ora salta i messaggi già ingeriti nelle 2 ore di sovrapposizione del delta posta.
 - `curator` e `sessions-cleanup` rimandati: l'agente curator (step 7) e l'hook `Stop` (step 5) non esistono ancora.
 
@@ -33,9 +34,8 @@ Chiudere i punti aperti di [[2026-10-22-primo-caricamento-outlook]]: watermark e
 
 ## Aperti
 
-- [ ] Creare dall'interfaccia di claude.ai i 4 task (ingest-sharepoint, ingest-outlook, digest, reconcile), una sessione nuova per giro
 - [ ] Controllare il primo giro dei task: digest, watermark, nessun doppione
 - [ ] Rendere l'agente `ingestor` indipendente dal nome del connettore (es. togliere la restrizione `tools:`), così torna usabile come subagente
 - [ ] Dopo 3 giorni di esecuzioni senza errori né doppioni, chiudere lo step 4 (SPEC 13)
-- [ ] PR dedicata su `SPEC.md` §7: citare `.claude/routines/` come sede dei prompt dei task
+- [ ] PR dedicata su `SPEC.md` §7: citare `.claude/routines/` come sede dei prompt dei task e aggiornare gli orari
 - [ ] Far chiedere l'accesso alle API Qricambi dal ricambista pilota ([[adac-bologna]])
