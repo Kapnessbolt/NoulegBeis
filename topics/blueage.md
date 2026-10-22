@@ -17,7 +17,8 @@ L'azienda: posizionamento, linee di offerta e metodo. BlueAge risponde del risul
 
 - Linee di intervento: direzione operativa (anche fractional), sistema di execution [[pulse]], automazioni, dati e analytics ([[blueage-companyprofile]])
 - Metodo in 5 fasi: diagnosi, baseline e perimetro, progettazione e costruzione, adozione, misura ed evoluzione ([[blueage-companyprofile]])
-- Ingressi commerciali: giornata in azienda gratuita con lo sponsor; percorso in aula sull'AI applicata ai processi ([[blueage-companyprofile]])
+- Ingressi commerciali: [[giornata-in-azienda]] gratuita con lo sponsor; percorso in aula sull'AI applicata ai processi ([[blueage-companyprofile]])
+- Offerte: [[ai-nei-processi]], [[business-central-ai]], [[trade-spending]], [[ai-foundation-program]]; metodo [[compass]] ([[blueage-onepage-ai-nei-processi]])
 
 ## Dove è usato
 
@@ -26,3 +27,12 @@ L'azienda: posizionamento, linee di offerta e metodo. BlueAge risponde del risul
 ## Fonti
 
 - [[blueage-companyprofile]]
+- [[blueage-la-giornata-in-azienda]]
+- [[blueage-onepage-ai-nei-processi]]
+- [[blueage-onepage-businesscentral-ai]]
+- [[blueage-onepage-formazione-ai]]
+- [[blueage-onepage-tradespending]]
+- [[pulse-strategia-icp-e-pricing]]
+- [[pulse-presentazione-completa]]
+- [[pulse-onepager]]
+- [[pulse-sintesi]]
