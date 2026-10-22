@@ -17,6 +17,7 @@ updated: 2026-10-22
 - Kromeda: web service demo attivo dal 18/09/2026; il passaggio VIN testuale → codice originale è in sviluppo, beta attesa tra fine settembre e ottobre ([[ws-demo-blue-age]], [[parts-radar-aggiornamento-api-test]])
 - WhatsApp: architettura con webhook HTTPS di BlueAge che riceve testo, audio e immagini e smista per cliente sul numero di destinazione ([[twilio-blueage-follow-up]])
 - Al 12/10/2026: dashboard a buon punto e nuova banca dati prodotto quasi integrata; precisione circa 75% deterministica, 80% con i parametri della banca dati, 83–84% con criteri meno efficienti (da tenere come suggeriti); a gennaio il fornitore rilascia l'interrogazione per allestimento ([[riunione-generale-blueage-12-10-punti-emersi-e-prossimi-passi]])
+- Qricambi: call del 05/10/2026 fatta; le API si possono integrare, ma l'accesso lo deve chiedere il ricambista, che è il cliente diretto di Qricambi. La documentazione delle API è già disponibile ([[2026-10-22-watermark-e-task-schedulati]])
 - Obiettivo finale: un SaaS in cui ogni cliente attiva il proprio numero WhatsApp; il ricambista pilota sarebbe disposto, in modo informale, a pagare la banca dati (oggi circa 1 € a ricerca a crediti, che resterebbero come riserva) ([[riunione-generale-blueage-12-10-punti-emersi-e-prossimi-passi]])
 
 ## Attività
@@ -25,7 +26,8 @@ updated: 2026-10-22
 - [ ] Attendere da Solera la proposta ufficiale (API di validazione con ADAC, servizio a regime con pricing) ([[parts-radar-aggiornamento-api-test]])
 - [ ] Riprendere il web service VIN testuale all'uscita della beta Kromeda, prevista fine settembre / ottobre 2026 ([[parts-radar-aggiornamento-api-test]])
 - [ ] Riscontro da Assoricambi sul feedback di Kromeda / Collins e sui fornitori VIN per un ambiente di test ([[presentazione-e-sintesi-progetto]])
-- [ ] Verificare l'esito della call con Qricambi del 05/10 (data dedotta, non scritta nell'invito) ([[integrazione-api-qricambi]])
+- [x] Verificare l'esito della call con Qricambi del 05/10 ([[integrazione-api-qricambi]], [[2026-10-22-watermark-e-task-schedulati]])
+- [ ] Far chiedere l'accesso alle API Qricambi dal ricambista pilota ([[adac-bologna]]), già cliente Qricambi ([[2026-10-22-watermark-e-task-schedulati]])
 - [ ] Rispondere a Twilio sullo stack del webhook ([[twilio-blueage-follow-up]])
 - [ ] Contattare l'aggregatore degli accordi ricambisti-distributori per il confronto prezzi, con Cristian ([[riunione-generale-blueage-28-9-sintesi-e-azioni]])
 - [ ] Capire da Solera come vende il servizio e chiedere una proroga della prova ([[riunione-generale-blueage-12-10-punti-emersi-e-prossimi-passi]])
@@ -35,6 +37,7 @@ updated: 2026-10-22
 
 - 2026-09-07 · Chiesta a Solera una proposta ufficiale per l'API di validazione con ADAC pilota e per il servizio a regime con pricing ([[parts-radar-aggiornamento-api-test]])
 - 2026-09-29 · Con Qricambi niente dettagli confidenziali dell'idea, su sua richiesta: sviluppa da tre anni Quoting24, un prodotto simile ([[integrazione-api-qricambi-proposta-di-collaborazione]])
+- 2026-10-05 · Integrazione delle API Qricambi: l'accesso passa dal ricambista, cliente diretto di Qricambi, non da BlueAge ([[2026-10-22-watermark-e-task-schedulati]])
 - 2026-10-12 · Canale WhatsApp in "build" con webhook, senza personalizzazioni lato utente ([[twilio-blueage-follow-up]])
 - 2026-10-12 · Per WhatsApp ci si appoggia a un tech provider esistente, senza diventare tech provider Meta ([[riunione-generale-blueage-12-10-punti-emersi-e-prossimi-passi]])
 
@@ -53,3 +56,4 @@ updated: 2026-10-22
 - [[2026-10-22-primo-caricamento-shared-documents-onedrive]]
 - [[riunione-generale-blueage-28-9-sintesi-e-azioni]]
 - [[riunione-generale-blueage-12-10-punti-emersi-e-prossimi-passi]]
+- [[2026-10-22-watermark-e-task-schedulati]]

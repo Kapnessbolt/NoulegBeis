@@ -10,6 +10,7 @@ Una riga per avanzamento, dalla più recente: `- AAAA-MM-GG · cosa è successo 
 - 2026-10-22 · Progetto creato nel vault su indicazione dell'utente · [[2026-10-22-primo-caricamento-shared-documents-onedrive]]
 - 2026-10-12 · Scelto un tech provider WhatsApp esistente; precisione 75–84%; pilota da definire entro un mese; Solera da ricontattare per la proroga · [[riunione-generale-blueage-12-10-punti-emersi-e-prossimi-passi]]
 - 2026-10-12 · Twilio indica l'architettura webhook per l'inbound WhatsApp multi-cliente (testo, audio, immagini) · [[twilio-blueage-follow-up]]
+- 2026-10-05 · Call con Qricambi (17:15-17:45): API integrabili, ma l'accesso lo chiede il ricambista; Ligabò condivide la documentazione delle API · [[2026-10-22-watermark-e-task-schedulati]]
 - 2026-10-01 · Cristian invita Qricambi alla call sull'integrazione API (prevista il 05/10) · [[integrazione-api-qricambi]]
 - 2026-09-29 · Chiesta a Qricambi l'integrazione API per prezzi netti e disponibilità; Qricambi disponibile, segnala Quoting24 come idea simile · [[integrazione-api-qricambi-proposta-di-collaborazione]]
 - 2026-09-28 · Alla General: contattare l'aggregatore degli accordi ricambisti-distributori per il confronto prezzi · [[riunione-generale-blueage-28-9-sintesi-e-azioni]]

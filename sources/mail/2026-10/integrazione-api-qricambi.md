@@ -17,7 +17,7 @@ status: active
 
 ## Riassunto
 
-[[cristian-schifone]], d'accordo con Lorenzo, invia ad [[alessandro-ligabo]] di [[qricambi]] un invito a una riunione Teams sull'integrazione delle API Qricambi in [[parts-radar]]; Lorenzo accetta il 03/10. La data della riunione non compare nel corpo della mail: con ogni probabilità è la call di lunedì 05/10, 17-18, concordata in [[integrazione-api-qricambi-proposta-di-collaborazione]]. Dati di accesso alla riunione non riportati.
+[[cristian-schifone]], d'accordo con Lorenzo, invia ad [[alessandro-ligabo]] di [[qricambi]] un invito a una riunione Teams sull'integrazione delle API Qricambi in [[parts-radar]]; Lorenzo accetta il 03/10. La riunione è lunedì 05/10 dalle 17:15 alle 17:45 (dal calendario), come concordato in [[integrazione-api-qricambi-proposta-di-collaborazione]]. Esito della call nella scheda [[parts-radar-sviluppo]]. Dati di accesso alla riunione non riportati.
 
 ## Decisioni e azioni
 

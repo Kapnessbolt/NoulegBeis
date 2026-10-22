@@ -4,7 +4,7 @@ status: cliente
 sector: "elettronica di consumo"
 people: []
 projects: []
-tags: [caso-storico, da-verificare]
+tags: [caso-storico]
 updated: 2026-10-22
 ---
 
