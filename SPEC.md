@@ -51,8 +51,8 @@ Vincoli dell'ambiente cloud da rispettare:
 │   └── ingest.json          stato dell'ingestion (sezione 6.1)
 ├── inbox/                   catture rapide da smistare
 ├── projects/<slug>/
-│   ├── _index.md            scheda progetto: stato, attività, prossimi passi
-│   └── log.md               cronologia degli avanzamenti
+│   ├── <slug>.md            scheda progetto: stato, attività, prossimi passi
+│   └── <slug>-log.md        cronologia degli avanzamenti
 ├── clients/<slug>.md        clienti e prospect (Manini, Meccanotecnica Umbra, Velo-CE…)
 ├── people/<slug>.md         persone (interne ed esterne)
 ├── topics/<slug>.md         prodotti, offerte, metodi (AI Foundation Program, Pulse, COMPASS…)
@@ -74,7 +74,7 @@ Scritture per cartella, per ridurre i conflitti git:
 
 | Chi scrive | Dove |
 |---|---|
-| Task di ingestion | `sources/`, `journal/`, `.state/`, e in aggiunta (solo righe nuove) `projects/*/log.md` e le sezioni "Attività" di `projects/*/_index.md` |
+| Task di ingestion | `sources/`, `journal/`, `.state/`, e in aggiunta (solo righe nuove) `projects/<slug>/<slug>-log.md` e le sezioni "Attività" di `projects/<slug>/<slug>.md` |
 | Ingestion lanciata da una sessione interattiva (`/ingest`, `/ingest-file`) | Come il task di ingestion, più: creazione di note nuove in `people/`, `clients/`, `topics/` e `inbox/`; righe nuove in `## Fonti` (o `## Interazioni recenti` per le persone) di quelle esistenti |
 | Curator | `proposals/`, `sessions/` |
 | Sessioni interattive | Ovunque |
@@ -87,7 +87,7 @@ Nei task schedulati l'ingestion non crea persone, clienti e temi: scrive comunqu
 
 - Lingua: italiano.
 - Nomi file: slug minuscolo con trattini (`entrata-merci-manini.md`).
-- Collegamenti: wikilink Obsidian `[[slug]]`. Ogni nota in `sources/` deve collegarsi ad almeno un progetto, cliente o tema, tramite i campi `projects`, `clients` e `topics` del frontmatter.
+- Collegamenti: wikilink Obsidian `[[slug]]`. Lo slug è il nome del file senza `.md`, quindi la scheda di un progetto si chiama come la sua cartella (`projects/corso-ai-manini/corso-ai-manini.md`) e `[[corso-ai-manini]]` la apre. Ogni nota in `sources/` deve collegarsi ad almeno un progetto, cliente o tema, tramite i campi `projects`, `clients` e `topics` del frontmatter.
 - Frontmatter YAML obbligatorio su ogni nota, con i campi del suo tipo (4.2).
 - Una nota descrive, non copia: riassunto, punti chiave, numeri, decisioni, azioni. Per il dettaglio si legge l'originale tramite il connettore.
 
@@ -163,7 +163,7 @@ outcome: <una riga>
 
 Corpo della nota sessione: `## Obiettivo`, `## Decisioni`, `## File toccati`, `## Aperti`.
 
-**Log di progetto** (`projects/<slug>/log.md`)
+**Log di progetto** (`projects/<slug>/<slug>-log.md`)
 ```yaml
 ---
 type: project-log
@@ -254,7 +254,7 @@ I template di tutti i tipi sono in `_templates/`. Se uno schema cambia, si aggio
 - Una nota per famiglia di documenti, non per versione.
 - Chiave della famiglia: cartella + nome normalizzato, togliendo i suffissi di versione (`_v15`, `v2`, `- v001`), le date e l'estensione.
 - La nota punta sempre all'ultima versione (`current`) e tiene lo storico in `versions`.
-- Quando arriva una nuova versione, il riassunto si rigenera e le differenze rilevanti vanno nel `log.md` del progetto collegato.
+- Quando arriva una nuova versione, il riassunto si rigenera e le differenze rilevanti vanno nel `<slug>-log.md` del progetto collegato.
 
 ## 5. Perimetro delle fonti
 
@@ -310,7 +310,7 @@ Per le prime 2 settimane le mail scartate vanno elencate nel digest giornaliero,
 4. Per ogni file:
    - se `items[id].last_modified` è uguale a quello attuale, salta;
    - altrimenti leggi il contenuto con `read_resource`, individua la famiglia (4.3) e crea o aggiorna la nota.
-5. Aggiorna i progetti, clienti e temi collegati (le righe nuove vanno in `log.md`).
+5. Aggiorna i progetti, clienti e temi collegati (le righe nuove vanno in `<slug>-log.md`).
 6. Imposta `watermark` all'ultimo `lastModifiedDateTime` processato con successo. Se un file fallisce, il watermark non lo supera.
 7. Commit e push su `main` (sezione 11).
 

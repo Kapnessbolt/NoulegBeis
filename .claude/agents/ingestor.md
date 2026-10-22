@@ -23,7 +23,7 @@ Chi ti chiama ti passa:
 
 | Modalità | Dove |
 |---|---|
-| `schedulata` | `sources/`, `journal/`, `.state/`. In aggiunta, solo righe nuove: `projects/*/log.md` e la sezione `## Attività` di `projects/*/_index.md` |
+| `schedulata` | `sources/`, `journal/`, `.state/`. In aggiunta, solo righe nuove: `projects/<slug>/<slug>-log.md` e la sezione `## Attività` di `projects/<slug>/<slug>.md` |
 | `interattiva` | Come sopra, più la creazione di note nuove in `people/`, `clients/`, `topics/` e `inbox/`. Le note esistenti di questi tipi si aggiornano solo nella sezione `## Fonti` (o `## Interazioni recenti` per le persone) |
 
 Collegamenti mancanti:
@@ -103,7 +103,7 @@ Una nota descrive, non copia: niente blocchi di testo dell'originale.
 1. Sposta la vecchia `current` in testa a `versions` se non c'è già, poi imposta la nuova `current`.
 2. Rigenera riassunto, punti chiave e numeri sulla nuova versione.
 3. Aggiungi la riga in `## Versioni` con le differenze rilevanti.
-4. Per ogni progetto collegato aggiungi in `projects/<slug>/log.md`, in testa all'elenco: `- AAAA-MM-GG · <famiglia>: nuova versione <name>, <differenze> · [[<famiglia>]]`.
+4. Per ogni progetto collegato aggiungi in `projects/<slug>/<slug>-log.md`, in testa all'elenco: `- AAAA-MM-GG · <famiglia>: nuova versione <name>, <differenze> · [[<famiglia>]]`.
 
 ### 3.6 Nota `source-mail`
 
@@ -118,8 +118,8 @@ Parti da `_templates/source-mail.md`.
 
 Per ogni azione o scadenza esplicita nella fonte, se il progetto esiste:
 
-- `projects/<slug>/_index.md`, sezione `## Attività`: `- [ ] <azione> 📅 AAAA-MM-GG ([[<slug-fonte>]])` (senza data se la fonte non la dà);
-- `projects/<slug>/log.md`, in testa all'elenco: `- AAAA-MM-GG · <cosa è successo> · [[<slug-fonte>]]`.
+- `projects/<slug>/<slug>.md`, sezione `## Attività`: `- [ ] <azione> 📅 AAAA-MM-GG ([[<slug-fonte>]])` (senza data se la fonte non la dà);
+- `projects/<slug>/<slug>-log.md`, in testa all'elenco: `- AAAA-MM-GG · <cosa è successo> · [[<slug-fonte>]]`.
 
 Solo righe nuove: non modificare né riordinare quelle esistenti. Prima di aggiungere controlla che la stessa riga non ci sia già.
 

@@ -6,15 +6,15 @@ Questo repo è il second brain personale di Lorenzo Curione sulla knowledge Blue
 
 1. `git pull --rebase origin main`.
 2. Leggi questo file. Leggi `SPEC.md` solo nelle sezioni che servono al compito.
-3. Se il compito tocca un progetto, apri prima `projects/<slug>/_index.md`.
+3. Se il compito tocca un progetto, apri prima `projects/<slug>/<slug>.md`.
 
 ## 2. Dove scrivere ogni tipo di nota
 
 | Cosa | Dove | Template | `type` |
 |---|---|---|---|
 | Cattura rapida da smistare | `inbox/AAAA-MM-DD-<slug>.md` | `_templates/inbox.md` | `inbox` |
-| Scheda progetto | `projects/<slug>/_index.md` | `_templates/project-index.md` | `project` |
-| Cronologia progetto | `projects/<slug>/log.md` | `_templates/project-log.md` | `project-log` |
+| Scheda progetto | `projects/<slug>/<slug>.md` | `_templates/project-index.md` | `project` |
+| Cronologia progetto | `projects/<slug>/<slug>-log.md` | `_templates/project-log.md` | `project-log` |
 | Cliente o prospect | `clients/<slug>.md` | `_templates/client.md` | `client` |
 | Persona (interna o esterna) | `people/<nome-cognome>.md` | `_templates/person.md` | `person` |
 | Prodotto, offerta, metodo | `topics/<slug>.md` | `_templates/topic.md` | `topic` |
@@ -29,19 +29,20 @@ Questo repo è il second brain personale di Lorenzo Curione sulla knowledge Blue
 | Stato dell'ingestion | `.state/ingest.json` | schema in SPEC 6.1 | — |
 
 Regole di instradamento:
+- La scheda progetto si chiama come la cartella (`projects/<slug>/<slug>.md`), così `[[<slug>]]` la apre; la cronologia è `<slug>-log.md`.
 - `<percorso>` riproduce le cartelle dell'originale, in slug (`Knowledge/Offerte 2026/` → `knowledge/offerte-2026/`).
 - `AAAA-MM` della mail è il mese del primo messaggio del thread. `<slug-oggetto>` è l'oggetto senza prefissi di risposta e inoltro (`RE:`, `R:`, `FW:`, `FWD:`, `I:`).
 - I partecipanti di un thread si collegano a `people/<nome-cognome>.md`. Se la persona non ha una nota, creala dal template.
 - Se non sai a quale progetto, cliente o tema appartiene qualcosa, scrivi in `inbox/` e non inventare collegamenti.
-- Un'informazione nuova su un progetto va in due posti: una riga datata in `log.md` e, se cambia lo stato, la sezione corrispondente di `_index.md`.
-- Un'azione o una scadenza emersa da una fonte va come checkbox in `## Attività` di `_index.md` (con data e fonte) e come riga in `log.md`.
+- Un'informazione nuova su un progetto va in due posti: una riga datata in `<slug>-log.md` e, se cambia lo stato, la sezione corrispondente di `<slug>.md`.
+- Un'azione o una scadenza emersa da una fonte va come checkbox in `## Attività` di `<slug>.md` (con data e fonte) e come riga in `<slug>-log.md`.
 - I progetti non si creano in automatico. Se una fonte riguarda un progetto che non esiste nel vault, lascia `projects: []` e proponi di crearlo: in una sessione interattiva con una nota in `inbox/`, nell'ingestion con una riga nel digest del giorno (`journal/`), perché l'ingestor non scrive in `inbox/`.
 
 ## 3. Chi può scrivere dove
 
 | Chi | Dove |
 |---|---|
-| Task di ingestion (agente `ingestor`, modalità `schedulata`) | `sources/`, `journal/`, `.state/`. In aggiunta, solo righe nuove: `projects/*/log.md` e la sezione `## Attività` di `projects/*/_index.md` |
+| Task di ingestion (agente `ingestor`, modalità `schedulata`) | `sources/`, `journal/`, `.state/`. In aggiunta, solo righe nuove: `projects/<slug>/<slug>-log.md` e la sezione `## Attività` di `projects/<slug>/<slug>.md` |
 | Ingestion da sessione interattiva (`/ingest`, `/ingest-file`, modalità `interattiva`) | Come sopra, più: note nuove in `people/`, `clients/`, `topics/`, `inbox/`; righe nuove in `## Fonti` (o `## Interazioni recenti`) di quelle esistenti |
 | Curator | `proposals/`, `sessions/` |
 | Sessione interattiva | Ovunque |
@@ -65,7 +66,7 @@ Il curator non modifica mai `CLAUDE.md`, `.claude/` o `SPEC.md`: propone, e le m
 - Una nota per famiglia, non per versione.
 - Chiave della famiglia: cartella + nome normalizzato, senza suffissi di versione (`_v15`, `v2`, `- v001`), date ed estensione. Esempio: `BlueAge_CompanyProfile_v24.pdf` → `blueage-companyprofile`.
 - `current` punta all'ultima versione; `versions` tiene lo storico dalla più recente.
-- Nuova versione: rigenera il riassunto e scrivi le differenze rilevanti nel `log.md` del progetto collegato.
+- Nuova versione: rigenera il riassunto e scrivi le differenze rilevanti nel `<slug>-log.md` del progetto collegato.
 - Stessa famiglia in un'altra posizione: aggiungi la posizione in `also_at`, non creare un'altra nota.
 
 ## 5. Cosa non va nel repo

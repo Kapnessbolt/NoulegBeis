@@ -21,7 +21,7 @@ Disponibili: `/ingest`, `/ingest-file` (step 2). Gli altri comandi e l'ingestion
 | Cartella | Contenuto |
 |---|---|
 | `inbox/` | Catture rapide da smistare |
-| `projects/<slug>/` | `_index.md` (scheda progetto) e `log.md` (cronologia) |
+| `projects/<slug>/` | `<slug>.md` (scheda progetto) e `<slug>-log.md` (cronologia) |
 | `clients/` | Clienti e prospect |
 | `people/` | Persone interne ed esterne |
 | `topics/` | Prodotti, offerte, metodi |
