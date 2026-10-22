@@ -18,7 +18,9 @@ Chiudere i punti aperti di [[2026-10-22-primo-caricamento-outlook]]: watermark e
 - Call con [[qricambi]] fatta il 05/10/2026, dalle 17:15 alle 17:45 (dal calendario). Dall'utente: le API si possono integrare in [[parts-radar]], ma l'accesso lo deve chiedere il ricambista, che è il cliente diretto di Qricambi; la documentazione delle API è già disponibile (Ligabò l'ha condivisa nella chat della riunione). La trascrizione Teams non è leggibile: l'accesso Graph alle trascrizioni è disattivato sul tenant.
 - [[twoteam]]: dall'utente, prima di BlueAge lo stesso progetto era in TwoTeam; vista la direzione presa si è scelto di aprire una nuova società. Dalle mail di luglio 2026: [[cristian-schifone]] aveva un indirizzo @twoteam.it, non più attivo ad agosto. Tolto il tag `da-verificare`.
 - [[cellularline]]: confermata dall'utente così com'è, tolto il tag `da-verificare`.
-- Step 4: i task schedulati creati da una sessione cloud nascono senza repository e senza connettori (in questa organizzazione non si passano i connettori da sessione). Il task di prova `ingest-sharepoint` creato così è stato cancellato. Le procedure sono in `.claude/routines/` (una per task più `_comune.md`). L'utente crea i task dalla UI di claude.ai con repository e connettore Microsoft 365, e come prompt indica il file della procedura.
+- Step 4: i task schedulati creati da una sessione cloud nascono senza repository e senza connettori (in questa organizzazione non si passano i connettori da sessione); il primo `ingest-sharepoint` creato così è stato cancellato. Soluzione: una sessione di servizio dedicata (`NoulegBeis · task schedulati`, `session_01TFDpJGsVdzNKZGP8CttmTt`) con il repository, il connettore Microsoft 365 e push su `main`; i 4 task scrivono in quella sessione. Verificato che la sessione legge Outlook.
+- In quella sessione il connettore ha un nome tecnico diverso (`mcp__<uuid>__*`), quindi l'agente `ingestor`, che dichiara `mcp__Microsoft_365__*`, non lo vedrebbe: le procedure in `.claude/routines/` fanno eseguire l'ingestor direttamente dalla sessione.
+- Cancellato su richiesta dell'utente il task disattivato `placeholder`, legato al PC pcita1881.
 - `curator` e `sessions-cleanup` rimandati: l'agente curator (step 7) e l'hook `Stop` (step 5) non esistono ancora.
 
 ## File toccati
@@ -30,7 +32,8 @@ Chiudere i punti aperti di [[2026-10-22-primo-caricamento-outlook]]: watermark e
 
 ## Aperti
 
-- [ ] Creare dalla UI di claude.ai i 4 task schedulati (ingest-sharepoint, ingest-outlook, digest, reconcile) con repository e connettore Microsoft 365
+- [ ] Controllare il primo giro dei task (23/10 mattina): digest, watermark, nessun doppione
+- [ ] Rendere l'agente `ingestor` indipendente dal nome del connettore (es. togliere la restrizione `tools:`), così torna usabile come subagente
 - [ ] Dopo 3 giorni di esecuzioni senza errori né doppioni, chiudere lo step 4 (SPEC 13)
 - [ ] PR dedicata su `SPEC.md` §7: citare `.claude/routines/` come sede dei prompt dei task
 - [ ] Far chiedere l'accesso alle API Qricambi dal ricambista pilota ([[adac-bologna]])
