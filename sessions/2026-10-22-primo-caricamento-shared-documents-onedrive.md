@@ -34,7 +34,7 @@ Ingerire la libreria Shared Documents di `sites/internal` (lotto 3) e la cartell
 
 ## Aperti
 
-- [ ] SPEC (5.2, 8, 13) e CLAUDE.md citano `BlueAge/_chat/`, ma la cartella ora si chiama `00_chat/`. L'utente ha approvato la PR (SPEC 1.9, con anche `01_Materiale clienti/`), ma il commit è stato bloccato dal permesso sulle modifiche alle istruzioni: le modifiche sono pronte nello stash del branch `claude/trusting-carson-ipguvp`
+- [ ] PR #9 da approvare (SPEC 1.9): la cartella chat si riconosce dal suffisso `chat` (oggi `00_chat/`) e le sottocartelle di `BlueAge/` sono incluse senza doverle elencare; allineato CLAUDE.md
 - [x] Company Profile: l'utente conferma che la copia del sito partner (2026-10-19) è la versione più nuova; ora è la `current` di [[blueage-companyprofile]], con la v24 nello storico
 - [x] `pulse-i-en` va allineata alla K (EBITDA del caso reale 2,8 M€ contro 2,35 M€): l'utente ne ha preso atto
 - [x] Proposte approvate dall'utente e create: clienti [[bertazzoni]], [[mc-bride]], [[loacker]], [[gotha]], [[fresenius-kabi]], [[eurochef]], [[b-braun]] (prospect) e [[cellularline]] (caso storico di Pulse, `da-verificare`); temi [[parts-radar]], [[manager-operativo]], [[twoteam]] (`da-verificare`: è un partner, non un tema in senso stretto)
