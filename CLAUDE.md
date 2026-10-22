@@ -30,7 +30,7 @@ Questo repo è il second brain personale di Lorenzo Curione sulla knowledge Blue
 
 Regole di instradamento:
 - La scheda progetto si chiama come la cartella (`projects/<slug>/<slug>.md`), così `[[<slug>]]` la apre; la cronologia è `<slug>-log.md`.
-- `<percorso>` riproduce le cartelle dell'originale, in slug (`Knowledge/Offerte 2026/` → `knowledge/offerte-2026/`).
+- `<percorso>` riproduce le cartelle dell'originale, in slug (`SalesMarketing/Offerte 2026/` → `salesmarketing/offerte-2026/`).
 - `AAAA-MM` della mail è il mese del primo messaggio del thread. `<slug-oggetto>` è l'oggetto senza prefissi di risposta e inoltro (`RE:`, `R:`, `FW:`, `FWD:`, `I:`).
 - I partecipanti di un thread si collegano a `people/<nome-cognome>.md`. Se la persona non ha una nota, creala dal template.
 - Se non sai a quale progetto, cliente o tema appartiene qualcosa, scrivi in `inbox/` e non inventare collegamenti.
@@ -79,7 +79,7 @@ Il curator non modifica mai `CLAUDE.md`, `.claude/` o `SPEC.md`: propone, e le m
 
 ## 6. Perimetro delle fonti (sintesi di SPEC 5)
 
-- SharePoint `sites/internal`: librerie Knowledge, SalesMarketing, Delivery, Shared Documents. Esclusi SiteAssets e le cartelle `_originali` e `_sorgenti`.
+- SharePoint `sites/internal`: librerie SalesMarketing, Delivery, Shared Documents. Escluse le librerie Knowledge (corsi Anthropic) e SiteAssets, e le cartelle `_originali` e `_sorgenti`.
 - OneDrive: solo la cartella `BlueAge/`. `BlueAge/_chat/` contiene i riassunti delle chat claude.ai → note `session` con `surface: claude-ai`.
 - Outlook: tutta la casella, Inviate comprese. Scarta no-reply, notifiche di servizi, newsletter e marketing.
 

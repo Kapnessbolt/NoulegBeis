@@ -1,6 +1,6 @@
 # SPEC · Second Brain BlueAge (personale)
 
-Versione 1.4 · 22/10/2026 · Owner: Lorenzo Curione
+Versione 1.5 · 22/10/2026 · Owner: Lorenzo Curione
 
 Questo file è la specifica di riferimento del vault. Ogni sessione Claude Code che costruisce o modifica il sistema parte da qui. Le modifiche alla specifica si fanno con una PR dedicata.
 
@@ -282,7 +282,7 @@ Quando si esegue:
 
 | Libreria | Stato |
 |---|---|
-| Knowledge | Inclusa |
+| Knowledge | Esclusa (corsi ufficiali Anthropic: materiale pubblico, si legge dall'originale quando serve) |
 | SalesMarketing | Inclusa |
 | Delivery | Inclusa |
 | Shared Documents | Inclusa |
@@ -366,12 +366,11 @@ Limite di lettura: oltre 30 pagine o slide, leggi le prime 30 e imposta `partial
 
 Non lo fa il task schedulato. Si fa con sessioni manuali, una libreria per volta, in quest'ordine:
 
-1. Knowledge
-2. SalesMarketing
-3. Delivery
-4. Shared Documents
-5. OneDrive/BlueAge
-6. Outlook, ultimi 60 giorni
+1. SalesMarketing
+2. Delivery
+3. Shared Documents
+4. OneDrive/BlueAge
+5. Outlook, ultimi 60 giorni
 
 Dopo ogni lotto l'utente controlla un campione di note prima di passare al successivo. Al termine si inizializzano i watermark e si attivano i task schedulati.
 

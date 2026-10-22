@@ -39,7 +39,6 @@ I collegamenti vanno nei campi `projects`, `clients` e `topics` del frontmatter;
 
 Un documento è nel perimetro se il `webUrl` inizia con uno di questi prefissi:
 
-- `https://blueagesrl.sharepoint.com/sites/internal/Knowledge/`
 - `https://blueagesrl.sharepoint.com/sites/internal/SalesMarketing/`
 - `https://blueagesrl.sharepoint.com/sites/internal/Delivery/`
 - `https://blueagesrl.sharepoint.com/sites/internal/Shared Documents/`
