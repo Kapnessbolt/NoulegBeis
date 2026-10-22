@@ -36,4 +36,7 @@ Disponibili: `/ingest`, `/ingest-file`, `/controlla`. Gli altri comandi e l'inge
 
 ## Obsidian
 
+Dopo il clone, una volta sola: `git config core.hooksPath .githooks`. Attiva il controllo del vault prima di ogni commit, anche da Obsidian.
+
+
 Imposta `_templates/` come cartella dei template (Impostazioni → Template). I template usano le variabili `{{title}}` e `{{date}}` del plugin core. Le attività usano il formato del plugin Tasks (`📅 AAAA-MM-GG`).
