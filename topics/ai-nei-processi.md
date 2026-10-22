@@ -28,3 +28,6 @@ Offerta di [[blueage]] che inserisce l'AI nei passaggi che oggi vivono tra e-mai
 
 - [[blueage-onepage-ai-nei-processi]]
 - [[blueage-companyprofile]]
+- [[blueage-sintesi]]
+- [[blueage-condizioni-commerciali-slide]]
+- [[blueage-possibilita]]

@@ -27,3 +27,5 @@ Offerta di [[blueage]] per adottare Microsoft Dynamics 365 Business Central part
 ## Fonti
 
 - [[blueage-onepage-businesscentral-ai]]
+- [[blueage-sintesi]]
+- [[blueage-possibilita]]

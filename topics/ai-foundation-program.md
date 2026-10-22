@@ -33,3 +33,4 @@ Percorso di formazione BlueAge sull'intelligenza artificiale per le imprese indu
 - [[ai-foundation-program-m1-mtu-inserti]]
 - [[blueage-onepage-formazione-ai]]
 - [[pulse-presentazione-completa]]
+- [[pulse-i-en]]

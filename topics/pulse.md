@@ -27,6 +27,9 @@ Sistema di execution proprietario di [[blueage]]. Legge i dati che l'azienda gi�
 - Avvio: stima entro 5 giorni, proposta entro 2 settimane, messa in esercizio in 2–3 mesi ([[pulse-presentazione-completa]])
 - Materiali per fase: one pager per il primo contatto, sintesi di 7 slide per il primo approfondimento, presentazione completa per i decisori, demo deck con tre mattine Order-to-Cash per chi vuole vedere il prodotto ([[pulse-sintesi]])
 - Incoerenza da verificare: la presentazione completa parla di "ingegneria enterprise dal 2009", gli altri documenti del 2012 ([[pulse-presentazione-completa]])
+- Condizioni per il canale valide fino al 31/12/2026: prezzo formalizzato da BlueAge dopo il passaggio tecnico, a Partner e Master una quota fissa più il 30% dell'extra oltre il minimo, condizioni ridotte per le prime due referenze, canone Platform & Support a BlueAge ([[blueage-condizioni-commerciali-slide]])
+- FAQ di vendita per i partner (prima edizione 30/07/2026, nata da un incontro con un prospect lato IT): prima la mail del mattino, poi il metodo, poi i numeri; Pulse legge e non scrive; risultati raccontati come storia del caso Cellularline, mai come promessa ([[pulse-faq-vendita]])
+- La versione inglese (revisione I) riporta un EBITDA del caso reale di circa 2,8 M€ contro i 2,35 M€ della K e cita la partnership con TwoTeam per le implementazioni enterprise: va allineata alla K prima di riusarla ([[pulse-i-en]])
 
 ## Dove è usato
 
@@ -41,3 +44,10 @@ Sistema di execution proprietario di [[blueage]]. Legge i dati che l'azienda gi�
 - [[pulse-demodeck]]
 - [[pulse-onepager]]
 - [[pulse-sintesi]]
+- [[blueage-sintesi]]
+- [[blueage-condizioni-commerciali-slide]]
+- [[blueage-onepage]]
+- [[blueage-possibilita]]
+- [[pulse-faq-vendita]]
+- [[pulse-i-en]]
+- [[todo-partner-e-aziende]]

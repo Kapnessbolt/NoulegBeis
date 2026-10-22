@@ -29,3 +29,5 @@ Metodo BlueAge per portare l'AI nei processi aziendali, costruito sull'analogia 
 
 - [[ai-foundation-program-m1]]
 - [[ai-foundation-program-m1-mtu-inserti]]
+- [[blueage-sintesi]]
+- [[blueage-possibilita]]

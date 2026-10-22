@@ -32,3 +32,4 @@ Piattaforma "Powered by BlueAge" per governare premi e contributi che l'industri
 - [[trade-spending-deck-cliente]]
 - [[blueage-onepage-tradespending]]
 - [[blueage-companyprofile]]
+- [[blueage-possibilita]]

@@ -36,3 +36,5 @@ updated: 2026-10-22
 
 - [[manini-relazione-processi-gestione-materiali]]
 - [[manini-relazione-processi-gestione-materiali-slides]]
+- [[gruppi]]
+- [[istruzioni-e-informativa-ia]]

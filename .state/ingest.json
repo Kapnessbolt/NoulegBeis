@@ -438,7 +438,16 @@
   },
   "onedrive": {
     "watermark": null,
-    "items": {}
+    "items": {
+      "b!2fHSoBOOE0aRvS_GntS6s6RJcyNKjAJMiRtoiZ6n5xzp8hWMRRoMQKOVYgftTbzT/013UYHJHDFKK6EKXSGZRD36APGWH434FIS": {
+        "last_modified": "2026-10-19T09:26:43Z",
+        "note": "sources/onedrive/01-materiale-clienti/manini/gruppi.md"
+      },
+      "b!2fHSoBOOE0aRvS_GntS6s6RJcyNKjAJMiRtoiZ6n5xzp8hWMRRoMQKOVYgftTbzT/013UYHJHAP42IPWZ47DJHKZV66CAFKPUTB": {
+        "last_modified": "2026-07-03T07:54:24Z",
+        "note": "sources/onedrive/01-materiale-clienti/manini/istruzioni-e-informativa-ia.md"
+      }
+    }
   },
   "outlook": {
     "watermark": null,

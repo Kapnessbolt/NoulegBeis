@@ -16,4 +16,5 @@ Ufficio acquisti di [[manini]]. Ha proposto le idee alla base degli interventi 3
 
 ## Interazioni recenti
 
+- 2026-10-19 · uditore del gruppo A del corso base di formazione AI · [[gruppi]]
 - 2026-10-12 · citato nella relazione sui processi di gestione materiali · [[manini-relazione-processi-gestione-materiali]]

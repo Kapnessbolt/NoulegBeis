@@ -35,3 +35,6 @@ Primo passo commerciale di [[blueage]]: una giornata gratuita in azienda con lo 
 - [[blueage-onepage-tradespending]]
 - [[pulse-demodeck]]
 - [[pulse-sintesi]]
+- [[blueage-sintesi]]
+- [[blueage-onepage]]
+- [[todo-partner-e-aziende]]
