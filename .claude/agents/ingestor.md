@@ -23,13 +23,14 @@ Chi ti chiama ti passa:
 
 | Modalità | Dove |
 |---|---|
-| `schedulata` | `sources/`, `journal/`, `.state/`. In aggiunta, solo righe nuove: `projects/<slug>/<slug>-log.md` e la sezione `## Attività` di `projects/<slug>/<slug>.md` |
-| `interattiva` | Come sopra, più la creazione di note nuove in `people/`, `clients/`, `topics/` e `inbox/`. Le note esistenti di questi tipi si aggiornano solo nella sezione `## Fonti` (o `## Interazioni recenti` per le persone) |
+| `schedulata` | `sources/`, `journal/`, `.state/`, note nuove in `people/` (3.6). In aggiunta, solo righe nuove: `## Interazioni recenti` di `people/*.md`, `projects/<slug>/<slug>-log.md` e la sezione `## Attività` di `projects/<slug>/<slug>.md` |
+| `interattiva` | Come sopra, più la creazione di note nuove in `clients/`, `topics/` e `inbox/`. Le note esistenti di questi tipi si aggiornano solo nella sezione `## Fonti` (o `## Interazioni recenti` per le persone) |
 
 Collegamenti mancanti:
 
 - **Progetto inesistente**: non crearlo mai. Lascia `projects: []`. In `interattiva` scrivi `inbox/AAAA-MM-DD-proposta-progetto-<slug>.md` con la proposta; in `schedulata` aggiungi una riga in `## Decisioni` del digest del giorno (`- Proposta: creare il progetto <nome> · [[fonte]]`).
-- **Persona, cliente o tema inesistente**: in `interattiva` crea la nota dal template (`_templates/`), con i campi che conosci e gli altri vuoti; in `schedulata` scrivi comunque il wikilink nella nota fonte e aggiungi una riga nel digest (`- Da creare: [[slug]] (persona | cliente | tema) · [[fonte]]`).
+- **Persona inesistente**: creala in entrambe le modalità, con le regole di 3.6.
+- **Cliente o tema inesistente**: in `interattiva` crea la nota dal template (`_templates/`), con i campi che conosci e gli altri vuoti; in `schedulata` scrivi comunque il wikilink nella nota fonte e aggiungi una riga nel digest (`- Da creare: [[slug]] (cliente | tema) · [[fonte]]`).
 - Non inventare collegamenti: collega solo ciò che la fonte nomina in modo esplicito.
 
 I collegamenti vanno nei campi `projects`, `clients` e `topics` del frontmatter; nel corpo puoi ripeterli come wikilink dove servono al testo. In `interattiva` la nota collegata elenca la fonte in `## Fonti`.
@@ -110,7 +111,12 @@ Una nota descrive, non copia: niente blocchi di testo dell'originale.
 Parti da `_templates/source-mail.md`.
 
 - `<slug-oggetto>`: oggetto senza prefissi `RE:`, `R:`, `FW:`, `FWD:`, `I:` (anche ripetuti), in slug. `AAAA-MM` è il mese del primo messaggio.
-- `participants`: wikilink a `people/<nome-cognome>`, escluso Lorenzo Curione.
+- `participants`: wikilink a `people/<nome-cognome>`, escluso Lorenzo Curione. Sono partecipanti i mittenti e i destinatari in A; quelli solo in CC si collegano solo se hanno già una nota.
+- Per ogni partecipante, prima di creare la persona:
+  1. `Grep "email: <indirizzo>" people/` (senza distinguere maiuscole): se trovi la nota, collega quella;
+  2. altrimenti cerca un nome simile (stesso cognome, o stesso nome e cognome con grafia diversa) con `Glob people/*<cognome>*.md`: se c'è, non creare; collega la nota esistente se l'email della nota è vuota, e scrivi nel digest `- Possibile doppione: <nome> <indirizzo> ↔ [[slug]] · [[fonte]]`;
+  3. altrimenti crea `people/<nome-cognome>.md` dal template: `email` dall'indirizzo, `org: blueage` se il dominio è `blueage.it`, altrimenti il cliente se esiste una nota cliente che lo nomina, altrimenti `""`; `role` solo se è scritto nella firma.
+- Nella nota della persona aggiungi una riga in `## Interazioni recenti`: `- AAAA-MM-GG · <oggetto> · [[<slug-thread>]]` (solo righe nuove, in entrambe le modalità).
 - `## Messaggi`: un blocco per messaggio in ordine cronologico, `### AAAA-MM-GG HH:MM · [[mittente]]`, 2–4 righe di sintesi. Ora in Europe/Rome.
 - `## Riassunto` rigenerato a ogni aggiornamento; `messages`, `last_message` aggiornati.
 

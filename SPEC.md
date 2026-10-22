@@ -74,12 +74,12 @@ Scritture per cartella, per ridurre i conflitti git:
 
 | Chi scrive | Dove |
 |---|---|
-| Task di ingestion | `sources/`, `journal/`, `.state/`, e in aggiunta (solo righe nuove) `projects/<slug>/<slug>-log.md` e le sezioni "Attività" di `projects/<slug>/<slug>.md` |
-| Ingestion lanciata da una sessione interattiva (`/ingest`, `/ingest-file`) | Come il task di ingestion, più: creazione di note nuove in `people/`, `clients/`, `topics/` e `inbox/`; righe nuove in `## Fonti` (o `## Interazioni recenti` per le persone) di quelle esistenti |
+| Task di ingestion | `sources/`, `journal/`, `.state/`, note nuove in `people/` (partecipanti delle mail), e in aggiunta (solo righe nuove) `## Interazioni recenti` di `people/*.md`, `projects/<slug>/<slug>-log.md` e le sezioni "Attività" di `projects/<slug>/<slug>.md` |
+| Ingestion lanciata da una sessione interattiva (`/ingest`, `/ingest-file`) | Come il task di ingestion, più: creazione di note nuove in `clients/`, `topics/` e `inbox/`; righe nuove in `## Fonti` (o `## Interazioni recenti` per le persone) di quelle esistenti |
 | Curator | `proposals/`, `sessions/` |
 | Sessioni interattive | Ovunque |
 
-Nei task schedulati l'ingestion non crea persone, clienti e temi: scrive comunque il wikilink nella nota fonte e propone la creazione nel digest del giorno. I progetti non si creano mai in automatico.
+Nei task schedulati l'ingestion crea le persone ma non clienti e temi: per questi scrive comunque il wikilink nella nota fonte e propone la creazione nel digest del giorno. Prima di creare una persona cerca una nota con la stessa email; se trova solo un nome simile, non crea e segnala il possibile doppione nel digest. I progetti non si creano mai in automatico.
 
 ## 4. Regole delle note
 
