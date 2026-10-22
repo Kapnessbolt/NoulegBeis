@@ -20,6 +20,7 @@ Chiudere i punti aperti di [[2026-10-22-primo-caricamento-outlook]]: watermark e
 - [[cellularline]]: confermata dall'utente così com'è, tolto il tag `da-verificare`.
 - Step 4: i task schedulati creati da una sessione cloud nascono senza repository e senza connettori (in questa organizzazione non si passano i connettori da sessione); il primo `ingest-sharepoint` creato così è stato cancellato. Soluzione: una sessione di servizio dedicata (`NoulegBeis · task schedulati`, `session_01TFDpJGsVdzNKZGP8CttmTt`) con il repository, il connettore Microsoft 365 e push su `main`; i 4 task scrivono in quella sessione. Verificato che la sessione legge Outlook.
 - In quella sessione il connettore ha un nome tecnico diverso (`mcp__<uuid>__*`), quindi l'agente `ingestor`, che dichiara `mcp__Microsoft_365__*`, non lo vedrebbe: le procedure in `.claude/routines/` fanno eseguire l'ingestor direttamente dalla sessione.
+- Task creati (Europe/Rome): `ingest-sharepoint` 06:50 (`trig_0129Asv58zcQVqvqNiJxkm9A`), `ingest-outlook` 07:50 e 13:50 (`trig_013MvezNjEtDNZN1FNAe4VEo`), `digest` 08:10 (`trig_019WMa6n8qTB6wjj7b35iWHw`), `reconcile` domenica 20:10 (`trig_01SLGQGQFDfyu1txRDVK4qsL`).
 - Cancellato su richiesta dell'utente il task disattivato `placeholder`, legato al PC pcita1881.
 - `curator` e `sessions-cleanup` rimandati: l'agente curator (step 7) e l'hook `Stop` (step 5) non esistono ancora.
 
