@@ -1,0 +1,6 @@
+{
+  "sharepoint": { "watermark": null, "items": {} },
+  "onedrive":   { "watermark": null, "items": {} },
+  "outlook":    { "watermark": null, "threads": {} },
+  "reconcile":  { "last_run": null }
+}

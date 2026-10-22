@@ -1,0 +1,14 @@
+# Obsidian: stato locale del dispositivo
+.obsidian/workspace*.json
+.obsidian/cache
+.trash/
+
+# File prodotti dalle skill: vanno su SharePoint/OneDrive, non nel repo
+*.pptx
+*.mp4
+*.png
+!.claude/skills/**
+
+# Sistema
+.DS_Store
+Thumbs.db
