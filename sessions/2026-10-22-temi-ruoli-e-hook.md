@@ -27,5 +27,5 @@ Chiudere le decisioni sul lotto Delivery e verificare in una sessione nuova l'ho
 
 ## Aperti
 
-- [ ] Chiudere il limite dell'hook con un pre-commit di git (PR dedicata)
+- [x] Limite dell'hook chiuso con il pre-commit di git (SPEC 1.8, PR #8 mergiata)
 - [ ] Prossimo lotto: Shared Documents
