@@ -35,7 +35,7 @@ Regole di instradamento:
 - Se non sai a quale progetto, cliente o tema appartiene qualcosa, scrivi in `inbox/` e non inventare collegamenti.
 - Un'informazione nuova su un progetto va in due posti: una riga datata in `log.md` e, se cambia lo stato, la sezione corrispondente di `_index.md`.
 - Un'azione o una scadenza emersa da una fonte va come checkbox in `## Attività` di `_index.md` (con data e fonte) e come riga in `log.md`.
-- I progetti non si creano in automatico. Se una fonte riguarda un progetto che non esiste nel vault, lascia `projects: []` e scrivi una nota in `inbox/` che proponga di crearlo.
+- I progetti non si creano in automatico. Se una fonte riguarda un progetto che non esiste nel vault, lascia `projects: []` e proponi di crearlo: in una sessione interattiva con una nota in `inbox/`, nell'ingestion con una riga nel digest del giorno (`journal/`), perché l'ingestor non scrive in `inbox/`.
 
 ## 3. Chi può scrivere dove
 
