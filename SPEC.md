@@ -1,6 +1,6 @@
 # SPEC · Second Brain BlueAge (personale)
 
-Versione 1.7 · 22/10/2026 · Owner: Lorenzo Curione
+Versione 1.8 · 22/10/2026 · Owner: Lorenzo Curione
 
 Questo file è la specifica di riferimento del vault. Ogni sessione Claude Code che costruisce o modifica il sistema parte da qui. Le modifiche alla specifica si fanno con una PR dedicata.
 
@@ -271,7 +271,7 @@ Lo script `python3 .claude/scripts/controlla-vault.py` verifica le note e stampa
 | Avviso | Note orfane (persone, clienti, temi che nessuna nota collega); note che citano una fonte rimossa; note più vecchie di una fonte che citano (la fonte è stata aggiornata dopo); note `da-verificare`; nomi quasi uguali nella stessa categoria (possibili doppioni); persone senza email; campi non previsti dal template; documenti SharePoint/OneDrive non registrati nello stato |
 
 Quando si esegue:
-- **prima di ogni commit**: l'hook `.claude/hooks/controllo-pre-commit.sh` (PreToolUse su `git commit`) lancia lo script con `--modificati` e blocca il commit se ci sono errori che toccano i file modificati, compresi i collegamenti rotti da una nota cancellata o rinominata. Vale per sessioni interattive e task schedulati;
+- **prima di ogni commit**: il pre-commit di git `.githooks/pre-commit` lancia lo script con `--modificati` e blocca il commit se ci sono errori che toccano i file modificati, compresi i collegamenti rotti da una nota cancellata o rinominata. Gira dentro `git commit`, quindi vede anche i file creati nello stesso comando. Si attiva con `git config core.hooksPath .githooks`: nelle sessioni Claude Code lo fa l'hook `SessionStart` di `.claude/settings.json`, sui PC con Obsidian va eseguito una volta dopo il clone. L'hook `PreToolUse` `.claude/hooks/controllo-pre-commit.sh` resta come primo filtro sui comandi `git commit`. Vale per sessioni interattive e task schedulati;
 - **su ogni push e PR**: il workflow `.github/workflows/controllo-vault.yml` lo esegue su GitHub, così si vedono anche gli errori introdotti da Obsidian o dal web;
 - nella riconciliazione settimanale (6.4), con l'esito nel digest;
 - a richiesta con `/controlla`.
