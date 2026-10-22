@@ -24,6 +24,7 @@ Chiudere i punti aperti di [[2026-10-22-primo-caricamento-outlook]]: watermark e
 - Task creati dall'utente dall'interfaccia, una sessione nuova per giro: `ingest-sharepoint` ogni giorno 06:50 (Opus 5.5), `ingest-outlook` 07:05 (Opus 5.5) e `ingest-outlook 2` 13:15, `Digest` 07:45 (Sonnet 5.5), `Reconcile` domenica 08:45 (Sonnet 5.5). Orari diversi da SPEC §7, da allineare con la PR sulla SPEC.
 - L'ingestor ora salta i messaggi già ingeriti nelle 2 ore di sovrapposizione del delta posta.
 - Test di raccolta delle sessioni: dalla sessione si possono elencare le sessioni dell'account (anche archiviate e di altri repo, es. parts-radar) e leggerne la trascrizione. Un subagente ha ricostruito il diario completo di una sessione parts-radar del 18/10 con 3 letture, filtrando con uno script (le pagine pesano 170-200 mila caratteri). Il diario non è stato salvato nel vault: era solo una prova.
+- Parts Radar: il dettaglio di sviluppo resta nel repo parts-radar. Nel vault entrano solo i documenti che l'utente caricherà su OneDrive e SharePoint, oltre alla posta, come per tutte le fonti. Le sessioni di parts-radar restano fuori dalla raccolta delle sessioni.
 - `curator` e `sessions-cleanup` rimandati: l'agente curator (step 7) e l'hook `Stop` (step 5) non esistono ancora.
 
 ## File toccati
@@ -35,7 +36,7 @@ Chiudere i punti aperti di [[2026-10-22-primo-caricamento-outlook]]: watermark e
 
 ## Aperti
 
-- [ ] Step 5: valutare la raccolta delle sessioni via trascrizione (elenco sessioni della settimana → diari mancanti in `sessions/`) al posto dell'hook `Stop`; decidere se includere le sessioni di parts-radar
+- [ ] Step 5: valutare la raccolta delle sessioni via trascrizione (elenco sessioni della settimana → diari mancanti in `sessions/`) al posto dell'hook `Stop`; solo sessioni sul vault e chat di claude.ai, escluse quelle di parts-radar
 - [ ] Controllare il primo giro dei task: digest, watermark, nessun doppione
 - [ ] Rendere l'agente `ingestor` indipendente dal nome del connettore (es. togliere la restrizione `tools:`), così torna usabile come subagente
 - [ ] Dopo 3 giorni di esecuzioni senza errori né doppioni, chiudere lo step 4 (SPEC 13)
