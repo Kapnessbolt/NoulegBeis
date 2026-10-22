@@ -3,7 +3,7 @@ type: person
 org: blueage
 role: "Managing Partner"
 email: ""
-projects: ["[[velo-ce-progetto-dynamics]]", "[[manini-supply-chain-magazzino]]", "[[corso-ai-manini]]"]
+projects: ["[[velo-ce-progetto-dynamics]]", "[[manini-supply-chain-magazzino]]", "[[corso-ai-manini]]", "[[corso-ai-mtu]]"]
 tags: []
 updated: 2026-10-22
 ---

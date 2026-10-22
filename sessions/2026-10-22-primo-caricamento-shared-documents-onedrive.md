@@ -18,7 +18,7 @@ Ingerire la libreria Shared Documents di `sites/internal` (lotto 3) e la cartell
 - Sito `sites/partner`, fuori perimetro: ingerite con il compito `file` e il tag `fuori-perimetro` solo le famiglie che il vault non aveva (7 note in `sources/sharepoint/_partner/`). Le copie del materiale già presente restano fuori e non vanno nello stato.
 - OneDrive: vale solo `BlueAge/` (decisione dell'utente). Contiene `00_chat/` (vuota, prima `_chat/`) e `01_Materiale clienti/`, la cartella con il materiale inviato dai clienti. Da `01_Materiale clienti/Manini/` sono entrate 2 note; `Documenti di Trasporto.zip` è ignorato perché è un tipo non processato.
 - `Formazione AI/` nella radice di OneDrive resta fuori: è il cantiere da cui è nato il deck, ora superato da `M1_v15` di Leonardo ([[ai-foundation-program-m1]]). Secondo l'utente i corsi MTU e Manini sono uguali.
-- Il progetto MTU non è stato creato; la proposta in `inbox/` è aggiornata.
+- Progetto [[corso-ai-mtu]] creato su richiesta dell'utente, sul modello di [[corso-ai-manini]]: stesso corso e stesso ruolo (AI consultant in aula con Leonardo). Proposta in `inbox/` chiusa e rimossa.
 - Temi nuovi non creati. Le proposte degli agenti sono elencate negli aperti.
 
 ## File toccati

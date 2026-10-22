@@ -1,7 +1,7 @@
 ---
 type: topic
 kind: offerta
-projects: []
+projects: ["[[corso-ai-mtu]]"]
 clients: ["[[meccanotecnica-umbra]]"]
 tags: [formazione, ai]
 updated: 2026-10-22
@@ -25,7 +25,7 @@ Percorso di formazione BlueAge sull'intelligenza artificiale per le imprese indu
 
 ## Dove è usato
 
-- [[meccanotecnica-umbra]]: Modulo 1 in 3 sessioni, con inserti dedicati
+- [[meccanotecnica-umbra]]: Modulo 1 in 3 sessioni, con inserti dedicati ([[corso-ai-mtu]])
 
 ## Fonti
 

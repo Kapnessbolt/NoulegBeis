@@ -14,7 +14,7 @@ also_at: []
 status: active
 partial: false
 ingested_at: 2026-10-22T13:03:18Z
-projects: []
+projects: ["[[corso-ai-mtu]]"]
 clients: ["[[meccanotecnica-umbra]]"]
 topics: ["[[ai-foundation-program]]"]
 tags: [formazione, deck, compass, modulo-1, inserti-cliente]
