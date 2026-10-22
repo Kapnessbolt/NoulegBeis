@@ -83,7 +83,7 @@ Il curator non modifica mai `CLAUDE.md`, `.claude/` o `SPEC.md`: propone, e le m
 
 ## 7. Git
 
-- Prima di ogni commit: `git pull --rebase origin main`. Poi commit e push diretto su `main`.
+- Prima di ogni commit: `python3 .claude/scripts/controlla-vault.py` (SPEC 4.4) e correggi gli errori che hai introdotto; poi `git pull --rebase origin main`, commit e push diretto su `main`.
 - Conflitto su `.state/ingest.json`: vince la versione con il watermark più avanzato. Altri conflitti: riapplica la tua modifica sulla versione remota.
 - Eccezione: il curator lavora su un branch `claude/curator-AAAA-MM-DD` e apre una PR.
 - Messaggi di commit: `ingest(sharepoint): 12 note aggiornate`, `session: <slug>`, `project(<slug>): <cosa>`, `vault: <cosa>` per struttura e configurazione.

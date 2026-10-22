@@ -170,7 +170,8 @@ Solo righe nuove: non modificare né riordinare quelle esistenti. Prima di aggiu
    - ID non più presente → nella nota `status: removed`, l'elemento resta nello stato;
    - `webUrl` cambiato → aggiorna `current.web_url`; se cambia la cartella, sposta la nota con `git mv` e aggiorna `note` nello stato;
    - file presente ma mai ingerito → elencalo nel digest come "in coda"; la prossima ingestion lo prende (se è più vecchio del watermark, ingeriscilo subito con il compito `file`).
-3. `reconcile.last_run` = istante attuale. Esito nel digest, commit e push.
+3. Esegui `python3 .claude/scripts/controlla-vault.py` e riporta errori e avvisi in `## Controllo del vault` del digest.
+4. `reconcile.last_run` = istante attuale. Esito nel digest, commit e push.
 
 ## 8. Digest del giorno
 
@@ -179,13 +180,15 @@ File `journal/AAAA-MM-GG.md` (data Europe/Rome). Se non esiste, crealo da `_temp
 - `## Novità ingerite`: `- [[slug]] · nuova | aggiornata | nuova versione · una riga di cosa contiene`;
 - `## Decisioni`: proposte di progetti e note da creare (1);
 - `## Scartate`: mail scartate (`- mittente · oggetto`), solo nelle prime 2 settimane dopo l'attivazione dei task;
+- `## Controllo del vault`: solo nella riconciliazione, il rapporto dello script (errori e avvisi);
 - `## Esito dei task`: una riga di tabella `| <task> HH:MM | OK |` oppure gli errori (file, motivo).
 
 ## 9. Git
 
-1. `git pull --rebase origin main`.
-2. Conflitto su `.state/ingest.json`: tieni, per ogni fonte, il `watermark` più avanzato e l'unione di `items`/`threads` (per la stessa chiave vince il `last_modified` o `last_message` più recente). Altri conflitti: riapplica la tua modifica sulla versione remota.
-3. Commit con messaggio `ingest(<fonte>): <n> note nuove, <m> aggiornate` (per il compito `file`: `ingest(file): <famiglia>`), poi `git push origin HEAD:main`. Se il push fallisce per rete, riprova fino a 4 volte (2, 4, 8, 16 secondi).
+1. Esegui `python3 .claude/scripts/controlla-vault.py`. Correggi gli errori nelle note che hai scritto in questo giro; quelli in altre note riportali nel digest (in `interattiva`, a chi ti ha chiamato). Gli avvisi non bloccano.
+2. `git pull --rebase origin main`.
+3. Conflitto su `.state/ingest.json`: tieni, per ogni fonte, il `watermark` più avanzato e l'unione di `items`/`threads` (per la stessa chiave vince il `last_modified` o `last_message` più recente). Altri conflitti: riapplica la tua modifica sulla versione remota.
+4. Commit con messaggio `ingest(<fonte>): <n> note nuove, <m> aggiornate` (per il compito `file`: `ingest(file): <famiglia>`), poi `git push origin HEAD:main`. Se il push fallisce per rete, riprova fino a 4 volte (2, 4, 8, 16 secondi).
 
 ## 10. Risposta a chi ti ha chiamato
 
