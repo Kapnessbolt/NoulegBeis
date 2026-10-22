@@ -22,7 +22,7 @@ Offerta di [[blueage]] per adottare Microsoft Dynamics 365 Business Central part
 
 ## Dove è usato
 
--
+- [[velo-ce-progetto-dynamics]]: riconduzione allo standard e passaggio a Business Central Premium per [[velo-ce]]
 
 ## Fonti
 
