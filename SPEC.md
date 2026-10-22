@@ -1,6 +1,6 @@
 # SPEC · Second Brain BlueAge (personale)
 
-Versione 1.3 · 22/10/2026 · Owner: Lorenzo Curione
+Versione 1.4 · 22/10/2026 · Owner: Lorenzo Curione
 
 Questo file è la specifica di riferimento del vault. Ogni sessione Claude Code che costruisce o modifica il sistema parte da qui. Le modifiche alla specifica si fanno con una PR dedicata.
 
@@ -41,12 +41,14 @@ Vincoli dell'ambiente cloud da rispettare:
 /
 ├── SPEC.md                  questa specifica
 ├── CLAUDE.md                istruzioni operative per ogni sessione
+├── .github/workflows/       controllo del vault su ogni push (4.4)
 ├── README.md                guida rapida per l'utente
 ├── .claude/
 │   ├── settings.json        hook e permessi
 │   ├── commands/            comandi manuali (sezione 8)
 │   ├── agents/              agenti specializzati (sezione 9)
-│   ├── scripts/             script di servizio (controllo del vault, 4.4)
+│   ├── hooks/               hook di Claude Code (controllo prima del commit, 4.4)
+│   ├── scripts/             script di servizio (controllo e rinomina delle note, 4.4)
 │   └── skills/              skill (sezione 10)
 ├── .state/
 │   └── ingest.json          stato dell'ingestion (sezione 6.1)
@@ -75,12 +77,12 @@ Scritture per cartella, per ridurre i conflitti git:
 
 | Chi scrive | Dove |
 |---|---|
-| Task di ingestion | `sources/`, `journal/`, `.state/`, note nuove in `people/` (partecipanti delle mail), e in aggiunta (solo righe nuove) `## Interazioni recenti` di `people/*.md`, `projects/<slug>/<slug>-log.md` e le sezioni "Attività" di `projects/<slug>/<slug>.md` |
-| Ingestion lanciata da una sessione interattiva (`/ingest`, `/ingest-file`) | Come il task di ingestion, più: creazione di note nuove in `clients/`, `topics/` e `inbox/`; righe nuove in `## Fonti` (o `## Interazioni recenti` per le persone) di quelle esistenti |
+| Task di ingestion | `sources/`, `journal/`, `.state/`, note nuove in `people/`, `clients/` e `topics/`, e in aggiunta (solo righe nuove) `## Interazioni recenti` di `people/*.md`, `projects/<slug>/<slug>-log.md` e le sezioni "Attività" di `projects/<slug>/<slug>.md` |
+| Ingestion lanciata da una sessione interattiva (`/ingest`, `/ingest-file`) | Come il task di ingestion, più: note nuove in `inbox/`; righe nuove in `## Fonti` di clienti e temi esistenti |
 | Curator | `proposals/`, `sessions/` |
 | Sessioni interattive | Ovunque |
 
-Nei task schedulati l'ingestion crea le persone ma non clienti e temi: per questi scrive comunque il wikilink nella nota fonte e propone la creazione nel digest del giorno. Prima di creare una persona cerca una nota con la stessa email; se trova solo un nome simile, non crea e segnala il possibile doppione nel digest. I progetti non si creano mai in automatico.
+Un collegamento non resta mai rotto: se la nota di destinazione non esiste, l'ingestion la crea. Le persone si creano complete (nome, email, organizzazione). Clienti e temi creati da un task schedulato sono note minime con il tag `da-verificare`, segnalate nel digest e da `/controlla` finché l'utente non le rivede e toglie il tag. Prima di creare una persona si cerca una nota con la stessa email. Se c'è solo un nome simile: senza email è la stessa persona e si collega quella; con un'email diversa si crea la nuova persona. In entrambi i casi il possibile doppione va nel digest. I progetti non si creano mai in automatico: la fonte resta collegata a clienti e temi e la proposta va nel digest.
 
 ## 4. Regole delle note
 
@@ -89,6 +91,8 @@ Nei task schedulati l'ingestion crea le persone ma non clienti e temi: per quest
 - Lingua: italiano.
 - Nomi file: slug minuscolo con trattini (`entrata-merci-manini.md`).
 - Collegamenti: wikilink Obsidian `[[slug]]`. Lo slug è il nome del file senza `.md`, quindi la scheda di un progetto si chiama come la sua cartella (`projects/corso-ai-manini/corso-ai-manini.md`) e `[[corso-ai-manini]]` la apre. Ogni nota in `sources/` deve collegarsi ad almeno un progetto, cliente o tema, tramite i campi `projects`, `clients` e `topics` del frontmatter.
+- Integrità: nessun wikilink può puntare a una nota inesistente, perché una nota irraggiungibile esce dal grafo e dalle ricerche. Per rinominare una nota si usa `python3 .claude/scripts/rinomina-nota.py <vecchio> <nuovo>`, che aggiorna tutti i collegamenti.
+- Tracciabilità: nelle note di temi (`## Punti chiave`), clienti (`## Chi sono`, `## Relazione con BlueAge`) e progetti (`## Stato`, `## Decisioni`) ogni punto o paragrafo cita la nota fonte da cui viene, in coda: `([[slug-fonte]])`. Se l'informazione viene dall'utente, la fonte è il diario della sessione.
 - Frontmatter YAML obbligatorio su ogni nota, con i campi del suo tipo (4.2).
 - Una nota descrive, non copia: riassunto, punti chiave, numeri, decisioni, azioni. Per il dettaglio si legge l'originale tramite il connettore.
 
@@ -259,15 +263,16 @@ I template di tutti i tipi sono in `_templates/`. Se uno schema cambia, si aggio
 
 ### 4.4 Controllo del vault
 
-Lo script `python3 .claude/scripts/controlla-vault.py` verifica le note e stampa un rapporto in markdown (con `--indice` aggiunge l'elenco di progetti, clienti, persone e temi). Esce con codice 1 se trova errori.
+Lo script `python3 .claude/scripts/controlla-vault.py` verifica le note e stampa un rapporto in markdown (con `--indice` aggiunge l'elenco di progetti, clienti, persone e temi, con il numero di note che li collegano). Esce con codice 1 se trova errori.
 
 | Livello | Cosa controlla |
 |---|---|
-| Errore | Frontmatter mancante o non valido; `type` sconosciuto o nella cartella sbagliata; campi del template mancanti; valori fuori dagli elenchi ammessi (es. `status`); nomi file non in slug; slug duplicati; scheda progetto con nome diverso dalla cartella; wikilink del frontmatter verso note inesistenti; fonti senza progetto, cliente o tema; stessa email su due persone; stessa `family`, `item_id` o `conversation_id` su due note; voci di `.state/ingest.json` che puntano a note inesistenti |
-| Avviso | Campi non previsti dal template; wikilink nel testo verso note inesistenti; nomi quasi uguali nella stessa categoria (possibili doppioni); persone senza email; documenti SharePoint/OneDrive non registrati nello stato |
+| Errore | **Integrità**: wikilink (nel frontmatter o nel testo) verso note inesistenti; wikilink con percorso o estensione; slug duplicati; voci di `.state/ingest.json` che puntano a note inesistenti. **Tracciabilità**: punti senza fonte nelle sezioni elencate in 4.1; fonti senza progetto, cliente o tema. **Schema**: frontmatter mancante o non valido; `type` sconosciuto o nella cartella sbagliata; campi del template mancanti; valori fuori dagli elenchi ammessi; nomi file non in slug; scheda progetto con nome diverso dalla cartella. **Doppioni certi**: stessa email su due persone; stessa `family`, `item_id` o `conversation_id` su due note |
+| Avviso | Note orfane (persone, clienti, temi che nessuna nota collega); note che citano una fonte rimossa; note più vecchie di una fonte che citano (la fonte è stata aggiornata dopo); note `da-verificare`; nomi quasi uguali nella stessa categoria (possibili doppioni); persone senza email; campi non previsti dal template; documenti SharePoint/OneDrive non registrati nello stato |
 
 Quando si esegue:
-- prima di ogni commit, da sessioni interattive e task: gli errori introdotti si correggono prima del push;
+- **prima di ogni commit**: l'hook `.claude/hooks/controllo-pre-commit.sh` (PreToolUse su `git commit`) lancia lo script con `--modificati` e blocca il commit se ci sono errori che toccano i file modificati, compresi i collegamenti rotti da una nota cancellata o rinominata. Vale per sessioni interattive e task schedulati;
+- **su ogni push e PR**: il workflow `.github/workflows/controllo-vault.yml` lo esegue su GitHub, così si vedono anche gli errori introdotti da Obsidian o dal web;
 - nella riconciliazione settimanale (6.4), con l'esito nel digest;
 - a richiesta con `/controlla`.
 

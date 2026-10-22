@@ -15,9 +15,9 @@ L'azienda: posizionamento, linee di offerta e metodo. BlueAge risponde del risul
 
 ## Punti chiave
 
-- Linee di intervento: direzione operativa (anche fractional), sistema di execution [[pulse]], automazioni, dati e analytics.
-- Metodo in 5 fasi: diagnosi, baseline e perimetro, progettazione e costruzione, adozione, misura ed evoluzione.
-- Ingressi commerciali: giornata in azienda gratuita con lo sponsor; percorso in aula sull'AI applicata ai processi.
+- Linee di intervento: direzione operativa (anche fractional), sistema di execution [[pulse]], automazioni, dati e analytics ([[blueage-companyprofile]])
+- Metodo in 5 fasi: diagnosi, baseline e perimetro, progettazione e costruzione, adozione, misura ed evoluzione ([[blueage-companyprofile]])
+- Ingressi commerciali: giornata in azienda gratuita con lo sponsor; percorso in aula sull'AI applicata ai processi ([[blueage-companyprofile]])
 
 ## Dove è usato
 

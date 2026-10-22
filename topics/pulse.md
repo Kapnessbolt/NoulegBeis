@@ -15,9 +15,9 @@ Sistema di execution proprietario di BlueAge. Legge i dati che l'azienda già pr
 
 ## Punti chiave
 
-- Ideato e sviluppato dai professionisti che oggi compongono BlueAge, in esercizio dal 2012 su più funzioni, fino al livello direzionale.
-- Risultati misurati su capitale circolante, recupero delle vendite e riduzione delle anomalie operative.
-- Si usa quando il problema è la dispersione dell'execution, non un singolo passaggio manuale.
+- Ideato e sviluppato dai professionisti che oggi compongono BlueAge, in esercizio dal 2012 su più funzioni, fino al livello direzionale ([[blueage-companyprofile]])
+- Risultati misurati su capitale circolante, recupero delle vendite e riduzione delle anomalie operative ([[blueage-companyprofile]])
+- Si usa quando il problema è la dispersione dell'execution, non un singolo passaggio manuale ([[blueage-companyprofile]])
 
 ## Dove è usato
 
