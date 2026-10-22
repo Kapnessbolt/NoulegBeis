@@ -44,7 +44,7 @@ Un documento è nel perimetro se il `webUrl` inizia con uno di questi prefissi:
 - `https://blueagesrl.sharepoint.com/sites/internal/Shared Documents/`
 - `https://blueagesrl-my.sharepoint.com/personal/lorenzo_curione_blueage_it/Documents/BlueAge/`
 
-e non contiene i segmenti `/SiteAssets/`, `/_originali/`, `/_sorgenti/`. Confronta i prefissi senza distinguere maiuscole e minuscole e con gli spazi anche nella forma `%20`.
+e non contiene i segmenti `/SiteAssets/`, `/_originali/`, `/_sorgenti/`, una cartella il cui nome finisce con `Transcript` (es. `/05 Transcript/`), una cartella `Export` dentro una cartella `Evidenze` (es. `/06 Evidenze/Export/`), né cartelle di progetti software (con `app.json`, `package.json` o `.git`, es. `/Lab AL/`). Confronta i prefissi senza distinguere maiuscole e minuscole e con gli spazi anche nella forma `%20`.
 
 `sharepoint_search` restituisce anche altri siti e il resto di OneDrive: scarta tutto ciò che non rientra.
 

@@ -1,6 +1,6 @@
 # SPEC · Second Brain BlueAge (personale)
 
-Versione 1.6 · 22/10/2026 · Owner: Lorenzo Curione
+Versione 1.7 · 22/10/2026 · Owner: Lorenzo Curione
 
 Questo file è la specifica di riferimento del vault. Ogni sessione Claude Code che costruisce o modifica il sistema parte da qui. Le modifiche alla specifica si fanno con una PR dedicata.
 
@@ -288,7 +288,11 @@ Quando si esegue:
 | Shared Documents | Inclusa |
 | SiteAssets | Esclusa (blocco appunti OneNote) |
 
-Esclusioni in qualunque punto del percorso: cartelle `_originali`, cartelle `_sorgenti`.
+Esclusioni in qualunque punto del percorso:
+- cartelle `_originali` e `_sorgenti`;
+- cartelle `Transcript` (es. `05 Transcript`): trascrizioni grezze delle riunioni, già riassunte nei verbali;
+- cartelle `Evidenze/Export` (es. `06 Evidenze/Export`): export grezzi di tabelle e dati dei sistemi del cliente;
+- cartelle di progetti software (contengono `app.json`, `package.json` o `.git`), es. `Lab AL/BlueAge-LabAL`.
 
 Tipi di file processati: pdf, docx, pptx, xlsx, md, txt. Gli altri tipi (immagini, video, archivi, codice) si ignorano: non generano note, anche perché in gran parte non compaiono nella ricerca di SharePoint e l'ingestion periodica non li vedrebbe.
 
