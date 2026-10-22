@@ -30,10 +30,10 @@ Avviare lo step 3 (SPEC 6.5): inventario delle librerie e primo lotto di ingesti
 
 ## Aperti
 
-- [ ] Controllo del campione di 10 note da parte dell'utente
-- [ ] Il one-pager Formazione AI è collegato ad ai-foundation-program anche se il nome non compare nel documento: confermare
-- [ ] Immagini di Brand Assets: decidere se escludere dalla SPEC i file non indicizzati dalla ricerca
-- [ ] M1 letto solo nelle prime 30 slide su 113 (partial)
-- [ ] Incoerenza Pulse: "dal 2009" nella presentazione completa, "dal 2012" negli altri documenti
-- [ ] Temi proposti dagli agenti e non creati: incentivi e finanza agevolata, canale partner, order-to-cash, Digital Bridge Group
+- [x] Campione di 10 note approvato dall'utente
+- [x] Collegamento del one-pager Formazione AI ad ai-foundation-program: confermato
+- [x] File non documentali esclusi dalla SPEC (1.6, PR #6)
+- [x] M1 resta parziale (prime 30 slide su 113): deciso dall'utente
+- [x] Incoerenza Pulse 2009/2012: il deck resta com'è
+- [x] Temi proposti dagli agenti (incentivi, canale partner, order-to-cash, Digital Bridge Group): per ora non servono
 - [ ] Prossimo lotto: Delivery
