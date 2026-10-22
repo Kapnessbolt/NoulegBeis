@@ -8,8 +8,8 @@ last_message: 2026-09-28T19:32:52Z
 messages: 1
 attachments: []
 projects: ["[[manini-supply-chain-magazzino]]", "[[parts-radar-sviluppo]]"]
-clients: ["[[manini]]"]
-topics: ["[[blueage]]", "[[pulse]]", "[[giornata-in-azienda]]", "[[parts-radar]]"]
+clients: ["[[manini]]", "[[clinicalfarma]]"]
+topics: ["[[blueage]]", "[[pulse]]", "[[giornata-in-azienda]]", "[[parts-radar]]", "[[piano-editoriale-linkedin]]"]
 status: active
 ---
 

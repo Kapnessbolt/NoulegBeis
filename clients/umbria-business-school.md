@@ -2,8 +2,8 @@
 type: client
 status: cliente
 sector: "formazione finanziata"
-people: ["[[andrea-marchesi]]"]
-projects: ["[[corso-ai-mtu]]", "[[corso-ai-manini]]"]
+people: ["[[andrea-marchesi]]", "[[elisabetta-monaldi]]"]
+projects: ["[[corso-ai-mtu]]", "[[corso-ai-manini]]", "[[corso-ai-tifast]]"]
 tags: []
 updated: 2026-10-22
 ---
@@ -22,12 +22,13 @@ updated: 2026-10-22
 ## Persone di riferimento
 
 - [[andrea-marchesi]] · consulente per SFCU
-- Elisabetta Monaldi · Sales & Training Specialist, referente operativa per MTU
+- [[elisabetta-monaldi]] · Sales & Training Specialist, referente operativa per MTU
 
 ## Progetti
 
 - [[corso-ai-mtu]]
 - [[corso-ai-manini]]
+- [[corso-ai-tifast]]
 
 ## Fonti
 

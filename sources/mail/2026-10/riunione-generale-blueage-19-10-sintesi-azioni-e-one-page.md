@@ -7,8 +7,8 @@ first_message: 2026-10-19T19:58:58Z
 last_message: 2026-10-22T11:35:46Z
 messages: 4
 attachments: ["[[blueage-ai-che-cresce-onepage]]"]
-projects: []
-clients: ["[[velo-ce]]", "[[liuc]]"]
+projects: ["[[osservatorio-ai-pmi-liuc]]"]
+clients: ["[[velo-ce]]", "[[liuc]]", "[[pettenon]]"]
 topics: ["[[blueage]]", "[[ai-che-cresce-con-lazienda]]", "[[ai-foundation-program]]", "[[pulse]]", "[[parts-radar]]"]
 status: active
 ---

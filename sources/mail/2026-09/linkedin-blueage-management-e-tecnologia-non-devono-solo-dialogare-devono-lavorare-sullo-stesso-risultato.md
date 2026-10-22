@@ -9,7 +9,7 @@ messages: 2
 attachments: []
 projects: []
 clients: []
-topics: ["[[blueage]]"]
+topics: ["[[blueage]]", "[[piano-editoriale-linkedin]]"]
 status: active
 ---
 

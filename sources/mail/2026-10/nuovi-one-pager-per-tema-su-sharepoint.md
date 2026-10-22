@@ -8,7 +8,7 @@ last_message: 2026-10-01T17:15:56Z
 messages: 1
 attachments: []
 projects: []
-clients: ["[[deepagent]]"]
+clients: ["[[concentrazione-eu]]"]
 topics: ["[[blueage]]", "[[business-central-ai]]", "[[trade-spending]]", "[[ai-nei-processi]]", "[[ai-foundation-program]]", "[[giornata-in-azienda]]"]
 status: active
 ---
@@ -24,7 +24,7 @@ status: active
 - Intelligenza artificiale nei processi ([[blueage-onepage-ai-nei-processi]], tema [[ai-nei-processi]]): ordini, ricevimento merci e ricambi;
 - Formazione AI applicata ai processi ([[blueage-onepage-formazione-ai]], tema [[ai-foundation-program]]): il percorso in aula che si chiude con la mappa dei casi d'uso.
 
-Le schede sono scritte per chi sta in azienda e si possono girare così come sono, dopo un incontro o a un partner che vuole presentare [[blueage]]; ognuna chiude con la [[giornata-in-azienda]] come primo passo. Leo le ha preparate per Alberto Bezzi di Concentrazione.eu ([[deepagent]]), che ha una rete di circa 3.000 manager.
+Le schede sono scritte per chi sta in azienda e si possono girare così come sono, dopo un incontro o a un partner che vuole presentare [[blueage]]; ognuna chiude con la [[giornata-in-azienda]] come primo passo. Leo le ha preparate per Alberto Bezzi di [[concentrazione-eu]], che ha una rete di circa 3.000 manager.
 
 ## Decisioni e azioni
 

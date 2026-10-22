@@ -8,7 +8,7 @@ last_message: 2026-10-01T10:49:43Z
 messages: 1
 attachments: []
 projects: []
-clients: ["[[deepagent]]"]
+clients: ["[[deepagent]]", "[[concentrazione-eu]]"]
 topics: ["[[blueage]]", "[[parts-radar]]"]
 status: active
 ---

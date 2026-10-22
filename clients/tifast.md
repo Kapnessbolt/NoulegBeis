@@ -3,7 +3,7 @@ type: client
 status: prospect
 sector: ""
 people: []
-projects: []
+projects: ["[[corso-ai-tifast]]"]
 tags: []
 updated: 2026-10-22
 ---
@@ -26,7 +26,7 @@ updated: 2026-10-22
 
 ## Progetti
 
--
+- [[corso-ai-tifast]]
 
 ## Fonti
 

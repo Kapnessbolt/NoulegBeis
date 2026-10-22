@@ -32,6 +32,7 @@ Sistema di execution proprietario di [[blueage]]. Legge i dati che l'azienda gi�
 - La versione inglese (revisione I) riporta un EBITDA del caso reale di circa 2,8 M€ contro i 2,35 M€ della K e cita la partnership con TwoTeam per le implementazioni enterprise: va allineata alla K prima di riusarla ([[pulse-i-en]])
 - Incuriosisce e nessuno ha citato un concorrente, ma diversi partner si sono fermati perché è un acquisto grande: nasce l'idea di un Pulse Light, da provare su Velo-CE ([[riunione-generale-blueage-28-9-sintesi-e-azioni]], [[blueage-le-idee-per-crescere]], [[call-di-oggi-prossimi-passi-architettura-copilot-manini-meccanotecnica-second-brain]])
 - Sintesi di 5 pagine rivista il 18/09/2026 da usare subito negli incontri ([[pulse-sintesi-5-pagine-revamp]])
+- Versione ridotta in valutazione: [[pulse-light]] ([[blueage-le-idee-per-crescere]])
 
 ## Dove è usato
 

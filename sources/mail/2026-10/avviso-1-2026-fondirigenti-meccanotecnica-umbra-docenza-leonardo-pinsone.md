@@ -7,8 +7,8 @@ first_message: 2026-10-02T16:55:33Z
 last_message: 2026-10-05T11:52:30Z
 messages: 2
 attachments: []
-projects: ["[[corso-ai-mtu]]"]
-clients: ["[[meccanotecnica-umbra]]", "[[umbria-business-school]]"]
+projects: ["[[corso-ai-mtu]]", "[[corso-ai-tifast]]"]
+clients: ["[[meccanotecnica-umbra]]", "[[umbria-business-school]]", "[[tarkett]]", "[[tifast]]"]
 topics: []
 status: active
 ---

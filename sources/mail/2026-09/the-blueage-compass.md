@@ -7,7 +7,7 @@ first_message: 2026-09-22T12:32:32Z
 last_message: 2026-09-22T12:32:32Z
 messages: 1
 attachments: ["[[compass-ai-al-lavoro]]"]
-projects: []
+projects: ["[[corso-ai-tifast]]"]
 clients: []
 topics: ["[[compass]]"]
 status: active

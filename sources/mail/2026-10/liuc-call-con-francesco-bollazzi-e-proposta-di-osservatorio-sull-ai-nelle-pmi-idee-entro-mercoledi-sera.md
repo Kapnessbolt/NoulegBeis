@@ -7,7 +7,7 @@ first_message: 2026-10-19T19:01:58Z
 last_message: 2026-10-22T14:26:43Z
 messages: 3
 attachments: []
-projects: []
+projects: ["[[osservatorio-ai-pmi-liuc]]"]
 clients: ["[[liuc]]"]
 topics: ["[[blueage]]", "[[ai-nei-processi]]"]
 status: active

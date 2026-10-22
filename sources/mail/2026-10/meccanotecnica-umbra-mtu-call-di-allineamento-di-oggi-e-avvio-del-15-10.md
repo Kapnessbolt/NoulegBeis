@@ -2,7 +2,7 @@
 type: source-mail
 conversation_id: "AAQkAGMyY2M5ZTczLTYwNDEtNGZiOC1iYjJjLTFhZjJhOGY1YjFiMQAQAMvmoAosHdZNlX0GGULNhr4="
 subject: "Meccanotecnica Umbra (MTU): call di allineamento di oggi e avvio del 15/10"
-participants: ["[[leonardo-pinsone]]", "[[anna-bono]]"]
+participants: ["[[leonardo-pinsone]]", "[[anna-bono]]", "[[daniela-rossi]]"]
 first_message: 2026-10-12T16:00:30Z
 last_message: 2026-10-12T16:00:30Z
 messages: 1

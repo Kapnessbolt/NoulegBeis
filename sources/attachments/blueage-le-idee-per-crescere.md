@@ -16,7 +16,7 @@ partial: false
 ingested_at: 2026-10-22T15:22:38Z
 projects: []
 clients: ["[[velo-ce]]", "[[manini]]", "[[meccanotecnica-umbra]]", "[[umbria-business-school]]"]
-topics: ["[[blueage]]", "[[ai-che-cresce-con-lazienda]]", "[[second-brain]]", "[[pulse]]"]
+topics: ["[[blueage]]", "[[ai-che-cresce-con-lazienda]]", "[[second-brain]]", "[[pulse]]", "[[pulse-light]]"]
 tags: [strategia, offerta, crescita]
 ---
 

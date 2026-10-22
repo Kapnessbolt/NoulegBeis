@@ -45,6 +45,7 @@ updated: 2026-10-22
 - AI Act e policy si propongono a parte, fuori dal corso ([[manini-corso-ai-da-36-ore-contesto-opportunita-e-come-lo-impostiamo]])
 - [[compass]] entra nel modulo 1 ([[manini-corso-ai-quadro-interno-blueage]])
 - Il caso entrata merci si presenta a voce, senza girare le slide e senza nominare il cliente ([[blueage-automation-entrata-merci]])
+- Ore del corso: 36 per il corso utenti (tre gruppi da 12) più 8 per i Sistemi Informativi; l'ipotesi di 48 ore è superata (utente in sessione, [[2026-10-22-primo-caricamento-outlook]]; [[manini-corso-ai-recap-della-call-del-16-10]])
 
 ## Prossimi passi
 
@@ -67,7 +68,6 @@ updated: 2026-10-22
 - [[manini-corso-ai-quadro-interno-blueage]]
 - [[manini-corso-ai-raccolta-dati-blueage]]
 - [[manini-corso-ai-domande-preliminari-blueage]]
-- [[ipotesi-formazione-it]]
 - [[proposta-formazione-ai-utenti-tradizionali]]
 - [[deck-corso-ai-m1-v15-su-sharepoint]]
 - [[call-di-oggi-prossimi-passi-architettura-copilot-manini-meccanotecnica-second-brain]]

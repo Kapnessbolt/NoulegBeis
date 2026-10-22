@@ -7,9 +7,9 @@ first_message: 2026-10-16T17:09:42Z
 last_message: 2026-10-16T17:09:42Z
 messages: 1
 attachments: []
-projects: ["[[corso-ai-manini]]", "[[corso-ai-mtu]]"]
-clients: ["[[manini]]", "[[meccanotecnica-umbra]]", "[[tifast]]", "[[velo-ce]]"]
-topics: ["[[blueage]]", "[[second-brain]]", "[[pulse]]"]
+projects: ["[[corso-ai-manini]]", "[[corso-ai-mtu]]", "[[corso-ai-tifast]]"]
+clients: ["[[manini]]", "[[meccanotecnica-umbra]]", "[[tifast]]", "[[velo-ce]]", "[[tarkett]]"]
+topics: ["[[blueage]]", "[[second-brain]]", "[[pulse]]", "[[pulse-light]]"]
 status: active
 ---
 

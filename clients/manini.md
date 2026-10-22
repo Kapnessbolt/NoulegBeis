@@ -2,7 +2,7 @@
 type: client
 status: cliente
 sector: "Prefabbricati per l'edilizia"
-people: ["[[michele-padoin]]", "[[luciano-baccarelli]]", "[[angelo-santilli]]"]
+people: ["[[michele-padoin]]", "[[luciano-baccarelli]]", "[[angelo-santilli]]", "[[luca-zamponi]]"]
 projects: ["[[manini-supply-chain-magazzino]]", "[[corso-ai-manini]]"]
 tags: []
 updated: 2026-10-22
@@ -31,6 +31,7 @@ updated: 2026-10-22
 - [[michele-padoin]] · ufficio acquisti
 - [[luciano-baccarelli]] · CFO, decide sul corso AI
 - [[angelo-santilli]] · Sistemi Informativi, referente del corso AI
+- [[luca-zamponi]] · Sistemi Informativi
 
 ## Progetti
 
@@ -58,7 +59,6 @@ updated: 2026-10-22
 - [[riunione-generale-blueage-5-10-sintesi-e-azioni]]
 - [[blueage-automation-entrata-merci]]
 - [[blueage-le-idee-per-crescere]]
-- [[ipotesi-formazione-it]]
 - [[manini-corso-ai-domande-preliminari-blueage]]
 - [[manini-corso-ai-indice-sistemi-informativi-blueage]]
 - [[manini-corso-ai-raccolta-dati-blueage]]

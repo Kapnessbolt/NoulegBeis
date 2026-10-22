@@ -2,7 +2,7 @@
 type: source-mail
 conversation_id: "AAQkAGMyY2M5ZTczLTYwNDEtNGZiOC1iYjJjLTFhZjJhOGY1YjFiMQAQADyG3IfBduRKk3OYNTg-zlQ="
 subject: "Meccanotecnica Umbra · corso AI & Data-Driven Management · proposta di calendario"
-participants: ["[[leonardo-pinsone]]"]
+participants: ["[[leonardo-pinsone]]", "[[elisabetta-monaldi]]", "[[daniela-rossi]]"]
 first_message: 2026-10-15T15:51:33Z
 last_message: 2026-10-19T19:20:40Z
 messages: 3

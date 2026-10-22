@@ -2,7 +2,7 @@
 type: source-mail
 conversation_id: "AAQkAGMyY2M5ZTczLTYwNDEtNGZiOC1iYjJjLTFhZjJhOGY1YjFiMQAQAGVekAkx4blCjf-GQPeWYMA="
 subject: "Manini · corso AI: recap della call del 16/10"
-participants: ["[[leonardo-pinsone]]", "[[luciano-baccarelli]]", "[[angelo-santilli]]", "[[andrea-marchesi]]", "[[cristian-schifone]]"]
+participants: ["[[leonardo-pinsone]]", "[[luciano-baccarelli]]", "[[angelo-santilli]]", "[[andrea-marchesi]]", "[[cristian-schifone]]", "[[luca-zamponi]]"]
 first_message: 2026-10-16T17:06:00Z
 last_message: 2026-10-20T17:12:36Z
 messages: 5

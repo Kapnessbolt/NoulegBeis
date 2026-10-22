@@ -8,7 +8,7 @@ last_message: 2026-10-12T20:28:14Z
 messages: 1
 attachments: []
 projects: ["[[velo-ce-progetto-dynamics]]", "[[manini-supply-chain-magazzino]]", "[[corso-ai-manini]]", "[[corso-ai-mtu]]", "[[parts-radar-sviluppo]]"]
-clients: ["[[velo-ce]]", "[[manini]]", "[[meccanotecnica-umbra]]", "[[solera]]"]
+clients: ["[[velo-ce]]", "[[manini]]", "[[meccanotecnica-umbra]]", "[[solera]]", "[[endura]]"]
 topics: ["[[blueage]]", "[[parts-radar]]"]
 status: active
 ---

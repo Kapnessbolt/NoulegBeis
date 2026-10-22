@@ -2,7 +2,7 @@
 type: client
 status: cliente
 sector: "tenute meccaniche"
-people: []
+people: ["[[daniela-rossi]]"]
 projects: ["[[corso-ai-mtu]]"]
 tags: []
 updated: 2026-10-22
@@ -26,6 +26,7 @@ updated: 2026-10-22
 ## Persone di riferimento
 
 - [[leonardo-pinsone]] · BlueAge, in aula con Lorenzo Curione
+- [[daniela-rossi]] · HR Development & Organization, referente del corso AI
 
 ## Progetti
 

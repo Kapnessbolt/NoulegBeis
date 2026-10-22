@@ -3,7 +3,7 @@ type: client
 status: prospect
 sector: "università"
 people: ["[[francesco-bollazzi]]"]
-projects: []
+projects: ["[[osservatorio-ai-pmi-liuc]]"]
 tags: []
 updated: 2026-10-22
 ---
@@ -25,7 +25,7 @@ updated: 2026-10-22
 
 ## Progetti
 
--
+- [[osservatorio-ai-pmi-liuc]]
 
 ## Fonti
 

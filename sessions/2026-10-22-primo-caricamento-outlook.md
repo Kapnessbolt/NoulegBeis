@@ -32,12 +32,15 @@ Ingerire la casella Outlook degli ultimi 60 giorni (dal 2026-08-23), ultimo lott
 - Fonti versioni: blueage-companyprofile, pulse-sintesi, ai-foundation-program-m1
 - `.state/ingest.json`: 49 thread Outlook, watermark ancora null
 
+## Decisioni dopo il campione
+
+- Campione approvato. `deepagent` separato: nuova nota cliente [[concentrazione-eu]] (rete di manager di Alberto Bezzi), [[deepagent]] resta la piattaforma.
+- Proposte degli agenti approvate e create: clienti [[tarkett]], [[clinicalfarma]], [[endura]], [[pettenon]]; persone [[elisabetta-monaldi]], [[daniela-rossi]], [[luca-zamponi]]; temi [[pulse-light]], [[piano-editoriale-linkedin]]; progetti [[corso-ai-tifast]] e [[osservatorio-ai-pmi-liuc]] (Lorenzo non coinvolto direttamente).
+- Corso Manini: valgono 36 ore per gli utenti più 8 per i Sistemi Informativi; l'ipotesi di 48 ore è superata.
+- `Ipotesi Formazione IT` è obsoleto: nota allegato rimossa, il thread lo cita solo per nome.
+
 ## Aperti
 
-- [ ] Controllo del campione di 10 note da parte dell'utente
-- [ ] Inizializzare i watermark di SharePoint, OneDrive e Outlook e passare allo step 4 (task schedulati)
-- [ ] `deepagent` unisce due realtà: Concentrazione.eu (rete di circa 3.000 manager, Alberto Bezzi) e Deepagent (tecnologia): separarle?
-- [ ] Proposte degli agenti non create: clienti Tarkett, Clinicalfarma, Endura, Pettenon, Twilio; organizzazione Fondirigenti; persone Elisabetta Monaldi (UBS), Daniela Rossi (HR MTU), Luca Zamponi (Sistemi Informativi Manini), Antonio Miranda; temi Pulse Light, kit di automazioni, piano editoriale LinkedIn, governo dell'AI aziendale; progetti corso AI TiFast e osservatorio LIUC
-- [ ] Dubbio: la General del 12/10 parla di corso Manini "da 36 a 48 ore", le mail Manini dicono 36 ore per gli utenti più 8 per i Sistemi Informativi
+- [ ] Inizializzare i watermark di SharePoint, OneDrive e Outlook e passare allo step 4 (task schedulati), in una nuova sessione
 - [ ] Verificare l'esito della call con Qricambi del 05/10
-- [ ] Il documento `ipotesi-formazione-it` è entrato come allegato del thread del 27/09 sul corso Manini (la copia nella radice di OneDrive resta fuori)
+- [ ] Rivedere e togliere il tag `da-verificare` da [[cellularline]] e [[twoteam]]
