@@ -10,11 +10,12 @@ current:
   last_modified: 2026-10-19T10:13:54Z
 versions:
   - { name: M1_v15.pptx, item_id: 01EFCYUZZQJJCPWKUB2VEIKIA7JZFUVU4Y, last_modified: 2026-10-19T10:13:54Z }
+  - { name: M1_v05_2.pptx, item_id: "", last_modified: 2026-10-12T19:31:35Z }
 also_at: []
 status: active
 partial: true
 ingested_at: 2026-10-22T13:03:18Z
-projects: []
+projects: ["[[corso-ai-mtu]]", "[[corso-ai-manini]]"]
 clients: []
 topics: ["[[ai-foundation-program]]"]
 tags: [formazione, deck, compass, modulo-1]
@@ -54,3 +55,4 @@ Deck d'aula del Modulo 1 ("Fondamenti") di [[ai-foundation-program]], il percors
 ## Versioni
 
 - M1_v15.pptx · 2026-10-19 · prima versione ingerita (lette le slide 1–30 di 113)
+- M1_v05_2.pptx (allegato) · 2026-10-12 · versione di lavoro intestata al corso MTU (sessione 1 del 15/10): 96 slide in 10 capitoli, Modulo 1 in 3 sessioni e dossier filo rosso; la v15 diventa universale con 113 slide in 8 capitoli ([[avanzamento-deck-corso-ai]], [[deck-corso-ai-m1-v15-su-sharepoint]])

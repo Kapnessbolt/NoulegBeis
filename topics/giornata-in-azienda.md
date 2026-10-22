@@ -20,6 +20,7 @@ Primo passo commerciale di [[blueage]]: una giornata gratuita in azienda con lo 
 - Nei giorni successivi consegna la mappa delle priorità operative: per ogni iniziativa valore in gioco, cosa serve, chi la realizza (impresa, BlueAge o partner) ([[blueage-la-giornata-in-azienda]])
 - All'azienda si chiede solo il tempo delle persone: nessun materiale da preparare, nessun impegno successivo, la mappa resta all'azienda ([[blueage-la-giornata-in-azienda]])
 - È uno dei due modi di iniziare con BlueAge, insieme al percorso in aula ([[blueage-companyprofile]])
+- Il 19/10/2026 si decide di passare a giornate pagate al posto di quelle gratuite ([[riunione-generale-blueage-19-10-sintesi-azioni-e-one-page]])
 
 ## Dove è usato
 
@@ -38,3 +39,7 @@ Primo passo commerciale di [[blueage]]: una giornata gratuita in azienda con lo 
 - [[blueage-sintesi]]
 - [[blueage-onepage]]
 - [[todo-partner-e-aziende]]
+- [[riunione-generale-blueage-28-9-sintesi-e-azioni]]
+- [[blueage-ripresa-della-call-di-oggi-e-quattro-ore-con-lo-studio]]
+- [[nuovi-one-pager-per-tema-su-sharepoint]]
+- [[riunione-generale-blueage-5-10-sintesi-e-azioni]]

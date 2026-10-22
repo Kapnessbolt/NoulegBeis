@@ -45,3 +45,7 @@ updated: 2026-10-22
 - [[manini-g3pom-m5p1-stato-attuale-come-lavoriamo-oggi]]
 - [[manini-g4-m2p2-gestione-sviluppo-fornitori]]
 - [[manini-g4pom-m5p2-assessment-finale-roadmap]]
+- [[riunione-generale-blueage-28-9-sintesi-e-azioni]]
+- [[manini-relazione-sui-materiali-e-proposte-di-progetto]]
+- [[riunione-generale-blueage-12-10-punti-emersi-e-prossimi-passi]]
+- [[riunione-generale-blueage-5-10-sintesi-e-azioni]]

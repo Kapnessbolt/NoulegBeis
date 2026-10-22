@@ -11,6 +11,10 @@ current:
 versions:
   - { name: BlueAge_CompanyProfile.pdf, item_id: 01GEQYSS5CERFZRWVHNRGIGQNT5GBJMIF5, last_modified: 2026-10-19T16:12:01Z }
   - { name: BlueAge_CompanyProfile_v24.pdf, item_id: 01EFCYUZYLVH33U2NLBVGZ45BE6NPUJZD5, last_modified: 2026-10-01T17:20:46Z }
+  - { name: BlueAge_CompanyProfile_v21.pdf, item_id: "", last_modified: 2026-09-07T12:11:59Z }
+  - { name: BlueAge_CompanyProfile_v19.pdf, item_id: "", last_modified: 2026-08-28T10:34:56Z }
+  - { name: BlueAge_CompanyProfile_v17.pdf, item_id: "", last_modified: 2026-08-27T16:07:00Z }
+  - { name: BlueAge_CompanyProfile_v13.pptx, item_id: "", last_modified: 2026-08-27T13:21:00Z }
 also_at:
   - { web_url: "https://blueagesrl.sharepoint.com/sites/partner/Partner/Silvia Fumagalli/BlueAge_CompanyProfile.pdf", item_id: 01GEQYSSZ72VIUFCZWXJFIPDPVV5PYCYCF }
   - { web_url: "https://blueagesrl.sharepoint.com/sites/partner/Documenti condivisi/BlueAge_CompanyProfile.pdf", item_id: 01GEQYSS3PQ4LXUJU3R5DYOXRV3YIY2KOS }
@@ -38,7 +42,7 @@ Deck di presentazione aziendale di [[blueage]] (10 pagine, claim "Results. Engin
 - **Dove stiamo lavorando, con lo stato (nuovo)**: ricambi e post-vendita (in uso), ricevimento merci da DDT in PDF o foto, premi e contributi commerciali (in uso), rete di vendita con priorità notturne al venditore, produzione e distinte base (in corso).
 - **Settori attuali**: prefabbricazione per l'edilizia, produzione di biciclette, distribuzione ricambi auto.
 - **Metodo in 5 fasi**: diagnosi, baseline e perimetro, progettazione e costruzione, adozione, misura ed evoluzione.
-- **Le fondamenta (nuovo)**: oltre vent'anni di direzione operativa in imprese private e multinazionali e competenze su dati e sistemi (integrazione di ERP, MES, WMS, CRM, data warehouse); Pulse ideato dagli stessi professionisti.
+- **Le fondamenta**: oltre vent'anni di direzione operativa in imprese private e multinazionali e competenze su dati e sistemi (integrazione di ERP, MES, WMS, CRM, data warehouse); Pulse ideato dagli stessi professionisti.
 - **Come si parte**: una giornata in azienda senza costi con lo sponsor sul processo che pesa di più, oppure il percorso in aula "Intelligenza artificiale applicata ai processi", ora indicato come finanziabile con i piani formativi. In entrambi i casi si consegnano valore in gioco, fattibilità e chi realizza (impresa, BlueAge o partner specialistico).
 
 ## Numeri
@@ -55,5 +59,8 @@ Deck di presentazione aziendale di [[blueage]] (10 pagine, claim "Results. Engin
 
 ## Versioni
 
-- BlueAge_CompanyProfile.pdf (sito partner) · 2026-10-19 · nuovo claim di apertura; aggiunti l'esempio illustrativo sull'ordine cliente, lo stato dei cantieri (in uso, in corso) e la pagina "Le fondamenta"; il percorso in aula diventa finanziabile con i piani formativi; tolto il riferimento a "21 interventi" a favore di "21 opportunità di intervento"
-- BlueAge_CompanyProfile_v24.pdf · 2026-10-01 · prima versione ingerita
+- BlueAge_CompanyProfile.pdf (sito partner) · 2026-10-19 · nuovo claim di apertura; aggiunti l'esempio illustrativo sull'ordine cliente, lo stato dei cantieri (in uso, in corso), le quattro aree "Da dove entriamo" e i settori; il percorso in aula diventa finanziabile con i piani formativi; tolto il riferimento a "21 interventi" a favore di "21 opportunità di intervento"
+- BlueAge_CompanyProfile.pdf (allegato a una mail del 12/10 a OnePartner) · 2026-10-12 · stesso contenuto della versione del 19/10 ([[blueage-ripresa-della-call-di-oggi-e-quattro-ore-con-lo-studio]])
+- BlueAge_CompanyProfile_v24.pdf · 2026-10-01 · prima versione ingerita da SharePoint
+- BlueAge_CompanyProfile_v21.pdf (allegato) · 2026-09-07 · indicato come "l'ultimo CP da utilizzare": 7 pagine, claim "Definire il risultato che conta. Costruire il sistema che lo rende ripetibile", tre servizi, pagina Pulse e automazioni con tre esempi, metodo, "Le fondamenta", solo la giornata in azienda come modo di partire ([[blueage-company-profile-ultimo-aggiornamento]])
+- BlueAge_CompanyProfile_v13.pptx, v17.pdf, v19.pdf (allegati) · 2026-08-27/28 · bozze del nuovo company profile mandate a Lorenzo per un parere: nuova slide esplicativa nella v17, ritocchi al testo nella v19 ([[bozza-cp-blueage]])

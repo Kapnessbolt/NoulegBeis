@@ -33,3 +33,5 @@ Piattaforma "Powered by BlueAge" per governare premi e contributi che l'industri
 - [[blueage-onepage-tradespending]]
 - [[blueage-companyprofile]]
 - [[blueage-possibilita]]
+- [[nuovi-one-pager-per-tema-su-sharepoint]]
+- [[riunione-generale-blueage-5-10-sintesi-e-azioni]]

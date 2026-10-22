@@ -10,6 +10,7 @@ current:
   last_modified: 2026-10-01T17:20:51Z
 versions:
   - { name: PULSE_Sintesi_C.pdf, item_id: 01EFCYUZ36V3W33VEY4NDLTIB3HWCRFC3V, last_modified: 2026-10-01T17:20:51Z }
+  - { name: PULSE_Sintesi_C.pdf, item_id: "", last_modified: 2026-09-18T08:33:48Z }
 also_at: []
 status: active
 partial: false
@@ -47,3 +48,4 @@ Versione breve (7 slide) della presentazione di [[pulse]], pensata come primo in
 ## Versioni
 
 - PULSE_Sintesi_C.pdf · 2026-10-01 · prima versione ingerita (revisione "C")
+- PULSE_Sintesi_C.pdf (allegato) · 2026-09-18 · sintesi di 5 pagine rivista da Leonardo, da usare subito negli incontri ([[pulse-sintesi-5-pagine-revamp]])

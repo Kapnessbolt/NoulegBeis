@@ -30,6 +30,8 @@ Sistema di execution proprietario di [[blueage]]. Legge i dati che l'azienda gi�
 - Condizioni per il canale valide fino al 31/12/2026: prezzo formalizzato da BlueAge dopo il passaggio tecnico, a Partner e Master una quota fissa più il 30% dell'extra oltre il minimo, condizioni ridotte per le prime due referenze, canone Platform & Support a BlueAge ([[blueage-condizioni-commerciali-slide]])
 - FAQ di vendita per i partner (prima edizione 30/07/2026, nata da un incontro con un prospect lato IT): prima la mail del mattino, poi il metodo, poi i numeri; Pulse legge e non scrive; risultati raccontati come storia del caso Cellularline, mai come promessa ([[pulse-faq-vendita]])
 - La versione inglese (revisione I) riporta un EBITDA del caso reale di circa 2,8 M€ contro i 2,35 M€ della K e cita la partnership con TwoTeam per le implementazioni enterprise: va allineata alla K prima di riusarla ([[pulse-i-en]])
+- Incuriosisce e nessuno ha citato un concorrente, ma diversi partner si sono fermati perché è un acquisto grande: nasce l'idea di un Pulse Light, da provare su Velo-CE ([[riunione-generale-blueage-28-9-sintesi-e-azioni]], [[blueage-le-idee-per-crescere]], [[call-di-oggi-prossimi-passi-architettura-copilot-manini-meccanotecnica-second-brain]])
+- Sintesi di 5 pagine rivista il 18/09/2026 da usare subito negli incontri ([[pulse-sintesi-5-pagine-revamp]])
 
 ## Dove è usato
 
@@ -51,3 +53,10 @@ Sistema di execution proprietario di [[blueage]]. Legge i dati che l'azienda gi�
 - [[pulse-faq-vendita]]
 - [[pulse-i-en]]
 - [[todo-partner-e-aziende]]
+- [[pulse-sintesi-5-pagine-revamp]]
+- [[riunione-generale-blueage-28-9-sintesi-e-azioni]]
+- [[call-di-oggi-prossimi-passi-architettura-copilot-manini-meccanotecnica-second-brain]]
+- [[ieri-sera-e-oggi-idee-su-cui-ragionare]]
+- [[riunione-generale-blueage-19-10-sintesi-azioni-e-one-page]]
+- [[riunione-generale-blueage-5-10-sintesi-e-azioni]]
+- [[blueage-le-idee-per-crescere]]

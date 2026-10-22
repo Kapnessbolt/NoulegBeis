@@ -41,6 +41,10 @@ updated: 2026-10-22
 - [ ] Inventario d'apertura e avvio del rilascio R1 📅 2027-01-08 ([[velo-ce-sal-01-cliente]])
 - [ ] Fatturare i DDT di dicembre 2026 📅 2027-01-15 ([[velo-ce-piano-afc-interno]])
 - [ ] Portare Production alla versione 29.0 📅 2027-03-01 ([[velo-ce-procedura-rilascio-ripristino]])
+- [ ] V1 Make-to-Order nello stesso ordine di produzione o in ordini collegati (Cristian) 📅 2026-09-21 ([[il-giro-del-telaio-in-essential-e-in-premium-documento-interno-v001]])
+- [ ] V2 proposta a cascata su due livelli in Essential, prova D17 (Cristian) 📅 2026-09-21 ([[il-giro-del-telaio-in-essential-e-in-premium-documento-interno-v001]])
+- [ ] V8 chiedere in sede chi registra i 571 ordini di assemblaggio (Leonardo) 📅 2026-09-21 ([[velo-ce-il-giro-del-telaio-in-essential-e-in-premium]])
+- [ ] Verificare autorizzazioni e privacy per usare i dati Velo-CE come vetrina delle automazioni (Cristian) ([[riunione-generale-blueage-19-10-sintesi-azioni-e-one-page]])
 
 ## Decisioni
 
@@ -67,3 +71,7 @@ updated: 2026-10-22
 - Deck cliente: [[velo-ce-sal-01-cliente]], [[velo-ce-business-central-oggi-e-la-strada-verso-premium-cliente]], [[velo-ce-progetto-dynamics-e-power-bi-la-strada-verso-premium]], [[velo-ce-sintesi-evidenze-e-metodo-cliente]], [[velo-ce-app-so-smart-che-cosa-serve-cliente]]
 - Verbali: [[velo-ce-verbale-censimento-app-eos]], [[velo-ce-verbale-strada-premium-tenant-unico]], [[velo-ce-verbale-giro-materiali-pilota-lungo]], [[velo-ce-verbale-avvio-gennaio-senza-cicli]], [[velo-ce-verbale-rilasci-giacenze-ciclo-acquisti]]
 - Tutte le fonti del progetto si trovano in `sources/sharepoint/delivery/customers/01-velo-ce/`
+- [[il-giro-del-telaio-in-essential-e-in-premium-documento-interno-v001]]
+- [[riunione-generale-blueage-12-10-punti-emersi-e-prossimi-passi]]
+- [[riunione-generale-blueage-5-10-sintesi-e-azioni]]
+- [[velo-ce-il-giro-del-telaio-in-essential-e-in-premium]]

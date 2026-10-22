@@ -22,10 +22,15 @@ Percorso di formazione BlueAge sull'intelligenza artificiale per le imprese indu
 - Filo rosso: a fine M1 ogni dirigente sceglie un processo reale; ogni modulo aggiunge una pagina al suo dossier (6 in tutto) e la roadmap aziendale nasce dall'unione dei dossier ([[ai-foundation-program-m1-mtu-inserti]])
 - Fa parte della linea BlueAge "data analytics e AI" e dura 4–6 settimane ([[pulse-presentazione-completa]])
 - Il percorso in aula si chiude con la mappa dei casi d'uso ordinata per valore e fattibilità, si tiene in presenza o a distanza ed è finanziabile con i fondi interprofessionali ([[blueage-onepage-formazione-ai]])
+- M1_v15 è il deck universale del Modulo 1 (113 slide, 8 capitoli, 15 Red Tag), valido per MTU, Manini, TiFast e i clienti successivi, con inserti per cliente ([[deck-corso-ai-m1-v15-su-sharepoint]])
+- Da solo è poco vendibile: diventa il passo iniziale "se serve" dell'offerta a canone [[ai-che-cresce-con-lazienda]] ([[riunione-generale-blueage-19-10-sintesi-azioni-e-one-page]])
+- Corsi finanziati Fondirigenti tramite [[umbria-business-school]]: Meccanotecnica Umbra 48 ore, TiFast 44, Manini 36, Tarkett 28 ([[avviso-1-2026-fondirigenti-meccanotecnica-umbra-docenza-leonardo-pinsone]])
 
 ## Dove è usato
 
 - [[meccanotecnica-umbra]]: Modulo 1 in 3 sessioni, con inserti dedicati ([[corso-ai-mtu]])
+- [[corso-ai-manini]]
+- [[corso-ai-mtu]]
 
 ## Fonti
 
@@ -34,3 +39,12 @@ Percorso di formazione BlueAge sull'intelligenza artificiale per le imprese indu
 - [[blueage-onepage-formazione-ai]]
 - [[pulse-presentazione-completa]]
 - [[pulse-i-en]]
+- [[avanzamento-deck-corso-ai]]
+- [[deck-corso-ai-m1-v15-su-sharepoint]]
+- [[meccanotecnica-umbra-corso-ai-data-driven-management-proposta-di-calendario]]
+- [[meccanotecnica-umbria-bozza-di-programma]]
+- [[nuovi-one-pager-per-tema-su-sharepoint]]
+- [[riunione-generale-blueage-19-10-sintesi-azioni-e-one-page]]
+- [[ai-data-driven-management-indice-del-corso]]
+- [[blueage-ai-che-cresce-onepage]]
+- [[compass-ai-al-lavoro]]
