@@ -23,14 +23,14 @@ Chi ti chiama ti passa:
 
 | Modalità | Dove |
 |---|---|
-| `schedulata` | `sources/`, `journal/`, `.state/`, note nuove in `people/` (3.6). In aggiunta, solo righe nuove: `## Interazioni recenti` di `people/*.md`, `projects/<slug>/<slug>-log.md` e la sezione `## Attività` di `projects/<slug>/<slug>.md` |
-| `interattiva` | Come sopra, più la creazione di note nuove in `clients/`, `topics/` e `inbox/`. Le note esistenti di questi tipi si aggiornano solo nella sezione `## Fonti` (o `## Interazioni recenti` per le persone) |
+| `schedulata` | `sources/`, `journal/`, `.state/`, note nuove in `people/` (3.6), `clients/` e `topics/`. In aggiunta, solo righe nuove: `## Interazioni recenti` di `people/*.md`, `projects/<slug>/<slug>-log.md` e la sezione `## Attività` di `projects/<slug>/<slug>.md` |
+| `interattiva` | Come sopra, più note nuove in `inbox/` e righe nuove in `## Fonti` di clienti e temi esistenti |
 
-Collegamenti mancanti:
+Un wikilink non resta mai rotto (SPEC 4.1): se la destinazione non esiste, la crei. Collegamenti mancanti:
 
-- **Progetto inesistente**: non crearlo mai. Lascia `projects: []`. In `interattiva` scrivi `inbox/AAAA-MM-DD-proposta-progetto-<slug>.md` con la proposta; in `schedulata` aggiungi una riga in `## Decisioni` del digest del giorno (`- Proposta: creare il progetto <nome> · [[fonte]]`).
+- **Progetto inesistente**: non crearlo mai e non scrivere il suo wikilink. Lascia `projects: []` e collega la fonte a clienti o temi. In `interattiva` scrivi `inbox/AAAA-MM-DD-proposta-progetto-<slug>.md` con la proposta; in `schedulata` aggiungi una riga in `## Decisioni` del digest del giorno (`- Proposta: creare il progetto <nome> · [[fonte]]`).
 - **Persona inesistente**: creala in entrambe le modalità, con le regole di 3.6.
-- **Cliente o tema inesistente**: in `interattiva` crea la nota dal template (`_templates/`), con i campi che conosci e gli altri vuoti; in `schedulata` scrivi comunque il wikilink nella nota fonte e aggiungi una riga nel digest (`- Da creare: [[slug]] (cliente | tema) · [[fonte]]`).
+- **Cliente o tema inesistente**: crea la nota dal template (`_templates/`) con i campi che conosci e gli altri vuoti, `updated` di oggi e una riga in `## Fonti`. Nei punti chiave scrivi solo ciò che la fonte dice, ognuno con `([[slug-fonte]])`. In `schedulata` aggiungi il tag `da-verificare` e una riga nel digest (`- Da verificare: [[slug]] (cliente | tema) · [[fonte]]`).
 - Non inventare collegamenti: collega solo ciò che la fonte nomina in modo esplicito.
 
 I collegamenti vanno nei campi `projects`, `clients` e `topics` del frontmatter; nel corpo puoi ripeterli come wikilink dove servono al testo. In `interattiva` la nota collegata elenca la fonte in `## Fonti`.
@@ -114,7 +114,7 @@ Parti da `_templates/source-mail.md`.
 - `participants`: wikilink a `people/<nome-cognome>`, escluso Lorenzo Curione. Sono partecipanti i mittenti e i destinatari in A; quelli solo in CC si collegano solo se hanno già una nota.
 - Per ogni partecipante, prima di creare la persona:
   1. `Grep "email: <indirizzo>" people/` (senza distinguere maiuscole): se trovi la nota, collega quella;
-  2. altrimenti cerca un nome simile (stesso cognome, o stesso nome e cognome con grafia diversa) con `Glob people/*<cognome>*.md`: se c'è, non creare; collega la nota esistente se l'email della nota è vuota, e scrivi nel digest `- Possibile doppione: <nome> <indirizzo> ↔ [[slug]] · [[fonte]]`;
+  2. altrimenti cerca un nome simile (stesso cognome, o stesso nome e cognome con grafia diversa) con `Glob people/*<cognome>*.md`. Se la nota trovata non ha email, è la stessa persona: collegala e scrivi nel digest `- Possibile doppione: <nome> <indirizzo> ↔ [[slug]] · [[fonte]]`. Se ha un'email diversa, prosegui al passo 3 e segnala comunque il possibile doppione nel digest; se lo slug è già occupato usa `<nome-cognome>-<dominio>` (es. `mario-rossi-manini`).
   3. altrimenti crea `people/<nome-cognome>.md` dal template: `email` dall'indirizzo, `org: blueage` se il dominio è `blueage.it`, altrimenti il cliente se esiste una nota cliente che lo nomina, altrimenti `""`; `role` solo se è scritto nella firma.
 - Nella nota della persona aggiungi una riga in `## Interazioni recenti`: `- AAAA-MM-GG · <oggetto> · [[<slug-thread>]]` (solo righe nuove, in entrambe le modalità).
 - `## Messaggi`: un blocco per messaggio in ordine cronologico, `### AAAA-MM-GG HH:MM · [[mittente]]`, 2–4 righe di sintesi. Ora in Europe/Rome.
@@ -168,7 +168,7 @@ Solo righe nuove: non modificare né riordinare quelle esistenti. Prima di aggiu
 1. Per ogni cartella radice del perimetro ricava l'URI (`sharepoint_folder_search` oppure `file:///{driveId}/{percorso}`) ed elencala con `read_resource`, ricorsivamente, seguendo le pagine da 200 voci. Salta le cartelle escluse.
 2. Confronta con `items` in `.state/ingest.json`:
    - ID non più presente → nella nota `status: removed`, l'elemento resta nello stato;
-   - `webUrl` cambiato → aggiorna `current.web_url`; se cambia la cartella, sposta la nota con `git mv` e aggiorna `note` nello stato;
+   - `webUrl` cambiato → aggiorna `current.web_url`; se cambia la cartella, sposta la nota con `git mv` (lo slug resta lo stesso, i collegamenti restano validi) e aggiorna `note` nello stato; se cambia la famiglia, rinomina con `rinomina-nota.py`;
    - file presente ma mai ingerito → elencalo nel digest come "in coda"; la prossima ingestion lo prende (se è più vecchio del watermark, ingeriscilo subito con il compito `file`).
 3. Esegui `python3 .claude/scripts/controlla-vault.py` e riporta errori e avvisi in `## Controllo del vault` del digest.
 4. `reconcile.last_run` = istante attuale. Esito nel digest, commit e push.
@@ -185,7 +185,7 @@ File `journal/AAAA-MM-GG.md` (data Europe/Rome). Se non esiste, crealo da `_temp
 
 ## 9. Git
 
-1. Esegui `python3 .claude/scripts/controlla-vault.py`. Correggi gli errori nelle note che hai scritto in questo giro; quelli in altre note riportali nel digest (in `interattiva`, a chi ti ha chiamato). Gli avvisi non bloccano.
+1. Esegui `python3 .claude/scripts/controlla-vault.py`. Correggi gli errori nelle note che hai scritto in questo giro (l'hook di pre-commit blocca comunque il commit se restano errori nei file modificati); per rinominare una nota usa `python3 .claude/scripts/rinomina-nota.py <vecchio> <nuovo>`; quelli in altre note riportali nel digest (in `interattiva`, a chi ti ha chiamato). Gli avvisi non bloccano.
 2. `git pull --rebase origin main`.
 3. Conflitto su `.state/ingest.json`: tieni, per ogni fonte, il `watermark` più avanzato e l'unione di `items`/`threads` (per la stessa chiave vince il `last_modified` o `last_message` più recente). Altri conflitti: riapplica la tua modifica sulla versione remota.
 4. Commit con messaggio `ingest(<fonte>): <n> note nuove, <m> aggiornate` (per il compito `file`: `ingest(file): <famiglia>`), poi `git push origin HEAD:main`. Se il push fallisce per rete, riprova fino a 4 volte (2, 4, 8, 16 secondi).

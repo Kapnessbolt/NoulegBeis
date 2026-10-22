@@ -42,8 +42,8 @@ Regole di instradamento:
 
 | Chi | Dove |
 |---|---|
-| Task di ingestion (agente `ingestor`, modalità `schedulata`) | `sources/`, `journal/`, `.state/`, note nuove in `people/`. In aggiunta, solo righe nuove: `## Interazioni recenti` di `people/*.md`, `projects/<slug>/<slug>-log.md` e la sezione `## Attività` di `projects/<slug>/<slug>.md` |
-| Ingestion da sessione interattiva (`/ingest`, `/ingest-file`, modalità `interattiva`) | Come sopra, più: note nuove in `clients/`, `topics/`, `inbox/`; righe nuove in `## Fonti` (o `## Interazioni recenti`) di quelle esistenti |
+| Task di ingestion (agente `ingestor`, modalità `schedulata`) | `sources/`, `journal/`, `.state/`, note nuove in `people/`, `clients/`, `topics/`. In aggiunta, solo righe nuove: `## Interazioni recenti` di `people/*.md`, `projects/<slug>/<slug>-log.md` e la sezione `## Attività` di `projects/<slug>/<slug>.md` |
+| Ingestion da sessione interattiva (`/ingest`, `/ingest-file`, modalità `interattiva`) | Come sopra, più: note nuove in `inbox/`; righe nuove in `## Fonti` di clienti e temi esistenti |
 | Curator | `proposals/`, `sessions/` |
 | Sessione interattiva | Ovunque |
 
@@ -55,8 +55,10 @@ Il curator non modifica mai `CLAUDE.md`, `.claude/` o `SPEC.md`: propone, e le m
 - Lingua: italiano.
 - Nomi file: slug minuscolo con trattini, senza accenti (`entrata-merci-manini.md`). Persone: `nome-cognome`.
 - Collegamenti: wikilink `[[slug]]` (senza percorso e senza `.md`). Gli slug devono essere unici in tutto il vault.
-- Ogni nota in `sources/` si collega ad almeno un progetto, cliente o tema con i campi `projects`, `clients`, `topics`. Se la persona, il cliente o il tema non esiste ancora, crea la nota dal template; nei task schedulati si creano solo le persone, mentre per clienti e temi si scrive il wikilink e si propone la creazione nel digest del giorno.
-- Persone: prima di crearne una cerca la sua email in `people/` (`email:`). Stessa email → è la stessa persona. Nome simile senza email coincidente → non creare e segnala il possibile doppione.
+- Integrità: mai un wikilink verso una nota che non esiste. Se la destinazione manca, creala. Per rinominare una nota usa `python3 .claude/scripts/rinomina-nota.py <vecchio> <nuovo>`: aggiorna tutti i collegamenti e lo stato.
+- Tracciabilità: nei temi (`## Punti chiave`), clienti (`## Chi sono`, `## Relazione con BlueAge`) e progetti (`## Stato`, `## Decisioni`) ogni punto finisce con la fonte, `([[slug-fonte]])`. Se l'informazione viene da te in sessione, la fonte è il diario della sessione.
+- Ogni nota in `sources/` si collega ad almeno un progetto, cliente o tema con i campi `projects`, `clients`, `topics`. Se la persona, il cliente o il tema non esiste ancora, crea la nota dal template. Nei task schedulati clienti e temi nuovi nascono come note minime con il tag `da-verificare`: rivedile e togli il tag.
+- Persone: prima di crearne una cerca la sua email in `people/` (`email:`). Stessa email → è la stessa persona. Nome simile in una nota senza email → è la stessa persona. Nome simile con email diversa → crea la nuova persona. Negli ultimi due casi segnala il possibile doppione.
 - Frontmatter YAML obbligatorio, con i campi del template del suo tipo. Non togliere campi: se non c'è il valore, lascia `[]`, `""` o `null`.
 - Una nota descrive, non copia: riassunto, punti chiave, numeri, decisioni, azioni. Il dettaglio si legge dall'originale con il connettore.
 - Attività: checkbox con data nel formato Obsidian Tasks `- [ ] testo 📅 AAAA-MM-GG` e la fonte in coda (`([[slug-fonte]])`).
@@ -83,7 +85,7 @@ Il curator non modifica mai `CLAUDE.md`, `.claude/` o `SPEC.md`: propone, e le m
 
 ## 7. Git
 
-- Prima di ogni commit: `python3 .claude/scripts/controlla-vault.py` (SPEC 4.4) e correggi gli errori che hai introdotto; poi `git pull --rebase origin main`, commit e push diretto su `main`.
+- Prima di ogni commit: `python3 .claude/scripts/controlla-vault.py` (SPEC 4.4) e correggi gli errori che hai introdotto. L'hook di pre-commit blocca comunque il commit se restano errori nei file modificati. Poi `git pull --rebase origin main`, commit e push diretto su `main`.
 - Conflitto su `.state/ingest.json`: vince la versione con il watermark più avanzato. Altri conflitti: riapplica la tua modifica sulla versione remota.
 - Eccezione: il curator lavora su un branch `claude/curator-AAAA-MM-DD` e apre una PR.
 - Messaggi di commit: `ingest(sharepoint): 12 note aggiornate`, `session: <slug>`, `project(<slug>): <cosa>`, `vault: <cosa>` per struttura e configurazione.
