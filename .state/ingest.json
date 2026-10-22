@@ -1,6 +1,22 @@
 {
-  "sharepoint": { "watermark": null, "items": {} },
-  "onedrive":   { "watermark": null, "items": {} },
-  "outlook":    { "watermark": null, "threads": {} },
-  "reconcile":  { "last_run": null }
+  "sharepoint": {
+    "watermark": null,
+    "items": {
+      "b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKVSDgPuvHRsSIc3xR8AKeVG/01EFCYUZYLVH33U2NLBVGZ45BE6NPUJZD5": {
+        "last_modified": "2026-10-01T17:20:46Z",
+        "note": "sources/sharepoint/salesmarketing/deck/blueage-companyprofile.md"
+      }
+    }
+  },
+  "onedrive": {
+    "watermark": null,
+    "items": {}
+  },
+  "outlook": {
+    "watermark": null,
+    "threads": {}
+  },
+  "reconcile": {
+    "last_run": null
+  }
 }

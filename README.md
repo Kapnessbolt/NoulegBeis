@@ -10,10 +10,11 @@ Vault personale sulla knowledge BlueAge, gestito da Claude Code in cloud e consu
 1. **Lavorare**: apri una sessione su claude.ai/code su questo repo. L'agente legge `CLAUDE.md` e sa dove scrivere.
 2. **Catturare**: `/cattura <testo>` crea una nota in `inbox/`; `/smista` la porta nel progetto o nel tema giusto.
 3. **Fare il punto**: `/oggi` per l'agenda, `/progetto <nome>` per lo stato di un progetto.
-4. **Chiudere**: `/chiudi-sessione` scrive il diario in `sessions/` e fa push.
-5. **Leggere**: clona il repo e aprilo come vault in Obsidian.
+4. **Ingerire**: `/ingest [fonte] [da data]` porta nel vault le novità di SharePoint, OneDrive e Outlook; `/ingest-file <url o nome>` un singolo documento.
+5. **Chiudere**: `/chiudi-sessione` scrive il diario in `sessions/` e fa push.
+6. **Leggere**: clona il repo e aprilo come vault in Obsidian.
 
-I comandi e l'ingestion automatica arrivano negli step successivi del piano (SPEC 13).
+Disponibili: `/ingest`, `/ingest-file` (step 2). Gli altri comandi e l'ingestion automatica arrivano negli step successivi del piano (SPEC 13).
 
 ## Dove sta cosa
 
