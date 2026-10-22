@@ -1,6 +1,6 @@
 # SPEC · Second Brain BlueAge (personale)
 
-Versione 1.0 · 22/10/2026 · Owner: Lorenzo Curione
+Versione 1.1 · 22/10/2026 · Owner: Lorenzo Curione
 
 Questo file è la specifica di riferimento del vault. Ogni sessione Claude Code che costruisce o modifica il sistema parte da qui. Le modifiche alla specifica si fanno con una PR dedicata.
 
@@ -155,6 +155,94 @@ topics: []
 outcome: <una riga>
 ---
 ```
+
+Corpo della nota sessione: `## Obiettivo`, `## Decisioni`, `## File toccati`, `## Aperti`.
+
+**Log di progetto** (`projects/<slug>/log.md`)
+```yaml
+---
+type: project-log
+project: "[[corso-ai-manini]]"
+---
+```
+
+Corpo: una riga per avanzamento, dalla più recente, nel formato `- AAAA-MM-GG · cosa è successo · [[fonte]]`.
+
+**Cliente**
+```yaml
+---
+type: client
+status: cliente              # cliente | prospect | ex-cliente
+sector: ""
+people: []
+projects: []
+tags: []
+updated: 2026-10-22
+---
+```
+
+Corpo: `## Chi sono`, `## Relazione con BlueAge`, `## Persone di riferimento`, `## Progetti`, `## Fonti`.
+
+**Persona**
+```yaml
+---
+type: person
+org: blueage                 # blueage | [[slug-cliente]] | altro
+role: ""
+email: ""
+projects: []
+tags: []
+updated: 2026-10-22
+---
+```
+
+Corpo: `## Ruolo e contesto`, `## Interazioni recenti`.
+
+**Tema**
+```yaml
+---
+type: topic
+kind: prodotto               # prodotto | offerta | metodo | tema
+projects: []
+clients: []
+tags: []
+updated: 2026-10-22
+---
+```
+
+Corpo: `## Cos'è`, `## Punti chiave`, `## Dove è usato`, `## Fonti`.
+
+**Digest giornaliero**
+```yaml
+---
+type: journal
+date: 2026-10-22
+---
+```
+
+Corpo: `## Novità ingerite`, `## Attività in scadenza`, `## Decisioni`, `## Scartate`, `## Esito dei task`.
+
+**Cattura** (`inbox/`)
+```yaml
+---
+type: inbox
+created: 2026-10-22
+---
+```
+
+**Proposta del curator**
+```yaml
+---
+type: proposal
+date: 2026-10-22
+kind: regola                 # regola | skill | agente | hook
+status: proposta             # proposta | accettata | rifiutata
+---
+```
+
+Corpo: `## Motivazione`, `## Evidenze`, `## Testo proposto`.
+
+I template di tutti i tipi sono in `_templates/`. Se uno schema cambia, si aggiornano insieme questa sezione e il template.
 
 ### 4.3 Versioni dei documenti
 
@@ -325,7 +413,7 @@ Risponde alle domande sulla knowledge:
 | `blueage-corso` | Plugin claude.ai | Snellita: `SKILL.md` breve con il flusso; i dettagli (COMPASS, RED TAG, Tocca a voi, kit docente) in file di riferimento caricati solo quando servono |
 | `blueage-animazioni` | Plugin claude.ai | Da valutare dopo lo step 6 |
 
-I file prodotti dalle skill (pptx, mp4, png) non vanno nel repo. Si caricano su SharePoint o OneDrive con il connettore, e la nota del progetto ne riporta il link.
+I file prodotti dalle skill (pptx, mp4, png) non vanno nel repo. Si caricano su SharePoint o OneDrive con il connettore, e la nota del progetto ne riporta il link. Il `.gitignore` esclude `*.pptx`, `*.mp4` e `*.png` in tutto il vault, tranne dentro `.claude/skills/` (dove stanno gli asset delle skill). Di conseguenza nemmeno le immagini incollate nelle note Obsidian entrano nel repo.
 
 Prerequisito: lo script di setup dell'ambiente cloud installa le dipendenze delle skill (es. `python-pptx`).
 
