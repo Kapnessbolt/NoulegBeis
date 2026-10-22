@@ -48,7 +48,7 @@ e non contiene i segmenti `/SiteAssets/`, `/_originali/`, `/_sorgenti/`. Confron
 
 `sharepoint_search` restituisce anche altri siti e il resto di OneDrive: scarta tutto ciò che non rientra.
 
-Tipi processati: pdf, docx, pptx, xlsx, md, txt. Per gli altri tipi crea la nota con i soli metadati (`## Riassunto`: "File <tipo>, contenuto non letto").
+Tipi processati: pdf, docx, pptx, xlsx, md, txt. Gli altri tipi si ignorano: nessuna nota e nessuna voce nello stato.
 
 Il compito `file` può ingerire anche fuori dal perimetro (sezione 6).
 
