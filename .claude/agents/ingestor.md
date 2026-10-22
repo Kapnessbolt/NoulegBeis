@@ -147,6 +147,7 @@ Solo righe nuove: non modificare né riordinare quelle esistenti. Prima di aggiu
 1. `outlook_email_search` con `query: "*"`, `afterDateTime: <watermark − 2 ore>` (o la **da data**), `limit: 25`, seguendo `nextOffset` o `nextCursor` fino all'ultima pagina. Niente `folderName`: copre tutte le cartelle, Inviate comprese.
 2. Scarta: mittenti `no-reply`, `noreply`, `donotreply`, `notifications`, `notification`, `mailer-daemon`; notifiche di servizi (Teams, SharePoint, Azure, Microsoft 365, SaaS); newsletter e marketing (link di disiscrizione, mittenti di massa). Annota ogni scarto (mittente · oggetto) per il digest.
 3. Leggi ogni messaggio con `read_resource` e raggruppa per `conversationId`.
+   Messaggi già ingeriti: se `outlook.threads[conversationId]` esiste e la data di ricezione del messaggio è uguale o precedente al suo `last_message`, salta il messaggio (capita nelle 2 ore di sovrapposizione). Un thread senza messaggi nuovi non si tocca.
 4. Per ogni thread: se `outlook.threads[conversationId]` esiste aggiorna la nota, altrimenti creala (3.6). Aggiorna `threads[conversationId] = { "last_message": ..., "note": "sources/mail/..." }`.
 5. Allegati: ignora `isInline: true` e le immagini. Leggi pdf, docx, pptx, xlsx con `read_resource` sull'URI dell'allegato. Se la famiglia esiste già tra le note di SharePoint o OneDrive, aggiungi la versione a quella nota; altrimenti crea `sources/attachments/<famiglia>.md` con `source: attachment`. Collega l'allegato nel campo `attachments` del thread.
 6. Decisioni, azioni e scadenze → progetto collegato (3.7).
