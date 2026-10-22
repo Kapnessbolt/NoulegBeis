@@ -1,6 +1,6 @@
 # SPEC · Second Brain BlueAge (personale)
 
-Versione 1.8 · 22/10/2026 · Owner: Lorenzo Curione
+Versione 1.9 · 22/10/2026 · Owner: Lorenzo Curione
 
 Questo file è la specifica di riferimento del vault. Ogni sessione Claude Code che costruisce o modifica il sistema parte da qui. Le modifiche alla specifica si fanno con una PR dedicata.
 
@@ -300,7 +300,8 @@ Tipi di file processati: pdf, docx, pptx, xlsx, md, txt. Gli altri tipi (immagin
 
 Prefisso: `https://blueagesrl-my.sharepoint.com/personal/lorenzo_curione_blueage_it/Documents/BlueAge/`.
 Il resto di OneDrive è escluso.
-La sottocartella `BlueAge/_chat/` riceve i riassunti delle chat di claude.ai (sezione 8).
+Tutte le sottocartelle di `BlueAge/` sono incluse e le note ne seguono il percorso (`sources/onedrive/<percorso>/`): aggiungere, rinominare o rinumerare una cartella non richiede modifiche a questa specifica.
+Unica cartella con un trattamento speciale: quella il cui nome finisce con `chat` (oggi `BlueAge/00_chat/`) riceve i riassunti delle chat di claude.ai (sezione 8).
 
 ### 5.3 Outlook · tutta la casella
 
@@ -410,7 +411,7 @@ Ogni task:
 | `/smista` | Smista `inbox/` nei progetti e nei temi |
 | `/controlla` | Controllo del vault (4.4): errori, possibili doppioni e indice per categoria, con le correzioni proposte |
 
-**Chat di claude.ai nel vault.** Nella chat basta chiedere "salva il riassunto di questa chat nel mio OneDrive in BlueAge/_chat". Il connettore M365 carica il file, e l'ingestion lo trasforma in una nota di tipo `session` con `surface: claude-ai`.
+**Chat di claude.ai nel vault.** Nella chat basta chiedere "salva il riassunto di questa chat nel mio OneDrive in BlueAge/00_chat". Il connettore M365 carica il file, e l'ingestion lo trasforma in una nota di tipo `session` con `surface: claude-ai`.
 
 ## 9. Agenti (`.claude/agents/`)
 
@@ -469,7 +470,7 @@ Prerequisito: lo script di setup dell'ambiente cloud installa le dipendenze dell
 | 2 | Agente `ingestor` e comandi `/ingest`, `/ingest-file` | `/ingest-file` su `BlueAge_CompanyProfile_v24.pdf` produce una nota conforme allo schema 4.2 |
 | 3 | Primo caricamento a lotti (6.5) | Campione di 10 note per lotto approvato dall'utente |
 | 4 | Task schedulati di ingestion, digest e riconciliazione | 3 giorni di run senza errori e senza doppioni |
-| 5 | `/chiudi-sessione`, hook di sessione, bridge `_chat` | Le sessioni della settimana compaiono in `sessions/` |
+| 5 | `/chiudi-sessione`, hook di sessione, bridge della cartella chat | Le sessioni della settimana compaiono in `sessions/` |
 | 6 | Skill `blueage-deck` e `blueage-corso` snellita | Un deck generato in cloud e caricato su SharePoint |
 | 7 | Agente `curator` e `librarian` | Prima PR di proposte ricevuta e valutata |
 | 8 | Obsidian sui dispositivi (clone e sincronizzazione git) | Il grafo è visibile su PC e telefono |

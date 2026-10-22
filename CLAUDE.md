@@ -80,7 +80,7 @@ Il curator non modifica mai `CLAUDE.md`, `.claude/` o `SPEC.md`: propone, e le m
 ## 6. Perimetro delle fonti (sintesi di SPEC 5)
 
 - SharePoint `sites/internal`: librerie SalesMarketing, Delivery, Shared Documents. Escluse le librerie Knowledge (corsi Anthropic) e SiteAssets, e le cartelle `_originali` e `_sorgenti`.
-- OneDrive: solo la cartella `BlueAge/`. `BlueAge/_chat/` contiene i riassunti delle chat claude.ai → note `session` con `surface: claude-ai`.
+- OneDrive: solo la cartella `BlueAge/`, con tutte le sue sottocartelle. La cartella il cui nome finisce con `chat` (oggi `BlueAge/00_chat/`) contiene i riassunti delle chat claude.ai → note `session` con `surface: claude-ai`.
 - Outlook: tutta la casella, Inviate comprese. Scarta no-reply, notifiche di servizi, newsletter e marketing.
 
 ## 7. Git
