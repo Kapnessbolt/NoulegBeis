@@ -1,6 +1,6 @@
 # SPEC · Second Brain BlueAge (personale)
 
-Versione 1.1 · 22/10/2026 · Owner: Lorenzo Curione
+Versione 1.2 · 22/10/2026 · Owner: Lorenzo Curione
 
 Questo file è la specifica di riferimento del vault. Ogni sessione Claude Code che costruisce o modifica il sistema parte da qui. Le modifiche alla specifica si fanno con una PR dedicata.
 
@@ -75,8 +75,11 @@ Scritture per cartella, per ridurre i conflitti git:
 | Chi scrive | Dove |
 |---|---|
 | Task di ingestion | `sources/`, `journal/`, `.state/`, e in aggiunta (solo righe nuove) `projects/*/log.md` e le sezioni "Attività" di `projects/*/_index.md` |
+| Ingestion lanciata da una sessione interattiva (`/ingest`, `/ingest-file`) | Come il task di ingestion, più: creazione di note nuove in `people/`, `clients/`, `topics/` e `inbox/`; righe nuove in `## Fonti` (o `## Interazioni recenti` per le persone) di quelle esistenti |
 | Curator | `proposals/`, `sessions/` |
 | Sessioni interattive | Ovunque |
+
+Nei task schedulati l'ingestion non crea persone, clienti e temi: scrive comunque il wikilink nella nota fonte e propone la creazione nel digest del giorno. I progetti non si creano mai in automatico.
 
 ## 4. Regole delle note
 
@@ -84,7 +87,7 @@ Scritture per cartella, per ridurre i conflitti git:
 
 - Lingua: italiano.
 - Nomi file: slug minuscolo con trattini (`entrata-merci-manini.md`).
-- Collegamenti: wikilink Obsidian `[[slug]]`. Ogni nota in `sources/` deve collegarsi ad almeno un progetto, cliente o tema.
+- Collegamenti: wikilink Obsidian `[[slug]]`. Ogni nota in `sources/` deve collegarsi ad almeno un progetto, cliente o tema, tramite i campi `projects`, `clients` e `topics` del frontmatter.
 - Frontmatter YAML obbligatorio su ogni nota, con i campi del suo tipo (4.2).
 - Una nota descrive, non copia: riassunto, punti chiave, numeri, decisioni, azioni. Per il dettaglio si legge l'originale tramite il connettore.
 
@@ -110,6 +113,7 @@ partial: false               # true se il contenuto è stato letto solo in parte
 ingested_at: 2026-10-22T06:50:00Z
 projects: ["[[ai-foundation-program]]"]
 clients: []
+topics: ["[[pulse]]"]
 tags: []
 ---
 ```
@@ -127,6 +131,7 @@ messages: 2
 attachments: ["[[blueage-automation-entrata-merci]]"]
 projects: ["[[corso-ai-manini]]"]
 clients: ["[[manini]]"]
+topics: []
 status: active
 ---
 ```
@@ -386,7 +391,7 @@ Ogni task:
 
 ### 9.1 `ingestor`
 
-Esegue le sezioni 6.2–6.4. Usato dai task schedulati e da `/ingest`. Scrive solo nelle cartelle di sua competenza (sezione 3).
+Esegue le sezioni 6.2–6.4. Usato dai task schedulati (modalità `schedulata`) e da `/ingest` e `/ingest-file` (modalità `interattiva`). Scrive solo nelle cartelle consentite alla sua modalità (sezione 3).
 
 ### 9.2 `curator`
 

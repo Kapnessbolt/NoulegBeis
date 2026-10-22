@@ -15,6 +15,7 @@ partial: false              # true se letto solo in parte (oltre 30 pagine o sli
 ingested_at: null
 projects: []
 clients: []
+topics: []
 tags: []
 ---
 
