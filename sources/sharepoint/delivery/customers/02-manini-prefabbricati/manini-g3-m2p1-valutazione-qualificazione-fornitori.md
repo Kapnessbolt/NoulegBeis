@@ -16,7 +16,7 @@ partial: true
 ingested_at: 2026-10-22T13:25:14Z
 projects: ["[[manini-supply-chain-magazzino]]"]
 clients: ["[[manini]]"]
-topics: []
+topics: ["[[percorso-supply-chain-magazzino]]"]
 tags: [deck, formazione, fornitori, qualifica, vendor-rating]
 ---
 

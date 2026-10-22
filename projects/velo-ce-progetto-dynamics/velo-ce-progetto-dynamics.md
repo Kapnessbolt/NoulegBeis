@@ -1,7 +1,7 @@
 ---
 type: project
 status: attivo
-role: ""
+role: "Non coinvolto: seguono Cristian Schifone e Leonardo Pinsone"
 clients: ["[[velo-ce]]"]
 people: ["[[cristian-schifone]]", "[[leonardo-pinsone]]", "[[stefano-moruzzi]]", "[[claudia-crippa]]", "[[gabriele-ranzini]]"]
 updated: 2026-10-22

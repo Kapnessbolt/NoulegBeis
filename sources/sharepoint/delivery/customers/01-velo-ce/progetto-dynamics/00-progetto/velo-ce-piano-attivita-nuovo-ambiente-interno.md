@@ -16,7 +16,7 @@ partial: true
 ingested_at: 2026-10-22T13:25:33Z
 projects: ["[[velo-ce-progetto-dynamics]]"]
 clients: ["[[velo-ce]]"]
-topics: ["[[business-central-ai]]"]
+topics: ["[[business-central-ai]]", "[[fatturazione-elettronica-sdi]]"]
 tags: [piano, go-live, premium, cut-over, percorso-critico, interno]
 ---
 

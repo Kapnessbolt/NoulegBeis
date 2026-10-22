@@ -16,7 +16,7 @@ partial: false
 ingested_at: 2026-10-22T13:25:13Z
 projects: ["[[velo-ce-progetto-dynamics]]"]
 clients: ["[[velo-ce]]"]
-topics: ["[[business-central-ai]]"]
+topics: ["[[business-central-ai]]", "[[fatturazione-elettronica-sdi]]"]
 tags: [verbale, velo-ce, business-central, premium, tenant, so-smart, eos, migrazione, fattura-elettronica, interno]
 ---
 

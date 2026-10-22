@@ -16,7 +16,7 @@ partial: false
 ingested_at: 2026-10-22T13:25:42Z
 projects: ["[[velo-ce-progetto-dynamics]]"]
 clients: ["[[velo-ce]]"]
-topics: ["[[business-central-ai]]"]
+topics: ["[[business-central-ai]]", "[[fatturazione-elettronica-sdi]]"]
 tags: [business-central, premium, licenze, so-smart, tenant, decisioni, scheda-decisione]
 ---
 

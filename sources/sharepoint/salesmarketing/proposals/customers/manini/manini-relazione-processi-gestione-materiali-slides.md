@@ -16,7 +16,7 @@ partial: false
 ingested_at: 2026-10-22T13:02:50Z
 projects: []
 clients: ["[[manini]]"]
-topics: []
+topics: ["[[percorso-supply-chain-magazzino]]"]
 tags: [relazione, slide, supply-chain, magazzino, acquisti, proposta]
 ---
 

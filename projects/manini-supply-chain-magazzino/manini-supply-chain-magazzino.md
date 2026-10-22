@@ -1,7 +1,7 @@
 ---
 type: project
 status: attivo
-role: ""
+role: "Non coinvolto: docente Leonardo Pinsone; seguo la parte di formazione AI (corso-ai-manini)"
 clients: ["[[manini]]"]
 people: ["[[leonardo-pinsone]]", "[[michele-padoin]]"]
 updated: 2026-10-22
@@ -31,7 +31,7 @@ updated: 2026-10-22
 
 ## Prossimi passi
 
-- Proposta di un percorso formativo sull'AI applicata, con i casi entrata merci dal DDT (4A) e avviso serale delle consegne in cantiere (7B)
+- Percorso formativo sull'AI applicata, con i casi entrata merci dal DDT (4A) e avviso serale delle consegne in cantiere (7B): progetto [[corso-ai-manini]]
 
 ## Fonti
 

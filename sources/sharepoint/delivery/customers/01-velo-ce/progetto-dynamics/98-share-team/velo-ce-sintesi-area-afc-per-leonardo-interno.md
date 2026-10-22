@@ -16,7 +16,7 @@ partial: false
 ingested_at: 2026-10-22T13:31:42Z
 projects: ["[[velo-ce-progetto-dynamics]]"]
 clients: ["[[velo-ce]]"]
-topics: ["[[business-central-ai]]"]
+topics: ["[[business-central-ai]]", "[[fatturazione-elettronica-sdi]]"]
 tags: [velo-ce, business-central, afc, sintesi, ciclo-passivo, interno]
 ---
 

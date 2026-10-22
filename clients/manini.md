@@ -3,7 +3,7 @@ type: client
 status: cliente
 sector: "Prefabbricati per l'edilizia"
 people: ["[[michele-padoin]]"]
-projects: ["[[manini-supply-chain-magazzino]]"]
+projects: ["[[manini-supply-chain-magazzino]]", "[[corso-ai-manini]]"]
 tags: []
 updated: 2026-10-22
 ---
@@ -30,6 +30,7 @@ updated: 2026-10-22
 ## Progetti
 
 - [[manini-supply-chain-magazzino]]
+- [[corso-ai-manini]]
 
 ## Fonti
 
