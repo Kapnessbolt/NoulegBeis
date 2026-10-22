@@ -41,7 +41,8 @@ Regole di instradamento:
 
 | Chi | Dove |
 |---|---|
-| Task di ingestion (agente `ingestor`) | `sources/`, `journal/`, `.state/`. In aggiunta, solo righe nuove: `projects/*/log.md` e la sezione `## Attività` di `projects/*/_index.md` |
+| Task di ingestion (agente `ingestor`, modalità `schedulata`) | `sources/`, `journal/`, `.state/`. In aggiunta, solo righe nuove: `projects/*/log.md` e la sezione `## Attività` di `projects/*/_index.md` |
+| Ingestion da sessione interattiva (`/ingest`, `/ingest-file`, modalità `interattiva`) | Come sopra, più: note nuove in `people/`, `clients/`, `topics/`, `inbox/`; righe nuove in `## Fonti` (o `## Interazioni recenti`) di quelle esistenti |
 | Curator | `proposals/`, `sessions/` |
 | Sessione interattiva | Ovunque |
 
@@ -53,7 +54,7 @@ Il curator non modifica mai `CLAUDE.md`, `.claude/` o `SPEC.md`: propone, e le m
 - Lingua: italiano.
 - Nomi file: slug minuscolo con trattini, senza accenti (`entrata-merci-manini.md`). Persone: `nome-cognome`.
 - Collegamenti: wikilink `[[slug]]` (senza percorso e senza `.md`). Gli slug devono essere unici in tutto il vault.
-- Ogni nota in `sources/` si collega ad almeno un progetto, cliente o tema. Se il collegamento non esiste ancora, crea la nota di destinazione dal template.
+- Ogni nota in `sources/` si collega ad almeno un progetto, cliente o tema con i campi `projects`, `clients`, `topics`. Se la persona, il cliente o il tema non esiste ancora, crea la nota dal template; nei task schedulati, invece, scrivi il wikilink e proponi la creazione nel digest del giorno.
 - Frontmatter YAML obbligatorio, con i campi del template del suo tipo. Non togliere campi: se non c'è il valore, lascia `[]`, `""` o `null`.
 - Una nota descrive, non copia: riassunto, punti chiave, numeri, decisioni, azioni. Il dettaglio si legge dall'originale con il connettore.
 - Attività: checkbox con data nel formato Obsidian Tasks `- [ ] testo 📅 AAAA-MM-GG` e la fonte in coda (`([[slug-fonte]])`).

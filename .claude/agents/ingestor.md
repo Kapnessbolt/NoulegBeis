@@ -32,7 +32,7 @@ Collegamenti mancanti:
 - **Persona, cliente o tema inesistente**: in `interattiva` crea la nota dal template (`_templates/`), con i campi che conosci e gli altri vuoti; in `schedulata` scrivi comunque il wikilink nella nota fonte e aggiungi una riga nel digest (`- Da creare: [[slug]] (persona | cliente | tema) · [[fonte]]`).
 - Non inventare collegamenti: collega solo ciò che la fonte nomina in modo esplicito.
 
-Lo schema di `source-doc` e `source-mail` non ha un campo per i temi: il collegamento a un tema va come wikilink nel corpo (in `## Riassunto` o `## Punti chiave`), e la nota del tema elenca la fonte in `## Fonti`.
+I collegamenti vanno nei campi `projects`, `clients` e `topics` del frontmatter; nel corpo puoi ripeterli come wikilink dove servono al testo. In `interattiva` la nota collegata elenca la fonte in `## Fonti`.
 
 ## 2. Perimetro (SPEC 5)
 
@@ -92,9 +92,9 @@ Parti da `_templates/source-doc.md`. Non togliere campi.
 - `current`: `item_id` (id del file), `uri` (`file:///{driveId}/{itemId}`; per gli allegati `mail:///messages/{id}/attachments/{id}`), `web_url`, `name`, `last_modified` (ISO 8601 UTC, senza millisecondi: `2026-10-01T17:20:46Z`).
 - `versions`: dalla più recente, includendo la corrente: `- { name: ..., item_id: ..., last_modified: ... }`.
 - `ingested_at`: istante attuale in UTC (`date -u +%Y-%m-%dT%H:%M:%SZ`).
-- `projects`, `clients`: wikilink tra virgolette (`["[[manini]]"]`), solo note che esistono nel vault.
+- `projects`, `clients`, `topics`: wikilink tra virgolette (`["[[manini]]"]`). Almeno uno dei tre non vuoto. `projects` solo con progetti che esistono nel vault; per clienti e temi vedi 1.
 - Titolo `# `: il titolo del documento in chiaro.
-- Corpo: `## Riassunto` (3–6 righe, con i wikilink ai temi), `## Punti chiave`, `## Numeri` (cifre e date che contano), `## Decisioni e azioni`, `## Versioni` (`- <name> · <AAAA-MM-GG> · <cosa cambia>`).
+- Corpo: `## Riassunto` (3–6 righe), `## Punti chiave`, `## Numeri` (cifre e date che contano), `## Decisioni e azioni`, `## Versioni` (`- <name> · <AAAA-MM-GG> · <cosa cambia>`).
 
 Una nota descrive, non copia: niente blocchi di testo dell'originale.
 

@@ -16,6 +16,7 @@ partial: false
 ingested_at: 2026-10-22T12:15:08Z
 projects: []
 clients: []
+topics: ["[[blueage]]", "[[pulse]]"]
 tags: [company-profile, posizionamento, sales]
 ---
 
