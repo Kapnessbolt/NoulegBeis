@@ -2,7 +2,7 @@
 
 Nessun connettore. Prima leggi `.claude/routines/_comune.md` e seguilo (avvio, digest, errori, git). Gira dopo gli ingest del mattino e dopo l'ingest-outlook delle 13:15.
 
-Aggiorna i dati del vault nella dashboard **Cockpit** (artifact di tipo Dashboard): https://claude.ai/artifact/KN8Wp48Ja6vGbShXeTpRgR. Il calendario la dashboard lo legge da sé dal connettore Microsoft 365: questo task non lo tocca. Non modifica note del vault: scrive solo la riga d'esito nel digest. `Artifact` e `ArtifactData` sono consentiti in `.claude/settings.json`; carica `ArtifactData` con ToolSearch (`select:ArtifactData`) se non è caricato.
+Aggiorna i dati del vault nella dashboard **Cockpit** (artifact di tipo Dashboard): https://claude.ai/artifact/KN8Wp48Ja6vGbShXeTpRgR. Il calendario la dashboard lo legge da sé dal connettore Microsoft 365: questo task non lo tocca. Non modifica note del vault: scrive solo la riga d'esito nel digest. Carica `ArtifactData` con ToolSearch (`select:ArtifactData`) se non è caricato.
 
 1. `OUT=$(mktemp -d)` e `python3 .claude/scripts/plancia.py "$OUT"`: scrive `progetti.json` e `attivita.json`.
 2. Per ciascun dataset, `progetti` e poi `attivita`:
