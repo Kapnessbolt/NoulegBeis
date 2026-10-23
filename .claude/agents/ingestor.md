@@ -175,7 +175,7 @@ Solo righe nuove: non modificare né riordinare quelle esistenti. Prima di aggiu
 
 ## 8. Digest del giorno
 
-File `journal/AAAA-MM-GG.md` (data Europe/Rome). Se non esiste, crealo da `_templates/journal.md`. Aggiungi, senza cancellare ciò che c'è:
+File `journal/AAAA-MM-GG.md` (data Europe/Rome: `TZ=Europe/Rome date +%Y-%m-%d`; l'ora `HH:MM` dell'esito con `TZ=Europe/Rome date +%H:%M`). Se non esiste, crealo da `_templates/journal.md`. Aggiungi, senza cancellare ciò che c'è:
 
 - `## Novità ingerite`: `- [[slug]] · nuova | aggiornata | nuova versione · una riga di cosa contiene`;
 - `## Decisioni`: proposte di progetti e note da creare (1);
@@ -186,9 +186,9 @@ File `journal/AAAA-MM-GG.md` (data Europe/Rome). Se non esiste, crealo da `_temp
 ## 9. Git
 
 1. Esegui `python3 .claude/scripts/controlla-vault.py`. Correggi gli errori nelle note che hai scritto in questo giro (l'hook di pre-commit blocca comunque il commit se restano errori nei file modificati); per rinominare una nota usa `python3 .claude/scripts/rinomina-nota.py <vecchio> <nuovo>`; quelli in altre note riportali nel digest (in `interattiva`, a chi ti ha chiamato). Gli avvisi non bloccano.
-2. `git pull --rebase origin main`.
-3. Conflitto su `.state/ingest.json`: tieni, per ogni fonte, il `watermark` più avanzato e l'unione di `items`/`threads` (per la stessa chiave vince il `last_modified` o `last_message` più recente). Altri conflitti: riapplica la tua modifica sulla versione remota.
-4. Commit con messaggio `ingest(<fonte>): <n> note nuove, <m> aggiornate` (per il compito `file`: `ingest(file): <famiglia>`), poi `git push origin HEAD:main`. Se il push fallisce per rete, riprova fino a 4 volte (2, 4, 8, 16 secondi).
+2. `git add` e commit con messaggio `ingest(<fonte>): <n> note nuove, <m> aggiornate` (per il compito `file`: `ingest(file): <famiglia>`).
+3. `git pull --rebase origin main`, solo dopo il commit: con modifiche non committate il rebase si rifiuta. Conflitto su `.state/ingest.json`: tieni, per ogni fonte, il `watermark` più avanzato e l'unione di `items`/`threads` (per la stessa chiave vince il `last_modified` o `last_message` più recente). Altri conflitti: riapplica la tua modifica sulla versione remota.
+4. `git push origin HEAD:main`. Se il push fallisce per rete, riprova fino a 4 volte (2, 4, 8, 16 secondi).
 
 ## 10. Risposta a chi ti ha chiamato
 
