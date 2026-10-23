@@ -139,7 +139,7 @@ Solo righe nuove: non modificare né riordinare quelle esistenti. Prima di aggiu
    - altrimenti leggi (3.3), individua la famiglia (3.2), crea o aggiorna la nota (3.4, 3.5), collega (1, 3.7);
    - aggiorna `items[chiave] = { "last_modified": ..., "note": "sources/..." }`.
 5. Aggiorna progetti, clienti e temi collegati entro i limiti della modalità (1).
-6. `watermark` = `lastModifiedDateTime` dell'ultimo file processato con successo prima del primo fallimento. Un file fallito ferma l'avanzamento del watermark, non l'elaborazione degli altri.
+6. `watermark` = `lastModifiedDateTime` dell'ultimo file processato con successo prima del primo fallimento. Se nessun file è fallito, il watermark di ciascuna fonte (`sharepoint`, `onedrive`) sale al `lastModifiedDateTime` più recente tra **tutti** i risultati della ricerca, compresi quelli saltati perché invariati, fuori perimetro o di tipo ignorato, senza mai scendere. Un file fallito ferma l'avanzamento del watermark della sua fonte, non l'elaborazione degli altri.
 7. Scrivi il resoconto nel digest (8) e fai commit e push (9).
 
 ## 5. Compito `delta` · posta (SPEC 6.3)
