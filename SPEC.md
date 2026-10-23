@@ -26,7 +26,8 @@ Utente unico. Nessun materiale sensibile: il repo è privato.
 | Esecuzione | Claude Code in cloud (claude.ai/code) | Sessioni interattive da desktop, mobile e PC diversi |
 | Automazione | Task schedulati cloud (claude.ai/code/routines) | Ingestion periodica, riconciliazione, curator |
 | Fonti | Connettore Microsoft 365 (tenant blueage.it) | Lettura di SharePoint, OneDrive e Outlook; upload dei file prodotti |
-| Visualizzazione | Obsidian (vault = clone del repo) | Lettura, grafo, cattura veloce |
+| Visualizzazione | Obsidian (vault = clone del repo) | Lettura, grafo, cattura veloce; `home.md` come pagina iniziale |
+| Riepilogo | Dashboard Cockpit su claude.ai (artifact privato) | Calendario Outlook dal vivo, progetti e attività dal vault |
 | Documenti originali | Restano su SharePoint, OneDrive e Outlook | Nel repo vanno solo le note markdown che li citano |
 
 Vincoli dell'ambiente cloud da rispettare:
@@ -43,12 +44,14 @@ Vincoli dell'ambiente cloud da rispettare:
 ├── CLAUDE.md                istruzioni operative per ogni sessione
 ├── .github/workflows/       controllo del vault su ogni push (4.4)
 ├── README.md                guida rapida per l'utente
+├── home.md                  vista Obsidian con Tasks e Dataview (fuori dal controllo 4.4)
 ├── .claude/
 │   ├── settings.json        hook e permessi
 │   ├── commands/            comandi manuali (sezione 8)
 │   ├── agents/              agenti specializzati (sezione 9)
 │   ├── hooks/               hook di Claude Code (controllo prima del commit, 4.4)
-│   ├── scripts/             script di servizio (controllo e rinomina delle note, 4.4)
+│   ├── routines/            procedure dei task schedulati (sezione 7)
+│   ├── scripts/             script di servizio (controllo e rinomina delle note 4.4, dati della dashboard 7)
 │   └── skills/              skill (sezione 10)
 ├── .state/
 │   └── ingest.json          stato dell'ingestion (sezione 6.1)
@@ -263,7 +266,7 @@ I template di tutti i tipi sono in `_templates/`. Se uno schema cambia, si aggio
 
 ### 4.4 Controllo del vault
 
-Lo script `python3 .claude/scripts/controlla-vault.py` verifica le note e stampa un rapporto in markdown (con `--indice` aggiunge l'elenco di progetti, clienti, persone e temi, con il numero di note che li collegano). Esce con codice 1 se trova errori.
+Lo script `python3 .claude/scripts/controlla-vault.py` verifica le note (tranne `README.md`, `CLAUDE.md`, `SPEC.md` e `home.md`) e stampa un rapporto in markdown (con `--indice` aggiunge l'elenco di progetti, clienti, persone e temi, con il numero di note che li collegano). Esce con codice 1 se trova errori.
 
 | Livello | Cosa controlla |
 |---|---|
@@ -389,10 +392,11 @@ Orari in Europe/Rome, fuori dagli orari pieni per evitare i ritardi del sistema.
 | `ingest-outlook` | Ogni giorno alle 07:05 e alle 13:15 (due task) | Microsoft 365 | Opus | 6.3 |
 | `digest` | Ogni giorno alle 07:45 | Nessuno | Sonnet | Completa `journal/AAAA-MM-GG.md`: novità, attività in scadenza, decisioni |
 | `reconcile` | Domenica alle 08:45 | Microsoft 365 | Sonnet | 6.4 |
+| `cockpit` | Ogni giorno alle 07:40 e alle 13:40 (due task, `DailyBoard` e `DailyBoard2`) | Nessuno | — | Rigenera con `plancia.py` progetti e attività e li carica sulla dashboard Cockpit; riga d'esito nel digest |
 | `curator` | Domenica alle 21:10 (da creare con lo step 7) | Nessuno | — | Sezione 9.2 |
 | `sessions-cleanup` | Il 1° del mese alle 06:10 (da creare con lo step 5) | Nessuno | — | Cancella `sessions/_raw/` più vecchio di 30 giorni |
 
-Il `digest` gira dopo gli ingest del mattino; l'ingest-outlook delle 13:15 scrive nel digest dello stesso giorno, e il digest del giorno dopo non ripete le sue note.
+Il `cockpit` gira in un ambiente cloud dedicato, senza connettori, perché carica i dati su claude.ai; il calendario la dashboard lo legge da sé con il connettore Microsoft 365 di chi la apre. Il `digest` gira dopo gli ingest del mattino; l'ingest-outlook delle 13:15 scrive nel digest dello stesso giorno, e il digest del giorno dopo non ripete le sue note.
 
 Ogni task:
 - si crea dall'interfaccia di claude.ai con il repository e i soli connettori che gli servono, e gira in una sessione nuova a ogni esecuzione;
@@ -477,6 +481,7 @@ Prerequisito: lo script di setup dell'ambiente cloud installa le dipendenze dell
 | 6 | Skill `blueage-deck` e `blueage-corso` snellita | Un deck generato in cloud e caricato su SharePoint |
 | 7 | Agente `curator` e `librarian` | Prima PR di proposte ricevuta e valutata |
 | 8 | Obsidian sui dispositivi (clone e sincronizzazione git) | Il grafo è visibile su PC e telefono |
+| 9 | Dashboard Cockpit, task `cockpit` e nota `home.md` | 3 giorni di aggiornamenti della dashboard senza errori; `home.md` leggibile in Obsidian con Tasks e Dataview |
 
 ## 14. Decisioni aperte
 
