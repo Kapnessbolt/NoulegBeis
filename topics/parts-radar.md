@@ -1,10 +1,10 @@
 ---
 type: topic
 kind: prodotto
-projects: []
-clients: []
+projects: ["[[parts-radar-sviluppo]]"]
+clients: ["[[adac-bologna]]"]
 tags: [ricambi, post-vendita]
-updated: 2026-10-22
+updated: 2026-10-23
 ---
 
 # Parts Radar
@@ -19,10 +19,14 @@ Prodotto di [[ai-nei-processi]] per il banco ricambi: riceve la richiesta per me
 - Da 5 a 2 le persone impegnate nel processo ricambi e post-vendita ([[blueage-sintesi]], [[blueage-possibilita]])
 - Indicato come "in uso" nel company profile, nel settore della distribuzione di ricambi auto ([[blueage-companyprofile]])
 - Citato insieme a Lume-AI tra i progetti da smistare nelle regole della skill Velo-CE ([[velo-ce-regole-skill]])
+- Prodotto installato: servizio Python + PostgreSQL + dashboard, un'installazione per cliente sui server BlueAge; il monitoraggio tecnico resta interno e non compare al cliente ([[parts-radar-decisione-stack-python]])
+- Catalogo Kromeda di Solera con approccio OE-first: dal codice originale del costruttore agli equivalenti aftermarket, filtrati sui brand a listino del ricambista ([[parts-radar-kromeda-impatto]])
+- Sulla demo l'80% dei casi si risolve in modo deterministico dalla sola targa e il 14% resta all'operatore, quasi tutto equipaggiamento di fabbrica ([[parts-radar-kromeda-fase0-risultati]])
+- Canale WhatsApp con un tech provider (360dialog, Coexistence): il numero del ricambista resta sull'app del banco ([[parts-radar-whatsapp-fornitori]])
 
 ## Dove è usato
 
--
+- [[adac-bologna]], pilota: [[parts-radar-sviluppo]]
 
 ## Fonti
 
@@ -41,3 +45,8 @@ Prodotto di [[ai-nei-processi]] per il banco ricambi: riceve la richiesta per me
 - [[riunione-generale-blueage-12-10-punti-emersi-e-prossimi-passi]]
 - [[riunione-generale-blueage-19-10-sintesi-azioni-e-one-page]]
 - [[twilio-blueage-follow-up]]
+- [[parts-radar-architettura]]
+- [[parts-radar-decisione-stack-python]]
+- [[parts-radar-kromeda-impatto]]
+- [[parts-radar-kromeda-fase0-risultati]]
+- [[parts-radar-whatsapp-fornitori]]
