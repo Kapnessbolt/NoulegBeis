@@ -12,7 +12,7 @@ updated: 2026-10-23
 ## Stato
 
 - Caso studio sull'entrata merci di [[manini]]: leggere i DDT dei fornitori con un modello generativo, abbinarli agli ordini AS400 e lasciare alle persone solo le eccezioni. È l'intervento 4A della relazione sui materiali ed è il caso pratico del [[corso-ai-manini]] (laboratorio utenti e 8 ore con i Sistemi Informativi) ([[00-istruzioni-progetto]], [[manini-relazione-processi-gestione-materiali]])
-- Lavoro tecnico nel repo GitHub privato `manini-automazione-ddt` (report, schema, prompt, script); i dati reali (DDT, verità, inventario) restano su OneDrive in `Progetto Automazione/Dati/` e non entrano mai nel repo. Le copie condivise dei report sono in `Progetto Automazione/Library/` ([[2026-10-23-manini-automazione-ddt]])
+- Lavoro tecnico nel repo GitHub privato [manini-automazione-ddt](https://github.com/Kapnessbolt/manini-automazione-ddt) (report, schema, prompt, script); i dati reali (DDT, verità, inventario) restano su OneDrive in `Progetto Automazione/Dati/` e non entrano mai nel repo. Le copie condivise dei report sono in `Progetto Automazione/Library/` ([[2026-10-23-manini-automazione-ddt]])
 - Step 1, inventario: fatto. 15 DDT reali di 14 fornitori, nessun PDF nativo, ordine Manini presente in 10 su 15, codice Manini esplicito in 2 su 15 ([[01-inventario]])
 - Step 2, schema JSON: fatto. Schema canonico più versione piatta per AI Builder e Copilot Studio, 13 codici di eccezione ([[03-schema-ddt]])
 - Step 3, benchmark: fatto. Campi critici corretti al 100% con il modello generativo standard, all'88% con quello veloce, al 27% con l'OCR classico; il prompt v1.1 è da ritestare ([[04-benchmark]], [[prompt-estrazione-ddt]])

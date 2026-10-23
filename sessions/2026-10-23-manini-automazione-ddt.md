@@ -34,7 +34,7 @@ Portare nella knowledge base il caso entrata merci da DDT di [[manini]], svilupp
 
 ## Aperti
 
-- [ ] Creare su GitHub il repo privato `Kapnessbolt/manini-automazione-ddt` (vuoto) e pubblicare il contenuto preparato
+- [x] Creare su GitHub il repo privato `Kapnessbolt/manini-automazione-ddt` e pubblicare il contenuto preparato
 - [ ] Estrarre su OneDrive i PDF dallo ZIP dei DDT, in `Dati/`, per leggerli con il connettore
 - [ ] `Gruppi.xlsx` e `Istruzioni e Informativa IA.pdf` sono stati spostati in `Progetto Automazione/Documenti/`: riportarli in `Manini/` oppure aggiornare le note [[gruppi]] e [[istruzioni-e-informativa-ia]]
 - [ ] Report 01 e 04 nel repo contengono tabelle per documento (fornitore, numero DDT, ordine): decidere se anonimizzarle
