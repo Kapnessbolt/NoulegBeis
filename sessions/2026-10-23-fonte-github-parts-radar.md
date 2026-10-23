@@ -30,7 +30,7 @@ Portare nel vault lo stato del progetto [[parts-radar-sviluppo]] che vive nel re
 
 ## Aperti
 
-- [ ] Fare il merge della PR della fonte GitHub
-- [ ] Creare su claude.ai il task schedulato `ingest-github` (ogni giorno alle 07:20, Opus, sorgenti: NoulegBeis e parts-radar, connettore GitHub) con il prompt standard di SPEC 7
-- [ ] Verificare il primo giro del task: watermark avanzato, una riga di log per il 23/10, nessuna attività doppia
+- [x] Fare il merge della PR della fonte GitHub (PR #12, 23/10)
+- [x] Creare su claude.ai il task schedulato `ingest-github` (ogni giorno alle 07:20, Opus, sorgenti: NoulegBeis e parts-radar, connettore GitHub) con il prompt standard di SPEC 7: creato il 23/10 come `Ingest-github`, primo giro il 24/10 alle 07:20
+- [ ] Verificare il primo giro del task 📅 2026-10-24: riga `ingest-github` nel digest, watermark avanzato, una riga di log per il 23/10, nessuna attività doppia
 - [ ] Email di Luca e Claudio Degli Esposti da aggiungere alle loro note
