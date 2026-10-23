@@ -20,9 +20,13 @@ Avere una vista di riepilogo sempre disponibile: calendario della settimana, pro
 - Calendario: query dal vivo sul connettore Microsoft 365 (oggi + 7 giorni). Progetti e attività: due file JSON generati da `.claude/scripts/plancia.py` e caricati sull'artifact, perché GitHub non è un connettore che la pagina può interrogare.
 - Stile: tecnico, blu BlueAge con ciano e ambra come colore complementare per le scadenze.
 
+- La sessione MTU da remoto del 26/10 esce dalle attività: Lorenzo non è coinvolto.
+- Il connettore Microsoft 365, interrogato dalla pagina, passa per esteso solo il primo evento della ricerca: la pagina chiede gli altri uno alla volta con l'offset.
+
 ## File toccati
 
 - `.claude/scripts/plancia.py` (nuovo): estrae progetti e attività del vault in `progetti.json` e `attivita.json`, fuori dal repo
+- `projects/corso-ai-mtu/corso-ai-mtu.md`, `projects/corso-ai-mtu/corso-ai-mtu-log.md`: tolta la sessione del 26/10
 
 ## Aperti
 

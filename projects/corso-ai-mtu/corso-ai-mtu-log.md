@@ -7,6 +7,7 @@ project: "[[corso-ai-mtu]]"
 
 Una riga per avanzamento, dalla più recente: `- AAAA-MM-GG · cosa è successo · [[fonte]]`
 
+- 2026-10-23 · Tolta dalle attività la sessione da remoto del 26/10 (chiusura parte generale): Lorenzo non è coinvolto in quella sessione · [[2026-10-23-plancia-dashboard]]
 - 2026-10-22 · Progetto creato nel vault su indicazione dell'utente; la proposta in inbox è chiusa · [[2026-10-22-primo-caricamento-shared-documents-onedrive]]
 - 2026-10-21 · M1_v15 universale e inserti MTU pubblicati su SharePoint · [[deck-corso-ai-m1-v15-su-sharepoint]]
 - 2026-10-19 · Pronti gli inserti MTU del Modulo 1: 3 sessioni, filo rosso e dossier per 5 dirigenti · [[ai-foundation-program-m1-mtu-inserti]]
