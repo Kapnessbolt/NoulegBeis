@@ -14,7 +14,9 @@
       "Bash(git status:*)",
       "Bash(date:*)",
       "Bash(python3 .claude/scripts/controlla-vault.py:*)",
-      "Bash(python3 .claude/scripts/rinomina-nota.py:*)"
+      "Bash(python3 .claude/scripts/rinomina-nota.py:*)",
+      "Artifact",
+      "ArtifactData"
     ]
   },
   "hooks": {

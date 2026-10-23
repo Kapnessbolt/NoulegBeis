@@ -33,7 +33,8 @@ Avere una vista di riepilogo sempre disponibile: calendario della settimana, pro
 ## Aperti
 
 - [ ] Rivedere il prototipo e decidere layout e contenuti definitivi (dopo il primo giro: nome cambiato in "Cockpit"; corretta la lettura del calendario, che mostrava solo il primo evento)
-- [x] Task schedulato `cockpit` (ogni giorno 07:40 e 13:40): rigenera i JSON con `plancia.py` e li ricarica sulla dashboard. Creato da sessione, quindi senza il repo in scrittura: non scrive nel digest, l'esito si vede nella dashboard (fonti vecchie dopo 20 ore)
+- [ ] Utente: creare dall'interfaccia di claude.ai il task `cockpit` con il repo NoulegBeis, nessun connettore, ogni giorno alle 07:40 e alle 13:40, prompt standard (`.claude/routines/cockpit.md`). Quello creato da sessione (`trig_01VYihubiEUrsws7nxBm4X6r`, disattivato) partiva senza repo: niente push, niente `.claude/settings.json`, e l'upload sulla dashboard veniva bloccato a intermittenza dal controllo dei permessi. Poi cancellare il vecchio
+- `.claude/settings.json`: consentiti `Artifact` e `ArtifactData`, per l'upload del task `cockpit`
 - [ ] SPEC 7 e SPEC 8: aggiungere con una PR dedicata il task `cockpit` e la nota `home.md`
 - [x] Nota `home.md` per Obsidian con Tasks e Dataview
 - [ ] Utente: installare i plugin Tasks e Dataview in Obsidian (ed eventualmente Homepage per aprire `home.md` all'avvio)
