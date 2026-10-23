@@ -22,6 +22,7 @@ Questo repo è il second brain personale di Lorenzo Curione sulla knowledge Blue
 | Documento OneDrive | `sources/onedrive/<percorso>/<famiglia>.md` | `_templates/source-doc.md` | `source-doc` |
 | Thread di posta | `sources/mail/AAAA-MM/<slug-oggetto>.md` | `_templates/source-mail.md` | `source-mail` |
 | Allegato senza copia su SharePoint/OneDrive | `sources/attachments/<famiglia>.md` | `_templates/source-doc.md` | `source-doc` |
+| Documento o issue di un repo di progetto (SPEC 5.4) | `sources/github/<repo>/<percorso>/<repo>-<nome>.md`, issue in `issues/<repo>-issue-<n>.md` | `_templates/source-doc.md` | `source-doc` |
 | Digest giornaliero | `journal/AAAA-MM-DD.md` | `_templates/journal.md` | `journal` |
 | Diario di sessione | `sessions/AAAA-MM-DD-<slug>.md` | `_templates/session.md` | `session` |
 | Trascrizione grezza (hook) | `sessions/_raw/` | nessuno | nessuno |
@@ -83,6 +84,7 @@ Il curator non modifica mai `CLAUDE.md`, `.claude/` o `SPEC.md`: propone, e le m
 - SharePoint `sites/internal`: librerie SalesMarketing, Delivery, Shared Documents. Escluse le librerie Knowledge (corsi Anthropic) e SiteAssets, e le cartelle `_originali` e `_sorgenti`.
 - OneDrive: solo la cartella `BlueAge/`, con tutte le sue sottocartelle. La cartella il cui nome finisce con `chat` (oggi `BlueAge/00_chat/`) contiene i riassunti delle chat claude.ai → note `session` con `surface: claude-ai`.
 - Outlook: tutta la casella, Inviate comprese. Scarta no-reply, notifiche di servizi, newsletter e marketing.
+- GitHub: solo i file e le issue elencati in SPEC 5.4 (oggi il repo `cristian-schifone/parts-radar`, branch `main`). Nel vault va il livello di progetto (stato, decisioni, scadenze, azioni fuori dal codice), mai il dettaglio tecnico.
 
 ## 7. Git
 

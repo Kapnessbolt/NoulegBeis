@@ -11,7 +11,7 @@ Vault personale sulla knowledge BlueAge, gestito da Claude Code in cloud e consu
 2. **Catturare**: `/cattura <testo>` crea una nota in `inbox/`; `/smista` la porta nel progetto o nel tema giusto.
 3. **Fare il punto**: `/oggi` per l'agenda, `/progetto <nome>` per lo stato di un progetto.
 4. **Controllare**: `/controlla` segnala errori e possibili doppioni nel vault e mostra l'indice di progetti, clienti, persone e temi.
-5. **Ingerire**: `/ingest [fonte] [da data]` porta nel vault le novità di SharePoint, OneDrive e Outlook; `/ingest-file <url o nome>` un singolo documento.
+5. **Ingerire**: `/ingest [fonte] [da data]` porta nel vault le novità di SharePoint, OneDrive, Outlook e dei repo GitHub di progetto; `/ingest-file <url o nome>` un singolo documento.
 6. **Chiudere**: `/chiudi-sessione` scrive il diario in `sessions/` e fa push.
 7. **Leggere**: clona il repo e aprilo come vault in Obsidian.
 
@@ -26,7 +26,7 @@ Disponibili: `/ingest`, `/ingest-file`, `/controlla`. Gli altri comandi e l'inge
 | `clients/` | Clienti e prospect |
 | `people/` | Persone interne ed esterne |
 | `topics/` | Prodotti, offerte, metodi |
-| `sources/` | Note sui documenti di SharePoint, OneDrive, posta e allegati |
+| `sources/` | Note sui documenti di SharePoint, OneDrive, posta, allegati e repo GitHub di progetto |
 | `journal/` | Digest giornaliero |
 | `sessions/` | Diario delle sessioni (`_raw/`: trascrizioni grezze, 30 giorni) |
 | `proposals/` | Proposte del curator |

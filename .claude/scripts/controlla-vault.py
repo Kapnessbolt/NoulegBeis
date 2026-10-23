@@ -354,7 +354,7 @@ def main():
         err(".state/ingest.json", f"illeggibile ({e})")
         state = {}
     tracked = set()
-    for fonte, coll in (("sharepoint", "items"), ("onedrive", "items"), ("outlook", "threads")):
+    for fonte, coll in (("sharepoint", "items"), ("onedrive", "items"), ("outlook", "threads"), ("github", "items")):
         for key, v in (state.get(fonte) or {}).get(coll, {}).items():
             note = v.get("note", "")
             tracked.add(note)
@@ -363,7 +363,7 @@ def main():
     for rel, (d, _) in parsed.items():
         if rel.parts[0] != "sources" or d.get("type") != "source-doc":
             continue
-        if d.get("source") in ("sharepoint", "onedrive") and "fuori-perimetro" not in as_list(d.get("tags")):
+        if d.get("source") in ("sharepoint", "onedrive", "github") and "fuori-perimetro" not in as_list(d.get("tags")):
             if str(rel) not in tracked:
                 avv(rel, "documento non registrato in .state/ingest.json")
 

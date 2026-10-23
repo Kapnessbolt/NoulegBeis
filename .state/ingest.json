@@ -682,6 +682,54 @@
       }
     }
   },
+  "github": {
+    "repos": {
+      "cristian-schifone/parts-radar": {
+        "commit": "b33b5e0abc8531e96018496632b25f3ed33b0b04",
+        "watermark": "2026-10-22T17:00:48Z"
+      }
+    },
+    "items": {
+      "cristian-schifone/parts-radar:docs/architettura.md": {
+        "last_modified": "2026-10-22T16:51:29Z",
+        "commit": "61b833c4fd3773751f1d2c8497db3353d8f61d51",
+        "note": "sources/github/parts-radar/docs/parts-radar-architettura.md"
+      },
+      "cristian-schifone/parts-radar:docs/decisione-stack-python.md": {
+        "last_modified": "2026-10-19T21:37:21Z",
+        "commit": "6841f618a743e1c6e5cabe8ea9a51c0a32252d4c",
+        "note": "sources/github/parts-radar/docs/parts-radar-decisione-stack-python.md"
+      },
+      "cristian-schifone/parts-radar:docs/whatsapp-fornitori.md": {
+        "last_modified": "2026-10-20T05:20:11Z",
+        "commit": "28674546e6b6aea0489bb23f984ea2805ec4e364",
+        "note": "sources/github/parts-radar/docs/parts-radar-whatsapp-fornitori.md"
+      },
+      "cristian-schifone/parts-radar:docs/kromeda-impatto-parts-radar.md": {
+        "last_modified": "2026-10-22T16:12:54Z",
+        "commit": "b8b0773743585be4fb909950b1ce4a88c550df51",
+        "note": "sources/github/parts-radar/docs/parts-radar-kromeda-impatto.md"
+      },
+      "cristian-schifone/parts-radar:docs/kromeda-fase0-risultati.md": {
+        "last_modified": "2026-10-22T08:13:17Z",
+        "commit": "7777221f21b07a0337166fa83a3e9fed95924c8f",
+        "note": "sources/github/parts-radar/docs/parts-radar-kromeda-fase0-risultati.md"
+      },
+      "cristian-schifone/parts-radar:docs/changelog.md": {
+        "last_modified": "2026-10-22T16:51:29Z",
+        "commit": "61b833c4fd3773751f1d2c8497db3353d8f61d51",
+        "note": "sources/github/parts-radar/docs/parts-radar-changelog.md"
+      },
+      "cristian-schifone/parts-radar#379": {
+        "last_modified": "2026-10-22T13:55:33Z",
+        "note": "sources/github/parts-radar/issues/parts-radar-issue-379.md"
+      },
+      "cristian-schifone/parts-radar#420": {
+        "last_modified": "2026-10-21T13:10:57Z",
+        "note": "sources/github/parts-radar/issues/parts-radar-issue-420.md"
+      }
+    }
+  },
   "reconcile": {
     "last_run": null
   }

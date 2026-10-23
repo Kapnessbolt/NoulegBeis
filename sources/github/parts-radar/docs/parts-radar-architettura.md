@@ -1,0 +1,62 @@
+---
+type: source-doc
+source: github
+family: parts-radar-architettura
+current:
+  item_id: "cristian-schifone/parts-radar:docs/architettura.md"
+  uri: "github://cristian-schifone/parts-radar/docs/architettura.md@61b833c4fd3773751f1d2c8497db3353d8f61d51"
+  web_url: "https://github.com/cristian-schifone/parts-radar/blob/main/docs/architettura.md"
+  name: "docs/architettura.md"
+  last_modified: 2026-10-22T16:51:29Z
+versions:
+  - { name: "docs/architettura.md@61b833c", item_id: "cristian-schifone/parts-radar:docs/architettura.md", last_modified: 2026-10-22T16:51:29Z }
+also_at: []
+status: active
+partial: true
+ingested_at: 2026-10-23T18:23:22Z
+projects: ["[[parts-radar-sviluppo]]"]
+clients: ["[[adac-bologna]]", "[[solera]]"]
+topics: ["[[parts-radar]]"]
+tags: []
+---
+
+# Parts Radar · architettura e stato del sistema
+
+## Riassunto
+
+Documento di stato del repo di sviluppo: com'è fatto il sistema oggi, a che punto sono le fasi, le decisioni aperte e i rischi. Si aggiorna a ogni PR (la testata dice lo stato del giorno). Nel vault si leggono solo §1 (scopo), §5 (stato e sequenza), §8 (decisioni aperte) e §9 (rischi); componenti e decisioni tecniche in vigore (§4, §6) restano nel repo. Stato letto: 22/10/2026 sera, dopo la modalità ascolto.
+
+## Punti chiave
+
+- Scopo: automatizzare gli ordini ricambi di [[adac-bologna]], circa 100 richieste al giorno via WhatsApp dai meccanici (targa e descrizione del pezzo)
+- Tre step: 1) identifica veicolo e pezzo, trova codici originali ed equivalenti a listino e li propone all'operatore, che valida, ordina e risponde a mano (in costruzione); 2) ordine automatico sul portale del fornitore; 3) aggiornamento del gestionale. Step 2 e 3 non iniziati
+- Fuori dal sistema: la scelta commerciale finale (resta al banco) e i casi che solo il VIN risolve (il banco usa PartsLink24)
+- Fasi della migrazione a Python e Kromeda tutte chiuse in sviluppo: misura (26/09), scheletro, catalogo e ingestion (03-04/10), cutover (05/10), installazione da zero sul compose di produzione (15-16/10), fornitori WhatsApp (16-20/10). n8n uscito il 04/10
+- Lavoro verso il pilot nella milestone "Pilot ADAC", con l'ordine dei lavori nella issue #379 e il traguardo nella #420
+- 22/10: router in ingresso acceso (separa i messaggi che non chiedono un pezzo) e modalità ascolto (catalogo dal vivo e messaggi automatici attivabili cliente per cliente, spenti di default, con una riserva di 15 crediti targa)
+
+## Numeri
+
+- Demo Kromeda prorogata da Solera il 16/10: scade intorno al 18/11. Dopo restano solo le risposte registrate
+- Fase 0: 80% dei casi risolti in modo deterministico, 86% con i default, 14% all'operatore (21-30% su VW e BMW); golden set 43 richieste raggiungibili su 51
+- Gruppi WhatsApp: 3 clienti ADAC su 10 scrivono da un gruppo, che nessun fornitore porta all'API
+
+## Decisioni e azioni
+
+Decisioni aperte (§8) che toccano il livello di progetto:
+- D1 · modello commerciale e di installazione (issue #145): Lorenzo e Cristian, blocca il modello del primo cliente
+- D13 · data del pilot e partenza direttamente sul nuovo stack: Lorenzo con ADAC (chiesta a Luca Degli Esposti il 22/10)
+- D19 · mappatura dei brand di ADAC sui codici listino Kromeda: senza, la proposta esce in ordine alfabetico. Lista dei brand e listini (CONTINENTAL, DIPA, DEPO, Pierburg, AJUSA) chiesti a Luca il 22/10. Blocca il pilot
+- D34 · chi cambia sconti, margini e fidi dei clienti (oggi solo gli ADMIN): da confermare con ADAC
+- D44 · motore di trascrizione dei vocali (1.233 vocali in 9,6 ore nelle chat reali): in prova Gemini, Azure MAI-Transcribe e GPT Transcribe; consenso di ADAC per la produzione da chiedere a parte; account dei fornitori da portare a nome BlueAge
+- D45 · gruppi WhatsApp: chiesto ad ADAC se quei clienti passano alla chat singola
+- D46 · hosting e rete del webhook (Cristian): un server con tutto lo stack; è anche la condizione per accendere l'invio in produzione
+- D47 · fornitore WhatsApp: 360dialog con la Coexistence (19/10); resta da scegliere il piano Regular o Partner prima di attivare il numero di ADAC
+- Domande a Solera ancora da mandare (Lorenzo): cache oltre le 24 ore, versioni degli affini, copia del dizionario, fasce di consumo, URL delle foto (D12)
+- Nodi aperti fuori dal codice: Rihag/Cati per lo Step 2 e nome e API del gestionale ADAC per lo Step 3 (chiesti a Luca il 22/10); messaggi fuori orario; segreti e backup in produzione
+
+Rischi principali (§9): scadenza della demo Kromeda; superamento della fascia di chiamate (account sospeso fino al mattino dopo); cache oltre le 24 ore in tensione col contratto Solera; brand non mappati; gruppi WhatsApp fuori dall'API; foto delle officine da raccogliere da ora.
+
+## Versioni
+
+- docs/architettura.md@61b833c · 2026-10-22 · prima lettura nel vault (§1, §5, §8, §9)
