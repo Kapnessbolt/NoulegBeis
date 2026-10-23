@@ -35,6 +35,7 @@ Avere una vista di riepilogo sempre disponibile: calendario della settimana, pro
 - [ ] Rivedere il prototipo e decidere layout e contenuti definitivi (dopo il primo giro: nome cambiato in "Cockpit"; corretta la lettura del calendario, che mostrava solo il primo evento)
 - [x] Task `DailyBoard` (07:40) e `DailyBoard2` (13:40) creati da Lorenzo su claude.ai, con il repo e senza connettori, in un ambiente cloud dedicato da lui configurato. Il giro di prova delle 19:37 è riuscito: dati caricati, file vecchi cancellati, riga nel digest e push. Il task creato da sessione è cancellato
 - [x] `.claude/settings.json`: tolta la regola su `Artifact` e `ArtifactData`, aggiunta per il task e non più necessaria
-- [ ] SPEC 7 e SPEC 8: aggiungere con una PR dedicata il task `cockpit` e la nota `home.md`
+- [x] SPEC aggiornata con la PR #11 (dashboard Cockpit, task `cockpit`, `home.md`, step 9 del piano)
+- [ ] Verificare il primo giro di `DailyBoard2` alle 13:40 del 24/10 (riga nel digest)
 - [x] Nota `home.md` per Obsidian con Tasks e Dataview
 - [ ] Utente: installare i plugin Tasks e Dataview in Obsidian (ed eventualmente Homepage per aprire `home.md` all'avvio)
