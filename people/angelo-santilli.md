@@ -3,9 +3,9 @@ type: person
 org: "[[manini]]"
 role: "Sistemi Informativi"
 email: "santillia@manini.it"
-projects: ["[[corso-ai-manini]]"]
+projects: ["[[corso-ai-manini]]", "[[manini-automazione-ddt]]"]
 tags: []
-updated: 2026-10-22
+updated: 2026-10-23
 ---
 
 # Angelo Santilli
@@ -16,5 +16,6 @@ Area Sistemi Informativi di [[manini]], referente operativo del corso AI; porta 
 
 ## Interazioni recenti
 
+- 2026-10-23 · Manini · caso DDT, l'essenziale (ha inviato lo ZIP dei DDT il 19/10) · [[manini-ddt-essenziale]]
 - 2026-10-20 · Manini · corso AI: recap della call del 16/10 · [[manini-corso-ai-recap-della-call-del-16-10]]
 - 2026-10-12 · Manini · corso AI: impostazione, calendario, CV e materiali · [[manini-corso-ai-impostazione-calendario-cv-e-materiali]]

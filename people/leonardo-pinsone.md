@@ -3,7 +3,7 @@ type: person
 org: blueage
 role: "Managing Partner"
 email: "leonardo.pinsone@blueage.it"
-projects: ["[[velo-ce-progetto-dynamics]]", "[[manini-supply-chain-magazzino]]", "[[corso-ai-manini]]", "[[corso-ai-mtu]]", "[[parts-radar-sviluppo]]"]
+projects: ["[[velo-ce-progetto-dynamics]]", "[[manini-supply-chain-magazzino]]", "[[corso-ai-manini]]", "[[corso-ai-mtu]]", "[[parts-radar-sviluppo]]", "[[manini-automazione-ddt]]"]
 tags: []
 updated: 2026-10-22
 ---

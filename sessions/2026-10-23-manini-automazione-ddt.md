@@ -1,0 +1,41 @@
+---
+type: session
+date: 2026-10-23
+surface: cloud
+topics: ["[[ai-nei-processi]]"]
+outcome: "Progetto manini-automazione-ddt creato nel vault; repo tecnico preparato (da pubblicare); dati sensibili isolati su OneDrive"
+---
+
+# Manini automazione DDT: dal Project claude.ai al vault e a un repo dedicato
+
+## Obiettivo
+
+Portare nella knowledge base il caso entrata merci da DDT di [[manini]], sviluppato in un Project claude.ai (sessioni del 21 e 22/10), e poterci lavorare a 360° da Claude Code.
+
+## Decisioni
+
+- Il caso DDT diventa un progetto a sé, [[manini-automazione-ddt]], collegato a [[corso-ai-manini]] e a [[manini-supply-chain-magazzino]]: ha step, attività e decisioni propri e va oltre il corso
+- Lavoro tecnico in un repo GitHub privato separato, `manini-automazione-ddt` (report, schema, prompt, script), non dentro NoulegBeis: il vault resta una knowledge base, il repo è il cantiere. Scartati il tutto-nel-vault e il submodule
+- Dati reali (ZIP dei DDT, `verita_ddt.json`, `inventario.json`) solo su OneDrive in `Progetto Automazione/Dati/`, mai su GitHub: la policy AI di Manini ammette dati reali solo nel tenant Manini o anonimizzati. Le sessioni li leggono con il connettore e li tengono in `data/`, ignorata da git
+- Master di report e kit: il repo. OneDrive `Library/` tiene le copie condivise, da cui l'ingestion crea le note fonte
+- Eliminati su OneDrive (dall'utente): il doppione dell'essenziale in `Work_brain/` ed `esempi_ddt.json`, superato da `verita_ddt.json`
+- Nell'essenziale corretti due sdoppiamenti di persona: Angelo e "Santilli" sono [[angelo-santilli]]; Cristian e "Trif" sono [[cristian-schifone]]
+- Le lezioni operative su come lavorare con Claude (ZIP grandi, sandbox non persistente, subagenti) restano qui come spunto per il curator, non nella KB di progetto
+
+## File toccati
+
+- `projects/manini-automazione-ddt/` (scheda e log, nuovi)
+- `sources/onedrive/01-materiale-clienti/manini/manini-ddt-essenziale.md` e `progetto-automazione/` (7 note fonte nuove)
+- `projects/corso-ai-manini/` (rimando al progetto, audience dei gruppi B e C, caso preventivi), `projects/manini-supply-chain-magazzino/manini-supply-chain-magazzino.md`
+- `clients/manini.md`, `topics/ai-nei-processi.md`, `people/angelo-santilli.md`, `people/luca-zamponi.md`, `people/leonardo-pinsone.md`, `people/cristian-schifone.md`
+- `.state/ingest.json` (7 voci OneDrive, watermark invariato)
+- OneDrive: cartella `Progetto Automazione/Dati/` creata con ZIP, verità e inventario; `manini_ddt_essenziale.md` aggiornato con le correzioni
+- Repo `manini-automazione-ddt` preparato in locale con `CLAUDE.md`, `README.md`, `.gitignore`, `report/` e `kit/`: da pubblicare quando il repo esiste su GitHub
+
+## Aperti
+
+- [ ] Creare su GitHub il repo privato `Kapnessbolt/manini-automazione-ddt` (vuoto) e pubblicare il contenuto preparato
+- [ ] Estrarre su OneDrive i PDF dallo ZIP dei DDT, in `Dati/`, per leggerli con il connettore
+- [ ] `Gruppi.xlsx` e `Istruzioni e Informativa IA.pdf` sono stati spostati in `Progetto Automazione/Documenti/`: riportarli in `Manini/` oppure aggiornare le note [[gruppi]] e [[istruzioni-e-informativa-ia]]
+- [ ] Report 01 e 04 nel repo contengono tabelle per documento (fornitore, numero DDT, ordine): decidere se anonimizzarle
+- [ ] Spunto per il curator: una regola su come portare un Project claude.ai nel vault (repo dedicato, dati su OneDrive, essenziale come nota hub)

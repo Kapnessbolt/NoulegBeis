@@ -3,7 +3,7 @@ type: person
 org: blueage
 role: "Project Manager"
 email: "cristian.schifone@blueage.it"
-projects: ["[[velo-ce-progetto-dynamics]]", "[[corso-ai-manini]]", "[[corso-ai-mtu]]", "[[manini-supply-chain-magazzino]]", "[[parts-radar-sviluppo]]"]
+projects: ["[[velo-ce-progetto-dynamics]]", "[[corso-ai-manini]]", "[[corso-ai-mtu]]", "[[manini-supply-chain-magazzino]]", "[[parts-radar-sviluppo]]", "[[manini-automazione-ddt]]"]
 tags: []
 updated: 2026-10-22
 ---

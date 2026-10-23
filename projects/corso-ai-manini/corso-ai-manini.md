@@ -4,7 +4,7 @@ status: attivo
 role: "AI consultant, in aula con Leonardo Pinsone"
 clients: ["[[manini]]"]
 people: ["[[leonardo-pinsone]]", "[[cristian-schifone]]", "[[luciano-baccarelli]]", "[[angelo-santilli]]"]
-updated: 2026-10-22
+updated: 2026-10-23
 ---
 
 # Manini · formazione AI
@@ -21,6 +21,8 @@ updated: 2026-10-22
 - In ogni gruppo [[angelo-santilli]] o un collega con Microsoft 365 Copilot porta le dimostrazioni e racconta gli agenti interni ([[manini-corso-ai-recap-della-call-del-16-10]])
 - Lorenzo ha scritto l'indice da 16 ore per i Sistemi Informativi (capire, progettare, costruire, governare, sul caso DDT); coprire tutte le richieste del CED vorrebbe 100–120 ore e circa sei mesi, base per una fase 2 ([[manini-percorso-ai-per-i-sistemi-informativi-16-ore]], [[manini-corso-ai-impostazione-calendario-e-cv]])
 - Caso di laboratorio entrata merci (v3): circa 11.160 documenti l'anno, risparmio stimato 33–47 k€ l'anno ([[blueage-automation-entrata-merci]], [[automazione-entrata-merci-caso-manini]])
+- Il lavoro tecnico sul caso DDT (inventario, schema, benchmark, kit per le 8 ore IT, laboratorio utenti) è nel progetto [[manini-automazione-ddt]] ([[manini-ddt-essenziale]])
+- Audience: il magazzino, che registra i DDT, non è in nessun gruppo e gli acquisti sono 4 su 36; il caso DDT funziona per il gruppo A e per l'IT, per i gruppi B e C (preventivazione e amministrazione) serve un caso preventivi, il cui materiale non è ancora arrivato ([[manini-ddt-essenziale]])
 - Usa il deck universale M1_v15 dell'[[ai-foundation-program]] ([[deck-corso-ai-m1-v15-su-sharepoint]])
 - Dopo l'incontro del 16/10 Manini chiede fondamenta più snelle; al corso manca la parte di governance (gruppi, permessi SharePoint, modelli per utente, crediti del tenant) che Leonardo vorrebbe aggiungere ([[call-di-oggi-prossimi-passi-architettura-copilot-manini-meccanotecnica-second-brain]], [[ieri-sera-e-oggi-idee-su-cui-ragionare]])
 
@@ -37,6 +39,7 @@ updated: 2026-10-22
 - [ ] Parere, con Silvia, sul caso entrata merci v3 ([[automazione-entrata-merci-caso-manini]])
 - [ ] Ricevere da Manini data e contenuti delle 8 ore per i Sistemi Informativi ([[manini-corso-ai-recap-della-call-del-16-10]])
 - [ ] Ricevere da Manini uffici dei partecipanti, agenti interni da presentare e documenti di prova anonimizzati ([[manini-corso-ai-raccolta-dati-blueage]])
+- [ ] Caso preventivi per i gruppi B e C: ottenere da Manini preventivi o fatture anonimizzati ([[manini-ddt-essenziale]])
 - [ ] Moduli per funzione (produzione, qualità, commerciale, HR) con versione Copilot gratuito e Pro, riusabili per MTU, Manini, TiFast e Tarkett ([[call-di-oggi-prossimi-passi-architettura-copilot-manini-meccanotecnica-second-brain]])
 
 ## Decisioni
@@ -49,7 +52,7 @@ updated: 2026-10-22
 
 ## Prossimi passi
 
--
+- Laboratorio entrata merci e kit della sessione IT dal progetto [[manini-automazione-ddt]]
 
 ## Fonti
 
@@ -74,3 +77,4 @@ updated: 2026-10-22
 - [[general-di-lunedi-19-10-ordine-del-giorno-provvisorio]]
 - [[ieri-sera-e-oggi-idee-su-cui-ragionare]]
 - [[riunione-generale-blueage-12-10-punti-emersi-e-prossimi-passi]]
+- [[manini-ddt-essenziale]]

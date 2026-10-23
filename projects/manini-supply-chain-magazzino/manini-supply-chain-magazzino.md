@@ -32,6 +32,7 @@ updated: 2026-10-22
 ## Prossimi passi
 
 - Percorso formativo sull'AI applicata, con i casi entrata merci dal DDT (4A) e avviso serale delle consegne in cantiere (7B): progetto [[corso-ai-manini]]
+- L'intervento 4A (entrata merci dal DDT letto con AI) si sviluppa nel progetto [[manini-automazione-ddt]]
 
 ## Fonti
 
