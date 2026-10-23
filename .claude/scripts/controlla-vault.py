@@ -29,7 +29,7 @@ ROOT = Path(__file__).resolve().parents[2]
 
 # Cartelle e file fuori dal controllo
 SKIP_DIRS = {".git", ".github", ".claude", "_templates", ".obsidian", ".trash"}
-SKIP_PATHS = {"README.md", "CLAUDE.md", "SPEC.md"}
+SKIP_PATHS = {"README.md", "CLAUDE.md", "SPEC.md", "home.md"}
 
 # Tipo atteso per cartella e template di riferimento
 TYPE_BY_DIR = {

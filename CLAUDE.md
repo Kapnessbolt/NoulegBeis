@@ -27,6 +27,7 @@ Questo repo è il second brain personale di Lorenzo Curione sulla knowledge Blue
 | Trascrizione grezza (hook) | `sessions/_raw/` | nessuno | nessuno |
 | Proposta del curator | `proposals/AAAA-MM-DD-<slug>.md` | `_templates/proposal.md` | `proposal` |
 | Stato dell'ingestion | `.state/ingest.json` | schema in SPEC 6.1 | — |
+| Vista Obsidian (Tasks e Dataview) | `home.md`, fuori dal controllo del vault | nessuno | `home` |
 
 Regole di instradamento:
 - La scheda progetto si chiama come la cartella (`projects/<slug>/<slug>.md`), così `[[<slug>]]` la apre; la cronologia è `<slug>-log.md`.

@@ -27,9 +27,13 @@ Avere una vista di riepilogo sempre disponibile: calendario della settimana, pro
 
 - `.claude/scripts/plancia.py` (nuovo): estrae progetti e attività del vault in `progetti.json` e `attivita.json`, fuori dal repo
 - `projects/corso-ai-mtu/corso-ai-mtu.md`, `projects/corso-ai-mtu/corso-ai-mtu-log.md`: tolta la sessione del 26/10
+- `.claude/routines/cockpit.md` (nuovo): procedura del task schedulato che aggiorna la dashboard
+- `home.md` (nuovo), `.claude/scripts/controlla-vault.py` (salta `home.md`), `CLAUDE.md` (riga della tabella)
 
 ## Aperti
 
 - [ ] Rivedere il prototipo e decidere layout e contenuti definitivi (dopo il primo giro: nome cambiato in "Cockpit"; corretta la lettura del calendario, che mostrava solo il primo evento)
-- [ ] Task schedulato nei giorni feriali che rigenera i JSON con `plancia.py` e li ricarica sull'artifact
-- [ ] Nota `home` per Obsidian con Dataview e Tasks
+- [x] Task schedulato `cockpit` (ogni giorno 07:40 e 13:40): rigenera i JSON con `plancia.py` e li ricarica sulla dashboard
+- [ ] SPEC 7 e SPEC 8: aggiungere con una PR dedicata il task `cockpit` e la nota `home.md`
+- [x] Nota `home.md` per Obsidian con Tasks e Dataview
+- [ ] Utente: installare i plugin Tasks e Dataview in Obsidian (ed eventualmente Homepage per aprire `home.md` all'avvio)
