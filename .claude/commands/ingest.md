@@ -1,6 +1,6 @@
 ---
-description: Ingestion a richiesta da SharePoint, OneDrive e Outlook (SPEC 6.2–6.3)
-argument-hint: "[sharepoint | onedrive | outlook | sharepoint:<Libreria> | riconcilia] [da AAAA-MM-GG]"
+description: Ingestion a richiesta da SharePoint, OneDrive, Outlook e GitHub (SPEC 6.2–6.3, 6.6)
+argument-hint: "[sharepoint | onedrive | outlook | github | sharepoint:<Libreria> | riconcilia] [da AAAA-MM-GG]"
 ---
 
 Esegui l'ingestion con l'agente `ingestor`.
@@ -9,7 +9,7 @@ Argomenti: `$ARGUMENTS`
 
 1. Interpreta gli argomenti:
    - nessuna fonte → `tutte` (SharePoint, OneDrive, Outlook) dal watermark;
-   - `sharepoint`, `onedrive`, `outlook` → solo quella fonte;
+   - `sharepoint`, `onedrive`, `outlook`, `github` → solo quella fonte (`github`: i repo di SPEC 5.4, che devono essere collegati alla sessione);
    - `sharepoint:<Libreria>` → solo quella libreria (usato nel primo caricamento, SPEC 6.5);
    - `riconcilia` → compito `riconcilia` (SPEC 6.4) al posto del delta;
    - una data (`AAAA-MM-GG` o `da AAAA-MM-GG`) → **da data**, al posto del watermark.

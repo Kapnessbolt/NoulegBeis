@@ -66,7 +66,8 @@ Vincoli dell'ambiente cloud da rispettare:
 │   ├── sharepoint/<libreria>/<percorso>/<famiglia>.md
 │   ├── onedrive/<percorso>/<famiglia>.md
 │   ├── mail/<AAAA-MM>/<slug-thread>.md
-│   └── attachments/<famiglia>.md   allegati senza corrispondente su SharePoint
+│   ├── attachments/<famiglia>.md   allegati senza corrispondente su SharePoint
+│   └── github/<repo>/<percorso>/<famiglia>.md   documenti e issue dei repo di progetto (5.4)
 ├── journal/
 │   └── AAAA-MM-DD.md        digest giornaliero: novità ingerite, attività in scadenza
 ├── sessions/
@@ -105,7 +106,7 @@ Un collegamento non resta mai rotto: se la nota di destinazione non esiste, l'in
 ```yaml
 ---
 type: source-doc
-source: sharepoint          # sharepoint | onedrive | attachment
+source: sharepoint          # sharepoint | onedrive | attachment | github
 family: blueage-company-profile
 current:
   item_id: 01EFCYUZYLVH33U2NLBVGZ45BE6NPUJZD5
@@ -125,6 +126,8 @@ topics: ["[[pulse]]"]
 tags: []
 ---
 ```
+
+Per `source: github` i campi di `current` si leggono così: `item_id` è `<owner>/<repo>:<percorso>` per un file e `<owner>/<repo>#<numero>` per una issue; `uri` è `github://<owner>/<repo>/<percorso>@<commit>` per un file e `github://<owner>/<repo>/issues/<numero>` per una issue; `web_url` è la pagina su GitHub; `name` è il percorso del file (`docs/architettura.md`) o `Issue #<numero> · <titolo>`; `last_modified` è l'istante dell'ultimo commit che ha toccato il file, o `updated_at` della issue. In `versions` il `name` di un file porta il commit abbreviato (`docs/architettura.md@61b833c`).
 
 **Thread di posta**
 ```yaml
@@ -271,7 +274,7 @@ Lo script `python3 .claude/scripts/controlla-vault.py` verifica le note (tranne 
 | Livello | Cosa controlla |
 |---|---|
 | Errore | **Integrità**: wikilink (nel frontmatter o nel testo) verso note inesistenti; wikilink con percorso o estensione; slug duplicati; voci di `.state/ingest.json` che puntano a note inesistenti. **Tracciabilità**: punti senza fonte nelle sezioni elencate in 4.1; fonti senza progetto, cliente o tema. **Schema**: frontmatter mancante o non valido; `type` sconosciuto o nella cartella sbagliata; campi del template mancanti; valori fuori dagli elenchi ammessi; nomi file non in slug; scheda progetto con nome diverso dalla cartella. **Doppioni certi**: stessa email su due persone; stessa `family`, `item_id` o `conversation_id` su due note |
-| Avviso | Note orfane (persone, clienti, temi che nessuna nota collega); note che citano una fonte rimossa; note più vecchie di una fonte che citano (la fonte è stata aggiornata dopo); note `da-verificare`; nomi quasi uguali nella stessa categoria (possibili doppioni); persone senza email; campi non previsti dal template; documenti SharePoint/OneDrive non registrati nello stato |
+| Avviso | Note orfane (persone, clienti, temi che nessuna nota collega); note che citano una fonte rimossa; note più vecchie di una fonte che citano (la fonte è stata aggiornata dopo); note `da-verificare`; nomi quasi uguali nella stessa categoria (possibili doppioni); persone senza email; campi non previsti dal template; documenti SharePoint, OneDrive e GitHub non registrati nello stato |
 
 Quando si esegue:
 - **prima di ogni commit**: il pre-commit di git `.githooks/pre-commit` lancia lo script con `--modificati` e blocca il commit se ci sono errori che toccano i file modificati, compresi i collegamenti rotti da una nota cancellata o rinominata. Gira dentro `git commit`, quindi vede anche i file creati nello stesso comando. Si attiva con `git config core.hooksPath .githooks`: nelle sessioni Claude Code lo fa l'hook `SessionStart` di `.claude/settings.json`, sui PC con Obsidian va eseguito una volta dopo il clone. L'hook `PreToolUse` `.claude/hooks/controllo-pre-commit.sh` resta come primo filtro sui comandi `git commit`. Vale per sessioni interattive e task schedulati;
@@ -317,6 +320,25 @@ Scartati sempre:
 
 Per le prime 2 settimane le mail scartate vanno elencate nel digest giornaliero, sotto "Scartate", per verificare il filtro.
 
+### 5.4 GitHub · repo di progetto
+
+Alcuni progetti hanno la documentazione viva in un repo GitHub. Il vault non la copia: ne tiene poche note fonte, scelte una per una, e porta nel progetto collegato solo ciò che conta a livello di progetto (stato, decisioni, scadenze, azioni fuori dal codice). Il dettaglio tecnico resta nel repo.
+
+Si legge solo il branch `main`, e solo l'elenco chiuso qui sotto. Un file o una issue in più si aggiunge a questa tabella.
+
+| Repo | Elemento | Cosa si legge | Nota | Progetto |
+|---|---|---|---|---|
+| `cristian-schifone/parts-radar` | `docs/architettura.md` | §1 scopo, §5 stato e sequenza, §8 decisioni aperte, §9 rischi | `parts-radar-architettura` | `parts-radar-sviluppo` |
+| | `docs/decisione-stack-python.md` | tutto | `parts-radar-decisione-stack-python` | |
+| | `docs/whatsapp-fornitori.md` | §1-§3 (problema, confronto, decisione), §5 rischi | `parts-radar-whatsapp-fornitori` | |
+| | `docs/kromeda-impatto-parts-radar.md` | §9 consumi e costi | `parts-radar-kromeda-impatto` | |
+| | `docs/kromeda-fase0-risultati.md` | §1 sintesi | `parts-radar-kromeda-fase0-risultati` | |
+| | `docs/changelog.md` | solo le voci nuove: obiettivo, decisioni, lasciato aperto | `parts-radar-changelog` | |
+| | issue #379 | piano del pilot, passi fuori dal codice | `parts-radar-issue-379` | |
+| | issue #420 | traguardo del pilot e cosa si misura | `parts-radar-issue-420` | |
+
+Nome della nota: `<repo>-<nome del file senza estensione>` (togliendo dal nome il nome del repo se c'è già) oppure `<repo>-issue-<numero>`. Percorso: `sources/github/<repo>/<cartella del file>/` oppure `sources/github/<repo>/issues/`.
+
 ## 6. Ingestion
 
 ### 6.1 Stato · `.state/ingest.json`
@@ -326,6 +348,9 @@ Per le prime 2 settimane le mail scartate vanno elencate nel digest giornaliero,
   "sharepoint": { "watermark": "2026-10-22T04:50:00Z", "items": { "<driveId>/<itemId>": { "last_modified": "...", "note": "sources/..." } } },
   "onedrive":   { "watermark": "...", "items": {} },
   "outlook":    { "watermark": "...", "threads": { "<conversationId>": { "last_message": "...", "note": "sources/mail/..." } } },
+  "github":     { "repos": { "<owner>/<repo>": { "commit": "<sha di main letto>", "watermark": "<istante di quel commit>" } },
+                  "items": { "<owner>/<repo>:<percorso>": { "last_modified": "...", "commit": "<sha>", "note": "sources/github/..." },
+                             "<owner>/<repo>#<numero>":   { "last_modified": "<updated_at>", "note": "sources/github/..." } } },
   "reconcile":  { "last_run": "..." }
 }
 ```
@@ -382,6 +407,21 @@ Non lo fa il task schedulato. Si fa con sessioni manuali, una libreria per volta
 
 Dopo ogni lotto l'utente controlla un campione di note prima di passare al successivo. Al termine si inizializzano i watermark e si attivano i task schedulati.
 
+### 6.6 Algoritmo del delta (GitHub)
+
+Il repo deve essere presente nella sessione: nelle sessioni cloud si collega accanto al vault (`../<repo>`). Le issue si leggono con il connettore GitHub (`issue_read`), in sola lettura.
+
+1. `git -C <clone> fetch origin main`; `head` = `git rev-parse origin/main`.
+2. **File** del perimetro (5.4): `git log -1 --format='%H %cI' origin/main -- <percorso>`. Se il commit è uguale a `items[chiave].commit`, salta. Altrimenti guarda `git diff <commit vecchio>..<commit nuovo> -- <percorso>`:
+   - se il diff non tocca le parti elencate in 5.4, aggiorna solo lo stato (`commit`, `last_modified`);
+   - altrimenti rileggi quelle parti da `git show origin/main:<percorso>`, aggiorna la nota come nuova versione (4.3) e scrivi le differenze rilevanti nel log del progetto.
+   File sparito da `main`: la nota passa a `status: removed`.
+3. **Changelog**: le voci nuove sono i titoli `## ` aggiunti tra `repos[repo].commit` e `head` (`git diff`). Per ogni giorno con voci nuove, **una** riga nel log del progetto con ciò che conta a livello di progetto (funzioni chiuse, decisioni, numeri, problemi aperti), senza dettagli tecnici, con fonte la nota del changelog. Le azioni che non sono codice (avvisi, richieste a clienti e fornitori, decisioni da prendere) vanno in `## Attività`. La nota del changelog tiene in `## Voci recenti` una riga per voce degli ultimi 30 giorni.
+4. **Issue** del perimetro: se `updated_at` è uguale a `items[chiave].last_modified`, salta. Altrimenti rigenera la nota. Le caselle non spuntate dei passi fuori dal codice diventano attività del progetto, se non ci sono già; quelle spuntate nel repo che nel progetto risultano ancora aperte vanno nel digest, sotto `## Decisioni`, come `- Da spuntare: <attività> · [[fonte]]` (il task non modifica righe esistenti).
+5. `repos[repo]` = `head` e il suo istante; aggiorna `items`. Digest, commit e push.
+
+Senza clone o senza connettore GitHub il task non inventa nulla: scrive l'errore nel digest. Se manca solo il connettore, processa i file e salta le issue.
+
 ## 7. Task schedulati
 
 Orari in Europe/Rome, fuori dagli orari pieni per evitare i ritardi del sistema.
@@ -391,6 +431,7 @@ Orari in Europe/Rome, fuori dagli orari pieni per evitare i ritardi del sistema.
 | `ingest-sharepoint` | Ogni giorno alle 06:50 | Microsoft 365 | Opus | 6.2 su SharePoint e OneDrive |
 | `ingest-outlook` | Ogni giorno alle 07:05 e alle 13:15 (due task) | Microsoft 365 | Opus | 6.3 |
 | `digest` | Ogni giorno alle 07:45 | Nessuno | Sonnet | Completa `journal/AAAA-MM-GG.md`: novità, attività in scadenza, decisioni |
+| `ingest-github` | Ogni giorno alle 07:20 | GitHub (il vault e i repo di 5.4 come sorgenti) | Opus | 6.6 |
 | `reconcile` | Domenica alle 08:45 | Microsoft 365 | Sonnet | 6.4 |
 | `cockpit` | Ogni giorno alle 07:40 e alle 13:40 (due task, `DailyBoard` e `DailyBoard2`) | Nessuno | — | Rigenera con `plancia.py` progetti e attività e li carica sulla dashboard Cockpit; riga d'esito nel digest |
 | `curator` | Domenica alle 21:10 (da creare con lo step 7) | Nessuno | — | Sezione 9.2 |
@@ -482,6 +523,7 @@ Prerequisito: lo script di setup dell'ambiente cloud installa le dipendenze dell
 | 7 | Agente `curator` e `librarian` | Prima PR di proposte ricevuta e valutata |
 | 8 | Obsidian sui dispositivi (clone e sincronizzazione git) | Il grafo è visibile su PC e telefono |
 | 9 | Dashboard Cockpit, task `cockpit` e nota `home.md` | 3 giorni di aggiornamenti della dashboard senza errori; `home.md` leggibile in Obsidian con Tasks e Dataview |
+| 10 | Fonte GitHub (5.4, 6.6) e task `ingest-github` | 3 giorni di run senza errori; il log di `parts-radar-sviluppo` riceve una riga per giorno di lavoro sul repo |
 
 ## 14. Decisioni aperte
 

@@ -1,10 +1,10 @@
 ---
 type: source-doc
-source: sharepoint          # sharepoint | onedrive | attachment
+source: sharepoint          # sharepoint | onedrive | attachment | github
 family: ""
 current:
   item_id: ""
-  uri: ""                   # file:///{driveId}/{itemId} · allegati: mail:///messages/{id}/attachments/{id}
+  uri: ""                   # file:///{driveId}/{itemId} · allegati: mail:///messages/{id}/attachments/{id} · github: SPEC 4.2
   web_url: ""
   name: ""
   last_modified: null

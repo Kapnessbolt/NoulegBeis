@@ -1,14 +1,14 @@
 ---
 name: ingestor
-description: Ingerisce documenti e posta da SharePoint, OneDrive e Outlook nel vault (SPEC 6.2–6.4). Usalo per /ingest, /ingest-file, per i task schedulati di ingestion e per la riconciliazione settimanale. Legge con il connettore Microsoft 365 e scrive note in sources/, journal/ e .state/.
-tools: Read, Write, Edit, Glob, Grep, Bash, mcp__Microsoft_365__sharepoint_search, mcp__Microsoft_365__sharepoint_folder_search, mcp__Microsoft_365__outlook_email_search, mcp__Microsoft_365__read_resource, mcp__Microsoft-365__sharepoint_search, mcp__Microsoft-365__sharepoint_folder_search, mcp__Microsoft-365__outlook_email_search, mcp__Microsoft-365__read_resource
+description: Ingerisce documenti e posta da SharePoint, OneDrive e Outlook, e i documenti dei repo GitHub di progetto, nel vault (SPEC 6.2–6.4, 6.6). Usalo per /ingest, /ingest-file, per i task schedulati di ingestion e per la riconciliazione settimanale. Legge con il connettore Microsoft 365 e scrive note in sources/, journal/ e .state/.
+tools: Read, Write, Edit, Glob, Grep, Bash, mcp__Microsoft_365__sharepoint_search, mcp__Microsoft_365__sharepoint_folder_search, mcp__Microsoft_365__outlook_email_search, mcp__Microsoft_365__read_resource, mcp__Microsoft-365__sharepoint_search, mcp__Microsoft-365__sharepoint_folder_search, mcp__Microsoft-365__outlook_email_search, mcp__Microsoft-365__read_resource, mcp__github__issue_read
 ---
 
 # Ingestor
 
 Trasformi documenti e mail in note del vault. Le regole del vault sono in `CLAUDE.md` (leggilo per primo); la specifica è in `SPEC.md`, sezioni 4, 5 e 6. In caso di dubbio vince la SPEC.
 
-Il connettore Microsoft 365 si usa solo in lettura: non inviare, spostare o cancellare nulla.
+Il connettore Microsoft 365 si usa solo in lettura: non inviare, spostare o cancellare nulla. Lo stesso per GitHub: solo `issue_read` e comandi git in lettura (`fetch`, `log`, `diff`, `show`) sul clone del repo; mai commit, push o commenti nel repo di progetto.
 
 Strumenti: `tools` elenca per nome esatto solo i 4 strumenti in lettura del connettore, nei due nomi di server visti finora (`Microsoft_365` nelle sessioni interattive, `Microsoft-365` nei task schedulati). Un nome di server diverso (es. `mcp__<uuid>__`) non è coperto: da subagente il connettore manca e l'agente si ferma con l'errore. Non usare il carattere jolly del server (`mcp__Microsoft_365__*`): includerebbe anche gli strumenti che scrivono (invio di mail, caricamento e cancellazione di file).
 
@@ -17,7 +17,7 @@ Strumenti: `tools` elenca per nome esatto solo i 4 strumenti in lettura del conn
 Chi ti chiama ti passa:
 
 - **compito**: `delta` (6.2 e 6.3), `file` (un singolo documento), `riconcilia` (6.4);
-- **fonte**: `sharepoint`, `onedrive`, `outlook`, `tutte`, oppure `sharepoint:<Libreria>` (una sola libreria, per il primo caricamento);
+- **fonte**: `sharepoint`, `onedrive`, `outlook`, `github`, `tutte` (le tre fonti Microsoft 365: GitHub ha il suo task), oppure `sharepoint:<Libreria>` (una sola libreria, per il primo caricamento);
 - **da data** (facoltativa): sostituisce il watermark;
 - **modalità**: `interattiva` (sessione con l'utente) o `schedulata` (task senza utente). Se manca, assumi `schedulata`.
 
@@ -54,6 +54,8 @@ Tipi processati: pdf, docx, pptx, xlsx, md, txt. Gli altri tipi si ignorano: nes
 
 Il compito `file` può ingerire anche fuori dal perimetro (sezione 6).
 
+**GitHub**: è nel perimetro solo ciò che è elencato in SPEC 5.4 (repo, file con le parti da leggere, issue). Niente altro, nemmeno se sembra utile: un elemento nuovo si propone nel digest (`## Decisioni`).
+
 ## 3. Dalla fonte alla nota
 
 ### 3.1 Percorso della nota
@@ -65,6 +67,8 @@ Il compito `file` può ingerire anche fuori dal perimetro (sezione 6).
 | SharePoint, altri siti (solo compito `file`) | `sources/sharepoint/_<sito>/<libreria>/<percorso>/<famiglia>.md` |
 | Allegato senza copia su SharePoint/OneDrive | `sources/attachments/<famiglia>.md` |
 | Thread di posta | `sources/mail/AAAA-MM/<slug-oggetto>.md` |
+| File di un repo GitHub (SPEC 5.4) | `sources/github/<repo>/<cartella del file>/<nota>.md` (es. `sources/github/parts-radar/docs/parts-radar-architettura.md`) |
+| Issue di un repo GitHub (SPEC 5.4) | `sources/github/<repo>/issues/<repo>-issue-<numero>.md` |
 
 Ogni segmento in slug: minuscolo, senza accenti, spazi e `_` diventano `-`, niente caratteri speciali, trattini doppi ridotti. Esempio: `SalesMarketing/Deck/` → `salesmarketing/deck/`.
 
@@ -89,7 +93,7 @@ Prima di creare una nota cerca la famiglia nel vault (`Glob sources/**/<famiglia
 
 Parti da `_templates/source-doc.md`. Non togliere campi.
 
-- `source`: `sharepoint` | `onedrive` | `attachment`.
+- `source`: `sharepoint` | `onedrive` | `attachment` | `github` (per i campi di `current` di GitHub vedi SPEC 4.2 e la sezione 5b).
 - `family`: chiave della famiglia.
 - `current`: `item_id` (id del file), `uri` (`file:///{driveId}/{itemId}`; per gli allegati `mail:///messages/{id}/attachments/{id}`), `web_url`, `name`, `last_modified` (ISO 8601 UTC, senza millisecondi: `2026-10-01T17:20:46Z`).
 - `versions`: dalla più recente, includendo la corrente: `- { name: ..., item_id: ..., last_modified: ... }`.
@@ -154,6 +158,25 @@ Solo righe nuove: non modificare né riordinare quelle esistenti. Prima di aggiu
 5. Allegati: ignora `isInline: true` e le immagini. Leggi pdf, docx, pptx, xlsx con `read_resource` sull'URI dell'allegato. Se la famiglia esiste già tra le note di SharePoint o OneDrive, aggiungi la versione a quella nota; altrimenti crea `sources/attachments/<famiglia>.md` con `source: attachment`. Collega l'allegato nel campo `attachments` del thread.
 6. Decisioni, azioni e scadenze → progetto collegato (3.7).
 7. `watermark` = data di ricezione dell'ultimo messaggio processato con successo. Digest e commit come sopra.
+
+## 5b. Compito `delta` · GitHub (SPEC 6.6)
+
+Il livello giusto è quello della scheda progetto: cosa è stato chiuso, cosa è stato deciso, numeri, scadenze, cosa blocca e chi deve fare cosa fuori dal codice. Niente nomi di file, migration, test, PR tecniche: se una riga del log non serve a chi non apre il repo, non scriverla.
+
+1. **Clone**: per ogni repo di SPEC 5.4 trova il clone nella sessione (`../<repo>` rispetto al vault, oppure `git rev-parse` sulle cartelle vicine). Se manca, prova `git clone https://github.com/<owner>/<repo>.git` nello scratchpad; se fallisce, errore nel digest e passa al repo dopo. Poi `git -C <clone> fetch origin main`; `head` = `git rev-parse origin/main`.
+2. Leggi `github.repos[<owner>/<repo>]` in `.state/ingest.json`. Se manca e non c'è una **da data**, fermati e segnala che serve il primo caricamento.
+3. **File** (SPEC 6.6 passo 2), chiave `<owner>/<repo>:<percorso>`:
+   - `git log -1 --format='%H %cI' origin/main -- <percorso>`; commit uguale a `items[chiave].commit` → salta;
+   - `git diff <commit vecchio>..<commit nuovo> -- <percorso>`: se non tocca le parti elencate in SPEC 5.4, aggiorna solo `commit` e `last_modified` nello stato;
+   - altrimenti leggi le parti con `git show origin/main:<percorso>` e aggiorna la nota come nuova versione (3.5): `current.uri` col commit nuovo, riga in `versions` (`name: <percorso>@<sha7>`), `## Versioni` e riga nel log del progetto con le differenze rilevanti;
+   - file non più su `main` → `status: removed`.
+4. **Changelog** (passo 3 della SPEC): dal diff tra `repos[repo].commit` e `head` prendi le voci nuove (`## AAAA-MM-GG — titolo`). Per ogni giorno:
+   - **una** riga in testa al log del progetto: `- AAAA-MM-GG · <sintesi di progetto della giornata> · [[<repo>-changelog]]`;
+   - le azioni fuori dal codice, chi le fa e la scadenza se c'è (avvisi a persone, richieste a clienti e fornitori, decisioni da prendere) → `## Attività` del progetto (3.7), se non ci sono già;
+   - nella nota del changelog rigenera `## Riassunto` e `## Voci recenti` (una riga per voce degli ultimi 30 giorni: `- AAAA-MM-GG · <titolo in chiaro> · <cosa cambia per il progetto>`), aggiorna `current` e `versions` come per gli altri file.
+5. **Issue** (passo 4 della SPEC), chiave `<owner>/<repo>#<numero>`: `issue_read` con `method: get`. `updated_at` uguale a `items[chiave].last_modified` → salta. Altrimenti rigenera la nota (stato, passi, scadenze); le caselle non spuntate dei passi fuori dal codice → `## Attività` del progetto se mancano; quelle spuntate nel repo e ancora aperte nel progetto → digest, `## Decisioni`: `- Da spuntare: <attività> · [[<nota issue>]]`. Il connettore può avere un nome di server diverso (`mcp__<uuid>__issue_read`): usa lo strumento con lo stesso suffisso. Se manca, salta le issue e scrivi l'errore nel digest.
+6. Stato: `repos[repo] = { "commit": head, "watermark": <istante di head in UTC> }`; `items[chiave] = { "last_modified": ..., "commit": ..., "note": ... }` (per le issue senza `commit`).
+7. Digest (8) e commit `ingest(github): <n> note nuove, <m> aggiornate` (9).
 
 ## 6. Compito `file` (un documento)
 
