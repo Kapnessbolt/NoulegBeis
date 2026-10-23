@@ -16,13 +16,17 @@ updated: 2026-10-23
 - Step 1, inventario: fatto. 15 DDT reali di 14 fornitori, nessun PDF nativo, ordine Manini presente in 10 su 15, codice Manini esplicito in 2 su 15 ([[01-inventario]])
 - Step 2, schema JSON: fatto. Schema canonico più versione piatta per AI Builder e Copilot Studio, 13 codici di eccezione ([[03-schema-ddt]])
 - Step 3, benchmark: fatto. Campi critici corretti al 100% con il modello generativo standard, all'88% con quello veloce, al 27% con l'OCR classico; il prompt v1.1 è da ritestare ([[04-benchmark]], [[prompt-estrazione-ddt]])
-- Step 4, matching contro ordini simulati: da fare ([[manini-ddt-essenziale]])
+- Step 4, matching contro ordini simulati: fatto in simulazione. Con l'ordine sul DDT l'abbinamento si automatizza senza errori anche a tabella codici vuota (0 errori su 30 simulazioni); DDT pronti 5–7 su 15 all'avviamento con politica automatica, 6–7 a regime; tetto 10/15 per anomalie di processo e DDT senza ordine. Da ripetere con le righe d'ordine vere ([[05-matching]])
 - Step 5, output riusabili: parziale. Piano aula, sessione IT e architettura Microsoft definiti; deck da aggiornare ([[02-aula-e-architettura]])
 - Business case del deck v3 di [[leonardo-pinsone]]: 1.860 ore/anno oggi, risparmio 33–47 k€/anno; poggia su due numeri non misurati, i 10 minuti a DDT e la quota del 60/80% di DDT senza eccezioni ([[manini-ddt-essenziale]], [[automazione-entrata-merci-caso-manini]])
+- Sul campione il matching simulato porta a un risparmio di circa 630–740 ore/anno (22–26 k€) contro 949 ore (33 k€) del prudente: il 60% è raggiungibile, l'80% no a meno che il campione sovrarappresenti le anomalie ([[05-matching]])
 
 ## Attività
 
-- [ ] Step 4: CSV ordini simulato con distrattori (residui, righe evase, UM diverse) e due scenari di tabella codici (avviamento vuota, regime 70–80%) ([[manini-ddt-essenziale]])
+- [x] Step 4: CSV ordini simulato con distrattori (residui, righe evase, UM diverse) e due scenari di tabella codici (avviamento vuota, regime 70–80%) ([[manini-ddt-essenziale]], [[05-matching]])
+- [ ] Ripetere il matching con le righe d'ordine vere dei 14 fornitori ([[05-matching]])
+- [ ] Chiedere agli acquisti di Manini: un solo contratto quadro aperto per gli inerti (H25), riga a saldo come avviso (H26) ([[05-matching]])
+- [ ] Proporre a Manini di chiedere ai fornitori il numero d'ordine sul DDT ([[05-matching]])
 - [ ] Ritestare il prompt v1.1 sui 15 DDT ([[04-benchmark]])
 - [ ] Revisione umana di 3–4 DDT difficili per verificare la verità del benchmark (H17) ([[04-benchmark]])
 - [ ] Prova delle demo con la licenza Copilot di Angelo Santilli 📅 2026-11-05 ([[02-aula-e-architettura]])
@@ -42,11 +46,12 @@ updated: 2026-10-23
 - Scrittura su AS400 con staging su DB2 più programma RPG di import; niente INSERT diretto, RPA sul 5250 solo come ponte ([[02-aula-e-architettura]])
 - Pilota in tre fasi: dati, in ombra solo su Aprilia, scrittura in staging ([[02-aula-e-architettura]])
 - Benchmark per campo e per tipo di acquisizione, non per fornitore ([[01-inventario]])
+- Nel pilota, abbinamento automatico solo sulle righe con ordine e proposta netta; tutto il resto in eccezione; obiettivo 0 abbinamenti automatici errati ([[05-matching]])
 - Repo GitHub dedicato per il lavoro tecnico; dati reali solo su OneDrive; vault per stato, decisioni e attività ([[2026-10-23-manini-automazione-ddt]])
 
 ## Prossimi passi
 
-- Sessione Claude Code con i due repo (`manini-automazione-ddt` e NoulegBeis) per lo step 4
+- Ritestare il prompt v1.1 e ripetere il matching sull'output dell'estrazione (H29), poi con gli ordini veri
 
 ## Fonti
 
@@ -57,6 +62,7 @@ updated: 2026-10-23
 - [[03-schema-ddt]]
 - [[04-benchmark]]
 - [[prompt-estrazione-ddt]]
+- [[05-matching]]
 - [[automazione-entrata-merci-caso-manini]]
 - [[blueage-automation-entrata-merci]]
 - [[manini-relazione-processi-gestione-materiali]]

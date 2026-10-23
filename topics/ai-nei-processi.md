@@ -23,6 +23,7 @@ Offerta di [[blueage]] che inserisce l'AI nei passaggi che oggi vivono tra e-mai
 - Lettura dei documenti: un modello generativo con schema JSON e regola "trascrivi, non dedurre", che può rifiutare un documento illeggibile, legge anche foto e fotocopie; l'OCR classico senza modelli per layout non regge ([[04-benchmark]])
 - Il modello conta più del prompt: scegliere quello capace, perché un'eccezione costa più del credito; gli errori strutturali si intercettano con controlli deterministici ([[04-benchmark]])
 - Valore e rischio stanno nell'integrazione con il gestionale: con sistemi legacy come AS400 si scrive in una tabella di staging letta da un programma di import del cliente, mai direttamente nelle tabelle ([[02-aula-e-architettura]])
+- Nell'abbinamento con gli ordini il numero d'ordine sul documento fa la differenza: dentro un ordine la proposta si può accettare in automatico senza errori, senza ordine resta un'eccezione; il limite diventa il processo (anomalie da vedere comunque) ([[05-matching]])
 - Prima i dati, poi il deck: mezza giornata di inventario sui documenti reali ha ribaltato tre ipotesi del business case ([[manini-ddt-essenziale]])
 
 ## Dove è usato
@@ -45,3 +46,4 @@ Offerta di [[blueage]] che inserisce l'AI nei passaggi che oggi vivono tra e-mai
 - [[manini-ddt-essenziale]]
 - [[02-aula-e-architettura]]
 - [[04-benchmark]]
+- [[05-matching]]
