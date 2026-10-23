@@ -5,7 +5,7 @@ Uso:
   python3 .claude/scripts/plancia.py <cartella_output>
 
 Scrive <cartella_output>/progetti.json e <cartella_output>/attivita.json, righe
-pronte per la dashboard (artifact "Plancia Lorenzo"). I file non vanno nel repo:
+pronte per la dashboard (artifact "Cockpit"). I file non vanno nel repo:
 la cartella di output sta fuori dal vault. Richiede PyYAML.
 """
 
