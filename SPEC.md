@@ -1,6 +1,6 @@
 # SPEC · Second Brain BlueAge (personale)
 
-Versione 1.9 · 22/10/2026 · Owner: Lorenzo Curione
+Versione 1.10 · 23/10/2026 · Owner: Lorenzo Curione
 
 Questo file è la specifica di riferimento del vault. Ogni sessione Claude Code che costruisce o modifica il sistema parte da qui. Le modifiche alla specifica si fanno con una PR dedicata.
 
@@ -336,7 +336,7 @@ Per le prime 2 settimane le mail scartate vanno elencate nel digest giornaliero,
    - se `items[id].last_modified` è uguale a quello attuale, salta;
    - altrimenti leggi il contenuto con `read_resource`, individua la famiglia (4.3) e crea o aggiorna la nota.
 5. Aggiorna i progetti, clienti e temi collegati (le righe nuove vanno in `<slug>-log.md`).
-6. Imposta `watermark` all'ultimo `lastModifiedDateTime` processato con successo. Se un file fallisce, il watermark non lo supera.
+6. Imposta `watermark` all'ultimo `lastModifiedDateTime` processato con successo. Se nessun file fallisce, il watermark sale al `lastModifiedDateTime` più recente tra tutti i risultati della ricerca, compresi quelli saltati perché invariati o fuori perimetro: così la finestra di ricerca non si allarga nei giorni in cui nel perimetro non cambia nulla. Se un file fallisce, il watermark non lo supera.
 7. Commit e push su `main` (sezione 11).
 
 Limite di lettura: oltre 30 pagine o slide, leggi le prime 30 e imposta `partial: true`.
@@ -383,20 +383,23 @@ Dopo ogni lotto l'utente controlla un campione di note prima di passare al succe
 
 Orari in Europe/Rome, fuori dagli orari pieni per evitare i ritardi del sistema.
 
-| Task | Quando | Connettori | Cosa fa |
-|---|---|---|---|
-| `ingest-sharepoint` | Ogni giorno alle 06:50 | Microsoft 365 | 6.2 su SharePoint e OneDrive |
-| `ingest-outlook` | Ogni giorno alle 07:50 e alle 13:50 | Microsoft 365 | 6.3 |
-| `digest` | Ogni giorno alle 08:10 | Nessuno | Scrive `journal/AAAA-MM-GG.md`: novità, attività in scadenza, decisioni |
-| `reconcile` | Domenica alle 20:10 | Microsoft 365 | 6.4 |
-| `curator` | Domenica alle 21:10 | Nessuno | Sezione 9.2 |
-| `sessions-cleanup` | Il 1° del mese alle 06:10 | Nessuno | Cancella `sessions/_raw/` più vecchio di 30 giorni |
+| Task | Quando | Connettori | Modello | Cosa fa |
+|---|---|---|---|---|
+| `ingest-sharepoint` | Ogni giorno alle 06:50 | Microsoft 365 | Opus | 6.2 su SharePoint e OneDrive |
+| `ingest-outlook` | Ogni giorno alle 07:05 e alle 13:15 (due task) | Microsoft 365 | Opus | 6.3 |
+| `digest` | Ogni giorno alle 07:45 | Nessuno | Sonnet | Completa `journal/AAAA-MM-GG.md`: novità, attività in scadenza, decisioni |
+| `reconcile` | Domenica alle 08:45 | Microsoft 365 | Sonnet | 6.4 |
+| `curator` | Domenica alle 21:10 (da creare con lo step 7) | Nessuno | — | Sezione 9.2 |
+| `sessions-cleanup` | Il 1° del mese alle 06:10 (da creare con lo step 5) | Nessuno | — | Cancella `sessions/_raw/` più vecchio di 30 giorni |
+
+Il `digest` gira dopo gli ingest del mattino; l'ingest-outlook delle 13:15 scrive nel digest dello stesso giorno, e il digest del giorno dopo non ripete le sue note.
 
 Ogni task:
-- include solo i connettori che gli servono;
-- ha un prompt autosufficiente che rimanda alla sezione pertinente di questa SPEC;
-- fa push su `main` con rebase;
-- registra l'esito nel digest del giorno ("OK" oppure gli errori).
+- si crea dall'interfaccia di claude.ai con il repository e i soli connettori che gli servono, e gira in una sessione nuova a ogni esecuzione;
+- ha come prompt `Esegui il task descritto in .claude/routines/<task>.md, seguendo anche .claude/routines/_comune.md.`: la procedura sta nel repo e rimanda alla sezione pertinente di questa SPEC; le regole comuni (avvio, limiti, digest, errori, git) sono in `_comune.md`;
+- esegue l'agente `ingestor` dentro la propria sessione, non come subagente;
+- fa commit, poi `git pull --rebase` e push su `main`;
+- registra l'esito nel digest del giorno ("OK" oppure gli errori), con l'ora in Europe/Rome.
 
 ## 8. Comandi manuali (`.claude/commands/`)
 
