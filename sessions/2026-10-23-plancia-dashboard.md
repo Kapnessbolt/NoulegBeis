@@ -33,7 +33,7 @@ Avere una vista di riepilogo sempre disponibile: calendario della settimana, pro
 ## Aperti
 
 - [ ] Rivedere il prototipo e decidere layout e contenuti definitivi (dopo il primo giro: nome cambiato in "Cockpit"; corretta la lettura del calendario, che mostrava solo il primo evento)
-- [ ] Utente: creare dall'interfaccia di claude.ai il task `cockpit` con il repo NoulegBeis, nessun connettore, ogni giorno alle 07:40 e alle 13:40, prompt standard (`.claude/routines/cockpit.md`). Quello creato da sessione (`trig_01VYihubiEUrsws7nxBm4X6r`, disattivato) partiva senza repo: niente push, niente `.claude/settings.json`, e l'upload sulla dashboard veniva bloccato a intermittenza dal controllo dei permessi. Poi cancellare il vecchio
+- [x] Task `DailyBoard` (07:40) e `DailyBoard2` (13:40) creati da Lorenzo su claude.ai, con il repo e senza connettori, in un ambiente cloud dedicato da lui configurato. Il giro di prova delle 19:37 è riuscito: dati caricati, file vecchi cancellati, riga nel digest e push. Il task creato da sessione è cancellato
 - `.claude/settings.json`: consentiti `Artifact` e `ArtifactData`, per l'upload del task `cockpit`
 - [ ] SPEC 7 e SPEC 8: aggiungere con una PR dedicata il task `cockpit` e la nota `home.md`
 - [x] Nota `home.md` per Obsidian con Tasks e Dataview
