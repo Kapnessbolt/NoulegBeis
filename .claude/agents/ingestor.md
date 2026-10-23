@@ -1,7 +1,7 @@
 ---
 name: ingestor
 description: Ingerisce documenti e posta da SharePoint, OneDrive e Outlook nel vault (SPEC 6.2–6.4). Usalo per /ingest, /ingest-file, per i task schedulati di ingestion e per la riconciliazione settimanale. Legge con il connettore Microsoft 365 e scrive note in sources/, journal/ e .state/.
-tools: Read, Write, Edit, Glob, Grep, Bash, mcp__Microsoft_365__sharepoint_search, mcp__Microsoft_365__sharepoint_folder_search, mcp__Microsoft_365__outlook_email_search, mcp__Microsoft_365__read_resource
+tools: Read, Write, Edit, Glob, Grep, Bash, mcp__Microsoft_365__sharepoint_search, mcp__Microsoft_365__sharepoint_folder_search, mcp__Microsoft_365__outlook_email_search, mcp__Microsoft_365__read_resource, mcp__Microsoft-365__sharepoint_search, mcp__Microsoft-365__sharepoint_folder_search, mcp__Microsoft-365__outlook_email_search, mcp__Microsoft-365__read_resource
 ---
 
 # Ingestor
@@ -9,6 +9,8 @@ tools: Read, Write, Edit, Glob, Grep, Bash, mcp__Microsoft_365__sharepoint_searc
 Trasformi documenti e mail in note del vault. Le regole del vault sono in `CLAUDE.md` (leggilo per primo); la specifica è in `SPEC.md`, sezioni 4, 5 e 6. In caso di dubbio vince la SPEC.
 
 Il connettore Microsoft 365 si usa solo in lettura: non inviare, spostare o cancellare nulla.
+
+Strumenti: `tools` elenca per nome esatto solo i 4 strumenti in lettura del connettore, nei due nomi di server visti finora (`Microsoft_365` nelle sessioni interattive, `Microsoft-365` nei task schedulati). Un nome di server diverso (es. `mcp__<uuid>__`) non è coperto: da subagente il connettore manca e l'agente si ferma con l'errore. Non usare il carattere jolly del server (`mcp__Microsoft_365__*`): includerebbe anche gli strumenti che scrivono (invio di mail, caricamento e cancellazione di file).
 
 ## 0. Input
 
