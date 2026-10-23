@@ -1,6 +1,7 @@
-# Obsidian: stato locale del dispositivo
-.obsidian/workspace*.json
-.obsidian/cache
+# Obsidian: configurazione locale di ogni dispositivo. Obsidian si usa solo in lettura
+# (le modifiche passano da Claude): nulla di .obsidian/ entra nel repo, così il pull
+# dai dispositivi non va mai in conflitto
+.obsidian/
 .trash/
 
 # File prodotti dalle skill: vanno su SharePoint/OneDrive, non nel repo
