@@ -22,6 +22,8 @@ Portare nella knowledge base il caso entrata merci da DDT di [[manini]], svilupp
 - Nell'essenziale corretti due sdoppiamenti di persona: Angelo e "Santilli" sono [[angelo-santilli]]; Cristian e "Trif" sono [[cristian-schifone]]
 - Step 4 fatto in simulazione nel repo (`matching/`, report 05): AS400 simulato con distrattori, motore deterministico, due politiche e due stati della tabella codici, 30 simulazioni. I dati reali e simulati restano in `data/`, ignorata da git ([[05-matching]])
 - Vault portato su `main`; `Gruppi.xlsx` e `Istruzioni e Informativa IA.pdf` riportati in `Manini/` su OneDrive, `Documenti/` vuota eliminata
+- I report del repo possono citare fornitori, numeri DDT e ordini del campione: niente anonimizzazione, il repo è privato; restano fuori solo i dati riga per riga
+- Richieste a Manini (ordini veri, contratti quadro, numero d'ordine sui DDT): rimandate, per ora nessuna mail
 - Le lezioni operative su come lavorare con Claude (ZIP grandi, sandbox non persistente, subagenti) restano qui come spunto per il curator, non nella KB di progetto
 
 ## File toccati
@@ -38,7 +40,7 @@ Portare nella knowledge base il caso entrata merci da DDT di [[manini]], svilupp
 ## Aperti
 
 - [x] Creare su GitHub il repo privato `Kapnessbolt/manini-automazione-ddt` e pubblicare il contenuto preparato
-- [ ] Estrarre su OneDrive i PDF dallo ZIP dei DDT, in `Dati/`, per leggerli con il connettore
+- [x] Estrarre su OneDrive i PDF dallo ZIP dei DDT, in `Dati/` (fatto dall'utente; lo ZIP non c'è più)
 - [x] `Gruppi.xlsx` e `Istruzioni e Informativa IA.pdf` riportati in `Manini/`: le note [[gruppi]] e [[istruzioni-e-informativa-ia]] restano valide
-- [ ] Report 01 e 04 nel repo contengono tabelle per documento (fornitore, numero DDT, ordine): decidere se anonimizzarle
+- [x] Report 01, 04 e 05 con tabelle per documento: non si anonimizzano (decisione dell'utente)
 - [ ] Spunto per il curator: una regola su come portare un Project claude.ai nel vault (repo dedicato, dati su OneDrive, essenziale come nota hub)

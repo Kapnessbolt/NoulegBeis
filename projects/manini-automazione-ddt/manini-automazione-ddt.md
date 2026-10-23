@@ -35,7 +35,7 @@ updated: 2026-10-23
 - [ ] Chiedere a Manini i dati: estratto AS400 dei movimenti del campione, righe d'ordine aperte dei 14 fornitori, campione di 80–100 DDT di un mese, materiale del test Sanmarco, misura dei minuti per DDT ([[01-inventario]], [[manini-ddt-essenziale]])
 - [ ] Ambiente Power Platform di sviluppo con Copilot Credits nel tenant Manini per l'aula ([[02-aula-e-architettura]])
 - [ ] Aggiornare il deck entrata merci: Copilot Credits al posto dei crediti AI Builder, staging al posto della scrittura DB2, ingresso da scansione invece che da casella mail ([[02-aula-e-architettura]])
-- [ ] Estrarre su OneDrive i PDF dallo ZIP dei DDT, così le sessioni Claude Code li leggono con il connettore ([[2026-10-23-manini-automazione-ddt]])
+- [x] Estrarre su OneDrive i PDF dallo ZIP dei DDT, così le sessioni Claude Code li leggono con il connettore ([[2026-10-23-manini-automazione-ddt]])
 
 ## Decisioni
 
@@ -48,6 +48,7 @@ updated: 2026-10-23
 - Benchmark per campo e per tipo di acquisizione, non per fornitore ([[01-inventario]])
 - Nel pilota, abbinamento automatico solo sulle righe con ordine e proposta netta; tutto il resto in eccezione; obiettivo 0 abbinamenti automatici errati ([[05-matching]])
 - Repo GitHub dedicato per il lavoro tecnico; dati reali solo su OneDrive; vault per stato, decisioni e attività ([[2026-10-23-manini-automazione-ddt]])
+- Nei report del repo niente anonimizzazione di fornitori, numeri DDT e ordini del campione; i dati riga per riga restano su OneDrive ([[2026-10-23-manini-automazione-ddt]])
 
 ## Prossimi passi
 
