@@ -19,9 +19,8 @@ Chiudere l'aperto di [[2026-10-22-watermark-e-task-schedulati]] "Controllare il 
 - Errore in entrambi gli ingest: `git pull --rebase` lanciato con il digest non committato si rifiuta; i task si sono ripresi da soli. Corretto l'ordine (commit → pull --rebase → push) in `.claude/routines/_comune.md`, `.claude/agents/ingestor.md` §9 e `CLAUDE.md` §7.
 - Il digest ha scritto l'ora in UTC (05:50 invece di 07:50). Ora esplicita con `TZ=Europe/Rome` in `_comune.md`, `ingestor.md` §8 e `digest.md`; corretta la riga nel digest di oggi.
 - Il digest di oggi elencava 238 note del primo caricamento (47 KB) perché la finestra era "ultime 24 ore". `digest.md`: finestra dall'ultimo commit `journal:`, esclusione delle note già nel digest di ieri (ingest-outlook delle 13:15), oltre 30 voci conteggio per cartella; attività scadute da più di 14 giorni in un blocco a parte.
-
 - Velo-CE: chiuse V1, V2 e V8 in scadenza al 21/09 (dall'utente: concluse; non segue il progetto direttamente).
-- PR [#10](https://github.com/Kapnessbolt/NoulegBeis/pull/10) su `SPEC.md` (1.10): orari reali e prompt dei task in §7, e watermark SharePoint che sale al risultato più recente quando nessun file fallisce (§6.2, stessa regola in `ingestor.md` §4.6).
+- PR [#10](https://github.com/Kapnessbolt/NoulegBeis/pull/10) su `SPEC.md` (1.10): orari reali e prompt dei task in §7, e watermark SharePoint che sale al risultato più recente quando nessun file fallisce (§6.2, stessa regola in `ingestor.md` §4.6). Merge fatto dall'utente.
 - `ingestor` di nuovo usabile come subagente: `tools` elenca per nome esatto i 4 strumenti in lettura sia di `mcp__Microsoft_365__` sia di `mcp__Microsoft-365__` (il nome visto nei task). Scartato il carattere jolly del server, che darebbe all'agente anche invio di mail e cancellazione di file; un nome `mcp__<uuid>__` resta scoperto, ma senza rischi. I task continuano a eseguire l'ingestor nella propria sessione.
 
 ## File toccati
@@ -35,4 +34,3 @@ Chiudere l'aperto di [[2026-10-22-watermark-e-task-schedulati]] "Controllare il 
 
 - [ ] Togliere il connettore `visualize` dai task, dall'interfaccia di claude.ai (l'utente, senza fretta)
 - [ ] Controllare `ingest-outlook 2` di oggi e il primo `Reconcile` di domenica 25/10
-- [ ] Rivedere e fare il merge della PR #10
