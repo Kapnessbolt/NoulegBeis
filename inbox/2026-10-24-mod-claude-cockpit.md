@@ -20,13 +20,14 @@ Idea emersa nella sessione [[2026-10-24-interfaccia-personalizzata]]: invece di 
 - Dove si vede il pannello: solo dove un'app si collega alla sessione come superficie (desktop, VS Code, terminale; l'app sul telefono quando si collega). Su una sessione cloud seguita dal telefono non si collega nessuna superficie: il pannello non compare.
 - Ripiego che funziona anche dal telefono: il comando `/cockpit` risponde con il Cockpit in testo (calendario, scadenze, progetti). Provato con i dati veri.
 - Prototipo impacchettato come `cockpit.plugin` (mod `cockpit` v0.1.0), consegnato in chat per salvarlo sull'account.
+- Provato il 24/10 su una sessione locale dell'app desktop (Ubuntu): pannello con calendario, scadenze e progetti funzionante, dopo aver attivato la mod (+ → Plugin), aggiornato l'app e autorizzato la lettura del calendario con il nome locale del connettore ([[2026-10-24-cockpit-in-locale]]).
 
 ## Da fare
 
 - [x] Approfondire le mod: cosa si può fare, come si installano, su quali superfici funzionano (desktop, telefono, cloud) 📅 2026-10-31 ([[2026-10-24-interfaccia-personalizzata]])
 - [x] Verificare se un pannello mod può leggere il connettore Microsoft 365 come fa l'artifact Cockpit 📅 2026-10-31 ([[2026-10-24-interfaccia-personalizzata]])
 - [x] Prototipo: Cockpit come pannello accanto alla chat 📅 2026-11-07 ([[2026-10-24-interfaccia-personalizzata]])
-- [ ] Salvare `cockpit.plugin` sull'account e provare il pannello dall'app desktop su una sessione locale aperta sul vault 📅 2026-10-31 ([[2026-10-24-interfaccia-personalizzata]])
+- [x] Salvare `cockpit.plugin` sull'account e provare il pannello dall'app desktop su una sessione locale aperta sul vault 📅 2026-10-31 ([[2026-10-24-cockpit-in-locale]])
 - [ ] Provare se il telefono mostra il pannello seguendo una sessione locale (Claude Desktop o `claude remote-control`) 📅 2026-10-31 ([[2026-10-24-interfaccia-personalizzata]])
 - [ ] Decidere se la mod sostituisce l'artifact Cockpit e le routine `DailyBoard` 📅 2026-11-07 ([[2026-10-24-interfaccia-personalizzata]])
 
