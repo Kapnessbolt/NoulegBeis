@@ -1,6 +1,6 @@
 # SPEC · Second Brain BlueAge (personale)
 
-Versione 1.11 · 25/10/2026 · Owner: Lorenzo Curione
+Versione 1.12 · 25/10/2026 · Owner: Lorenzo Curione
 
 Questo file è la specifica di riferimento del vault. Ogni sessione Claude Code che costruisce o modifica il sistema parte da qui. Le modifiche alla specifica si fanno con una PR dedicata.
 
@@ -16,7 +16,7 @@ Un second brain personale sulla knowledge BlueAge, gestito da un agente, che:
 4. ingerisce in automatico le novità da SharePoint, OneDrive e Outlook;
 5. tiene un diario delle sessioni e propone nuove regole, skill, agenti e hook.
 
-Utente unico. Nessun materiale sensibile: il repo è privato.
+Utente unico. Il repo è privato, ma i dati riservati (credenziali, coordinate bancarie, dati personali, dati reali dei clienti riga per riga) non entrano comunque nelle note: regola in `CLAUDE.md` §5.
 
 ## 2. Architettura
 
@@ -42,7 +42,7 @@ Sessioni locali (app desktop sul PC):
 - Il clone resta sul PC e va allineato: lo fa l'hook di avvio (sezione 11).
 - Requisiti del PC: git, python3 (script e pre-commit, 4.4), login GitHub con `gh auth login`, app desktop aggiornata.
 - GitHub passa dal login del PC, senza connettore: le issue si leggono con `gh issue view` (6.6).
-- Il connettore Microsoft 365 ha un nome di server diverso per ambiente (`Microsoft_365` nelle sessioni cloud, `Microsoft-365` nei task schedulati, l'id del connettore nelle sessioni locali). I permessi in `.claude/settings.json` e i `tools` dell'agente `ingestor` li elencano tutti: un nome nuovo va aggiunto in entrambi, altrimenti la modalità Auto blocca le letture e l'ingestor parte senza connettore.
+- Il connettore Microsoft 365 ha un nome di server diverso per ambiente (`Microsoft_365` nelle sessioni cloud, `Microsoft-365` nei task schedulati, l'id del connettore nelle sessioni locali). I permessi in `.claude/settings.json` e i `tools` dell'agente `ingestor` li elencano tutti: un nome nuovo va aggiunto in entrambi, altrimenti la modalità Auto blocca le letture e l'ingestor parte senza connettore. Il controllo del vault (4.4) segnala come errore i nomi che non coincidono.
 - I task schedulati restano in cloud qualunque sessione si usi.
 
 ## 3. Struttura del vault
@@ -282,7 +282,7 @@ Lo script `python3 .claude/scripts/controlla-vault.py` verifica le note (tranne 
 
 | Livello | Cosa controlla |
 |---|---|
-| Errore | **Integrità**: wikilink (nel frontmatter o nel testo) verso note inesistenti; wikilink con percorso o estensione; slug duplicati; voci di `.state/ingest.json` che puntano a note inesistenti. **Tracciabilità**: punti senza fonte nelle sezioni elencate in 4.1; fonti senza progetto, cliente o tema. **Schema**: frontmatter mancante o non valido; `type` sconosciuto o nella cartella sbagliata; campi del template mancanti; valori fuori dagli elenchi ammessi; nomi file non in slug; scheda progetto con nome diverso dalla cartella. **Doppioni certi**: stessa email su due persone; stessa `family`, `item_id` o `conversation_id` su due note |
+| Errore | **Integrità**: wikilink (nel frontmatter o nel testo) verso note inesistenti; wikilink con percorso o estensione; slug duplicati; voci di `.state/ingest.json` che puntano a note inesistenti. **Tracciabilità**: punti senza fonte nelle sezioni elencate in 4.1; fonti senza progetto, cliente o tema. **Schema**: frontmatter mancante o non valido; `type` sconosciuto o nella cartella sbagliata; campi del template mancanti; valori fuori dagli elenchi ammessi; nomi file non in slug; scheda progetto con nome diverso dalla cartella. **Doppioni certi**: stessa email su due persone; stessa `family`, `item_id` o `conversation_id` su due note. **Configurazione**: nomi del server Microsoft 365 diversi tra i `tools` dell'agente `ingestor` e i permessi di `.claude/settings.json`, o con uno dei 4 strumenti in lettura mancante (2) |
 | Avviso | Note orfane (persone, clienti, temi che nessuna nota collega); note che citano una fonte rimossa; note più vecchie di una fonte che citano (la fonte è stata aggiornata dopo); note `da-verificare`; nomi quasi uguali nella stessa categoria (possibili doppioni); persone senza email; campi non previsti dal template; documenti SharePoint, OneDrive e GitHub non registrati nello stato |
 
 Quando si esegue:
@@ -307,7 +307,8 @@ Esclusioni in qualunque punto del percorso:
 - cartelle `_originali` e `_sorgenti`;
 - cartelle `Transcript` (es. `05 Transcript`): trascrizioni grezze delle riunioni, già riassunte nei verbali;
 - cartelle `Evidenze/Export` (es. `06 Evidenze/Export`): export grezzi di tabelle e dati dei sistemi del cliente;
-- cartelle di progetti software (contengono `app.json`, `package.json` o `.git`), es. `Lab AL/BlueAge-LabAL`.
+- cartelle di progetti software (contengono `app.json`, `package.json` o `.git`), es. `Lab AL/BlueAge-LabAL`;
+- cartelle `Dati`: dati reali dei clienti, che restano dove sono e non generano note (`CLAUDE.md` §5).
 
 Tipi di file processati: pdf, docx, pptx, xlsx, md, txt. Gli altri tipi (immagini, video, archivi, codice) si ignorano: non generano note, anche perché in gran parte non compaiono nella ricerca di SharePoint e l'ingestion periodica non li vedrebbe.
 
@@ -316,6 +317,7 @@ Tipi di file processati: pdf, docx, pptx, xlsx, md, txt. Gli altri tipi (immagin
 Prefisso: `https://blueagesrl-my.sharepoint.com/personal/lorenzo_curione_blueage_it/Documents/BlueAge/`.
 Il resto di OneDrive è escluso.
 Tutte le sottocartelle di `BlueAge/` sono incluse e le note ne seguono il percorso (`sources/onedrive/<percorso>/`): aggiungere, rinominare o rinumerare una cartella non richiede modifiche a questa specifica.
+Valgono le esclusioni di 5.1, comprese le cartelle `Dati` (es. `01_Materiale clienti/Manini/Progetto Automazione/Dati/`, con i DDT reali di Manini).
 Unica cartella con un trattamento speciale: quella il cui nome finisce con `chat` (oggi `BlueAge/00_chat/`) riceve i riassunti delle chat di claude.ai (sezione 8).
 
 ### 5.3 Outlook · tutta la casella
@@ -325,7 +327,8 @@ La ricerca copre tutte le cartelle, comprese le Inviate.
 Scartati sempre:
 - mittenti `no-reply`, `noreply`, `notifications` e simili;
 - notifiche di servizi (Teams, Azure, SaaS);
-- newsletter e marketing.
+- newsletter e marketing;
+- thread personali o estranei a BlueAge (`CLAUDE.md` §5); in una sessione interattiva si chiede prima di scartarli.
 
 Per le prime 2 settimane le mail scartate vanno elencate nel digest giornaliero, sotto "Scartate", per verificare il filtro.
 
@@ -469,6 +472,7 @@ Eccezione: il `curator` non scrive nel digest e non fa push su `main` (sezione 3
 | `/cattura <testo>` | Nota rapida in `inbox/` |
 | `/smista` | Smista `inbox/` nei progetti e nei temi |
 | `/controlla` | Controllo del vault (4.4): errori, possibili doppioni e indice per categoria, con le correzioni proposte |
+| `/verifica-task [task] [data]` | Verifica i giri dei task schedulati (7): riga nel digest o PR del curator, commit, watermark, note scritte, doppioni; propone le correzioni e gli aperti da spuntare |
 | `/curator [da data] [a data]` | Giro del curator a mano (9.2), di default sugli ultimi 7 giorni: mostra le proposte, registra le decisioni dell'utente nel `status` e apre la PR |
 
 **Chat di claude.ai nel vault.** Nella chat basta chiedere "salva il riassunto di questa chat nel mio OneDrive in BlueAge/00_chat". Il connettore M365 carica il file, e l'ingestion lo trasforma in una nota di tipo `session` con `surface: claude-ai`.
