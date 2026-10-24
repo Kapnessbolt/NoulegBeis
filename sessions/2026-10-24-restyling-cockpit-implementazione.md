@@ -21,6 +21,8 @@ Implementare le raccomandazioni di [[2026-10-24-restyling-cockpit]], approvate d
 - Mod `cockpit` v0.3.0: testata con piano Max (5h e 7 giorni, barre, azzeramento, ora della lettura) e sistemi (una riga se i task vanno, una riga per task con "Indaga" se uno è in errore o mancante; contatori di scadute, inbox, proposte, digest), poi Oggi, Prossimi 7 giorni, Scadenze tue a 14 giorni con quelle che osservi sotto un pulsante, Da smistare con "Smista", Progetti tuoi. I pulsanti scrivono la richiesta nel prompt, non la mandano. Riga di stato sempre visibile (`Cockpit · 5h 34% ↻19:40 · 7g 61% ↻gio 09:00`, più `⚠ N task` se serve); banda sopra il prompt solo oltre il 90%, nascondibile. ([[2026-10-24-restyling-cockpit-implementazione]])
 - Il CLI `claude` sul PATH (2.1.276) è più vecchio del motore dell'app (2.1.308) e boccia anche la v0.2.0 che funziona: validare e testare le mod con `~/.config/Claude/claude-code/2.1.308/*/claude`. Con quello la v0.3.0 passa `plugin validate`, `tsc` e 7 test su 7. ([[2026-10-24-restyling-cockpit-implementazione]])
 
+- Prima prova della v0.3.0 (Lorenzo, 23:25): barre del piano troppo alte, percentuali indietro di un punto (3% e 13% contro 4% e 14% reali), calendario "non collegato" all'avvio. v0.3.1: barre alte 6 px, piano riletto a ogni risposta (prima solo agli scatti di un punto intero), fino a 6 nuovi tentativi del calendario ogni 30 secondi. Pacchetto `~/Scaricati/cockpit-0.3.1.plugin`. ([[2026-10-24-restyling-cockpit-implementazione]])
+
 ## File toccati
 
 - `.claude/scripts/plancia.py`
@@ -31,7 +33,7 @@ Implementare le raccomandazioni di [[2026-10-24-restyling-cockpit]], approvate d
 
 ## Aperti
 
-- [ ] Installare `cockpit-0.3.0.plugin` al posto della v0.2.0 e controllare il pannello vero, con il consumo del piano letto dopo una risposta 📅 2026-10-31 ([[2026-10-24-restyling-cockpit-implementazione]])
+- [ ] Installare `cockpit-0.3.1.plugin` al posto della v0.3.0 e controllare il pannello vero, con il consumo del piano letto dopo una risposta 📅 2026-10-31 ([[2026-10-24-restyling-cockpit-implementazione]])
 - [ ] SPEC 7, riga `cockpit`: dire che `plancia.py` carica anche inbox, task e digest (PR dedicata) ([[2026-10-24-restyling-cockpit-implementazione]])
 - [ ] Cancellare dalla dashboard il vecchio file di `progetti` (`89132086…`): la cancellazione è stata negata dal controllo dei permessi; non rompe nulla ([[2026-10-24-restyling-cockpit-implementazione]])
 - [ ] Verificare il primo giro del task `cockpit` di domani alle 07:40 con i cinque dataset ([[2026-10-24-restyling-cockpit-implementazione]])
