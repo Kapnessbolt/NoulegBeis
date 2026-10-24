@@ -3,7 +3,7 @@ type: session
 date: 2026-10-25
 surface: locale
 topics: ["[[second-brain]]"]
-outcome: "Mod cockpit v0.5.0 installata e provata; sul telefono le mod non compaiono; dashboard e mod convivono; nota inbox sulla mod smistata nel tema second-brain"
+outcome: "Mod cockpit v0.5.0 installata e provata; sul telefono le mod non compaiono; dashboard e mod convivono; nota inbox smistata nel tema second-brain con la sezione sul banco di prova; PR #19 sulla SPEC (1.14)"
 ---
 
 # Mod cockpit v0.5.0 e smistamento della nota inbox
@@ -19,6 +19,7 @@ Chiudere gli aperti sulla mod `cockpit` dopo l'installazione della v0.5.0 e smis
 - La mod non sostituisce la dashboard Cockpit, dall'utente: convivono, la dashboard con un livello di dettaglio diverso, la mod come parte operativa al PC. Le routine `DailyBoard` restano.
 - Nota inbox `2026-10-24-mod-claude-cockpit` smistata nel tema [[second-brain]] (interfaccia della versione personale, limiti delle mod, alternative scartate) e tolta da `inbox/`, dall'utente: con tutti gli aperti chiusi non c'era più niente da smistare. La SPEC non prevede un archivio per l'inbox; il testo resta nella storia git. I due wikilink che la citavano ora puntano al tema e a questo diario.
 - Il vault è anche il banco di prova del prodotto Second Brain, dall'utente: nel tema [[second-brain]] una sezione `## Versione personale e banco di prova` (fuori dal template dei temi) raccoglie quello che funziona e i limiti trovati qui, perché orientano l'offerta. Si arricchisce man mano.
+- PR #19 sulla SPEC (1.14): righe del Cockpit in §2 aggiornate alla mod v0.5.0 e alla dashboard con i nuovi dataset, riga `cockpit` di §7 con tutti i dataset di `plancia.py`, sezione facoltativa `## Versione personale e banco di prova` per i temi in §4.2. La sezione resta fuori dal template dei temi: ce l'ha un solo tema, e nel template comparirebbe in tutti. Verificato nella mod che `/cockpit` esiste ancora e dà il riepilogo in testo quando il pannello non si apre.
 
 ## File toccati
 
@@ -26,7 +27,8 @@ Chiudere gli aperti sulla mod `cockpit` dopo l'installazione della v0.5.0 e smis
 - `inbox/2026-10-24-mod-claude-cockpit.md` (aggiornata, poi tolta)
 - `sessions/2026-10-24-restyling-cockpit-implementazione.md`, `sessions/2026-10-24-interfaccia-personalizzata.md` (aperti chiusi, link)
 - `sessions/2026-10-25-cockpit-v05-smistamento.md` (nuovo)
+- `SPEC.md` sul branch `claude/spec-cockpit-v05` (PR #19)
 
 ## Aperti
 
-- [ ] SPEC 1, riga "Pannello locale": descrive ancora la mod v0.2 (calendario, scadenze, progetti). Aggiornarla alla v0.5.0 (piano Max, task, prossime cose, agenti), dire che non compare sul telefono e che convive con la dashboard; verificare se `/cockpit` esiste ancora (PR dedicata)
+- [ ] Unire la PR #19 sulla SPEC (1.14); dopo il merge spuntare l'aperto "SPEC 7, riga `cockpit`" di [[2026-10-24-restyling-cockpit-implementazione]]
