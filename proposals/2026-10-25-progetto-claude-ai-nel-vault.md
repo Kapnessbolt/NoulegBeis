@@ -2,7 +2,7 @@
 type: proposal
 date: 2026-10-25
 kind: regola
-status: proposta
+status: rifiutata
 ---
 
 # Regola per portare nel vault un progetto nato in un Project claude.ai

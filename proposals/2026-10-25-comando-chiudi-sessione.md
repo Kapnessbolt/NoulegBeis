@@ -2,7 +2,7 @@
 type: proposal
 date: 2026-10-25
 kind: skill
-status: proposta
+status: accettata
 ---
 
 # Comando /chiudi-sessione per scrivere il diario sempre allo stesso modo

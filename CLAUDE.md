@@ -98,4 +98,4 @@ Il curator non modifica mai `CLAUDE.md`, `.claude/` o `SPEC.md`: propone, e le m
 
 ## 8. Fine sessione
 
-Prima di chiudere una sessione interattiva scrivi il diario in `sessions/AAAA-MM-DD-<slug>.md` (obiettivo, decisioni, file toccati, aperti), poi commit e push. Ogni sessione parte da un clone nuovo: ciò che non è committato è perso.
+Prima di chiudere una sessione interattiva usa la skill `chiudi-sessione` (`/chiudi-sessione`, o quando Lorenzo dice "chiudiamo"): scrive il diario in `sessions/AAAA-MM-DD-<slug>.md` (obiettivo, decisioni, file toccati, aperti), spunta gli aperti dei diari precedenti chiusi nella sessione, poi commit e push. Ogni sessione parte da un clone nuovo: ciò che non è committato è perso.

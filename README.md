@@ -12,11 +12,11 @@ Vault personale sulla knowledge BlueAge, gestito da Claude Code in cloud e consu
 3. **Fare il punto**: `/oggi` per l'agenda, `/progetto <nome>` per lo stato di un progetto.
 4. **Controllare**: `/controlla` segnala errori e possibili doppioni nel vault e mostra l'indice di progetti, clienti, persone e temi. `/verifica-task [task] [data]` controlla i giri dei task schedulati: digest, commit, watermark, doppioni.
 5. **Ingerire**: `/ingest [fonte] [da data]` porta nel vault le novità di SharePoint, OneDrive, Outlook e dei repo GitHub di progetto; `/ingest-file <url o nome>` un singolo documento.
-6. **Chiudere**: `/chiudi-sessione` scrive il diario in `sessions/` e fa push.
+6. **Chiudere**: `/chiudi-sessione` (o "chiudiamo") scrive il diario in `sessions/`, spunta gli aperti chiusi e fa push.
 7. **Migliorare il vault**: `/curator` legge i diari della settimana e apre una PR con le proposte (regole, comandi, hook) e gli aperti chiusi; gira anche da solo la domenica sera.
 8. **Leggere**: clona il repo e aprilo come vault in Obsidian.
 
-Disponibili: `/ingest`, `/ingest-file`, `/controlla`, `/verifica-task`, `/curator`. Gli altri comandi e l'ingestion automatica arrivano negli step successivi del piano (SPEC 13).
+Disponibili: `/ingest`, `/ingest-file`, `/controlla`, `/verifica-task`, `/curator`, `/chiudi-sessione`. Gli altri comandi e l'ingestion automatica arrivano negli step successivi del piano (SPEC 13).
 
 ## Dove sta cosa
 
