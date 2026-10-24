@@ -22,6 +22,7 @@ Far partire sul PC la mod `cockpit` creata nella sessione [[2026-10-24-interfacc
 - Lo stesso nome mancava in `tools` dell'agente `ingestor`: in locale `/ingest` sarebbe partito senza connettore. Aggiunti i quattro strumenti in lettura con il nome locale.
 - GitHub in locale passa da git e `gh` con il login del PC, non dal connettore: le issue si leggono con `gh issue view`. L'agente `ingestor` lo usa quando `issue_read` manca (permesso `Bash(gh issue view:*)` nel vault), così anche `/ingest github` funziona in locale.
 - Pull automatico all'apertura della sessione, in cloud e in locale: hook `SessionStart` `.claude/hooks/pull-inizio-sessione.sh`. Se ci sono modifiche non committate o il pull fallisce non blocca l'avvio: lo dice, e Claude lo rifà a mano (`CLAUDE.md` §1).
+- Promemoria di fine risposta anche in locale: hook `Stop` `.claude/hooks/promemoria-fine-turno.sh`. Se nel vault restano modifiche non committate o commit non spinti, rimanda Claude a chiuderli, come l'hook dell'ambiente cloud; in cloud non fa nulla per non doppiarlo.
 - Confronto cloud/locale annotato in [[claude-code-cloud-e-locale]].
 
 ## File toccati
@@ -29,6 +30,7 @@ Far partire sul PC la mod `cockpit` creata nella sessione [[2026-10-24-interfacc
 - `.claude/agents/ingestor.md`
 - `.claude/settings.json`
 - `.claude/hooks/pull-inizio-sessione.sh` (nuovo)
+- `.claude/hooks/promemoria-fine-turno.sh` (nuovo)
 - `CLAUDE.md`
 - `topics/claude-code-cloud-e-locale.md` (nuovo)
 - `inbox/2026-10-24-mod-claude-cockpit.md`
@@ -39,4 +41,4 @@ Far partire sul PC la mod `cockpit` creata nella sessione [[2026-10-24-interfacc
 - [x] Provare `/ingest outlook` in una sessione locale dopo il pull, per verificare l'agente ingestor con il nome locale del connettore 📅 2026-10-31 ([[2026-10-24-cockpit-in-locale]])
 - [x] Controllare in una sessione locale (`/`) che ci siano le skill dell'account (blueage-deck, blueage-corso, ecc.) 📅 2026-10-31 ([[2026-10-24-cockpit-in-locale]])
 - [x] Rivedere e fare merge della PR su `SPEC.md` (sessioni locali, mod cockpit, `surface: locale`, pull all'avvio): https://github.com/Kapnessbolt/NoulegBeis/pull/13 📅 2026-11-07 ([[2026-10-24-cockpit-in-locale]])
-- [ ] Valutare in locale un hook `Stop` che avvisa se restano modifiche non committate o non spinte, come nel cloud 📅 2026-11-07 ([[2026-10-24-cockpit-in-locale]])
+- [x] Valutare in locale un hook `Stop` che avvisa se restano modifiche non committate o non spinte, come nel cloud 📅 2026-11-07 ([[2026-10-24-cockpit-in-locale]])
