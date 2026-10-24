@@ -1,0 +1,26 @@
+---
+description: Verifica i giri dei task schedulati (SPEC 7): riga nel digest, commit, watermark, note scritte, doppioni
+argument-hint: "[task] [AAAA-MM-GG]"
+---
+
+Verifica i giri dei task schedulati. Sola lettura: non correggere niente senza l'ok di Lorenzo.
+
+Argomenti: `$ARGUMENTS`
+
+1. Argomenti: un task di SPEC 7 (`ingest-sharepoint`, `ingest-outlook`, `ingest-github`, `digest`, `cockpit`, `reconcile`, `curator`) e una data. Senza task, tutti; senza data, oggi (`TZ=Europe/Rome date +%F`).
+2. Giri attesi: gli orari del giorno da SPEC 7 (la domenica anche `reconcile` e `curator`). Ora attuale con `TZ=Europe/Rome date +%H:%M`: un giro la cui ora non è passata da almeno 45 minuti è "atteso", non "mancante".
+3. Per ogni giro raccogli:
+   - **digest**: la riga di `## Esito dei task` in `journal/<data>.md` (task, ora, esito). Il `curator` non scrive nel digest: per lui il branch `claude/curator-<data>` e la PR (`gh pr list --state all --head claude/curator-<data>`), oppure nessuna PR se non ha trovato niente da proporre;
+   - **commit**: `git fetch origin main`, poi `git log origin/main --since=<data> --until=<data+1> --format='%h %ad %s' --date=iso` con il prefisso del task (`ingest(sharepoint)`, `ingest(outlook)`, `ingest(github)`, `ingest(riconcilia)`, `journal:`, `cockpit:`) e `git show --stat <hash>`;
+   - **stato**: per gli ingest `git show <hash> -- .state/ingest.json`, watermark prima e dopo. Il watermark non torna mai indietro; resta fermo solo se il giro non ha trovato niente di nuovo o se un file è fallito (SPEC 6.2). Un ingest lanciato a mano nello stesso giorno (`/ingest`, riga "interattiva" nel digest) sposta il watermark: tienine conto prima di segnalare uno scarto;
+   - **note**: le note create o aggiornate dal commit, confrontate con i numeri del messaggio di commit e della riga del digest.
+4. Controlli di merito:
+   - `python3 .claude/scripts/controlla-vault.py`: errori e possibili doppioni nei file toccati dal giro;
+   - ingest: nessuna nota fonte doppia per la stessa famiglia o lo stesso thread; le righe nuove in `<slug>-log.md` e in `## Attività` non ripetono righe già presenti;
+   - `ingest-github`: una sola riga di log per ogni giorno con voci nuove nel changelog (SPEC 6.6);
+   - `digest`: ora in Europe/Rome, finestra dall'ultimo commit `journal:` (`.claude/routines/digest.md`);
+   - `cockpit`: numeri di progetti e attività uguali a quelli di `python3 .claude/scripts/plancia.py "$(mktemp -d)"`;
+   - `curator`: nessun commit su `main`, PR verso `main` con al massimo 5 proposte.
+5. Rapporto, una riga per giro: `<task> <ora attesa> → OK | ERRORE | MANCANTE | ANOMALIA`, con la prova (commit, watermark prima → dopo, note). Per ogni anomalia: causa probabile e correzione proposta (nota, procedura in `.claude/routines/`, SPEC).
+6. Aperti: cerca in `sessions/*.md` le caselle `- [ ]` che chiedono di verificare questi giri. Se la verifica le chiude, proponi di spuntarle con ` (chiuso in [[<data>]])`.
+7. Correggi solo dopo l'ok. Poi controllo del vault, commit `vault: verifica task <data>` e push su `main` (`CLAUDE.md` §7).

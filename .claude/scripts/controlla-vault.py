@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Controllo del vault (SPEC 4.4): integrità dei collegamenti, tracciabilità, schema, doppioni.
+"""Controllo del vault (SPEC 4.4): integrità dei collegamenti, tracciabilità, schema, doppioni,
+nomi del connettore Microsoft 365 tra agente ingestor e permessi.
 
 Uso:
   python3 .claude/scripts/controlla-vault.py              # rapporto in markdown
@@ -207,6 +208,36 @@ def changed_files():
     return out
 
 
+# SPEC 2: strumenti in lettura del connettore Microsoft 365, da elencare per ogni nome di server
+M365_LETTURA = {"sharepoint_search", "sharepoint_folder_search", "outlook_email_search", "read_resource"}
+
+
+def server_m365(nomi):
+    """{server: strumenti in lettura} dai nomi `mcp__<server>__<strumento>`."""
+    out = defaultdict(set)
+    for nome in nomi:
+        parti = nome.strip().split("__")
+        if len(parti) == 3 and parti[0] == "mcp" and parti[2] in M365_LETTURA:
+            out[parti[1]].add(parti[2])
+    return out
+
+
+def controlla_connettore():
+    """I nomi del server M365 nei `tools` dell'ingestor e nei permessi di settings.json coincidono."""
+    agente, impost = ".claude/agents/ingestor.md", ".claude/settings.json"
+    fm, _ = split_frontmatter((ROOT / agente).read_text(encoding="utf-8"))
+    tools = server_m365(str((yaml.safe_load(fm) or {}).get("tools", "")).split(","))
+    allow = json.loads((ROOT / impost).read_text(encoding="utf-8")).get("permissions", {}).get("allow", [])
+    permessi = server_m365(allow)
+    for nomi, dove, altri, altrove in ((tools, agente, permessi, impost), (permessi, impost, tools, agente)):
+        for server, strumenti in nomi.items():
+            mancano = sorted(M365_LETTURA - strumenti)
+            if mancano:
+                err(dove, f"server M365 `{server}`: mancano {', '.join(mancano)}")
+            if server not in altri:
+                err(altrove, f"server M365 `{server}` presente in `{dove}` ma non qui (SPEC 2)")
+
+
 def main():
     indice = "--indice" in sys.argv
     solo_modificati = "--modificati" in sys.argv
@@ -366,6 +397,9 @@ def main():
         if d.get("source") in ("sharepoint", "onedrive", "github") and "fuori-perimetro" not in as_list(d.get("tags")):
             if str(rel) not in tracked:
                 avv(rel, "documento non registrato in .state/ingest.json")
+
+    # 7. Configurazione: nomi del connettore Microsoft 365 (SPEC 2)
+    controlla_connettore()
 
     # Solo gli errori che dipendono dalle modifiche in corso (hook di commit)
     if solo_modificati:

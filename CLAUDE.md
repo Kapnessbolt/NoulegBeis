@@ -78,11 +78,14 @@ Il curator non modifica mai `CLAUDE.md`, `.claude/` o `SPEC.md`: propone, e le m
 
 - I documenti originali: restano su SharePoint, OneDrive e Outlook.
 - I file prodotti dalle skill (pptx, mp4, png): si caricano su SharePoint o OneDrive con il connettore, e la nota del progetto riporta il link.
+- Dati riservati, nemmeno riassunti: credenziali, token, codici di accesso e di riunione; IBAN e coordinate bancarie; GUID, tenant ID e account dei sistemi dei clienti; compensi e contratti personali; indirizzi e telefoni personali; CV. La nota dice che il documento li contiene ("credenziali del web service demo, omesse"), non il valore.
+- Dati reali dei clienti riga per riga (DDT, ordini, anagrafiche, export di tabelle): restano su OneDrive nelle cartelle `Dati/` e non generano note. La nota del progetto cita solo la cartella e i numeri aggregati. Se la policy AI del cliente limita l'uso dei dati, scrivilo nella nota del cliente.
+- Thread personali o estranei a BlueAge: non si ingeriscono. Nel dubbio, in sessione chiedi; nei task schedulati scartali e annotali come gli altri scarti (mittente · oggetto).
 
 ## 6. Perimetro delle fonti (sintesi di SPEC 5)
 
 - SharePoint `sites/internal`: librerie SalesMarketing, Delivery, Shared Documents. Escluse le librerie Knowledge (corsi Anthropic) e SiteAssets, e le cartelle `_originali` e `_sorgenti`.
-- OneDrive: solo la cartella `BlueAge/`, con tutte le sue sottocartelle. La cartella il cui nome finisce con `chat` (oggi `BlueAge/00_chat/`) contiene i riassunti delle chat claude.ai → note `session` con `surface: claude-ai`.
+- OneDrive: solo la cartella `BlueAge/`, con tutte le sue sottocartelle tranne le cartelle `Dati` (dati reali dei clienti, §5). La cartella il cui nome finisce con `chat` (oggi `BlueAge/00_chat/`) contiene i riassunti delle chat claude.ai → note `session` con `surface: claude-ai`.
 - Outlook: tutta la casella, Inviate comprese. Scarta no-reply, notifiche di servizi, newsletter e marketing.
 - GitHub: solo i file e le issue elencati in SPEC 5.4 (oggi il repo `cristian-schifone/parts-radar`, branch `main`). Nel vault va il livello di progetto (stato, decisioni, scadenze, azioni fuori dal codice), mai il dettaglio tecnico.
 

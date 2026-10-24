@@ -46,7 +46,7 @@ Un documento è nel perimetro se il `webUrl` inizia con uno di questi prefissi:
 - `https://blueagesrl.sharepoint.com/sites/internal/Shared Documents/`
 - `https://blueagesrl-my.sharepoint.com/personal/lorenzo_curione_blueage_it/Documents/BlueAge/`
 
-e non contiene i segmenti `/SiteAssets/`, `/_originali/`, `/_sorgenti/`, una cartella il cui nome finisce con `Transcript` (es. `/05 Transcript/`), una cartella `Export` dentro una cartella `Evidenze` (es. `/06 Evidenze/Export/`), né cartelle di progetti software (con `app.json`, `package.json` o `.git`, es. `/Lab AL/`). Confronta i prefissi senza distinguere maiuscole e minuscole e con gli spazi anche nella forma `%20`.
+e non contiene i segmenti `/SiteAssets/`, `/_originali/`, `/_sorgenti/`, una cartella il cui nome finisce con `Transcript` (es. `/05 Transcript/`), una cartella `Export` dentro una cartella `Evidenze` (es. `/06 Evidenze/Export/`), una cartella `Dati` (dati reali dei clienti, `CLAUDE.md` §5, es. `/Progetto Automazione/Dati/`), né cartelle di progetti software (con `app.json`, `package.json` o `.git`, es. `/Lab AL/`). Confronta i prefissi senza distinguere maiuscole e minuscole e con gli spazi anche nella forma `%20`.
 
 `sharepoint_search` restituisce anche altri siti e il resto di OneDrive: scarta tutto ciò che non rientra.
 
@@ -151,7 +151,7 @@ Solo righe nuove: non modificare né riordinare quelle esistenti. Prima di aggiu
 ## 5. Compito `delta` · posta (SPEC 6.3)
 
 1. `outlook_email_search` con `query: "*"`, `afterDateTime: <watermark − 2 ore>` (o la **da data**), `limit: 25`, seguendo `nextOffset` o `nextCursor` fino all'ultima pagina. Niente `folderName`: copre tutte le cartelle, Inviate comprese.
-2. Scarta: mittenti `no-reply`, `noreply`, `donotreply`, `notifications`, `notification`, `mailer-daemon`; notifiche di servizi (Teams, SharePoint, Azure, Microsoft 365, SaaS); newsletter e marketing (link di disiscrizione, mittenti di massa). Annota ogni scarto (mittente · oggetto) per il digest.
+2. Scarta: mittenti `no-reply`, `noreply`, `donotreply`, `notifications`, `notification`, `mailer-daemon`; notifiche di servizi (Teams, SharePoint, Azure, Microsoft 365, SaaS); newsletter e marketing (link di disiscrizione, mittenti di massa); thread personali o estranei a BlueAge (`CLAUDE.md` §5: in `interattiva` chiedi prima di scartarli). Annota ogni scarto (mittente · oggetto) per il digest.
 3. Leggi ogni messaggio con `read_resource` e raggruppa per `conversationId`.
    Messaggi già ingeriti: se `outlook.threads[conversationId]` esiste e la data di ricezione del messaggio è uguale o precedente al suo `last_message`, salta il messaggio (capita nelle 2 ore di sovrapposizione). Un thread senza messaggi nuovi non si tocca.
 4. Per ogni thread: se `outlook.threads[conversationId]` esiste aggiorna la nota, altrimenti creala (3.6). Aggiorna `threads[conversationId] = { "last_message": ..., "note": "sources/mail/..." }`.
