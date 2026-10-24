@@ -1,6 +1,6 @@
 # SPEC · Second Brain BlueAge (personale)
 
-Versione 1.13 · 25/10/2026 · Owner: Lorenzo Curione
+Versione 1.14 · 25/10/2026 · Owner: Lorenzo Curione
 
 Questo file è la specifica di riferimento del vault. Ogni sessione Claude Code che costruisce o modifica il sistema parte da qui. Le modifiche alla specifica si fanno con una PR dedicata.
 
@@ -27,8 +27,8 @@ Utente unico. Il repo è privato, ma i dati riservati (credenziali, coordinate b
 | Automazione | Task schedulati cloud (claude.ai/code/routines) | Ingestion periodica, riconciliazione, curator |
 | Fonti | Connettore Microsoft 365 (tenant blueage.it) | Lettura di SharePoint, OneDrive e Outlook; upload dei file prodotti |
 | Visualizzazione | Obsidian (vault = clone del repo) | Lettura, grafo, cattura veloce; `home.md` come pagina iniziale |
-| Riepilogo | Dashboard Cockpit su claude.ai (artifact privato) | Calendario Outlook dal vivo, progetti e attività dal vault |
-| Pannello locale | Mod `cockpit` dell'app desktop (caricata sull'account, si attiva una volta per PC) | Nelle sessioni locali aperte sul vault: calendario Outlook dal vivo, scadenze e progetti letti dai file; `/cockpit` lo dà in testo dove il pannello non si disegna |
+| Riepilogo | Dashboard Cockpit su claude.ai (artifact privato) | Briefing, anche dal telefono e dalle sessioni cloud: calendario Outlook dal vivo; progetti, attività, log, inbox, task e digest dal vault |
+| Pannello locale | Mod `cockpit` dell'app desktop (caricata sull'account, si attiva una volta per PC) | Postazione operativa al PC nelle sessioni locali aperte sul vault: consumo del piano Max, task schedulati di oggi, prossime cose (calendario Outlook dal vivo e scadenze lette dai file), agenti del vault con conferma, link alla dashboard. Convive con la dashboard, non la sostituisce. Sul telefono le mod non compaiono; `/cockpit` dà il riepilogo in testo dove il pannello non si disegna |
 | Documenti originali | Restano su SharePoint, OneDrive e Outlook | Nel repo vanno solo le note markdown che li citano |
 
 Vincoli dell'ambiente cloud da rispettare:
@@ -235,7 +235,7 @@ updated: 2026-10-22
 ---
 ```
 
-Corpo: `## Cos'è`, `## Punti chiave`, `## Dove è usato`, `## Fonti`.
+Corpo: `## Cos'è`, `## Punti chiave`, `## Dove è usato`, `## Fonti`. Facoltativa, per un prodotto o un'offerta che ha una versione interna usata come banco di prova (oggi `second-brain`, con questo vault): `## Versione personale e banco di prova`, prima di `## Fonti`, con quello che funziona e i limiti trovati, ogni punto con la fonte.
 
 **Digest giornaliero**
 ```yaml
@@ -445,7 +445,7 @@ Orari in Europe/Rome, fuori dagli orari pieni per evitare i ritardi del sistema.
 | `digest` | Ogni giorno alle 07:45 | Nessuno | Sonnet | Completa `journal/AAAA-MM-GG.md`: novità, attività in scadenza, decisioni |
 | `ingest-github` | Ogni giorno alle 07:20 | GitHub (il vault e i repo di 5.4 come sorgenti) | Opus | 6.6 |
 | `reconcile` | Domenica alle 08:45 | Microsoft 365 | Sonnet | 6.4 |
-| `cockpit` | Ogni giorno alle 07:40 e alle 13:40 (due task, `DailyBoard` e `DailyBoard2`) | Nessuno | — | Rigenera con `plancia.py` progetti e attività e li carica sulla dashboard Cockpit; riga d'esito nel digest |
+| `cockpit` | Ogni giorno alle 07:40 e alle 13:40 (due task, `DailyBoard` e `DailyBoard2`) | Nessuno | — | Rigenera con `plancia.py` progetti, attività, log, inbox, task e digest e li carica sulla dashboard Cockpit; riga d'esito nel digest |
 | `curator` | Domenica alle 21:10 | GitHub, solo per aprire la PR | Opus | 9.2: proposte dai diari della settimana su un branch suo, con una PR |
 | `sessions-cleanup` | Il 1° del mese alle 06:10 (da creare con lo step 5) | Nessuno | — | Cancella `sessions/_raw/` più vecchio di 30 giorni |
 
