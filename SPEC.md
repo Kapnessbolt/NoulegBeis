@@ -23,18 +23,27 @@ Utente unico. Nessun materiale sensibile: il repo è privato.
 | Componente | Scelta | Ruolo |
 |---|---|---|
 | Storage del vault | Repo GitHub privato (account personale) | Fonte di verità: markdown + configurazione Claude Code |
-| Esecuzione | Claude Code in cloud (claude.ai/code) | Sessioni interattive da desktop, mobile e PC diversi |
+| Esecuzione | Claude Code in cloud (claude.ai/code) e in locale (app desktop, sessione aperta sulla cartella del vault sul PC) | Sessioni interattive: in cloud da desktop, mobile e PC diversi; in locale dal PC, con mod e pannelli |
 | Automazione | Task schedulati cloud (claude.ai/code/routines) | Ingestion periodica, riconciliazione, curator |
 | Fonti | Connettore Microsoft 365 (tenant blueage.it) | Lettura di SharePoint, OneDrive e Outlook; upload dei file prodotti |
 | Visualizzazione | Obsidian (vault = clone del repo) | Lettura, grafo, cattura veloce; `home.md` come pagina iniziale |
 | Riepilogo | Dashboard Cockpit su claude.ai (artifact privato) | Calendario Outlook dal vivo, progetti e attività dal vault |
+| Pannello locale | Mod `cockpit` dell'app desktop (caricata sull'account, si attiva una volta per PC) | Nelle sessioni locali aperte sul vault: calendario Outlook dal vivo, scadenze e progetti letti dai file; `/cockpit` lo dà in testo dove il pannello non si disegna |
 | Documenti originali | Restano su SharePoint, OneDrive e Outlook | Nel repo vanno solo le note markdown che li citano |
 
 Vincoli dell'ambiente cloud da rispettare:
 - Ogni sessione parte da un clone nuovo. Tutto ciò che conta (regole, skill, agenti, hook, stato) deve essere committato.
-- Il setup locale di Claude Code non arriva in cloud.
-- `/plugin` non è disponibile: le skill stanno in `.claude/skills/`.
+- Il setup locale di Claude Code (impostazioni utente, mod) non arriva in cloud: ciò che deve valere ovunque sta in `.claude/` del vault.
+- `/plugin` non è disponibile: le skill stanno in `.claude/skills/`. Le mod funzionano solo nelle sessioni locali.
 - Intervallo minimo dei task schedulati: 1 ora.
+
+Sessioni locali (app desktop sul PC):
+- La sessione si apre sulla cartella del vault: `.claude/settings.json`, hook e comandi si leggono solo dalla cartella aperta. Gli altri repo si clonano accanto (`../<repo>`) e si aggiungono alla sessione quando servono.
+- Il clone resta sul PC e va allineato: lo fa l'hook di avvio (sezione 11).
+- Requisiti del PC: git, python3 (script e pre-commit, 4.4), login GitHub con `gh auth login`, app desktop aggiornata.
+- GitHub passa dal login del PC, senza connettore: le issue si leggono con `gh issue view` (6.6).
+- Il connettore Microsoft 365 ha un nome di server diverso per ambiente (`Microsoft_365` nelle sessioni cloud, `Microsoft-365` nei task schedulati, l'id del connettore nelle sessioni locali). I permessi in `.claude/settings.json` e i `tools` dell'agente `ingestor` li elencano tutti: un nome nuovo va aggiunto in entrambi, altrimenti la modalità Auto blocca le letture e l'ingestor parte senza connettore.
+- I task schedulati restano in cloud qualunque sessione si usi.
 
 ## 3. Struttura del vault
 
@@ -49,7 +58,7 @@ Vincoli dell'ambiente cloud da rispettare:
 │   ├── settings.json        hook e permessi
 │   ├── commands/            comandi manuali (sezione 8)
 │   ├── agents/              agenti specializzati (sezione 9)
-│   ├── hooks/               hook di Claude Code (controllo prima del commit, 4.4)
+│   ├── hooks/               hook di Claude Code (controllo prima del commit 4.4, pull all'avvio 11)
 │   ├── routines/            procedure dei task schedulati (sezione 7)
 │   ├── scripts/             script di servizio (controllo e rinomina delle note 4.4, dati della dashboard 7)
 │   └── skills/              skill (sezione 10)
@@ -166,7 +175,7 @@ Corpo della nota progetto: `## Stato`, `## Attività` (checkbox, con la data nel
 ---
 type: session
 date: 2026-10-22
-surface: cloud               # cloud | claude-ai
+surface: cloud               # cloud | locale | claude-ai
 topics: []
 outcome: <una riga>
 ---
@@ -409,7 +418,7 @@ Dopo ogni lotto l'utente controlla un campione di note prima di passare al succe
 
 ### 6.6 Algoritmo del delta (GitHub)
 
-Il repo deve essere presente nella sessione: nelle sessioni cloud si collega accanto al vault (`../<repo>`). Le issue si leggono con il connettore GitHub (`issue_read`), in sola lettura.
+Il repo deve essere presente nella sessione: nelle sessioni cloud si collega accanto al vault (`../<repo>`), in locale è il clone accanto al vault sul PC. Le issue si leggono in sola lettura con il connettore GitHub (`issue_read`) o, dove il connettore non c'è (sessioni locali), con `gh issue view`.
 
 1. `git -C <clone> fetch origin main`; `head` = `git rev-parse origin/main`.
 2. **File** del perimetro (5.4): `git log -1 --format='%H %cI' origin/main -- <percorso>`. Se il commit è uguale a `items[chiave].commit`, salta. Altrimenti guarda `git diff <commit vecchio>..<commit nuovo> -- <percorso>`:
@@ -498,7 +507,8 @@ Prerequisito: lo script di setup dell'ambiente cloud installa le dipendenze dell
 
 ## 11. Workflow git
 
-- Le sessioni interattive e i task schedulati fanno commit e push direttamente su `main`, prima con `git pull --rebase`.
+- All'avvio di ogni sessione, in cloud e in locale, l'hook `SessionStart` `.claude/hooks/pull-inizio-sessione.sh` fa `git pull --rebase origin main`. Con modifiche non committate lo salta, se fallisce lo annulla: in tutti e due i casi lo segnala e la sessione lo rifà a mano.
+- Le sessioni interattive (cloud e locali) e i task schedulati fanno commit e push direttamente su `main`, prima con `git pull --rebase`. Il cloud vede solo ciò che è su `main`: un commit locale non spinto, o spinto su un altro branch, per i task e le sessioni cloud non esiste.
 - In caso di conflitto su `.state/ingest.json`, vince la versione con il watermark più avanzato. Gli altri conflitti si risolvono riapplicando la propria modifica sulla versione remota.
 - Unica eccezione: il curator lavora su un branch `claude/` e apre una PR.
 - Messaggi di commit: `ingest(sharepoint): 12 note aggiornate`, `session: <slug>`, `project(<slug>): <cosa>`.

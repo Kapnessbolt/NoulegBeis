@@ -1,7 +1,7 @@
 ---
 type: session
 date: {{date:YYYY-MM-DD}}
-surface: cloud              # cloud | claude-ai
+surface: cloud              # cloud | locale | claude-ai
 topics: []
 outcome: ""
 ---
