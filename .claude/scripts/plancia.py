@@ -4,8 +4,8 @@
 Uso:
   python3 .claude/scripts/plancia.py <cartella_output>
 
-Scrive in <cartella_output> progetti.json, attivita.json, inbox.json, task.json
-e digest.json, righe pronte per la dashboard (artifact "Cockpit"). I file non
+Scrive in <cartella_output> progetti.json, attivita.json, log.json, inbox.json,
+task.json e digest.json, righe pronte per la dashboard (artifact "Cockpit"). I file non
 vanno nel repo: la cartella di output sta fuori dal vault. Richiede PyYAML.
 
 La mod `cockpit` dell'app legge gli stessi dati dal vivo con la stessa logica:
@@ -33,6 +33,8 @@ TASK = re.compile(r"^- \[( |x|X)\] (.+)$")
 DUE = re.compile(r"📅\s*(\d{4}-\d{2}-\d{2})")
 SOURCE = re.compile(r"\s*\(((?:\[\[[^\]]+\]\](?:,\s*)?)+)\)\s*$")
 LOG_LINE = re.compile(r"^- (\d{4}-\d{2}-\d{2}) ·", re.M)
+LOG_ROW = re.compile(r"^- (\d{4}-\d{2}-\d{2}) · (.+?)(?: · (?:\[\[[^\]]+\]\](?:,\s*)?)+)?\s*$")
+ULTIMI_PASSI = 5
 ESITO = re.compile(r"^\|\s*([a-z][a-z0-9-]*)\s+(\d{2}:\d{2})\s*\|\s*(.*?)\s*\|\s*$")
 
 # Task schedulati attesi ogni giorno (SPEC 7). Se cambiano gli orari in SPEC, cambiali qui
@@ -176,7 +178,7 @@ def main():
     adesso = datetime.now(ROMA)
     oggi, ora = adesso.date().isoformat(), adesso.strftime("%H:%M")
 
-    progetti, attivita = [], []
+    progetti, attivita, passi = [], [], []
     for path in sorted((ROOT / "projects").glob("*/*.md")):
         slug = path.stem
         if slug != path.parent.name:
@@ -200,7 +202,12 @@ def main():
             })
         aperte = sorted((r for r in righe if not r[2]), key=lambda r: r[1] or "9999")
         log = path.with_name(f"{slug}-log.md")
-        date_log = LOG_LINE.findall(log.read_text(encoding="utf-8")) if log.exists() else []
+        testo_log = log.read_text(encoding="utf-8") if log.exists() else ""
+        date_log = LOG_LINE.findall(testo_log)
+        # Il log è dalla riga più recente: le prime righe sono gli ultimi passi.
+        righe_log = [m for m in map(LOG_ROW.match, testo_log.splitlines()) if m]
+        for n, m in enumerate(sorted(righe_log, key=lambda m: m.group(1), reverse=True)[:ULTIMI_PASSI], 1):
+            passi.append({"id": f"{slug}-{n}", "progetto": slug, "data": m.group(1), "testo": plain(m.group(2))})
         progetti.append({
             "progetto": slug,
             "nome": nome,
@@ -242,7 +249,7 @@ def main():
         })
 
     task = esiti_del_giorno(oggi, ora)
-    files = (("progetti", progetti), ("attivita", attivita), ("inbox", inbox),
+    files = (("progetti", progetti), ("attivita", attivita), ("log", passi), ("inbox", inbox),
              ("task", task), ("digest", digest(oggi, ora)))
     for name, rows in files:
         (out_dir / f"{name}.json").write_text(
