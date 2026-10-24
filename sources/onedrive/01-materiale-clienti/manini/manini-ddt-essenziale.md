@@ -7,14 +7,14 @@ current:
   uri: file:///b!2fHSoBOOE0aRvS_GntS6s6RJcyNKjAJMiRtoiZ6n5xzp8hWMRRoMQKOVYgftTbzT/013UYHJHCY44X6NSPPYNF24EAWAYK64P35
   web_url: https://blueagesrl-my.sharepoint.com/personal/lorenzo_curione_blueage_it/Documents/BlueAge/01_Materiale clienti/Manini/manini_ddt_essenziale.md
   name: manini_ddt_essenziale.md
-  last_modified: 2026-10-23T12:51:00Z
+  last_modified: 2026-10-23T12:51:23Z
 versions:
-  - { name: manini_ddt_essenziale.md, item_id: 013UYHJHCY44X6NSPPYNF24EAWAYK64P35, last_modified: 2026-10-23T12:51:00Z }
+  - { name: manini_ddt_essenziale.md, item_id: 013UYHJHCY44X6NSPPYNF24EAWAYK64P35, last_modified: 2026-10-23T12:51:23Z }
   - { name: manini_ddt_essenziale.md, item_id: 013UYHJHCY44X6NSPPYNF24EAWAYK64P35, last_modified: 2026-10-23T12:04:17Z }
 also_at: []
 status: active
 partial: false
-ingested_at: 2026-10-23T12:52:00Z
+ingested_at: 2026-10-24T04:52:15Z
 projects: ["[[manini-automazione-ddt]]"]
 clients: ["[[manini]]"]
 topics: ["[[ai-nei-processi]]"]
