@@ -37,7 +37,7 @@ Implementare le raccomandazioni di [[2026-10-24-restyling-cockpit]], approvate d
 
 ## Aperti
 
-- [x] Installare `cockpit-0.5.0.plugin` al posto della v0.4.0 e controllare il pannello vero, con il consumo del piano letto dopo una risposta 📅 2026-10-31 ([[2026-10-24-restyling-cockpit-implementazione]]) (chiuso: installata e provata da Lorenzo il 25/10, pannello e consumo del piano giusti)
+- [x] Installare `cockpit-0.5.0.plugin` al posto della v0.4.0 e controllare il pannello vero, con il consumo del piano letto dopo una risposta 📅 2026-10-31 ([[2026-10-24-restyling-cockpit-implementazione]]) (chiuso in [[2026-10-25-cockpit-v05-smistamento]])
 - [ ] SPEC 7, riga `cockpit`: dire che `plancia.py` carica anche log, inbox, task e digest (PR dedicata) ([[2026-10-24-restyling-cockpit-implementazione]])
 - [ ] Cancellare dalla dashboard il vecchio file di `progetti` (`89132086…`): la cancellazione è stata negata dal controllo dei permessi; non rompe nulla ([[2026-10-24-restyling-cockpit-implementazione]])
 - [ ] Verificare il primo giro del task `cockpit` di domani alle 07:40 con i sei dataset ([[2026-10-24-restyling-cockpit-implementazione]])
