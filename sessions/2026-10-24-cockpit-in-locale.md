@@ -36,7 +36,7 @@ Far partire sul PC la mod `cockpit` creata nella sessione [[2026-10-24-interfacc
 
 ## Aperti
 
-- [ ] Provare `/ingest outlook` in una sessione locale dopo il pull, per verificare l'agente ingestor con il nome locale del connettore 📅 2026-10-31 ([[2026-10-24-cockpit-in-locale]])
-- [ ] Controllare in una sessione locale (`/`) che ci siano le skill dell'account (blueage-deck, blueage-corso, ecc.) 📅 2026-10-31 ([[2026-10-24-cockpit-in-locale]])
+- [x] Provare `/ingest outlook` in una sessione locale dopo il pull, per verificare l'agente ingestor con il nome locale del connettore 📅 2026-10-31 ([[2026-10-24-cockpit-in-locale]])
+- [x] Controllare in una sessione locale (`/`) che ci siano le skill dell'account (blueage-deck, blueage-corso, ecc.) 📅 2026-10-31 ([[2026-10-24-cockpit-in-locale]])
 - [x] Rivedere e fare merge della PR su `SPEC.md` (sessioni locali, mod cockpit, `surface: locale`, pull all'avvio): https://github.com/Kapnessbolt/NoulegBeis/pull/13 📅 2026-11-07 ([[2026-10-24-cockpit-in-locale]])
 - [ ] Valutare in locale un hook `Stop` che avvisa se restano modifiche non committate o non spinte, come nel cloud 📅 2026-11-07 ([[2026-10-24-cockpit-in-locale]])
