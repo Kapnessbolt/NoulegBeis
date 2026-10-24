@@ -485,13 +485,16 @@ Esegue le sezioni 6.2–6.4. Usato dai task schedulati (modalità `schedulata`) 
 
 ### 9.2 `curator`
 
-Ogni settimana:
-- legge `sessions/` dell'ultima settimana;
-- individua pattern ricorrenti: correzioni ripetute, procedure manuali ripetute, domande senza risposta nel vault;
-- scrive proposte in `proposals/AAAA-MM-DD-<slug>.md`, ognuna con motivazione, evidenze (link alle sessioni) e testo pronto (regola per `CLAUDE.md`, skill, agente o hook);
+Ogni settimana (task `curator` della domenica, o a mano con `/curator`):
+- legge `sessions/` dell'ultima settimana, e per gli aperti anche i diari precedenti;
+- individua pattern ricorrenti, presenti in almeno 2 diari (basta uno se il diario lo indica come spunto per il curator): correzioni ripetute, procedure manuali ripetute, domande senza risposta nel vault, decisioni prese caso per caso, aperti che restano aperti. Un comando o uno step previsti da questa SPEC ma non ancora fatti non contano come già coperti;
+- scrive al massimo 5 proposte per giro in `proposals/AAAA-MM-DD-<slug>.md`, ognuna con motivazione, evidenze (link alle sessioni) e testo pronto (regola per `CLAUDE.md`, skill, agente o hook); gli altri pattern vanno in una riga ciascuno nella PR;
+- spunta in `sessions/` gli aperti già chiusi altrove, con la prova in coda (`(chiuso in [[<diario o digest>]])`, `(chiuso: PR #n unita)`); quelli chiusi in parte o con prova incerta vanno nella PR come "da verificare";
 - apre una PR su un branch `claude/curator-AAAA-MM-DD`.
 
-Il curator non modifica mai direttamente `CLAUDE.md`, `.claude/` o questa SPEC. Le modifiche entrano solo con il merge della PR da parte dell'utente.
+Le proposte restano in `proposals/` come registro: in revisione l'utente imposta `status` a `accettata` o `rifiutata`. Il curator non ripropone una proposta rifiutata se non ci sono evidenze nuove successive al rifiuto, e nella PR segnala le accettate non ancora applicate.
+
+Il curator non modifica mai direttamente `CLAUDE.md`, `.claude/` o questa SPEC. Le proposte accettate le applica, dopo il merge, una sessione interattiva; quelle che toccano la SPEC con la loro PR dedicata.
 
 ### 9.3 `librarian`
 
