@@ -37,8 +37,8 @@ Chiudere i punti aperti di [[2026-10-22-primo-caricamento-outlook]]: watermark e
 ## Aperti
 
 - [ ] Step 5: valutare la raccolta delle sessioni via trascrizione (elenco sessioni della settimana → diari mancanti in `sessions/`) al posto dell'hook `Stop`; solo sessioni sul vault e chat di claude.ai, escluse quelle di parts-radar
-- [ ] Controllare il primo giro dei task: digest, watermark, nessun doppione
+- [x] Controllare il primo giro dei task: digest, watermark, nessun doppione (chiuso in [[2026-10-23-verifica-primo-giro-task]])
 - [ ] Rendere l'agente `ingestor` indipendente dal nome del connettore (es. togliere la restrizione `tools:`), così torna usabile come subagente
 - [ ] Dopo 3 giorni di esecuzioni senza errori né doppioni, chiudere lo step 4 (SPEC 13)
-- [ ] PR dedicata su `SPEC.md` §7: citare `.claude/routines/` come sede dei prompt dei task e aggiornare gli orari
+- [x] PR dedicata su `SPEC.md` §7: citare `.claude/routines/` come sede dei prompt dei task e aggiornare gli orari (chiuso: PR #10 unita il 23/10)
 - [ ] Far chiedere l'accesso alle API Qricambi dal ricambista pilota ([[adac-bologna]])

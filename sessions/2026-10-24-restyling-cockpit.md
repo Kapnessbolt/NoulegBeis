@@ -39,6 +39,6 @@ Rendere più professionali la dashboard Cockpit su claude.ai e il pannello della
 
 ## Aperti
 
-- [ ] Scegliere le proposte dalla pagina dei mockup e implementarle in un'altra sessione (dashboard, mod, `plancia.py` con task, inbox datata e digest) 📅 2026-11-07 ([[2026-10-24-restyling-cockpit]])
-- [ ] Leggere il consumo vero del piano in una sessione locale con la mod aggiornata e verificare che si aggiorni con le risposte ([[2026-10-24-restyling-cockpit]])
-- [ ] Igiene degli aperti dei diari: molti sono chiusi altrove ma restano spuntati come aperti ([[2026-10-24-restyling-cockpit]])
+- [x] Scegliere le proposte dalla pagina dei mockup e implementarle in un'altra sessione (dashboard, mod, `plancia.py` con task, inbox datata e digest) 📅 2026-11-07 ([[2026-10-24-restyling-cockpit]]) (chiuso in [[2026-10-24-restyling-cockpit-implementazione]])
+- [x] Leggere il consumo vero del piano in una sessione locale con la mod aggiornata e verificare che si aggiorni con le risposte ([[2026-10-24-restyling-cockpit]]) (chiuso in [[2026-10-24-restyling-cockpit-implementazione]])
+- [x] Igiene degli aperti dei diari: molti sono chiusi altrove ma restano spuntati come aperti ([[2026-10-24-restyling-cockpit]]) (chiuso: agente curator con l'igiene degli aperti, commit 04f58fb del 25/10; primo giro il 25/10)

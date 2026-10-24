@@ -33,4 +33,4 @@ Ingerire la libreria Delivery (SPEC 6.5, lotto 2) e creare le schede dei progett
 - [ ] Controllo del campione di 10 note da parte dell'utente
 - [ ] Temi proposti dagli agenti, da valutare: fatturazione elettronica SdI, governance del tenant, migrazione e ripresa dati BC, So Smart/EOS (partner), percorso supply chain e magazzino (offerta), Power BI
 - [ ] Lette in parte: piano attività del nuovo ambiente (righe 173–185), indice evidenze, 6 deck Manini (ultime slide)
-- [ ] Prossimo lotto: Shared Documents
+- [x] Prossimo lotto: Shared Documents (chiuso in [[2026-10-22-primo-caricamento-shared-documents-onedrive]])

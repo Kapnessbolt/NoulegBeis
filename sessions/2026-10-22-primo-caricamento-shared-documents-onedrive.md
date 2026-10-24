@@ -34,9 +34,9 @@ Ingerire la libreria Shared Documents di `sites/internal` (lotto 3) e la cartell
 
 ## Aperti
 
-- [ ] PR #9 da approvare (SPEC 1.9): la cartella chat si riconosce dal suffisso `chat` (oggi `00_chat/`) e le sottocartelle di `BlueAge/` sono incluse senza doverle elencare; allineato CLAUDE.md
+- [x] PR #9 da approvare (SPEC 1.9): la cartella chat si riconosce dal suffisso `chat` (oggi `00_chat/`) e le sottocartelle di `BlueAge/` sono incluse senza doverle elencare; allineato CLAUDE.md (chiuso: PR #9 unita il 22/10)
 - [x] Company Profile: l'utente conferma che la copia del sito partner (2026-10-19) è la versione più nuova; ora è la `current` di [[blueage-companyprofile]], con la v24 nello storico
 - [x] `pulse-i-en` va allineata alla K (EBITDA del caso reale 2,8 M€ contro 2,35 M€): l'utente ne ha preso atto
 - [x] Proposte approvate dall'utente e create: clienti [[bertazzoni]], [[mc-bride]], [[loacker]], [[gotha]], [[fresenius-kabi]], [[eurochef]], [[b-braun]] (prospect) e [[cellularline]] (caso storico di Pulse, `da-verificare`); temi [[parts-radar]], [[manager-operativo]], [[twoteam]] (`da-verificare`: è un partner, non un tema in senso stretto)
 - [x] `Attachments/Ipotesi Formazione IT.docx` nella radice di OneDrive resta fuori (decisione dell'utente)
-- [ ] Prossimo lotto: Outlook, ultimi 60 giorni
+- [x] Prossimo lotto: Outlook, ultimi 60 giorni (chiuso in [[2026-10-22-primo-caricamento-outlook]])

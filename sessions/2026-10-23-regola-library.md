@@ -26,4 +26,4 @@ Capire come il vault e il repo `manini-automazione-ddt` sono collegati nel proge
 
 ## Aperti
 
-- [ ] Spunto per il curator, già aperto in [[2026-10-23-manini-automazione-ddt]]: una regola su come portare un Project claude.ai nel vault (repo dedicato, dati su OneDrive, essenziale come nota hub), da includere con la regola di ripubblicazione in `Library/` se lo schema si replica su altri clienti
+- [x] Spunto per il curator, già aperto in [[2026-10-23-manini-automazione-ddt]]: una regola su come portare un Project claude.ai nel vault (repo dedicato, dati su OneDrive, essenziale come nota hub), da includere con la regola di ripubblicazione in `Library/` se lo schema si replica su altri clienti (proposta [[2026-10-25-progetto-claude-ai-nel-vault]])

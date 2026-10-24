@@ -29,5 +29,5 @@ Collegare Obsidian al vault per navigarlo (link, backlink, grafo, ricerca, attiv
 ## Aperti
 
 - [ ] Utente: configurare Obsidian sul PC (Git per Windows, clone, plugin Obsidian Git solo in pull), più avanti
-- [ ] Valutare una nota cruscotto con Tasks e Dataview (attività in scadenza, progetti attivi): serve prima una regola sul `type`
+- [x] Valutare una nota cruscotto con Tasks e Dataview (attività in scadenza, progetti attivi): serve prima una regola sul `type` (chiuso in [[2026-10-23-plancia-dashboard]])
 - [ ] SPEC 8, step 8: quando il setup funziona, aggiornare con una PR il punto aperto sulla sincronizzazione mobile (soluzione: Obsidian Git solo in pull)
