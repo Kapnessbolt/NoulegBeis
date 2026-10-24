@@ -23,10 +23,15 @@ Pacchetto da vendere che costruisce per un manager o un reparto una memoria di l
 
 ## Dove è usato
 
-- Questo vault è la versione personale di Lorenzo ([[2026-10-22-primo-caricamento-shared-documents-onedrive]])
-- Interfaccia della versione personale, due viste che convivono con livelli di dettaglio diversi: la dashboard Cockpit su claude.ai è il briefing, leggibile anche dal telefono e dalle sessioni cloud, alimentata dalle routine `DailyBoard`; la mod `cockpit` dell'app desktop è la postazione operativa al PC (consumo del piano Max, esito dei task, prossime cose, avvio degli agenti) ([[2026-10-24-restyling-cockpit]], [[2026-10-24-restyling-cockpit-implementazione]], [[2026-10-25-cockpit-v05-smistamento]])
+- Questo vault è la versione personale di Lorenzo e il banco di prova del prodotto: quello che funziona e i limiti trovati qui orientano l'offerta (sezione sotto) ([[2026-10-22-primo-caricamento-shared-documents-onedrive]], [[2026-10-25-cockpit-v05-smistamento]])
+
+## Versione personale e banco di prova
+
+- Interfaccia, due viste che convivono con livelli di dettaglio diversi: la dashboard Cockpit su claude.ai è il briefing, leggibile anche dal telefono e dalle sessioni cloud, alimentata dalle routine `DailyBoard`; la mod `cockpit` dell'app desktop è la postazione operativa al PC (consumo del piano Max, esito dei task, prossime cose, avvio degli agenti) ([[2026-10-24-restyling-cockpit]], [[2026-10-24-restyling-cockpit-implementazione]], [[2026-10-25-cockpit-v05-smistamento]])
 - Le mod (pannelli accanto alla chat) compaiono solo dove un'app si collega alla sessione come superficie: sul desktop sì, sul telefono no, nemmeno seguendo una sessione locale; lì resta la dashboard ([[2026-10-24-interfaccia-personalizzata]], [[2026-10-25-cockpit-v05-smistamento]])
 - Scartate per l'interfaccia: un frontend locale che pilota Claude Code con il login Max (uso personale tollerato ma non esplicitamente permesso, credito Agent SDK separato dal 15/06/2026) e un'interfaccia su API key (a consumo, connettori e task da rifare). Le API delle mod sono in early access e possono cambiare ([[2026-10-24-interfaccia-personalizzata]])
+- Il connettore Microsoft 365 ha un nome di server diverso in sessione cloud, task schedulati e sessione locale: permessi e agenti vanno scritti per tutti e tre, e un nome nuovo blocca le letture finché non si aggiunge ([[2026-10-24-cockpit-in-locale]])
+- Controllare i task schedulati è stata la procedura più ripetuta della prima settimana, e gli errori veri (ordine dei comandi git, ore in UTC, finestra del digest) sono usciti solo dalla verifica a mano: un cliente avrà bisogno di un controllo dei giri pronto, non solo di OK/errore ([[2026-10-25-comando-verifica-task]])
 
 ## Fonti
 
