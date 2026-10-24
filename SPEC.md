@@ -1,6 +1,6 @@
 # SPEC · Second Brain BlueAge (personale)
 
-Versione 1.10 · 23/10/2026 · Owner: Lorenzo Curione
+Versione 1.11 · 25/10/2026 · Owner: Lorenzo Curione
 
 Questo file è la specifica di riferimento del vault. Ogni sessione Claude Code che costruisce o modifica il sistema parte da qui. Le modifiche alla specifica si fanno con una PR dedicata.
 
@@ -443,7 +443,7 @@ Orari in Europe/Rome, fuori dagli orari pieni per evitare i ritardi del sistema.
 | `ingest-github` | Ogni giorno alle 07:20 | GitHub (il vault e i repo di 5.4 come sorgenti) | Opus | 6.6 |
 | `reconcile` | Domenica alle 08:45 | Microsoft 365 | Sonnet | 6.4 |
 | `cockpit` | Ogni giorno alle 07:40 e alle 13:40 (due task, `DailyBoard` e `DailyBoard2`) | Nessuno | — | Rigenera con `plancia.py` progetti e attività e li carica sulla dashboard Cockpit; riga d'esito nel digest |
-| `curator` | Domenica alle 21:10 (da creare con lo step 7) | Nessuno | — | Sezione 9.2 |
+| `curator` | Domenica alle 21:10 | GitHub, solo per aprire la PR | Opus | 9.2: proposte dai diari della settimana su un branch suo, con una PR |
 | `sessions-cleanup` | Il 1° del mese alle 06:10 (da creare con lo step 5) | Nessuno | — | Cancella `sessions/_raw/` più vecchio di 30 giorni |
 
 Il `cockpit` gira in un ambiente cloud dedicato, senza connettori, perché carica i dati su claude.ai; il calendario la dashboard lo legge da sé con il connettore Microsoft 365 di chi la apre. Il `digest` gira dopo gli ingest del mattino; l'ingest-outlook delle 13:15 scrive nel digest dello stesso giorno, e il digest del giorno dopo non ripete le sue note.
@@ -454,6 +454,8 @@ Ogni task:
 - esegue l'agente `ingestor` dentro la propria sessione, non come subagente;
 - fa commit, poi `git pull --rebase` e push su `main`;
 - registra l'esito nel digest del giorno ("OK" oppure gli errori), con l'ora in Europe/Rome.
+
+Eccezione: il `curator` non scrive nel digest e non fa push su `main` (sezione 3). Lavora su un branch `claude/curator-AAAA-MM-DD` e il suo esito è la PR; se non trova niente da proporre non apre la PR.
 
 ## 8. Comandi manuali (`.claude/commands/`)
 
@@ -467,6 +469,7 @@ Ogni task:
 | `/cattura <testo>` | Nota rapida in `inbox/` |
 | `/smista` | Smista `inbox/` nei progetti e nei temi |
 | `/controlla` | Controllo del vault (4.4): errori, possibili doppioni e indice per categoria, con le correzioni proposte |
+| `/curator [da data] [a data]` | Giro del curator a mano (9.2), di default sugli ultimi 7 giorni: mostra le proposte, registra le decisioni dell'utente nel `status` e apre la PR |
 
 **Chat di claude.ai nel vault.** Nella chat basta chiedere "salva il riassunto di questa chat nel mio OneDrive in BlueAge/00_chat". Il connettore M365 carica il file, e l'ingestion lo trasforma in una nota di tipo `session` con `surface: claude-ai`.
 
@@ -530,7 +533,7 @@ Prerequisito: lo script di setup dell'ambiente cloud installa le dipendenze dell
 | 4 | Task schedulati di ingestion, digest e riconciliazione | 3 giorni di run senza errori e senza doppioni |
 | 5 | `/chiudi-sessione`, hook di sessione, bridge della cartella chat | Le sessioni della settimana compaiono in `sessions/` |
 | 6 | Skill `blueage-deck` e `blueage-corso` snellita | Un deck generato in cloud e caricato su SharePoint |
-| 7 | Agente `curator` e `librarian` | Prima PR di proposte ricevuta e valutata |
+| 7 | Agente `curator`, comando `/curator` e task `curator`; agente `librarian` | Prima PR di proposte ricevuta e valutata (curator: PR #14 del 25/10) |
 | 8 | Obsidian sui dispositivi (clone e sincronizzazione git) | Il grafo è visibile su PC e telefono |
 | 9 | Dashboard Cockpit, task `cockpit` e nota `home.md` | 3 giorni di aggiornamenti della dashboard senza errori; `home.md` leggibile in Obsidian con Tasks e Dataview |
 | 10 | Fonte GitHub (5.4, 6.6) e task `ingest-github` | 3 giorni di run senza errori; il log di `parts-radar-sviluppo` riceve una riga per giorno di lavoro sul repo |
