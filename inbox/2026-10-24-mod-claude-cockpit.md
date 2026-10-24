@@ -22,6 +22,11 @@ Idea emersa nella sessione [[2026-10-24-interfaccia-personalizzata]]: invece di 
 - Prototipo impacchettato come `cockpit.plugin` (mod `cockpit` v0.1.0), consegnato in chat per salvarlo sull'account.
 - Provato il 24/10 su una sessione locale dell'app desktop (Ubuntu): pannello con calendario, scadenze e progetti funzionante, dopo aver attivato la mod (+ → Plugin), aggiornato l'app e autorizzato la lettura del calendario con il nome locale del connettore ([[2026-10-24-cockpit-in-locale]]).
 
+## Restyling del 24/10
+
+- Ricerca e 6 mockup in [[2026-10-24-restyling-cockpit]] (pagina: https://claude.ai/artifact/TSpB98aeJteXJcoi8txn31). Ruoli proposti: la dashboard resta come briefing per telefono e cloud, la mod diventa la postazione al PC con piano, task e azioni.
+- Raccomandazione sulla decisione qui sotto: la mod non sostituisce la dashboard finché il pannello non compare sul telefono; le routine `DailyBoard` restano perché alimentano la dashboard.
+
 ## Da fare
 
 - [x] Approfondire le mod: cosa si può fare, come si installano, su quali superfici funzionano (desktop, telefono, cloud) 📅 2026-10-31 ([[2026-10-24-interfaccia-personalizzata]])
