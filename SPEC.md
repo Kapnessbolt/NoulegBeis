@@ -1,6 +1,6 @@
 # SPEC · Second Brain BlueAge (personale)
 
-Versione 1.12 · 25/10/2026 · Owner: Lorenzo Curione
+Versione 1.13 · 25/10/2026 · Owner: Lorenzo Curione
 
 Questo file è la specifica di riferimento del vault. Ogni sessione Claude Code che costruisce o modifica il sistema parte da qui. Le modifiche alla specifica si fanno con una PR dedicata.
 
@@ -468,7 +468,7 @@ Eccezione: il `curator` non scrive nel digest e non fa push su `main` (sezione 3
 | `/ingest-file <url o nome>` | Ingerisce un singolo documento, anche fuori dal perimetro |
 | `/oggi` | Agenda: attività in scadenza, novità dall'ultimo digest, progetti fermi da più di 14 giorni |
 | `/progetto <nome>` | Stato completo di un progetto: attività, decisioni, fonti recenti |
-| `/chiudi-sessione` | Scrive il diario della sessione in `sessions/` e fa commit e push |
+| `/chiudi-sessione` | Scrive o aggiorna il diario della sessione in `sessions/`, spunta gli aperti dei diari precedenti chiusi nella sessione, poi commit e push. È una skill (sezione 10): parte anche quando l'utente chiude la sessione a parole |
 | `/cattura <testo>` | Nota rapida in `inbox/` |
 | `/smista` | Smista `inbox/` nei progetti e nei temi |
 | `/controlla` | Controllo del vault (4.4): errori, possibili doppioni e indice per categoria, con le correzioni proposte |
@@ -510,6 +510,7 @@ Risponde alle domande sulla knowledge:
 | `blueage-deck` | Plugin claude.ai | Copiata così com'è |
 | `blueage-corso` | Plugin claude.ai | Snellita: `SKILL.md` breve con il flusso; i dettagli (COMPASS, RED TAG, Tocca a voi, kit docente) in file di riferimento caricati solo quando servono |
 | `blueage-animazioni` | Plugin claude.ai | Da valutare dopo lo step 6 |
+| `chiudi-sessione` | Proposta del curator del 25/10 | Scritta nel vault: è `/chiudi-sessione` (sezione 8) |
 
 I file prodotti dalle skill (pptx, mp4, png) non vanno nel repo. Si caricano su SharePoint o OneDrive con il connettore, e la nota del progetto ne riporta il link. Il `.gitignore` esclude `*.pptx`, `*.mp4` e `*.png` in tutto il vault, tranne dentro `.claude/skills/` (dove stanno gli asset delle skill). Di conseguenza nemmeno le immagini incollate nelle note Obsidian entrano nel repo.
 
@@ -525,7 +526,7 @@ Prerequisito: lo script di setup dell'ambiente cloud installa le dipendenze dell
 
 ## 12. Diario delle sessioni
 
-- Fonte primaria: `/chiudi-sessione`, che scrive il diario (obiettivo, decisioni, file toccati, aperti).
+- Fonte primaria: la skill `chiudi-sessione` (`/chiudi-sessione`), che scrive il diario (obiettivo, decisioni, file toccati, aperti) e spunta gli aperti dei diari precedenti chiusi nella sessione.
 - Rete di sicurezza: un hook `Stop` in `.claude/settings.json` copia la trascrizione in `sessions/_raw/` (il percorso arriva all'hook come `transcript_path`).
 - Retention: diari per sempre; trascrizioni grezze 30 giorni.
 - Da verificare nello step 5: comportamento degli hook nelle sessioni cloud quando l'ambiente scade per inattività.
