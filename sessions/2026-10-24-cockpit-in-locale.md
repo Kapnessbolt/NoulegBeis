@@ -21,12 +21,15 @@ Far partire sul PC la mod `cockpit` creata nella sessione [[2026-10-24-interfacc
 - In locale il connettore Microsoft 365 ha un altro nome di server (`6501b655-9b79-4832-8016-17eddb19e4b6`, al posto di `Microsoft_365`): la modalità Auto bloccava la lettura del calendario della mod. Aggiunti i permessi in lettura con il nome locale, sia nelle impostazioni utente del PC sia in `.claude/settings.json` del vault.
 - Lo stesso nome mancava in `tools` dell'agente `ingestor`: in locale `/ingest` sarebbe partito senza connettore. Aggiunti i quattro strumenti in lettura con il nome locale.
 - GitHub in locale passa da git e `gh` con il login del PC, non dal connettore: le issue si leggono con `gh issue view`. L'agente `ingestor` lo usa quando `issue_read` manca (permesso `Bash(gh issue view:*)` nel vault), così anche `/ingest github` funziona in locale.
+- Pull automatico all'apertura della sessione, in cloud e in locale: hook `SessionStart` `.claude/hooks/pull-inizio-sessione.sh`. Se ci sono modifiche non committate o il pull fallisce non blocca l'avvio: lo dice, e Claude lo rifà a mano (`CLAUDE.md` §1).
 - Confronto cloud/locale annotato in [[claude-code-cloud-e-locale]].
 
 ## File toccati
 
 - `.claude/agents/ingestor.md`
 - `.claude/settings.json`
+- `.claude/hooks/pull-inizio-sessione.sh` (nuovo)
+- `CLAUDE.md`
 - `topics/claude-code-cloud-e-locale.md` (nuovo)
 - `inbox/2026-10-24-mod-claude-cockpit.md`
 - `sessions/2026-10-24-cockpit-in-locale.md` (nuovo)

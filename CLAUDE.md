@@ -4,7 +4,7 @@ Questo repo è il second brain personale di Lorenzo Curione sulla knowledge Blue
 
 ## 1. All'avvio di ogni sessione
 
-1. `git pull --rebase origin main`.
+1. `git pull --rebase origin main`. Lo fa l'hook di avvio (`.claude/hooks/pull-inizio-sessione.sh`), in cloud e in locale: se nel contesto c'è "Vault allineato" è fatto; se dice saltato o non riuscito, fallo tu.
 2. Leggi questo file. Leggi `SPEC.md` solo nelle sezioni che servono al compito.
 3. Se il compito tocca un progetto, apri prima `projects/<slug>/<slug>.md`.
 
