@@ -31,4 +31,4 @@ Chiudere gli aperti sulla mod `cockpit` dopo l'installazione della v0.5.0 e smis
 
 ## Aperti
 
-- [ ] Unire la PR #19 sulla SPEC (1.14); dopo il merge spuntare l'aperto "SPEC 7, riga `cockpit`" di [[2026-10-24-restyling-cockpit-implementazione]]
+- [x] Unire la PR #19 sulla SPEC (1.14); dopo il merge spuntare l'aperto "SPEC 7, riga `cockpit`" di [[2026-10-24-restyling-cockpit-implementazione]] (chiuso: PR #19 unita)
