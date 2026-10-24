@@ -35,7 +35,7 @@ Idea emersa nella sessione [[2026-10-24-interfaccia-personalizzata]]: invece di 
 - [x] Prototipo: Cockpit come pannello accanto alla chat 📅 2026-11-07 ([[2026-10-24-interfaccia-personalizzata]])
 - [x] Salvare `cockpit.plugin` sull'account e provare il pannello dall'app desktop su una sessione locale aperta sul vault 📅 2026-10-31 ([[2026-10-24-cockpit-in-locale]])
 - [ ] Provare se il telefono mostra il pannello seguendo una sessione locale (Claude Desktop o `claude remote-control`) 📅 2026-10-31 ([[2026-10-24-interfaccia-personalizzata]])
-- [ ] Installare `cockpit-0.4.0.plugin` (pannello snello) al posto della v0.3.x e controllare il pannello con il consumo vero del piano 📅 2026-10-31 ([[2026-10-24-restyling-cockpit-implementazione]])
+- [ ] Installare `cockpit-0.5.0.plugin` (pannello snello con gli agenti) al posto della v0.4.0 e controllare il pannello con il consumo vero del piano 📅 2026-10-31 ([[2026-10-24-restyling-cockpit-implementazione]])
 - [ ] Decidere se la mod sostituisce l'artifact Cockpit e le routine `DailyBoard` 📅 2026-11-07 ([[2026-10-24-interfaccia-personalizzata]])
 
 Da smistare: se l'idea parte, diventa una sezione della scheda della plancia o un progetto a sé.
