@@ -20,7 +20,7 @@ Far partire sul PC la mod `cockpit` creata nella sessione [[2026-10-24-interfacc
 - Setup del PC (Ubuntu, Dell Vostro 7570): repo in `~/Documents/BlueAge/`, login GitHub con `gh auth login` (git non accetta più la password), app `claude-desktop` aggiornata da 1.17377.1 riattivando il repository apt di Anthropic in `/etc/apt/sources.list.d/claude-desktop.list`: con la versione vecchia i modelli nuovi erano grigi e la mod non partiva.
 - In locale il connettore Microsoft 365 ha un altro nome di server (`6501b655-9b79-4832-8016-17eddb19e4b6`, al posto di `Microsoft_365`): la modalità Auto bloccava la lettura del calendario della mod. Aggiunti i permessi in lettura con il nome locale, sia nelle impostazioni utente del PC sia in `.claude/settings.json` del vault.
 - Lo stesso nome mancava in `tools` dell'agente `ingestor`: in locale `/ingest` sarebbe partito senza connettore. Aggiunti i quattro strumenti in lettura con il nome locale.
-- GitHub in locale passa da git e `gh` con il login del PC, non dal connettore: `issue_read` non c'è, ma l'ingestion di GitHub gira nel suo task schedulato in cloud.
+- GitHub in locale passa da git e `gh` con il login del PC, non dal connettore: le issue si leggono con `gh issue view`. L'agente `ingestor` lo usa quando `issue_read` manca (permesso `Bash(gh issue view:*)` nel vault), così anche `/ingest github` funziona in locale.
 - Confronto cloud/locale annotato in [[claude-code-cloud-e-locale]].
 
 ## File toccati

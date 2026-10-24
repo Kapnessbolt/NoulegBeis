@@ -12,6 +12,7 @@
       "mcp__6501b655-9b79-4832-8016-17eddb19e4b6__read_resource",
       "mcp__6501b655-9b79-4832-8016-17eddb19e4b6__outlook_calendar_search",
       "mcp__github__issue_read",
+      "Bash(gh issue view:*)",
       "Bash(git pull:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
