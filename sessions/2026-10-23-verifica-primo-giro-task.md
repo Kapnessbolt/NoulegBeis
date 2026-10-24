@@ -34,4 +34,4 @@ Chiudere l'aperto di [[2026-10-22-watermark-e-task-schedulati]] "Controllare il 
 
 - [ ] Togliere il connettore `visualize` dai task, dall'interfaccia di claude.ai (l'utente, senza fretta)
 - [ ] Controllare `ingest-outlook 2` di oggi e il primo `Reconcile` di domenica 25/10
-- [ ] Ingest-sharepoint del 24/10: il watermark SharePoint/OneDrive deve salire a 2026-10-21T06:30:14Z (regola nuova di SPEC 6.2)
+- [x] Ingest-sharepoint del 24/10: il watermark SharePoint/OneDrive deve salire a 2026-10-21T06:30:14Z (regola nuova di SPEC 6.2) (chiuso in [[2026-10-25-curator]]: lo scarto viene da un test dell'ingestor fatto da Lorenzo il pomeriggio del 24/10)
