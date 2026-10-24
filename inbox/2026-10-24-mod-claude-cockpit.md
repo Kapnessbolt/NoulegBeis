@@ -28,6 +28,7 @@ Idea emersa nella sessione [[2026-10-24-interfaccia-personalizzata]]: invece di 
 - Raccomandazione sulla decisione qui sotto: la mod non sostituisce la dashboard finché il pannello non compare sul telefono; le routine `DailyBoard` restano perché alimentano la dashboard.
 - Implementato il 24/10 ([[2026-10-24-restyling-cockpit-implementazione]]): dashboard A1 con inbox, task e digest; mod v0.3.0 con piano Max, riga di stato e banda oltre il 90%; dopo la prova, pannello snello v0.4.0 (piano, task, prossime cose, link alla dashboard), pacchetto `cockpit-0.4.0.plugin`.
 - 25/10: installata la v0.5.0 (pannello snello con gli agenti), funziona sul desktop con il consumo del piano giusto. Sul telefono le mod non compaiono: il pannello resta solo per il PC, al telefono serve la dashboard.
+- Decisione del 25/10 (Lorenzo): la mod non sostituisce la dashboard. Convivono con ruoli diversi: la dashboard dà un livello di dettaglio diverso, la mod è la parte operativa al PC. Le routine `DailyBoard` restano.
 
 ## Da fare
 
@@ -37,6 +38,6 @@ Idea emersa nella sessione [[2026-10-24-interfaccia-personalizzata]]: invece di 
 - [x] Salvare `cockpit.plugin` sull'account e provare il pannello dall'app desktop su una sessione locale aperta sul vault 📅 2026-10-31 ([[2026-10-24-cockpit-in-locale]])
 - [x] Provare se il telefono mostra il pannello seguendo una sessione locale (Claude Desktop o `claude remote-control`) 📅 2026-10-31 ([[2026-10-24-interfaccia-personalizzata]]) (chiuso: prova del 25/10, il telefono non mostra le mod)
 - [x] Installare `cockpit-0.5.0.plugin` (pannello snello con gli agenti) al posto della v0.4.0 e controllare il pannello con il consumo vero del piano 📅 2026-10-31 ([[2026-10-24-restyling-cockpit-implementazione]]) (chiuso: installata e provata il 25/10, funziona)
-- [ ] Decidere se la mod sostituisce l'artifact Cockpit e le routine `DailyBoard` 📅 2026-11-07 ([[2026-10-24-interfaccia-personalizzata]])
+- [x] Decidere se la mod sostituisce l'artifact Cockpit e le routine `DailyBoard` 📅 2026-11-07 ([[2026-10-24-interfaccia-personalizzata]]) (chiuso il 25/10: non la sostituisce, convivono)
 
 Da smistare: se l'idea parte, diventa una sezione della scheda della plancia o un progetto a sé.
