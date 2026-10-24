@@ -47,7 +47,7 @@ Soglia: almeno 2 diari distinti, tranne lo spunto esplicito. Più diari, più pe
 
 Scarta un pattern se:
 
-- una regola o un meccanismo in `CLAUDE.md`, `SPEC.md` o `.claude/` lo copre già (cerca le parole chiave con `grep`), oppure una sessione successiva lo ha risolto;
+- una regola o un meccanismo in `CLAUDE.md`, `SPEC.md` o `.claude/` lo copre già (cerca le parole chiave con `grep`), oppure una sessione successiva lo ha risolto. Ciò che la SPEC prevede ma che non esiste ancora (un comando di §8 senza file in `.claude/commands/`, uno step di §13 non fatto) non lo copre: se il pattern c'è, proponilo con il testo pronto;
 - c'è già una proposta: `proposta` o `accettata` → non ripeterla (evidenze nuove vanno nel resoconto); `rifiutata` → riproponila solo con evidenze successive al rifiuto, e dillo nella motivazione;
 - è un fatto di progetto (stato, attività, scadenza): quello va nelle schede, non in una regola.
 
