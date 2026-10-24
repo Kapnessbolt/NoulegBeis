@@ -32,6 +32,6 @@ Garantire che link e concetti del vault siano affidabili: nessun wikilink rotto 
 
 ## Aperti
 
-- [ ] Verificare in una sessione nuova che l'hook di pre-commit sia attivo (in questa sessione la configurazione era già caricata)
-- [ ] Verificare il primo run del workflow su GitHub dopo il merge
+- [x] Verificare in una sessione nuova che l'hook di pre-commit sia attivo (in questa sessione la configurazione era già caricata) (chiuso in [[2026-10-22-temi-ruoli-e-hook]])
+- [x] Verificare il primo run del workflow su GitHub dopo il merge (chiuso: workflow «Controllo del vault» riuscito dal primo run del 22/10 sulla PR #4, 90 run su 90 riusciti al 24/10)
 - [ ] Verifica del contenuto con un agente (opzione C), da fare allo step 7

@@ -28,4 +28,4 @@ Chiudere le decisioni sul lotto Delivery e verificare in una sessione nuova l'ho
 ## Aperti
 
 - [x] Limite dell'hook chiuso con il pre-commit di git (SPEC 1.8, PR #8 mergiata)
-- [ ] Prossimo lotto: Shared Documents
+- [x] Prossimo lotto: Shared Documents (chiuso in [[2026-10-22-primo-caricamento-shared-documents-onedrive]])

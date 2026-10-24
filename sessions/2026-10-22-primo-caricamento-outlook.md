@@ -41,6 +41,6 @@ Ingerire la casella Outlook degli ultimi 60 giorni (dal 2026-08-23), ultimo lott
 
 ## Aperti
 
-- [ ] Inizializzare i watermark di SharePoint, OneDrive e Outlook e passare allo step 4 (task schedulati), in una nuova sessione
-- [ ] Verificare l'esito della call con Qricambi del 05/10
-- [ ] Rivedere e togliere il tag `da-verificare` da [[cellularline]] e [[twoteam]]
+- [x] Inizializzare i watermark di SharePoint, OneDrive e Outlook e passare allo step 4 (task schedulati), in una nuova sessione (chiuso in [[2026-10-22-watermark-e-task-schedulati]])
+- [x] Verificare l'esito della call con Qricambi del 05/10 (chiuso in [[2026-10-22-watermark-e-task-schedulati]])
+- [x] Rivedere e togliere il tag `da-verificare` da [[cellularline]] e [[twoteam]] (chiuso in [[2026-10-22-watermark-e-task-schedulati]])

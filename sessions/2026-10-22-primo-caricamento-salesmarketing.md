@@ -36,4 +36,4 @@ Avviare lo step 3 (SPEC 6.5): inventario delle librerie e primo lotto di ingesti
 - [x] M1 resta parziale (prime 30 slide su 113): deciso dall'utente
 - [x] Incoerenza Pulse 2009/2012: il deck resta com'è
 - [x] Temi proposti dagli agenti (incentivi, canale partner, order-to-cash, Digital Bridge Group): per ora non servono
-- [ ] Prossimo lotto: Delivery
+- [x] Prossimo lotto: Delivery (chiuso in [[2026-10-22-primo-caricamento-delivery]])

@@ -35,5 +35,5 @@ Implementare lo step 2 della SPEC: agente `ingestor` e comandi `/ingest`, `/inge
 ## Aperti
 
 - [x] PR dedicata sulla SPEC: campo `topics: []` in `source-doc` e `source-mail`; eccezione "creazione note nuove in modalità interattiva" nella sezione 3 (SPEC 1.2, PR aperta in questa sessione)
-- [ ] Sul sito `sites/partner` c'è `BlueAge_CompanyProfile.pdf` modificato il 2026-10-19, con un testo diverso dalla v24: verificare se è una versione più recente da portare in `SalesMarketing/Deck`
-- [ ] Verificare che il nome del server MCP (`Microsoft_365`) sia lo stesso nei task schedulati: se cambia, l'agente resta senza tool M365
+- [x] Sul sito `sites/partner` c'è `BlueAge_CompanyProfile.pdf` modificato il 2026-10-19, con un testo diverso dalla v24: verificare se è una versione più recente da portare in `SalesMarketing/Deck` (chiuso in [[2026-10-22-primo-caricamento-shared-documents-onedrive]])
+- [x] Verificare che il nome del server MCP (`Microsoft_365`) sia lo stesso nei task schedulati: se cambia, l'agente resta senza tool M365 (chiuso in [[2026-10-23-verifica-primo-giro-task]])
