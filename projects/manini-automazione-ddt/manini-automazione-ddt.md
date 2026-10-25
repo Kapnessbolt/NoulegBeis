@@ -4,7 +4,7 @@ status: attivo
 role: "AI consultant: analisi, architettura e kit tecnico del caso entrata merci"
 clients: ["[[manini]]"]
 people: ["[[leonardo-pinsone]]", "[[luca-zamponi]]", "[[angelo-santilli]]", "[[cristian-schifone]]"]
-updated: 2026-10-23
+updated: 2026-10-25
 ---
 
 # Manini · automazione entrata merci da DDT
@@ -15,8 +15,8 @@ updated: 2026-10-23
 - Lavoro tecnico nel repo GitHub privato [manini-automazione-ddt](https://github.com/Kapnessbolt/manini-automazione-ddt) (report, schema, prompt, script); i dati reali (DDT, verità, inventario) restano su OneDrive in `Progetto Automazione/Dati/` e non entrano mai nel repo. Le copie condivise dei report sono in `Progetto Automazione/Library/` ([[2026-10-23-manini-automazione-ddt]])
 - Step 1, inventario: fatto. 15 DDT reali di 14 fornitori, nessun PDF nativo, ordine Manini presente in 10 su 15, codice Manini esplicito in 2 su 15 ([[01-inventario]])
 - Step 2, schema JSON: fatto. Schema canonico più versione piatta per AI Builder e Copilot Studio, 13 codici di eccezione ([[03-schema-ddt]])
-- Step 3, benchmark: fatto. Campi critici corretti al 100% con il modello generativo standard, all'88% con quello veloce, al 27% con l'OCR classico; il prompt v1.1 è da ritestare ([[04-benchmark]], [[prompt-estrazione-ddt]])
-- Step 4, matching contro ordini simulati: fatto in simulazione. Con l'ordine sul DDT l'abbinamento si automatizza senza errori anche a tabella codici vuota (0 errori su 30 simulazioni); DDT pronti 5–7 su 15 all'avviamento con politica automatica, 6–7 a regime; tetto 10/15 per anomalie di processo e DDT senza ordine. Da ripetere con le righe d'ordine vere ([[05-matching]])
+- Step 3, benchmark: fatto. Campi critici corretti al 100% con il modello generativo standard, all'88% con quello veloce, al 27% con l'OCR classico. Prompt v1.1 ritestato il 25/10: standard 100% e 15/15 DDT pronti (perfetti da 11 a 14), veloce dall'88% al 98% e da 8 a 11 DDT pronti; gli errori che arrivano a un DDT pronto sono tutti segnati in `campi_incerti` ([[04-benchmark]], [[prompt-estrazione-ddt]])
+- Step 4, matching contro ordini simulati: fatto in simulazione. Con l'ordine sul DDT l'abbinamento si automatizza senza errori anche a tabella codici vuota (0 errori su 30 simulazioni); DDT pronti 5–7 su 15 all'avviamento con politica automatica, 6–7 a regime; tetto 10/15 per anomalie di processo e DDT senza ordine. Ripetuto il 25/10 sull'output reale dell'estrazione (H29 chiusa): con il modello standard nessun DDT cambia stato e 0 abbinamenti automatici errati; emersi due difetti del motore da correggere (H33, H34). Da ripetere con le righe d'ordine vere ([[05-matching]])
 - Step 5, output riusabili: parziale. Piano aula, sessione IT e architettura Microsoft definiti; deck da aggiornare ([[02-aula-e-architettura]])
 - Business case del deck v3 di [[leonardo-pinsone]]: 1.860 ore/anno oggi, risparmio 33–47 k€/anno; poggia su due numeri non misurati, i 10 minuti a DDT e la quota del 60/80% di DDT senza eccezioni ([[manini-ddt-essenziale]], [[automazione-entrata-merci-caso-manini]])
 - Sul campione il matching simulato porta a un risparmio di circa 630–740 ore/anno (22–26 k€) contro 949 ore (33 k€) del prudente: il 60% è raggiungibile, l'80% no a meno che il campione sovrarappresenti le anomalie ([[05-matching]])
@@ -27,7 +27,9 @@ updated: 2026-10-23
 - [ ] Ripetere il matching con le righe d'ordine vere dei 14 fornitori ([[05-matching]])
 - [ ] Chiedere agli acquisti di Manini: un solo contratto quadro aperto per gli inerti (H25), riga a saldo come avviso (H26) ([[05-matching]])
 - [ ] Proporre a Manini di chiedere ai fornitori il numero d'ordine sul DDT ([[05-matching]])
-- [ ] Ritestare il prompt v1.1 sui 15 DDT ([[04-benchmark]])
+- [x] Ritestare il prompt v1.1 sui 15 DDT ✅ 2026-10-25 ([[04-benchmark]])
+- [ ] Correggere il motore di matching: ricerca del fornitore per ragione sociale (H33), codice stampato senza ordine in più ordini aperti → E07 (H34); poi rimisurare ([[05-matching]])
+- [ ] Nel flusso, mandare a verifica i DDT con un campo critico in `campi_incerti` (H30) ([[04-benchmark]])
 - [ ] Revisione umana di 3–4 DDT difficili per verificare la verità del benchmark (H17) ([[04-benchmark]])
 - [ ] Prova delle demo con la licenza Copilot di Angelo Santilli 📅 2026-11-05 ([[02-aula-e-architettura]])
 - [ ] Preparare file ordini simulato e bozza della tabella codici per le demo in aula ([[02-aula-e-architettura]])
@@ -52,7 +54,8 @@ updated: 2026-10-23
 
 ## Prossimi passi
 
-- Ritestare il prompt v1.1 e ripetere il matching sull'output dell'estrazione (H29), poi con gli ordini veri
+- Correggere il motore di matching (H33, H34), poi ripetere il matching con le righe d'ordine vere
+- Eventuale prompt v1.2 con le correzioni del ritest (report 04 §10.4), da ritestare prima dell'uso
 
 ## Fonti
 
