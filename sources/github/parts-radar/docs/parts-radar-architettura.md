@@ -4,16 +4,17 @@ source: github
 family: parts-radar-architettura
 current:
   item_id: "cristian-schifone/parts-radar:docs/architettura.md"
-  uri: "github://cristian-schifone/parts-radar/docs/architettura.md@61b833c4fd3773751f1d2c8497db3353d8f61d51"
+  uri: "github://cristian-schifone/parts-radar/docs/architettura.md@fe70fa4748c96a0f0de717f5615a71777d5a2950"
   web_url: "https://github.com/cristian-schifone/parts-radar/blob/main/docs/architettura.md"
   name: "docs/architettura.md"
-  last_modified: 2026-10-22T16:51:29Z
+  last_modified: 2026-10-25T23:55:16Z
 versions:
+  - { name: "docs/architettura.md@fe70fa4", item_id: "cristian-schifone/parts-radar:docs/architettura.md", last_modified: 2026-10-25T23:55:16Z }
   - { name: "docs/architettura.md@61b833c", item_id: "cristian-schifone/parts-radar:docs/architettura.md", last_modified: 2026-10-22T16:51:29Z }
 also_at: []
 status: active
 partial: true
-ingested_at: 2026-10-23T18:23:22Z
+ingested_at: 2026-10-26T06:23:41Z
 projects: ["[[parts-radar-sviluppo]]"]
 clients: ["[[adac-bologna]]", "[[solera]]"]
 topics: ["[[parts-radar]]"]
@@ -24,7 +25,7 @@ tags: []
 
 ## Riassunto
 
-Documento di stato del repo di sviluppo: com'è fatto il sistema oggi, a che punto sono le fasi, le decisioni aperte e i rischi. Si aggiorna a ogni PR (la testata dice lo stato del giorno). Nel vault si leggono solo §1 (scopo), §5 (stato e sequenza), §8 (decisioni aperte) e §9 (rischi); componenti e decisioni tecniche in vigore (§4, §6) restano nel repo. Stato letto: 22/10/2026 sera, dopo la modalità ascolto.
+Documento di stato del repo di sviluppo: com'è fatto il sistema oggi, a che punto sono le fasi, le decisioni aperte e i rischi. Si aggiorna a ogni PR (la testata dice lo stato del giorno). Nel vault si leggono solo §1 (scopo), §5 (stato e sequenza), §8 (decisioni aperte) e §9 (rischi); componenti e decisioni tecniche in vigore (§4, §6) restano nel repo. Stato letto: 26/10/2026, dopo la revisione del router sulle etichette di sviluppo.
 
 ## Punti chiave
 
@@ -34,6 +35,7 @@ Documento di stato del repo di sviluppo: com'è fatto il sistema oggi, a che pun
 - Fasi della migrazione a Python e Kromeda tutte chiuse in sviluppo: misura (26/09), scheletro, catalogo e ingestion (03-04/10), cutover (05/10), installazione da zero sul compose di produzione (15-16/10), fornitori WhatsApp (16-20/10). n8n uscito il 04/10
 - Lavoro verso il pilot nella milestone "Pilot ADAC", con l'ordine dei lavori nella issue #379 e il traguardo nella #420
 - 22/10: router in ingresso acceso (separa i messaggi che non chiedono un pezzo) e modalità ascolto (catalogo dal vivo e messaggi automatici attivabili cliente per cliente, spenti di default, con una riserva di 15 crediti targa)
+- 25-26/10: le 810 etichette di sviluppo delle chat reali corrette con Lorenzo; prompt di router ed estrazione congelati; restano le etichette del test (clienti E, G, H, J) e la misura sul test
 
 ## Numeri
 
@@ -45,6 +47,7 @@ Documento di stato del repo di sviluppo: com'è fatto il sistema oggi, a che pun
 
 Decisioni aperte (§8) che toccano il livello di progetto:
 - D1 · modello commerciale e di installazione (issue #145): Lorenzo e Cristian, blocca il modello del primo cliente
+- D43 · dataset delle chat reali (Lorenzo): etichette di sviluppo riviste il 25-26/10; ora le etichette del test, a prompt congelati, poi la misura. Blocca router, scelta dei modelli e misura della targa dei pezzi aggiunti e delle foto
 - D13 · data del pilot e partenza direttamente sul nuovo stack: Lorenzo con ADAC (chiesta a Luca Degli Esposti il 22/10)
 - D19 · mappatura dei brand di ADAC sui codici listino Kromeda: senza, la proposta esce in ordine alfabetico. Lista dei brand e listini (CONTINENTAL, DIPA, DEPO, Pierburg, AJUSA) chiesti a Luca il 22/10. Blocca il pilot
 - D34 · chi cambia sconti, margini e fidi dei clienti (oggi solo gli ADMIN): da confermare con ADAC
@@ -59,4 +62,5 @@ Rischi principali (§9): scadenza della demo Kromeda; superamento della fascia d
 
 ## Versioni
 
+- docs/architettura.md@fe70fa4 · 2026-10-26 · §8: D43 aggiornata con la revisione delle etichette di sviluppo e i prompt congelati; il resto delle parti lette invariato
 - docs/architettura.md@61b833c · 2026-10-22 · prima lettura nel vault (§1, §5, §8, §9)

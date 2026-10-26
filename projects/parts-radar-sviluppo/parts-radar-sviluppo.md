@@ -49,6 +49,8 @@ updated: 2026-10-23
 - [ ] Brand preferiti e listini di ADAC (CONTINENTAL, DIPA, DEPO, Pierburg, AJUSA), chiesti a Luca il 22/10 ([[parts-radar-issue-379]], [[parts-radar-architettura]])
 - [ ] Raccogliere le risposte di Luca alle domande del 22/10: officine e operatori da abilitare, gruppi WhatsApp, data del pilot, condizioni commerciali, Rihag/Cati, gestionale ([[parts-radar-changelog]])
 - [ ] Mandare a Solera le domande aperte: cache oltre le 24 ore, versioni degli affini, dizionario delle voci, fasce e prezzi, URL delle foto ([[parts-radar-architettura]], [[parts-radar-kromeda-impatto]])
+- [ ] Avvisare Cristian: prompt di router ed estrazione cambiati e certificati emSign tolti dall'immagine del servizio; rebuild sullo staging alla prossima consegna ([[parts-radar-changelog]])
+- [ ] Cristian: decidere le parti 3 e 4 della #447 (decisioni in file separati, archivio del changelog) ([[parts-radar-changelog]])
 - [ ] Prova controllata del flusso intero 📅 2026-11-04 ([[parts-radar-issue-379]], [[parts-radar-issue-420]])
 - [ ] Traffico vero di ADAC con le targhe e report dei risultati 📅 2026-11-17 ([[parts-radar-issue-379]], [[parts-radar-issue-420]])
 

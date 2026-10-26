@@ -689,14 +689,14 @@
   "github": {
     "repos": {
       "cristian-schifone/parts-radar": {
-        "commit": "4c46f4d6fca34837e02f6ad470fb4e253afb2994",
-        "watermark": "2026-10-23T19:50:41Z"
+        "commit": "6a19810ac4dad28d9440f1df5c883008f4c37538",
+        "watermark": "2026-10-26T00:14:20Z"
       }
     },
     "items": {
       "cristian-schifone/parts-radar:docs/architettura.md": {
-        "last_modified": "2026-10-22T16:51:29Z",
-        "commit": "61b833c4fd3773751f1d2c8497db3353d8f61d51",
+        "last_modified": "2026-10-25T23:55:16Z",
+        "commit": "fe70fa4748c96a0f0de717f5615a71777d5a2950",
         "note": "sources/github/parts-radar/docs/parts-radar-architettura.md"
       },
       "cristian-schifone/parts-radar:docs/decisione-stack-python.md": {
@@ -720,12 +720,12 @@
         "note": "sources/github/parts-radar/docs/parts-radar-kromeda-fase0-risultati.md"
       },
       "cristian-schifone/parts-radar:docs/changelog.md": {
-        "last_modified": "2026-10-22T16:51:29Z",
-        "commit": "61b833c4fd3773751f1d2c8497db3353d8f61d51",
+        "last_modified": "2026-10-26T00:13:33Z",
+        "commit": "21621ca2e9a2c70fcf503015fcc6a4f180c016e4",
         "note": "sources/github/parts-radar/docs/parts-radar-changelog.md"
       },
       "cristian-schifone/parts-radar#379": {
-        "last_modified": "2026-10-22T13:55:33Z",
+        "last_modified": "2026-10-25T23:26:55Z",
         "note": "sources/github/parts-radar/issues/parts-radar-issue-379.md"
       },
       "cristian-schifone/parts-radar#420": {

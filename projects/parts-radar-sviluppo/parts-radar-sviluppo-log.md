@@ -7,6 +7,9 @@ project: "[[parts-radar-sviluppo]]"
 
 Una riga per avanzamento, dalla più recente: `- AAAA-MM-GG · cosa è successo · [[fonte]]`
 
+- 2026-10-26 · Revisione del router sulle 810 etichette di sviluppo delle chat reali: proposte perse dal router da 12 a 7, prompt di router ed estrazione congelati; prossimo passo le etichette del test (clienti E, G, H, J) e la misura. Glossario del dominio e istruzioni del repo snellite · [[parts-radar-changelog]]
+- 2026-10-26 · architettura: nuova versione, la decisione aperta sul dataset delle chat (D43) passa alle etichette del test a prompt congelati · [[parts-radar-architettura]]
+- 2026-10-25 · Metodo di lavoro: due revisori in parallelo prima di ogni PR (regole e aderenza all'issue) e diagnosi dei bug dal comando che li riproduce · [[parts-radar-changelog]]
 - 2026-10-23 · Il repo di sviluppo entra nel vault come fonte GitHub, con il task `ingest-github` · [[2026-10-23-fonte-github-parts-radar]]
 - 2026-10-22 · Router in ingresso acceso su Haiku 5.5 (richieste false da 42 a 12) e modalità ascolto (catalogo dal vivo cliente per cliente, riserva di 15 crediti targa); domande aperte girate a Luca Degli Esposti (brand, officine, gruppi, data del pilot) · [[parts-radar-changelog]]
 - 2026-10-22 · Progetto creato nel vault su indicazione dell'utente · [[2026-10-22-primo-caricamento-shared-documents-onedrive]]

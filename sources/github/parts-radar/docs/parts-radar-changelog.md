@@ -4,16 +4,17 @@ source: github
 family: parts-radar-changelog
 current:
   item_id: "cristian-schifone/parts-radar:docs/changelog.md"
-  uri: "github://cristian-schifone/parts-radar/docs/changelog.md@61b833c4fd3773751f1d2c8497db3353d8f61d51"
+  uri: "github://cristian-schifone/parts-radar/docs/changelog.md@21621ca2e9a2c70fcf503015fcc6a4f180c016e4"
   web_url: "https://github.com/cristian-schifone/parts-radar/blob/main/docs/changelog.md"
   name: "docs/changelog.md"
-  last_modified: 2026-10-22T16:51:29Z
+  last_modified: 2026-10-26T00:13:33Z
 versions:
+  - { name: "docs/changelog.md@21621ca", item_id: "cristian-schifone/parts-radar:docs/changelog.md", last_modified: 2026-10-26T00:13:33Z }
   - { name: "docs/changelog.md@61b833c", item_id: "cristian-schifone/parts-radar:docs/changelog.md", last_modified: 2026-10-22T16:51:29Z }
 also_at: []
 status: active
 partial: true
-ingested_at: 2026-10-23T18:23:22Z
+ingested_at: 2026-10-26T06:23:41Z
 projects: ["[[parts-radar-sviluppo]]"]
 clients: ["[[adac-bologna]]"]
 topics: ["[[parts-radar]]"]
@@ -24,7 +25,7 @@ tags: []
 
 ## Riassunto
 
-Diario delle sessioni di sviluppo del repo, una voce per sessione, dalla più recente: obiettivo, cosa è stato fatto, decisioni, cosa resta aperto, prossimi passi. Il ritmo a ottobre è di 3-6 voci al giorno. Nel vault non si copia: ogni giorno con voci nuove diventa una riga nel log di [[parts-radar-sviluppo]], e qui restano le voci degli ultimi 30 giorni in una riga ciascuna. Ultime settimane: chiusa la migrazione a Python e Kromeda (02-05/10), lavoro sulla milestone del pilot ADAC, chat del banco e canale WhatsApp con 360dialog (18-20/10), dataset delle chat reali, router e modalità ascolto (21-22/10).
+Diario delle sessioni di sviluppo del repo, una voce per sessione, dalla più recente: obiettivo, cosa è stato fatto, decisioni, cosa resta aperto, prossimi passi. Il ritmo a ottobre è di 3-6 voci al giorno. Nel vault non si copia: ogni giorno con voci nuove diventa una riga nel log di [[parts-radar-sviluppo]], e qui restano le voci degli ultimi 30 giorni in una riga ciascuna. Ultime settimane: chiusa la migrazione a Python e Kromeda (02-05/10), lavoro sulla milestone del pilot ADAC, chat del banco e canale WhatsApp con 360dialog (18-20/10), dataset delle chat reali, router e modalità ascolto (21-22/10), metodo di lavoro e glossario (25-26/10), revisione del router sulle etichette di sviluppo con i prompt congelati (26/10).
 
 ## Punti chiave
 
@@ -34,7 +35,7 @@ Diario delle sessioni di sviluppo del repo, una voce per sessione, dalla più re
 
 ## Numeri
 
-- 61 voci al 22/10/2026, 33 dal 19/09 (inizio della Fase 0 Kromeda)
+- 65 voci al 26/10/2026
 
 ## Decisioni e azioni
 
@@ -42,6 +43,11 @@ Diario delle sessioni di sviluppo del repo, una voce per sessione, dalla più re
 
 ## Voci recenti
 
+- 2026-10-26 · Chiusura di /plan-fix in ordine e gh aggiornato · strumenti di lavoro; gh da aggiornare anche sulla macchina di Cristian
+- 2026-10-26 · Revisione dei disaccordi del router e prompt congelati · 810 etichette di sviluppo corrette con Lorenzo, proposte perse dal router da 12 a 7 (4,40 $ di misure); prompt fermi per le etichette del test; Cristian da avvisare per il rebuild del servizio sullo staging
+- 2026-10-26 · Istruzioni del repo come mappa e /retro nel ciclo A · istruzioni dimezzate; le parti 3 e 4 della #447 le decide Cristian
+- 2026-10-26 · Glossario del dominio · circa 75 parole definite una volta sola; il cliente di BlueAge si chiama ricambista
+- 2026-10-25 · Metodo di lavoro: due revisori e diagnosi dal comando rosso · regole e aderenza all'issue riviste in parallelo prima di ogni PR
 - 2026-10-22 · Date della dashboard in ora di Roma · correzione: gli operatori vedevano orari indietro di 1-2 ore
 - 2026-10-22 · Modalità ascolto · catalogo dal vivo e messaggi automatici accesi cliente per cliente, spenti di default; riserva di 15 crediti targa; avviso a Cristian da mandare
 - 2026-10-22 · Guardia d'avvio alla migration 083 · correzione tecnica
@@ -92,4 +98,5 @@ Diario delle sessioni di sviluppo del repo, una voce per sessione, dalla più re
 
 ## Versioni
 
+- docs/changelog.md@21621ca · 2026-10-26 · 5 voci nuove (25-26/10): metodo di lavoro, glossario, istruzioni del repo, revisione del router con prompt congelati, chiusura di /plan-fix
 - docs/changelog.md@61b833c · 2026-10-22 · prima lettura nel vault (voci dal 24/09; primo caricamento oltre i 30 giorni)

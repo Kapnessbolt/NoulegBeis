@@ -7,13 +7,14 @@ current:
   uri: "github://cristian-schifone/parts-radar/issues/379"
   web_url: "https://github.com/cristian-schifone/parts-radar/issues/379"
   name: "Issue #379 · Pilot ADAC: ordine dei lavori verso il test reale (rifatto il 21/10)"
-  last_modified: 2026-10-22T13:55:33Z
+  last_modified: 2026-10-25T23:26:55Z
 versions:
+  - { name: "Issue #379", item_id: "cristian-schifone/parts-radar#379", last_modified: 2026-10-25T23:26:55Z }
   - { name: "Issue #379", item_id: "cristian-schifone/parts-radar#379", last_modified: 2026-10-22T13:55:33Z }
 also_at: []
 status: active
 partial: false
-ingested_at: 2026-10-23T18:23:22Z
+ingested_at: 2026-10-26T06:23:41Z
 projects: ["[[parts-radar-sviluppo]]"]
 clients: ["[[adac-bologna]]", "[[solera]]"]
 topics: ["[[parts-radar]]"]
@@ -34,7 +35,7 @@ Issue di pianificazione della milestone "Pilot ADAC", rifatta il 21/10/2026 con 
 - Dopo la demo i test continuano sulle chiamate registrate
 - Fuori dal percorso del pilot, nella milestone "Prima della produzione": brand e collasso articoli, CI, veicolo sbagliato, dataset completo, messaggi oltre le 24 ore
 - 22/10: entra la #430 (estrazione strutturata di posizione, lato, preferenza, telaio), in settimana 3; la sua seconda parte è la prima cosa che esce se la settimana slitta
-- Settimana 1 (22-28/10), sbloccare i dati: etichette delle chat a mano da Lorenzo, targa dei pezzi aggiunti, giro dal vivo degli alberi Kromeda. Router già fatto in anticipo il 22/10
+- Settimana 1 (22-28/10), sbloccare i dati: etichette delle chat a mano da Lorenzo, targa dei pezzi aggiunti, giro dal vivo degli alberi Kromeda. Router già fatto in anticipo il 22/10. Al 26/10: etichette di sviluppo fatte (810 gruppi) e riviste con la misura del router, prompt di router ed estrazione congelati; restano le etichette del test (E, G, H, J), la voce e la misura della targa dei pezzi aggiunti
 - Settimana 2 (29/10-04/11): vocali, modalità ascolto, allarme sul distacco della Coexistence, attivazione del numero di ADAC col banco presente, prova controllata verso il 04/11
 - Settimana 3 (05-11/11): foto, chiarimenti dell'AI, suggerimenti all'operatore, confronto finale dei modelli
 - Settimana 4 (12-17/11): sicurezza della dashboard, manuale del banco, server del pilot, traffico vero con le targhe e report dei risultati
@@ -46,7 +47,7 @@ Issue di pianificazione della milestone "Pilot ADAC", rifatta il 21/10/2026 con 
 
 ## Decisioni e azioni
 
-Passi fuori dal codice (aperti al 22/10):
+Passi fuori dal codice (aperti al 26/10, invariati dal 22/10):
 - 360dialog: scegliere Partner o Regular. È sul percorso critico (Lorenzo)
 - Foto delle officine da ADAC (in corso)
 - Numeri WhatsApp delle officine registrati come clienti attivi
@@ -58,4 +59,5 @@ Passi fuori dal codice (aperti al 22/10):
 
 ## Versioni
 
+- Issue #379 · 2026-10-25 · avanzamento della settimana 1: etichette di sviluppo fatte e riviste, prompt congelati; passi fuori dal codice invariati
 - Issue #379 · 2026-10-22 · prima lettura nel vault
