@@ -16,4 +16,13 @@ else
   git rebase --abort >/dev/null 2>&1
   echo "git pull non riuscito (${out%%$'\n'*}): rifallo a mano con git pull --rebase origin main."
 fi
+# PyYAML serve a controlla-vault.py e plancia.py (e quindi al pre-commit): l'immagine cloud oggi
+# lo ha, ma non è garantito. Se manca prova a installarlo, altrimenti lo dice.
+if ! python3 -c "import yaml" >/dev/null 2>&1; then
+  if $limite python3 -m pip install -q --user pyyaml >/dev/null 2>&1; then
+    echo "PyYAML mancava: installato."
+  else
+    echo "PyYAML manca e non si installa da solo: pip install pyyaml, o il pre-commit si blocca."
+  fi
+fi
 exit 0
