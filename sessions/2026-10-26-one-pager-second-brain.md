@@ -24,17 +24,17 @@ Realizzare due one pager in stile BlueAge del Second Brain: uno commerciale per 
 - Tecnico in 4 viste: architettura con pannello di dettaglio per nodo, strumenti filtrabili (35, 8 in arrivo), struttura del repo con le note contate (307), giornata tipo con gli orari reali dei task
 - I due file costruiti in parallelo da due subagenti nella stessa sessione, non da due sessioni, per controllarli e pubblicarli da qui
 - PDF rigenerato con i file statici di Plus Jakarta Sans: con il font variabile Chromium lo incorporava come Type 3 (200 KB → 85 KB)
-- File prodotti fuori dal repo (`CLAUDE.md` §5): tecnico su claude.ai, commerciale nella nuova cartella OneDrive `BlueAge/Second Brain/`
+- File prodotti fuori dal repo (`CLAUDE.md` §5): tecnico su claude.ai, commerciale in OneDrive `BlueAge/02_Second Brain/`
 
 ## File toccati
 
 - `topics/`: `second-brain.md` (materiali di presentazione in `## Dove è usato`)
 - `sessions/`: questo diario
-- Fuori dal repo: artifact https://claude.ai/artifact/FeqbkutspXZcAds7v8iZcL (privato); cartella OneDrive `BlueAge/Second Brain/` creata, vuota
+- Fuori dal repo: artifact https://claude.ai/artifact/FeqbkutspXZcAds7v8iZcL (privato); PDF commerciale in OneDrive `BlueAge/02_Second Brain/`, caricato a mano da Lorenzo
 
 ## Aperti
 
-- [ ] Caricare a mano `Second Brain - One pager commerciale.pdf` in OneDrive `BlueAge/Second Brain/`: il caricamento dal connettore è stato bloccato, il base64 del PDF non passa nella chiamata
+- [x] Caricare a mano il PDF del one pager commerciale su OneDrive: il caricamento dal connettore è stato bloccato, il base64 del PDF non passa nella chiamata (chiuso: caricato da Lorenzo in `BlueAge/02_Second Brain/`)
 - [ ] Condividere l'artifact del one pager tecnico con il team dal menu Share
 - [ ] Allineare SPEC e README alle 9 incongruenze trovate costruendo il one pager tecnico (skill blueage non nel vault, README con comandi inesistenti, branch del curator, prefissi di commit, `.githooks/` nell'albero, ingestor e 6.6, `/cockpit`, Obsidian in sola lettura, `.gitkeep`): c'è la scheda "Allinea SPEC e README ai file reali"
 - [ ] Spunto per il curator: dal cloud i file binari prodotti dalle skill (PDF, pptx) non si caricano su OneDrive oltre pochi KB; serve una procedura per consegnarli
