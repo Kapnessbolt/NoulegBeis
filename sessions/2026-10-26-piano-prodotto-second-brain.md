@@ -51,4 +51,5 @@ Valutare il vault com'è dopo la prima settimana (struttura, regole, codice, aut
 - [x] Aggiungere in `.claude/settings.json` i permessi `Bash(python3 .claude/scripts/<script>.py:*)` per famiglia, perimetro, stato, nuova-nota e aggiorna-nota (chiuso: ok di Lorenzo, commit a9e2b44)
 - [ ] Verificare i tre giri dei task del 27, 28 e 29/10 con `/verifica-task` e chiudere il criterio dello step 12 📅 2026-10-29
 - [ ] Decidere le 11 famiglie e la nota `blueage-companyprofile` in disaccordo con gli script (rinominare o lasciare)
+- [ ] Prossima sessione, dall'utente: step 17 (librarian, `cerca.py`, `/oggi`, `/progetto`, `/cattura`, `/smista`), indipendente dall'osservazione dello step 12; poi revisione del cockpit, che oggi non convince: cosa si guarda la mattina, cosa manca, da telefono o da PC. Lo step 16 non congela la mod com'è: aspetta quella revisione
 - [ ] Eseguire gli step 13–20 uno alla volta, ognuno chiuso con il suo criterio di accettazione (attività nella scheda del progetto); step 13 solo dopo un giro pulito dello step 12

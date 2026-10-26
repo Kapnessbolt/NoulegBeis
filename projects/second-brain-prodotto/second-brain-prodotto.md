@@ -44,6 +44,7 @@ updated: 2026-10-26
 
 ## Prossimi passi
 
+- Step 17 (librarian e comandi) nella prossima sessione, perché non tocca gli script sotto osservazione; poi revisione del cockpit prima dello step 16
 - Verifica dei 3 giri dei task sullo step 12, poi step 13 (configurazione separata dal motore)
 
 ## Fonti
