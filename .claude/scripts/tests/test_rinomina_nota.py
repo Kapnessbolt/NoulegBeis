@@ -1,8 +1,6 @@
 """Test di rinomina-nota.py (SPEC 4.4) sul mini-vault di conftest.py."""
 
-import json
-
-from conftest import esegui
+from conftest import esegui, leggi_stato
 
 
 def rinomina(root, vecchio, nuovo):
@@ -25,8 +23,8 @@ def test_rinomina_nota_aggiorna_wikilink(vault):
 def test_rinomina_fonte_aggiorna_lo_stato(vault):
     res = rinomina(vault, "doc-alfa", "doc-alfa-pilota")
     assert res.returncode == 0, res.stderr
-    stato = json.loads((vault / ".state/ingest.json").read_text(encoding="utf-8"))
-    assert stato["sharepoint"]["items"]["item-1"]["note"] == "sources/sharepoint/delivery/doc-alfa-pilota.md"
+    stato = leggi_stato(vault, "sharepoint")
+    assert stato["items"]["item-1"]["note"] == "sources/sharepoint/delivery/doc-alfa-pilota.md"
     testo = (vault / "projects/alfa/alfa.md").read_text(encoding="utf-8")
     assert "[[doc-alfa]]" not in testo and testo.count("[[doc-alfa-pilota]]") == 6
     assert esegui("controlla-vault.py", vault).returncode == 0

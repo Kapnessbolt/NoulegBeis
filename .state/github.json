@@ -1,0 +1,48 @@
+{
+  "items": {
+    "cristian-schifone/parts-radar#379": {
+      "last_modified": "2026-10-25T23:26:55Z",
+      "note": "sources/github/parts-radar/issues/parts-radar-issue-379.md"
+    },
+    "cristian-schifone/parts-radar#420": {
+      "last_modified": "2026-10-21T13:10:57Z",
+      "note": "sources/github/parts-radar/issues/parts-radar-issue-420.md"
+    },
+    "cristian-schifone/parts-radar:docs/architettura.md": {
+      "commit": "fe70fa4748c96a0f0de717f5615a71777d5a2950",
+      "last_modified": "2026-10-25T23:55:16Z",
+      "note": "sources/github/parts-radar/docs/parts-radar-architettura.md"
+    },
+    "cristian-schifone/parts-radar:docs/changelog.md": {
+      "commit": "21621ca2e9a2c70fcf503015fcc6a4f180c016e4",
+      "last_modified": "2026-10-26T00:13:33Z",
+      "note": "sources/github/parts-radar/docs/parts-radar-changelog.md"
+    },
+    "cristian-schifone/parts-radar:docs/decisione-stack-python.md": {
+      "commit": "6841f618a743e1c6e5cabe8ea9a51c0a32252d4c",
+      "last_modified": "2026-10-19T21:37:21Z",
+      "note": "sources/github/parts-radar/docs/parts-radar-decisione-stack-python.md"
+    },
+    "cristian-schifone/parts-radar:docs/kromeda-fase0-risultati.md": {
+      "commit": "7777221f21b07a0337166fa83a3e9fed95924c8f",
+      "last_modified": "2026-10-22T08:13:17Z",
+      "note": "sources/github/parts-radar/docs/parts-radar-kromeda-fase0-risultati.md"
+    },
+    "cristian-schifone/parts-radar:docs/kromeda-impatto-parts-radar.md": {
+      "commit": "b8b0773743585be4fb909950b1ce4a88c550df51",
+      "last_modified": "2026-10-22T16:12:54Z",
+      "note": "sources/github/parts-radar/docs/parts-radar-kromeda-impatto.md"
+    },
+    "cristian-schifone/parts-radar:docs/whatsapp-fornitori.md": {
+      "commit": "28674546e6b6aea0489bb23f984ea2805ec4e364",
+      "last_modified": "2026-10-20T05:20:11Z",
+      "note": "sources/github/parts-radar/docs/parts-radar-whatsapp-fornitori.md"
+    }
+  },
+  "repos": {
+    "cristian-schifone/parts-radar": {
+      "commit": "6a19810ac4dad28d9440f1df5c883008f4c37538",
+      "watermark": "2026-10-26T00:14:20Z"
+    }
+  }
+}
