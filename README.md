@@ -29,7 +29,7 @@ Disponibili: `/ingest`, `/ingest-file`, `/controlla`, `/verifica-task`, `/curato
 | `topics/` | Prodotti, offerte, metodi |
 | `sources/` | Note sui documenti di SharePoint, OneDrive, posta, allegati e repo GitHub di progetto |
 | `journal/` | Digest giornaliero |
-| `sessions/` | Diario delle sessioni (`_raw/`: trascrizioni grezze, 30 giorni) |
+| `sessions/` | Diario delle sessioni (`_raw/`: estratti di trascrizione, solo il pezzo che serve) |
 | `proposals/` | Proposte del curator |
 | `_templates/` | Template delle note |
 | `.state/` | Stato dell'ingestion |

@@ -25,7 +25,7 @@ Questo repo è il second brain personale di Lorenzo Curione sulla knowledge Blue
 | Documento o issue di un repo di progetto (SPEC 5.4) | `sources/github/<repo>/<percorso>/<repo>-<nome>.md`, issue in `issues/<repo>-issue-<n>.md` | `_templates/source-doc.md` | `source-doc` |
 | Digest giornaliero | `journal/AAAA-MM-DD.md` | `_templates/journal.md` | `journal` |
 | Diario di sessione | `sessions/AAAA-MM-DD-<slug>.md` | `_templates/session.md` | `session` |
-| Trascrizione grezza (hook) | `sessions/_raw/` | nessuno | nessuno |
+| Estratto di trascrizione (solo il pezzo che serve, senza dati riservati) | `sessions/_raw/` | nessuno | nessuno |
 | Proposta del curator | `proposals/AAAA-MM-DD-<slug>.md` | `_templates/proposal.md` | `proposal` |
 | Stato dell'ingestion | `.state/ingest.json` | schema in SPEC 6.1 | — |
 | Vista Obsidian (Tasks e Dataview) | `home.md`, fuori dal controllo del vault | nessuno | `home` |

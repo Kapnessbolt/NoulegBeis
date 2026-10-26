@@ -29,8 +29,9 @@ Non toccare `CLAUDE.md`, `SPEC.md`, `.claude/`, progetti, clienti, temi, persone
 2. I diari della finestra: `sessions/AAAA-MM-GG-*.md` con `date` nella finestra. Per gli aperti (sezione 4) anche i diari precedenti con caselle aperte.
 3. Tutte le note di `proposals/`, con il loro `status`.
 4. Per le verifiche: `git log --since=<da> --format='%ad %s' --date=short`, i digest di `journal/` della finestra, i file citati dai diari, `gh pr list --state all` se c'è.
+5. Diari mancanti: dai commit della finestra prendi gli slug dei messaggi `session: <slug>` (fino alla prima virgola) e controlla che esista `sessions/*-<slug>.md`. Poi ogni commit `vault:`, `project(<slug>)` o `spec:` della finestra (`TZ=Europe/Rome git log --since=<da> --no-merges --format='%h %ad %s' --date=format-local:%F`): un diario dello stesso giorno o del giorno dopo (le sessioni passano la mezzanotte) deve citare lo `<slug>` del progetto o il nome di uno dei file toccati (`git show --name-only --format= <hash>`). Un diario qualsiasi dello stesso giorno non basta: le sessioni dello stesso giorno sono più d'una. Non scrivere diari al posto della sessione: elenca ciò che manca nel resoconto, tra i "Da verificare".
 
-`sessions/_raw/` (trascrizioni grezze) si legge solo se un diario rimanda a un dettaglio che non riporta, e solo il pezzo che serve.
+`sessions/_raw/` (estratti di trascrizione) si legge solo se un diario rimanda a un dettaglio che non riporta, e solo il pezzo che serve.
 
 ## 3. Pattern da cercare
 
@@ -76,7 +77,7 @@ I wikilink fuori dai blocchi di codice devono puntare a note esistenti. Dentro i
    - **Proposte**: per ognuna file, `kind`, titolo, una riga di motivazione, numero di diari;
    - **Aperti spuntati**: diario, aperto, prova;
    - **Pattern non proposti**: una riga ciascuno con il motivo (oltre le 5, già coperto, già proposto);
-   - **Da verificare**: aperti chiusi in parte o con prova incerta, aperti da più di 7 giorni, proposte `accettata` non ancora applicate (il testo non è nel file di destinazione).
+   - **Da verificare**: aperti chiusi in parte o con prova incerta, aperti da più di 7 giorni, proposte `accettata` non ancora applicate (il testo non è nel file di destinazione), commit di sessione o di lavoro interattivo senza diario (sezione 2, punto 5).
 
    In `schedulata` il resoconto è anche il corpo della PR: scrivilo per Lorenzo che lo legge su GitHub.
 
