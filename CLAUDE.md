@@ -93,7 +93,7 @@ Il curator non modifica mai `CLAUDE.md`, `.claude/` o `SPEC.md`: propone, e le m
 
 - Prima di ogni commit: `python3 .claude/scripts/controlla-vault.py` (SPEC 4.4) e correggi gli errori che hai introdotto. Il pre-commit di git (`.githooks/pre-commit`, attivato a inizio sessione) blocca comunque il commit se restano errori nei file modificati. Poi commit, `git pull --rebase origin main` (dopo il commit: con modifiche non committate il rebase si rifiuta) e push diretto su `main`.
 - Conflitto su `.state/ingest.json`: vince la versione con il watermark più avanzato. Altri conflitti: riapplica la tua modifica sulla versione remota.
-- Eccezione: il curator lavora su un branch `claude/curator-AAAA-MM-DD` e apre una PR.
+- Eccezione: il curator lavora su un branch `claude/` e apre una PR (`claude/curator-AAAA-MM-DD` con `/curator`, il branch assegnato alla sessione nel task schedulato).
 - Messaggi di commit: `ingest(sharepoint): 12 note aggiornate`, `session: <slug>`, `project(<slug>): <cosa>`, `vault: <cosa>` per struttura e configurazione.
 
 ## 8. Fine sessione
