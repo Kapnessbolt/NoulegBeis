@@ -28,5 +28,5 @@ Chiarire la differenza tra ingestion lanciata a mano e task automatici, far crea
 
 ## Aperti
 
-- [x] Script di setup dell'ambiente cloud: installare `pyyaml` (oggi è già presente nell'immagine, ma non è garantito) (chiuso in [[2026-10-26]]: l'hook di avvio lo installa se manca)
+- [x] Script di setup dell'ambiente cloud: installare `pyyaml` (oggi è già presente nell'immagine, ma non è garantito) (chiuso in [[2026-10-26-punti-aperti-vault]]: l'hook di avvio lo installa se manca)
 - [ ] Rivedere la soglia dei nomi simili (0,85) dopo il primo caricamento delle mail
