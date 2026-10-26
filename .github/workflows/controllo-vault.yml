@@ -14,5 +14,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install pyyaml
-      - run: python3 .claude/scripts/controlla-vault.py >> "$GITHUB_STEP_SUMMARY"
+      - run: pip install pyyaml pytest
+      # Step 11 di SPEC 13.1: i test degli script, su un mini-vault di prova, prima del controllo
+      - name: Test degli script
+        run: python3 -m pytest .claude/scripts/tests -q
+      - name: Controllo del vault
+        run: python3 .claude/scripts/controlla-vault.py >> "$GITHUB_STEP_SUMMARY"

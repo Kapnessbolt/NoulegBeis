@@ -10,9 +10,13 @@ vanno nel repo: la cartella di output sta fuori dal vault. Richiede PyYAML.
 
 La mod `cockpit` dell'app legge gli stessi dati dal vivo con la stessa logica:
 se cambi una regola qui, cambiala anche in hooks/register.tsx della mod.
+
+La variabile d'ambiente VAULT_ROOT, se presente, indica la radice del vault al posto della
+cartella che contiene `.claude/` (serve ai test in `.claude/scripts/tests/`).
 """
 
 import json
+import os
 import re
 import sys
 from datetime import datetime, timedelta
@@ -24,7 +28,7 @@ try:
 except ImportError:
     sys.exit("Manca PyYAML: pip install pyyaml")
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(os.environ.get("VAULT_ROOT") or Path(__file__).resolve().parents[2]).resolve()
 SKIP_DIRS = {".git", ".github", ".claude", "_templates", ".obsidian", ".trash"}
 ROMA = ZoneInfo("Europe/Rome")
 

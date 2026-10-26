@@ -10,6 +10,10 @@
 *.png
 !.claude/skills/**
 
+# Test degli script (.claude/scripts/tests)
+__pycache__/
+.pytest_cache/
+
 # Sistema
 .DS_Store
 Thumbs.db
