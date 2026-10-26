@@ -38,6 +38,8 @@ updated: 2026-10-25
 - [ ] Ambiente Power Platform di sviluppo con Copilot Credits nel tenant Manini per l'aula ([[02-aula-e-architettura]])
 - [ ] Aggiornare il deck entrata merci: Copilot Credits al posto dei crediti AI Builder, staging al posto della scrittura DB2, ingresso da scansione invece che da casella mail ([[02-aula-e-architettura]])
 - [x] Estrarre su OneDrive i PDF dallo ZIP dei DDT, così le sessioni Claude Code li leggono con il connettore ([[2026-10-23-manini-automazione-ddt]])
+- [ ] Prompt v1.2 con le correzioni del ritest (peso totale in testata, peso 0 solo se stampato, ordine tra gli altri riferimenti), da ritestare prima dell'uso ([[04-benchmark]])
+- [ ] Misurare la variabilità: 3 giri sui DDT difficili (H31), un giro v1.0 con i modelli di oggi (H32), matching sull'estrazione su 30 seed (H35) ([[04-benchmark]], [[05-matching]])
 
 ## Decisioni
 

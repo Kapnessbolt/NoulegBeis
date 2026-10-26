@@ -437,10 +437,10 @@
     }
   },
   "onedrive": {
-    "watermark": "2026-10-23T12:57:12Z",
+    "watermark": "2026-10-25T22:18:22Z",
     "items": {
       "b!2fHSoBOOE0aRvS_GntS6s6RJcyNKjAJMiRtoiZ6n5xzp8hWMRRoMQKOVYgftTbzT/013UYHJHDFKK6EKXSGZRD36APGWH434FIS": {
-        "last_modified": "2026-10-19T09:26:43Z",
+        "last_modified": "2026-10-25T21:47:57Z",
         "note": "sources/onedrive/01-materiale-clienti/manini/gruppi.md"
       },
       "b!2fHSoBOOE0aRvS_GntS6s6RJcyNKjAJMiRtoiZ6n5xzp8hWMRRoMQKOVYgftTbzT/013UYHJHAP42IPWZ47DJHKZV66CAFKPUTB": {
@@ -468,16 +468,20 @@
         "note": "sources/onedrive/01-materiale-clienti/manini/progetto-automazione/library/03-schema-ddt.md"
       },
       "b!2fHSoBOOE0aRvS_GntS6s6RJcyNKjAJMiRtoiZ6n5xzp8hWMRRoMQKOVYgftTbzT/013UYHJHBZ3QNAJXJJAVDJYRM6WQKBPXML": {
-        "last_modified": "2026-10-23T11:33:34Z",
+        "last_modified": "2026-10-25T22:15:35Z",
         "note": "sources/onedrive/01-materiale-clienti/manini/progetto-automazione/library/04-benchmark.md"
       },
       "b!2fHSoBOOE0aRvS_GntS6s6RJcyNKjAJMiRtoiZ6n5xzp8hWMRRoMQKOVYgftTbzT/013UYHJHAYMOFSUFLWPFEKGISCDSRECKIU": {
-        "last_modified": "2026-10-23T11:33:35Z",
+        "last_modified": "2026-10-25T22:14:31Z",
         "note": "sources/onedrive/01-materiale-clienti/manini/progetto-automazione/library/prompt-estrazione-ddt.md"
       },
       "b!2fHSoBOOE0aRvS_GntS6s6RJcyNKjAJMiRtoiZ6n5xzp8hWMRRoMQKOVYgftTbzT/013UYHJHCUAHFAVGDSGRCIZEBM3GSUGVV4": {
-        "last_modified": "2026-10-23T12:50:38Z",
+        "last_modified": "2026-10-25T22:16:49Z",
         "note": "sources/onedrive/01-materiale-clienti/manini/progetto-automazione/library/05-matching.md"
+      },
+      "b!2fHSoBOOE0aRvS_GntS6s6RJcyNKjAJMiRtoiZ6n5xzp8hWMRRoMQKOVYgftTbzT/013UYHJHEWRFNHJGQO4JG37XUVRX6UUVDG": {
+        "last_modified": "2026-10-25T22:18:22Z",
+        "note": "sources/onedrive/01-materiale-clienti/manini/progetto-automazione/library/essenziale.md"
       }
     }
   },

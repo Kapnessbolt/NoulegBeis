@@ -7,6 +7,7 @@ project: "[[manini-automazione-ddt]]"
 
 Una riga per avanzamento, dalla più recente: `- AAAA-MM-GG · cosa è successo · [[fonte]]`
 
+- 2026-10-25 · Essenziale aggiornato al 25/10 (ritest v1.1 e matching sull'estrazione) nella Library di Progetto Automazione · [[essenziale]]
 - 2026-10-25 · Matching sull'estrazione reale, H29 chiusa: con il modello standard nessun DDT cambia stato e 0 abbinamenti automatici errati; due difetti del motore da correggere (H33, H34) · [[05-matching]]
 - 2026-10-25 · Ritest del prompt v1.1: standard 100% dei campi critici e 15/15 DDT pronti (perfetti da 11 a 14), veloce dall'88% al 98%; modelli diversi dal 22/10 · [[04-benchmark]]
 - 2026-10-23 · Step 4 in simulazione: 0 abbinamenti automatici errati su 30 simulazioni, 5–7 DDT pronti su 15 all'avviamento, tetto 10/15 per anomalie di processo · [[05-matching]]
