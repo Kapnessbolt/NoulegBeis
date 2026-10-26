@@ -26,10 +26,15 @@ Realizzare due one pager in stile BlueAge del Second Brain: uno commerciale per 
 - PDF rigenerato con i file statici di Plus Jakarta Sans: con il font variabile Chromium lo incorporava come Type 3 (200 KB → 85 KB)
 - File prodotti fuori dal repo (`CLAUDE.md` §5): tecnico su claude.ai, commerciale in OneDrive `BlueAge/02_Second Brain/`
 - Nel tecnico `blueage-deck`, `blueage-corso` e `blueage-animazioni` passano da "in arrivo" a "dall'account": non sono in `.claude/skills/`, ma arrivano dal plugin di claude.ai e si usano già nelle sessioni (segnalato dall'utente; artifact versione 2)
+- Le skill blueage stanno solo nel vault, non nel plugin claude.ai, che Lorenzo disattiva: l'account è personale e il plugin non si condivide, mentre il vault viaggia con il repo quando il Second Brain diventa uno strumento BlueAge (dall'utente). Fonte unica: niente copie parallele
+- `blueage-corso` snellita: `SKILL.md` con il solo flusso, principi di contenuto e cartella del corso spostati in `references/principi.md` e `references/cartella.md`; tolti i rimandi al Project claude.ai e agli zip, il metodo si cambia con un commit nel vault
+- SPEC 1.17 con la regola della fonte unica in PR dedicata (#23); il one pager tecnico passa le tre skill a "disponibile" (artifact versione 3)
 
 ## File toccati
 
+- `.claude/skills/`: `blueage-deck`, `blueage-corso` (snellita), `blueage-animazioni` (commit `309ef0a`)
 - `topics/`: `second-brain.md` (materiali di presentazione in `## Dove è usato`)
+- `SPEC.md`, `README.md`: regola della fonte unica e skill nel vault, sul branch `claude/clever-noether-7jvxi3` (PR #23)
 - `sessions/`: questo diario
 - Fuori dal repo: artifact https://claude.ai/artifact/FeqbkutspXZcAds7v8iZcL (privato); PDF commerciale in OneDrive `BlueAge/02_Second Brain/`, caricato a mano da Lorenzo
 
@@ -38,4 +43,7 @@ Realizzare due one pager in stile BlueAge del Second Brain: uno commerciale per 
 - [x] Caricare a mano il PDF del one pager commerciale su OneDrive: il caricamento dal connettore è stato bloccato, il base64 del PDF non passa nella chiamata (chiuso: caricato da Lorenzo in `BlueAge/02_Second Brain/`)
 - [ ] Condividere l'artifact del one pager tecnico con il team dal menu Share
 - [x] Allineare SPEC e README alle 9 incongruenze trovate costruendo il one pager tecnico (skill blueage non nel vault, README con comandi inesistenti, branch del curator, prefissi di commit, `.githooks/` nell'albero, ingestor e 6.6, `/cockpit`, Obsidian in sola lettura, `.gitkeep`): c'è la scheda "Allinea SPEC e README ai file reali" (chiuso in [[2026-10-26-spec-e-readme-allineati]])
+- [ ] Unire la PR #23 (SPEC 1.17, skill blueage nel vault)
+- [ ] Disattivare il plugin claude.ai con le skill blueage, così nelle sessioni sul vault non compaiono doppie
+- [ ] Provare `blueage-deck` in una sessione cloud dal vault (criterio dello step 6) e il rendering video di `blueage-animazioni`
 - [ ] Spunto per il curator: dal cloud i file binari prodotti dalle skill (PDF, pptx) non si caricano su OneDrive oltre pochi KB; serve una procedura per consegnarli
