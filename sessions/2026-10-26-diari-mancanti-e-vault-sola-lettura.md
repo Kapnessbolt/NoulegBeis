@@ -19,6 +19,8 @@ Controllare gli esiti di reconcile, digest e curator, e decidere sulla proposta 
 - SPEC 1.15: la rete di sicurezza dei diari la fa il curator; niente hook `Stop` né trascrizioni intere nel repo, perché porterebbero dati riservati; `sessions/_raw/` tiene solo estratti; tolti la retention di 30 giorni e il task `sessions-cleanup`
 - La sessione Manini del 25/10 non aveva agito da sola: seguiva il `CLAUDE.md` del repo di progetto, che chiedeva di scrivere nel vault e di fare push su `main`. Dall'utente: il vault lo aggiorna solo l'ingestion giornaliera, quindi il repo Manini da ora il vault lo legge e basta. Nessuna regola nuova nel `CLAUDE.md` del vault (dall'utente)
 - Diario della sessione del 25/10 ricostruito dai commit dei due repo
+- Il curator schedulato resta sul branch della sua sessione invece di `claude/curator-AAAA-MM-DD`: la sessione cloud riceve un branch assegnato e la regola di non fare push altrove senza permesso, e un task schedulato non ha nessuno a cui chiederlo. Lasciato così dall'utente: la PR arriva comunque
+- Digest del 26/10 con "Controllo del vault" vuoto: è normale. Quella sezione la compila solo il reconcile della domenica, e `## Scartate` solo l'ingest-outlook quando scarta delle mail. Nei giorni feriali il controllo lo fa il workflow GitHub su ogni push
 
 ## File toccati
 
@@ -31,6 +33,6 @@ Controllare gli esiti di reconcile, digest e curator, e decidere sulla proposta 
 
 ## Aperti
 
-- [ ] Orario del curator: il task gira alle 21:20, mentre la SPEC §7 e `.claude/routines/curator.md` dicono 21:10. Rimettere il task alle 21:10 oppure correggere i due file (la SPEC con una PR)
-- [ ] Il curator schedulato può fare push solo sul branch della sua sessione (`claude/<nome-casuale>`) e non su `claude/curator-AAAA-MM-DD`: allineare la SPEC 9.2 e la routine, o accettare il nome che il branch prende da solo
-- [ ] Digest del 26/10 con la sezione "Controllo del vault" vuota (il 25/10 era compilata): verificare se il digest ha saltato `controlla-vault.py`
+- [x] Orario del curator: il task gira alle 21:20, mentre la SPEC §7 e `.claude/routines/curator.md` dicono 21:10. Rimettere il task alle 21:10 oppure correggere i due file (la SPEC con una PR) (chiuso: task riportato dall'utente a domenica alle 21:10)
+- [x] Il curator schedulato può fare push solo sul branch della sua sessione (`claude/<nome-casuale>`) e non su `claude/curator-AAAA-MM-DD`: allineare la SPEC 9.2 e la routine, o accettare il nome che il branch prende da solo (chiuso: lasciato così dall'utente)
+- [x] Digest del 26/10 con la sezione "Controllo del vault" vuota (il 25/10 era compilata): verificare se il digest ha saltato `controlla-vault.py` (chiuso: è normale, la sezione la compila solo il reconcile)
