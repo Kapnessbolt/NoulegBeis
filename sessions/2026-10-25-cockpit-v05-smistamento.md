@@ -33,5 +33,5 @@ Chiudere gli aperti sulla mod `cockpit` dopo l'installazione della v0.5.0 e smis
 ## Aperti
 
 - [x] Unire la PR #19 sulla SPEC (1.14); dopo il merge spuntare l'aperto "SPEC 7, riga `cockpit`" di [[2026-10-24-restyling-cockpit-implementazione]] (chiuso: PR #19 unita)
-- [ ] Step 5, rete di sicurezza dei diari: l'hook che copia le trascrizioni in `sessions/_raw/` non esiste e porterebbe nel repo dati riservati (§5). Valutare al suo posto un controllo dei giorni con commit di sessione ma senza diario (curator o `/verifica-task`), con una PR sulla SPEC §12
+- [x] Step 5, rete di sicurezza dei diari: l'hook che copia le trascrizioni in `sessions/_raw/` non esiste e porterebbe nel repo dati riservati (§5). Valutare al suo posto un controllo dei giorni con commit di sessione ma senza diario (curator o `/verifica-task`), con una PR sulla SPEC §12 (chiuso in [[2026-10-26-diari-mancanti-e-vault-sola-lettura]])
 - [ ] Step 5: costruire e provare il ponte `00_chat` (riassunto salvato dalla chat di claude.ai → nota `session` con `surface: claude-ai`)

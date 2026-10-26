@@ -1,0 +1,36 @@
+---
+type: session
+date: 2026-10-26
+surface: cloud
+topics: ["[[second-brain]]"]
+outcome: "Esiti di reconcile, digest e curator verificati; curator spostato alla domenica sera; rete di sicurezza dei diari affidata al curator (SPEC 1.15); il repo Manini non scrive più nel vault"
+---
+
+# Esiti dei task, diari mancanti e vault in sola lettura dai repo di progetto
+
+## Obiettivo
+
+Controllare gli esiti di reconcile, digest e curator, e decidere sulla proposta del curator (PR #20) per la rete di sicurezza dei diari.
+
+## Decisioni
+
+- Reconcile del 25/10 e digest del 26/10 OK. Il task curator girava ogni giorno alle 09:59 invece che la domenica sera: spostato dall'utente a domenica alle 21:20, perché da qui si possono modificare solo i task creati dall'agente
+- Proposta `controllo-diari-mancanti` accettata dall'utente, con una variante: il controllo è per commit e non per giorno, perché quello per giorno non vedeva il commit Manini delle 23:30 del 25/10, fatto in una sessione senza diario in un giorno che aveva già altri due diari
+- SPEC 1.15: la rete di sicurezza dei diari la fa il curator; niente hook `Stop` né trascrizioni intere nel repo, perché porterebbero dati riservati; `sessions/_raw/` tiene solo estratti; tolti la retention di 30 giorni e il task `sessions-cleanup`
+- La sessione Manini del 25/10 non aveva agito da sola: seguiva il `CLAUDE.md` del repo di progetto, che chiedeva di scrivere nel vault e di fare push su `main`. Dall'utente: il vault lo aggiorna solo l'ingestion giornaliera, quindi il repo Manini da ora il vault lo legge e basta. Nessuna regola nuova nel `CLAUDE.md` del vault (dall'utente)
+- Diario della sessione del 25/10 ricostruito dai commit dei due repo
+
+## File toccati
+
+- `.claude/agents/curator.md`: controllo dei commit senza diario (sezione 2, punto 5) e voce nei "Da verificare"
+- `CLAUDE.md`, `README.md`: `sessions/_raw/` solo per estratti di trascrizione
+- `SPEC.md`: §3, §7, §9.2, §12 e §14, versione 1.15 (PR #21)
+- `proposals/2026-10-25-controllo-diari-mancanti.md`: `status: accettata` con la nota sulla variante (PR #20)
+- `sessions/2026-10-25-manini-ritest-prompt-v11.md` (nuovo); aperti spuntati in `sessions/2026-10-22-watermark-e-task-schedulati.md` e `sessions/2026-10-25-cockpit-v05-smistamento.md`
+- Fuori dal vault: repo `manini-automazione-ddt`, `CLAUDE.md` §5 (PR #4); task curator su claude.ai, orario spostato dall'utente
+
+## Aperti
+
+- [ ] Orario del curator: il task gira alle 21:20, mentre la SPEC §7 e `.claude/routines/curator.md` dicono 21:10. Rimettere il task alle 21:10 oppure correggere i due file (la SPEC con una PR)
+- [ ] Il curator schedulato può fare push solo sul branch della sua sessione (`claude/<nome-casuale>`) e non su `claude/curator-AAAA-MM-DD`: allineare la SPEC 9.2 e la routine, o accettare il nome che il branch prende da solo
+- [ ] Digest del 26/10 con la sezione "Controllo del vault" vuota (il 25/10 era compilata): verificare se il digest ha saltato `controlla-vault.py`

@@ -36,7 +36,7 @@ Chiudere i punti aperti di [[2026-10-22-primo-caricamento-outlook]]: watermark e
 
 ## Aperti
 
-- [ ] Step 5: valutare la raccolta delle sessioni via trascrizione (elenco sessioni della settimana → diari mancanti in `sessions/`) al posto dell'hook `Stop`; solo sessioni sul vault e chat di claude.ai, escluse quelle di parts-radar
+- [x] Step 5: valutare la raccolta delle sessioni via trascrizione (elenco sessioni della settimana → diari mancanti in `sessions/`) al posto dell'hook `Stop`; solo sessioni sul vault e chat di claude.ai, escluse quelle di parts-radar (chiuso in [[2026-10-26-diari-mancanti-e-vault-sola-lettura]])
 - [x] Controllare il primo giro dei task: digest, watermark, nessun doppione (chiuso in [[2026-10-23-verifica-primo-giro-task]])
 - [ ] Rendere l'agente `ingestor` indipendente dal nome del connettore (es. togliere la restrizione `tools:`), così torna usabile come subagente
 - [ ] Dopo 3 giorni di esecuzioni senza errori né doppioni, chiudere lo step 4 (SPEC 13)
