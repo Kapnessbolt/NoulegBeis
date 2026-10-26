@@ -94,7 +94,7 @@ Il curator non modifica mai `CLAUDE.md`, `.claude/` o `SPEC.md`: propone, e le m
 - Prima di ogni commit: `python3 .claude/scripts/controlla-vault.py` (SPEC 4.4) e correggi gli errori che hai introdotto. Il pre-commit di git (`.githooks/pre-commit`, attivato a inizio sessione) blocca comunque il commit se restano errori nei file modificati. Il controllo segnala come errore anche i possibili dati riservati nel corpo delle note (§5): toglili, non aggirarlo. Poi commit, `git pull --rebase origin main` (dopo il commit: con modifiche non committate il rebase si rifiuta) e push diretto su `main`.
 - Conflitti su `.state/*.json`: li risolve il merge driver `stato` (`.gitattributes`, registrato dall'hook di avvio): vince il watermark più avanzato e le voci si uniscono. Se il rebase si ferma comunque su un file di stato: `python3 .claude/scripts/stato.py risolvi`, poi `git rebase --continue`. Altri conflitti: riapplica la tua modifica sulla versione remota.
 - Eccezione: il curator lavora su un branch `claude/` e apre una PR (`claude/curator-AAAA-MM-DD` con `/curator`, il branch assegnato alla sessione nel task schedulato).
-- Messaggi di commit: `ingest(sharepoint): 12 note aggiornate`, `session: <slug>`, `project(<slug>): <cosa>`, `vault: <cosa>` per struttura e configurazione.
+- Messaggi di commit: `ingest(sharepoint): 12 note aggiornate`, `session: <slug>`, `project(<slug>): <cosa>`, `inbox: cattura <slug>` e `inbox: smistamento` per `/cattura` e `/smista`, `vault: <cosa>` per struttura e configurazione.
 
 ## 8. Fine sessione
 
