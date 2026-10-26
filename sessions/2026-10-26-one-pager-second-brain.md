@@ -36,5 +36,5 @@ Realizzare due one pager in stile BlueAge del Second Brain: uno commerciale per 
 
 - [x] Caricare a mano il PDF del one pager commerciale su OneDrive: il caricamento dal connettore è stato bloccato, il base64 del PDF non passa nella chiamata (chiuso: caricato da Lorenzo in `BlueAge/02_Second Brain/`)
 - [ ] Condividere l'artifact del one pager tecnico con il team dal menu Share
-- [ ] Allineare SPEC e README alle 9 incongruenze trovate costruendo il one pager tecnico (skill blueage non nel vault, README con comandi inesistenti, branch del curator, prefissi di commit, `.githooks/` nell'albero, ingestor e 6.6, `/cockpit`, Obsidian in sola lettura, `.gitkeep`): c'è la scheda "Allinea SPEC e README ai file reali"
+- [x] Allineare SPEC e README alle 9 incongruenze trovate costruendo il one pager tecnico (skill blueage non nel vault, README con comandi inesistenti, branch del curator, prefissi di commit, `.githooks/` nell'albero, ingestor e 6.6, `/cockpit`, Obsidian in sola lettura, `.gitkeep`): c'è la scheda "Allinea SPEC e README ai file reali" (chiuso in [[2026-10-26-spec-e-readme-allineati]])
 - [ ] Spunto per il curator: dal cloud i file binari prodotti dalle skill (PDF, pptx) non si caricano su OneDrive oltre pochi KB; serve una procedura per consegnarli
