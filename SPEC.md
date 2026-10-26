@@ -1,6 +1,6 @@
 # SPEC · Second Brain BlueAge (personale)
 
-Versione 1.18 · 26/10/2026 · Owner: Lorenzo Curione
+Versione 1.19 · 26/10/2026 · Owner: Lorenzo Curione
 
 Questo file è la specifica di riferimento del vault. Ogni sessione Claude Code che costruisce o modifica il sistema parte da qui. Le modifiche alla specifica si fanno con una PR dedicata.
 
@@ -53,6 +53,7 @@ Sessioni locali (app desktop sul PC):
 ├── CLAUDE.md                istruzioni operative per ogni sessione
 ├── .github/workflows/       controllo del vault su ogni push (4.4)
 ├── .githooks/pre-commit     controllo del vault prima di ogni commit (4.4)
+├── .gitattributes           merge driver `stato` per i file di `.state/` (6.1, 11)
 ├── README.md                guida rapida per l'utente
 ├── home.md                  vista Obsidian con Tasks e Dataview (fuori dal controllo 4.4)
 ├── .claude/
@@ -61,10 +62,14 @@ Sessioni locali (app desktop sul PC):
 │   ├── agents/              agenti specializzati (sezione 9)
 │   ├── hooks/               hook di Claude Code (controllo prima del commit 4.4, pull all'avvio 11)
 │   ├── routines/            procedure dei task schedulati (sezione 7)
-│   ├── scripts/             script di servizio (controllo e rinomina delle note 4.4, dati della dashboard 7)
+│   ├── scripts/             script di servizio testati (4.4): controllo e rinomina delle note, famiglia, perimetro, stato, note dal template, dati della dashboard (7)
 │   └── skills/              skill (sezione 10): `chiudi-sessione`, `blueage-deck`, `blueage-corso`, `blueage-animazioni`
-├── .state/
-│   └── ingest.json          stato dell'ingestion (sezione 6.1)
+├── .state/                  stato dell'ingestion, un file per fonte (6.1)
+│   ├── sharepoint.json
+│   ├── onedrive.json
+│   ├── outlook.json
+│   ├── github.json
+│   └── reconcile.json
 ├── inbox/                   catture rapide da smistare
 ├── projects/<slug>/
 │   ├── <slug>.md            scheda progetto: stato, attività, prossimi passi
@@ -283,15 +288,30 @@ Lo script `python3 .claude/scripts/controlla-vault.py` verifica le note (tranne 
 
 | Livello | Cosa controlla |
 |---|---|
-| Errore | **Integrità**: wikilink (nel frontmatter o nel testo) verso note inesistenti; wikilink con percorso o estensione; slug duplicati; voci di `.state/ingest.json` che puntano a note inesistenti. **Tracciabilità**: punti senza fonte nelle sezioni elencate in 4.1; fonti senza progetto, cliente o tema. **Schema**: frontmatter mancante o non valido; `type` sconosciuto o nella cartella sbagliata; campi del template mancanti; valori fuori dagli elenchi ammessi; nomi file non in slug; scheda progetto con nome diverso dalla cartella. **Doppioni certi**: stessa email su due persone; stessa `family`, `item_id` o `conversation_id` su due note. **Configurazione**: nomi del server Microsoft 365 diversi tra i `tools` dell'agente `ingestor` e i permessi di `.claude/settings.json`, o con uno dei 4 strumenti in lettura mancante (2). **Dati riservati** (CLAUDE.md §5), solo nel corpo delle note e non nel frontmatter: IBAN, telefoni italiani (`+39` e cellulari, esclusi importi, ore e percentuali), chiavi e token con prefisso noto (`sk-`, `ghp_`, `github_pat_`, `xox?-`, `AKIA`, JWT) o stringhe esadecimali e base64 di 40+ caratteri, GUID (tranne i nomi di server MCP già in `.claude/settings.json`), ID e passcode di riunione, password in chiaro (`password: valore`); il messaggio dice la categoria e la riga, del valore al massimo i primi 4 caratteri |
+| Errore | **Integrità**: wikilink (nel frontmatter o nel testo) verso note inesistenti; wikilink con percorso o estensione; slug duplicati; voci dello stato (`.state/<fonte>.json`) che puntano a note inesistenti, file di stato illeggibili. **Tracciabilità**: punti senza fonte nelle sezioni elencate in 4.1; fonti senza progetto, cliente o tema. **Schema**: frontmatter mancante o non valido; `type` sconosciuto o nella cartella sbagliata; campi del template mancanti; valori fuori dagli elenchi ammessi; nomi file non in slug; scheda progetto con nome diverso dalla cartella. **Doppioni certi**: stessa email su due persone; stessa `family`, `item_id` o `conversation_id` su due note. **Configurazione**: nomi del server Microsoft 365 diversi tra i `tools` dell'agente `ingestor` e i permessi di `.claude/settings.json`, o con uno dei 4 strumenti in lettura mancante (2). **Dati riservati** (CLAUDE.md §5), solo nel corpo delle note e non nel frontmatter: IBAN, telefoni italiani (`+39` e cellulari, esclusi importi, ore e percentuali), chiavi e token con prefisso noto (`sk-`, `ghp_`, `github_pat_`, `xox?-`, `AKIA`, JWT) o stringhe esadecimali e base64 di 40+ caratteri, GUID (tranne i nomi di server MCP già in `.claude/settings.json`), ID e passcode di riunione, password in chiaro (`password: valore`); il messaggio dice la categoria e la riga, del valore al massimo i primi 4 caratteri |
 | Avviso | Note orfane (persone, clienti, temi che nessuna nota collega); note che citano una fonte rimossa; note più vecchie di una fonte che citano (la fonte è stata aggiornata dopo); note `da-verificare`; nomi quasi uguali nella stessa categoria (possibili doppioni); persone senza email; campi non previsti dal template; documenti SharePoint, OneDrive e GitHub non registrati nello stato |
 
 Quando si esegue:
 - **prima di ogni commit**: il pre-commit di git `.githooks/pre-commit` lancia lo script con `--modificati` e blocca il commit se ci sono errori che toccano i file modificati, compresi i collegamenti rotti da una nota cancellata o rinominata. Gira dentro `git commit`, quindi vede anche i file creati nello stesso comando. Si attiva con `git config core.hooksPath .githooks`: nelle sessioni Claude Code lo fa l'hook `SessionStart` di `.claude/settings.json`. Sui dispositivi con Obsidian non serve, perché da lì non parte nessun commit (2). L'hook `PreToolUse` `.claude/hooks/controllo-pre-commit.sh` resta come primo filtro sui comandi `git commit`. Vale per sessioni interattive e task schedulati;
 - **su ogni push e PR**: il workflow `.github/workflows/controllo-vault.yml` lo esegue su GitHub, così si vedono anche gli errori dei commit fatti fuori dalle sessioni (per esempio dal web di GitHub);
-- **test degli script in CI**: prima del controllo lo stesso workflow esegue `python3 -m pytest .claude/scripts/tests -q`, i test di `controlla-vault.py`, `rinomina-nota.py` e `plancia.py` su un mini-vault di prova (gli script leggono la radice dalla variabile `VAULT_ROOT`); se un test fallisce la CI è rossa;
+- **test degli script in CI**: prima del controllo lo stesso workflow esegue `python3 -m pytest .claude/scripts/tests -q`, i test di tutti gli script di servizio (sotto) su un mini-vault di prova (gli script leggono la radice dalla variabile `VAULT_ROOT`); se un test fallisce la CI è rossa;
 - nella riconciliazione settimanale (6.4), con l'esito nel digest;
 - a richiesta con `/controlla`.
+
+**Script di servizio** (`.claude/scripts/`, step 12 di 13.1). Il codice fa la meccanica, il modello il giudizio: l'agente `ingestor` chiama questi script invece di applicare a mano le regole, e scrive solo riassunti, collegamenti, attività e log. Ognuno ha `--help`, argomenti espliciti, output JSON con `--json` dove il risultato è strutturato, nessuna domanda interattiva, codice di uscita diverso da 0 in caso di errore, ed è coperto dai test in `.claude/scripts/tests/`.
+
+| Script | Cosa fa |
+|---|---|
+| `controlla-vault.py` | Controllo del vault (questa sezione) |
+| `rinomina-nota.py` | Rinomina una nota, aggiorna wikilink e stato (4.1) |
+| `famiglia.py` | Chiave di famiglia da un nome di file (4.3), slug di un testo o dell'oggetto di una mail, ricerca delle note della stessa famiglia (`--cerca`), golden test sulle famiglie del vault (`--verifica`, accordo minimo 90%) |
+| `perimetro.py` | Dentro o fuori perimetro da un `webUrl` (5.1-5.2) e cartella della nota; golden test sulle cartelle del vault (`--verifica`). La cartella di un progetto software non si vede dall'URL e resta all'agente |
+| `stato.py` | Lettura e scrittura dello stato (6.1) con validazione degli istanti e dei percorsi, migrazione dal vecchio file unico, merge driver dei conflitti (11) |
+| `nuova-nota.py` | Nota nuova dal template del suo tipo, con il frontmatter validato come nel controllo; per `source-doc` completa `source`, `family`, `ingested_at` e `versions`; non sovrascrive |
+| `aggiorna-nota.py` | Modifica il frontmatter di una nota esistente senza toccare il corpo: campi, aggiunte alle liste, posizioni in `also_at`, nuova versione (`current` in `versions`, 4.3). Le righe dei campi invariati restano identiche |
+| `plancia.py` | Dati della dashboard Cockpit (7) |
+
+Prefissi ed esclusioni del perimetro, e la firma dell'autore che `famiglia.py` toglie in coda ai nomi (`_BlueAge`), sono costanti in testa agli script: nello step 13 passano in `vault.yaml`.
 
 ## 5. Perimetro delle fonti
 
@@ -355,19 +375,30 @@ Nome della nota: `<repo>-<nome del file senza estensione>` (togliendo dal nome i
 
 ## 6. Ingestion
 
-### 6.1 Stato · `.state/ingest.json`
+### 6.1 Stato · `.state/<fonte>.json`
 
-```json
-{
-  "sharepoint": { "watermark": "2026-10-22T04:50:00Z", "items": { "<driveId>/<itemId>": { "last_modified": "...", "note": "sources/..." } } },
-  "onedrive":   { "watermark": "...", "items": {} },
-  "outlook":    { "watermark": "...", "threads": { "<conversationId>": { "last_message": "...", "note": "sources/mail/..." } } },
-  "github":     { "repos": { "<owner>/<repo>": { "commit": "<sha di main letto>", "watermark": "<istante di quel commit>" } },
-                  "items": { "<owner>/<repo>:<percorso>": { "last_modified": "...", "commit": "<sha>", "note": "sources/github/..." },
-                             "<owner>/<repo>#<numero>":   { "last_modified": "<updated_at>", "note": "sources/github/..." } } },
-  "reconcile":  { "last_run": "..." }
-}
+Un file per fonte, così due task che lavorano su fonti diverse non toccano lo stesso file. Ogni file ha il contenuto che prima aveva la sua chiave nel file unico:
+
+```jsonc
+// .state/sharepoint.json (uguale .state/onedrive.json)
+{ "watermark": "2026-10-22T04:50:00Z", "items": { "<driveId>/<itemId>": { "last_modified": "...", "note": "sources/..." } } }
+// .state/outlook.json
+{ "watermark": "...", "threads": { "<conversationId>": { "last_message": "...", "note": "sources/mail/..." } } }
+// .state/github.json
+{ "repos": { "<owner>/<repo>": { "commit": "<sha di main letto>", "watermark": "<istante di quel commit>" } },
+  "items": { "<owner>/<repo>:<percorso>": { "last_modified": "...", "commit": "<sha>", "note": "sources/github/..." },
+             "<owner>/<repo>#<numero>":   { "last_modified": "<updated_at>", "note": "sources/github/..." } } }
+// .state/reconcile.json
+{ "last_run": "..." }
 ```
+
+Regole:
+- lo stato si legge e si scrive solo con `python3 .claude/scripts/stato.py` (`watermark`, `item`, `repo`, `elenco`, `last-run`; `set-item`, `set-watermark`, `set-repo`, `set-last-run`), mai a mano;
+- istanti nel formato `AAAA-MM-GGTHH:MM:SSZ`, `note` è un percorso relativo dentro `sources/`;
+- il watermark non scende mai: un valore più vecchio si ignora con un avviso (`--forza` solo per correggere a mano);
+- le voci non si cancellano (6.4): una nota rimossa ha `status: removed` e la sua voce resta;
+- scrittura atomica, JSON con indentazione 2 e chiavi ordinate, perché i diff restino leggibili;
+- conflitti git: merge driver `stato` (`.gitattributes`: `.state/*.json merge=stato`; il comando `python3 .claude/scripts/stato.py merge-driver %O %A %B` lo registra nel clone l'hook `SessionStart`). Il watermark e `last_run` più avanzati vincono; `items`, `threads` e `repos` si uniscono e per la stessa chiave vince l'istante più recente (per i repo il watermark), a parità il lato che ha cambiato la voce rispetto alla base. Se il driver non è registrato o un file non si legge, il rebase si ferma e `stato.py risolvi` applica la stessa unione dagli stadi dell'indice (11).
 
 ### 6.2 Algoritmo del delta (documenti)
 
@@ -402,7 +433,7 @@ Limite di lettura: oltre 30 pagine o slide, leggi le prime 30 e imposta `partial
 ### 6.4 Riconciliazione settimanale
 
 1. Elenca le cartelle del perimetro con `read_resource` sugli URI delle cartelle.
-2. Confronta gli ID con `.state/ingest.json`:
+2. Confronta gli ID con lo stato (`stato.py elenco <fonte>`):
    - ID non più presenti: la nota passa a `status: removed`;
    - `webUrl` cambiato (file spostato o rinominato): aggiorna la nota;
    - file presenti ma mai ingeriti: mettili in coda per la prossima ingestion.
@@ -486,7 +517,7 @@ Eccezione: il `curator` non scrive nel digest e non fa push su `main` (sezione 3
 
 ### 9.1 `ingestor`
 
-Esegue le sezioni 6.2–6.4 e 6.6 (GitHub). Usato dai task schedulati (modalità `schedulata`) e da `/ingest` e `/ingest-file` (modalità `interattiva`). Scrive solo nelle cartelle consentite alla sua modalità (sezione 3).
+Esegue le sezioni 6.2–6.4 e 6.6 (GitHub): la meccanica (perimetro, famiglia, frontmatter, versioni, stato) con gli script di servizio (4.4), il giudizio (riassunti, collegamenti, persone, attività, log) da sé. Usato dai task schedulati (modalità `schedulata`) e da `/ingest` e `/ingest-file` (modalità `interattiva`). Scrive solo nelle cartelle consentite alla sua modalità (sezione 3).
 
 ### 9.2 `curator`
 
@@ -528,7 +559,7 @@ Prerequisito: lo script di setup dell'ambiente cloud installa le dipendenze dell
 
 - All'avvio di ogni sessione, in cloud e in locale, l'hook `SessionStart` `.claude/hooks/pull-inizio-sessione.sh` fa `git pull --rebase origin main`. Con modifiche non committate lo salta, se fallisce lo annulla: in tutti e due i casi lo segnala e la sessione lo rifà a mano.
 - Le sessioni interattive (cloud e locali) e i task schedulati fanno commit e push direttamente su `main`, prima con `git pull --rebase`. Il cloud vede solo ciò che è su `main`: un commit locale non spinto, o spinto su un altro branch, per i task e le sessioni cloud non esiste.
-- In caso di conflitto su `.state/ingest.json`, vince la versione con il watermark più avanzato. Gli altri conflitti si risolvono riapplicando la propria modifica sulla versione remota.
+- I conflitti sullo stato (`.state/<fonte>.json`) li risolve il merge driver `stato` (6.1): vince il watermark più avanzato e le voci si uniscono. Se il rebase si ferma comunque su un file di stato: `python3 .claude/scripts/stato.py risolvi`, poi `git rebase --continue`. Gli altri conflitti si risolvono riapplicando la propria modifica sulla versione remota.
 - Eccezioni: il curator lavora su un branch `claude/` e apre una PR (9.2); le modifiche a questa SPEC passano da una PR dedicata.
 - Messaggi di commit:
 
@@ -556,7 +587,7 @@ Prerequisito: lo script di setup dell'ambiente cloud installa le dipendenze dell
 
 | Step | Contenuto | Criterio di accettazione |
 |---|---|---|
-| 1 | Struttura del vault, `CLAUDE.md`, `README.md`, template, `.state/ingest.json` vuoto | Una sessione cloud nuova legge `CLAUDE.md` e sa dove scrivere ogni tipo di nota |
+| 1 | Struttura del vault, `CLAUDE.md`, `README.md`, template, stato dell'ingestion vuoto | Una sessione cloud nuova legge `CLAUDE.md` e sa dove scrivere ogni tipo di nota |
 | 2 | Agente `ingestor` e comandi `/ingest`, `/ingest-file` | `/ingest-file` su `BlueAge_CompanyProfile_v24.pdf` produce una nota conforme allo schema 4.2 |
 | 3 | Primo caricamento a lotti (6.5) | Campione di 10 note per lotto approvato dall'utente |
 | 4 | Task schedulati di ingestion, digest e riconciliazione | 3 giorni di run senza errori e senza doppioni |
