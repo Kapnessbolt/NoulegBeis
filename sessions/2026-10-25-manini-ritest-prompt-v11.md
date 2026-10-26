@@ -32,4 +32,4 @@ Chiudere i due aperti tecnici di [[manini-automazione-ddt]]: ritestare il prompt
 
 ## Aperti
 
-- [ ] Doppione di famiglia: [[essenziale]] (Library, 25/10) è la versione successiva di [[manini-ddt-essenziale]] (cartella Manini, ferma al 23/10); decidere se unire le note o archiviare il file vecchio su OneDrive
+- [x] Doppione di famiglia: la copia dell'essenziale in Library (25/10) è la versione successiva di quella nella cartella Manini (ferma al 23/10) (chiuso: note unite il 26/10 in [[manini-ddt-essenziale]])

@@ -1,7 +1,7 @@
 ---
 type: source-doc
 source: onedrive
-family: essenziale
+family: manini-ddt-essenziale
 current:
   item_id: 013UYHJHEWRFNHJGQO4JG37XUVRX6UUVDG
   uri: file:///b!2fHSoBOOE0aRvS_GntS6s6RJcyNKjAJMiRtoiZ6n5xzp8hWMRRoMQKOVYgftTbzT/013UYHJHEWRFNHJGQO4JG37XUVRX6UUVDG
@@ -10,6 +10,8 @@ current:
   last_modified: 2026-10-25T22:18:22Z
 versions:
   - { name: essenziale.md, item_id: 013UYHJHEWRFNHJGQO4JG37XUVRX6UUVDG, last_modified: 2026-10-25T22:18:22Z }
+  - { name: manini_ddt_essenziale.md, item_id: 013UYHJHCY44X6NSPPYNF24EAWAYK64P35, last_modified: 2026-10-23T12:51:23Z }
+  - { name: manini_ddt_essenziale.md, item_id: 013UYHJHCY44X6NSPPYNF24EAWAYK64P35, last_modified: 2026-10-23T12:04:17Z }
 also_at: []
 status: active
 partial: false
@@ -20,11 +22,11 @@ topics: ["[[ai-nei-processi]]"]
 tags: [entrata-merci, ddt, sintesi]
 ---
 
-# Manini · caso DDT / entrata merci, l'essenziale (Library, stato al 25/10)
+# Manini · caso DDT / entrata merci, l'essenziale
 
 ## Riassunto
 
-Sintesi in una pagina del progetto [[manini-automazione-ddt]], aggiornata al 25/10/2026 e salvata nella Library di `Progetto Automazione`. È la versione successiva di [[manini-ddt-essenziale]], che resta su OneDrive nella cartella Manini ferma al 23/10. Rispetto a quella aggiunge il ritest del prompt v1.1 ([[04-benchmark]]) e il matching sull'estrazione reale ([[05-matching]]). Distingue ciò che ha detto [[manini]], ciò che viene dal deck di [[leonardo-pinsone]] e ciò che è analisi BlueAge non ancora validata; copre persone, vincoli del [[corso-ai-manini]], dati del campione, benchmark, matching, posizioni prese, business case, piano aula, stato degli step, domande aperte e lezioni riusabili.
+Sintesi in una pagina del progetto [[manini-automazione-ddt]], aggiornata al 25/10/2026. Il master è `report/essenziale.md` nel repo GitHub `manini-automazione-ddt`; la copia condivisa è nella Library di `Progetto Automazione`. Fino al 23/10 la copia stava nella cartella Manini come `manini_ddt_essenziale.md`, ferma a quella data. Rispetto ad allora aggiunge il ritest del prompt v1.1 ([[04-benchmark]]) e il matching sull'estrazione reale ([[05-matching]]). Distingue ciò che ha detto [[manini]], ciò che viene dal deck di [[leonardo-pinsone]] e ciò che è analisi BlueAge non ancora validata; copre persone, vincoli del [[corso-ai-manini]], dati del campione, benchmark, matching, posizioni prese, business case, piano aula, stato degli step, domande aperte e lezioni riusabili.
 
 ## Punti chiave
 
@@ -55,4 +57,6 @@ Sintesi in una pagina del progetto [[manini-automazione-ddt]], aggiornata al 25/
 
 ## Versioni
 
-- essenziale.md · 2026-10-25 · prima versione nel vault: copia aggiornata di [[manini-ddt-essenziale]] con ritest v1.1, matching sull'estrazione (§5b), stato degli step e lezioni operative
+- essenziale.md (Library) · 2026-10-25 · ritest del prompt v1.1, matching sull'estrazione (§5b), stato degli step e lezioni operative; la copia passa dalla cartella Manini alla Library
+- manini_ddt_essenziale.md (cartella Manini) · 2026-10-23 12:51 · aggiunti la sezione 5b sul matching simulato, lo step 4 fatto e i file del matching
+- manini_ddt_essenziale.md (cartella Manini) · 2026-10-23 · prima versione completa (21–22/10); corretti in sessione i nomi di Angelo Santilli e Cristian Schifone (Trif), sezione 12 sui file aggiornata al repo
