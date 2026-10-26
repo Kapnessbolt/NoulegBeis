@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8">
+<title>Illustrazione BlueAge · TITOLO</title>
+<style id="ba-font">/*BA_FONT*/</style>
+<style>
+/* ===== BA_ILL_STILE v1 · 14/10/2026 · NON MODIFICARE QUESTO BLOCCO =====
+   Stile chiaro delle illustrazioni BlueAge (skill blueage-animazioni). Documentazione: references/componenti.md §3.
+   Dimensioni: larghezza = larghezza in slide (pollici) x 200 px. Mezza slide 890 px, area utile intera 1800 px. */
+:root{
+  --navy:#0B2C4D; --notte:#050E2D; --blu:#2F80ED; --teal:#1C9EB1; --teal-chiaro:#7FD3DC;
+  --testo:#3A4750; --grigio:#6E7C87; --linea:#D5DEE5; --card:#F2F5F8; --tinta:#E3F4F6;
+  --anomalia:#FF7A59; --anomalia-testo:#C2492C; --anomalia-tinta:#FFEDE7;
+  --k0:#DCEBFD; --k1:#D7F0F3; --k2:#FFE3D9; --k3:#E8EDF2;
+  --ombra:0 6px 20px rgba(11,44,77,.12);
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:#FFFFFF;}
+body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--testo);position:relative;overflow:hidden;
+  width:var(--w);height:var(--h);}
+.riga{display:flex;gap:var(--spazio,24px);align-items:stretch;}
+.colonna{display:flex;flex-direction:column;gap:var(--spazio,16px);}
+.centro{align-items:center;justify-content:center;}
+.etichetta{font-size:20px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);}
+.titolo{font-size:30px;font-weight:700;color:var(--navy);line-height:1.2;}
+.testo{font-size:26px;line-height:1.25;}
+.nota{font-size:22px;color:var(--grigio);line-height:1.3;}
+.forte{font-weight:700;color:var(--navy);}
+.ok{color:var(--teal);font-weight:700;}
+.ko{color:var(--anomalia-testo);font-weight:700;}
+.card{background:var(--card);border-radius:20px;padding:22px 24px;position:relative;}
+.card.bianca{background:#FFFFFF;border:2px solid var(--linea);box-shadow:var(--ombra);}
+.card.scura{background:var(--navy);color:#D5E3EE;}
+.card.scura .titolo{color:#FFFFFF;} .card.scura .etichetta{color:var(--teal-chiaro);}
+.card.anomalia{background:var(--anomalia-tinta);border:3px solid var(--anomalia);}
+.card .piede{border-top:2px solid var(--linea);margin-top:14px;padding-top:10px;}
+.badge{display:inline-block;background:var(--blu);color:#FFFFFF;font-weight:700;font-size:24px;border-radius:12px;padding:4px 12px;}
+.badge.teal{background:var(--teal);} .badge.navy{background:var(--navy);}
+.numero{display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;
+  background:var(--tinta);color:var(--teal);font-weight:700;font-size:26px;flex:none;}
+.numero.pieno{background:var(--teal);color:#FFFFFF;}
+.pill{display:inline-block;background:var(--navy);color:#FFFFFF;font-weight:700;font-size:24px;padding:10px 22px;border-radius:30px;white-space:nowrap;}
+.pill.teal{background:var(--teal);} .pill.chiara{background:var(--tinta);color:var(--teal);}
+.pill.anomalia{background:var(--anomalia-tinta);color:var(--anomalia-testo);border:2px solid var(--anomalia);}
+.chips{display:flex;flex-wrap:wrap;gap:6px;}
+.chips span{font-size:28px;padding:4px 8px;border-radius:8px;white-space:pre;line-height:1.25;color:var(--navy);}
+.k0{background:var(--k0)}.k1{background:var(--k1)}.k2{background:var(--k2)}.k3{background:var(--k3)}
+.evidenza{outline:3px solid var(--anomalia);outline-offset:2px;}
+.tratteggio{flex:1;height:4px;align-self:center;background:repeating-linear-gradient(90deg,var(--teal) 0 14px,transparent 14px 24px);}
+.freccia{flex:none;align-self:center;width:48px;height:24px;}
+.icona{width:var(--i,48px);height:var(--i,48px);flex:none;}
+svg text{font-family:'Plus Jakarta Sans',sans-serif;}
+/* ===== FINE BA_ILL_STILE ===== */
+
+/* ===== ILLUSTRAZIONE · da qui in giù si scrive ===== */
+body{--w:1800px;--h:400px;}
+</style></head>
+<body>
+<!-- Icone (stile chiaro): <svg class="icona"><use href="#i-mail"/></svg> · colore con style="color:..." -->
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="i-mail" viewBox="0 0 48 48"><rect x="4" y="10" width="40" height="28" rx="4" fill="none" stroke="currentColor" stroke-width="3"/><path d="M4 13 L24 27 L44 13" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></symbol>
+  <symbol id="i-documento" viewBox="0 0 48 48"><path d="M11 4 h19 l9 9 v31 h-28 z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M17 22 h16 M17 30 h16 M17 14 h8" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></symbol>
+  <symbol id="i-gestionale" viewBox="0 0 48 48"><ellipse cx="24" cy="11" rx="17" ry="6" fill="none" stroke="currentColor" stroke-width="3"/><path d="M7 11 v26 a17 6 0 0 0 34 0 v-26 M7 24 a17 6 0 0 0 34 0" fill="none" stroke="currentColor" stroke-width="3"/></symbol>
+  <symbol id="i-persona" viewBox="0 0 48 48"><circle cx="24" cy="17" r="8" fill="none" stroke="currentColor" stroke-width="3"/><path d="M9 42 a15 12 0 0 1 30 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></symbol>
+  <symbol id="i-spunta" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="currentColor"/><path d="M15 24 l6 6 l12 -13" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-croce" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="currentColor"/><path d="M17 17 l14 14 M31 17 l-14 14" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/></symbol>
+  <symbol id="i-attenzione" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="currentColor"/><rect x="21.5" y="12" width="5" height="15" rx="2.5" fill="#FFFFFF"/><circle cx="24" cy="33" r="3" fill="#FFFFFF"/></symbol>
+  <symbol id="i-ingranaggio" viewBox="0 0 48 48"><circle cx="24" cy="24" r="7" fill="none" stroke="currentColor" stroke-width="3"/><path d="M24 4 v7 M24 37 v7 M4 24 h7 M37 24 h7 M10 10 l5 5 M33 33 l5 5 M38 10 l-5 5 M15 33 l-5 5" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="24" cy="24" r="14" fill="none" stroke="currentColor" stroke-width="3"/></symbol>
+  <symbol id="i-freccia" viewBox="0 0 48 24"><path d="M2 12 h38" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M34 4 l10 8 l-10 8 z" fill="currentColor"/></symbol>
+</svg>
+
+<!-- ESEMPIO: tre passi con esito. Sostituirlo. -->
+<div class="colonna" style="padding:6px 10px 24px;--spazio:28px">
+  <div class="riga" style="align-items:center;--spazio:18px">
+    <span class="pill">Ordine del cliente</span><div class="tratteggio"></div>
+    <span class="etichetta">ESEMPIO INVENTATO</span><div class="tratteggio"></div>
+    <span class="pill teal">Ordine registrato</span>
+  </div>
+  <div class="riga" style="--spazio:20px">
+    <div class="card bianca colonna" style="flex:1;--spazio:12px">
+      <div class="riga" style="align-items:center;--spazio:14px"><span class="numero">1</span><span class="titolo">Legge</span></div>
+      <div class="testo">L'AI riconosce il documento ed estrae i campi</div>
+      <div class="piede nota">cliente, codici, quantità, prezzi</div>
+    </div>
+    <svg class="freccia" style="color:var(--teal)"><use href="#i-freccia"/></svg>
+    <div class="card bianca colonna" style="flex:1;--spazio:12px">
+      <div class="riga" style="align-items:center;--spazio:14px"><span class="numero">2</span><span class="titolo">Controlla</span></div>
+      <div class="testo">Ogni campo confrontato con il gestionale</div>
+      <div class="piede nota"><span class="ok">4 su 5 tornano</span> · <span class="ko">1 prezzo no</span></div>
+    </div>
+    <svg class="freccia" style="color:var(--teal)"><use href="#i-freccia"/></svg>
+    <div class="card scura colonna" style="flex:1;--spazio:12px">
+      <div class="riga" style="align-items:center;--spazio:14px"><span class="numero pieno">3</span><span class="titolo">Decide</span></div>
+      <div class="testo">Registra ciò che torna, passa il resto a una persona</div>
+      <div class="riga" style="--spazio:10px;align-items:center"><svg class="icona" style="--i:36px;color:var(--teal-chiaro)"><use href="#i-persona"/></svg><span class="etichetta">CON IL MOTIVO</span></div>
+    </div>
+  </div>
+</div>
+</body></html>
