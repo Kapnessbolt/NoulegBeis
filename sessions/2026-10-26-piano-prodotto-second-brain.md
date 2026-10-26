@@ -43,5 +43,5 @@ Valutare il vault com'è dopo la prima settimana (struttura, regole, codice, aut
 
 - [x] Unire la PR della SPEC 1.18 (fase 2 del piano, step 11) e del progetto `second-brain-prodotto` (chiuso: PR #24 unita)
 - [ ] Unire la PR dello step 12 (SPEC 1.19) prima dei task delle 06:50, così il primo giro osservato è quello del 27/10
-- [ ] Aggiungere in `.claude/settings.json` i permessi `Bash(python3 .claude/scripts/<script>.py:*)` per famiglia, perimetro, stato, nuova-nota e aggiorna-nota (ok di Lorenzo)
+- [x] Aggiungere in `.claude/settings.json` i permessi `Bash(python3 .claude/scripts/<script>.py:*)` per famiglia, perimetro, stato, nuova-nota e aggiorna-nota (chiuso: ok di Lorenzo, commit a9e2b44)
 - [ ] Eseguire gli step 13–20 uno alla volta, ognuno chiuso con il suo criterio di accettazione (attività nella scheda del progetto)
