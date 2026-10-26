@@ -25,6 +25,7 @@ Realizzare due one pager in stile BlueAge del Second Brain: uno commerciale per 
 - I due file costruiti in parallelo da due subagenti nella stessa sessione, non da due sessioni, per controllarli e pubblicarli da qui
 - PDF rigenerato con i file statici di Plus Jakarta Sans: con il font variabile Chromium lo incorporava come Type 3 (200 KB → 85 KB)
 - File prodotti fuori dal repo (`CLAUDE.md` §5): tecnico su claude.ai, commerciale in OneDrive `BlueAge/02_Second Brain/`
+- Nel tecnico `blueage-deck`, `blueage-corso` e `blueage-animazioni` passano da "in arrivo" a "dall'account": non sono in `.claude/skills/`, ma arrivano dal plugin di claude.ai e si usano già nelle sessioni (segnalato dall'utente; artifact versione 2)
 
 ## File toccati
 
