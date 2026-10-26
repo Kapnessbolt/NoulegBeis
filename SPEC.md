@@ -1,6 +1,6 @@
 # SPEC · Second Brain BlueAge (personale)
 
-Versione 1.17 · 26/10/2026 · Owner: Lorenzo Curione
+Versione 1.18 · 26/10/2026 · Owner: Lorenzo Curione
 
 Questo file è la specifica di riferimento del vault. Ogni sessione Claude Code che costruisce o modifica il sistema parte da qui. Le modifiche alla specifica si fanno con una PR dedicata.
 
@@ -566,7 +566,30 @@ Prerequisito: lo script di setup dell'ambiente cloud installa le dipendenze dell
 | 9 | Dashboard Cockpit, task `cockpit` e nota `home.md` | 3 giorni di aggiornamenti della dashboard senza errori; `home.md` leggibile in Obsidian con Tasks e Dataview |
 | 10 | Fonte GitHub (5.4, 6.6) e task `ingest-github` | 3 giorni di run senza errori; il log di `parts-radar-sviluppo` riceve una riga per giorno di lavoro sul repo |
 
+### 13.1 Fase 2 · dal vault al prodotto
+
+Gli step 1–10 hanno costruito il vault personale. La fase 2 lo porta a prodotto (tema `second-brain`, progetto `second-brain-prodotto`): prima l'affidabilità, poi l'uso, poi il prodotto. Si esegue uno step alla volta, nell'ordine, e uno step è chiuso solo quando il suo criterio è verificato. Principio guida: **il codice fa la meccanica, il modello fa il giudizio**. Perimetro, chiave di famiglia, slug, watermark, stato e controlli sono script testati; al modello restano lettura, riassunto, collegamenti e decisioni.
+
+| Step | Blocco | Contenuto | Criterio di accettazione |
+|---|---|---|---|
+| 11 | Affidabilità | Rete di sicurezza del codice: controllo dei dati riservati a pattern (IBAN, telefoni, token e chiavi, codici di riunione, GUID) in `controlla-vault.py` come errore bloccante; test pytest con un mini-vault di prova per `controlla-vault.py`, `rinomina-nota.py` e `plancia.py`; il workflow CI esegue i test prima del controllo | La CI è rossa su una nota di prova con un IBAN finto; i test passano in CI e nel pre-commit non cambia nulla per le note esistenti |
+| 12 | Affidabilità | Meccanica in codice: `famiglia.py` (chiave di famiglia e slug da un nome di file, 3.2 dell'ingestor), `perimetro.py` (dentro o fuori perimetro da un `webUrl`), `stato.py` (lettura e scrittura di watermark e voci con validazione e unione dei conflitti), `nuova-nota.py` (scheletro di una nota dal template con frontmatter validato); stato diviso per fonte in `.state/<fonte>.json`; l'ingestor chiama gli script e scrive solo riassunti e collegamenti; golden test sulle famiglie reali del vault | 3 giri dei task senza differenze rispetto a prima; `ingestor.md` sotto le 1.500 parole; nessuna modifica a mano di `.state/` |
+| 13 | Affidabilità | Configurazione separata dal motore: `vault.yaml` con nome, fuso, lingua, fonti (perimetro ed esclusioni), nomi del connettore, task (orari, modello, connettori); script, agenti, routine e `plancia.py` leggono da lì | Nessun valore BlueAge in `.claude/` fuori da `vault.yaml` (`grep -ri blueagesrl .claude` vuoto); la CI segnala se SPEC e `vault.yaml` divergono sugli orari dei task |
+| 14 | Affidabilità | Fonte unica delle regole: la matrice delle scritture e il perimetro vivono in un posto solo (SPEC §3 e `vault.yaml`); `CLAUDE.md` e gli agenti rimandano invece di copiare | Una sola copia della matrice nel repo |
+| 15 | Uso | Retention delle note hub: `## Interazioni recenti` alle ultime 20 righe (il resto si legge dai backlink); `## Fonti` di clienti e temi generate dallo script o sostituite da una query Dataview; le note `partial: true` riprese a lotti dalla riconciliazione o segnate come sufficienti; regola di archivio per i progetti `chiuso` | Nessuna sezione hub oltre le 20 righe; le 15 note parziali del 26/10 completate o segnate |
+| 16 | Uso | Riproducibilità: mod `cockpit` versionata (repo suo o `.claude/mods/`), script di setup dell'ambiente cloud committato, task letti da `vault.yaml`; guida di installazione da zero provata su un account e un clone nuovi | Installazione completa seguendo solo la guida, senza chiedere nulla a chi ha costruito il vault |
+| 17 | Uso | Librarian e ricerca: `cerca.py` (frontmatter e testo, ordinato per collegamenti), agente `librarian` (9.3), comandi `/oggi`, `/progetto`, `/cattura`, `/smista` (8) | 10 domande di prova sulla knowledge con risposta corretta e fonti citate; i quattro comandi in `.claude/commands/` |
+| 18 | Prodotto | Onboarding come prodotto: comando `/avvia` per il primo caricamento a lotti (6.5) con campione di qualità integrato; controllo di qualità a campione nel giro del curator (5 note rilette contro l'originale); manuale d'uso per il manager, non tecnico | Primo caricamento di un vault nuovo in una giornata; manuale letto e capito da una persona non tecnica |
+| 19 | Prodotto | Separazione della proprietà intellettuale e governance: repo template del motore (`.claude/`, script, template, SPEC generica, `vault.yaml` d'esempio) senza contenuti BlueAge (skill `blueage-*`, temi, clienti, persone); repo nell'organizzazione GitHub di BlueAge; secret scanning attivo; policy dei dati (base giuridica delle email in `people/`) in questa SPEC; prerequisiti del cliente scritti (piano Claude con Code e task schedulati, connettore Microsoft 365, repo GitHub privato, Obsidian facoltativo) | Template installabile; nessun file BlueAge nel template; prerequisiti verificati su un'installazione di prova |
+| 20 | Prodotto | Metriche di valore: riga settimanale nel resoconto del curator con note totali e nuove, giri dei task OK ed errori, domande risposte, consumo del piano se leggibile; base per il prezzo e per il rapporto al cliente | 4 settimane consecutive di metriche nel registro delle PR del curator |
+
+Modelli consigliati per l'esecuzione: la sessione guida e rivede (il modello più capace disponibile); il codice con i test lo scrivono subagenti Opus; le modifiche meccaniche alle note (15, 20) Sonnet; gli step che toccano SPEC e regole (13, 14, 18, 19) li fa la sessione.
+
 ## 14. Decisioni aperte
 
 - `blueage-animazioni` è nel vault, ma il rendering video (HTML → MP4) nelle sessioni cloud è da provare.
 - Consegna dei file prodotti dalle skill: dal cloud il connettore non carica su OneDrive un PDF o un pptx oltre pochi KB (26/10), quindi il criterio dello step 6 ("deck caricato su SharePoint") per ora richiede il caricamento a mano.
+- Un vault = un utente (1). Un reparto o un team sono più vault, forse con temi condivisi: da decidere con il primo cliente a più persone, dopo lo step 19.
+- Dashboard Cockpit e mod `cockpit` poggiano su funzioni di claude.ai in early access (artifact con `ArtifactData`, mod dell'app desktop) che possono cambiare. Nel prodotto restano strati opzionali sopra il nucleo stabile (markdown, git, task schedulati, connettore); `home.md` e il digest sono la vista di riserva.
+- Fonti diverse da Microsoft 365 (Google Workspace, altri repository): si valutano solo dopo lo step 13, quando il perimetro è configurazione e non prosa.
+- Lingua: sezioni e regole sono in italiano, anche negli script (`controlla-vault.py` cerca "Relazione con BlueAge"). Nello step 13 i nomi delle sezioni passano in configurazione; una versione in altra lingua è una decisione commerciale, non tecnica.
