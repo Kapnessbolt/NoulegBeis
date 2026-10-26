@@ -1,6 +1,6 @@
 # SPEC · Second Brain BlueAge (personale)
 
-Versione 1.15 · 26/10/2026 · Owner: Lorenzo Curione
+Versione 1.16 · 26/10/2026 · Owner: Lorenzo Curione
 
 Questo file è la specifica di riferimento del vault. Ogni sessione Claude Code che costruisce o modifica il sistema parte da qui. Le modifiche alla specifica si fanno con una PR dedicata.
 
@@ -26,9 +26,9 @@ Utente unico. Il repo è privato, ma i dati riservati (credenziali, coordinate b
 | Esecuzione | Claude Code in cloud (claude.ai/code) e in locale (app desktop, sessione aperta sulla cartella del vault sul PC) | Sessioni interattive: in cloud da desktop, mobile e PC diversi; in locale dal PC, con mod e pannelli |
 | Automazione | Task schedulati cloud (claude.ai/code/routines) | Ingestion periodica, riconciliazione, curator |
 | Fonti | Connettore Microsoft 365 (tenant blueage.it) | Lettura di SharePoint, OneDrive e Outlook; upload dei file prodotti |
-| Visualizzazione | Obsidian (vault = clone del repo) | Lettura, grafo, cattura veloce; `home.md` come pagina iniziale |
+| Visualizzazione | Obsidian (vault = clone del repo) | Solo lettura: link, backlink, grafo, ricerca, attività; `home.md` come pagina iniziale. Sincronizzazione solo in pull con il plugin Obsidian Git, niente commit dai dispositivi: modifiche e catture passano da Claude |
 | Riepilogo | Dashboard Cockpit su claude.ai (artifact privato) | Briefing, anche dal telefono e dalle sessioni cloud: calendario Outlook dal vivo; progetti, attività, log, inbox, task e digest dal vault |
-| Pannello locale | Mod `cockpit` dell'app desktop (caricata sull'account, si attiva una volta per PC) | Postazione operativa al PC nelle sessioni locali aperte sul vault: consumo del piano Max, task schedulati di oggi, prossime cose (calendario Outlook dal vivo e scadenze lette dai file), agenti del vault con conferma, link alla dashboard. Convive con la dashboard, non la sostituisce. Sul telefono le mod non compaiono; `/cockpit` dà il riepilogo in testo dove il pannello non si disegna |
+| Pannello locale | Mod `cockpit` dell'app desktop (caricata sull'account, si attiva una volta per PC) | Postazione operativa al PC nelle sessioni locali aperte sul vault: consumo del piano Max, task schedulati di oggi, prossime cose (calendario Outlook dal vivo e scadenze lette dai file), agenti del vault con conferma, link alla dashboard. Convive con la dashboard, non la sostituisce. Sul telefono le mod non compaiono; `/cockpit`, registrato dalla mod (8), dà il riepilogo in testo dove il pannello non si disegna |
 | Documenti originali | Restano su SharePoint, OneDrive e Outlook | Nel repo vanno solo le note markdown che li citano |
 
 Vincoli dell'ambiente cloud da rispettare:
@@ -52,6 +52,7 @@ Sessioni locali (app desktop sul PC):
 ├── SPEC.md                  questa specifica
 ├── CLAUDE.md                istruzioni operative per ogni sessione
 ├── .github/workflows/       controllo del vault su ogni push (4.4)
+├── .githooks/pre-commit     controllo del vault prima di ogni commit (4.4)
 ├── README.md                guida rapida per l'utente
 ├── home.md                  vista Obsidian con Tasks e Dataview (fuori dal controllo 4.4)
 ├── .claude/
@@ -61,7 +62,7 @@ Sessioni locali (app desktop sul PC):
 │   ├── hooks/               hook di Claude Code (controllo prima del commit 4.4, pull all'avvio 11)
 │   ├── routines/            procedure dei task schedulati (sezione 7)
 │   ├── scripts/             script di servizio (controllo e rinomina delle note 4.4, dati della dashboard 7)
-│   └── skills/              skill (sezione 10)
+│   └── skills/              skill (sezione 10): oggi `chiudi-sessione`
 ├── .state/
 │   └── ingest.json          stato dell'ingestion (sezione 6.1)
 ├── inbox/                   catture rapide da smistare
@@ -286,8 +287,8 @@ Lo script `python3 .claude/scripts/controlla-vault.py` verifica le note (tranne 
 | Avviso | Note orfane (persone, clienti, temi che nessuna nota collega); note che citano una fonte rimossa; note più vecchie di una fonte che citano (la fonte è stata aggiornata dopo); note `da-verificare`; nomi quasi uguali nella stessa categoria (possibili doppioni); persone senza email; campi non previsti dal template; documenti SharePoint, OneDrive e GitHub non registrati nello stato |
 
 Quando si esegue:
-- **prima di ogni commit**: il pre-commit di git `.githooks/pre-commit` lancia lo script con `--modificati` e blocca il commit se ci sono errori che toccano i file modificati, compresi i collegamenti rotti da una nota cancellata o rinominata. Gira dentro `git commit`, quindi vede anche i file creati nello stesso comando. Si attiva con `git config core.hooksPath .githooks`: nelle sessioni Claude Code lo fa l'hook `SessionStart` di `.claude/settings.json`, sui PC con Obsidian va eseguito una volta dopo il clone. L'hook `PreToolUse` `.claude/hooks/controllo-pre-commit.sh` resta come primo filtro sui comandi `git commit`. Vale per sessioni interattive e task schedulati;
-- **su ogni push e PR**: il workflow `.github/workflows/controllo-vault.yml` lo esegue su GitHub, così si vedono anche gli errori introdotti da Obsidian o dal web;
+- **prima di ogni commit**: il pre-commit di git `.githooks/pre-commit` lancia lo script con `--modificati` e blocca il commit se ci sono errori che toccano i file modificati, compresi i collegamenti rotti da una nota cancellata o rinominata. Gira dentro `git commit`, quindi vede anche i file creati nello stesso comando. Si attiva con `git config core.hooksPath .githooks`: nelle sessioni Claude Code lo fa l'hook `SessionStart` di `.claude/settings.json`. Sui dispositivi con Obsidian non serve, perché da lì non parte nessun commit (2). L'hook `PreToolUse` `.claude/hooks/controllo-pre-commit.sh` resta come primo filtro sui comandi `git commit`. Vale per sessioni interattive e task schedulati;
+- **su ogni push e PR**: il workflow `.github/workflows/controllo-vault.yml` lo esegue su GitHub, così si vedono anche gli errori dei commit fatti fuori dalle sessioni (per esempio dal web di GitHub);
 - nella riconciliazione settimanale (6.4), con l'esito nel digest;
 - a richiesta con `/controlla`.
 
@@ -457,7 +458,7 @@ Ogni task:
 - fa commit, poi `git pull --rebase` e push su `main`;
 - registra l'esito nel digest del giorno ("OK" oppure gli errori), con l'ora in Europe/Rome.
 
-Eccezione: il `curator` non scrive nel digest e non fa push su `main` (sezione 3). Lavora su un branch `claude/curator-AAAA-MM-DD` e il suo esito è la PR; se non trova niente da proporre non apre la PR.
+Eccezione: il `curator` non scrive nel digest e non fa push su `main` (sezione 3). Lavora sul branch che la sessione del task gli assegna (`claude/<nome>`) e il suo esito è la PR; se non trova niente da proporre non apre la PR.
 
 ## 8. Comandi manuali (`.claude/commands/`)
 
@@ -474,13 +475,17 @@ Eccezione: il `curator` non scrive nel digest e non fa push su `main` (sezione 3
 | `/verifica-task [task] [data]` | Verifica i giri dei task schedulati (7): riga nel digest o PR del curator, commit, watermark, note scritte, doppioni; propone le correzioni e gli aperti da spuntare |
 | `/curator [da data] [a data]` | Giro del curator a mano (9.2), di default sugli ultimi 7 giorni: mostra le proposte, registra le decisioni dell'utente nel `status` e apre la PR |
 
+`/oggi`, `/progetto`, `/cattura` e `/smista` sono previsti ma non ancora in `.claude/commands/`: fino ad allora agenda, stato dei progetti, catture e smistamento si chiedono a parole nella sessione, e il punto della giornata lo danno la dashboard Cockpit e il digest.
+
+`/cockpit` non sta in questa tabella perché non vive nel repo: lo registra la mod `cockpit` dell'app desktop (2), che si attiva una volta per PC dall'account. Esiste quindi solo dove la mod è attiva, e dà in testo il riepilogo del pannello.
+
 **Chat di claude.ai nel vault.** Nella chat basta chiedere "salva il riassunto di questa chat nel mio OneDrive in BlueAge/00_chat". Il connettore M365 carica il file, e l'ingestion lo trasforma in una nota di tipo `session` con `surface: claude-ai`.
 
 ## 9. Agenti (`.claude/agents/`)
 
 ### 9.1 `ingestor`
 
-Esegue le sezioni 6.2–6.4. Usato dai task schedulati (modalità `schedulata`) e da `/ingest` e `/ingest-file` (modalità `interattiva`). Scrive solo nelle cartelle consentite alla sua modalità (sezione 3).
+Esegue le sezioni 6.2–6.4 e 6.6 (GitHub). Usato dai task schedulati (modalità `schedulata`) e da `/ingest` e `/ingest-file` (modalità `interattiva`). Scrive solo nelle cartelle consentite alla sua modalità (sezione 3).
 
 ### 9.2 `curator`
 
@@ -490,7 +495,7 @@ Ogni settimana (task `curator` della domenica, o a mano con `/curator`):
 - scrive al massimo 5 proposte per giro in `proposals/AAAA-MM-DD-<slug>.md`, ognuna con motivazione, evidenze (link alle sessioni) e testo pronto (regola per `CLAUDE.md`, skill, agente o hook); gli altri pattern vanno in una riga ciascuno nella PR;
 - segnala nella PR come "da verificare" i commit `session: <slug>` senza diario e i commit `vault:`, `project(<slug>)` e `spec:` che nessun diario dello stesso giorno o del giorno dopo cita (per slug o per file toccato);
 - spunta in `sessions/` gli aperti già chiusi altrove, con la prova in coda (`(chiuso in [[<diario o digest>]])`, `(chiuso: PR #n unita)`); quelli chiusi in parte o con prova incerta vanno nella PR come "da verificare";
-- apre una PR su un branch `claude/curator-AAAA-MM-DD`.
+- apre una PR da un branch suo: `claude/curator-AAAA-MM-DD` con `/curator`; nel task schedulato il branch che la sessione gli assegna (`claude/<nome>`), perché la sessione cloud può fare push solo lì e senza utente nessuno può autorizzarne un altro.
 
 Le proposte restano in `proposals/` come registro: in revisione l'utente imposta `status` a `accettata` o `rifiutata`. Il curator non ripropone una proposta rifiutata se non ci sono evidenze nuove successive al rifiuto, e nella PR segnala le accettate non ancora applicate.
 
@@ -505,14 +510,14 @@ Risponde alle domande sulla knowledge:
 
 ## 10. Skill (`.claude/skills/`)
 
-| Skill | Origine | Intervento |
-|---|---|---|
-| `blueage-deck` | Plugin claude.ai | Copiata così com'è |
-| `blueage-corso` | Plugin claude.ai | Snellita: `SKILL.md` breve con il flusso; i dettagli (COMPASS, RED TAG, Tocca a voi, kit docente) in file di riferimento caricati solo quando servono |
-| `blueage-animazioni` | Plugin claude.ai | Da valutare dopo lo step 6 |
-| `chiudi-sessione` | Proposta del curator del 25/10 | Scritta nel vault: è `/chiudi-sessione` (sezione 8) |
+| Skill | Origine | Intervento | Stato |
+|---|---|---|---|
+| `chiudi-sessione` | Proposta del curator del 25/10 | Scritta nel vault: è `/chiudi-sessione` (sezione 8) | Nel vault |
+| `blueage-deck` | Plugin claude.ai | Copiata così com'è | Prevista (step 6) |
+| `blueage-corso` | Plugin claude.ai | Snellita: `SKILL.md` breve con il flusso; i dettagli (COMPASS, RED TAG, Tocca a voi, kit docente) in file di riferimento caricati solo quando servono | Prevista (step 6) |
+| `blueage-animazioni` | Plugin claude.ai | Da valutare dopo lo step 6 | Prevista, da valutare (14) |
 
-I file prodotti dalle skill (pptx, mp4, png) non vanno nel repo. Si caricano su SharePoint o OneDrive con il connettore, e la nota del progetto ne riporta il link. Il `.gitignore` esclude `*.pptx`, `*.mp4` e `*.png` in tutto il vault, tranne dentro `.claude/skills/` (dove stanno gli asset delle skill). Di conseguenza nemmeno le immagini incollate nelle note Obsidian entrano nel repo.
+I file prodotti dalle skill (pptx, mp4, png) non vanno nel repo. Si caricano su SharePoint o OneDrive con il connettore, e la nota del progetto ne riporta il link. Il `.gitignore` esclude `*.pptx`, `*.mp4` e `*.png` in tutto il vault, tranne dentro `.claude/skills/` (dove stanno gli asset delle skill).
 
 Prerequisito: lo script di setup dell'ambiente cloud installa le dipendenze delle skill (es. `python-pptx`) e `pyyaml` per il controllo del vault.
 
@@ -521,8 +526,21 @@ Prerequisito: lo script di setup dell'ambiente cloud installa le dipendenze dell
 - All'avvio di ogni sessione, in cloud e in locale, l'hook `SessionStart` `.claude/hooks/pull-inizio-sessione.sh` fa `git pull --rebase origin main`. Con modifiche non committate lo salta, se fallisce lo annulla: in tutti e due i casi lo segnala e la sessione lo rifà a mano.
 - Le sessioni interattive (cloud e locali) e i task schedulati fanno commit e push direttamente su `main`, prima con `git pull --rebase`. Il cloud vede solo ciò che è su `main`: un commit locale non spinto, o spinto su un altro branch, per i task e le sessioni cloud non esiste.
 - In caso di conflitto su `.state/ingest.json`, vince la versione con il watermark più avanzato. Gli altri conflitti si risolvono riapplicando la propria modifica sulla versione remota.
-- Unica eccezione: il curator lavora su un branch `claude/` e apre una PR.
-- Messaggi di commit: `ingest(sharepoint): 12 note aggiornate`, `session: <slug>`, `project(<slug>): <cosa>`.
+- Eccezioni: il curator lavora su un branch `claude/` e apre una PR (9.2); le modifiche a questa SPEC passano da una PR dedicata.
+- Messaggi di commit:
+
+| Prefisso | Chi | Esempio |
+|---|---|---|
+| `ingest(<fonte>)` | Ingestor, fonti `sharepoint`, `outlook`, `github` | `ingest(sharepoint): 3 note nuove, 12 aggiornate` |
+| `ingest(riconcilia)` | Task `reconcile` | `ingest(riconcilia): 4 note aggiornate` |
+| `ingest(file)` | Ingestor, compito `file` (`/ingest-file`) | `ingest(file): blueage-companyprofile` |
+| `journal:` | Task `digest` (la sua finestra parte dall'ultimo commit `journal:`) | `journal: 2026-10-26` |
+| `cockpit:` | Task `cockpit` | `cockpit: 2026-10-26 07:40` |
+| `curator:` | Curator | `curator: 2026-10-25, 3 proposte` |
+| `session:` | Diario di sessione (`/chiudi-sessione`) | `session: <slug>` |
+| `project(<slug>)` | Sessione interattiva su un progetto | `project(<slug>): <cosa>` |
+| `vault:` | Struttura e configurazione (`CLAUDE.md`, `.claude/`, template, `README.md`) | `vault: <cosa>` |
+| `spec:` | PR dedicata alla SPEC | `spec: <cosa> (1.16)` |
 
 ## 12. Diario delle sessioni
 
@@ -542,11 +560,10 @@ Prerequisito: lo script di setup dell'ambiente cloud installa le dipendenze dell
 | 5 | `/chiudi-sessione`, hook di sessione, bridge della cartella chat | Le sessioni della settimana compaiono in `sessions/` |
 | 6 | Skill `blueage-deck` e `blueage-corso` snellita | Un deck generato in cloud e caricato su SharePoint |
 | 7 | Agente `curator`, comando `/curator` e task `curator`; agente `librarian` | Prima PR di proposte ricevuta e valutata (curator: PR #14 del 25/10) |
-| 8 | Obsidian sui dispositivi (clone e sincronizzazione git) | Il grafo è visibile su PC e telefono |
+| 8 | Obsidian sui dispositivi in sola lettura (clone e Obsidian Git solo in pull) | Il grafo è visibile su PC e telefono (telefono fatto il 23/10, PC da configurare) |
 | 9 | Dashboard Cockpit, task `cockpit` e nota `home.md` | 3 giorni di aggiornamenti della dashboard senza errori; `home.md` leggibile in Obsidian con Tasks e Dataview |
 | 10 | Fonte GitHub (5.4, 6.6) e task `ingest-github` | 3 giorni di run senza errori; il log di `parts-radar-sviluppo` riceve una riga per giorno di lavoro sul repo |
 
 ## 14. Decisioni aperte
 
-- Sincronizzazione di Obsidian su mobile (step 8): da verificare il plugin git su mobile oppure un'alternativa.
 - `blueage-animazioni` nel vault cloud: dipende dal rendering video nell'ambiente cloud.
