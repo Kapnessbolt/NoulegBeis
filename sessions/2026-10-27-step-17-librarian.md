@@ -21,7 +21,7 @@ Eseguire lo step 17 di SPEC §13.1 (ricerca nel vault, agente `librarian`, coman
 - `/cattura` non chiede conferma; su un branch `claude/` committa lì e lo dice, senza push su `main`.
 - Criterio dello step 17 verificato: 10 domande di prova con risposta attesa letta prima dal vault, più una domanda di controllo fuori knowledge; 10 su 10 corrette con le fonti, il controllo ha avuto "nel vault non c'è" senza invenzioni. Tabella in `sessions/_raw/2026-10-27-librarian-10-domande.md`. Difetto: risposte lunghe; aggiunto nel librarian il limite di 3–8 righe per la risposta, il contesto solo se chiesto.
 - Due lacune segnalate dal librarian corrette subito con `aggiorna-nota.py`: `pulse-light` collegato a [[velo-ce]], `manini-relazione-processi-gestione-materiali` collegata a [[manini-supply-chain-magazzino]]. Le altre sono negli aperti.
-- Permessi di `.claude/settings.json` per `cerca.py` e `plancia.py` e per `mcp__github__get_file_contents` (letto dal librarian): non aggiunti dalla sessione, come nello step 12; senza, `/oggi`, `/progetto`, `/smista` e il librarian chiedono il permesso a ogni chiamata. Si aggiungono con l'ok di Lorenzo.
+- Permessi di `.claude/settings.json` per `cerca.py` e `plancia.py` e per `mcp__github__get_file_contents` (letto dal librarian): aggiunti dopo l'ok esplicito di Lorenzo, a PR #28 già unita, con una PR a sé. Senza, `/oggi`, `/progetto`, `/smista` e il librarian chiedono il permesso a ogni chiamata.
 - SPEC 1.20 nella stessa PR dello step (come lo step 12): §3 (`cerca.py`), §4.4 (riga nella tabella degli script), §8 (comandi descritti, tolta la frase "previsti ma non ancora"), §9.3 (librarian per esteso), §11 (`inbox:`). README allineato.
 - Incidente del subagente, chiuso: due note di prova finite in `inbox/` del vault reale per un `cd` fallito, cancellate subito; `inbox/` ha solo `.gitkeep`.
 - Revisione del cockpit: prima le tre domande a Lorenzo (cosa guarda la mattina, cosa manca, telefono o PC), poi opzioni con pro e contro; vincolo: basi stabili (markdown, git, task, `plancia.py`), niente early access; nessuna implementazione senza ok.
@@ -35,12 +35,13 @@ Eseguire lo step 17 di SPEC §13.1 (ricerca nel vault, agente `librarian`, coman
 - `topics/pulse-light.md`, `sources/sharepoint/salesmarketing/proposals/customers/manini/manini-relazione-processi-gestione-materiali.md` (frontmatter)
 - `projects/second-brain-prodotto/`: scheda e log
 - `sessions/_raw/2026-10-27-librarian-10-domande.md`, questo diario
-- Fuori dal repo: PR dal branch `claude/peaceful-mendel-pas0wl`
+- `.claude/settings.json`: i tre permessi (seconda PR)
+- Fuori dal repo: PR #28 (unita) e la PR dei permessi, dal branch `claude/peaceful-mendel-pas0wl`
 
 ## Aperti
 
-- [ ] Ok di Lorenzo per i permessi in `.claude/settings.json`: `Bash(python3 .claude/scripts/cerca.py:*)`, `Bash(python3 .claude/scripts/plancia.py:*)`, `mcp__github__get_file_contents`
-- [ ] Unire la PR dello step 17 (SPEC 1.20)
+- [x] Ok di Lorenzo per i permessi in `.claude/settings.json`: `Bash(python3 .claude/scripts/cerca.py:*)`, `Bash(python3 .claude/scripts/plancia.py:*)`, `mcp__github__get_file_contents` (chiuso: ok di Lorenzo, aggiunti nella PR successiva)
+- [x] Unire la PR dello step 17 (SPEC 1.20) (chiuso: PR #28 unita)
 - [ ] Revisione del cockpit: risposte di Lorenzo alle tre domande, poi opzioni e raccomandazione; il risultato diventa il contenuto dello step 16 o uno step a sé
 - [ ] Lacune del vault segnalate dal librarian (`sessions/_raw/2026-10-27-librarian-10-domande.md`): nome dell'AD di Manini; riga "sei giornate" nel log di [[manini-supply-chain-magazzino]]; quale calendario MTU è stato confermato il 26/10; foglio quotazione blocchi di Velo-CE non ingerito; risposta di Bollazzi (LIUC) da ingerire quando arriva
 - [ ] Provare `/oggi`, `/progetto`, `/cattura` e `/smista` in una sessione nuova (i comandi compaiono al riavvio) e correggere ciò che non torna
