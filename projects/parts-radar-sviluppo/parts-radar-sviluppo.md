@@ -4,7 +4,7 @@ status: attivo
 role: "Project manager e sviluppatore del prodotto, insieme a Cristian Schifone"
 clients: ["[[adac-bologna]]", "[[solera]]", "[[assoricambi]]", "[[qricambi]]"]
 people: ["[[cristian-schifone]]", "[[luca-degli-esposti]]", "[[claudio-degli-esposti]]"]
-updated: 2026-10-23
+updated: 2026-10-26
 ---
 
 # Parts Radar · sviluppo e pilota
@@ -22,6 +22,7 @@ updated: 2026-10-23
 - Costi Kromeda stimati: circa 2.300 chiamate al giorno (picco 3.500, la fascia da chiedere per il pilot) e 2.200-2.600 crediti targa al mese; i prezzi sono ancora da avere da Solera ([[parts-radar-kromeda-impatto]])
 - WhatsApp: per il pilot 360dialog con la Coexistence (19/10), che lascia il numero di ADAC sull'app del banco; Twilio escluso il 20/10. Da scegliere il piano Regular (49 €/mese) o Partner (da 250 €/mese) prima di attivare il numero. I gruppi WhatsApp (3 clienti ADAC su 10) non arrivano all'API con nessun fornitore ([[parts-radar-whatsapp-fornitori]])
 - Al 22/10: chat del banco nella dashboard con invio WhatsApp, router in ingresso acceso (separa i messaggi che non chiedono un pezzo), modalità ascolto con catalogo dal vivo attivabile cliente per cliente; il servizio usa Claude Haiku 5.5 ([[parts-radar-changelog]], [[parts-radar-architettura]])
+- Al 26/10 la settimana 1 del piano è quasi chiusa: le 810 etichette di sviluppo delle chat reali sono corrette e riviste con la misura del router (proposte perse da 12 a 7), i prompt di router ed estrazione sono congelati; restano le etichette del test (clienti E, G, H, J), la voce e la misura della targa dei pezzi aggiunti. I passi fuori dal codice sono fermi al 22/10 ([[parts-radar-issue-379]], [[parts-radar-changelog]])
 - Piano del pilot rifatto il 21/10: traguardo il test reale del flusso intero (#420) con prova controllata verso il 04/11, ascolto sul numero di ADAC e traffico vero nella settimana 12-17/11, prima della fine della demo. Il report deve giustificare l'utenza Kromeda di produzione e dire quanto costa una richiesta ([[parts-radar-issue-379]], [[parts-radar-issue-420]])
 - Al 12/10/2026: dashboard a buon punto e nuova banca dati prodotto quasi integrata; precisione circa 75% deterministica, 80% con i parametri della banca dati, 83–84% con criteri meno efficienti (da tenere come suggeriti); a gennaio il fornitore rilascia l'interrogazione per allestimento ([[riunione-generale-blueage-12-10-punti-emersi-e-prossimi-passi]])
 - Qricambi: call del 05/10/2026 fatta; le API si possono integrare, ma l'accesso lo deve chiedere il ricambista, che è il cliente diretto di Qricambi. La documentazione delle API è già disponibile ([[2026-10-22-watermark-e-task-schedulati]])
@@ -67,10 +68,11 @@ updated: 2026-10-23
 - 2026-10-21 · Piano del pilot: test in due tempi (prova controllata, poi traffico vero), modalità ascolto sul numero di ADAC, messaggi automatici ai clienti veri spenti finché il router non ha numeri ([[parts-radar-issue-379]], [[parts-radar-issue-420]])
 - 2026-10-22 · Router in ingresso su Claude Haiku 5.5, scelto sulla misura: richieste false da 42 a 12 ([[parts-radar-changelog]])
 - 2026-10-22 · Tra articoli equivalenti senza marca indicata sceglie l'operatore tra i brand preferiti di ADAC ([[parts-radar-changelog]])
+- 2026-10-26 · Prompt di router ed estrazione congelati dopo la revisione delle etichette di sviluppo: le etichette del test si fanno a prompt fermi, così la misura finale non è falsata (D43, Lorenzo) ([[parts-radar-architettura]], [[parts-radar-changelog]])
 
 ## Prossimi passi
 
-- Settimana 22-28/10: etichette delle chat reali, targa dei pezzi aggiunti, giro dal vivo degli alberi Kromeda ([[parts-radar-issue-379]])
+- Settimana 22-28/10: etichette del test (clienti E, G, H, J) a prompt congelati, voce, misura della targa dei pezzi aggiunti; etichette di sviluppo e router già fatti ([[parts-radar-issue-379]])
 - Settimana 29/10-04/11: vocali, attivazione del numero di ADAC in ascolto con il banco presente, prova controllata ([[parts-radar-issue-379]])
 - Settimana 05-11/11: lettura delle foto, chiarimenti dell'AI al meccanico, suggerimenti all'operatore, scelta finale dei modelli ([[parts-radar-issue-379]])
 - Settimana 12-17/11: sicurezza della dashboard, manuale del banco, server del pilot, traffico vero e report ([[parts-radar-issue-379]])

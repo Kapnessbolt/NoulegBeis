@@ -4,7 +4,7 @@ kind: prodotto
 projects: ["[[parts-radar-sviluppo]]"]
 clients: ["[[adac-bologna]]"]
 tags: [ricambi, post-vendita]
-updated: 2026-10-23
+updated: 2026-10-26
 ---
 
 # Parts Radar
