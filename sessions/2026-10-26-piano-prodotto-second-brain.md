@@ -21,6 +21,8 @@ Valutare il vault com'è dopo la prima settimana (struttura, regole, codice, aut
 - Ordine scelto, dall'utente: prima l'affidabilità (codice per la meccanica, test, controllo privacy), poi l'uso (retention, librarian, onboarding), poi il prodotto (configurazione separata, template, governance, metriche). Il refactor "motore + configurazione" si fa quando il codice è già testato, non prima.
 - Il piano è un progetto del vault, [[second-brain-prodotto]], così le attività entrano nel cockpit e in `home.md`; gli step sono anche in SPEC §13 come fase 2 (PR dedicata). Il tema [[second-brain]] resta l'offerta commerciale.
 - Modelli per l'esecuzione: la sessione guida e rivede (Fable 5.1, il più capace disponibile); il codice con i test lo scrivono subagenti Opus; le modifiche meccaniche alle note (retention, metriche) Sonnet. Gli step che toccano SPEC e regole li fa la sessione stessa.
+- Step 11 eseguito da un subagente Opus e rivisto in sessione: controllo dei dati riservati a pattern solo sul corpo delle note (il frontmatter ha id lunghi legittimi), un errore per categoria con al massimo 4 caratteri del valore; i GUID già in `settings.json` (nome del server del connettore locale) sono esclusi perché configurazione, non dati dei clienti; i pattern base64 escludono `_` e `-` per non prendere nomi di file e slug. Gli script leggono la radice da `VAULT_ROOT` solo per i test. Sul vault reale 0 errori; 41 test verdi; IBAN e telefono finti bloccati anche con `--modificati`.
+- Rischio residuo noto: un hash git completo (40 caratteri) nel corpo di una nota verrebbe segnalato; oggi non ce ne sono.
 - Decisioni rinviate, scritte in SPEC §14: un vault = un utente (un reparto sono più vault con temi condivisi?); dipendenza da funzioni in early access (mod, dashboard con ArtifactData), da tenere come strati opzionali sopra il nucleo stabile (markdown, git, task); fonti diverse da Microsoft 365 (Google Workspace) solo con la configurazione separata.
 
 ## File toccati
@@ -28,9 +30,11 @@ Valutare il vault com'è dopo la prima settimana (struttura, regole, codice, aut
 - `sessions/`: questo diario
 - `projects/second-brain-prodotto/`: scheda e log (nuovi)
 - `topics/second-brain.md`: collegamento al progetto
-- `SPEC.md`: §13 fase 2 (step 11–20), §14 decisioni aperte, versione 1.18, sul branch `claude/affectionate-ritchie-v0im3q`
+- `SPEC.md`: §13 fase 2 (step 11–20), §14 decisioni aperte, §4.4 dati riservati e test in CI, versione 1.18, sul branch `claude/affectionate-ritchie-v0im3q`
+- `.claude/scripts/`: controllo dei dati riservati in `controlla-vault.py`, `VAULT_ROOT` nei tre script, `tests/` (step 11)
+- `.github/workflows/controllo-vault.yml`, `.gitignore`, `CLAUDE.md` §7
 
 ## Aperti
 
-- [ ] Unire la PR della SPEC 1.18 (fase 2 del piano) e del progetto `second-brain-prodotto`
-- [ ] Eseguire gli step 11–20 uno alla volta, ognuno chiuso con il suo criterio di accettazione (attività nella scheda del progetto)
+- [ ] Unire la PR della SPEC 1.18 (fase 2 del piano, step 11) e del progetto `second-brain-prodotto`
+- [ ] Eseguire gli step 12–20 uno alla volta, ognuno chiuso con il suo criterio di accettazione (attività nella scheda del progetto)

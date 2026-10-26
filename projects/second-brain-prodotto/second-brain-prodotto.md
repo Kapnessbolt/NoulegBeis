@@ -16,10 +16,11 @@ updated: 2026-10-26
 - Debolezze da chiudere nella fase 2: meccanica dell'ingestion affidata al modello e non al codice; codice senza test; privacy senza controllo automatico; note hub senza retention; nessuna ricerca né `librarian`; regole duplicate; pezzi fuori dal repo; 15 note parziali; account personali ([[2026-10-26-piano-prodotto-second-brain]])
 - Il motore è già quasi generico: i valori BlueAge stanno in `ingestor.md`, `settings.json`, SPEC §5 e due cablature negli script; il contenuto BlueAge (skill, temi, clienti, persone) è proprietà intellettuale e resta fuori dal prodotto ([[2026-10-26-piano-prodotto-second-brain]])
 - Piano in tre blocchi, step 11–20 di SPEC §13: affidabilità (11–14), uso (15–17), prodotto (18–20). Si esegue uno step alla volta, chiuso con il suo criterio di accettazione ([[2026-10-26-piano-prodotto-second-brain]])
+- Step 11 fatto: controllo dei dati riservati a pattern (IBAN, telefoni, chiavi, GUID, codici di riunione, password) come errore bloccante, 41 test pytest sui tre script con un mini-vault di prova, CI che esegue i test prima del controllo; sul vault reale 0 errori ([[2026-10-26-piano-prodotto-second-brain]])
 
 ## Attività
 
-- [ ] Step 11 · Rete di sicurezza del codice: controllo privacy a regex in `controlla-vault.py` (errore bloccante), test pytest con mini-vault per `controlla-vault.py`, `rinomina-nota.py`, `plancia.py`, CI che esegue i test · modello: Opus ([[2026-10-26-piano-prodotto-second-brain]])
+- [x] Step 11 · Rete di sicurezza del codice: controllo privacy a regex in `controlla-vault.py` (errore bloccante), test pytest con mini-vault per `controlla-vault.py`, `rinomina-nota.py`, `plancia.py`, CI che esegue i test · modello: Opus ✅ 2026-10-26 ([[2026-10-26-piano-prodotto-second-brain]])
 - [ ] Step 12 · Meccanica in codice: `famiglia.py`, `perimetro.py`, `stato.py`, `nuova-nota.py`; stato per fonte in `.state/<fonte>.json`; ingestor che chiama gli script e scrive solo i riassunti; golden test sulle famiglie reali del vault · modello: Opus, revisione Fable ([[2026-10-26-piano-prodotto-second-brain]])
 - [ ] Step 13 · Configurazione separata dal motore: `vault.yaml` (nome, fuso, lingua, fonti con perimetro ed esclusioni, nomi del connettore, task con orari, modello e connettori); script e agenti leggono da lì; nessun valore BlueAge in `.claude/` · modello: Fable ([[2026-10-26-piano-prodotto-second-brain]])
 - [ ] Step 14 · Fonte unica delle regole: matrice delle scritture e perimetro in un posto solo, con rimandi da CLAUDE.md e dagli agenti · modello: Fable ([[2026-10-26-piano-prodotto-second-brain]])
@@ -40,7 +41,7 @@ updated: 2026-10-26
 
 ## Prossimi passi
 
-- Step 11, poi uno step alla volta nell'ordine della sezione Attività
+- Step 12 (meccanica in codice), poi uno step alla volta nell'ordine della sezione Attività
 
 ## Fonti
 
