@@ -37,7 +37,7 @@ updated: 2026-10-26
 - [ ] Corso base, gruppo C mattina 📅 2026-12-11 ([[gruppi]])
 - [ ] Questionario anonimo di livello su Microsoft Forms, se fattibile ([[manini-corso-ai-da-36-ore-contesto-opportunita-e-come-lo-impostiamo]])
 - [ ] Copilot Studio sul tenant BlueAge per 3–4 agenti dimostrativi, con Cristian: scegliere tra piano da 207 €/mese e consumo ([[manini-corso-ai-impostazione-calendario-e-cv]])
-- [ ] Parere, con Silvia, sul caso entrata merci v3 ([[automazione-entrata-merci-caso-manini]])
+- [x] Parere, con Silvia, sul caso entrata merci v3 ✅ 2026-10-26 ([[automazione-entrata-merci-caso-manini]])
 - [ ] Ricevere da Manini data e contenuti delle 8 ore per i Sistemi Informativi ([[manini-corso-ai-recap-della-call-del-16-10]])
 - [ ] Ricevere da Manini uffici dei partecipanti, agenti interni da presentare e documenti di prova anonimizzati ([[manini-corso-ai-raccolta-dati-blueage]])
 - [ ] Caso preventivi per i gruppi B e C: ottenere da Manini preventivi o fatture anonimizzati ([[manini-ddt-essenziale]])

@@ -7,6 +7,7 @@ project: "[[parts-radar-sviluppo]]"
 
 Una riga per avanzamento, dalla più recente: `- AAAA-MM-GG · cosa è successo · [[fonte]]`
 
+- 2026-10-26 · Chiusi i due avvisi a Cristian (invio WhatsApp e migration dello Step 1; prompt cambiati e certificati emSign tolti): fatti secondo l'utente · [[2026-10-26-punti-aperti-vault]]
 - 2026-10-26 · Revisione del router sulle 810 etichette di sviluppo delle chat reali: proposte perse dal router da 12 a 7, prompt di router ed estrazione congelati; prossimo passo le etichette del test (clienti E, G, H, J) e la misura. Glossario del dominio e istruzioni del repo snellite · [[parts-radar-changelog]]
 - 2026-10-26 · architettura: nuova versione, la decisione aperta sul dataset delle chat (D43) passa alle etichette del test a prompt congelati · [[parts-radar-architettura]]
 - 2026-10-25 · Metodo di lavoro: due revisori in parallelo prima di ogni PR (regole e aderenza all'issue) e diagnosi dei bug dal comando che li riproduce · [[parts-radar-changelog]]

@@ -27,7 +27,7 @@ updated: 2026-10-23
 - [ ] Scelta della strada verso Premium e del partner, regola di codifica 📅 2026-10-30 ([[velo-ce-sal-01-cliente]], [[velo-ce-piano-attivita-nuovo-ambiente-interno]])
 - [ ] Sandbox Premium e nome definitivo della società (irreversibile) 📅 2026-10-31 ([[velo-ce-piano-attivita-nuovo-ambiente-interno]])
 - [ ] Regola di taglio fiscale e saldi d'apertura decisi con il commercialista, piano dei conti e metodo di costo 📅 2026-11-13 ([[velo-ce-piano-attivita-nuovo-ambiente-interno]])
-- [ ] Prima prova di ripresa dati con i dati al 31/10, a fine novembre ([[velo-ce-piano-ripresa-dati-interno]])
+- [ ] Prima prova di ripresa dati con i dati al 31/10, a fine novembre 📅 2026-11-30 ([[velo-ce-piano-ripresa-dati-interno]])
 - [ ] Prova della fattura elettronica e distinte del rilascio R1 📅 2026-12-04 ([[velo-ce-piano-attivita-nuovo-ambiente-interno]])
 - [ ] Prove end-to-end e collaudo utente 📅 2026-12-11 ([[velo-ce-piano-attivita-nuovo-ambiente-interno]])
 - [ ] Prova generale e piano di cut-over 📅 2026-12-18 ([[velo-ce-piano-attivita-nuovo-ambiente-interno]])

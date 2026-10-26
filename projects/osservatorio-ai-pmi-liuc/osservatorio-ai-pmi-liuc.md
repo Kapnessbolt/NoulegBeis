@@ -16,7 +16,7 @@ updated: 2026-10-22
 
 ## Attività
 
-- [ ] Call di mezz'ora con [[francesco-bollazzi]] nella settimana del 26/10 ([[osservatorio-ai-nelle-pmi-cosa-misureremmo-e-come-partiremmo]])
+- [ ] Call di mezz'ora con [[francesco-bollazzi]] nella settimana del 26/10 📅 2026-10-30 ([[osservatorio-ai-nelle-pmi-cosa-misureremmo-e-come-partiremmo]])
 - [ ] Chiarire se la partnership LIUC comporta un contributo economico ([[osservatorio-ai-nelle-pmi-cosa-misureremmo-e-come-partiremmo]])
 - [ ] Ricevere da Bollazzi le 10–15 aziende o il micro-settore di Varese ([[liuc-call-con-francesco-bollazzi-e-proposta-di-osservatorio-sull-ai-nelle-pmi-idee-entro-mercoledi-sera]])
 

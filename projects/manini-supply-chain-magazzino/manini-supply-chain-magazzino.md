@@ -20,8 +20,8 @@ updated: 2026-10-22
 
 - [ ] Condividere con la direzione Manini le aree di maggiore interesse e fissare priorità e avvio dei primi interventi ([[manini-relazione-processi-gestione-materiali]])
 - [ ] Completare la relazione con le osservazioni delle altre funzioni e i dati verificati a sistema ([[manini-relazione-processi-gestione-materiali]])
-- [ ] Interventi 3A e 3B (date negli ordini, valutazione fornitori) e conservazione della prima data di consegna confermata dal fornitore, entro inizio gennaio 2027 ([[manini-g4-m2p2-gestione-sviluppo-fornitori]])
-- [ ] Prima riunione di riesame dei fornitori, a novembre 2026 ([[manini-g4-m2p2-gestione-sviluppo-fornitori]])
+- [ ] Interventi 3A e 3B (date negli ordini, valutazione fornitori) e conservazione della prima data di consegna confermata dal fornitore, entro inizio gennaio 2027 📅 2027-01-08 ([[manini-g4-m2p2-gestione-sviluppo-fornitori]])
+- [ ] Prima riunione di riesame dei fornitori, a novembre 2026 📅 2026-11-30 ([[manini-g4-m2p2-gestione-sviluppo-fornitori]])
 - [ ] Verificare con l'ufficio spedizioni i bancali documentati in modo errato e con la direzione la copertura assicurativa dei trasporti ([[manini-relazione-processi-gestione-materiali]])
 
 ## Decisioni

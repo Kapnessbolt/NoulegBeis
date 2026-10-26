@@ -25,7 +25,7 @@ updated: 2026-10-23
 
 - [x] Ricostruire calendario e partecipanti del corso dalle mail (lotto 5 del primo caricamento) ([[2026-10-22-primo-caricamento-shared-documents-onedrive]])
 - [ ] A fine Modulo 1 ogni dirigente sceglie il proprio processo filo rosso ([[ai-foundation-program-m1-mtu-inserti]])
-- [ ] Confermare con UBS e MTU il calendario del 19/10 (alternative 10/12 o 17/12 pomeriggio, 7/1 o 11/1) ([[meccanotecnica-umbra-corso-ai-data-driven-management-proposta-di-calendario]])
+- [x] Confermare con UBS e MTU il calendario del 19/10 (alternative 10/12 o 17/12 pomeriggio, 7/1 o 11/1) ✅ 2026-10-26 ([[meccanotecnica-umbra-corso-ai-data-driven-management-proposta-di-calendario]])
 - [ ] Ricevere da MTU la composizione dei gruppi funzionali di uditori ([[meccanotecnica-umbra-corso-ai-data-driven-management-proposta-di-calendario]])
 - [ ] Verificare con SFCU il margine di scostamento dal programma depositato ([[ai-data-driven-management-indice-del-corso]])
 - [ ] Definire il ruolo di Lorenzo e Leonardo nella costruzione e nell'erogazione dei materiali ([[ai-data-driven-management-indice-del-corso]])
