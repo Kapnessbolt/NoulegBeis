@@ -3,7 +3,7 @@ type: session
 date: 2026-10-26
 surface: cloud
 topics: ["[[second-brain]]"]
-outcome: "Esiti di reconcile, digest e curator verificati; curator spostato alla domenica sera; rete di sicurezza dei diari affidata al curator (SPEC 1.15); il repo Manini non scrive più nel vault"
+outcome: "Esiti di reconcile, digest e curator verificati; curator spostato alla domenica sera; rete di sicurezza dei diari affidata al curator (SPEC 1.15); il repo Manini non scrive più nel vault; essenziale Manini in una nota sola e note Manini e parts-radar rilette"
 ---
 
 # Esiti dei task, diari mancanti e vault in sola lettura dai repo di progetto
