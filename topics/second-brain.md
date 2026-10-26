@@ -4,7 +4,7 @@ kind: offerta
 projects: []
 clients: []
 tags: [ai, pacchetto]
-updated: 2026-10-25
+updated: 2026-10-26
 ---
 
 # Second Brain
@@ -24,6 +24,7 @@ Pacchetto da vendere che costruisce per un manager o un reparto una memoria di l
 ## Dove è usato
 
 - Questo vault è la versione personale di Lorenzo e il banco di prova del prodotto: quello che funziona e i limiti trovati qui orientano l'offerta (sezione sotto) ([[2026-10-22-primo-caricamento-shared-documents-onedrive]], [[2026-10-25-cockpit-v05-smistamento]])
+- Materiali di presentazione del 26/10: one pager commerciale A4 (problema, soluzione, 4 passi, contatto Silvia; niente prezzi), da caricare in OneDrive `BlueAge/Second Brain/`; one pager tecnico navigabile per il team (architettura, strumenti, struttura del repo, giornata tipo) come artifact su claude.ai: https://claude.ai/artifact/FeqbkutspXZcAds7v8iZcL ([[2026-10-26-one-pager-second-brain]])
 
 ## Versione personale e banco di prova
 
