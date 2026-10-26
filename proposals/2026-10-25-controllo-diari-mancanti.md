@@ -2,7 +2,7 @@
 type: proposal
 date: 2026-10-25
 kind: agente
-status: proposta
+status: accettata
 ---
 
 # Il curator controlla i diari mancanti al posto dell'hook Stop sulle trascrizioni
@@ -36,3 +36,5 @@ In `SPEC.md` §12, con una PR dedicata, la riga della rete di sicurezza diventa:
 ```markdown
 - Rete di sicurezza: il curator segnala ogni settimana i commit `session: <slug>` senza diario e i giorni con commit interattivi senza diario (9.2). Niente trascrizioni nel repo: porterebbero dati riservati (`CLAUDE.md` §5). `sessions/_raw/` resta solo per estratti puntuali.
 ```
+
+Applicata il 26/10 con una variante: il controllo è per commit e non per giorno (un diario dello stesso giorno o del giorno dopo deve citare lo slug del progetto o un file toccato). Il controllo per giorno non vedeva il commit `project(manini-automazione-ddt)` delle 23:30 del 25/10, fatto in una sessione senza diario in un giorno che aveva già altri diari.
