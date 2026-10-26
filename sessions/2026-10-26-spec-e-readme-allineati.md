@@ -28,5 +28,5 @@ Verificare sul repo le differenze tra `SPEC.md`, `README.md` e i file reali, poi
 
 ## Aperti
 
-- [ ] Utente: rivedere e unire la PR #22 (SPEC 1.16); dopo il merge spuntare l'ultimo aperto di [[2026-10-23-obsidian-in-lettura]] (sincronizzazione su mobile nella SPEC)
+- [x] Utente: rivedere e unire la PR #22 (SPEC 1.16); dopo il merge spuntare l'ultimo aperto di [[2026-10-23-obsidian-in-lettura]] (sincronizzazione su mobile nella SPEC) (chiuso: PR #22 unita)
 - [ ] Le skill `blueage-deck`, `blueage-corso` e `blueage-animazioni` compaiono già nelle sessioni cloud come plugin claude.ai (`anthropic-skills:*`): valutare se lo step 6 (copia in `.claude/skills/`) serve ancora o se la SPEC §2 ("`/plugin` non è disponibile") va rivista
