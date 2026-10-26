@@ -1,6 +1,6 @@
 # SPEC · Second Brain BlueAge (personale)
 
-Versione 1.19 · 26/10/2026 · Owner: Lorenzo Curione
+Versione 1.20 · 26/10/2026 · Owner: Lorenzo Curione
 
 Questo file è la specifica di riferimento del vault. Ogni sessione Claude Code che costruisce o modifica il sistema parte da qui. Le modifiche alla specifica si fanno con una PR dedicata.
 
@@ -62,7 +62,7 @@ Sessioni locali (app desktop sul PC):
 │   ├── agents/              agenti specializzati (sezione 9)
 │   ├── hooks/               hook di Claude Code (controllo prima del commit 4.4, pull all'avvio 11)
 │   ├── routines/            procedure dei task schedulati (sezione 7)
-│   ├── scripts/             script di servizio testati (4.4): controllo e rinomina delle note, famiglia, perimetro, stato, note dal template, dati della dashboard (7)
+│   ├── scripts/             script di servizio testati (4.4): controllo e rinomina delle note, famiglia, perimetro, stato, note dal template, ricerca (9.3), dati della dashboard (7)
 │   └── skills/              skill (sezione 10): `chiudi-sessione`, `blueage-deck`, `blueage-corso`, `blueage-animazioni`
 ├── .state/                  stato dell'ingestion, un file per fonte (6.1)
 │   ├── sharepoint.json
@@ -309,6 +309,7 @@ Quando si esegue:
 | `stato.py` | Lettura e scrittura dello stato (6.1) con validazione degli istanti e dei percorsi, migrazione dal vecchio file unico, merge driver dei conflitti (11) |
 | `nuova-nota.py` | Nota nuova dal template del suo tipo, con il frontmatter validato come nel controllo; per `source-doc` completa `source`, `family`, `ingested_at` e `versions`; non sovrascrive |
 | `aggiorna-nota.py` | Modifica il frontmatter di una nota esistente senza toccare il corpo: campi, aggiunte alle liste, posizioni in `also_at`, nuova versione (`current` in `versions`, 4.3). Le righe dei campi invariati restano identiche |
+| `cerca.py` | Ricerca nel vault (9.3): termini su titolo, frontmatter e corpo, filtri per tipo, cartella, progetto, cliente, tema, persona, data e tag; ordine per punteggio, poi backlink, poi data; `--collegamenti` (chi collega una nota) e `--nota` (scheda sintetica). Usato dal `librarian` e dai comandi `/oggi`, `/progetto`, `/cattura`, `/smista` |
 | `plancia.py` | Dati della dashboard Cockpit (7) |
 
 Prefissi ed esclusioni del perimetro, e la firma dell'autore che `famiglia.py` toglie in coda ai nomi (`_BlueAge`), sono costanti in testa agli script: nello step 13 passano in `vault.yaml`.
@@ -498,16 +499,16 @@ Eccezione: il `curator` non scrive nel digest e non fa push su `main` (sezione 3
 |---|---|
 | `/ingest [fonte] [da data]` | Esegue l'ingestion a richiesta. Senza argomenti esegue tutte le fonti dal watermark |
 | `/ingest-file <url o nome>` | Ingerisce un singolo documento, anche fuori dal perimetro |
-| `/oggi` | Agenda: attività in scadenza, novità dall'ultimo digest, progetti fermi da più di 14 giorni |
-| `/progetto <nome>` | Stato completo di un progetto: attività, decisioni, fonti recenti |
+| `/oggi [giorni]` | Agenda del giorno, sola lettura: attività scadute, di oggi e entro N giorni (default 7) per progetto, progetti fermi da più di 14 giorni, inbox da smistare, novità dall'ultimo digest, esito dei task; dati da `plancia.py` e `cerca.py` |
+| `/progetto <nome>` | Stato completo di un progetto, sola lettura: stato e decisioni, attività aperte per data, ultimi passi del log, fonti degli ultimi 30 giorni, persone, cose che non tornano (attività senza data, log fermo, note `partial`) |
 | `/chiudi-sessione` | Scrive o aggiorna il diario della sessione in `sessions/`, spunta gli aperti dei diari precedenti chiusi nella sessione, poi commit e push. È una skill (sezione 10): parte anche quando l'utente chiude la sessione a parole |
-| `/cattura <testo>` | Nota rapida in `inbox/` |
-| `/smista` | Smista `inbox/` nei progetti e nei temi |
+| `/cattura <testo>` | Nota rapida in `inbox/AAAA-MM-GG-<slug>.md` con `nuova-nota.py`, il testo così com'è e `Contesto: [[slug]]` solo se certo; commit `inbox: cattura <slug>` senza chiedere conferma |
+| `/smista [nota]` | Smista `inbox/` nei progetti (log e attività), clienti e temi: propone la tabella cattura → destinazione → testo, con il diario della sessione come fonte, e scrive solo dopo l'ok; i progetti nuovi li propone soltanto; commit `inbox: smistamento` |
 | `/controlla` | Controllo del vault (4.4): errori, possibili doppioni e indice per categoria, con le correzioni proposte |
 | `/verifica-task [task] [data]` | Verifica i giri dei task schedulati (7): riga nel digest o PR del curator, commit, watermark, note scritte, doppioni; propone le correzioni e gli aperti da spuntare |
 | `/curator [da data] [a data]` | Giro del curator a mano (9.2), di default sugli ultimi 7 giorni: mostra le proposte, registra le decisioni dell'utente nel `status` e apre la PR |
 
-`/oggi`, `/progetto`, `/cattura` e `/smista` sono previsti ma non ancora in `.claude/commands/`: fino ad allora agenda, stato dei progetti, catture e smistamento si chiedono a parole nella sessione, e il punto della giornata lo danno la dashboard Cockpit e il digest.
+Le domande sulla knowledge ("cosa sappiamo di X", "quando è stato deciso Y") non hanno un comando: la sessione le passa all'agente `librarian` (9.3), che risponde con le fonti.
 
 `/cockpit` non sta in questa tabella perché non vive nel repo: lo registra la mod `cockpit` dell'app desktop (2), che si attiva una volta per PC dall'account. Esiste quindi solo dove la mod è attiva, e dà in testo il riepilogo del pannello.
 
@@ -535,10 +536,13 @@ Il curator non modifica mai direttamente `CLAUDE.md`, `.claude/` o questa SPEC. 
 
 ### 9.3 `librarian`
 
-Risponde alle domande sulla knowledge:
-1. cerca nel vault;
-2. se la nota non basta, legge l'originale tramite il connettore;
-3. cita sempre le note e i documenti usati.
+Risponde alle domande sulla knowledge, in sola lettura (nessuna scrittura nel vault, nessun commit):
+1. cerca nel vault con `cerca.py` (4.4): prima le note hub (progetto, cliente, tema, persona) e i loro collegamenti, poi le fonti citate dai punti che reggono la risposta;
+2. se la nota non basta (un numero, il testo esatto, un allegato, una nota `partial`), legge l'originale con il connettore dai riferimenti del frontmatter (`current.web_url`, `conversation_id`, `current.item_id`) e lo dice; non riporta dati riservati (CLAUDE.md §5);
+3. risponde in breve, con la fonte in coda a ogni affermazione `([[slug]])`, le date dei fatti e non dell'ingestion, le contraddizioni tra note con entrambe le versioni; se il vault non lo sa lo dice e indica dove potrebbe stare, senza inventare;
+4. chiude con **Fonti** (note e documenti usati) e, se servono, **Lacune** (cosa manca nel vault, da ingerire o da catturare in `inbox/`).
+
+Lo usano la sessione interattiva, per le domande di Lorenzo, e in prospettiva i comandi che hanno bisogno di una risposta con le fonti. Criterio dello step 17 (13.1): 10 domande di prova con risposta corretta e fonti citate.
 
 ## 10. Skill (`.claude/skills/`)
 
@@ -573,6 +577,7 @@ Prerequisito: lo script di setup dell'ambiente cloud installa le dipendenze dell
 | `curator:` | Curator | `curator: 2026-10-25, 3 proposte` |
 | `session:` | Diario di sessione (`/chiudi-sessione`) | `session: <slug>` |
 | `project(<slug>)` | Sessione interattiva su un progetto | `project(<slug>): <cosa>` |
+| `inbox:` | `/cattura` e `/smista` (8) | `inbox: cattura <slug>`, `inbox: smistamento` |
 | `vault:` | Struttura e configurazione (`CLAUDE.md`, `.claude/`, template, `README.md`) | `vault: <cosa>` |
 | `spec:` | PR dedicata alla SPEC | `spec: <cosa> (1.16)` |
 

@@ -14,7 +14,7 @@ also_at: []
 status: active
 partial: false
 ingested_at: 2026-10-22T13:02:50Z
-projects: []
+projects: ["[[manini-supply-chain-magazzino]]"]
 clients: ["[[manini]]"]
 topics: ["[[percorso-supply-chain-magazzino]]"]
 tags: [relazione, supply-chain, magazzino, acquisti, proposta]

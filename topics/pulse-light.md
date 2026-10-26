@@ -2,9 +2,9 @@
 type: topic
 kind: prodotto
 projects: []
-clients: []
+clients: ["[[velo-ce]]"]
 tags: [pulse]
-updated: 2026-10-22
+updated: 2026-10-26
 ---
 
 # Pulse Light

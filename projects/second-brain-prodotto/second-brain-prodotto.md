@@ -4,13 +4,14 @@ status: attivo
 role: "Product owner e sviluppatore: dal vault personale al prodotto Second Brain"
 clients: []
 people: []
-updated: 2026-10-26
+updated: 2026-10-27
 ---
 
 # Second Brain · dal vault al prodotto
 
 ## Stato
 
+- Step 17 fatto: `cerca.py` (ricerca su titolo, frontmatter e corpo, ordinata per punteggio, backlink e data, 51 test), agente `librarian` e comandi `/oggi`, `/progetto`, `/cattura`, `/smista`; 10 domande di prova su 10 corrette con le fonti, una domanda fuori knowledge senza invenzioni; SPEC 1.20 ([[2026-10-27-step-17-librarian]])
 - Il vault è la versione personale e il banco di prova dell'offerta [[second-brain]]; dopo la prima settimana ha 310 note, 0 errori di controllo, 7 task schedulati al giorno e un loop di miglioramento (diari → curator → proposte) ([[2026-10-26-piano-prodotto-second-brain]])
 - Base solida da conservare: SPEC con PR, matrice delle scritture, controllo d'integrità a tre livelli, tracciabilità alla fonte, famiglia/versione, watermark con sovrapposizione, privacy by design, Obsidian in sola lettura ([[2026-10-26-piano-prodotto-second-brain]])
 - Debolezze da chiudere nella fase 2: meccanica dell'ingestion affidata al modello e non al codice; codice senza test; privacy senza controllo automatico; note hub senza retention; nessuna ricerca né `librarian`; regole duplicate; pezzi fuori dal repo; 15 note parziali; account personali ([[2026-10-26-piano-prodotto-second-brain]])
@@ -29,7 +30,8 @@ updated: 2026-10-26
 - [ ] Step 14 · Fonte unica delle regole: matrice delle scritture e perimetro in un posto solo, con rimandi da CLAUDE.md e dagli agenti · modello: Fable ([[2026-10-26-piano-prodotto-second-brain]])
 - [ ] Step 15 · Retention delle note hub: interazioni recenti alle ultime 20, `## Fonti` da backlink o generate, ripresa delle note `partial`, archivio dei progetti chiusi · modello: Sonnet ([[2026-10-26-piano-prodotto-second-brain]])
 - [ ] Step 16 · Riproducibilità: mod cockpit versionata, setup cloud committato, task letti da `vault.yaml`, guida di installazione provata su un clone nuovo · modello: Opus ([[2026-10-26-piano-prodotto-second-brain]])
-- [ ] Step 17 · Librarian e ricerca: `cerca.py`, agente `librarian`, comandi `/oggi`, `/progetto`, `/cattura`, `/smista` · modello: Opus ([[2026-10-26-piano-prodotto-second-brain]])
+- [x] Step 17 · Librarian e ricerca: `cerca.py`, agente `librarian`, comandi `/oggi`, `/progetto`, `/cattura`, `/smista` · modello: Opus, revisione Fable ✅ 2026-10-27 ([[2026-10-27-step-17-librarian]])
+- [ ] Step 17 · permessi in `.claude/settings.json` per `cerca.py`, `plancia.py` e `mcp__github__get_file_contents`, con l'ok di Lorenzo; poi prova dei quattro comandi in una sessione nuova ([[2026-10-27-step-17-librarian]])
 - [ ] Step 18 · Onboarding come prodotto: `/avvia` per il primo caricamento a lotti con campione di QA, controllo di qualità a campione nel curator, manuale per il manager · modello: Fable ([[2026-10-26-piano-prodotto-second-brain]])
 - [ ] Step 19 · Separazione IP e governance: repo template del motore senza contenuti BlueAge, repo nell'organizzazione BlueAge, secret scanning, policy dati, prerequisiti del cliente · modello: Fable ([[2026-10-26-piano-prodotto-second-brain]])
 - [ ] Step 20 · Metriche di valore: riga settimanale nel resoconto del curator (note, giri OK, errori, domande risposte, consumo) · modello: Sonnet ([[2026-10-26-piano-prodotto-second-brain]])
@@ -44,9 +46,10 @@ updated: 2026-10-26
 
 ## Prossimi passi
 
-- Step 17 (librarian e comandi) nella prossima sessione, perché non tocca gli script sotto osservazione; poi revisione del cockpit prima dello step 16
+- Revisione del cockpit (tre domande a Lorenzo, poi opzioni) prima dello step 16: il risultato ne diventa il contenuto, o uno step a sé
 - Verifica dei 3 giri dei task sullo step 12, poi step 13 (configurazione separata dal motore)
 
 ## Fonti
 
 - [[2026-10-26-piano-prodotto-second-brain]]
+- [[2026-10-27-step-17-librarian]]
