@@ -15,7 +15,7 @@ Vault personale sulla knowledge BlueAge, gestito da Claude Code in cloud e in lo
 6. **Migliorare il vault**: `/curator` legge i diari della settimana e apre una PR con le proposte (regole, comandi, hook) e gli aperti chiusi; gira anche da solo la domenica sera.
 7. **Leggere**: Obsidian sul clone del repo, solo in lettura (sotto).
 
-Disponibili: `/ingest`, `/ingest-file`, `/controlla`, `/verifica-task`, `/curator`, `/chiudi-sessione`. Previsti dalla SPEC ma non ancora fatti: `/oggi`, `/progetto`, `/cattura`, `/smista` (SPEC 8) e le skill `blueage-deck`, `blueage-corso`, `blueage-animazioni` (SPEC 10, step 6).
+Disponibili: `/ingest`, `/ingest-file`, `/controlla`, `/verifica-task`, `/curator`, `/chiudi-sessione`. Skill nel vault: `chiudi-sessione`, `blueage-deck`, `blueage-corso`, `blueage-animazioni` (SPEC 10). Previsti dalla SPEC ma non ancora fatti: `/oggi`, `/progetto`, `/cattura`, `/smista` (SPEC 8).
 
 ## Dove sta cosa
 

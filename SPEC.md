@@ -1,6 +1,6 @@
 # SPEC · Second Brain BlueAge (personale)
 
-Versione 1.16 · 26/10/2026 · Owner: Lorenzo Curione
+Versione 1.17 · 26/10/2026 · Owner: Lorenzo Curione
 
 Questo file è la specifica di riferimento del vault. Ogni sessione Claude Code che costruisce o modifica il sistema parte da qui. Le modifiche alla specifica si fanno con una PR dedicata.
 
@@ -62,7 +62,7 @@ Sessioni locali (app desktop sul PC):
 │   ├── hooks/               hook di Claude Code (controllo prima del commit 4.4, pull all'avvio 11)
 │   ├── routines/            procedure dei task schedulati (sezione 7)
 │   ├── scripts/             script di servizio (controllo e rinomina delle note 4.4, dati della dashboard 7)
-│   └── skills/              skill (sezione 10): oggi `chiudi-sessione`
+│   └── skills/              skill (sezione 10): `chiudi-sessione`, `blueage-deck`, `blueage-corso`, `blueage-animazioni`
 ├── .state/
 │   └── ingest.json          stato dell'ingestion (sezione 6.1)
 ├── inbox/                   catture rapide da smistare
@@ -513,9 +513,11 @@ Risponde alle domande sulla knowledge:
 | Skill | Origine | Intervento | Stato |
 |---|---|---|---|
 | `chiudi-sessione` | Proposta del curator del 25/10 | Scritta nel vault: è `/chiudi-sessione` (sezione 8) | Nel vault |
-| `blueage-deck` | Plugin claude.ai | Copiata così com'è | Prevista (step 6) |
-| `blueage-corso` | Plugin claude.ai | Snellita: `SKILL.md` breve con il flusso; i dettagli (COMPASS, RED TAG, Tocca a voi, kit docente) in file di riferimento caricati solo quando servono | Prevista (step 6) |
-| `blueage-animazioni` | Plugin claude.ai | Da valutare dopo lo step 6 | Prevista, da valutare (14) |
+| `blueage-deck` | Plugin claude.ai | Copiata così com'è | Nel vault (26/10) |
+| `blueage-corso` | Plugin claude.ai | Snellita: `SKILL.md` breve con il flusso; i dettagli (COMPASS, RED TAG, Tocca a voi, kit docente) in file di riferimento caricati solo quando servono (`principi.md`, `cartella.md`, `linee_guida.md`, `compass.md`, `modelli.md`) | Nel vault (26/10) |
+| `blueage-animazioni` | Plugin claude.ai | Copiata così com'è; il rendering video nelle sessioni cloud è da provare (14) | Nel vault (26/10) |
+
+**Fonte unica.** Le skill stanno solo nel vault, che viaggia con il repo quando il Second Brain si condivide come strumento BlueAge: l'account claude.ai è personale e un plugin non si condivide. Il plugin claude.ai da cui sono nate le skill blueage è disattivato. Una modifica a una skill, anche di metodo (linee guida, COMPASS, style guide, generatore), si fa nel vault con un commit `vault:`; se un giorno servisse un plugin per la chat, è una copia generata dal vault, mai modificata a parte.
 
 I file prodotti dalle skill (pptx, mp4, png) non vanno nel repo. Si caricano su SharePoint o OneDrive con il connettore, e la nota del progetto ne riporta il link. Il `.gitignore` esclude `*.pptx`, `*.mp4` e `*.png` in tutto il vault, tranne dentro `.claude/skills/` (dove stanno gli asset delle skill).
 
@@ -558,7 +560,7 @@ Prerequisito: lo script di setup dell'ambiente cloud installa le dipendenze dell
 | 3 | Primo caricamento a lotti (6.5) | Campione di 10 note per lotto approvato dall'utente |
 | 4 | Task schedulati di ingestion, digest e riconciliazione | 3 giorni di run senza errori e senza doppioni |
 | 5 | `/chiudi-sessione`, hook di sessione, bridge della cartella chat | Le sessioni della settimana compaiono in `sessions/` |
-| 6 | Skill `blueage-deck` e `blueage-corso` snellita | Un deck generato in cloud e caricato su SharePoint |
+| 6 | Skill `blueage-deck`, `blueage-corso` snellita e `blueage-animazioni` (nel vault dal 26/10) | Un deck generato in cloud e caricato su SharePoint |
 | 7 | Agente `curator`, comando `/curator` e task `curator`; agente `librarian` | Prima PR di proposte ricevuta e valutata (curator: PR #14 del 25/10) |
 | 8 | Obsidian sui dispositivi in sola lettura (clone e Obsidian Git solo in pull) | Il grafo è visibile su PC e telefono (telefono fatto il 23/10, PC da configurare) |
 | 9 | Dashboard Cockpit, task `cockpit` e nota `home.md` | 3 giorni di aggiornamenti della dashboard senza errori; `home.md` leggibile in Obsidian con Tasks e Dataview |
@@ -566,4 +568,5 @@ Prerequisito: lo script di setup dell'ambiente cloud installa le dipendenze dell
 
 ## 14. Decisioni aperte
 
-- `blueage-animazioni` nel vault cloud: dipende dal rendering video nell'ambiente cloud.
+- `blueage-animazioni` è nel vault, ma il rendering video (HTML → MP4) nelle sessioni cloud è da provare.
+- Consegna dei file prodotti dalle skill: dal cloud il connettore non carica su OneDrive un PDF o un pptx oltre pochi KB (26/10), quindi il criterio dello step 6 ("deck caricato su SharePoint") per ora richiede il caricamento a mano.
