@@ -1,8 +1,8 @@
 """Mini-vault di prova per i test degli script (SPEC 4.4, step 11 di SPEC 13.1).
 
 Il fixture `vault` costruisce in `tmp_path` un vault valido: template copiati da `_templates/`,
-configurazione minima in `.claude/`, `.state/ingest.json` e una nota per tipo, collegate tra
-loro e con le fonti citate. Gli script girano con `VAULT_ROOT` puntato lì.
+configurazione minima in `.claude/`, lo stato per fonte in `.state/<fonte>.json` e una nota per
+tipo, collegate tra loro e con le fonti citate. Gli script girano con `VAULT_ROOT` puntato lì.
 """
 
 import json
@@ -290,10 +290,10 @@ STATO = {
     "sharepoint": {"watermark": "2026-10-02T06:50:00Z", "items": {
         "item-1": {"last_modified": "2026-10-01T10:00:00Z", "note": "sources/sharepoint/delivery/doc-alfa.md"},
     }},
-    "onedrive": {"watermark": "", "items": {}},
-    "outlook": {"watermark": "", "threads": {}},
+    "onedrive": {"watermark": None, "items": {}},
+    "outlook": {"watermark": None, "threads": {}},
     "github": {"repos": {}, "items": {}},
-    "reconcile": {"last_run": ""},
+    "reconcile": {"last_run": None},
 }
 
 # Configurazione minima: un nome di server MCP con GUID, come in locale (SPEC 2)
@@ -319,13 +319,18 @@ def vault(tmp_path):
     (root / ".claude" / "settings.json").write_text(json.dumps(SETTINGS, indent=2), encoding="utf-8")
     (root / ".claude" / "agents" / "ingestor.md").write_text(INGESTOR, encoding="utf-8")
     (root / ".state").mkdir()
-    (root / ".state" / "ingest.json").write_text(json.dumps(STATO, indent=2), encoding="utf-8")
+    for fonte, contenuto in STATO.items():
+        (root / ".state" / f"{fonte}.json").write_text(json.dumps(contenuto, indent=2), encoding="utf-8")
     for rel, testo in NOTE.items():
         scrivi(root, rel, testo)
     git(root, "init", "-q")
     git(root, "add", "-A")
     git(root, "commit", "-q", "-m", "vault di prova")
     return root
+
+
+def leggi_stato(root, fonte):
+    return json.loads((root / ".state" / f"{fonte}.json").read_text(encoding="utf-8"))
 
 
 def scrivi(root, rel, testo):

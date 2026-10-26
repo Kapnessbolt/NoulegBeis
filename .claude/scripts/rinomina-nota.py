@@ -3,7 +3,8 @@
 
 Uso: python3 .claude/scripts/rinomina-nota.py <slug-vecchio> <slug-nuovo>
 
-Per una scheda progetto rinomina cartella, scheda e log. Aggiorna anche .state/ingest.json.
+Per una scheda progetto rinomina cartella, scheda e log. Aggiorna anche le voci dello stato
+(`.state/<fonte>.json`, con `stato.py`) che puntano alla nota spostata.
 Per unire due doppioni: sposta a mano il contenuto nella nota che resta, cancella l'altra
 e lancia questo script con lo slug cancellato come vecchio: i link passano alla nota che resta.
 
@@ -11,12 +12,14 @@ La variabile d'ambiente VAULT_ROOT, se presente, indica la radice del vault al p
 cartella che contiene `.claude/` (serve ai test in `.claude/scripts/tests/`).
 """
 
-import json
 import os
 import re
 import subprocess
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import stato  # noqa: E402
 
 ROOT = Path(os.environ.get("VAULT_ROOT") or Path(__file__).resolve().parents[2]).resolve()
 SKIP_DIRS = {".git", ".github", ".claude", "_templates", ".obsidian", ".trash"}
@@ -79,18 +82,24 @@ def main():
             p.write_text(new_text, encoding="utf-8")
             changed += 1
 
-    state_path = ROOT / ".state" / "ingest.json"
-    state = json.loads(state_path.read_text(encoding="utf-8"))
-    for src, dst in moved.items():
-        old_rel, new_rel = str(src.relative_to(ROOT)), str(dst.relative_to(ROOT))
-        for fonte in state.values():
-            for coll in ("items", "threads"):
-                for v in (fonte.get(coll) or {}).values():
-                    if v.get("note") == old_rel:
-                        v["note"] = new_rel
-    state_path.write_text(json.dumps(state, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    stato_aggiornato = 0
+    if moved:
+        spostate = {str(src.relative_to(ROOT)): str(dst.relative_to(ROOT)) for src, dst in moved.items()}
+        for fonte, coll in stato.COLLEZIONE.items():
+            if not stato.percorso(fonte).exists():
+                continue
+            data = stato.leggi(fonte)
+            cambiato = False
+            for v in data[coll].values():
+                if v.get("note") in spostate:
+                    v["note"] = spostate[v["note"]]
+                    cambiato = True
+            if cambiato:
+                stato.scrivi(fonte, data)
+                stato_aggiornato += 1
 
-    print(f"[[{old}]] → [[{new}]]: {'nota rinominata, ' if found else ''}{changed} note aggiornate")
+    extra = f", {stato_aggiornato} file di stato aggiornati" if stato_aggiornato else ""
+    print(f"[[{old}]] → [[{new}]]: {'nota rinominata, ' if found else ''}{changed} note aggiornate{extra}")
 
 
 if __name__ == "__main__":

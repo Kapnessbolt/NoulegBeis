@@ -132,3 +132,21 @@ def test_modificati_vede_i_link_rotti_da_una_nota_cancellata(vault):
     res = controlla(vault, "--modificati")
     assert res.returncode == 1
     assert "collegamento rotto: [[mario-rossi]]" in res.stdout
+
+
+def test_stato_per_fonte_voce_verso_nota_inesistente_e_errore(vault):
+    res = esegui("stato.py", vault, "set-item", "outlook", "conv-1", "--istante", "2026-10-20T10:00:00Z",
+                 "--note", "sources/mail/2026-10/non-esiste.md")
+    assert res.returncode == 0, res.stderr
+    res = controlla(vault)
+    assert res.returncode == 1
+    assert "`.state/outlook.json` · outlook `conv-1` punta a una nota inesistente" in res.stdout
+
+
+def test_stato_illeggibile_e_errore_e_documento_non_registrato_e_avviso(vault):
+    (vault / ".state" / "onedrive.json").write_text("{ non json", encoding="utf-8")
+    scrivi(vault, ".state/sharepoint.json", '{"watermark": null, "items": {}}')
+    res = controlla(vault)
+    assert res.returncode == 1
+    assert "`.state/onedrive.json` · illeggibile" in res.stdout
+    assert "documento non registrato nello stato (.state/sharepoint.json)" in res.stdout

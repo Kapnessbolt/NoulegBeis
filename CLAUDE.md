@@ -27,7 +27,7 @@ Questo repo è il second brain personale di Lorenzo Curione sulla knowledge Blue
 | Diario di sessione | `sessions/AAAA-MM-DD-<slug>.md` | `_templates/session.md` | `session` |
 | Estratto di trascrizione (solo il pezzo che serve, senza dati riservati) | `sessions/_raw/` | nessuno | nessuno |
 | Proposta del curator | `proposals/AAAA-MM-DD-<slug>.md` | `_templates/proposal.md` | `proposal` |
-| Stato dell'ingestion | `.state/ingest.json` | schema in SPEC 6.1 | — |
+| Stato dell'ingestion | `.state/<fonte>.json` (`sharepoint`, `onedrive`, `outlook`, `github`, `reconcile`), solo con `python3 .claude/scripts/stato.py` | schema in SPEC 6.1 | — |
 | Vista Obsidian (Tasks e Dataview) | `home.md`, fuori dal controllo del vault | nessuno | `home` |
 
 Regole di instradamento:
@@ -92,7 +92,7 @@ Il curator non modifica mai `CLAUDE.md`, `.claude/` o `SPEC.md`: propone, e le m
 ## 7. Git
 
 - Prima di ogni commit: `python3 .claude/scripts/controlla-vault.py` (SPEC 4.4) e correggi gli errori che hai introdotto. Il pre-commit di git (`.githooks/pre-commit`, attivato a inizio sessione) blocca comunque il commit se restano errori nei file modificati. Il controllo segnala come errore anche i possibili dati riservati nel corpo delle note (§5): toglili, non aggirarlo. Poi commit, `git pull --rebase origin main` (dopo il commit: con modifiche non committate il rebase si rifiuta) e push diretto su `main`.
-- Conflitto su `.state/ingest.json`: vince la versione con il watermark più avanzato. Altri conflitti: riapplica la tua modifica sulla versione remota.
+- Conflitti su `.state/*.json`: li risolve il merge driver `stato` (`.gitattributes`, registrato dall'hook di avvio): vince il watermark più avanzato e le voci si uniscono. Se il rebase si ferma comunque su un file di stato: `python3 .claude/scripts/stato.py risolvi`, poi `git rebase --continue`. Altri conflitti: riapplica la tua modifica sulla versione remota.
 - Eccezione: il curator lavora su un branch `claude/` e apre una PR (`claude/curator-AAAA-MM-DD` con `/curator`, il branch assegnato alla sessione nel task schedulato).
 - Messaggi di commit: `ingest(sharepoint): 12 note aggiornate`, `session: <slug>`, `project(<slug>): <cosa>`, `vault: <cosa>` per struttura e configurazione.
 

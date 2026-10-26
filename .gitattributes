@@ -1,0 +1,4 @@
+# Stato dell'ingestion (SPEC 6.1, 11): i conflitti li risolve il merge driver `stato`
+# (`python3 .claude/scripts/stato.py merge-driver %O %A %B`), registrato nella configurazione
+# git del clone dall'hook SessionStart. Se il driver non è registrato git usa il merge di testo.
+.state/*.json merge=stato

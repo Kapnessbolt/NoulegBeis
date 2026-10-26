@@ -31,9 +31,11 @@ Disponibili: `/ingest`, `/ingest-file`, `/controlla`, `/verifica-task`, `/curato
 | `sessions/` | Diario delle sessioni (`_raw/`: estratti di trascrizione, solo il pezzo che serve) |
 | `proposals/` | Proposte del curator |
 | `_templates/` | Template delle note |
-| `.state/` | Stato dell'ingestion |
+| `.state/` | Stato dell'ingestion, un file per fonte (`sharepoint.json`, `onedrive.json`, `outlook.json`, `github.json`, `reconcile.json`); si legge e si scrive con `stato.py` |
 | `.claude/` | Comandi, agenti, skill, hook, procedure dei task schedulati e script di Claude Code |
+| `.claude/scripts/` | Script di servizio testati (`tests/`): controllo e rinomina delle note, famiglia e slug (`famiglia.py`), perimetro delle fonti (`perimetro.py`), stato dell'ingestion (`stato.py`), note dal template (`nuova-nota.py`, `aggiorna-nota.py`), dati della dashboard (`plancia.py`) |
 | `.githooks/` | Pre-commit di git che lancia il controllo del vault |
+| `.gitattributes` | Merge driver `stato` per i conflitti su `.state/*.json` |
 | `.github/workflows/` | Controllo del vault su ogni push e PR |
 
 ## Obsidian

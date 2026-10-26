@@ -25,7 +25,12 @@
       "Bash(git status:*)",
       "Bash(date:*)",
       "Bash(python3 .claude/scripts/controlla-vault.py:*)",
-      "Bash(python3 .claude/scripts/rinomina-nota.py:*)"
+      "Bash(python3 .claude/scripts/rinomina-nota.py:*)",
+      "Bash(python3 .claude/scripts/famiglia.py:*)",
+      "Bash(python3 .claude/scripts/perimetro.py:*)",
+      "Bash(python3 .claude/scripts/stato.py:*)",
+      "Bash(python3 .claude/scripts/nuova-nota.py:*)",
+      "Bash(python3 .claude/scripts/aggiorna-nota.py:*)"
     ]
   },
   "hooks": {
@@ -46,6 +51,10 @@
           {
             "type": "command",
             "command": "git -C \"$CLAUDE_PROJECT_DIR\" config core.hooksPath .githooks"
+          },
+          {
+            "type": "command",
+            "command": "git -C \"$CLAUDE_PROJECT_DIR\" config merge.stato.driver \"python3 .claude/scripts/stato.py merge-driver %O %A %B\""
           },
           {
             "type": "command",

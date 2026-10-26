@@ -16,12 +16,15 @@ updated: 2026-10-26
 - Debolezze da chiudere nella fase 2: meccanica dell'ingestion affidata al modello e non al codice; codice senza test; privacy senza controllo automatico; note hub senza retention; nessuna ricerca né `librarian`; regole duplicate; pezzi fuori dal repo; 15 note parziali; account personali ([[2026-10-26-piano-prodotto-second-brain]])
 - Il motore è già quasi generico: i valori BlueAge stanno in `ingestor.md`, `settings.json`, SPEC §5 e due cablature negli script; il contenuto BlueAge (skill, temi, clienti, persone) è proprietà intellettuale e resta fuori dal prodotto ([[2026-10-26-piano-prodotto-second-brain]])
 - Piano in tre blocchi, step 11–20 di SPEC §13: affidabilità (11–14), uso (15–17), prodotto (18–20). Si esegue uno step alla volta, chiuso con il suo criterio di accettazione ([[2026-10-26-piano-prodotto-second-brain]])
+- Step 12 fatto, in osservazione: sei script di servizio (`famiglia.py`, `perimetro.py`, `stato.py`, `nuova-nota.py`, `aggiorna-nota.py`, modulo `nota.py`) con 154 test; stato diviso per fonte con merge driver git che unisce i conflitti da solo; `ingestor.md` da 3.044 a 1.491 parole; golden test: famiglie d'accordo con il vault al 92%, cartelle al 99% ([[2026-10-26-piano-prodotto-second-brain]])
 - Step 11 fatto: controllo dei dati riservati a pattern (IBAN, telefoni, chiavi, GUID, codici di riunione, password) come errore bloccante, 41 test pytest sui tre script con un mini-vault di prova, CI che esegue i test prima del controllo; sul vault reale 0 errori ([[2026-10-26-piano-prodotto-second-brain]])
 
 ## Attività
 
 - [x] Step 11 · Rete di sicurezza del codice: controllo privacy a regex in `controlla-vault.py` (errore bloccante), test pytest con mini-vault per `controlla-vault.py`, `rinomina-nota.py`, `plancia.py`, CI che esegue i test · modello: Opus ✅ 2026-10-26 ([[2026-10-26-piano-prodotto-second-brain]])
-- [ ] Step 12 · Meccanica in codice: `famiglia.py`, `perimetro.py`, `stato.py`, `nuova-nota.py`; stato per fonte in `.state/<fonte>.json`; ingestor che chiama gli script e scrive solo i riassunti; golden test sulle famiglie reali del vault · modello: Opus, revisione Fable ([[2026-10-26-piano-prodotto-second-brain]])
+- [x] Step 12 · Meccanica in codice: `famiglia.py`, `perimetro.py`, `stato.py`, `nuova-nota.py`; stato per fonte in `.state/<fonte>.json`; ingestor che chiama gli script e scrive solo i riassunti; golden test sulle famiglie reali del vault · modello: Opus, revisione Fable ✅ 2026-10-26 ([[2026-10-26-piano-prodotto-second-brain]])
+- [ ] Step 12 · criterio di accettazione: 3 giri dei task (27, 28, 29/10) senza differenze rispetto a prima, con `/verifica-task` 📅 2026-10-29 ([[2026-10-26-piano-prodotto-second-brain]])
+- [ ] Step 12 · decidere le 11 famiglie e la nota del company profile in disaccordo con gli script (rinominare con `rinomina-nota.py` o lasciare): elenco nel diario ([[2026-10-26-piano-prodotto-second-brain]])
 - [ ] Step 13 · Configurazione separata dal motore: `vault.yaml` (nome, fuso, lingua, fonti con perimetro ed esclusioni, nomi del connettore, task con orari, modello e connettori); script e agenti leggono da lì; nessun valore BlueAge in `.claude/` · modello: Fable ([[2026-10-26-piano-prodotto-second-brain]])
 - [ ] Step 14 · Fonte unica delle regole: matrice delle scritture e perimetro in un posto solo, con rimandi da CLAUDE.md e dagli agenti · modello: Fable ([[2026-10-26-piano-prodotto-second-brain]])
 - [ ] Step 15 · Retention delle note hub: interazioni recenti alle ultime 20, `## Fonti` da backlink o generate, ripresa delle note `partial`, archivio dei progetti chiusi · modello: Sonnet ([[2026-10-26-piano-prodotto-second-brain]])
@@ -41,7 +44,7 @@ updated: 2026-10-26
 
 ## Prossimi passi
 
-- Step 12 (meccanica in codice), poi uno step alla volta nell'ordine della sezione Attività
+- Verifica dei 3 giri dei task sullo step 12, poi step 13 (configurazione separata dal motore)
 
 ## Fonti
 

@@ -490,26 +490,29 @@ def main():
         if len(paths) > 1:
             err(paths, f"stesso file (item_id {iid}) in " + ", ".join(f"`{x}`" for x in paths))
 
-    # 6. Stato dell'ingestion
-    state_path = ROOT / ".state" / "ingest.json"
-    try:
-        state = json.loads(state_path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as e:
-        err(".state/ingest.json", f"illeggibile ({e})")
-        state = {}
+    # 6. Stato dell'ingestion: un file per fonte in .state/ (SPEC 6.1)
     tracked = set()
     for fonte, coll in (("sharepoint", "items"), ("onedrive", "items"), ("outlook", "threads"), ("github", "items")):
-        for key, v in (state.get(fonte) or {}).get(coll, {}).items():
+        rel_stato = f".state/{fonte}.json"
+        try:
+            state = json.loads((ROOT / rel_stato).read_text(encoding="utf-8"))
+        except FileNotFoundError:
+            continue  # fonte mai ingerita: stato vuoto
+        except (OSError, json.JSONDecodeError) as e:
+            err(rel_stato, f"illeggibile ({e})")
+            continue
+        for key, v in (state.get(coll) or {}).items():
             note = v.get("note", "")
             tracked.add(note)
             if not (ROOT / note).is_file():
-                err([".state/ingest.json", note], f"{fonte} `{key}` punta a una nota inesistente: `{note}`")
+                err([rel_stato, note], f"{fonte} `{key}` punta a una nota inesistente: `{note}`")
     for rel, (d, _) in parsed.items():
         if rel.parts[0] != "sources" or d.get("type") != "source-doc":
             continue
-        if d.get("source") in ("sharepoint", "onedrive", "github") and "fuori-perimetro" not in as_list(d.get("tags")):
+        fonte = d.get("source")
+        if fonte in ("sharepoint", "onedrive", "github") and "fuori-perimetro" not in as_list(d.get("tags")):
             if str(rel) not in tracked:
-                avv(rel, "documento non registrato in .state/ingest.json")
+                avv(rel, f"documento non registrato nello stato (.state/{fonte}.json)")
 
     # 7. Configurazione: nomi del connettore Microsoft 365 (SPEC 2)
     controlla_connettore()
