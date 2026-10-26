@@ -1,6 +1,6 @@
 # SPEC · Second Brain BlueAge (personale)
 
-Versione 1.20 · 26/10/2026 · Owner: Lorenzo Curione
+Versione 1.21 · 27/10/2026 · Owner: Lorenzo Curione
 
 Questo file è la specifica di riferimento del vault. Ogni sessione Claude Code che costruisce o modifica il sistema parte da qui. Le modifiche alla specifica si fanno con una PR dedicata.
 
@@ -23,12 +23,11 @@ Utente unico. Il repo è privato, ma i dati riservati (credenziali, coordinate b
 | Componente | Scelta | Ruolo |
 |---|---|---|
 | Storage del vault | Repo GitHub privato (account personale) | Fonte di verità: markdown + configurazione Claude Code |
-| Esecuzione | Claude Code in cloud (claude.ai/code) e in locale (app desktop, sessione aperta sulla cartella del vault sul PC) | Sessioni interattive: in cloud da desktop, mobile e PC diversi; in locale dal PC, con mod e pannelli |
+| Esecuzione | Claude Code in cloud (claude.ai/code) e in locale (app desktop, sessione aperta sulla cartella del vault sul PC) | Sessioni interattive: in cloud da desktop, mobile e PC diversi; in locale dal PC |
 | Automazione | Task schedulati cloud (claude.ai/code/routines) | Ingestion periodica, riconciliazione, curator |
 | Fonti | Connettore Microsoft 365 (tenant blueage.it) | Lettura di SharePoint, OneDrive e Outlook; upload dei file prodotti |
 | Visualizzazione | Obsidian (vault = clone del repo) | Solo lettura: link, backlink, grafo, ricerca, attività; `home.md` come pagina iniziale. Sincronizzazione solo in pull con il plugin Obsidian Git, niente commit dai dispositivi: modifiche e catture passano da Claude |
-| Riepilogo | Dashboard Cockpit su claude.ai (artifact privato) | Briefing, anche dal telefono e dalle sessioni cloud: calendario Outlook dal vivo; progetti, attività, log, inbox, task e digest dal vault |
-| Pannello locale | Mod `cockpit` dell'app desktop (caricata sull'account, si attiva una volta per PC) | Postazione operativa al PC nelle sessioni locali aperte sul vault: consumo del piano Max, task schedulati di oggi, prossime cose (calendario Outlook dal vivo e scadenze lette dai file), agenti del vault con conferma, link alla dashboard. Convive con la dashboard, non la sostituisce. Sul telefono le mod non compaiono; `/cockpit`, registrato dalla mod (8), dà il riepilogo in testo dove il pannello non si disegna |
+| Riepilogo | Cockpit: pagina HTML statica e autosufficiente su claude.ai (artifact privato), generata dal vault da `cockpit.py` (4.4) e ripubblicata dal task `cockpit` (7) | Briefing in sola lettura, da telefono e da PC: eventi dei prossimi 7 giorni (fotografia del calendario Outlook presa dal task), attività scadute e in scadenza, progetti con semaforo e prossimi passi; il dettaglio si apre con un tocco, il resto (inbox, novità, task) in fondo. Nessuna funzione in early access: la pagina contiene i suoi dati. `home.md` in Obsidian è la vista di riserva |
 | Documenti originali | Restano su SharePoint, OneDrive e Outlook | Nel repo vanno solo le note markdown che li citano |
 
 Vincoli dell'ambiente cloud da rispettare:
@@ -62,6 +61,7 @@ Sessioni locali (app desktop sul PC):
 │   ├── agents/              agenti specializzati (sezione 9)
 │   ├── hooks/               hook di Claude Code (controllo prima del commit 4.4, pull all'avvio 11)
 │   ├── routines/            procedure dei task schedulati (sezione 7)
+│   ├── templates/           template della pagina Cockpit (`cockpit.html`, 4.4)
 │   ├── scripts/             script di servizio testati (4.4): controllo e rinomina delle note, famiglia, perimetro, stato, note dal template, ricerca (9.3), dati della dashboard (7)
 │   └── skills/              skill (sezione 10): `chiudi-sessione`, `blueage-deck`, `blueage-corso`, `blueage-animazioni`
 ├── .state/                  stato dell'ingestion, un file per fonte (6.1)
@@ -310,7 +310,8 @@ Quando si esegue:
 | `nuova-nota.py` | Nota nuova dal template del suo tipo, con il frontmatter validato come nel controllo; per `source-doc` completa `source`, `family`, `ingested_at` e `versions`; non sovrascrive |
 | `aggiorna-nota.py` | Modifica il frontmatter di una nota esistente senza toccare il corpo: campi, aggiunte alle liste, posizioni in `also_at`, nuova versione (`current` in `versions`, 4.3). Le righe dei campi invariati restano identiche |
 | `cerca.py` | Ricerca nel vault (9.3): termini su titolo, frontmatter e corpo, filtri per tipo, cartella, progetto, cliente, tema, persona, data e tag; ordine per punteggio, poi backlink, poi data; `--collegamenti` (chi collega una nota) e `--nota` (scheda sintetica). Usato dal `librarian` e dai comandi `/oggi`, `/progetto`, `/cattura`, `/smista` |
-| `plancia.py` | Dati della dashboard Cockpit (7) |
+| `plancia.py` | Dati del Cockpit (7) in JSON: progetti con attività, prossimi passi e scadute, attività, log, inbox, task del giorno, digest |
+| `cockpit.py` | Pagina HTML del Cockpit dai JSON di `plancia.py` e da `calendario.json` (scritto dal task con il connettore), con il template `.claude/templates/cockpit.html`; nessuna risorsa esterna; stampa la riga di riepilogo per il digest |
 
 Prefissi ed esclusioni del perimetro, e la firma dell'autore che `famiglia.py` toglie in coda ai nomi (`_BlueAge`), sono costanti in testa agli script: nello step 13 passano in `vault.yaml`.
 
@@ -479,10 +480,10 @@ Orari in Europe/Rome, fuori dagli orari pieni per evitare i ritardi del sistema.
 | `digest` | Ogni giorno alle 07:45 | Nessuno | Sonnet | Completa `journal/AAAA-MM-GG.md`: novità, attività in scadenza, decisioni |
 | `ingest-github` | Ogni giorno alle 07:20 | GitHub (il vault e i repo di 5.4 come sorgenti) | Opus | 6.6 |
 | `reconcile` | Domenica alle 08:45 | Microsoft 365 | Sonnet | 6.4 |
-| `cockpit` | Ogni giorno alle 07:40 e alle 13:40 (due task, `DailyBoard` e `DailyBoard2`) | Nessuno | — | Rigenera con `plancia.py` progetti, attività, log, inbox, task e digest e li carica sulla dashboard Cockpit; riga d'esito nel digest |
+| `cockpit` | Ogni giorno alle 07:40 e alle 13:40 (due task, `DailyBoard` e `DailyBoard2`) | Microsoft 365, solo lettura del calendario | Sonnet | Rigenera i dati con `plancia.py`, fotografa il calendario dei prossimi 7 giorni in `calendario.json`, genera la pagina con `cockpit.py` e la ripubblica sull'artifact Cockpit; riga d'esito nel digest |
 | `curator` | Domenica alle 21:10 | GitHub, solo per aprire la PR | Opus | 9.2: proposte dai diari della settimana su un branch suo, con una PR |
 
-Il `cockpit` gira in un ambiente cloud dedicato, senza connettori, perché carica i dati su claude.ai; il calendario la dashboard lo legge da sé con il connettore Microsoft 365 di chi la apre. Il `digest` gira dopo gli ingest del mattino; l'ingest-outlook delle 13:15 scrive nel digest dello stesso giorno, e il digest del giorno dopo non ripete le sue note.
+Il `cockpit` legge il calendario con il connettore nel giro e lo scrive nella pagina: il Cockpit mostra la fotografia dell'ultimo giro, non il calendario dal vivo. Il `digest` gira dopo gli ingest del mattino; l'ingest-outlook delle 13:15 scrive nel digest dello stesso giorno, e il digest del giorno dopo non ripete le sue note.
 
 Ogni task:
 - si crea dall'interfaccia di claude.ai con il repository e i soli connettori che gli servono, e gira in una sessione nuova a ogni esecuzione;
@@ -509,8 +510,6 @@ Eccezione: il `curator` non scrive nel digest e non fa push su `main` (sezione 3
 | `/curator [da data] [a data]` | Giro del curator a mano (9.2), di default sugli ultimi 7 giorni: mostra le proposte, registra le decisioni dell'utente nel `status` e apre la PR |
 
 Le domande sulla knowledge ("cosa sappiamo di X", "quando è stato deciso Y") non hanno un comando: la sessione le passa all'agente `librarian` (9.3), che risponde con le fonti.
-
-`/cockpit` non sta in questa tabella perché non vive nel repo: lo registra la mod `cockpit` dell'app desktop (2), che si attiva una volta per PC dall'account. Esiste quindi solo dove la mod è attiva, e dà in testo il riepilogo del pannello.
 
 **Chat di claude.ai nel vault.** Nella chat basta chiedere "salva il riassunto di questa chat nel mio OneDrive in BlueAge/00_chat". Il connettore M365 carica il file, e l'ingestion lo trasforma in una nota di tipo `session` con `surface: claude-ai`.
 
@@ -611,12 +610,12 @@ Gli step 1–10 hanno costruito il vault personale. La fase 2 lo porta a prodott
 |---|---|---|---|
 | 11 | Affidabilità | Rete di sicurezza del codice: controllo dei dati riservati a pattern (IBAN, telefoni, token e chiavi, codici di riunione, GUID) in `controlla-vault.py` come errore bloccante; test pytest con un mini-vault di prova per `controlla-vault.py`, `rinomina-nota.py` e `plancia.py`; il workflow CI esegue i test prima del controllo | La CI è rossa su una nota di prova con un IBAN finto; i test passano in CI e nel pre-commit non cambia nulla per le note esistenti |
 | 12 | Affidabilità | Meccanica in codice: `famiglia.py` (chiave di famiglia e slug da un nome di file, 3.2 dell'ingestor), `perimetro.py` (dentro o fuori perimetro da un `webUrl`), `stato.py` (lettura e scrittura di watermark e voci con validazione e unione dei conflitti), `nuova-nota.py` (scheletro di una nota dal template con frontmatter validato); stato diviso per fonte in `.state/<fonte>.json`; l'ingestor chiama gli script e scrive solo riassunti e collegamenti; golden test sulle famiglie reali del vault | 3 giri dei task senza differenze rispetto a prima; `ingestor.md` sotto le 1.500 parole; nessuna modifica a mano di `.state/` |
-| 13 | Affidabilità | Configurazione separata dal motore: `vault.yaml` con nome, fuso, lingua, fonti (perimetro ed esclusioni), nomi del connettore, task (orari, modello, connettori); script, agenti, routine e `plancia.py` leggono da lì | Nessun valore BlueAge in `.claude/` fuori da `vault.yaml` (`grep -ri blueagesrl .claude` vuoto); la CI segnala se SPEC e `vault.yaml` divergono sugli orari dei task |
+| 13 | Affidabilità | Configurazione separata dal motore: `vault.yaml` con nome, fuso, lingua, fonti (perimetro ed esclusioni), nomi del connettore, repository, task (orari, modello, connettori); script, agenti, routine, `plancia.py` e `cockpit.py` leggono da lì; script di setup dell'ambiente cloud committato (prima nello step 16) | Nessun valore BlueAge in `.claude/` fuori da `vault.yaml` (`grep -ri blueagesrl .claude` vuoto); la CI segnala se SPEC e `vault.yaml` divergono sugli orari dei task |
 | 14 | Affidabilità | Fonte unica delle regole: la matrice delle scritture e il perimetro vivono in un posto solo (SPEC §3 e `vault.yaml`); `CLAUDE.md` e gli agenti rimandano invece di copiare | Una sola copia della matrice nel repo |
 | 15 | Uso | Retention delle note hub: `## Interazioni recenti` alle ultime 20 righe (il resto si legge dai backlink); `## Fonti` di clienti e temi generate dallo script o sostituite da una query Dataview; le note `partial: true` riprese a lotti dalla riconciliazione o segnate come sufficienti; regola di archivio per i progetti `chiuso` | Nessuna sezione hub oltre le 20 righe; le 15 note parziali del 26/10 completate o segnate |
-| 16 | Uso | Riproducibilità: mod `cockpit` versionata (repo suo o `.claude/mods/`), script di setup dell'ambiente cloud committato, task letti da `vault.yaml`; guida di installazione da zero provata su un account e un clone nuovi | Installazione completa seguendo solo la guida, senza chiedere nulla a chi ha costruito il vault |
+| 16 | Uso | Cockpit v2 (2): pagina HTML statica generata da `cockpit.py` con il template versionato in `.claude/templates/`, dati da `plancia.py` e fotografia del calendario dal task; blocchi Oggi, Settimana, Progetti con semaforo e prossimi passi, dettaglio a un tocco; task `cockpit` riscritto (una pubblicazione, niente dataset); mod dell'app desktop e dashboard di tipo Dashboard ritirate. Decisione del 27/10 dopo la revisione con l'utente: sola lettura, da telefono e da PC, basi stabili | 3 giorni di giri senza errori; l'utente apre la pagina dal telefono la mattina e trova scadenze, eventi e stato dei progetti senza chiedere nulla a Claude |
 | 17 | Uso | Librarian e ricerca: `cerca.py` (frontmatter e testo, ordinato per collegamenti), agente `librarian` (9.3), comandi `/oggi`, `/progetto`, `/cattura`, `/smista` (8) | 10 domande di prova sulla knowledge con risposta corretta e fonti citate; i quattro comandi in `.claude/commands/` |
-| 18 | Prodotto | Onboarding come prodotto: comando `/avvia` per il primo caricamento a lotti (6.5) con campione di qualità integrato; controllo di qualità a campione nel giro del curator (5 note rilette contro l'originale); manuale d'uso per il manager, non tecnico | Primo caricamento di un vault nuovo in una giornata; manuale letto e capito da una persona non tecnica |
+| 18 | Prodotto | Onboarding come prodotto: comando `/avvia` per il primo caricamento a lotti (6.5) con campione di qualità integrato; controllo di qualità a campione nel giro del curator (5 note rilette contro l'originale); manuale d'uso per il manager, non tecnico; guida di installazione da zero provata su un account e un clone nuovi (prima nello step 16) | Primo caricamento di un vault nuovo in una giornata; manuale letto e capito da una persona non tecnica |
 | 19 | Prodotto | Separazione della proprietà intellettuale e governance: repo template del motore (`.claude/`, script, template, SPEC generica, `vault.yaml` d'esempio) senza contenuti BlueAge (skill `blueage-*`, temi, clienti, persone); repo nell'organizzazione GitHub di BlueAge; secret scanning attivo; policy dei dati (base giuridica delle email in `people/`) in questa SPEC; prerequisiti del cliente scritti (piano Claude con Code e task schedulati, connettore Microsoft 365, repo GitHub privato, Obsidian facoltativo) | Template installabile; nessun file BlueAge nel template; prerequisiti verificati su un'installazione di prova |
 | 20 | Prodotto | Metriche di valore: riga settimanale nel resoconto del curator con note totali e nuove, giri dei task OK ed errori, domande risposte, consumo del piano se leggibile; base per il prezzo e per il rapporto al cliente | 4 settimane consecutive di metriche nel registro delle PR del curator |
 
@@ -627,6 +626,6 @@ Modelli consigliati per l'esecuzione: la sessione guida e rivede (il modello pi�
 - `blueage-animazioni` è nel vault, ma il rendering video (HTML → MP4) nelle sessioni cloud è da provare.
 - Consegna dei file prodotti dalle skill: dal cloud il connettore non carica su OneDrive un PDF o un pptx oltre pochi KB (26/10), quindi il criterio dello step 6 ("deck caricato su SharePoint") per ora richiede il caricamento a mano.
 - Un vault = un utente (1). Un reparto o un team sono più vault, forse con temi condivisi: da decidere con il primo cliente a più persone, dopo lo step 19.
-- Dashboard Cockpit e mod `cockpit` poggiano su funzioni di claude.ai in early access (artifact con `ArtifactData`, mod dell'app desktop) che possono cambiare. Nel prodotto restano strati opzionali sopra il nucleo stabile (markdown, git, task schedulati, connettore); `home.md` e il digest sono la vista di riserva.
+- Il Cockpit v2 (step 16) è una pagina statica pubblicata come artifact su claude.ai: dipende da claude.ai solo come hosting, non da funzioni in early access. Se anche quello cambiasse, la stessa pagina si può pubblicare altrove senza toccare lo script; `home.md` e il digest restano la vista di riserva. La dashboard di tipo Dashboard con `ArtifactData` e la mod dell'app desktop sono ritirate il 27/10.
 - Fonti diverse da Microsoft 365 (Google Workspace, altri repository): si valutano solo dopo lo step 13, quando il perimetro è configurazione e non prosa.
 - Lingua: sezioni e regole sono in italiano, anche negli script (`controlla-vault.py` cerca "Relazione con BlueAge"). Nello step 13 i nomi delle sezioni passano in configurazione; una versione in altra lingua è una decisione commerciale, non tecnica.

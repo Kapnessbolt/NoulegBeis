@@ -10,7 +10,7 @@ Vault personale sulla knowledge BlueAge, gestito da Claude Code in cloud e in lo
 1. **Lavorare**: apri una sessione su claude.ai/code su questo repo, oppure una sessione locale dell'app desktop sulla cartella del vault. L'agente legge `CLAUDE.md` e sa dove scrivere. Note, catture e smistamenti passano da qui: chiedili a parole (una cattura senza progetto va in `inbox/`).
 2. **Controllare**: `/controlla` segnala errori e possibili doppioni nel vault e mostra l'indice di progetti, clienti, persone e temi. `/verifica-task [task] [data]` controlla i giri dei task schedulati: digest, commit, watermark, doppioni.
 3. **Ingerire**: le novità di SharePoint, OneDrive, Outlook e dei repo GitHub di progetto entrano da sole con i task schedulati (SPEC 7), attivi dal 23/10. A mano: `/ingest [fonte] [da data]` dal watermark, `/ingest-file <url o nome>` per un singolo documento.
-4. **Fare il punto**: la dashboard Cockpit su claude.ai (aggiornata dal task `cockpit` due volte al giorno) e il digest del giorno in `journal/`. Nelle sessioni locali la mod `cockpit` dell'app desktop apre il pannello e registra `/cockpit`; la mod vive fuori dal repo.
+4. **Fare il punto**: la pagina Cockpit su claude.ai (rigenerata dal vault dal task `cockpit` due volte al giorno: scadenze, eventi, progetti), `/oggi` in sessione e il digest del giorno in `journal/`.
 5. **Chiudere**: `/chiudi-sessione` (o "chiudiamo") scrive il diario in `sessions/`, spunta gli aperti chiusi e fa push.
 6. **Migliorare il vault**: `/curator` legge i diari della settimana e apre una PR con le proposte (regole, comandi, hook) e gli aperti chiusi; gira anche da solo la domenica sera.
 7. **Leggere**: Obsidian sul clone del repo, solo in lettura (sotto).
