@@ -21,7 +21,8 @@ Controllare gli esiti di reconcile, digest e curator, e decidere sulla proposta 
 - Diario della sessione del 25/10 ricostruito dai commit dei due repo
 - Il curator schedulato resta sul branch della sua sessione invece di `claude/curator-AAAA-MM-DD`: la sessione cloud riceve un branch assegnato e la regola di non fare push altrove senza permesso, e un task schedulato non ha nessuno a cui chiederlo. Lasciato così dall'utente: la PR arriva comunque
 - Digest del 26/10 con "Controllo del vault" vuoto: è normale. Quella sezione la compila solo il reconcile della domenica, e `## Scartate` solo l'ingest-outlook quando scarta delle mail. Nei giorni feriali il controllo lo fa il workflow GitHub su ogni push
-- Doppione `essenziale` / `manini-ddt-essenziale` unito dall'utente in [[manini-ddt-essenziale]]: resta lo slug più specifico e già citato da 9 note (`essenziale` scontrerebbe con l'essenziale di un altro progetto), con il contenuto e il file corrente del 25/10 in `Library/`; la versione del 23/10 nella cartella Manini resta nello storico e in `.state/ingest.json` i due file puntano alla stessa nota
+- Doppione `essenziale` / `manini-ddt-essenziale` unito dall'utente in [[manini-ddt-essenziale]]: resta lo slug più specifico e già citato da 9 note (`essenziale` scontrerebbe con l'essenziale di un altro progetto), con il contenuto e il file corrente del 25/10 in `Library/`; la versione del 23/10 nella cartella Manini resta nello storico e in `.state/ingest.json` i due file puntano alla stessa nota. Poi, su richiesta dell'utente, il file vecchio `Manini/manini_ddt_essenziale.md` è stato cancellato da OneDrive (cestino, recuperabile per 93 giorni) e tolto dallo stato, perché il reconcile non segni la nota come `removed`
+- Rilette e aggiornate le 4 note che citavano l'essenziale: [[manini]] (matching fatto, non più da fare), [[corso-ai-manini]] (prompt v1.1 per l'aula IT, tre DDT per l'aula utenti), [[manini-automazione-ddt]] (prompt v1.1 per il pilota, business case invariato sull'estrazione reale, repo che legge il vault senza scriverci) e [[ai-nei-processi]] (il prompt riduce il distacco tra i modelli, regola "campo incerto → verifica"); `gruppi` invariato
 
 ## File toccati
 
@@ -31,7 +32,8 @@ Controllare gli esiti di reconcile, digest e curator, e decidere sulla proposta 
 - `proposals/2026-10-25-controllo-diari-mancanti.md`: `status: accettata` con la nota sulla variante (PR #20)
 - `sessions/2026-10-25-manini-ritest-prompt-v11.md` (nuovo); aperti spuntati in `sessions/2026-10-22-watermark-e-task-schedulati.md` e `sessions/2026-10-25-cockpit-v05-smistamento.md`
 - `sources/onedrive/01-materiale-clienti/manini/`: `manini-ddt-essenziale.md` spostata in `progetto-automazione/library/` e unita a `essenziale.md` (cancellata); `.state/ingest.json`; collegamenti in `journal/2026-10-26.md` e nel log di `manini-automazione-ddt`
-- Fuori dal vault: repo `manini-automazione-ddt`, `CLAUDE.md` §5 (PR #4); task curator su claude.ai, orario spostato dall'utente
+- `clients/manini.md`, `projects/corso-ai-manini/corso-ai-manini.md`, `projects/manini-automazione-ddt/` (scheda e log), `topics/ai-nei-processi.md`
+- Fuori dal vault: repo `manini-automazione-ddt`, `CLAUDE.md` §5 (PR #4); task curator su claude.ai, orario spostato dall'utente; OneDrive, cancellato `Manini/manini_ddt_essenziale.md`
 
 ## Aperti
 

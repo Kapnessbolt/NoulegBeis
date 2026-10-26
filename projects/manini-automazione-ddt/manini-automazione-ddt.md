@@ -4,7 +4,7 @@ status: attivo
 role: "AI consultant: analisi, architettura e kit tecnico del caso entrata merci"
 clients: ["[[manini]]"]
 people: ["[[leonardo-pinsone]]", "[[luca-zamponi]]", "[[angelo-santilli]]", "[[cristian-schifone]]"]
-updated: 2026-10-25
+updated: 2026-10-26
 ---
 
 # Manini · automazione entrata merci da DDT
@@ -19,7 +19,7 @@ updated: 2026-10-25
 - Step 4, matching contro ordini simulati: fatto in simulazione. Con l'ordine sul DDT l'abbinamento si automatizza senza errori anche a tabella codici vuota (0 errori su 30 simulazioni); DDT pronti 5–7 su 15 all'avviamento con politica automatica, 6–7 a regime; tetto 10/15 per anomalie di processo e DDT senza ordine. Ripetuto il 25/10 sull'output reale dell'estrazione (H29 chiusa): con il modello standard nessun DDT cambia stato e 0 abbinamenti automatici errati; emersi due difetti del motore da correggere (H33, H34). Da ripetere con le righe d'ordine vere ([[05-matching]])
 - Step 5, output riusabili: parziale. Piano aula, sessione IT e architettura Microsoft definiti; deck da aggiornare ([[02-aula-e-architettura]])
 - Business case del deck v3 di [[leonardo-pinsone]]: 1.860 ore/anno oggi, risparmio 33–47 k€/anno; poggia su due numeri non misurati, i 10 minuti a DDT e la quota del 60/80% di DDT senza eccezioni ([[manini-ddt-essenziale]], [[automazione-entrata-merci-caso-manini]])
-- Sul campione il matching simulato porta a un risparmio di circa 630–740 ore/anno (22–26 k€) contro 949 ore (33 k€) del prudente: il 60% è raggiungibile, l'80% no a meno che il campione sovrarappresenti le anomalie ([[05-matching]])
+- Sul campione il matching simulato porta a un risparmio di circa 630–740 ore/anno (22–26 k€) contro 949 ore (33 k€) del prudente: il 60% è raggiungibile, l'80% no a meno che il campione sovrarappresenti le anomalie. Sull'estrazione reale con il modello standard il risultato non cambia ([[05-matching]])
 
 ## Attività
 
@@ -46,12 +46,14 @@ updated: 2026-10-25
 - Il collo di bottiglia è l'abbinamento con ordini e codici, non la lettura; l'abbinamento fatture già fatto dall'AS400 non si tocca ([[manini-ddt-essenziale]])
 - Lettura generativa con schema JSON e regola "trascrivi, non dedurre": prompt AI Builder per il pilota, nodo Extract di Copilot Studio da mostrare, niente modello addestrato per layout ([[02-aula-e-architettura]], [[04-benchmark]])
 - In AI Builder e Copilot Studio si sceglie il modello più capace, non quello veloce ([[04-benchmark]])
+- Il prompt v1.1 è quello da usare in aula IT e nel pilota; le correzioni candidate vanno in una v1.2, da ritestare prima dell'uso ([[04-benchmark]], [[prompt-estrazione-ddt]])
 - Abbinamento deterministico dove si può, AI solo dove serve giudizio; la proposta dell'AI confermata da una persona popola la tabella codici ([[02-aula-e-architettura]])
 - Scrittura su AS400 con staging su DB2 più programma RPG di import; niente INSERT diretto, RPA sul 5250 solo come ponte ([[02-aula-e-architettura]])
 - Pilota in tre fasi: dati, in ombra solo su Aprilia, scrittura in staging ([[02-aula-e-architettura]])
 - Benchmark per campo e per tipo di acquisizione, non per fornitore ([[01-inventario]])
 - Nel pilota, abbinamento automatico solo sulle righe con ordine e proposta netta; tutto il resto in eccezione; obiettivo 0 abbinamenti automatici errati ([[05-matching]])
 - Repo GitHub dedicato per il lavoro tecnico; dati reali solo su OneDrive; vault per stato, decisioni e attività ([[2026-10-23-manini-automazione-ddt]])
+- Il repo legge il vault ma non lo modifica: scheda e log li aggiorna solo l'ingestion giornaliera, dalle copie dei report in `Library/`; ciò che non passa da un report la sessione lo riferisce a Lorenzo (`CLAUDE.md` del repo, §5) ([[2026-10-26-diari-mancanti-e-vault-sola-lettura]])
 - Nei report del repo niente anonimizzazione di fornitori, numeri DDT e ordini del campione; i dati riga per riga restano su OneDrive ([[2026-10-23-manini-automazione-ddt]])
 
 ## Prossimi passi
@@ -73,3 +75,4 @@ updated: 2026-10-25
 - [[blueage-automation-entrata-merci]]
 - [[manini-relazione-processi-gestione-materiali]]
 - [[2026-10-23-manini-automazione-ddt]]
+- [[2026-10-26-diari-mancanti-e-vault-sola-lettura]]

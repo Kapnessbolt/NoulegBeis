@@ -4,7 +4,7 @@ status: attivo
 role: "AI consultant, in aula con Leonardo Pinsone"
 clients: ["[[manini]]"]
 people: ["[[leonardo-pinsone]]", "[[cristian-schifone]]", "[[luciano-baccarelli]]", "[[angelo-santilli]]"]
-updated: 2026-10-23
+updated: 2026-10-26
 ---
 
 # Manini · formazione AI
@@ -23,6 +23,7 @@ updated: 2026-10-23
 - Caso di laboratorio entrata merci (v3): circa 11.160 documenti l'anno, risparmio stimato 33–47 k€ l'anno ([[blueage-automation-entrata-merci]], [[automazione-entrata-merci-caso-manini]])
 - Il lavoro tecnico sul caso DDT (inventario, schema, benchmark, kit per le 8 ore IT, laboratorio utenti) è nel progetto [[manini-automazione-ddt]] ([[manini-ddt-essenziale]])
 - Audience: il magazzino, che registra i DDT, non è in nessun gruppo e gli acquisti sono 4 su 36; il caso DDT funziona per il gruppo A e per l'IT, per i gruppi B e C (preventivazione e amministrazione) serve un caso preventivi, il cui materiale non è ancora arrivato ([[manini-ddt-essenziale]])
+- Per l'aula IT e il pilota si usa il prompt di estrazione v1.1, ritestato il 25/10 (15/15 DDT pronti con il modello standard); in aula utenti bastano tre DDT: Hilti (facile), Iron Works (45 righe) e 004664 (illeggibile, rifiutato) ([[04-benchmark]], [[prompt-estrazione-ddt]])
 - Usa il deck universale M1_v15 dell'[[ai-foundation-program]] ([[deck-corso-ai-m1-v15-su-sharepoint]])
 - Dopo l'incontro del 16/10 Manini chiede fondamenta più snelle; al corso manca la parte di governance (gruppi, permessi SharePoint, modelli per utente, crediti del tenant) che Leonardo vorrebbe aggiungere ([[call-di-oggi-prossimi-passi-architettura-copilot-manini-meccanotecnica-second-brain]], [[ieri-sera-e-oggi-idee-su-cui-ragionare]])
 
@@ -78,3 +79,5 @@ updated: 2026-10-23
 - [[ieri-sera-e-oggi-idee-su-cui-ragionare]]
 - [[riunione-generale-blueage-12-10-punti-emersi-e-prossimi-passi]]
 - [[manini-ddt-essenziale]]
+- [[04-benchmark]]
+- [[prompt-estrazione-ddt]]

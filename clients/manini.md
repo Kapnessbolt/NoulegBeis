@@ -5,7 +5,7 @@ sector: "Prefabbricati per l'edilizia"
 people: ["[[michele-padoin]]", "[[luciano-baccarelli]]", "[[angelo-santilli]]", "[[luca-zamponi]]"]
 projects: ["[[manini-supply-chain-magazzino]]", "[[corso-ai-manini]]", "[[manini-automazione-ddt]]"]
 tags: []
-updated: 2026-10-23
+updated: 2026-10-26
 ---
 
 # Manini Prefabbricati
@@ -25,7 +25,7 @@ updated: 2026-10-23
 - Interventi principali: anagrafica articoli, scostamenti di commessa per causa, MRP, date negli ordini e valutazione fornitori, entrata merci automatica dal DDT letto con AI, revisione del materiale fermo, WMS collegato ad AS400, lista di prelievo accessori, avviso serale consegne in cantiere ([[manini-relazione-processi-gestione-materiali-slides]])
 - Prossimo passo: condividere con la direzione le aree di maggiore interesse e fissare priorità e avvio dei primi interventi; proposto anche un percorso formativo sull'AI applicata sui casi entrata merci e consegne in cantiere ([[manini-relazione-processi-gestione-materiali]])
 - Seconda commessa in tre mesi: dopo il percorso supply chain, il corso AI ([[corso-ai-manini]]); decidono [[luciano-baccarelli]] e l'amministratore delegato ([[manini-corso-ai-da-36-ore-contesto-opportunita-e-come-lo-impostiamo]], [[manini-corso-ai-recap-della-call-del-16-10]])
-- Caso entrata merci dal DDT come progetto a sé: inventario, schema, benchmark e architettura Microsoft pronti, matching con gli ordini da fare ([[manini-ddt-essenziale]])
+- Caso entrata merci dal DDT come progetto a sé: inventario, schema, benchmark e architettura Microsoft pronti; matching fatto in simulazione e ripetuto il 25/10 sull'estrazione reale, da rifare con le righe d'ordine vere che Manini deve mandare ([[manini-ddt-essenziale]])
 
 ## Persone di riferimento
 

@@ -26,7 +26,7 @@ tags: [entrata-merci, ddt, sintesi]
 
 ## Riassunto
 
-Sintesi in una pagina del progetto [[manini-automazione-ddt]], aggiornata al 25/10/2026. Il master è `report/essenziale.md` nel repo GitHub `manini-automazione-ddt`; la copia condivisa è nella Library di `Progetto Automazione`. Fino al 23/10 la copia stava nella cartella Manini come `manini_ddt_essenziale.md`, ferma a quella data. Rispetto ad allora aggiunge il ritest del prompt v1.1 ([[04-benchmark]]) e il matching sull'estrazione reale ([[05-matching]]). Distingue ciò che ha detto [[manini]], ciò che viene dal deck di [[leonardo-pinsone]] e ciò che è analisi BlueAge non ancora validata; copre persone, vincoli del [[corso-ai-manini]], dati del campione, benchmark, matching, posizioni prese, business case, piano aula, stato degli step, domande aperte e lezioni riusabili.
+Sintesi in una pagina del progetto [[manini-automazione-ddt]], aggiornata al 25/10/2026. Il master è `report/essenziale.md` nel repo GitHub `manini-automazione-ddt`; la copia condivisa è nella Library di `Progetto Automazione`. Fino al 23/10 la copia stava nella cartella Manini come `manini_ddt_essenziale.md`, cancellata il 26/10 perché superata. Rispetto ad allora aggiunge il ritest del prompt v1.1 ([[04-benchmark]]) e il matching sull'estrazione reale ([[05-matching]]). Distingue ciò che ha detto [[manini]], ciò che viene dal deck di [[leonardo-pinsone]] e ciò che è analisi BlueAge non ancora validata; copre persone, vincoli del [[corso-ai-manini]], dati del campione, benchmark, matching, posizioni prese, business case, piano aula, stato degli step, domande aperte e lezioni riusabili.
 
 ## Punti chiave
 
