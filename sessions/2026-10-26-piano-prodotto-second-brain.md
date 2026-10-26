@@ -36,5 +36,5 @@ Valutare il vault com'è dopo la prima settimana (struttura, regole, codice, aut
 
 ## Aperti
 
-- [ ] Unire la PR della SPEC 1.18 (fase 2 del piano, step 11) e del progetto `second-brain-prodotto`
+- [x] Unire la PR della SPEC 1.18 (fase 2 del piano, step 11) e del progetto `second-brain-prodotto` (chiuso: PR #24 unita)
 - [ ] Eseguire gli step 12–20 uno alla volta, ognuno chiuso con il suo criterio di accettazione (attività nella scheda del progetto)
