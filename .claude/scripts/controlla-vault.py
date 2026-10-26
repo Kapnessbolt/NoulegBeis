@@ -1,6 +1,16 @@
 #!/usr/bin/env python3
 """Controllo del vault (SPEC 4.4): integrità dei collegamenti, tracciabilità, schema, doppioni,
-nomi del connettore Microsoft 365 tra agente ingestor e permessi.
+nomi del connettore Microsoft 365 tra agente ingestor e permessi, possibili dati riservati
+(CLAUDE.md §5) nel corpo delle note.
+
+Dati riservati: controllo a pattern sul corpo delle note (non sul frontmatter, che contiene
+legittimamente `item_id`, `uri` e `conversation_id` lunghi). Ogni corrispondenza è un errore,
+con la categoria e al massimo i primi 4 caratteri del valore: IBAN; telefoni italiani (`+39`
+e cellulari `3xx`, esclusi importi, ore, percentuali e numeri con separatori delle migliaia);
+chiavi e token con prefisso noto (`sk-`, `ghp_`, `github_pat_`, `xox?-`, `AKIA`, JWT `eyJ`);
+stringhe esadecimali o base64 di 40+ caratteri; GUID (tranne i nomi di server MCP già in
+`.claude/settings.json`); ID e passcode di riunione; password in chiaro (`password: valore`;
+la parola "password" da sola è lecita, come i segnaposto `omessa`, `***`, `[...]`).
 
 Uso:
   python3 .claude/scripts/controlla-vault.py              # rapporto in markdown
@@ -9,11 +19,15 @@ Uso:
                                                           # modificati rispetto a HEAD (hook di commit)
 
 Esce con codice 1 se trova errori. Richiede PyYAML.
+
+La variabile d'ambiente VAULT_ROOT, se presente, indica la radice del vault al posto della
+cartella che contiene `.claude/` (serve ai test in `.claude/scripts/tests/`).
 """
 
 import datetime as dt
 import difflib
 import json
+import os
 import re
 import subprocess
 import sys
@@ -26,7 +40,7 @@ try:
 except ImportError:
     sys.exit("Manca PyYAML: pip install pyyaml")
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(os.environ.get("VAULT_ROOT") or Path(__file__).resolve().parents[2]).resolve()
 
 # Cartelle e file fuori dal controllo
 SKIP_DIRS = {".git", ".github", ".claude", "_templates", ".obsidian", ".trash"}
@@ -208,6 +222,103 @@ def changed_files():
     return out
 
 
+# Dati riservati (CLAUDE.md §5): pattern cercati nel corpo delle note
+CONTESTO = 10  # caratteri attorno a un numero di telefono da guardare per scartare importi e ore
+IBAN_RE = re.compile(r"\b[A-Z]{2}\d{2}(?: ?[A-Z0-9]{4}){2,7} ?[A-Z0-9]{1,4}\b")
+TEL_RE = re.compile(r"(?<![\w+])(?:\+39[ .]?\d(?:[ .]?\d){8,9}|3\d{2}[ .]?\d{3}[ .]?\d{3,4})\b")
+NON_TEL_DOPO = re.compile(r"^\s*(?:€|k€|%|ore\b)", re.I)
+CHIAVE_RE = re.compile(r"(?<![\w-])(?:sk-[A-Za-z0-9_-]{20,}|ghp_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}"
+                       r"|xox[abp]-[A-Za-z0-9-]{10,}|AKIA[0-9A-Z]{16}|eyJ[A-Za-z0-9_-]{20,})")
+HEX_RE = re.compile(r"(?<![\w-])[0-9a-fA-F]{40,}(?![\w-])")
+B64_RE = re.compile(r"(?<![A-Za-z0-9+/=_-])[A-Za-z0-9+/]{40,}={0,2}(?![A-Za-z0-9+/=_-])")
+GUID_RE = re.compile(r"\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b", re.I)
+RIUNIONE_RE = re.compile(r"(?i)\b(?:ID (?:della )?riunione|Meeting ID)\s*:?\s*(\d{3,4}(?: ?\d{3,4}){2,3})\b")
+PASSCODE_RE = re.compile(r"(?i)\b(?:passcode|codice (?:di )?accesso)\b\s*(?:[:=]\s*)?([A-Za-z0-9]{4,})\b")
+PASSWORD_RE = re.compile(r"(?i)\b(?:password|pwd|passcode)\s*[:=]\s*(\S+)")
+SEGNAPOSTO = {"omessa", "omesso", "omesse", "omessi", "riservata", "riservato", "nessuna", "n/d", "-"}
+
+
+def guid_noti():
+    """GUID già in configurazione (nomi di server MCP in settings.json): non sono dati dei clienti."""
+    try:
+        testo = (ROOT / ".claude" / "settings.json").read_text(encoding="utf-8")
+    except OSError:
+        return set()
+    # `mcp__<guid>__strumento`: il trattino basso è una lettera per \b, quindi qui niente confini
+    return {g.lower() for g in re.findall(GUID_RE.pattern.replace(r"\b", ""), testo, re.I)}
+
+
+def dati_riservati(body, noti=frozenset()):
+    """[(categoria, valore, posizione)] dei possibili dati riservati nel testo.
+
+    Le categorie sono in ordine di priorità: se due corrispondenze si sovrappongono (l'ID di
+    una riunione che sembra anche un telefono) resta solo la prima.
+    """
+    trovati = []
+
+    def add(cat, m, gruppo=0):
+        trovati.append((cat, m.group(gruppo), m.start(gruppo), m.end(gruppo)))
+
+    for m in CHIAVE_RE.finditer(body):
+        v = m.group(0)
+        if v.startswith("sk-") and not (re.search(r"\d", v) and re.search(r"[A-Z]", v)):
+            continue  # `sk-` seguito da parole: uno slug, non una chiave
+        add("chiave o token", m)
+    for m in IBAN_RE.finditer(body):
+        if sum(c.isalnum() for c in m.group(0)) >= 15:
+            add("IBAN", m)
+    for m in RIUNIONE_RE.finditer(body):
+        if 9 <= sum(c.isdigit() for c in m.group(1)) <= 12:
+            add("ID di riunione", m, 1)
+    for m in PASSCODE_RE.finditer(body):
+        if re.search(r"\d", m.group(1)):
+            add("codice di accesso", m, 1)
+    for m in PASSWORD_RE.finditer(body):
+        v = m.group(1).strip("`*_\"'.,;:)")
+        if not v or v.lower() in SEGNAPOSTO or v[0] in "[<(*" or set(v) <= {"*", "x", "X", "."}:
+            continue  # segnaposto: il valore non c'è
+        add("password in chiaro", m, 1)
+    for m in GUID_RE.finditer(body):
+        if m.group(0).lower() not in noti:
+            add("GUID", m)
+    for m in HEX_RE.finditer(body):
+        if re.search(r"\d", m.group(0)) and re.search(r"[a-fA-F]", m.group(0)):
+            add("stringa esadecimale lunga", m)
+    for m in B64_RE.finditer(body):
+        v = m.group(0)
+        if v.count("/") >= 3:
+            continue  # un percorso, non una chiave
+        if re.search(r"[A-Z]", v) and re.search(r"[a-z]", v) and re.search(r"\d", v):
+            add("stringa base64 lunga", m)
+    for m in TEL_RE.finditer(body):
+        prima = body[max(0, m.start() - CONTESTO):m.start()]
+        dopo = body[m.end():m.end() + CONTESTO]
+        if NON_TEL_DOPO.match(dopo) or re.search(r"\d[.,]$", prima) or re.match(r"[.,]\d", dopo):
+            continue  # importo, ore, percentuale o parte di un numero con separatori delle migliaia
+        add("telefono", m)
+
+    out, presi = [], []
+    for cat, v, a, b in trovati:
+        if any(a < y and x < b for x, y in presi):
+            continue
+        presi.append((a, b))
+        out.append((cat, v, a))
+    return out
+
+
+def controlla_riservati(rel, text, body, noti):
+    """Un errore per categoria, con la riga della prima occorrenza e solo i primi 4 caratteri."""
+    offset = text.count("\n", 0, len(text) - len(body))
+    per_cat = defaultdict(list)
+    for cat, valore, pos in dati_riservati(body, noti):
+        per_cat[cat].append((pos, valore))
+    for cat, trovati in per_cat.items():
+        pos, valore = min(trovati)
+        riga = offset + body.count("\n", 0, pos) + 1
+        altre = f", {len(trovati)} occorrenze" if len(trovati) > 1 else ""
+        err(rel, f"possibile dato riservato: {cat} (riga {riga}, `{valore[:4]}…`{altre}; CLAUDE.md §5)")
+
+
 # SPEC 2: strumenti in lettura del connettore Microsoft 365, da elencare per ogni nome di server
 M365_LETTURA = {"sharepoint_search", "sharepoint_folder_search", "outlook_email_search", "read_resource"}
 
@@ -242,6 +353,7 @@ def main():
     indice = "--indice" in sys.argv
     solo_modificati = "--modificati" in sys.argv
     templates = load_templates()
+    noti = guid_noti()
     by_slug = defaultdict(list)
     parsed = {}
 
@@ -252,6 +364,7 @@ def main():
             err(rel, "nome file non in slug (minuscolo, trattini, senza accenti)")
         text = p.read_text(encoding="utf-8")
         fm, body = split_frontmatter(text)
+        controlla_riservati(rel, text, body, noti)
         if fm is None:
             err(rel, "frontmatter mancante")
             continue

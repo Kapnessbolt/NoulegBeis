@@ -6,15 +6,19 @@ Uso: python3 .claude/scripts/rinomina-nota.py <slug-vecchio> <slug-nuovo>
 Per una scheda progetto rinomina cartella, scheda e log. Aggiorna anche .state/ingest.json.
 Per unire due doppioni: sposta a mano il contenuto nella nota che resta, cancella l'altra
 e lancia questo script con lo slug cancellato come vecchio: i link passano alla nota che resta.
+
+La variabile d'ambiente VAULT_ROOT, se presente, indica la radice del vault al posto della
+cartella che contiene `.claude/` (serve ai test in `.claude/scripts/tests/`).
 """
 
 import json
+import os
 import re
 import subprocess
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(os.environ.get("VAULT_ROOT") or Path(__file__).resolve().parents[2]).resolve()
 SKIP_DIRS = {".git", ".github", ".claude", "_templates", ".obsidian", ".trash"}
 SLUG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 
