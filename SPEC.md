@@ -1,6 +1,6 @@
 # SPEC · Second Brain BlueAge (personale)
 
-Versione 1.14 · 25/10/2026 · Owner: Lorenzo Curione
+Versione 1.15 · 26/10/2026 · Owner: Lorenzo Curione
 
 Questo file è la specifica di riferimento del vault. Ogni sessione Claude Code che costruisce o modifica il sistema parte da qui. Le modifiche alla specifica si fanno con una PR dedicata.
 
@@ -81,7 +81,7 @@ Sessioni locali (app desktop sul PC):
 │   └── AAAA-MM-DD.md        digest giornaliero: novità ingerite, attività in scadenza
 ├── sessions/
 │   ├── AAAA-MM-DD-<slug>.md diario delle sessioni
-│   └── _raw/                trascrizioni grezze (retention 30 giorni)
+│   └── _raw/                estratti di trascrizione, solo il pezzo che serve
 ├── proposals/               proposte del curator (regole, skill, agenti, hook)
 └── _templates/              template delle note
 ```
@@ -447,7 +447,6 @@ Orari in Europe/Rome, fuori dagli orari pieni per evitare i ritardi del sistema.
 | `reconcile` | Domenica alle 08:45 | Microsoft 365 | Sonnet | 6.4 |
 | `cockpit` | Ogni giorno alle 07:40 e alle 13:40 (due task, `DailyBoard` e `DailyBoard2`) | Nessuno | — | Rigenera con `plancia.py` progetti, attività, log, inbox, task e digest e li carica sulla dashboard Cockpit; riga d'esito nel digest |
 | `curator` | Domenica alle 21:10 | GitHub, solo per aprire la PR | Opus | 9.2: proposte dai diari della settimana su un branch suo, con una PR |
-| `sessions-cleanup` | Il 1° del mese alle 06:10 (da creare con lo step 5) | Nessuno | — | Cancella `sessions/_raw/` più vecchio di 30 giorni |
 
 Il `cockpit` gira in un ambiente cloud dedicato, senza connettori, perché carica i dati su claude.ai; il calendario la dashboard lo legge da sé con il connettore Microsoft 365 di chi la apre. Il `digest` gira dopo gli ingest del mattino; l'ingest-outlook delle 13:15 scrive nel digest dello stesso giorno, e il digest del giorno dopo non ripete le sue note.
 
@@ -489,6 +488,7 @@ Ogni settimana (task `curator` della domenica, o a mano con `/curator`):
 - legge `sessions/` dell'ultima settimana, e per gli aperti anche i diari precedenti;
 - individua pattern ricorrenti, presenti in almeno 2 diari (basta uno se il diario lo indica come spunto per il curator): correzioni ripetute, procedure manuali ripetute, domande senza risposta nel vault, decisioni prese caso per caso, aperti che restano aperti. Un comando o uno step previsti da questa SPEC ma non ancora fatti non contano come già coperti;
 - scrive al massimo 5 proposte per giro in `proposals/AAAA-MM-DD-<slug>.md`, ognuna con motivazione, evidenze (link alle sessioni) e testo pronto (regola per `CLAUDE.md`, skill, agente o hook); gli altri pattern vanno in una riga ciascuno nella PR;
+- segnala nella PR come "da verificare" i commit `session: <slug>` senza diario e i commit `vault:`, `project(<slug>)` e `spec:` che nessun diario dello stesso giorno o del giorno dopo cita (per slug o per file toccato);
 - spunta in `sessions/` gli aperti già chiusi altrove, con la prova in coda (`(chiuso in [[<diario o digest>]])`, `(chiuso: PR #n unita)`); quelli chiusi in parte o con prova incerta vanno nella PR come "da verificare";
 - apre una PR su un branch `claude/curator-AAAA-MM-DD`.
 
@@ -527,8 +527,8 @@ Prerequisito: lo script di setup dell'ambiente cloud installa le dipendenze dell
 ## 12. Diario delle sessioni
 
 - Fonte primaria: la skill `chiudi-sessione` (`/chiudi-sessione`), che scrive il diario (obiettivo, decisioni, file toccati, aperti) e spunta gli aperti dei diari precedenti chiusi nella sessione.
-- Rete di sicurezza: un hook `Stop` in `.claude/settings.json` copia la trascrizione in `sessions/_raw/` (il percorso arriva all'hook come `transcript_path`).
-- Retention: diari per sempre; trascrizioni grezze 30 giorni.
+- Rete di sicurezza: il curator segnala ogni settimana i commit di sessione e di lavoro interattivo senza diario (9.2). Niente trascrizioni intere nel repo: porterebbero dati riservati (`CLAUDE.md` §5). `sessions/_raw/` tiene solo estratti puntuali, senza dati riservati.
+- Retention: diari ed estratti per sempre.
 - Da verificare nello step 5: comportamento degli hook nelle sessioni cloud quando l'ambiente scade per inattività.
 
 ## 13. Piano di sviluppo
@@ -550,4 +550,3 @@ Prerequisito: lo script di setup dell'ambiente cloud installa le dipendenze dell
 
 - Sincronizzazione di Obsidian su mobile (step 8): da verificare il plugin git su mobile oppure un'alternativa.
 - `blueage-animazioni` nel vault cloud: dipende dal rendering video nell'ambiente cloud.
-- Retention delle trascrizioni grezze: 30 giorni, da rivedere dopo il primo mese.
