@@ -3,7 +3,7 @@ type: session
 date: 2026-10-26
 surface: cloud
 topics: ["[[second-brain]]"]
-outcome: "Due one pager del Second Brain in stile BlueAge: commerciale A4 in PDF e tecnico navigabile pubblicato come artifact su claude.ai; il PDF va caricato a mano su OneDrive"
+outcome: "Due one pager del Second Brain in stile BlueAge (commerciale A4 in PDF su OneDrive, tecnico navigabile su claude.ai); skill blueage portate nel vault come fonte unica, corso snellito, SPEC 1.17 unita e plugin cancellato"
 ---
 
 # One pager del Second Brain, commerciale e tecnico
