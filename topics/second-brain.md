@@ -1,7 +1,7 @@
 ---
 type: topic
 kind: offerta
-projects: []
+projects: ["[[second-brain-prodotto]]"]
 clients: []
 tags: [ai, pacchetto]
 updated: 2026-10-26
@@ -28,6 +28,7 @@ Pacchetto da vendere che costruisce per un manager o un reparto una memoria di l
 
 ## Versione personale e banco di prova
 
+- Piano per passare dal vault personale al prodotto: progetto [[second-brain-prodotto]], step 11–20 di SPEC §13 (affidabilità, uso, prodotto), principio "il codice fa la meccanica, il modello fa il giudizio" ([[2026-10-26-piano-prodotto-second-brain]])
 - Interfaccia, due viste che convivono con livelli di dettaglio diversi: la dashboard Cockpit su claude.ai è il briefing, leggibile anche dal telefono e dalle sessioni cloud, alimentata dalle routine `DailyBoard`; la mod `cockpit` dell'app desktop è la postazione operativa al PC (consumo del piano Max, esito dei task, prossime cose, avvio degli agenti) ([[2026-10-24-restyling-cockpit]], [[2026-10-24-restyling-cockpit-implementazione]], [[2026-10-25-cockpit-v05-smistamento]])
 - Le mod (pannelli accanto alla chat) compaiono solo dove un'app si collega alla sessione come superficie: sul desktop sì, sul telefono no, nemmeno seguendo una sessione locale; lì resta la dashboard ([[2026-10-24-interfaccia-personalizzata]], [[2026-10-25-cockpit-v05-smistamento]])
 - Scartate per l'interfaccia: un frontend locale che pilota Claude Code con il login Max (uso personale tollerato ma non esplicitamente permesso, credito Agent SDK separato dal 15/06/2026) e un'interfaccia su API key (a consumo, connettori e task da rifare). Le API delle mod sono in early access e possono cambiare ([[2026-10-24-interfaccia-personalizzata]])
