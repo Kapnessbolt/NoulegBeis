@@ -7,6 +7,7 @@ project: "[[second-brain-prodotto]]"
 
 Una riga per avanzamento, dalla più recente: `- AAAA-MM-GG · cosa è successo · [[fonte]]`
 
+- 2026-10-27 · Step 12, giro 1 di 3 verificato: i cinque task del mattino OK con gli script nuovi e lo stato per fonte; watermark avanzati (onedrive, outlook, github), 0 errori, nessun doppione, nessuna chiamata bloccata · [[2026-10-26-piano-prodotto-second-brain]]
 - 2026-10-26 · One pager e pagina navigabile dell'architettura inviati a Leonardo Pinsone (cc Cristian Schifone) per un parere · [[one-pager-second-brain]]
 - 2026-10-27 · Step 16 ridefinito e costruito come Cockpit v2 dopo la revisione con Lorenzo: pagina HTML statica da `cockpit.py` (17 test), task riscritto con il calendario dal connettore, prima pubblicazione; SPEC 1.21 · [[2026-10-27-step-17-librarian]]
 - 2026-10-27 · Step 17 fatto: `cerca.py` con 51 test, agente `librarian`, comandi `/oggi`, `/progetto`, `/cattura`, `/smista`; 10 domande di prova corrette con le fonti; SPEC 1.20 in PR · [[2026-10-27-step-17-librarian]]
