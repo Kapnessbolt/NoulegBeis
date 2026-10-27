@@ -30,7 +30,8 @@ Eseguire lo step 17 di SPEC §13.1 (ricerca nel vault, agente `librarian`, coman
 - Semafori: rosso "scaduto" (attività aperte con data passata), giallo "fermo da N giorni" (log oltre 14 giorni), verde "in ordine"; prima i progetti seguiti, poi quelli osservati più compatti. Il prossimo passo nella card chiusa sta in 2 righe, non 1: con i testi reali una riga non diceva nulla. Le attività dei progetti osservati compaiono in Oggi e Settimana con l'etichetta "osservi": da rivedere all'uso.
 - Prima pubblicazione fatta dalla sessione con il calendario reale letto dal connettore: https://claude.ai/artifact/7N946t8Tup2PmCApWXpZNN, URL scritto nella routine e in `home.md`. La vecchia dashboard resta finché il criterio dei 3 giorni non è verificato.
 - Permessi per `cockpit.py` e per `outlook_calendar_search` sui server `Microsoft_365` e `Microsoft-365`: un primo tentativo è stato bloccato dal classificatore della modalità Auto (auto-modifica); aggiunti poi con l'ok esplicito di Lorenzo, nella stessa PR #30. I task `cockpit` su claude.ai (connettore e modello) li sistema Lorenzo.
-- Il task `cockpit` su claude.ai (`DailyBoard` e `DailyBoard2`) va modificato da Lorenzo: connettore Microsoft 365 (oggi nessuno), modello Sonnet; il prompt resta `Esegui il task descritto in .claude/routines/cockpit.md…`.
+- Il task `cockpit` su claude.ai (`DailyBoard` e `DailyBoard2`) va modificato da Lorenzo: connettore Microsoft 365 (oggi nessuno), modello Sonnet; il prompt resta `Esegui il task descritto in .claude/routines/cockpit.md…`. Fatto da Lorenzo il 27/10.
+- Chiusura, dall'utente: tutte le PR della sessione unite (#28, #29, #30, #31). Il primo giro osservato del Cockpit v2 è quello delle 07:40 del 27/10; il check-in delle 08:20 con `/verifica-task` copre lo step 12 e il cockpit. Dal cloud si pusha solo sul branch della sessione: anche il diario entra in `main` con una PR.
 
 ## File toccati
 
@@ -43,7 +44,7 @@ Eseguire lo step 17 di SPEC §13.1 (ricerca nel vault, agente `librarian`, coman
 - `sessions/_raw/2026-10-27-librarian-10-domande.md`, questo diario
 - `.claude/settings.json`: i tre permessi (seconda PR)
 - Cockpit v2: `.claude/scripts/cockpit.py`, `.claude/templates/cockpit.html`, `.claude/scripts/tests/test_cockpit.py`, `plancia.py` e `test_plancia.py`, `.claude/routines/cockpit.md`, `home.md` (URL), `SPEC.md` 1.21 (§2, §3, §4.4, §7, §8, §13.1, §14), `README.md`
-- Fuori dal repo: PR #28, #29 e #30 (unite), PR del diario, dal branch `claude/peaceful-mendel-pas0wl`; artifact Cockpit v2 pubblicato; screenshot nello scratchpad della sessione, non conservati
+- Fuori dal repo: PR #28, #29, #30 e #31 (unite) e la PR di chiusura, dal branch `claude/peaceful-mendel-pas0wl`; artifact Cockpit v2 pubblicato; screenshot nello scratchpad della sessione, non conservati
 
 ## Aperti
 
