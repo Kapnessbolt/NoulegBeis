@@ -17,6 +17,7 @@ Nelle mail è chiamato anche "Trif". Quasi al 100% su Velo-CE a ottobre 2026; cu
 
 ## Interazioni recenti
 
+- 2026-10-26 · One pager Second Brain · [[one-pager-second-brain]]
 - 2026-10-22 · LIUC · call con Francesco Bollazzi e proposta di osservatorio sull'AI nelle PMI (idee entro mercoledì sera) · [[liuc-call-con-francesco-bollazzi-e-proposta-di-osservatorio-sull-ai-nelle-pmi-idee-entro-mercoledi-sera]]
 - 2026-10-22 · Osservatorio AI nelle PMI · cosa misureremmo e come partiremmo · [[osservatorio-ai-nelle-pmi-cosa-misureremmo-e-come-partiremmo]]
 - 2026-10-22 · Riunione generale BlueAge 19/10 · sintesi, azioni e one-page · [[riunione-generale-blueage-19-10-sintesi-azioni-e-one-page]]
