@@ -7,6 +7,10 @@ project: "[[parts-radar-sviluppo]]"
 
 Una riga per avanzamento, dalla più recente: `- AAAA-MM-GG · cosa è successo · [[fonte]]`
 
+- 2026-10-27 · Trascrizione dei vocali integrata nel servizio ma spenta: si accende dopo il consenso di ADAC e il progetto Google a nome di BlueAge; manca la misura finale sul test. Avviso a Cristian per lo staging preparato, lo manda Lorenzo · [[parts-radar-changelog]]
+- 2026-10-27 · architettura: nuova versione, D43 (etichette del test fatte), D44 (motore dei vocali deciso, integrazione spenta) e nuova D48 sulle targhe nel vecchio formato provinciale · [[parts-radar-architettura]]
+- 2026-10-27 · kromeda-impatto: nuova versione, costo della trascrizione misurato (circa 1 $ al mese al volume del pilot) e più crediti targa attesi sulle richieste nate dai vocali · [[parts-radar-kromeda-impatto]]
+- 2026-10-26 · Etichette del test fatte (550 gruppi, etichettatore Opus tarato più i vocali di H a mano da Lorenzo); router d'accordo al 93% su richiesta sì/no, richieste false 8%; motore dei vocali scelto, Gemini 3.5 Transcribe, che sul test di H porta la targa giusta dal 19,5% al 78,4% dei pezzi · [[parts-radar-changelog]]
 - 2026-10-26 · Chiusi i due avvisi a Cristian (invio WhatsApp e migration dello Step 1; prompt cambiati e certificati emSign tolti): fatti secondo l'utente · [[2026-10-26-punti-aperti-vault]]
 - 2026-10-26 · Revisione del router sulle 810 etichette di sviluppo delle chat reali: proposte perse dal router da 12 a 7, prompt di router ed estrazione congelati; prossimo passo le etichette del test (clienti E, G, H, J) e la misura. Glossario del dominio e istruzioni del repo snellite · [[parts-radar-changelog]]
 - 2026-10-26 · architettura: nuova versione, la decisione aperta sul dataset delle chat (D43) passa alle etichette del test a prompt congelati · [[parts-radar-architettura]]

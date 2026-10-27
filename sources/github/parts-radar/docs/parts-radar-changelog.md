@@ -4,17 +4,18 @@ source: github
 family: parts-radar-changelog
 current:
   item_id: "cristian-schifone/parts-radar:docs/changelog.md"
-  uri: "github://cristian-schifone/parts-radar/docs/changelog.md@21621ca2e9a2c70fcf503015fcc6a4f180c016e4"
+  uri: "github://cristian-schifone/parts-radar/docs/changelog.md@cd736f28b539571093274fc63f7ee72393fd4f80"
   web_url: "https://github.com/cristian-schifone/parts-radar/blob/main/docs/changelog.md"
   name: "docs/changelog.md"
-  last_modified: 2026-10-26T00:13:33Z
+  last_modified: 2026-10-26T23:50:11Z
 versions:
-  - { name: "docs/changelog.md@21621ca", item_id: "cristian-schifone/parts-radar:docs/changelog.md", last_modified: 2026-10-26T00:13:33Z }
-  - { name: "docs/changelog.md@61b833c", item_id: "cristian-schifone/parts-radar:docs/changelog.md", last_modified: 2026-10-22T16:51:29Z }
+  - { name: docs/changelog.md@cd736f2, item_id: cristian-schifone/parts-radar:docs/changelog.md, last_modified: 2026-10-26T23:50:11Z }
+  - { name: docs/changelog.md@21621ca, item_id: cristian-schifone/parts-radar:docs/changelog.md, last_modified: 2026-10-26T00:13:33Z }
+  - { name: docs/changelog.md@61b833c, item_id: cristian-schifone/parts-radar:docs/changelog.md, last_modified: 2026-10-22T16:51:29Z }
 also_at: []
 status: active
 partial: true
-ingested_at: 2026-10-26T06:23:41Z
+ingested_at: 2026-10-27T06:22:42Z
 projects: ["[[parts-radar-sviluppo]]"]
 clients: ["[[adac-bologna]]"]
 topics: ["[[parts-radar]]"]
@@ -25,7 +26,7 @@ tags: []
 
 ## Riassunto
 
-Diario delle sessioni di sviluppo del repo, una voce per sessione, dalla più recente: obiettivo, cosa è stato fatto, decisioni, cosa resta aperto, prossimi passi. Il ritmo a ottobre è di 3-6 voci al giorno. Nel vault non si copia: ogni giorno con voci nuove diventa una riga nel log di [[parts-radar-sviluppo]], e qui restano le voci degli ultimi 30 giorni in una riga ciascuna. Ultime settimane: chiusa la migrazione a Python e Kromeda (02-05/10), lavoro sulla milestone del pilot ADAC, chat del banco e canale WhatsApp con 360dialog (18-20/10), dataset delle chat reali, router e modalità ascolto (21-22/10), metodo di lavoro e glossario (25-26/10), revisione del router sulle etichette di sviluppo con i prompt congelati (26/10).
+Diario delle sessioni di sviluppo del repo, una voce per sessione, dalla più recente: obiettivo, cosa è stato fatto, decisioni, cosa resta aperto, prossimi passi. Il ritmo a ottobre è di 3-6 voci al giorno. Nel vault non si copia: ogni giorno con voci nuove diventa una riga nel log di [[parts-radar-sviluppo]], e qui restano le voci degli ultimi 30 giorni in una riga ciascuna. Ultime settimane: chiusa la migrazione a Python e Kromeda (02-05/10), lavoro sulla milestone del pilot ADAC, chat del banco e canale WhatsApp con 360dialog (18-20/10), dataset delle chat reali, router e modalità ascolto (21-22/10), metodo di lavoro e glossario (25-26/10), revisione del router sulle etichette di sviluppo con i prompt congelati (26/10), etichette del test e misura del router sul test (26/10), vocali: motore deciso e trascrizione nel servizio, spenta (26-27/10).
 
 ## Punti chiave
 
@@ -35,7 +36,7 @@ Diario delle sessioni di sviluppo del repo, una voce per sessione, dalla più re
 
 ## Numeri
 
-- 65 voci al 26/10/2026
+- 70 voci al 27/10/2026
 
 ## Decisioni e azioni
 
@@ -43,6 +44,11 @@ Diario delle sessioni di sviluppo del repo, una voce per sessione, dalla più re
 
 ## Voci recenti
 
+- 2026-10-27 · Vocali: la trascrizione nel servizio, spenta · pronta ma non accesa, prova dal vivo su due dettati (circa 0,0015 $ a giro); restano la misura finale sul test, il consenso di ADAC, il progetto Google a nome di BlueAge; avviso a Cristian per lo staging preparato, lo manda Lorenzo
+- 2026-10-27 · Ritocchi dalla retro dei vocali · regole di lavoro; un punto da concordare con Cristian
+- 2026-10-26 · Vocali: motore deciso e alfabeto delle città · Gemini 3.5 Transcribe; sul test di H la targa giusta passa dal 19,5% al 78,4% dei pezzi
+- 2026-10-26 · Etichette del test, misura del router e revisione delegata · 550 gruppi etichettati; router d'accordo al 93% su richiesta sì/no; nuova decisione aperta sulle targhe nel vecchio formato
+- 2026-10-26 · Etichettatore Opus per le etichette del test · tarato sulle chat di sviluppo, 97 su 100 d'accordo con Lorenzo; avviso a Cristian da mandare
 - 2026-10-26 · Chiusura di /plan-fix in ordine e gh aggiornato · strumenti di lavoro; gh da aggiornare anche sulla macchina di Cristian
 - 2026-10-26 · Revisione dei disaccordi del router e prompt congelati · 810 etichette di sviluppo corrette con Lorenzo, proposte perse dal router da 12 a 7 (4,40 $ di misure); prompt fermi per le etichette del test; Cristian da avvisare per il rebuild del servizio sullo staging
 - 2026-10-26 · Istruzioni del repo come mappa e /retro nel ciclo A · istruzioni dimezzate; le parti 3 e 4 della #447 le decide Cristian
@@ -92,11 +98,9 @@ Diario delle sessioni di sviluppo del repo, una voce per sessione, dalla più re
 - 2026-10-02 · Kromeda: golden mirato, 20 targhe · scala su 20 veicoli
 - 2026-09-28 · Kromeda: scala su 17 veicoli · correzione del risolutore sulle date
 - 2026-09-27 · Kromeda: censimento a 17 veicoli · quadro di affidabilità della Fase 0
-- 2026-09-26 · Decisione stack Python e pulizia del repo · n8n esce
-- 2026-09-25 · Kromeda: terzo lotto del golden · stima di chiamate e costi, VIN rimandato
-- 2026-09-24 · Kromeda: golden set esteso · report unico della Fase 0
 
 ## Versioni
 
+- docs/changelog.md@cd736f2 · 2026-10-27 · 5 voci nuove (26-27/10): etichettatore Opus, etichette del test e misura del router, vocali (motore e alfabeto, poi integrazione spenta), ritocchi dalla retro
 - docs/changelog.md@21621ca · 2026-10-26 · 5 voci nuove (25-26/10): metodo di lavoro, glossario, istruzioni del repo, revisione del router con prompt congelati, chiusura di /plan-fix
 - docs/changelog.md@61b833c · 2026-10-22 · prima lettura nel vault (voci dal 24/09; primo caricamento oltre i 30 giorni)

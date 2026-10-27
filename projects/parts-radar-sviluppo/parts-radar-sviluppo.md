@@ -53,6 +53,9 @@ updated: 2026-10-26
 - [ ] Cristian: decidere le parti 3 e 4 della #447 (decisioni in file separati, archivio del changelog) ([[parts-radar-changelog]])
 - [ ] Prova controllata del flusso intero 📅 2026-11-04 ([[parts-radar-issue-379]], [[parts-radar-issue-420]])
 - [ ] Traffico vero di ADAC con le targhe e report dei risultati 📅 2026-11-17 ([[parts-radar-issue-379]], [[parts-radar-issue-420]])
+- [ ] Avvisare Cristian per lo staging: trascrizione dei vocali (aggiornamento del DB prima del servizio nuovo, variabili nuove, chiave all'accensione) ed etichettatore; testo preparato, lo manda Lorenzo ([[parts-radar-changelog]])
+- [ ] Lorenzo: creare il progetto Google a nome di BlueAge con un account di servizio per la trascrizione dei vocali, poi cancellare la chiave di prova sull'account personale ([[parts-radar-changelog]], [[parts-radar-architettura]])
+- [ ] Lorenzo: cancellare dal dispositivo le pagine autonome e i file delle etichette del test (chat e vocali veri) ([[parts-radar-changelog]])
 
 ## Decisioni
 
