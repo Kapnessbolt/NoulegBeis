@@ -6,10 +6,12 @@
       "mcp__Microsoft_365__sharepoint_folder_search",
       "mcp__Microsoft_365__outlook_email_search",
       "mcp__Microsoft_365__read_resource",
+      "mcp__Microsoft_365__outlook_calendar_search",
       "mcp__Microsoft-365__sharepoint_search",
       "mcp__Microsoft-365__sharepoint_folder_search",
       "mcp__Microsoft-365__outlook_email_search",
       "mcp__Microsoft-365__read_resource",
+      "mcp__Microsoft-365__outlook_calendar_search",
       "mcp__6501b655-9b79-4832-8016-17eddb19e4b6__sharepoint_search",
       "mcp__6501b655-9b79-4832-8016-17eddb19e4b6__sharepoint_folder_search",
       "mcp__6501b655-9b79-4832-8016-17eddb19e4b6__outlook_email_search",
@@ -33,7 +35,8 @@
       "Bash(python3 .claude/scripts/nuova-nota.py:*)",
       "Bash(python3 .claude/scripts/aggiorna-nota.py:*)",
       "Bash(python3 .claude/scripts/cerca.py:*)",
-      "Bash(python3 .claude/scripts/plancia.py:*)"
+      "Bash(python3 .claude/scripts/plancia.py:*)",
+      "Bash(python3 .claude/scripts/cockpit.py:*)"
     ]
   },
   "hooks": {

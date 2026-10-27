@@ -1,15 +1,12 @@
 # Task `cockpit` · ogni giorno alle 07:40 e alle 13:40 (Europe/Rome)
 
-Nessun connettore. Prima leggi `.claude/routines/_comune.md` e seguilo (avvio, digest, errori, git). Gira dopo gli ingest del mattino e dopo l'ingest-outlook delle 13:15.
+Connettore: Microsoft 365, solo per leggere il calendario. Prima leggi `.claude/routines/_comune.md` e seguilo (avvio, digest, errori, git). Gira dopo gli ingest del mattino e dopo l'ingest-outlook delle 13:15.
 
-Aggiorna i dati del vault nella dashboard **Cockpit** (artifact di tipo Dashboard): https://claude.ai/artifact/KN8Wp48Ja6vGbShXeTpRgR. Il calendario la dashboard lo legge da sé dal connettore Microsoft 365: questo task non lo tocca. Non modifica note del vault: scrive solo la riga d'esito nel digest. Carica `ArtifactData` con ToolSearch (`select:ArtifactData`) se non è caricato.
+Rigenera la pagina **Cockpit** dal vault e la ripubblica su claude.ai: https://claude.ai/artifact/7N946t8Tup2PmCApWXpZNN. La pagina è HTML statico generato da `cockpit.py`, in sola lettura; niente `ArtifactData`, niente dataset. Il task non modifica note del vault: scrive solo la riga d'esito nel digest.
 
 1. `OUT=$(mktemp -d)` e `python3 .claude/scripts/plancia.py "$OUT"`: scrive `progetti.json`, `attivita.json`, `log.json`, `inbox.json`, `task.json` e `digest.json`.
-2. Per ciascun dataset, nell'ordine `progetti`, `attivita`, `log`, `inbox`, `task`, `digest`:
-   1. `ArtifactData` `get`, collection `datasets`, doc_id `<dataset>`: tieni `version` e il vecchio `source.url` (`/_blob/<id>`).
-   2. `Artifact` publish con `url` della dashboard, `asset: true`, `file_path` `$OUT/<dataset>.json`: tieni il nuovo `url` (`/_blob/<id nuovo>`).
-   3. `ArtifactData` `update`, collection `datasets`, doc_id `<dataset>`, `if_version` del punto 1, data `{"source": {"kind": "file", "url": "<url nuovo>", "name": "<dataset>.json"}, "updated": {"at": "<ora UTC ISO 8601>", "by": "task cockpit"}}`.
-   4. Solo se l'update è riuscito: `Artifact` delete con `url` della dashboard e `path` l'id del vecchio file (i 32 caratteri dopo `_blob/`). Se la cancellazione viene negata, segnalalo nel digest e vai avanti: un file vecchio rimasto non rompe nulla.
-3. Non toccare `files/index.html`, `dash/meta` né il dataset `calendario`. Non riprovare un passo fallito più di una volta: se uno strumento manca o un passo fallisce, scrivi nel digest quale e perché.
-4. Riga nel digest: `| cockpit HH:MM | OK · <n> progetti, <n> attività, <n> task OK su <n> |` (i numeri li stampa `plancia.py`), oppure l'errore. Il dataset `task` di questo giro non contiene la riga del giro stesso: la scrivi tu adesso.
-5. Commit `cockpit: AAAA-MM-GG HH:MM` (non `journal:`, che il digest usa per la sua finestra) e push su `main`.
+2. Calendario: con lo strumento di ricerca del calendario del connettore Microsoft 365 cerca gli eventi da oggi a oggi + 7 giorni (date Europe/Rome) e scrivili in `$OUT/calendario.json`, una lista nello schema del docstring di `cockpit.py`: `inizio`, `fine`, `tutto_il_giorno`, `titolo`, `luogo`, `online`, `organizzatore`, `risposta` (accettato, provvisorio, non risposto, organizzatore, rifiutato). Istanti ISO 8601 con offset; per gli eventi di tutto il giorno date `AAAA-MM-GG` con `fine` esclusa. Copia solo ciò che il connettore restituisce: un campo che manca si omette, non si inventa. Niente codici di riunione, link di accesso o corpi degli inviti (`CLAUDE.md` §5). Se il connettore manca o non risponde, salta questo passo (la pagina dice "Calendario non disponibile in questo giro") e scrivilo nel digest.
+3. `python3 .claude/scripts/cockpit.py "$OUT" "$OUT/cockpit.html"`: tieni la riga di riepilogo che stampa. Se esce con 1, scrivi nel digest l'errore che stampa e non pubblicare.
+4. Pubblicazione: `Artifact` con action `read` e `url` https://claude.ai/artifact/7N946t8Tup2PmCApWXpZNN, poi `Artifact` publish con `url` https://claude.ai/artifact/7N946t8Tup2PmCApWXpZNN e `file_path` `$OUT/cockpit.html` (il file intero, senza altri campi). Se la pubblicazione fallisce riprova una sola volta, poi scrivi l'errore nel digest. Non cancellare file o asset dell'artifact.
+5. Riga nel digest: `| cockpit HH:MM | OK · <riepilogo> |` (la riga stampata da `cockpit.py`), più "calendario non letto: <motivo>" se il passo 2 è saltato; oppure l'errore. Il riquadro dei task nella pagina di questo giro non contiene la riga del giro stesso.
+6. Commit `cockpit: AAAA-MM-GG HH:MM` (non `journal:`, che il digest usa per la sua finestra) e push su `main`.

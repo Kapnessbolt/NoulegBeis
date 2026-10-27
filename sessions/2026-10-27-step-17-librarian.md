@@ -3,10 +3,10 @@ type: session
 date: 2026-10-27
 surface: cloud
 topics: ["[[second-brain]]"]
-outcome: "Step 17 fatto: cerca.py con 51 test, agente librarian, comandi /oggi /progetto /cattura /smista; 10 domande di prova corrette con le fonti; SPEC 1.20 e PR aperta. Revisione del cockpit avviata con le tre domande a Lorenzo"
+outcome: "Step 17 chiuso (PR #28 e #29 unite): cerca.py, librarian, quattro comandi, 10 domande di prova corrette. Cockpit v2 deciso e costruito come step 16: pagina HTML statica generata da cockpit.py, pubblicata, task riscritto, SPEC 1.21"
 ---
 
-# Step 17 · librarian, ricerca e comandi; avvio della revisione del cockpit
+# Step 17 · librarian, ricerca e comandi; Cockpit v2 (step 16)
 
 ## Obiettivo
 
@@ -24,7 +24,13 @@ Eseguire lo step 17 di SPEC §13.1 (ricerca nel vault, agente `librarian`, coman
 - Permessi di `.claude/settings.json` per `cerca.py` e `plancia.py` e per `mcp__github__get_file_contents` (letto dal librarian): aggiunti dopo l'ok esplicito di Lorenzo, a PR #28 già unita, con una PR a sé. Senza, `/oggi`, `/progetto`, `/smista` e il librarian chiedono il permesso a ogni chiamata.
 - SPEC 1.20 nella stessa PR dello step (come lo step 12): §3 (`cerca.py`), §4.4 (riga nella tabella degli script), §8 (comandi descritti, tolta la frase "previsti ma non ancora"), §9.3 (librarian per esteso), §11 (`inbox:`). README allineato.
 - Incidente del subagente, chiuso: due note di prova finite in `inbox/` del vault reale per un `cd` fallito, cancellate subito; `inbox/` ha solo `.gitkeep`.
-- Revisione del cockpit: prima le tre domande a Lorenzo (cosa guarda la mattina, cosa manca, telefono o PC), poi opzioni con pro e contro; vincolo: basi stabili (markdown, git, task, `plancia.py`), niente early access; nessuna implementazione senza ok.
+- Revisione del cockpit. Risposte di Lorenzo alle tre domande: la mattina guarda scadenze delle attività, eventi in programma e stato dei progetti con i prossimi passi; vuole una panoramica molto visuale dove le questioni aperte saltino all'occhio e il dettaglio arrivi dopo un tocco; da PC e da telefono; la mod non gli serve; non vuole agire dalla pagina (agisce tramite Claude). Opzioni valutate: A pagina HTML statica rigenerata dal task e pubblicata come artifact; B `home.md` potenziata; C ridisegnare la dashboard attuale (scartata: resta su funzioni in early access); GitHub Pages scartata (repo pubblico o piano a pagamento, nomi dei clienti). Scelta di Lorenzo: A, con B come riserva.
+- Cockpit v2 è lo step 16 per intero (SPEC 1.21): i pezzi di riproducibilità che stavano nel 16 passano allo step 13 (setup cloud, task da `vault.yaml`) e allo step 18 (guida di installazione). Mod dell'app desktop e dashboard di tipo Dashboard ritirate: via le righe in SPEC §2 e §8, via dalla decisione aperta in §14.
+- Architettura: `plancia.py` resta la fonte dei dati (aggiunti `prossimi_passi`, `percorso`, `clienti_slug`, `scadute`, `prossima_fonte` in `progetti.json`); il task legge il calendario dei prossimi 7 giorni con il connettore e lo scrive in `calendario.json` (solo titolo, orari, luogo, organizzatore, risposta: mai corpi, codici o link di riunione); `cockpit.py` fonde dati e template `.claude/templates/cockpit.html` in una pagina autosufficiente (nessuna risorsa esterna, `<details>` per il dettaglio, dark mode, link alle note su GitHub) e stampa la riga per il digest; il task la ripubblica con una chiamata `Artifact` sullo stesso URL. 17 test nuovi (222 in tutto). Screenshot a 390 e 1280 px rivisti in sessione: sopra la piega stanno testata, contatori e il blocco Oggi.
+- Semafori: rosso "scaduto" (attività aperte con data passata), giallo "fermo da N giorni" (log oltre 14 giorni), verde "in ordine"; prima i progetti seguiti, poi quelli osservati più compatti. Il prossimo passo nella card chiusa sta in 2 righe, non 1: con i testi reali una riga non diceva nulla. Le attività dei progetti osservati compaiono in Oggi e Settimana con l'etichetta "osservi": da rivedere all'uso.
+- Prima pubblicazione fatta dalla sessione con il calendario reale letto dal connettore: https://claude.ai/artifact/7N946t8Tup2PmCApWXpZNN, URL scritto nella routine e in `home.md`. La vecchia dashboard resta finché il criterio dei 3 giorni non è verificato.
+- Permessi per `cockpit.py` e per `outlook_calendar_search` sui server `Microsoft_365` e `Microsoft-365`: un primo tentativo è stato bloccato dal classificatore della modalità Auto (auto-modifica); aggiunti poi con l'ok esplicito di Lorenzo, nella stessa PR #30. I task `cockpit` su claude.ai (connettore e modello) li sistema Lorenzo.
+- Il task `cockpit` su claude.ai (`DailyBoard` e `DailyBoard2`) va modificato da Lorenzo: connettore Microsoft 365 (oggi nessuno), modello Sonnet; il prompt resta `Esegui il task descritto in .claude/routines/cockpit.md…`.
 
 ## File toccati
 
@@ -36,12 +42,17 @@ Eseguire lo step 17 di SPEC §13.1 (ricerca nel vault, agente `librarian`, coman
 - `projects/second-brain-prodotto/`: scheda e log
 - `sessions/_raw/2026-10-27-librarian-10-domande.md`, questo diario
 - `.claude/settings.json`: i tre permessi (seconda PR)
-- Fuori dal repo: PR #28 (unita) e la PR dei permessi, dal branch `claude/peaceful-mendel-pas0wl`
+- Cockpit v2: `.claude/scripts/cockpit.py`, `.claude/templates/cockpit.html`, `.claude/scripts/tests/test_cockpit.py`, `plancia.py` e `test_plancia.py`, `.claude/routines/cockpit.md`, `home.md` (URL), `SPEC.md` 1.21 (§2, §3, §4.4, §7, §8, §13.1, §14), `README.md`
+- Fuori dal repo: PR #28 e #29 (unite), PR dello step 16, dal branch `claude/peaceful-mendel-pas0wl`; artifact Cockpit v2 pubblicato; screenshot nello scratchpad della sessione, non conservati
 
 ## Aperti
 
 - [x] Ok di Lorenzo per i permessi in `.claude/settings.json`: `Bash(python3 .claude/scripts/cerca.py:*)`, `Bash(python3 .claude/scripts/plancia.py:*)`, `mcp__github__get_file_contents` (chiuso: ok di Lorenzo, aggiunti nella PR successiva)
 - [x] Unire la PR dello step 17 (SPEC 1.20) (chiuso: PR #28 unita)
-- [ ] Revisione del cockpit: risposte di Lorenzo alle tre domande, poi opzioni e raccomandazione; il risultato diventa il contenuto dello step 16 o uno step a sé
+- [x] Revisione del cockpit: risposte di Lorenzo alle tre domande, poi opzioni e raccomandazione; il risultato diventa il contenuto dello step 16 o uno step a sé (chiuso: opzione A scelta, è lo step 16, SPEC 1.21)
+- [x] Aggiungere in `.claude/settings.json`: `Bash(python3 .claude/scripts/cockpit.py:*)`, `mcp__Microsoft_365__outlook_calendar_search`, `mcp__Microsoft-365__outlook_calendar_search` (chiuso: ok di Lorenzo, aggiunti nella PR #30)
+- [ ] Lorenzo: dare il connettore Microsoft 365 (e il modello Sonnet) ai due task `cockpit` su claude.ai, altrimenti la pagina esce senza calendario (se ne occupa lui)
+- [ ] Unire la PR dello step 16; poi criterio: 3 giri del task senza errori e pagina aperta dal telefono la mattina 📅 2026-10-30
+- [ ] Dopo il criterio: cancellare la vecchia dashboard Cockpit (artifact di tipo Dashboard) e disattivare la mod sul PC
 - [ ] Lacune del vault segnalate dal librarian (`sessions/_raw/2026-10-27-librarian-10-domande.md`): nome dell'AD di Manini; riga "sei giornate" nel log di [[manini-supply-chain-magazzino]]; quale calendario MTU è stato confermato il 26/10; foglio quotazione blocchi di Velo-CE non ingerito; risposta di Bollazzi (LIUC) da ingerire quando arriva
 - [ ] Provare `/oggi`, `/progetto`, `/cattura` e `/smista` in una sessione nuova (i comandi compaiono al riavvio) e correggere ciò che non torna

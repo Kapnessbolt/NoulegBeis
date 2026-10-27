@@ -4,7 +4,7 @@ type: home
 
 # Home
 
-Vista dal vivo del vault per Obsidian, con i plugin **Tasks** e **Dataview**. Il riepilogo con calendario Outlook è la dashboard [Cockpit](https://claude.ai/artifact/KN8Wp48Ja6vGbShXeTpRgR).
+Vista dal vivo del vault per Obsidian, con i plugin **Tasks** e **Dataview**. Il riepilogo con calendario Outlook è la dashboard [Cockpit](https://claude.ai/artifact/7N946t8Tup2PmCApWXpZNN).
 
 ## Scadute
 
