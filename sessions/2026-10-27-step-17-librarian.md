@@ -43,7 +43,7 @@ Eseguire lo step 17 di SPEC §13.1 (ricerca nel vault, agente `librarian`, coman
 - `sessions/_raw/2026-10-27-librarian-10-domande.md`, questo diario
 - `.claude/settings.json`: i tre permessi (seconda PR)
 - Cockpit v2: `.claude/scripts/cockpit.py`, `.claude/templates/cockpit.html`, `.claude/scripts/tests/test_cockpit.py`, `plancia.py` e `test_plancia.py`, `.claude/routines/cockpit.md`, `home.md` (URL), `SPEC.md` 1.21 (§2, §3, §4.4, §7, §8, §13.1, §14), `README.md`
-- Fuori dal repo: PR #28 e #29 (unite), PR dello step 16, dal branch `claude/peaceful-mendel-pas0wl`; artifact Cockpit v2 pubblicato; screenshot nello scratchpad della sessione, non conservati
+- Fuori dal repo: PR #28, #29 e #30 (unite), PR del diario, dal branch `claude/peaceful-mendel-pas0wl`; artifact Cockpit v2 pubblicato; screenshot nello scratchpad della sessione, non conservati
 
 ## Aperti
 
@@ -51,8 +51,9 @@ Eseguire lo step 17 di SPEC §13.1 (ricerca nel vault, agente `librarian`, coman
 - [x] Unire la PR dello step 17 (SPEC 1.20) (chiuso: PR #28 unita)
 - [x] Revisione del cockpit: risposte di Lorenzo alle tre domande, poi opzioni e raccomandazione; il risultato diventa il contenuto dello step 16 o uno step a sé (chiuso: opzione A scelta, è lo step 16, SPEC 1.21)
 - [x] Aggiungere in `.claude/settings.json`: `Bash(python3 .claude/scripts/cockpit.py:*)`, `mcp__Microsoft_365__outlook_calendar_search`, `mcp__Microsoft-365__outlook_calendar_search` (chiuso: ok di Lorenzo, aggiunti nella PR #30)
-- [ ] Lorenzo: dare il connettore Microsoft 365 (e il modello Sonnet) ai due task `cockpit` su claude.ai, altrimenti la pagina esce senza calendario (se ne occupa lui)
-- [ ] Unire la PR dello step 16; poi criterio: 3 giri del task senza errori e pagina aperta dal telefono la mattina 📅 2026-10-30
+- [x] Lorenzo: dare il connettore Microsoft 365 (e il modello Sonnet) ai due task `cockpit` su claude.ai, altrimenti la pagina esce senza calendario (chiuso: fatto da Lorenzo il 27/10)
+- [x] Unire la PR dello step 16 (chiuso: PR #30 unita)
+- [ ] Criterio dello step 16: 3 giri del task `cockpit` (27, 28, 29/10) senza errori, con `/verifica-task cockpit`, e pagina aperta dal telefono la mattina 📅 2026-10-30
 - [ ] Dopo il criterio: cancellare la vecchia dashboard Cockpit (artifact di tipo Dashboard) e disattivare la mod sul PC
 - [ ] Lacune del vault segnalate dal librarian (`sessions/_raw/2026-10-27-librarian-10-domande.md`): nome dell'AD di Manini; riga "sei giornate" nel log di [[manini-supply-chain-magazzino]]; quale calendario MTU è stato confermato il 26/10; foglio quotazione blocchi di Velo-CE non ingerito; risposta di Bollazzi (LIUC) da ingerire quando arriva
 - [ ] Provare `/oggi`, `/progetto`, `/cattura` e `/smista` in una sessione nuova (i comandi compaiono al riavvio) e correggere ciò che non torna
