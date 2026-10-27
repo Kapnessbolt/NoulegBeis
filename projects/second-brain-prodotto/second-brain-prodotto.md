@@ -31,7 +31,7 @@ updated: 2026-10-27
 - [ ] Step 14 · Fonte unica delle regole: matrice delle scritture e perimetro in un posto solo, con rimandi da CLAUDE.md e dagli agenti · modello: Fable ([[2026-10-26-piano-prodotto-second-brain]])
 - [ ] Step 15 · Retention delle note hub: interazioni recenti alle ultime 20, `## Fonti` da backlink o generate, ripresa delle note `partial`, archivio dei progetti chiusi · modello: Sonnet ([[2026-10-26-piano-prodotto-second-brain]])
 - [x] Step 16 · Cockpit v2: `cockpit.py`, template `.claude/templates/cockpit.html`, `plancia.py` esteso, task `cockpit` riscritto con il calendario dal connettore, prima pubblicazione · modello: Opus, revisione Fable ✅ 2026-10-27 ([[2026-10-27-step-17-librarian]])
-- [ ] Step 16 · criterio di accettazione: 3 giri del task `cockpit` senza errori e pagina aperta dal telefono la mattina; prima servono i permessi in `settings.json` e il connettore M365 sui task `DailyBoard` e `DailyBoard2` 📅 2026-10-30 ([[2026-10-27-step-17-librarian]])
+- [ ] Step 16 · criterio di accettazione: 3 giri del task `cockpit` senza errori e pagina aperta dal telefono la mattina; prima serve il connettore M365 sui task `DailyBoard` e `DailyBoard2` (Lorenzo) 📅 2026-10-30 ([[2026-10-27-step-17-librarian]])
 - [ ] Step 16 · dopo il criterio: cancellare la vecchia dashboard e disattivare la mod sul PC ([[2026-10-27-step-17-librarian]])
 - [x] Step 17 · Librarian e ricerca: `cerca.py`, agente `librarian`, comandi `/oggi`, `/progetto`, `/cattura`, `/smista` · modello: Opus, revisione Fable ✅ 2026-10-27 ([[2026-10-27-step-17-librarian]])
 - [x] Step 17 · permessi in `.claude/settings.json` per `cerca.py`, `plancia.py` e `mcp__github__get_file_contents`, con l'ok di Lorenzo ✅ 2026-10-27 ([[2026-10-27-step-17-librarian]])
