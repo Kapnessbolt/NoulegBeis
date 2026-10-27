@@ -1,0 +1,401 @@
+<title>{{titolo}}</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="color-scheme" content="light dark">
+<meta name="generator" content="cockpit.py">
+<!--
+  Scheletro della pagina Cockpit (SPEC 7). Lo riempie .claude/scripts/cockpit.py: ogni segnaposto
+  tra doppie graffe diventa HTML già escapato. Nessuna risorsa esterna: font di sistema, CSS e
+  JS inline, così la pagina funziona anche salvata come file. Il JS è facoltativo.
+-->
+<style>
+/* Colonna unica da 720px: testata con la data e tre contatori, poi Oggi, Settimana e
+   Progetti a schede che si aprono; inbox, digest e task piccoli in fondo. */
+:root {
+  --sfondo: #f1f3f5;
+  --carta: #ffffff;
+  --inchiostro: #16202a;
+  --tenue: #56636f;
+  --filo: #dce2e7;
+  --accento: #2552c0;
+  --allarme: #b9342a;
+  --allarme-fondo: #fbeceb;
+  --attenzione: #9a5c00;
+  --attenzione-fondo: #fbf0de;
+  --ok: #2b7a4b;
+  --testo: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --cifre: ui-rounded, "SF Pro Rounded", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --colonna-ora: 4.1rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --sfondo: #0e1317;
+    --carta: #161d23;
+    --inchiostro: #e3e8ec;
+    --tenue: #97a3ae;
+    --filo: #26313a;
+    --accento: #8aaaf6;
+    --allarme: #f37a70;
+    --allarme-fondo: #36201f;
+    --attenzione: #e6ad4e;
+    --attenzione-fondo: #31270f;
+    --ok: #63c48d;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --sfondo: #0e1317;
+  --carta: #161d23;
+  --inchiostro: #e3e8ec;
+  --tenue: #97a3ae;
+  --filo: #26313a;
+  --accento: #8aaaf6;
+  --allarme: #f37a70;
+  --allarme-fondo: #36201f;
+  --attenzione: #e6ad4e;
+  --attenzione-fondo: #31270f;
+  --ok: #63c48d;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--sfondo);
+  color: var(--inchiostro);
+  font: 400 15px/1.45 var(--testo);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+a { color: var(--accento); text-underline-offset: 2px; }
+a:focus-visible, summary:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accento);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+p, ul, h1, h2, h3, h4 { margin: 0; }
+
+.pagina {
+  max-width: 720px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 18px 36px;
+  display: grid;
+  gap: 26px;
+}
+
+/* Testata */
+.testata { display: grid; gap: 12px; }
+.sopratitolo {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  font-size: 12px;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--tenue);
+}
+.marchio { font-weight: 700; color: var(--inchiostro); }
+h1 {
+  font-size: clamp(25px, 6.6vw, 32px);
+  line-height: 1.12;
+  font-weight: 700;
+  letter-spacing: -.012em;
+  text-wrap: balance;
+}
+.contatori { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.contatore {
+  display: grid;
+  gap: 3px;
+  padding: 10px 12px 11px;
+  min-height: 44px;
+  border-radius: 12px;
+  background: var(--carta);
+  border: 1px solid var(--filo);
+  color: var(--inchiostro);
+  text-decoration: none;
+}
+.contatore .n { font: 700 34px/1 var(--cifre); font-variant-numeric: tabular-nums; }
+.contatore .etichetta { font-size: 12.5px; color: var(--tenue); }
+.contatore.allarme { background: var(--allarme-fondo); border-color: transparent; }
+.contatore.allarme .n, .contatore.allarme .etichetta { color: var(--allarme); }
+.contatore.attenzione .n { color: var(--attenzione); }
+.contatore.zero .n { color: var(--tenue); font-weight: 500; }
+
+/* Blocchi */
+.blocco { display: grid; gap: 10px; scroll-margin-top: 12px; }
+.blocco > h2, .titoletto {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--tenue);
+}
+.conta { font-variant-numeric: tabular-nums; color: var(--inchiostro); letter-spacing: 0; }
+.blocco > h2 .spinta { margin-left: auto; }
+.pannello {
+  background: var(--carta);
+  border: 1px solid var(--filo);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.vuoto { padding: 14px 16px; color: var(--tenue); }
+.gruppo + .gruppo { border-top: 1px solid var(--filo); }
+.gruppo > h3 {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 11px 14px 3px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--tenue);
+}
+.gruppo > h3 .relativo { text-transform: none; letter-spacing: 0; font-weight: 500; }
+.righe { list-style: none; padding: 0; }
+.righe > li + li { border-top: 1px solid var(--filo); }
+
+/* Righe di agenda: ora o casella a sinistra, testo al centro, freccia a destra */
+.voce {
+  display: grid;
+  grid-template-columns: var(--colonna-ora) minmax(0, 1fr) 14px;
+  gap: 12px;
+  align-items: start;
+  padding: 10px 14px;
+  min-height: 44px;
+}
+.quando {
+  display: grid;
+  justify-items: end;
+  text-align: right;
+  line-height: 1.25;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.quando small { font-size: 12.5px; font-weight: 400; color: var(--tenue); }
+.cosa { min-width: 0; display: grid; gap: 2px; }
+.testo { overflow-wrap: anywhere; }
+.meta { font-size: 13px; color: var(--tenue); overflow-wrap: anywhere; }
+.casella {
+  justify-self: end;
+  width: 15px;
+  height: 15px;
+  margin-top: 3px;
+  border: 1.6px solid var(--tenue);
+  border-radius: 4px;
+}
+.etichetta-evento {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 0 6px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 650;
+  border: 1px solid currentColor;
+  vertical-align: 1px;
+}
+.in-corso { color: var(--accento); }
+.provvisorio { color: var(--attenzione); }
+.passato { color: var(--tenue); }
+.passato .testo { text-decoration: line-through; text-decoration-thickness: 1px; }
+
+.scaduta { background: var(--allarme-fondo); }
+.scaduta .casella { border-color: var(--allarme); }
+.scaduta .ritardo { color: var(--allarme); font-weight: 700; }
+.in-oggi .casella { border-color: var(--attenzione); }
+.in-oggi .ritardo { color: var(--attenzione); font-weight: 650; }
+
+details > summary { list-style: none; cursor: pointer; }
+details > summary::-webkit-details-marker { display: none; }
+.freccia {
+  width: 8px;
+  height: 8px;
+  margin-top: 6px;
+  border-right: 1.6px solid var(--tenue);
+  border-bottom: 1.6px solid var(--tenue);
+  transform: rotate(45deg);
+  transition: transform .15s ease;
+}
+details[open] > summary .freccia { transform: rotate(-135deg); margin-top: 10px; }
+.dettaglio {
+  display: grid;
+  gap: 4px;
+  padding: 0 14px 12px calc(14px + var(--colonna-ora) + 12px);
+  font-size: 13.5px;
+  color: var(--tenue);
+  overflow-wrap: anywhere;
+}
+code {
+  padding: 0 4px;
+  border-radius: 4px;
+  background: var(--sfondo);
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: .88em;
+}
+.slug { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 12px; }
+
+/* Progetti */
+.carte { display: grid; gap: 10px; }
+.carta { background: var(--carta); border: 1px solid var(--filo); border-radius: 14px; }
+.carta > summary { display: grid; gap: 3px; padding: 13px 16px 14px; min-height: 44px; }
+.carta-testa {
+  display: flex;
+  align-items: center;
+  gap: 6px 10px;
+  flex-wrap: wrap;
+  font-size: 12.5px;
+}
+.semaforo { display: inline-flex; align-items: center; gap: 7px; font-weight: 700; }
+.semaforo i { width: 9px; height: 9px; border-radius: 50%; background: currentColor; }
+.stato-allarme .semaforo { color: var(--allarme); }
+.stato-attenzione .semaforo { color: var(--attenzione); }
+.stato-ok .semaforo { color: var(--ok); }
+.numeri { margin-left: auto; color: var(--tenue); font-variant-numeric: tabular-nums; }
+.numeri b { color: var(--allarme); font-weight: 700; }
+.carta-testa .freccia { margin: 0 2px 2px 4px; }
+.carta[open] > summary .carta-testa .freccia { margin: 4px 2px 0 4px; }
+.carta h3 { margin-top: 3px; font-size: 17px; line-height: 1.25; text-wrap: balance; }
+.cliente { font-size: 13px; color: var(--tenue); }
+.passo {
+  margin-top: 5px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+.passo .data { color: var(--tenue); font-variant-numeric: tabular-nums; }
+.passo.manca { color: var(--tenue); }
+.carta[open] .passo { display: none; }
+.carta-corpo {
+  display: grid;
+  gap: 14px;
+  padding: 14px 16px 16px;
+  border-top: 1px solid var(--filo);
+  font-size: 14px;
+}
+.carta-corpo h4 {
+  margin-bottom: 4px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--tenue);
+}
+.elenco { list-style: none; padding: 0; display: grid; gap: 5px; }
+.elenco li { display: grid; grid-template-columns: 3.6rem minmax(0, 1fr); gap: 8px; overflow-wrap: anywhere; }
+.elenco .data { color: var(--tenue); font-variant-numeric: tabular-nums; }
+.elenco li.scaduta { background: none; color: var(--allarme); }
+.elenco li.scaduta .data { color: var(--allarme); font-weight: 700; }
+.passi { padding-left: 18px; display: grid; gap: 5px; overflow-wrap: anywhere; }
+.nota-piccola { font-size: 13px; color: var(--tenue); }
+.vai { font-size: 14px; font-weight: 600; }
+.osservi-titolo { margin-top: 8px; }
+.carta.osservi > summary { padding: 10px 14px 11px; }
+.carta.osservi h3 { font-size: 15px; font-weight: 600; }
+.carta.osservi .passo { font-size: 13.5px; color: var(--tenue); -webkit-line-clamp: 1; }
+.chip {
+  padding: 0 7px;
+  border-radius: 999px;
+  border: 1px solid var(--filo);
+  color: var(--tenue);
+  font-size: 11.5px;
+  font-weight: 600;
+}
+.interruttore {
+  min-height: 32px;
+  padding: 2px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--filo);
+  background: var(--carta);
+  color: var(--inchiostro);
+  font: 600 12.5px var(--testo);
+  letter-spacing: 0;
+  text-transform: none;
+  cursor: pointer;
+}
+
+/* In fondo */
+.fondo { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); align-items: start; gap: 10px; }
+.riquadro {
+  display: grid;
+  gap: 4px;
+  align-content: start;
+  padding: 12px 14px;
+  border: 1px solid var(--filo);
+  border-radius: 12px;
+  font-size: 13.5px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.riquadro .titoletto { font-size: 11.5px; }
+.grande { font: 700 20px/1.2 var(--cifre); font-variant-numeric: tabular-nums; }
+.riquadro ul { list-style: none; padding: 0; display: grid; gap: 3px; color: var(--tenue); }
+.ko { color: var(--allarme); font-weight: 650; }
+.senza-data { border: 1px solid var(--filo); border-radius: 12px; }
+.senza-data > summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 8px 14px;
+  font-size: 13.5px;
+  font-weight: 600;
+}
+.senza-data > summary .freccia { margin: 0 2px 4px auto; }
+.senza-data[open] > summary .freccia { margin: 4px 2px 0 auto; }
+.senza-data ul { list-style: none; padding: 0 14px 12px; display: grid; gap: 4px; font-size: 13.5px; }
+.senza-data li { display: flex; justify-content: space-between; gap: 12px; color: var(--tenue); }
+.senza-data li b { color: var(--inchiostro); font-variant-numeric: tabular-nums; }
+.piede { font-size: 12px; color: var(--tenue); }
+
+@media (min-width: 640px) {
+  .pagina { padding-block: 32px 48px; gap: 30px; }
+  .contatore .n { font-size: 40px; }
+  :root { --colonna-ora: 4.6rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .freccia { transition: none; }
+}
+</style>
+
+<main class="pagina">
+  <header class="testata">
+    <p class="sopratitolo"><span class="marchio">{{titolo}}</span><span>aggiornato alle {{ora}}</span></p>
+    <h1>{{data_lunga}}</h1>
+    <nav class="contatori" aria-label="Riepilogo">{{contatori}}</nav>
+  </header>
+
+  <section class="blocco" id="oggi" aria-label="Oggi">{{blocco_oggi}}</section>
+
+  <section class="blocco" id="settimana" aria-label="Prossimi 7 giorni">{{blocco_settimana}}</section>
+
+  <section class="blocco" id="progetti" aria-label="Progetti">{{blocco_progetti}}</section>
+
+  <section class="blocco" id="altro" aria-label="Inbox, digest e task">{{blocco_fondo}}</section>
+
+  <footer class="piede">{{piede}}</footer>
+</main>
+
+<script>
+/* Facoltativo: "apri tutte / chiudi tutte" sulle schede dei progetti. Senza JS il pulsante resta nascosto. */
+(function () {
+  var b = document.getElementById("apri-tutte");
+  if (!b) return;
+  var carte = document.querySelectorAll("#progetti details.carta");
+  if (!carte.length) return;
+  b.hidden = false;
+  b.addEventListener("click", function () {
+    var apri = Array.prototype.some.call(carte, function (d) { return !d.open; });
+    Array.prototype.forEach.call(carte, function (d) { d.open = apri; });
+    b.textContent = apri ? "chiudi tutte" : "apri tutte";
+  });
+})();
+</script>

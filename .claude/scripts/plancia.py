@@ -5,11 +5,15 @@ Uso:
   python3 .claude/scripts/plancia.py <cartella_output>
 
 Scrive in <cartella_output> progetti.json, attivita.json, log.json, inbox.json,
-task.json e digest.json, righe pronte per la dashboard (artifact "Cockpit"). I file non
-vanno nel repo: la cartella di output sta fuori dal vault. Richiede PyYAML.
+task.json e digest.json, i dati della pagina Cockpit. I file non vanno nel repo: la
+cartella di output sta fuori dal vault. Richiede PyYAML.
 
-La mod `cockpit` dell'app legge gli stessi dati dal vivo con la stessa logica:
-se cambi una regola qui, cambiala anche in hooks/register.tsx della mod.
+La pagina la genera `cockpit.py` da questa cartella (più `calendario.json`, se il task
+`cockpit` l'ha scritto): se cambi un campo qui, controlla che `cockpit.py` lo legga ancora.
+In progetti.json, per ogni progetto, oltre ai contatori: `percorso` (la scheda, relativo
+alla radice del vault), `clienti_slug`, `prossimi_passi` (i punti di `## Prossimi passi`,
+senza la fonte in coda), `scadute` (attività aperte con 📅 prima di oggi) e
+`prossima_fonte` (la fonte della prossima attività con data).
 
 La variabile d'ambiente VAULT_ROOT, se presente, indica la radice del vault al posto della
 cartella che contiene `.claude/` (serve ai test in `.claude/scripts/tests/`).
@@ -41,8 +45,8 @@ LOG_ROW = re.compile(r"^- (\d{4}-\d{2}-\d{2}) · (.+?)(?: · (?:\[\[[^\]]+\]\](?
 ULTIMI_PASSI = 5
 ESITO = re.compile(r"^\|\s*([a-z][a-z0-9-]*)\s+(\d{2}:\d{2})\s*\|\s*(.*?)\s*\|\s*$")
 
-# Task schedulati attesi ogni giorno (SPEC 7). Se cambiano gli orari in SPEC, cambiali qui
-# e nella mod: altrimenti un task in orario risulta mancante.
+# Task schedulati attesi ogni giorno (SPEC 7). Se cambiano gli orari in SPEC, cambiali qui:
+# altrimenti un task in orario risulta mancante.
 ATTESI = [
     ("ingest-sharepoint", "06:50"),
     ("ingest-outlook", "07:05"),
@@ -105,6 +109,19 @@ def checkbox(body, sezione, plain):
         testo = DUE.sub("", testo).strip()
         yield (plain(testo), due.group(1) if due else "", m.group(1).lower() == "x",
                LINK.findall(fonte.group(1))[0] if fonte else "")
+
+
+def punti(body, sezione, plain):
+    """I punti di una sezione (righe `- testo`), senza trattino, senza fonte in coda, vuoti esclusi."""
+    out = []
+    for line in section(body, sezione).splitlines():
+        line = line.strip()
+        if not line.startswith("- ") or TASK.match(line):
+            continue
+        testo = plain(SOURCE.sub("", line[2:])).strip()
+        if testo:
+            out.append(testo)
+    return out
 
 
 def minuti(hhmm):
@@ -212,10 +229,11 @@ def main():
         righe_log = [m for m in map(LOG_ROW.match, testo_log.splitlines()) if m]
         for n, m in enumerate(sorted(righe_log, key=lambda m: m.group(1), reverse=True)[:ULTIMI_PASSI], 1):
             passi.append({"id": f"{slug}-{n}", "progetto": slug, "data": m.group(1), "testo": plain(m.group(2))})
+        clienti = slugs(fm.get("clients"))
         progetti.append({
             "progetto": slug,
             "nome": nome,
-            "clienti": ", ".join(names.get(s, s) for s in slugs(fm.get("clients"))),
+            "clienti": ", ".join(names.get(s, s) for s in clienti),
             "ruolo": ruolo,
             "coinvolto": coinvolto,
             "stato": fm.get("status") or "",
@@ -224,6 +242,11 @@ def main():
             "prossima": aperte[0][1] if aperte and aperte[0][1] else "",
             "prossima_testo": aperte[0][0] if aperte and aperte[0][1] else "",
             "ultimo_log": max(date_log) if date_log else "",
+            "percorso": path.relative_to(ROOT).as_posix(),
+            "clienti_slug": clienti,
+            "prossimi_passi": punti(body, "Prossimi passi", plain),
+            "scadute": sum(1 for r in aperte if r[1] and r[1] < oggi),
+            "prossima_fonte": aperte[0][3] if aperte and aperte[0][1] else "",
         })
 
     inbox = []

@@ -55,3 +55,27 @@ def test_inbox_e_log(plancia):
                                  "creata": "2026-10-20", "aperte": 1, "prossima": "2026-11-01"}]
     assert [p["data"] for p in plancia["log"]] == ["2026-10-20", "2026-10-15"]
     assert plancia["log"][0]["testo"] == "Avvio del caso pilota"
+
+
+def test_campi_della_pagina_cockpit(vault, tmp_path):
+    """Campi aggiunti per cockpit.py: percorso, clienti_slug, prossimi_passi, scadute, prossima_fonte."""
+    scheda = vault / "projects" / "alfa" / "alfa.md"
+    testo = scheda.read_text(encoding="utf-8")
+    testo = testo.replace("## Prossimi passi\n\n-\n",
+                          "## Prossimi passi\n\n- Demo a [[mario-rossi]] ([[doc-alfa]])\n-\n- Poi il secondo reparto\n")
+    testo = testo.replace("- [ ] Preparare la demo ([[doc-alfa]])",
+                          "- [ ] Preparare la demo 📅 2020-01-10 ([[2026-10-20-prova]])")
+    scheda.write_text(testo, encoding="utf-8")
+    out = tmp_path / "plancia"
+    res = esegui("plancia.py", vault, out)
+    assert res.returncode == 0, res.stderr
+    progetti = {p["progetto"]: p for p in json.loads((out / "progetti.json").read_text(encoding="utf-8"))}
+    alfa, beta = progetti["alfa"], progetti["beta"]
+    assert alfa["percorso"] == "projects/alfa/alfa.md"
+    assert alfa["clienti_slug"] == ["cliente-uno"]
+    assert alfa["prossimi_passi"] == ["Demo a Mario Rossi", "Poi il secondo reparto"]
+    assert alfa["scadute"] == 1
+    assert alfa["prossima"] == "2020-01-10" and alfa["prossima_fonte"] == "2026-10-20-prova"
+    assert beta["percorso"] == "projects/beta/beta.md"
+    assert beta["clienti_slug"] == [] and beta["prossimi_passi"] == []
+    assert beta["scadute"] == 0 and beta["prossima_fonte"] == ""
