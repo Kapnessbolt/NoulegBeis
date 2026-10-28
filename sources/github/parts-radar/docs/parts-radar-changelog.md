@@ -4,18 +4,19 @@ source: github
 family: parts-radar-changelog
 current:
   item_id: "cristian-schifone/parts-radar:docs/changelog.md"
-  uri: "github://cristian-schifone/parts-radar/docs/changelog.md@cd736f28b539571093274fc63f7ee72393fd4f80"
+  uri: "github://cristian-schifone/parts-radar/docs/changelog.md@a6cfb1f305f749441084c8ced7581f79270861a3"
   web_url: "https://github.com/cristian-schifone/parts-radar/blob/main/docs/changelog.md"
   name: "docs/changelog.md"
-  last_modified: 2026-10-26T23:50:11Z
+  last_modified: 2026-10-27T22:43:07Z
 versions:
+  - { name: docs/changelog.md@a6cfb1f, item_id: cristian-schifone/parts-radar:docs/changelog.md, last_modified: 2026-10-27T22:43:07Z }
   - { name: docs/changelog.md@cd736f2, item_id: cristian-schifone/parts-radar:docs/changelog.md, last_modified: 2026-10-26T23:50:11Z }
   - { name: docs/changelog.md@21621ca, item_id: cristian-schifone/parts-radar:docs/changelog.md, last_modified: 2026-10-26T00:13:33Z }
   - { name: docs/changelog.md@61b833c, item_id: cristian-schifone/parts-radar:docs/changelog.md, last_modified: 2026-10-22T16:51:29Z }
 also_at: []
 status: active
 partial: true
-ingested_at: 2026-10-27T06:22:42Z
+ingested_at: 2026-10-28T06:23:42Z
 projects: ["[[parts-radar-sviluppo]]"]
 clients: ["[[adac-bologna]]"]
 topics: ["[[parts-radar]]"]
@@ -26,7 +27,7 @@ tags: []
 
 ## Riassunto
 
-Diario delle sessioni di sviluppo del repo, una voce per sessione, dalla più recente: obiettivo, cosa è stato fatto, decisioni, cosa resta aperto, prossimi passi. Il ritmo a ottobre è di 3-6 voci al giorno. Nel vault non si copia: ogni giorno con voci nuove diventa una riga nel log di [[parts-radar-sviluppo]], e qui restano le voci degli ultimi 30 giorni in una riga ciascuna. Ultime settimane: chiusa la migrazione a Python e Kromeda (02-05/10), lavoro sulla milestone del pilot ADAC, chat del banco e canale WhatsApp con 360dialog (18-20/10), dataset delle chat reali, router e modalità ascolto (21-22/10), metodo di lavoro e glossario (25-26/10), revisione del router sulle etichette di sviluppo con i prompt congelati (26/10), etichette del test e misura del router sul test (26/10), vocali: motore deciso e trascrizione nel servizio, spenta (26-27/10).
+Diario delle sessioni di sviluppo del repo, una voce per sessione, dalla più recente: obiettivo, cosa è stato fatto, decisioni, cosa resta aperto, prossimi passi. Il ritmo a ottobre è di 3-6 voci al giorno. Nel vault non si copia: ogni giorno con voci nuove diventa una riga nel log di [[parts-radar-sviluppo]], e qui restano le voci degli ultimi 30 giorni in una riga ciascuna. Ultime settimane: chiusa la migrazione a Python e Kromeda (02-05/10), lavoro sulla milestone del pilot ADAC, chat del banco e canale WhatsApp con 360dialog (18-20/10), dataset delle chat reali, router e modalità ascolto (21-22/10), metodo di lavoro e glossario (25-26/10), revisione del router sulle etichette di sviluppo con i prompt congelati (26/10), etichette del test e misura del router sul test (26/10), vocali: motore deciso e trascrizione nel servizio, spenta (26-27/10), poi doppia lettura con Soniox primo motore e targa da ascoltare (27/10); regole delle prove del pilot e prova a secco preparata (27/10).
 
 ## Punti chiave
 
@@ -36,7 +37,7 @@ Diario delle sessioni di sviluppo del repo, una voce per sessione, dalla più re
 
 ## Numeri
 
-- 70 voci al 27/10/2026
+- 77 voci al 27/10/2026 sera
 
 ## Decisioni e azioni
 
@@ -44,6 +45,13 @@ Diario delle sessioni di sviluppo del repo, una voce per sessione, dalla più re
 
 ## Voci recenti
 
+- 2026-10-27 · Prova a secco con Kromeda in trasporto misto · ricerca targa solo dalle registrazioni, il resto dal vivo, e registrazione delle chiamate dal vivo per il replay dopo la demo; restano la prova breve dal vivo e la conservazione delle registrazioni (Cristian)
+- 2026-10-27 · Regole delle prove del pilot · 20 scenari su 3-4 auto nostre e tre telefoni, catena intera almeno al 70%, cancello per origine della targa; la prova segue l'attivazione del numero di ADAC; il file delle auto lo compila Lorenzo
+- 2026-10-27 · Graphify senza hook · strumenti di lavoro
+- 2026-10-27 · Ritocchi dalla retro della #477 · regole di lavoro
+- 2026-10-27 · Vocali: doppia lettura nel servizio, Soniox primo motore, targa da ascoltare · su H 0 targhe confermate sbagliate sui dettati di prova; trascrizione spenta finché non ci sono consenso di ADAC, progetti a nome di BlueAge e contratto dati con Soniox; avviso a Cristian per lo staging
+- 2026-10-27 · Vocali: regola di sicurezza e doppia lettura misurata · nei gruppi con un vocale la targa si recupera solo per citazione, anche a trascrizione spenta; Soniox batte Gemini su H
+- 2026-10-27 · Misura del recupero della targa sulle etichette · la finestra resta 30 minuti, la taratura passa al traffico del pilot
 - 2026-10-27 · Vocali: la trascrizione nel servizio, spenta · pronta ma non accesa, prova dal vivo su due dettati (circa 0,0015 $ a giro); restano la misura finale sul test, il consenso di ADAC, il progetto Google a nome di BlueAge; avviso a Cristian per lo staging preparato, lo manda Lorenzo
 - 2026-10-27 · Ritocchi dalla retro dei vocali · regole di lavoro; un punto da concordare con Cristian
 - 2026-10-26 · Vocali: motore deciso e alfabeto delle città · Gemini 3.5 Transcribe; sul test di H la targa giusta passa dal 19,5% al 78,4% dei pezzi
@@ -101,6 +109,7 @@ Diario delle sessioni di sviluppo del repo, una voce per sessione, dalla più re
 
 ## Versioni
 
+- docs/changelog.md@a6cfb1f · 2026-10-27 · 7 voci nuove (27/10): misura della targa, regola di sicurezza e doppia lettura dei vocali, ritocchi dalla retro, graphify, regole delle prove del pilot, prova a secco
 - docs/changelog.md@cd736f2 · 2026-10-27 · 5 voci nuove (26-27/10): etichettatore Opus, etichette del test e misura del router, vocali (motore e alfabeto, poi integrazione spenta), ritocchi dalla retro
 - docs/changelog.md@21621ca · 2026-10-26 · 5 voci nuove (25-26/10): metodo di lavoro, glossario, istruzioni del repo, revisione del router con prompt congelati, chiusura di /plan-fix
 - docs/changelog.md@61b833c · 2026-10-22 · prima lettura nel vault (voci dal 24/09; primo caricamento oltre i 30 giorni)

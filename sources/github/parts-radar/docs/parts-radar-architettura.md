@@ -4,18 +4,19 @@ source: github
 family: parts-radar-architettura
 current:
   item_id: "cristian-schifone/parts-radar:docs/architettura.md"
-  uri: "github://cristian-schifone/parts-radar/docs/architettura.md@48bd26c78c4f24ec80d6e25222a83a0ae99b189b"
+  uri: "github://cristian-schifone/parts-radar/docs/architettura.md@53f469df015607142d5ecc5d3b9d348d5ebae8fa"
   web_url: "https://github.com/cristian-schifone/parts-radar/blob/main/docs/architettura.md"
   name: "docs/architettura.md"
-  last_modified: 2026-10-26T23:47:59Z
+  last_modified: 2026-10-27T22:36:39Z
 versions:
+  - { name: docs/architettura.md@53f469d, item_id: cristian-schifone/parts-radar:docs/architettura.md, last_modified: 2026-10-27T22:36:39Z }
   - { name: docs/architettura.md@48bd26c, item_id: cristian-schifone/parts-radar:docs/architettura.md, last_modified: 2026-10-26T23:47:59Z }
   - { name: docs/architettura.md@fe70fa4, item_id: cristian-schifone/parts-radar:docs/architettura.md, last_modified: 2026-10-25T23:55:16Z }
   - { name: docs/architettura.md@61b833c, item_id: cristian-schifone/parts-radar:docs/architettura.md, last_modified: 2026-10-22T16:51:29Z }
 also_at: []
 status: active
 partial: true
-ingested_at: 2026-10-27T06:22:42Z
+ingested_at: 2026-10-28T06:23:41Z
 projects: ["[[parts-radar-sviluppo]]"]
 clients: ["[[adac-bologna]]", "[[solera]]"]
 topics: ["[[parts-radar]]"]
@@ -26,7 +27,7 @@ tags: []
 
 ## Riassunto
 
-Documento di stato del repo di sviluppo: com'è fatto il sistema oggi, a che punto sono le fasi, le decisioni aperte e i rischi. Si aggiorna a ogni PR (la testata dice lo stato del giorno). Nel vault si leggono solo §1 (scopo), §5 (stato e sequenza), §8 (decisioni aperte) e §9 (rischi); componenti e decisioni tecniche in vigore (§4, §6) restano nel repo. Stato letto: 27/10/2026, dopo l'integrazione della trascrizione dei vocali nel servizio (spenta).
+Documento di stato del repo di sviluppo: com'è fatto il sistema oggi, a che punto sono le fasi, le decisioni aperte e i rischi. Si aggiorna a ogni PR (la testata dice lo stato del giorno). Nel vault si leggono solo §1 (scopo), §5 (stato e sequenza), §8 (decisioni aperte) e §9 (rischi); componenti e decisioni tecniche in vigore (§4, §6) restano nel repo. Stato letto: 27/10/2026 sera, dopo la doppia lettura dei vocali (trascrizione ancora spenta) e le regole delle prove del pilot.
 
 ## Punti chiave
 
@@ -39,6 +40,9 @@ Documento di stato del repo di sviluppo: com'è fatto il sistema oggi, a che pun
 - 25-26/10: le 810 etichette di sviluppo delle chat reali corrette con Lorenzo; prompt di router ed estrazione congelati
 - 26/10: etichette del test fatte (550 gruppi dei clienti E, G, H, J: etichettatore Opus tarato sulle chat di sviluppo, vocali di H a mano da Lorenzo) e prima misura del router sul test; della #345 resta «la voce»
 - 26-27/10: vocali, motore scelto Gemini 3.5 Transcribe (Soniox e Speechmatics provati, nessuno lo batte), alfabeto delle città con una tabella fissa; il 27/10 la trascrizione entra nel servizio ma resta spenta. Mancano la misura finale sul test e l'accensione
+- 27/10: la targa di un pezzo aggiunto dopo (#346) chiusa con la misura sulle etichette; la finestra di recupero resta 30 minuti e si tara sul traffico del pilot. Nei gruppi con un vocale la targa si recupera solo per citazione
+- 27/10: doppia lettura dei vocali, Soniox UE primo motore e Gemini di controllo; una targa che viene solo da un vocale vale se le due letture coincidono, altrimenti il gruppo va al banco come «targa da ascoltare». Tetto di spesa di 1 $ al giorno. Trascrizione ancora spenta
+- 27/10: regole delle prove del pilot scritte e congelate (scenari, soglie, come si misura la catena) e scheletro del report unico; la prova controllata segue l'attivazione del numero di ADAC, prima c'è una prova a secco
 
 ## Numeri
 
@@ -54,7 +58,8 @@ Decisioni aperte (§8) che toccano il livello di progetto:
 - D13 · data del pilot e partenza direttamente sul nuovo stack: Lorenzo con ADAC (chiesta a Luca Degli Esposti il 22/10)
 - D19 · mappatura dei brand di ADAC sui codici listino Kromeda: senza, la proposta esce in ordine alfabetico. Lista dei brand e listini (CONTINENTAL, DIPA, DEPO, Pierburg, AJUSA) chiesti a Luca il 22/10. Blocca il pilot
 - D34 · chi cambia sconti, margini e fidi dei clienti (oggi solo gli ADMIN): da confermare con ADAC
-- D44 · vocali (1.233 in 9,6 ore nelle chat reali): motore deciso il 26/10, Gemini 3.5 Transcribe; integrazione fatta il 27/10, spenta. Restano aperti il consenso di ADAC per la produzione e il progetto Google a nome di BlueAge con un account di servizio (oggi è su un account personale)
+- D44 · vocali (1.233 in 9,6 ore nelle chat reali): integrazione fatta il 27/10, spenta; dalla sera del 27/10 doppia lettura, Soniox UE primo motore e Gemini 3.5 Transcribe di controllo. Per accendere: il consenso di ADAC che nomini Soniox e Google (ogni vocale va a tutti e due), il progetto Soniox UE a nome di BlueAge (regione UE da far approvare a Soniox), il contratto sul trattamento dei dati con Soniox, il progetto Google a nome di BlueAge
+- D41 · targa dei pezzi aggiunti dopo: chiusa la misura il 27/10; resta la taratura della finestra di recupero sul traffico del pilot (#472). Il banco che sceglie la targa da ascoltare e fa ripartire il gruppo è la #482, dopo i numeri del pilot
 - D48 · targhe nel vecchio formato provinciale (2 casi su 550 gruppi del test): oggi nessun passo le accetta; da capire se Kromeda le trova e come le tratta il flusso (Lorenzo, priorità bassa)
 - D45 · gruppi WhatsApp: chiesto ad ADAC se quei clienti passano alla chat singola
 - D46 · hosting e rete del webhook (Cristian): un server con tutto lo stack; è anche la condizione per accendere l'invio in produzione
@@ -66,6 +71,7 @@ Rischi principali (§9): scadenza della demo Kromeda; superamento della fascia d
 
 ## Versioni
 
+- docs/architettura.md@53f469d · 2026-10-27 · §5 e §8: misura della targa dei pezzi aggiunti chiusa (D41), doppia lettura dei vocali con Soniox primo motore e targa da ascoltare (D44, condizioni di accensione), regole delle prove del pilot; §1 e §9 invariati
 - docs/architettura.md@48bd26c · 2026-10-27 · §5 e §8: etichette del test e misura del router fatte (D43), motore dei vocali deciso e trascrizione integrata ma spenta (D44), nuova D48 sulle targhe nel vecchio formato; §1 e §9 invariati
 - docs/architettura.md@fe70fa4 · 2026-10-26 · §8: D43 aggiornata con la revisione delle etichette di sviluppo e i prompt congelati; il resto delle parti lette invariato
 - docs/architettura.md@61b833c · 2026-10-22 · prima lettura nel vault (§1, §5, §8, §9)
