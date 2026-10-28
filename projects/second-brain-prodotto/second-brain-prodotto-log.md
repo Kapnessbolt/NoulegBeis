@@ -7,6 +7,7 @@ project: "[[second-brain-prodotto]]"
 
 Una riga per avanzamento, dalla più recente: `- AAAA-MM-GG · cosa è successo · [[fonte]]`
 
+- 2026-10-28 · Forma del prodotto decisa con Lorenzo: installazione da BlueAge e gestione mensile come prodotto, tre gesti per il cliente (Leggi, Chiedi, Lavora), repo nell'organizzazione BlueAge; step 18 e 19 riscritti, SPEC 1.22 in PR · [[2026-10-28-second-brain-forma-del-prodotto]]
 - 2026-10-28 · Prova dei quattro comandi dello step 17 in una sessione nuova: tutti OK; `/cattura` corretto (riga vuota dopo il titolo), terzo difetto di `plancia.py` tracciato (decisioni del digest sempre 0) · [[2026-10-28-verifica-task-28-10]]
 - 2026-10-28 · Verifica del secondo giorno osservato: 7 task su 7 OK, step 12 e 16 al giorno 2 di 3; i due difetti del Cockpit si confermano, da correggere dopo il criterio · [[2026-10-28-verifica-task-28-10]]
 - 2026-10-27 · Verifica del primo giro osservato: 7 task su 7 OK, step 12 e 16 al giorno 1 di 3; pagina del Cockpit aperta da Lorenzo dal telefono; trovati due difetti di conteggio del Cockpit, da correggere dopo il criterio · [[2026-10-27-verifica-task-27-10]]
