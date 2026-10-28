@@ -7,6 +7,7 @@ project: "[[parts-radar-sviluppo]]"
 
 Una riga per avanzamento, dalla più recente: `- AAAA-MM-GG · cosa è successo · [[fonte]]`
 
+- 2026-10-27 · Avviso a Cristian per lo staging (trascrizione dei vocali ed etichettatore) mandato e spuntato nel repo; in attesa della sua risposta · [[2026-10-28-verifica-task-28-10]]
 - 2026-10-27 · Vocali con doppia lettura (Soniox UE primo motore, Gemini di controllo): la targa dubbia va al banco come «targa da ascoltare», tetto di 1 $ al giorno; trascrizione ancora spenta (mancano il consenso di ADAC che nomini Soniox e Google, i progetti a nome di BlueAge e il contratto dati con Soniox). Targa dei pezzi aggiunti chiusa con la misura, finestra di 30 minuti da tarare sul pilot. Regole delle prove del pilot congelate e prova a secco preparata, con le chiamate Kromeda dal vivo registrate per il replay · [[parts-radar-changelog]]
 - 2026-10-27 · Piano del traguardo: prova controllata con 3-4 auto nostre, 20 scenari e tre telefoni in un giorno; soglia della catena intera al 70%; la prova segue l'attivazione del numero di ADAC, non la data del 04/11 · [[parts-radar-issue-420]]
 - 2026-10-27 · Ordine dei lavori rivisto: piano della #420 in testa alla settimana 2, allarme sulla Coexistence dopo l'attivazione del numero; nuovi passi fuori dal codice (trascrizione a nome di BlueAge, canale degli allarmi) · [[parts-radar-issue-379]]

@@ -7,6 +7,7 @@ project: "[[velo-ce-progetto-dynamics]]"
 
 Una riga per avanzamento, dalla più recente: `- AAAA-MM-GG · cosa è successo · [[fonte]]`
 
+- 2026-10-28 · Il librarian segnala che il foglio quotazione blocchi è citato ma non ingerito: da cercare e ingerire · [[2026-10-28-verifica-task-28-10]]
 - 2026-10-23 · Chiuse le verifiche V1, V2 e V8 in scadenza al 21/09: concluse secondo l'utente · [[2026-10-23-verifica-primo-giro-task]]
 - 2026-10-19 · Proposta di usare Velo-CE come vetrina e laboratorio delle automazioni BlueAge, Cristian verifica autorizzazioni e privacy · [[riunione-generale-blueage-19-10-sintesi-azioni-e-one-page]]
 - 2026-10-16 · Automazioni e Pulse Light da costruire in un ambiente BlueAge che replica i dati di Velo-CE · [[call-di-oggi-prossimi-passi-architettura-copilot-manini-meccanotecnica-second-brain]]

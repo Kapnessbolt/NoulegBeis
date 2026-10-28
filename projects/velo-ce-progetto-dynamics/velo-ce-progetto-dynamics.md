@@ -45,6 +45,7 @@ updated: 2026-10-23
 - [x] V2 proposta a cascata su due livelli in Essential, prova D17 (Cristian) 📅 2026-09-21 ✅ 2026-10-23 ([[il-giro-del-telaio-in-essential-e-in-premium-documento-interno-v001]])
 - [x] V8 chiedere in sede chi registra i 571 ordini di assemblaggio (Leonardo) 📅 2026-09-21 ✅ 2026-10-23 ([[velo-ce-il-giro-del-telaio-in-essential-e-in-premium]])
 - [ ] Verificare autorizzazioni e privacy per usare i dati Velo-CE come vetrina delle automazioni (Cristian) ([[riunione-generale-blueage-19-10-sintesi-azioni-e-one-page]])
+- [ ] Cercare su SharePoint o OneDrive il foglio quotazione blocchi (citato nel vault ma non ingerito) e ingerirlo con /ingest-file ([[2026-10-28-verifica-task-28-10]])
 
 ## Decisioni
 
