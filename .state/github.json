@@ -1,21 +1,21 @@
 {
   "items": {
     "cristian-schifone/parts-radar#379": {
-      "last_modified": "2026-10-26T08:49:21Z",
+      "last_modified": "2026-10-27T17:13:27Z",
       "note": "sources/github/parts-radar/issues/parts-radar-issue-379.md"
     },
     "cristian-schifone/parts-radar#420": {
-      "last_modified": "2026-10-26T15:16:56Z",
+      "last_modified": "2026-10-27T18:02:06Z",
       "note": "sources/github/parts-radar/issues/parts-radar-issue-420.md"
     },
     "cristian-schifone/parts-radar:docs/architettura.md": {
-      "commit": "48bd26c78c4f24ec80d6e25222a83a0ae99b189b",
-      "last_modified": "2026-10-26T23:47:59Z",
+      "commit": "53f469df015607142d5ecc5d3b9d348d5ebae8fa",
+      "last_modified": "2026-10-27T22:36:39Z",
       "note": "sources/github/parts-radar/docs/parts-radar-architettura.md"
     },
     "cristian-schifone/parts-radar:docs/changelog.md": {
-      "commit": "cd736f28b539571093274fc63f7ee72393fd4f80",
-      "last_modified": "2026-10-26T23:50:11Z",
+      "commit": "a6cfb1f305f749441084c8ced7581f79270861a3",
+      "last_modified": "2026-10-27T22:43:07Z",
       "note": "sources/github/parts-radar/docs/parts-radar-changelog.md"
     },
     "cristian-schifone/parts-radar:docs/decisione-stack-python.md": {
@@ -29,8 +29,8 @@
       "note": "sources/github/parts-radar/docs/parts-radar-kromeda-fase0-risultati.md"
     },
     "cristian-schifone/parts-radar:docs/kromeda-impatto-parts-radar.md": {
-      "commit": "48bd26c78c4f24ec80d6e25222a83a0ae99b189b",
-      "last_modified": "2026-10-26T23:47:59Z",
+      "commit": "cfbf3b2383cb86a26b5e4f3df57ffbefcbf9c4e6",
+      "last_modified": "2026-10-27T15:11:05Z",
       "note": "sources/github/parts-radar/docs/parts-radar-kromeda-impatto.md"
     },
     "cristian-schifone/parts-radar:docs/whatsapp-fornitori.md": {
@@ -41,8 +41,8 @@
   },
   "repos": {
     "cristian-schifone/parts-radar": {
-      "commit": "d4d3badc24d4b4ce9a2c52bfc3529d5607f8093e",
-      "watermark": "2026-10-27T00:06:26Z"
+      "commit": "23aa412d41ae9db7896eb897ffa895080ccdcda6",
+      "watermark": "2026-10-27T22:48:55Z"
     }
   }
 }

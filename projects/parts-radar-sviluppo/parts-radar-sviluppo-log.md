@@ -7,6 +7,11 @@ project: "[[parts-radar-sviluppo]]"
 
 Una riga per avanzamento, dalla più recente: `- AAAA-MM-GG · cosa è successo · [[fonte]]`
 
+- 2026-10-27 · Vocali con doppia lettura (Soniox UE primo motore, Gemini di controllo): la targa dubbia va al banco come «targa da ascoltare», tetto di 1 $ al giorno; trascrizione ancora spenta (mancano il consenso di ADAC che nomini Soniox e Google, i progetti a nome di BlueAge e il contratto dati con Soniox). Targa dei pezzi aggiunti chiusa con la misura, finestra di 30 minuti da tarare sul pilot. Regole delle prove del pilot congelate e prova a secco preparata, con le chiamate Kromeda dal vivo registrate per il replay · [[parts-radar-changelog]]
+- 2026-10-27 · Piano del traguardo: prova controllata con 3-4 auto nostre, 20 scenari e tre telefoni in un giorno; soglia della catena intera al 70%; la prova segue l'attivazione del numero di ADAC, non la data del 04/11 · [[parts-radar-issue-420]]
+- 2026-10-27 · Ordine dei lavori rivisto: piano della #420 in testa alla settimana 2, allarme sulla Coexistence dopo l'attivazione del numero; nuovi passi fuori dal codice (trascrizione a nome di BlueAge, canale degli allarmi) · [[parts-radar-issue-379]]
+- 2026-10-27 · architettura: nuova versione, D41 (misura della targa dei pezzi aggiunti fatta) e D44 (doppia lettura, Soniox primo motore, condizioni di accensione) · [[parts-radar-architettura]]
+- 2026-10-27 · kromeda-impatto: nuova versione, trascrizione con due motori (circa 0,0068 $ al minuto, tetto 1 $ al giorno), nessun effetto sui crediti targa · [[parts-radar-kromeda-impatto]]
 - 2026-10-27 · Trascrizione dei vocali integrata nel servizio ma spenta: si accende dopo il consenso di ADAC e il progetto Google a nome di BlueAge; manca la misura finale sul test. Avviso a Cristian per lo staging preparato, lo manda Lorenzo · [[parts-radar-changelog]]
 - 2026-10-27 · architettura: nuova versione, D43 (etichette del test fatte), D44 (motore dei vocali deciso, integrazione spenta) e nuova D48 sulle targhe nel vecchio formato provinciale · [[parts-radar-architettura]]
 - 2026-10-27 · kromeda-impatto: nuova versione, costo della trascrizione misurato (circa 1 $ al mese al volume del pilot) e più crediti targa attesi sulle richieste nate dai vocali · [[parts-radar-kromeda-impatto]]

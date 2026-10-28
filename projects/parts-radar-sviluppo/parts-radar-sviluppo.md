@@ -56,6 +56,11 @@ updated: 2026-10-26
 - [ ] Avvisare Cristian per lo staging: trascrizione dei vocali (aggiornamento del DB prima del servizio nuovo, variabili nuove, chiave all'accensione) ed etichettatore; testo preparato, lo manda Lorenzo ([[parts-radar-changelog]])
 - [ ] Lorenzo: creare il progetto Google a nome di BlueAge con un account di servizio per la trascrizione dei vocali, poi cancellare la chiave di prova sull'account personale ([[parts-radar-changelog]], [[parts-radar-architettura]])
 - [ ] Lorenzo: cancellare dal dispositivo le pagine autonome e i file delle etichette del test (chat e vocali veri) ([[parts-radar-changelog]])
+- [ ] Lorenzo: progetto Soniox UE a nome di BlueAge per la trascrizione (regione UE da far approvare a Soniox, contratto sul trattamento dei dati dalla Console) ([[parts-radar-issue-379]], [[parts-radar-changelog]])
+- [ ] Cristian: scegliere il canale degli allarmi (D4: email, Telegram...), serve all'allarme sul distacco della Coexistence ([[parts-radar-issue-379]])
+- [ ] Lorenzo: compilare il file locale delle auto e dei telefoni della prova controllata (fuori da git) ([[parts-radar-changelog]], [[parts-radar-issue-420]])
+- [ ] Prova a secco del flusso (0 crediti targa), appena ci sono le auto ([[parts-radar-issue-420]])
+- [ ] Cristian: decidere conservazione e copia delle registrazioni dal vivo di Kromeda; prima del rilascio serve una scadenza o la registrazione spenta ([[parts-radar-changelog]])
 
 ## Decisioni
 

@@ -12,6 +12,7 @@ updated: 2026-10-27
 ## Stato
 
 - Cockpit v2 costruito come step 16: pagina HTML statica generata da `cockpit.py` (template versionato, dati da `plancia.py`, fotografia del calendario dal task), pubblicata su claude.ai e ripubblicata dal task con una chiamata; mod e dashboard di tipo Dashboard ritirate; in attesa del criterio (3 giri) ([[2026-10-27-step-17-librarian]])
+- Primo giorno di osservazione (27/10) pulito: 7 giri su 7 OK, watermark avanzati, nessun doppione, numeri del Cockpit uguali a `plancia.py`, calendario letto dal connettore; Lorenzo ha aperto la pagina dal telefono la mattina e funziona. Due difetti di visualizzazione da correggere dopo il criterio ([[2026-10-27-verifica-task-27-10]])
 - Step 17 fatto: `cerca.py` (ricerca su titolo, frontmatter e corpo, ordinata per punteggio, backlink e data, 51 test), agente `librarian` e comandi `/oggi`, `/progetto`, `/cattura`, `/smista`; 10 domande di prova su 10 corrette con le fonti, una domanda fuori knowledge senza invenzioni; SPEC 1.20 ([[2026-10-27-step-17-librarian]])
 - Il vault è la versione personale e il banco di prova dell'offerta [[second-brain]]; dopo la prima settimana ha 310 note, 0 errori di controllo, 7 task schedulati al giorno e un loop di miglioramento (diari → curator → proposte) ([[2026-10-26-piano-prodotto-second-brain]])
 - Base solida da conservare: SPEC con PR, matrice delle scritture, controllo d'integrità a tre livelli, tracciabilità alla fonte, famiglia/versione, watermark con sovrapposizione, privacy by design, Obsidian in sola lettura ([[2026-10-26-piano-prodotto-second-brain]])
@@ -33,6 +34,8 @@ updated: 2026-10-27
 - [x] Step 16 · Cockpit v2: `cockpit.py`, template `.claude/templates/cockpit.html`, `plancia.py` esteso, task `cockpit` riscritto con il calendario dal connettore, prima pubblicazione · modello: Opus, revisione Fable ✅ 2026-10-27 ([[2026-10-27-step-17-librarian]])
 - [ ] Step 16 · criterio di accettazione: 3 giri del task `cockpit` (27, 28, 29/10) senza errori, con `/verifica-task cockpit`, e pagina aperta dal telefono la mattina 📅 2026-10-30 ([[2026-10-27-step-17-librarian]])
 - [ ] Step 16 · dopo il criterio: cancellare la vecchia dashboard e disattivare la mod sul PC ([[2026-10-27-step-17-librarian]])
+- [ ] Step 16 · dopo il criterio: `plancia.py` conta come note nuove anche le righe "nuova versione" del digest (il 27/10 6 invece di 2); correggere e aggiungere il test 📅 2026-10-31 ([[2026-10-27-verifica-task-27-10]])
+- [ ] Step 16 · dopo il criterio: `cockpit.py` mostra il proprio giro come "Da eseguire" perché la pagina si genera prima della riga nel digest; contarlo come in corso 📅 2026-10-31 ([[2026-10-27-verifica-task-27-10]])
 - [x] Step 17 · Librarian e ricerca: `cerca.py`, agente `librarian`, comandi `/oggi`, `/progetto`, `/cattura`, `/smista` · modello: Opus, revisione Fable ✅ 2026-10-27 ([[2026-10-27-step-17-librarian]])
 - [x] Step 17 · permessi in `.claude/settings.json` per `cerca.py`, `plancia.py` e `mcp__github__get_file_contents`, con l'ok di Lorenzo ✅ 2026-10-27 ([[2026-10-27-step-17-librarian]])
 - [ ] Step 17 · prova dei quattro comandi `/oggi`, `/progetto`, `/cattura`, `/smista` in una sessione nuova ([[2026-10-27-step-17-librarian]])
@@ -51,10 +54,12 @@ updated: 2026-10-27
 
 ## Prossimi passi
 
-- Permessi e connettore ai task `cockpit`, poi 3 giri osservati per chiudere lo step 16
-- Verifica dei 3 giri dei task sullo step 12, poi step 13 (configurazione separata dal motore)
+- Giri del 28 e 29/10 con `/verifica-task` per chiudere i criteri degli step 12 e 16 (il 27/10 è pulito, la prova dal telefono è fatta)
+- Dopo il criterio dello step 16: i due difetti del Cockpit, poi via la vecchia dashboard e la mod
+- Step 13 (configurazione separata dal motore)
 
 ## Fonti
 
 - [[2026-10-26-piano-prodotto-second-brain]]
 - [[2026-10-27-step-17-librarian]]
+- [[2026-10-27-verifica-task-27-10]]
