@@ -33,6 +33,6 @@ Capire come il vault diventa un prodotto commerciale usabile da un manager non t
 
 ## Aperti
 
-- [ ] Unire la PR di questa sessione (SPEC 1.22, scheda del progetto, tema)
+- [x] Unire la PR di questa sessione (SPEC 1.22, scheda del progetto, tema) (chiuso: PR #36 unita)
 - [ ] Prima di qualunque installazione esterna: chiudere la consegna dei file prodotti (scheda scaricabile e nome nella nota, o connettore che carica i binari)
 - [ ] Verificare quale piano Claude serve al cliente per sessioni cloud e task schedulati
