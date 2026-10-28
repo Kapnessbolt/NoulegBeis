@@ -7,6 +7,7 @@ project: "[[second-brain-prodotto]]"
 
 Una riga per avanzamento, dalla più recente: `- AAAA-MM-GG · cosa è successo · [[fonte]]`
 
+- 2026-10-28 · Step 12, giro 2 di 3 verificato: cinque task OK; sharepoint e outlook senza novità (watermark fermi, corretto), github avanzato a 23aa412 con 5 righe di log e 5 attività; 0 errori, nessun doppione · [[2026-10-26-piano-prodotto-second-brain]]
 - 2026-10-27 · Step 12, giro 1 di 3 verificato: i cinque task del mattino OK con gli script nuovi e lo stato per fonte; watermark avanzati (onedrive, outlook, github), 0 errori, nessun doppione, nessuna chiamata bloccata · [[2026-10-26-piano-prodotto-second-brain]]
 - 2026-10-26 · One pager e pagina navigabile dell'architettura inviati a Leonardo Pinsone (cc Cristian Schifone) per un parere · [[one-pager-second-brain]]
 - 2026-10-27 · Verifica del primo giro osservato: 7 task su 7 OK, step 12 e 16 al giorno 1 di 3; pagina del Cockpit aperta da Lorenzo dal telefono; trovati due difetti di conteggio del Cockpit, da correggere dopo il criterio · [[2026-10-27-verifica-task-27-10]]
