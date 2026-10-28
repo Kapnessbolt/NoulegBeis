@@ -4,7 +4,7 @@ status: attivo
 role: "AI consultant, in aula con Leonardo Pinsone"
 clients: ["[[manini]]"]
 people: ["[[leonardo-pinsone]]", "[[cristian-schifone]]", "[[luciano-baccarelli]]", "[[angelo-santilli]]"]
-updated: 2026-10-26
+updated: 2026-10-28
 ---
 
 # Manini · formazione AI

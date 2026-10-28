@@ -24,7 +24,7 @@ Mail interna di avvio con cui [[leonardo-pinsone]] presenta a [[cristian-schifon
 - [ ] Lorenzo: costruire, se fattibile, un questionario anonimo di tre minuti su Microsoft Forms per misurare il livello di partenza dei partecipanti
 - [ ] Lorenzo: studiare il materiale del corso operations (deck, relazione del primo blocco, relazione su criticità e opportunità) per avere il quadro del cliente
 - [ ] Lorenzo: portare il punto Manini alla riunione General
-- [ ] Leonardo: finalizzare con UBS e chiudere il calendario (proposta di cinque giornate, giovedì e venerdì, sempre in due, tra ottobre e dicembre)
+- [x] Leonardo: finalizzare con UBS e chiudere il calendario (proposta di cinque giornate, giovedì e venerdì, sempre in due, tra ottobre e dicembre) ✅ 2026-10-28 (superato dal calendario del foglio [[gruppi]], [[2026-10-28-calendario-manini]])
 
 ## Messaggi
 
