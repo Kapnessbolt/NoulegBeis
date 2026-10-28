@@ -4,13 +4,14 @@ status: attivo
 role: "Product owner e sviluppatore: dal vault personale al prodotto Second Brain"
 clients: []
 people: []
-updated: 2026-10-27
+updated: 2026-10-28
 ---
 
 # Second Brain · dal vault al prodotto
 
 ## Stato
 
+- Secondo giorno di osservazione (28/10) pulito: 7 giri su 7 OK, watermark di Outlook e GitHub avanzati, nessun doppione, numeri del Cockpit uguali a `plancia.py`; confermati i due difetti già tracciati per il 31/10. Il log di parts-radar ha due righe del 27/10 per nota perché il repo ha lavorato prima e dopo il watermark: non è un doppione, SPEC 6.6 da chiarire ([[2026-10-28-verifica-task-28-10]])
 - Cockpit v2 costruito come step 16: pagina HTML statica generata da `cockpit.py` (template versionato, dati da `plancia.py`, fotografia del calendario dal task), pubblicata su claude.ai e ripubblicata dal task con una chiamata; mod e dashboard di tipo Dashboard ritirate; in attesa del criterio (3 giri) ([[2026-10-27-step-17-librarian]])
 - Primo giorno di osservazione (27/10) pulito: 7 giri su 7 OK, watermark avanzati, nessun doppione, numeri del Cockpit uguali a `plancia.py`, calendario letto dal connettore; Lorenzo ha aperto la pagina dal telefono la mattina e funziona. Due difetti di visualizzazione da correggere dopo il criterio ([[2026-10-27-verifica-task-27-10]])
 - Step 17 fatto: `cerca.py` (ricerca su titolo, frontmatter e corpo, ordinata per punteggio, backlink e data, 51 test), agente `librarian` e comandi `/oggi`, `/progetto`, `/cattura`, `/smista`; 10 domande di prova su 10 corrette con le fonti, una domanda fuori knowledge senza invenzioni; SPEC 1.20 ([[2026-10-27-step-17-librarian]])
@@ -54,7 +55,7 @@ updated: 2026-10-27
 
 ## Prossimi passi
 
-- Giri del 28 e 29/10 con `/verifica-task` per chiudere i criteri degli step 12 e 16 (il 27/10 è pulito, la prova dal telefono è fatta)
+- Giro del 29/10 con `/verifica-task` per chiudere i criteri degli step 12 e 16 (27 e 28/10 puliti, la prova dal telefono è fatta); nella PR di chiusura chiarire SPEC 6.6 (una riga di log per giorno e per giro)
 - Dopo il criterio dello step 16: i due difetti del Cockpit, poi via la vecchia dashboard e la mod
 - Step 13 (configurazione separata dal motore)
 
@@ -63,3 +64,4 @@ updated: 2026-10-27
 - [[2026-10-26-piano-prodotto-second-brain]]
 - [[2026-10-27-step-17-librarian]]
 - [[2026-10-27-verifica-task-27-10]]
+- [[2026-10-28-verifica-task-28-10]]
