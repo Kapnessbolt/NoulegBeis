@@ -1,6 +1,6 @@
 # SPEC · Second Brain BlueAge (personale)
 
-Versione 1.24 · 29/10/2026 · Owner: Lorenzo Curione
+Versione 1.25 · 29/10/2026 · Owner: Lorenzo Curione
 
 Questo file è la specifica di riferimento del vault. Ogni sessione Claude Code che costruisce o modifica il sistema parte da qui. Le modifiche alla specifica si fanno con una PR dedicata.
 
@@ -653,4 +653,5 @@ Decisioni prese con l'utente il 28/10 (diario `2026-10-28-second-brain-forma-del
 - Un vault = un utente (1). Un reparto o un team sono più vault, forse con temi condivisi: da decidere con il primo cliente a più persone, dopo lo step 19.
 - Il Cockpit v2 (step 16) è una pagina statica pubblicata come artifact su claude.ai: dipende da claude.ai solo come hosting, non da funzioni in early access. Se anche quello cambiasse, la stessa pagina si può pubblicare altrove senza toccare lo script; `home.md` e il digest restano la vista di riserva. La dashboard di tipo Dashboard con `ArtifactData` e la mod dell'app desktop sono ritirate il 27/10.
 - Fonti diverse da Microsoft 365 (Google Workspace, altri repository): dallo step 13 il perimetro è configurazione (`vault.yaml`); una fonte nuova richiede però un ramo nuovo in `perimetro.py` e nell'ingestor.
+- Ricerca vettoriale (29/10, diario `2026-10-29-database-vettoriale`): oggi la ricerca è lessicale (`cerca.py`) e agentica (`librarian`, 9.3), senza indice. Si passa alla ricerca ibrida al primo di questi trigger: recall sotto il 90% (note attese nei primi 5 risultati) sul set di valutazione per colpa del vocabolario; oltre circa 5.000 note o più di 4–5 giri di ricerca in media per risposta; primo cliente a più persone; note in lingue miste. Forma prevista: indice vettoriale come file derivato e ricostruibile (sqlite-vec o LanceDB) dietro `cerca.py`, ricerca BM25 + vettori, embedding con un modello locale multilingue o via API (Voyage) con accordo sul trattamento dei dati; agenti e comandi non cambiano. Da decidere al momento: indice committato o ricostruito all'avvio del container. Esclusi un database vettoriale gestito (solo se BlueAge ospita più clienti o vault di team) e un indice sugli originali, già coperto dal connettore (Microsoft Search, semantic index di Copilot).
 - Lingua: regole, template e etichette del Cockpit sono in italiano. Dallo step 13 i nomi delle sezioni che gli script leggono stanno in `vault.yaml` (`sezioni`) e la lingua è un campo (`vault.lingua`); una versione in altra lingua (template, regole, etichette) è una decisione commerciale, non tecnica.

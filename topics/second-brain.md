@@ -4,7 +4,7 @@ kind: offerta
 projects: ["[[second-brain-prodotto]]"]
 clients: []
 tags: [ai, pacchetto]
-updated: 2026-10-28
+updated: 2026-10-29
 ---
 
 # Second Brain
@@ -22,6 +22,7 @@ Pacchetto da vendere che costruisce per un manager o un reparto una memoria di l
 - Forma del prodotto (28/10): BlueAge installa in una giornata e gestisce ogni mese, la gestione è il prodotto; il cliente fa tre gesti: Leggi (Cockpit dal telefono), Chiedi (chat sul vault con risposte e fonti), Lavora (chat sul vault in cui fa le sue attività con Claude, deck compresi, e tutto resta nel vault); git, PR, verifica dei giri e curator restano a BlueAge ([[2026-10-28-second-brain-forma-del-prodotto]])
 - Tier per skill, non per ore: Start senza skill, Completo con la skill deck sul template del cliente, Executive con più skill; il briefing è il wizard di `/installa` che scrive la configurazione, con o senza BlueAge presente ([[2026-10-28-second-brain-forma-del-prodotto]])
 - Repo del cliente privato nell'organizzazione GitHub di BlueAge con accordo sul trattamento dei dati; prerequisiti: piano Claude del cliente (quale, da verificare), account GitHub anche gratuito, connettore Microsoft 365; sessioni e task girano sull'account del cliente, quindi il consumo è suo ([[2026-10-28-second-brain-forma-del-prodotto]])
+- Ricerca (29/10): non si vende "il RAG vettoriale", commodity e terreno di Copilot, ma lo strato curato e tracciato alla fonte con la gestione mensile; la ricerca è predisposta per diventare ibrida e si attiva quando il volume lo giustifica; per i clienti con Copilot il vault può stare anche su SharePoint, indicizzato da Copilot ([[2026-10-29-database-vettoriale]])
 - Primo passo: standardizzare la versione interna e provarla su tutto il team, a partire da Leonardo ([[blueage-le-idee-per-crescere]], [[ieri-sera-e-oggi-idee-su-cui-ragionare]])
 
 ## Dove è usato
