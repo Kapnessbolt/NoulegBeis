@@ -1,4 +1,4 @@
-# Task `ingest-sharepoint` · ogni giorno alle 06:50 (Europe/Rome)
+# Task `ingest-sharepoint` · orari in `vault.yaml` (`task`)
 
 Connettore: Microsoft 365. Prima leggi `.claude/routines/_comune.md` e seguilo.
 

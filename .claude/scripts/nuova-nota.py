@@ -9,9 +9,9 @@ Uso:
   `inbox`, `journal`, `session`, `proposal`, `project`, `project-log`); il template è quello
   di `_templates/` per quel tipo.
 - <percorso>: relativo alla radice del vault, nella cartella del tipo, con il nome in slug
-  (es. `sources/sharepoint/salesmarketing/deck/blueage-companyprofile.md`).
+  (es. `sources/sharepoint/salesmarketing/deck/company-profile.md`).
 - `--titolo` sostituisce `{{title}}` (obbligatorio se il template lo usa); `{{date:YYYY-MM-DD}}`
-  diventa la data di oggi in Europe/Rome.
+  diventa la data di oggi nel fuso del vault (`vault.yaml`).
 - `--campo chiave=valore`: valore in YAML. Liste tra quadre (`--campo 'tags=[ddt, brief]'`),
   wikilink anche senza virgolette (`--campo projects=[[manini]]` diventa `["[[manini]]"]`),
   `current.*` con la notazione a punto (`--campo current.item_id=01EF...`), istanti
@@ -38,14 +38,14 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import config  # noqa: E402
 import nota  # noqa: E402
 from famiglia import famiglia  # noqa: E402
 
 try:
-    from zoneinfo import ZoneInfo
-    OGGI = dt.datetime.now(ZoneInfo("Europe/Rome")).date()
-except Exception:  # zoneinfo senza database dei fusi: va bene la data UTC
-    OGGI = dt.datetime.now(dt.timezone.utc).date()
+    OGGI = config.oggi()
+except config.ConfigErrata as e:
+    sys.exit("Configurazione non valida:\n" + "\n".join(f"- {m}" for m in e.errori))
 
 
 def nome_versione(data):

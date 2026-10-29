@@ -3,7 +3,7 @@ type: session
 date: 2026-10-29
 surface: cloud
 topics: ["[[second-brain]]"]
-outcome: "Tre difetti di conteggio del Cockpit corretti con i test (PR 1); step 13 in corso"
+outcome: "Tre difetti di conteggio del Cockpit corretti con i test (PR #40, mergiata); step 13 codificato con vault.yaml e config.py, in osservazione per tre giri dei task"
 ---
 
 # Conteggi del Cockpit e step 13
@@ -18,13 +18,26 @@ Correggere i tre difetti di conteggio del Cockpit in scadenza il 31/10, ognuno c
 - Una nuova versione di un documento conta tra le note aggiornate, non tra le nuove: il Cockpit mostra "N note nuove · M aggiornate".
 - Le decisioni del digest si contano tutte, con o senza data, tranne le righe che dicono solo che non c'è nulla ("Nessun progetto fermo…").
 - Il giro del cockpit che genera la pagina è "In corso" nella pagina stessa e non entra nel totale "task OK su N"; la correzione sta in `cockpit.py` perché solo la pagina sa di essere quel giro, `/oggi` e `/verifica-task` restano su `task.json`.
+- Step 13: il codice (`config.py`, script, test, setup cloud) lo scrive un subagente Opus; prosa di agenti, routine, comandi, SPEC e CLAUDE.md la sessione.
+- `vault.yaml` sta alla radice, fuori da `.claude/`: il motore non contiene valori del vault, la configurazione sì. Contiene anche la sezione `agenti` (strumenti dei connettori per agente), perché ingestor e librarian non hanno gli stessi strumenti.
+- I permessi dei connettori in `settings.json` e la riga `tools` degli agenti si generano da `vault.yaml` con `config.py applica`; `applica` resta fuori dai permessi automatici perché riscrive i permessi stessi, gli altri sottocomandi di `config.py` (sola lettura) ci sono.
+- Gli orari dei task restano anche nella tabella di SPEC 7 finché lo step 14 non decide la fonte unica: il controllo del vault dà errore se divergono da `vault.yaml` (provato cambiando un orario in SPEC: 1 errore).
+- Nella prosa il nome dell'utente e "BlueAge" come organizzazione lasciano il posto a `vault.utente` e `vault.organizzazione`; le skill `blueage-*` restano com'erano (contenuto, step 19). Le etichette del Cockpit restano in italiano nel codice (lingua: decisione commerciale, SPEC 14).
+- Il quarto problema del Cockpit (righe di novità aggregate nel digest del 29/10, ammesse dalla routine `digest` oltre 30 voci) non entra in questa sessione: resta un'attività.
 
 ## File toccati
 
 - `.claude/scripts/plancia.py`, `.claude/scripts/cockpit.py`, `.claude/routines/cockpit.md`
 - `.claude/scripts/tests/test_plancia.py`, `.claude/scripts/tests/test_cockpit.py`
+- `vault.yaml` (nuovo), `.claude/scripts/config.py` e `tests/test_config.py` (nuovi), `.claude/setup/ambiente-cloud.sh` (nuovo)
+- `.claude/scripts/perimetro.py`, `famiglia.py`, `nuova-nota.py`, `controlla-vault.py`, test e `conftest.py` con un `vault.yaml` di prova
+- `.claude/agents/*.md`, `.claude/routines/*.md`, `.claude/commands/*.md`, `.claude/skills/chiudi-sessione/SKILL.md`, `.claude/settings.json`, `.github/workflows/controllo-vault.yml`
+- `SPEC.md` (1.23: nuova 2.1, 3, 4.4, 7, 10, 14), `CLAUDE.md` §6
 - `projects/second-brain-prodotto/second-brain-prodotto.md`, `projects/second-brain-prodotto/second-brain-prodotto-log.md`
 
 ## Aperti
 
 - [ ] Formato delle novità nel digest: righe aggregate del 29/10 (`Nuove (45): …`) non contate dal Cockpit
+- [ ] Step 13: tre giri dei task dopo il merge (30, 31/10, 1/11) con `/verifica-task`
+- [ ] Script di setup dell'ambiente cloud nell'interfaccia di claude.ai: `bash .claude/setup/ambiente-cloud.sh`
+- [ ] Step 14 solo con l'ok dell'utente

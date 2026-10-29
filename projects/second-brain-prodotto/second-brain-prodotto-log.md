@@ -7,6 +7,7 @@ project: "[[second-brain-prodotto]]"
 
 Una riga per avanzamento, dalla più recente: `- AAAA-MM-GG · cosa è successo · [[fonte]]`
 
+- 2026-10-29 · Step 13 codificato: `vault.yaml` e `config.py`, script, agenti, routine e comandi senza valori del vault, controllo degli orari di SPEC 7 contro `vault.yaml` in CI, setup cloud committato, 268 test; SPEC 1.23 in PR; in osservazione per 3 giri dei task · [[2026-10-29-cockpit-conteggi-e-step-13]]
 - 2026-10-29 · Tre difetti di conteggio del Cockpit corretti in `plancia.py` e `cockpit.py`, con 6 casi di test che falliscono prima e passano dopo (228 test); trovato un quarto problema: il digest del 29/10 ha righe di novità aggregate che il contatore non legge · [[2026-10-29-cockpit-conteggi-e-step-13]]
 - 2026-10-29 · Step 16 chiuso: tre giri del task `cockpit` OK (27, 28, 29/10) e pagina verificata da Lorenzo dal telefono; restano i tre difetti di conteggio di `plancia.py` e `cockpit.py`, in scadenza il 31/10 · [[2026-10-26-piano-prodotto-second-brain]]
 - 2026-10-29 · Step 12, giro 3 di 3 verificato e criterio chiuso: cinque task OK; prova di carico con la copia della cartella Velo-CE su SharePoint (298 risultati, 45 note nuove, 13 nuove versioni, 32 copie in `also_at`); 0 errori su 369 note, nessun doppione; da decidere alla riconciliazione se spostare le note Velo-CE sotto `cristian/` · [[2026-10-26-piano-prodotto-second-brain]]

@@ -3,12 +3,12 @@ description: Verifica i giri dei task schedulati (SPEC 7): riga nel digest, comm
 argument-hint: "[task] [AAAA-MM-GG]"
 ---
 
-Verifica i giri dei task schedulati. Sola lettura: non correggere niente senza l'ok di Lorenzo.
+Verifica i giri dei task schedulati. Sola lettura: non correggere niente senza l'ok dell'utente.
 
 Argomenti: `$ARGUMENTS`
 
-1. Argomenti: un task di SPEC 7 (`ingest-sharepoint`, `ingest-outlook`, `ingest-github`, `digest`, `cockpit`, `reconcile`, `curator`) e una data. Senza task, tutti; senza data, oggi (`TZ=Europe/Rome date +%F`).
-2. Giri attesi: gli orari del giorno da SPEC 7 (la domenica anche `reconcile` e `curator`). Ora attuale con `TZ=Europe/Rome date +%H:%M`: un giro la cui ora non è passata da almeno 45 minuti è "atteso", non "mancante".
+1. Argomenti: un task di `vault.yaml` (elenco del giorno con `python3 .claude/scripts/config.py task <data>`, gli stessi di SPEC 7) e una data. Senza task, tutti; senza data, oggi (`python3 .claude/scripts/config.py oggi`).
+2. Giri attesi: `python3 .claude/scripts/config.py task <data>` (orari e task del giorno da `vault.yaml`; con `--digest` solo quelli che scrivono nel digest: il `curator` no, il suo esito è la PR). Ora attuale con `python3 .claude/scripts/config.py ora`: un giro la cui ora non è passata da almeno 45 minuti è "atteso", non "mancante".
 3. Per ogni giro raccogli:
    - **digest**: la riga di `## Esito dei task` in `journal/<data>.md` (task, ora, esito). Il `curator` non scrive nel digest: per lui la PR verso `main` aperta quel giorno con titolo `curator: settimana …` (`gh pr list --state all --search 'curator: settimana in:title'`, o `list_pull_requests` del connettore GitHub). Il branch non dice niente: nel task schedulato è quello assegnato alla sessione (`claude/<nome>`), non `claude/curator-<data>`. Nessuna PR va bene se non ha trovato niente da proporre;
    - **commit**: `git fetch origin main`, poi `git log origin/main --since=<data> --until=<data+1> --format='%h %ad %s' --date=iso` con il prefisso del task (`ingest(sharepoint)`, `ingest(outlook)`, `ingest(github)`, `ingest(riconcilia)`, `journal:`, `cockpit:`) e `git show --stat <hash>`;
@@ -18,7 +18,7 @@ Argomenti: `$ARGUMENTS`
    - `python3 .claude/scripts/controlla-vault.py`: errori e possibili doppioni nei file toccati dal giro;
    - ingest: nessuna nota fonte doppia per la stessa famiglia o lo stesso thread; le righe nuove in `<slug>-log.md` e in `## Attività` non ripetono righe già presenti;
    - `ingest-github`: una sola riga di log per ogni giorno con voci nuove nel changelog (SPEC 6.6);
-   - `digest`: ora in Europe/Rome, finestra dall'ultimo commit `journal:` (`.claude/routines/digest.md`);
+   - `digest`: ora nel fuso del vault, finestra dall'ultimo commit `journal:` (`.claude/routines/digest.md`);
    - `cockpit`: numeri di progetti e attività uguali a quelli di `python3 .claude/scripts/plancia.py "$(mktemp -d)"`;
    - `curator`: nessun commit su `main`, PR verso `main` con al massimo 5 proposte.
 5. Rapporto, una riga per giro: `<task> <ora attesa> → OK | ERRORE | MANCANTE | ANOMALIA`, con la prova (commit, watermark prima → dopo, note). Per ogni anomalia: causa probabile e correzione proposta (nota, procedura in `.claude/routines/`, SPEC).

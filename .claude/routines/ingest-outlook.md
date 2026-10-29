@@ -1,4 +1,4 @@
-# Task `ingest-outlook` · ogni giorno alle 07:05 e alle 13:15 (Europe/Rome)
+# Task `ingest-outlook` · orari in `vault.yaml` (`task`)
 
 Connettore: Microsoft 365. Prima leggi `.claude/routines/_comune.md` e seguilo.
 

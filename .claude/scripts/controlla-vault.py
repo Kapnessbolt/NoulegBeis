@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 """Controllo del vault (SPEC 4.4): integrità dei collegamenti, tracciabilità, schema, doppioni,
-nomi del connettore Microsoft 365 tra agente ingestor e permessi, possibili dati riservati
-(CLAUDE.md §5) nel corpo delle note.
+possibili dati riservati (CLAUDE.md §5) nel corpo delle note, e la configurazione: `vault.yaml`
+valido, orari dei task uguali a SPEC 7, permessi mcp di `.claude/settings.json` e `tools` degli
+agenti uguali a quelli che `vault.yaml` dà (config.py, `verifica`).
 
 Dati riservati: controllo a pattern sul corpo delle note (non sul frontmatter, che contiene
 legittimamente `item_id`, `uri` e `conversation_id` lunghi). Ogni corrispondenza è un errore,
 con la categoria e al massimo i primi 4 caratteri del valore: IBAN; telefoni italiani (`+39`
 e cellulari `3xx`, esclusi importi, ore, percentuali e numeri con separatori delle migliaia);
 chiavi e token con prefisso noto (`sk-`, `ghp_`, `github_pat_`, `xox?-`, `AKIA`, JWT `eyJ`);
-stringhe esadecimali o base64 di 40+ caratteri; GUID (tranne i nomi di server MCP già in
-`.claude/settings.json`); ID e passcode di riunione; password in chiaro (`password: valore`;
+stringhe esadecimali o base64 di 40+ caratteri; GUID (tranne i nomi di server MCP di
+`vault.yaml` e di `.claude/settings.json`); ID e passcode di riunione; password in chiaro (`password: valore`;
 la parola "password" da sola è lecita, come i segnaposto `omessa`, `***`, `[...]`).
 
 Uso:
@@ -39,6 +40,9 @@ try:
     import yaml
 except ImportError:
     sys.exit("Manca PyYAML: pip install pyyaml")
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import config  # noqa: E402
 
 ROOT = Path(os.environ.get("VAULT_ROOT") or Path(__file__).resolve().parents[2]).resolve()
 
@@ -71,11 +75,12 @@ TEMPLATE_BY_TYPE = {
     "session": "session",
     "proposal": "proposal",
 }
-# Sezioni in cui ogni punto deve citare la fonte (SPEC 4.1, tracciabilità)
+# Sezioni in cui ogni punto deve citare la fonte (SPEC 4.1, tracciabilità): chiavi di
+# `sezioni` in vault.yaml
 TRACED_SECTIONS = {
-    "topic": ("Punti chiave",),
-    "client": ("Chi sono", "Relazione con BlueAge"),
-    "project": ("Stato", "Decisioni"),
+    "topic": ("punti_chiave",),
+    "client": ("chi_sono", "relazione"),
+    "project": ("stato", "decisioni"),
 }
 # Note che devono avere almeno un collegamento in entrata
 NEED_INBOUND = {"client", "person", "topic"}
@@ -238,14 +243,16 @@ PASSWORD_RE = re.compile(r"(?i)\b(?:password|pwd|passcode)\s*[:=]\s*(\S+)")
 SEGNAPOSTO = {"omessa", "omesso", "omesse", "omessi", "riservata", "riservato", "nessuna", "n/d", "-"}
 
 
-def guid_noti():
-    """GUID già in configurazione (nomi di server MCP in settings.json): non sono dati dei clienti."""
+def guid_noti(conf=None):
+    """GUID già in configurazione (nomi di server MCP in vault.yaml e in settings.json): non
+    sono dati dei clienti."""
+    noti = {s.lower() for s in config.server_noti(conf)} if conf else set()
     try:
         testo = (ROOT / ".claude" / "settings.json").read_text(encoding="utf-8")
     except OSError:
-        return set()
+        return noti
     # `mcp__<guid>__strumento`: il trattino basso è una lettera per \b, quindi qui niente confini
-    return {g.lower() for g in re.findall(GUID_RE.pattern.replace(r"\b", ""), testo, re.I)}
+    return noti | {g.lower() for g in re.findall(GUID_RE.pattern.replace(r"\b", ""), testo, re.I)}
 
 
 def dati_riservati(body, noti=frozenset()):
@@ -319,41 +326,28 @@ def controlla_riservati(rel, text, body, noti):
         err(rel, f"possibile dato riservato: {cat} (riga {riga}, `{valore[:4]}…`{altre}; CLAUDE.md §5)")
 
 
-# SPEC 2: strumenti in lettura del connettore Microsoft 365, da elencare per ogni nome di server
-M365_LETTURA = {"sharepoint_search", "sharepoint_folder_search", "outlook_email_search", "read_resource"}
-
-
-def server_m365(nomi):
-    """{server: strumenti in lettura} dai nomi `mcp__<server>__<strumento>`."""
-    out = defaultdict(set)
-    for nome in nomi:
-        parti = nome.strip().split("__")
-        if len(parti) == 3 and parti[0] == "mcp" and parti[2] in M365_LETTURA:
-            out[parti[1]].add(parti[2])
-    return out
-
-
-def controlla_connettore():
-    """I nomi del server M365 nei `tools` dell'ingestor e nei permessi di settings.json coincidono."""
-    agente, impost = ".claude/agents/ingestor.md", ".claude/settings.json"
-    fm, _ = split_frontmatter((ROOT / agente).read_text(encoding="utf-8"))
-    tools = server_m365(str((yaml.safe_load(fm) or {}).get("tools", "")).split(","))
-    allow = json.loads((ROOT / impost).read_text(encoding="utf-8")).get("permissions", {}).get("allow", [])
-    permessi = server_m365(allow)
-    for nomi, dove, altri, altrove in ((tools, agente, permessi, impost), (permessi, impost, tools, agente)):
-        for server, strumenti in nomi.items():
-            mancano = sorted(M365_LETTURA - strumenti)
-            if mancano:
-                err(dove, f"server M365 `{server}`: mancano {', '.join(mancano)}")
-            if server not in altri:
-                err(altrove, f"server M365 `{server}` presente in `{dove}` ma non qui (SPEC 2)")
+def controlla_configurazione():
+    """`vault.yaml` valido, coerente con SPEC 7 e con i permessi mcp (config.py). La
+    configurazione, o None se non è valida (gli errori sono già nel rapporto)."""
+    try:
+        conf = config.carica(ROOT)
+    except config.ConfigErrata as e:
+        for m in e.errori:
+            err(config.FILE, m)
+        return None
+    for m in config.problemi_spec(ROOT, conf):
+        err([config.SPEC, config.FILE], m)
+    for dove, m in config.problemi_permessi(ROOT, conf):
+        err([dove, config.FILE], m)
+    return conf
 
 
 def main():
     indice = "--indice" in sys.argv
     solo_modificati = "--modificati" in sys.argv
     templates = load_templates()
-    noti = guid_noti()
+    conf = controlla_configurazione()
+    noti = guid_noti(conf)
     by_slug = defaultdict(list)
     parsed = {}
 
@@ -431,7 +425,8 @@ def main():
     for rel, (data, body) in parsed.items():
         tipo = data.get("type")
         secs = sections(body)
-        for name in TRACED_SECTIONS.get(tipo, ()):
+        for chiave in TRACED_SECTIONS.get(tipo, ()) if conf else ():
+            name = conf["sezioni"][chiave]
             for item in untraced_items(secs.get(name, ""), citabili):
                 err(rel, f"`## {name}`: punto senza fonte ({item[:60]}…)")
         if tipo in NEED_INBOUND and not inbound.get(rel.stem):
@@ -513,9 +508,6 @@ def main():
         if fonte in ("sharepoint", "onedrive", "github") and "fuori-perimetro" not in as_list(d.get("tags")):
             if str(rel) not in tracked:
                 avv(rel, f"documento non registrato nello stato (.state/{fonte}.json)")
-
-    # 7. Configurazione: nomi del connettore Microsoft 365 (SPEC 2)
-    controlla_connettore()
 
     # Solo gli errori che dipendono dalle modifiche in corso (hook di commit)
     if solo_modificati:

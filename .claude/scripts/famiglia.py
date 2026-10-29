@@ -11,8 +11,8 @@ suffissi di versione, di stato e di copia; poi applica lo slug. Esempio obbligat
 - Suffissi in coda, anche ripetuti: versione (`_v24`, ` v2`, `- v001`, `_v1.2`, `_rev3`,
   `version 1`, una lettera maiuscola isolata dopo `_` come `PULSE_Sintesi_C`), stato
   (`_final`, `_def`, `_definitivo`, `_signed`, `_firmato`, `_sent`, `_inviato`, `_bozza`,
-  `_draft`), copia (`(1)`, `- Copia`, `copy`), firma dell'autore (`_BlueAge`, costante
-  `FIRME_IN_CODA`).
+  `_draft`), copia (`(1)`, `- Copia`, `copy`), firma dell'autore (`fonti.firme_in_coda` in
+  `vault.yaml`, es. `_<Firma>`).
 - Slug: minuscolo, senza accenti, apostrofi tolti (`d'acquisto` → `dacquisto`), ogni altro
   carattere che non è lettera o cifra diventa `-`, trattini doppi ridotti, niente trattini ai bordi.
 
@@ -41,6 +41,9 @@ import sys
 import unicodedata
 from pathlib import Path
 from urllib.parse import unquote
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import config  # noqa: E402
 
 ROOT = Path(os.environ.get("VAULT_ROOT") or Path(__file__).resolve().parents[2]).resolve()
 
@@ -86,10 +89,17 @@ VERSIONE = r"(?:v|ver|rev|version|versione)[\s_.]?\d+(?:[._]\d+)*"
 STATO = r"(?:final|finale|def|definitivo|definitiva|signed|firmato|firmata|sent|inviato|inviata|bozza|draft)"
 COPIA = r"(?:copia|copy)"
 CODA_RE = re.compile(rf"(?:(?:{SEP}+|^)(?:{VERSIONE}|{STATO}|{COPIA})|\s*\(\d+\))\s*$", re.I)
-# Firma dell'autore in coda (`Manini_G1_Strategia_BlueAge.pptx`): non distingue il documento.
-# Nello step 13 (SPEC 13.1) passa in `vault.yaml` con il nome del vault.
-FIRME_IN_CODA = ("blueage",)
-FIRMA_RE = re.compile(rf"{SEP}+(?:{'|'.join(FIRME_IN_CODA)})\s*$", re.I)
+# Firma dell'autore in coda (`Manini_G1_Strategia_<Firma>.pptx`): non distingue il documento.
+# Le firme sono in `vault.yaml` (`fonti.firme_in_coda`).
+_FIRMA = {}
+
+
+def firma_re():
+    firme = config.firme_in_coda()
+    if firme not in _FIRMA:
+        _FIRMA[firme] = re.compile(rf"{SEP}+(?:{'|'.join(map(re.escape, firme))})\s*$", re.I) if firme else None
+    return _FIRMA[firme]
+
 LETTERA_RE = re.compile(r"_[A-Z]$")  # PULSE_Sintesi_C: lettera di versione (maiuscola, dopo `_`)
 ESTENSIONE_RE = re.compile(r"\.[A-Za-z0-9]{1,5}$")
 SPAZZATURA_RE = re.compile(rf"{SEP}+$")
@@ -111,8 +121,8 @@ def togli_coda(s):
     m = CODA_RE.search(s)
     if m and m.start() > 0:
         return s[:m.start()], True
-    for regola in (FIRMA_RE, LETTERA_RE):
-        m = regola.search(s)
+    for regola in (firma_re(), LETTERA_RE):
+        m = regola.search(s) if regola else None
         if m and m.start() > 0:
             return s[:m.start()], True
     return s, False

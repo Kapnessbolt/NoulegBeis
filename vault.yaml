@@ -1,0 +1,128 @@
+# vault.yaml · configurazione del vault (SPEC 13.1, step 13)
+#
+# Tutto ciò che distingue questo vault da un altro sta qui: chi lo usa, fuso e lingua, fonti con
+# perimetro ed esclusioni, nomi del connettore, repository di progetto, task schedulati, nomi
+# delle sezioni. Il motore (`.claude/`: script, agenti, routine, comandi) legge da qui e non
+# contiene valori di questo vault. Lo legge `python3 .claude/scripts/config.py` (`--help`).
+#
+# Dopo una modifica: `python3 .claude/scripts/config.py verifica` (schema, SPEC 7 e permessi),
+# e se cambiano i connettori `python3 .claude/scripts/config.py applica` (riscrive i permessi di
+# `.claude/settings.json` e i `tools` degli agenti). Gli orari dei task vanno cambiati anche in
+# SPEC 7 e nei task di claude.ai: la CI segnala se SPEC e questo file divergono.
+
+versione: 1
+
+vault:
+  nome: Second Brain BlueAge
+  utente: Lorenzo Curione           # proprietario del vault: escluso dai partecipanti delle mail
+  organizzazione: BlueAge           # l'azienda dell'utente
+  organizzazione_slug: blueage      # `org` delle persone con email del dominio
+  dominio_organizzazione: blueage.it
+  fuso: Europe/Rome
+  lingua: it
+  titolo_cockpit: Cockpit BlueAge
+
+# Nomi delle sezioni delle note che gli script leggono o controllano (template in `_templates/`).
+sezioni:
+  stato: Stato
+  attivita: Attività
+  decisioni: Decisioni
+  prossimi_passi: Prossimi passi
+  fonti: Fonti
+  chi_sono: Chi sono
+  relazione: Relazione con BlueAge
+  punti_chiave: Punti chiave
+  interazioni: Interazioni recenti
+  novita: Novità ingerite
+  esito_task: Esito dei task
+  da_fare: Da fare                  # checkbox delle note in `inbox/`
+
+connettori:
+  # Server MCP del connettore Microsoft 365: il nome cambia tra sessioni interattive, task e
+  # versioni (il 23/10 `Microsoft-365`, poi l'UUID). Si usano solo gli strumenti in lettura.
+  microsoft365:
+    server:
+      - Microsoft_365
+      - Microsoft-365
+      - 6501b655-9b79-4832-8016-17eddb19e4b6
+    lettura: [sharepoint_search, sharepoint_folder_search, outlook_email_search, read_resource]
+    calendario: [outlook_calendar_search]
+  github:
+    server: [github]
+    lettura: [issue_read, get_file_contents]
+
+# Strumenti dei connettori nei `tools` di ogni agente (`.claude/agents/<agente>.md`): un gruppo
+# (`microsoft365.lettura`) o un solo strumento (`github.issue_read`), per tutti i server del
+# connettore. I permessi di `.claude/settings.json` hanno invece tutti i gruppi di tutti i
+# connettori. Un agente che non è qui non usa connettori.
+agenti:
+  ingestor: [microsoft365.lettura, github.issue_read]
+  librarian: [microsoft365.lettura, github.lettura]
+
+fonti:
+  sharepoint:
+    tenant: https://blueagesrl.sharepoint.com
+    sito: internal                       # gli altri siti finiscono in `sources/sharepoint/_<sito>/`
+    librerie: [SalesMarketing, Delivery, Shared Documents]
+    escluse: [Knowledge, SiteAssets]     # solo documentazione: tutto ciò che non è in `librerie` è fuori
+  onedrive:
+    tenant: https://blueagesrl-my.sharepoint.com
+    utente: lorenzo_curione_blueage_it
+    libreria: Documents
+    cartella: BlueAge
+    cartella_chat_finale: chat           # la cartella che finisce così riceve i riassunti delle chat
+  esclusioni:                            # SharePoint e OneDrive, in qualunque punto del percorso
+    cartelle: [siteassets, _originali, _sorgenti, dati]
+    finali: [transcript]                 # `05 Transcript`
+    dentro: [[evidenze, export]]         # `06 Evidenze/Export`
+  tipi_processati: [pdf, docx, pptx, xlsx, md, txt]
+  firme_in_coda: [blueage]               # firma dell'autore in coda ai nomi (`…_BlueAge.pptx`): fuori dalla famiglia
+  outlook:
+    mittenti_scartati: [no-reply, noreply, donotreply, notifications, notification, mailer-daemon]
+  github:
+    repository:
+      - repo: cristian-schifone/parts-radar
+        branch: main
+        progetto: parts-radar-sviluppo   # elenco dei file e delle issue in SPEC 5.4
+
+# Task schedulati (SPEC 7). Orari nel fuso del vault; `giorni`: ogni-giorno | domenica | lun-ven …
+# `nome_claude` è il nome del task nell'interfaccia di claude.ai, se diverso.
+# `digest: false` per i task che non scrivono la riga d'esito nel digest.
+task:
+  - nome: ingest-sharepoint
+    orari: ["06:50"]
+    giorni: ogni-giorno
+    modello: opus
+    connettori: [microsoft365]
+  - nome: ingest-outlook
+    orari: ["07:05", "13:15"]
+    giorni: ogni-giorno
+    modello: opus
+    connettori: [microsoft365]
+  - nome: ingest-github
+    orari: ["07:20"]
+    giorni: ogni-giorno
+    modello: opus
+    connettori: [github]
+  - nome: cockpit
+    orari: ["07:40", "13:40"]
+    nome_claude: [DailyBoard, DailyBoard2]
+    giorni: ogni-giorno
+    modello: sonnet
+    connettori: [microsoft365]
+  - nome: digest
+    orari: ["07:45"]
+    giorni: ogni-giorno
+    modello: sonnet
+    connettori: []
+  - nome: reconcile
+    orari: ["08:45"]
+    giorni: domenica
+    modello: sonnet
+    connettori: [microsoft365]
+  - nome: curator
+    orari: ["21:10"]
+    giorni: domenica
+    modello: opus
+    connettori: [github]
+    digest: false

@@ -90,7 +90,7 @@ def test_regole(nome, attesa):
 
 
 def test_url_e_percorso_danno_il_nome_del_file():
-    url = "https://blueagesrl.sharepoint.com/sites/internal/SalesMarketing/Deck/BlueAge_CompanyProfile_v24.pdf"
+    url = "https://example.sharepoint.com/sites/internal/SalesMarketing/Deck/BlueAge_CompanyProfile_v24.pdf"
     assert famiglia(url) == "blueage-companyprofile"
     assert famiglia("BlueAge%20Company%20Profile%20v2.pdf") == "blueage-company-profile"
 

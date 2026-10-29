@@ -15,6 +15,8 @@ alla radice del vault), `clienti_slug`, `prossimi_passi` (i punti di `## Prossim
 senza la fonte in coda), `scadute` (attività aperte con 📅 prima di oggi) e
 `prossima_fonte` (la fonte della prossima attività con data).
 
+Fuso, nomi delle sezioni e task attesi (orari e giorni) vengono da `vault.yaml` (config.py).
+
 La variabile d'ambiente VAULT_ROOT, se presente, indica la radice del vault al posto della
 cartella che contiene `.claude/` (serve ai test in `.claude/scripts/tests/`).
 """
@@ -25,16 +27,17 @@ import re
 import sys
 from datetime import datetime, timedelta
 from pathlib import Path
-from zoneinfo import ZoneInfo
 
 try:
     import yaml
 except ImportError:
     sys.exit("Manca PyYAML: pip install pyyaml")
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import config  # noqa: E402
+
 ROOT = Path(os.environ.get("VAULT_ROOT") or Path(__file__).resolve().parents[2]).resolve()
 SKIP_DIRS = {".git", ".github", ".claude", "_templates", ".obsidian", ".trash"}
-ROMA = ZoneInfo("Europe/Rome")
 
 LINK = re.compile(r"\[\[([^\]|#]+)(?:[|#][^\]]*)?\]\]")
 TASK = re.compile(r"^- \[( |x|X)\] (.+)$")
@@ -51,18 +54,8 @@ NOVITA = re.compile(r"^- \[\[[^\]]+\]\](?:,\s*\[\[[^\]]+\]\])* · ([^·]+?)\s*(?
 # "Progetti fermi: nessuno (…)"): non è una decisione e non si conta.
 NIENTE = re.compile(r"^(?:nessun|[^:]*:\s*nessun)", re.I)
 
-# Task schedulati attesi ogni giorno (SPEC 7). Se cambiano gli orari in SPEC, cambiali qui:
-# altrimenti un task in orario risulta mancante.
-ATTESI = [
-    ("ingest-sharepoint", "06:50"),
-    ("ingest-outlook", "07:05"),
-    ("ingest-github", "07:20"),
-    ("cockpit", "07:40"),
-    ("digest", "07:45"),
-    ("ingest-outlook", "13:15"),
-    ("cockpit", "13:40"),
-]
-ATTESI_DOMENICA = [("reconcile", "08:45")]
+# I task attesi nel giorno (SPEC 7) sono quelli di `vault.yaml` (`task`) che scrivono la riga
+# d'esito nel digest, con i loro orari e giorni.
 TOLLERANZA_MIN = 45   # dopo l'ora attesa, prima di dire "mancante"
 FINESTRA_MIN = 180    # un'esecuzione oltre l'ora attesa + finestra non conta per quell'orario
 
@@ -140,14 +133,12 @@ def esiti_del_giorno(giorno, ora):
     path = ROOT / "journal" / f"{giorno}.md"
     eseguiti = []
     if path.exists():
-        for line in section(split_note(path)[1], "Esito dei task").splitlines():
+        for line in section(split_note(path)[1], config.sezione("esito_task")).splitlines():
             m = ESITO.match(line.strip())
             if m:
                 eseguiti.append({"task": m.group(1), "ora": m.group(2), "esito": m.group(3)})
-    attesi = list(ATTESI)
-    if datetime.fromisoformat(giorno).weekday() == 6:
-        attesi += ATTESI_DOMENICA
-    attesi.sort(key=lambda t: t[1])
+    attesi = [(task, ora_attesa) for ora_attesa, task in
+              config.task_del_giorno(datetime.fromisoformat(giorno).date(), solo_digest=True)]
     adesso = minuti(ora)
     usati, righe = set(), []
     for task, atteso in attesi:
@@ -183,9 +174,9 @@ def digest(giorno, ora):
         return []
     path = giornali[-1]
     body = split_note(path)[1]
-    stati = [m.group(1) for m in map(NOVITA.match, section(body, "Novità ingerite").splitlines()) if m]
+    stati = [m.group(1) for m in map(NOVITA.match, section(body, config.sezione("novita")).splitlines()) if m]
     # Punti di primo livello, con o senza data (il digest scrive anche "Da spuntare: …"); "-" vuoto escluso.
-    decisioni = [l for l in section(body, "Decisioni").splitlines()
+    decisioni = [l for l in section(body, config.sezione("decisioni")).splitlines()
                  if l.startswith("- ") and l[2:].strip() and not NIENTE.match(l[2:].strip())]
     return [{
         "giorno": path.stem,
@@ -199,13 +190,17 @@ def digest(giorno, ora):
 
 
 def main():
+    try:
+        config.carica()
+    except config.ConfigErrata as e:
+        sys.exit("Configurazione non valida:\n" + "\n".join(f"- {m}" for m in e.errori))
     if len(sys.argv) != 2:
         sys.exit(__doc__)
     out_dir = Path(sys.argv[1])
     out_dir.mkdir(parents=True, exist_ok=True)
     names = titles()
     plain = lambda s: LINK.sub(lambda m: names.get(m.group(1), m.group(1)), s)
-    adesso = datetime.now(ROMA)
+    adesso = config.adesso()
     oggi, ora = adesso.date().isoformat(), adesso.strftime("%H:%M")
 
     progetti, attivita, passi = [], [], []
@@ -217,7 +212,7 @@ def main():
         nome = h1(body) or slug
         ruolo = fm.get("role") or ""
         coinvolto = not ruolo.lower().startswith("non coinvolto")
-        righe = list(checkbox(body, "Attività", plain))
+        righe = list(checkbox(body, config.sezione("attivita"), plain))
         for n, (testo, scadenza, fatta, fonte) in enumerate(righe, 1):
             attivita.append({
                 "id": f"{slug}-{n}",
@@ -253,7 +248,7 @@ def main():
             "ultimo_log": max(date_log) if date_log else "",
             "percorso": path.relative_to(ROOT).as_posix(),
             "clienti_slug": clienti,
-            "prossimi_passi": punti(body, "Prossimi passi", plain),
+            "prossimi_passi": punti(body, config.sezione("prossimi_passi"), plain),
             "scadute": sum(1 for r in aperte if r[1] and r[1] < oggi),
             "prossima_fonte": aperte[0][3] if aperte and aperte[0][1] else "",
         })
@@ -262,7 +257,7 @@ def main():
     for path in sorted((ROOT / "inbox").glob("*.md")):
         fm, body = split_note(path)
         titolo = h1(body) or path.stem
-        righe = list(checkbox(body, "Da fare", plain))
+        righe = list(checkbox(body, config.sezione("da_fare"), plain))
         for n, (testo, scadenza, fatta, fonte) in enumerate(righe, 1):
             attivita.append({
                 "id": f"inbox-{path.stem}-{n}",

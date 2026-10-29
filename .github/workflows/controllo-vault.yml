@@ -18,5 +18,9 @@ jobs:
       # Step 11 di SPEC 13.1: i test degli script, su un mini-vault di prova, prima del controllo
       - name: Test degli script
         run: python3 -m pytest .claude/scripts/tests -q
+      # Esce con 1 se ci sono errori, anche di configurazione (vault.yaml non valido, orari dei task
+      # diversi da SPEC 7, permessi mcp diversi da vault.yaml): il job fallisce. Con `shell: bash`
+      # vale pipefail, quindi tee non nasconde il codice d'uscita; il rapporto va nel log e nel riepilogo.
       - name: Controllo del vault
-        run: python3 .claude/scripts/controlla-vault.py >> "$GITHUB_STEP_SUMMARY"
+        shell: bash
+        run: python3 .claude/scripts/controlla-vault.py | tee -a "$GITHUB_STEP_SUMMARY"
