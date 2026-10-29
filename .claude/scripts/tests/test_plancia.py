@@ -4,7 +4,7 @@ import json
 
 import pytest
 
-from conftest import esegui
+from conftest import esegui, scrivi
 
 FILE = ("progetti", "attivita", "log", "inbox", "task", "digest")
 
@@ -79,3 +79,58 @@ def test_campi_della_pagina_cockpit(vault, tmp_path):
     assert beta["percorso"] == "projects/beta/beta.md"
     assert beta["clienti_slug"] == [] and beta["prossimi_passi"] == []
     assert beta["scadute"] == 0 and beta["prossima_fonte"] == ""
+
+
+DIGEST = """---
+type: journal
+date: 2026-10-21
+---
+
+# Digest 2026-10-21
+
+## Novità ingerite
+
+- [[doc-alfa]] · nuova · documento del pilota
+- [[tema-uno]] · nuova
+- [[doc-alfa]] · nuova versione · D41 aggiunta
+- [[doc-alfa]] · nuova versione · §9 riscritto
+- [[cliente-uno]] · aggiornata · riletta
+- [[mario-rossi]], [[alfa]] · aggiornate · nuova interazione
+
+## Decisioni
+
+- Da spuntare: inviare la proposta · [[alfa]]
+- 2026-10-21 · [[alfa]] · Si parte da un solo reparto
+  - dettaglio di secondo livello, non conta
+- Nuove righe nei log (21/10): [[alfa]] 1
+-
+- Nessun progetto fermo: tutti i log hanno righe negli ultimi 14 giorni
+- Nessuna proposta nuova dall'ingestor
+- Progetti fermi: nessuno (tutti i log hanno righe negli ultimi 14 giorni)
+
+## Esito dei task
+
+| Task | Esito |
+|---|---|
+"""
+
+
+def leggi_digest(vault, tmp_path):
+    scrivi(vault, "journal/2026-10-21.md", DIGEST)
+    out = tmp_path / "plancia"
+    res = esegui("plancia.py", vault, out)
+    assert res.returncode == 0, res.stderr
+    return json.loads((out / "digest.json").read_text(encoding="utf-8"))[0]
+
+
+def test_digest_nuova_versione_e_aggiornamento(vault, tmp_path):
+    """Una "nuova versione" è un aggiornamento, non una nota nuova (digest del 27/10: 6 invece di 2)."""
+    d = leggi_digest(vault, tmp_path)
+    assert d["giorno"] == "2026-10-21"
+    assert d["note_nuove"] == 2
+    assert d["note_aggiornate"] == 4          # 2 nuove versioni, 1 aggiornata, 1 riga "aggiornate"
+
+
+def test_digest_conta_le_decisioni_senza_data(vault, tmp_path):
+    """Contano i punti di primo livello di `## Decisioni`, con o senza data; non "-" né i "nessun…"."""
+    assert leggi_digest(vault, tmp_path)["decisioni"] == 3

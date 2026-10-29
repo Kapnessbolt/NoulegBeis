@@ -44,6 +44,12 @@ LOG_LINE = re.compile(r"^- (\d{4}-\d{2}-\d{2}) ·", re.M)
 LOG_ROW = re.compile(r"^- (\d{4}-\d{2}-\d{2}) · (.+?)(?: · (?:\[\[[^\]]+\]\](?:,\s*)?)+)?\s*$")
 ULTIMI_PASSI = 5
 ESITO = re.compile(r"^\|\s*([a-z][a-z0-9-]*)\s+(\d{2}:\d{2})\s*\|\s*(.*?)\s*\|\s*$")
+# Riga di `## Novità ingerite`: `- [[slug]](, [[slug]])* · <stato> · <testo>`; lo stato è il primo
+# campo dopo i link (nuova, nuova versione, aggiornata, aggiornate), il testo dopo non conta.
+NOVITA = re.compile(r"^- \[\[[^\]]+\]\](?:,\s*\[\[[^\]]+\]\])* · ([^·]+?)\s*(?:·|$)")
+# Punto di `## Decisioni` che dice solo che non c'è nulla ("Nessun progetto fermo…",
+# "Progetti fermi: nessuno (…)"): non è una decisione e non si conta.
+NIENTE = re.compile(r"^(?:nessun|[^:]*:\s*nessun)", re.I)
 
 # Task schedulati attesi ogni giorno (SPEC 7). Se cambiano gli orari in SPEC, cambiali qui:
 # altrimenti un task in orario risulta mancante.
@@ -177,12 +183,15 @@ def digest(giorno, ora):
         return []
     path = giornali[-1]
     body = split_note(path)[1]
-    novita = [l for l in section(body, "Novità ingerite").splitlines() if l.startswith("- [[")]
-    decisioni = [l for l in section(body, "Decisioni").splitlines() if re.match(r"^- \d{4}-\d{2}-\d{2} ·", l)]
+    stati = [m.group(1) for m in map(NOVITA.match, section(body, "Novità ingerite").splitlines()) if m]
+    # Punti di primo livello, con o senza data (il digest scrive anche "Da spuntare: …"); "-" vuoto escluso.
+    decisioni = [l for l in section(body, "Decisioni").splitlines()
+                 if l.startswith("- ") and l[2:].strip() and not NIENTE.match(l[2:].strip())]
     return [{
         "giorno": path.stem,
-        "note_nuove": sum(1 for l in novita if "· nuova" in l),
-        "note_aggiornate": sum(1 for l in novita if "· aggiornata" in l),
+        # Una riga per stato: "nuova versione" è un aggiornamento della nota, non una nota nuova.
+        "note_nuove": sum(1 for s in stati if s == "nuova"),
+        "note_aggiornate": sum(1 for s in stati if s in ("nuova versione", "aggiornata", "aggiornate")),
         "decisioni": len(decisioni),
         "vault_del": giorno,
         "vault_alle": ora,

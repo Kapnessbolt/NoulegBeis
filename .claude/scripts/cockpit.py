@@ -61,6 +61,7 @@ OBBLIGATORI = ("progetti", "attivita", "log", "inbox", "task", "digest")
 GIORNI_SETTIMANA = 7
 FERMO_GIORNI = 14
 ULTIMI_LOG = 3
+ANTICIPO_MIN = 10    # come in plancia.py: un giro può partire fino a 10 minuti prima dell'ora attesa
 RIFIUTATO = {"rifiutato", "declined"}
 PROVVISORIO = {"provvisorio", "tentative", "non risposto", "notresponded", "none"}
 
@@ -241,6 +242,27 @@ def repo_web(url):
     return f"https://github.com/{parti[-2]}/{parti[-1]}"
 
 
+def minuti(hhmm):
+    h, m = str(hhmm).split(":")
+    return int(h) * 60 + int(m)
+
+
+def proprio_giro(task, ora):
+    """Le righe di task.json con il giro del cockpit che sta generando la pagina segnato "in corso".
+
+    Il task `cockpit` scrive la sua riga nel digest dopo aver generato la pagina, quindi plancia.py
+    lo vede ancora "atteso": è il giro `cockpit` atteso più recente con ora attesa ≤ adesso (più
+    l'anticipo). Gli altri giri restano come sono.
+    """
+    candidati = [t for t in task if t.get("task") == "cockpit" and t.get("stato") == "atteso"
+                 and re.fullmatch(r"\d{2}:\d{2}", str(t.get("atteso") or ""))
+                 and minuti(t["atteso"]) - ANTICIPO_MIN <= minuti(ora)]
+    if not candidati:
+        return task
+    proprio = max(candidati, key=lambda t: minuti(t["atteso"]))
+    return [dict(t, stato="in corso") if t is proprio else t for t in task]
+
+
 # ---------------------------------------------------------------- costruzione della pagina
 
 class Pagina:
@@ -253,7 +275,7 @@ class Pagina:
         self.per_slug = {p.get("progetto"): p for p in self.progetti}
         self.log = dati["log"]
         self.inbox = dati["inbox"]
-        self.task = dati["task"]
+        self.task = proprio_giro(dati["task"], ora)
         self.digest = dati["digest"]
         self.aperte = []
         for a in dati["attivita"]:
@@ -558,20 +580,24 @@ class Pagina:
         if self.task:
             parti = [f"{conta.get('ok', 0)} OK"] if conta.get("ok") else []
             for stato, uno, molti in (("errore", "errore", "errori"), ("mancante", "mancante", "mancanti"),
-                                      ("atteso", "atteso", "attesi")):
+                                      ("in corso", "in corso", "in corso"), ("atteso", "atteso", "attesi")):
                 if conta.get(stato):
                     parti.append(plurale(conta[stato], uno, molti))
-            non_ok, attesi = [], []
+            non_ok, in_corso, attesi = [], [], []
             for t in self.task:
                 ora = t.get("eseguito") or t.get("atteso") or ""
                 nome = f'{escape(t.get("task") or "")} {escape(ora)}'
                 if t.get("stato") == "atteso":
                     attesi.append(nome)
+                elif t.get("stato") == "in corso":
+                    in_corso.append(nome)
                 elif t.get("stato") != "ok":
                     riga = f'{nome} · {escape(t.get("stato") or "")}'
                     if t.get("stato") == "errore" and t.get("esito"):
                         riga += f': {escape(t["esito"])}'
                     non_ok.append(f'<li class="ko">{riga}</li>')
+            if in_corso:
+                non_ok.append(f'<li class="in-corso">In corso: {", ".join(in_corso)}</li>')
             if attesi:
                 non_ok.append(f'<li>Da eseguire: {", ".join(attesi)}</li>')
             elenco = f'<ul>{"".join(non_ok)}</ul>' if non_ok else ""
@@ -626,7 +652,7 @@ class Pagina:
             n = len({e["chiave"] for e in self.eventi if self.oggi <= e["giorno"] <= self.ultimo})
             eventi = plurale(n, "evento", "eventi")
         conta = self.conteggio_task()
-        dovuti = sum(n for s, n in conta.items() if s != "atteso")
+        dovuti = sum(n for s, n in conta.items() if s not in ("atteso", "in corso"))
         return (f"{len(self.attivi())} progetti attivi, {plurale(len(self.scadute), 'attività scaduta', 'attività scadute')}, "
                 f"{in_scadenza} in scadenza entro 7 giorni, {eventi}, {conta.get('ok', 0)} task OK su {dovuti}")
 

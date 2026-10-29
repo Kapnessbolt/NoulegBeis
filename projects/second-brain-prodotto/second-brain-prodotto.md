@@ -4,13 +4,14 @@ status: attivo
 role: "Product owner e sviluppatore: dal vault personale al prodotto Second Brain"
 clients: []
 people: []
-updated: 2026-10-28
+updated: 2026-10-29
 ---
 
 # Second Brain · dal vault al prodotto
 
 ## Stato
 
+- Tre difetti di conteggio del Cockpit corretti (29/10) con un test ciascuno: nuove versioni contate tra le aggiornate, decisioni del digest contate anche senza data, il giro del cockpit mostrato "In corso" nella propria pagina ([[2026-10-29-cockpit-conteggi-e-step-13]])
 - Forma del prodotto decisa (28/10): installazione fatta da BlueAge in una giornata e gestione mensile come prodotto; il cliente vede tre gesti (Leggi il Cockpit, Chiedi alla chat sul vault, Lavora nella chat sul vault con tutto che resta nel vault); chiusura automatica, consegna dei file, integrità invisibile e skill del cliente passano alla macchina; repo del cliente nell'organizzazione GitHub di BlueAge con accordo sui dati; step 18 e 19 riscritti in SPEC 1.22 (§13.2) ([[2026-10-28-second-brain-forma-del-prodotto]])
 - Secondo giorno di osservazione (28/10) pulito: 7 giri su 7 OK, watermark di Outlook e GitHub avanzati, nessun doppione, numeri del Cockpit uguali a `plancia.py`; confermati i due difetti già tracciati per il 31/10. Il log di parts-radar ha due righe del 27/10 per nota perché il repo ha lavorato prima e dopo il watermark: non è un doppione, SPEC 6.6 da chiarire ([[2026-10-28-verifica-task-28-10]])
 - Cockpit v2 costruito come step 16: pagina HTML statica generata da `cockpit.py` (template versionato, dati da `plancia.py`, fotografia del calendario dal task), pubblicata su claude.ai e ripubblicata dal task con una chiamata; mod e dashboard di tipo Dashboard ritirate; in attesa del criterio (3 giri) ([[2026-10-27-step-17-librarian]])
@@ -38,9 +39,10 @@ updated: 2026-10-28
 - [x] Step 16 · Cockpit v2: `cockpit.py`, template `.claude/templates/cockpit.html`, `plancia.py` esteso, task `cockpit` riscritto con il calendario dal connettore, prima pubblicazione · modello: Opus, revisione Fable ✅ 2026-10-27 ([[2026-10-27-step-17-librarian]])
 - [x] Step 16 · criterio di accettazione: 3 giri del task `cockpit` (27, 28, 29/10) senza errori, con `/verifica-task cockpit`, e pagina aperta dal telefono la mattina 📅 2026-10-30 ✅ 2026-10-29 ([[2026-10-27-step-17-librarian]])
 - [ ] Step 16 · dopo il criterio: cancellare la vecchia dashboard e disattivare la mod sul PC ([[2026-10-27-step-17-librarian]])
-- [ ] Step 16 · dopo il criterio: `plancia.py` conta come note nuove anche le righe "nuova versione" del digest (il 27/10 6 invece di 2); correggere e aggiungere il test 📅 2026-10-31 ([[2026-10-27-verifica-task-27-10]])
-- [ ] Step 16 · dopo il criterio: `cockpit.py` mostra il proprio giro come "Da eseguire" perché la pagina si genera prima della riga nel digest; contarlo come in corso 📅 2026-10-31 ([[2026-10-27-verifica-task-27-10]])
-- [ ] Step 16 · dopo il criterio: `plancia.py` conta in `digest.json` solo le decisioni datate (`- AAAA-MM-GG ·`), ma il digest scrive righe senza data: `decisioni` esce sempre 0; contare tutte le righe della sezione 📅 2026-10-31 ([[2026-10-28-verifica-task-28-10]])
+- [x] Step 16 · dopo il criterio: `plancia.py` conta come note nuove anche le righe "nuova versione" del digest (il 27/10 6 invece di 2); correggere e aggiungere il test 📅 2026-10-31 ✅ 2026-10-29 ([[2026-10-27-verifica-task-27-10]], [[2026-10-29-cockpit-conteggi-e-step-13]])
+- [x] Step 16 · dopo il criterio: `cockpit.py` mostra il proprio giro come "Da eseguire" perché la pagina si genera prima della riga nel digest; contarlo come in corso 📅 2026-10-31 ✅ 2026-10-29 ([[2026-10-27-verifica-task-27-10]], [[2026-10-29-cockpit-conteggi-e-step-13]])
+- [x] Step 16 · dopo il criterio: `plancia.py` conta in `digest.json` solo le decisioni datate (`- AAAA-MM-GG ·`), ma il digest scrive righe senza data: `decisioni` esce sempre 0; contare tutte le righe della sezione 📅 2026-10-31 ✅ 2026-10-29 ([[2026-10-28-verifica-task-28-10]], [[2026-10-29-cockpit-conteggi-e-step-13]])
+- [ ] Formato delle novità nel digest: il 29/10 l'ingestor ha scritto righe aggregate (`Nuove (45): [[…]], …`, `ingest-github (…): [[…]] · nuova versione`) che `plancia.py` non conta, quindi il Cockpit ha mostrato 0 note nuove; fissare il formato `- [[slug]] · stato · testo` nell'ingestor e nel digest ([[2026-10-29-cockpit-conteggi-e-step-13]])
 - [x] Step 17 · Librarian e ricerca: `cerca.py`, agente `librarian`, comandi `/oggi`, `/progetto`, `/cattura`, `/smista` · modello: Opus, revisione Fable ✅ 2026-10-27 ([[2026-10-27-step-17-librarian]])
 - [x] Step 17 · permessi in `.claude/settings.json` per `cerca.py`, `plancia.py` e `mcp__github__get_file_contents`, con l'ok di Lorenzo ✅ 2026-10-27 ([[2026-10-27-step-17-librarian]])
 - [x] Step 17 · prova dei quattro comandi `/oggi`, `/progetto`, `/cattura`, `/smista` in una sessione nuova ✅ 2026-10-28 ([[2026-10-27-step-17-librarian]], [[2026-10-28-verifica-task-28-10]])
@@ -65,8 +67,7 @@ updated: 2026-10-28
 
 ## Prossimi passi
 
-- Giro del 29/10 con `/verifica-task` per chiudere i criteri degli step 12 e 16 (27 e 28/10 puliti, la prova dal telefono è fatta); nella PR di chiusura chiarire SPEC 6.6 (una riga di log per giorno e per giro)
-- Dopo il criterio dello step 16: i due difetti del Cockpit, poi via la vecchia dashboard e la mod
+- Via la vecchia dashboard e la mod sul PC (step 16)
 - Step 13 (configurazione separata dal motore), progettando `vault.yaml` come output del wizard di `/installa`
 - Chiudere la consegna dei file prodotti dal cloud prima di qualunque installazione esterna
 
@@ -77,3 +78,4 @@ updated: 2026-10-28
 - [[2026-10-27-verifica-task-27-10]]
 - [[2026-10-28-verifica-task-28-10]]
 - [[2026-10-28-second-brain-forma-del-prodotto]]
+- [[2026-10-29-cockpit-conteggi-e-step-13]]

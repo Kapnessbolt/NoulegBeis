@@ -327,3 +327,36 @@ def test_fondo_della_pagina(vault, dati, tmp_path):
     assert "1</p><p>nota da smistare" in altro
     assert re.search(r"Attività senza data <span class=\"conta\">2</span>", altro)
     assert "Generato da cockpit.py dal vault · 27 ott 2026, 07:40" in html
+
+
+TASK_COCKPIT = TASK[:1] + [
+    {"task": "cockpit", "atteso": "07:40", "eseguito": "", "stato": "atteso", "esito": ""},
+    {"task": "digest", "atteso": "07:45", "eseguito": "", "stato": "atteso", "esito": ""},
+    {"task": "cockpit", "atteso": "13:40", "eseguito": "", "stato": "atteso", "esito": ""},
+]
+
+
+@pytest.mark.parametrize("ora", ["07:38", "07:42", "08:20"])
+def test_il_proprio_giro_e_in_corso(vault, dati, tmp_path, ora):
+    """Il giro del cockpit che genera la pagina non ha ancora la riga nel digest: è in corso, non da eseguire."""
+    (dati / "task.json").write_text(json.dumps(TASK_COCKPIT), encoding="utf-8")
+    res, html = genera(vault, dati, tmp_path, "--ora", ora)
+    assert res.returncode == 0, res.stderr
+    altro = blocco(html, "altro")
+    assert "1 OK · 1 in corso · 2 attesi" in altro
+    assert "In corso: cockpit 07:40" in altro
+    assert "Da eseguire: digest 07:45, cockpit 13:40" in altro
+    assert res.stdout.strip().endswith("1 task OK su 1")
+
+
+def test_giro_del_pomeriggio_in_corso(vault, dati, tmp_path):
+    righe = TASK_COCKPIT[:1] + [
+        {"task": "cockpit", "atteso": "07:40", "eseguito": "07:42", "stato": "ok", "esito": "OK"},
+        {"task": "digest", "atteso": "07:45", "eseguito": "07:47", "stato": "ok", "esito": "OK"},
+        TASK_COCKPIT[3]]
+    (dati / "task.json").write_text(json.dumps(righe), encoding="utf-8")
+    res, html = genera(vault, dati, tmp_path, "--ora", "13:46")
+    altro = blocco(html, "altro")
+    assert "3 OK · 1 in corso" in altro and "In corso: cockpit 13:40" in altro
+    assert "Da eseguire" not in altro
+    assert res.stdout.strip().endswith("3 task OK su 3")
