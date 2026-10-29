@@ -42,7 +42,7 @@ updated: 2026-10-29
 - [x] Step 16 · Cockpit v2: `cockpit.py`, template `.claude/templates/cockpit.html`, `plancia.py` esteso, task `cockpit` riscritto con il calendario dal connettore, prima pubblicazione · modello: Opus, revisione Fable ✅ 2026-10-27 ([[2026-10-27-step-17-librarian]])
 - [x] Step 16 · criterio di accettazione: 3 giri del task `cockpit` (27, 28, 29/10) senza errori, con `/verifica-task cockpit`, e pagina aperta dal telefono la mattina 📅 2026-10-30 ✅ 2026-10-29 ([[2026-10-27-step-17-librarian]])
 - [x] Step 16 · dopo il criterio: cancellare la vecchia dashboard (artifact "Cockpit" `KN8Wp48…`) ✅ 2026-10-29 ([[2026-10-27-step-17-librarian]], [[2026-10-29-cockpit-conteggi-e-step-13]])
-- [ ] Step 16 · dopo il criterio: disattivare la mod del Cockpit sull'app desktop del PC ([[2026-10-27-step-17-librarian]])
+- [x] Step 16 · dopo il criterio: disattivare la mod del Cockpit sull'app desktop del PC ✅ 2026-10-29 ([[2026-10-27-step-17-librarian]], [[2026-10-29-cockpit-conteggi-e-step-13]])
 - [x] Step 16 · dopo il criterio: `plancia.py` conta come note nuove anche le righe "nuova versione" del digest (il 27/10 6 invece di 2); correggere e aggiungere il test 📅 2026-10-31 ✅ 2026-10-29 ([[2026-10-27-verifica-task-27-10]], [[2026-10-29-cockpit-conteggi-e-step-13]])
 - [x] Step 16 · dopo il criterio: `cockpit.py` mostra il proprio giro come "Da eseguire" perché la pagina si genera prima della riga nel digest; contarlo come in corso 📅 2026-10-31 ✅ 2026-10-29 ([[2026-10-27-verifica-task-27-10]], [[2026-10-29-cockpit-conteggi-e-step-13]])
 - [x] Step 16 · dopo il criterio: `plancia.py` conta in `digest.json` solo le decisioni datate (`- AAAA-MM-GG ·`), ma il digest scrive righe senza data: `decisioni` esce sempre 0; contare tutte le righe della sezione 📅 2026-10-31 ✅ 2026-10-29 ([[2026-10-28-verifica-task-28-10]], [[2026-10-29-cockpit-conteggi-e-step-13]])
@@ -71,7 +71,6 @@ updated: 2026-10-29
 
 ## Prossimi passi
 
-- Disattivare la mod del Cockpit sul PC (step 16)
 - Step 13: osservare tre giri dei task dopo il merge con `/verifica-task`, poi chiudere il criterio; lo step 14 parte solo con l'ok di Lorenzo
 - Chiudere la consegna dei file prodotti dal cloud prima di qualunque installazione esterna
 

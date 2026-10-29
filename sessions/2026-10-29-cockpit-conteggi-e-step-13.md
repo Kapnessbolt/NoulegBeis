@@ -48,5 +48,5 @@ Correggere i tre difetti di conteggio del Cockpit in scadenza il 31/10, ognuno c
 - [ ] Step 13: tre giri dei task dopo il merge (30, 31/10, 1/11) con `/verifica-task`
 - [x] Script di setup dell'ambiente cloud nell'interfaccia di claude.ai: cerca `.claude/setup/ambiente-cloud.sh` e lo esegue, altrimenti installa i quattro pacchetti; verificato in una sessione nuova (yaml 6.0.3, pytest 9.2.0, pptx 1.0.2, fontTools 4.68.0)
 - [ ] Step 14 solo con l'ok dell'utente
-- [ ] Disattivare la mod del Cockpit sull'app desktop del PC (utente)
+- [x] Disattivare la mod del Cockpit sull'app desktop del PC (utente): plugin rimosso, nessun plugin attivo sull'account
 - [ ] Riconciliazione del 1/11: controllare che segni rimosse solo le 4 note Velo-CE senza file (Articoli version 1, Ricodifica rename o nuovo codice, App EOS quali servono, Domande per la call con So Smart)
