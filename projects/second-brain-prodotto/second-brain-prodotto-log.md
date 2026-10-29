@@ -7,13 +7,17 @@ project: "[[second-brain-prodotto]]"
 
 Una riga per avanzamento, dalla più recente: `- AAAA-MM-GG · cosa è successo · [[fonte]]`
 
+- 2026-10-29 · Step 16 chiuso: tre giri del task `cockpit` OK (27, 28, 29/10) e pagina verificata da Lorenzo dal telefono; restano i tre difetti di conteggio di `plancia.py` e `cockpit.py`, in scadenza il 31/10 · [[2026-10-26-piano-prodotto-second-brain]]
+- 2026-10-29 · Step 12, giro 3 di 3 verificato e criterio chiuso: cinque task OK; prova di carico con la copia della cartella Velo-CE su SharePoint (298 risultati, 45 note nuove, 13 nuove versioni, 32 copie in `also_at`); 0 errori su 369 note, nessun doppione; da decidere alla riconciliazione se spostare le note Velo-CE sotto `cristian/` · [[2026-10-26-piano-prodotto-second-brain]]
+- 2026-10-28 · Step 12, giro 2 di 3 verificato: cinque task OK; sharepoint e outlook senza novità (watermark fermi, corretto), github avanzato a 23aa412 con 5 righe di log e 5 attività; 0 errori, nessun doppione · [[2026-10-26-piano-prodotto-second-brain]]
+- 2026-10-27 · Step 12, giro 1 di 3 verificato: i cinque task del mattino OK con gli script nuovi e lo stato per fonte; watermark avanzati (onedrive, outlook, github), 0 errori, nessun doppione, nessuna chiamata bloccata · [[2026-10-26-piano-prodotto-second-brain]]
+- 2026-10-26 · One pager e pagina navigabile dell'architettura inviati a Leonardo Pinsone (cc Cristian Schifone) per un parere · [[one-pager-second-brain]]
 - 2026-10-28 · Forma del prodotto decisa con Lorenzo: installazione da BlueAge e gestione mensile come prodotto, tre gesti per il cliente (Leggi, Chiedi, Lavora), repo nell'organizzazione BlueAge; step 18 e 19 riscritti, SPEC 1.22 in PR · [[2026-10-28-second-brain-forma-del-prodotto]]
 - 2026-10-28 · Prova dei quattro comandi dello step 17 in una sessione nuova: tutti OK; `/cattura` corretto (riga vuota dopo il titolo), terzo difetto di `plancia.py` tracciato (decisioni del digest sempre 0) · [[2026-10-28-verifica-task-28-10]]
 - 2026-10-28 · Verifica del secondo giorno osservato: 7 task su 7 OK, step 12 e 16 al giorno 2 di 3; i due difetti del Cockpit si confermano, da correggere dopo il criterio · [[2026-10-28-verifica-task-28-10]]
 - 2026-10-27 · Verifica del primo giro osservato: 7 task su 7 OK, step 12 e 16 al giorno 1 di 3; pagina del Cockpit aperta da Lorenzo dal telefono; trovati due difetti di conteggio del Cockpit, da correggere dopo il criterio · [[2026-10-27-verifica-task-27-10]]
 - 2026-10-27 · Step 16 ridefinito e costruito come Cockpit v2 dopo la revisione con Lorenzo: pagina HTML statica da `cockpit.py` (17 test), task riscritto con il calendario dal connettore, prima pubblicazione; SPEC 1.21 · [[2026-10-27-step-17-librarian]]
 - 2026-10-27 · Step 17 fatto: `cerca.py` con 51 test, agente `librarian`, comandi `/oggi`, `/progetto`, `/cattura`, `/smista`; 10 domande di prova corrette con le fonti; SPEC 1.20 in PR · [[2026-10-27-step-17-librarian]]
-- 2026-10-26 · One pager e pagina navigabile dell'architettura inviati a Leonardo Pinsone (cc Cristian Schifone) per un parere · [[one-pager-second-brain]]
 - 2026-10-26 · Step 12 codificato: stato per fonte con merge driver, sei script di servizio con 154 test, ingestor riscritto sugli script; in osservazione per 3 giri dei task · [[2026-10-26-piano-prodotto-second-brain]]
 - 2026-10-26 · Step 11 chiuso: controllo dei dati riservati nel controllo del vault, 41 test pytest sugli script, CI con i test; 0 errori sul vault reale · [[2026-10-26-piano-prodotto-second-brain]]
 - 2026-10-26 · Progetto creato: analisi del vault dopo la prima settimana e piano della fase 2 (step 11–20) in SPEC §13 · [[2026-10-26-piano-prodotto-second-brain]]
