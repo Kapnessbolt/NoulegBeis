@@ -25,6 +25,8 @@ Correggere i tre difetti di conteggio del Cockpit in scadenza il 31/10, ognuno c
 - Nella prosa il nome dell'utente e "BlueAge" come organizzazione lasciano il posto a `vault.utente` e `vault.organizzazione`; le skill `blueage-*` restano com'erano (contenuto, step 19). Le etichette del Cockpit restano in italiano nel codice (lingua: decisione commerciale, SPEC 14).
 - Il quarto problema del Cockpit (righe di novità aggregate nel digest del 29/10, ammesse dalla routine `digest` oltre 30 voci) non entra in questa sessione: resta un'attività.
 
+- Lo script di setup su claude.ai cerca il file nel repo invece di richiamarlo con un percorso fisso, perché non è documentato se gira prima o dopo il clone; se non lo trova installa i pacchetti direttamente. Il vecchio `npm install` è tolto: il vault non ha `package.json`.
+
 ## File toccati
 
 - `.claude/scripts/plancia.py`, `.claude/scripts/cockpit.py`, `.claude/routines/cockpit.md`
@@ -39,5 +41,5 @@ Correggere i tre difetti di conteggio del Cockpit in scadenza il 31/10, ognuno c
 
 - [ ] Formato delle novità nel digest: righe aggregate del 29/10 (`Nuove (45): …`) non contate dal Cockpit
 - [ ] Step 13: tre giri dei task dopo il merge (30, 31/10, 1/11) con `/verifica-task`
-- [ ] Script di setup dell'ambiente cloud nell'interfaccia di claude.ai: `bash .claude/setup/ambiente-cloud.sh`
+- [x] Script di setup dell'ambiente cloud nell'interfaccia di claude.ai: cerca `.claude/setup/ambiente-cloud.sh` e lo esegue, altrimenti installa i quattro pacchetti; verificato in una sessione nuova (yaml 6.0.3, pytest 9.2.0, pptx 1.0.2, fontTools 4.68.0)
 - [ ] Step 14 solo con l'ok dell'utente
