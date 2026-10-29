@@ -3,15 +3,14 @@ type: source-doc
 source: sharepoint
 family: velo-ce-handoff-app-eos-adr-chiusa-e-ivc
 current:
-  item_id: 01EFCYUZ4F5XHYIXXIRJEIP23DPFVJTL24
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ4F5XHYIXXIRJEIP23DPFVJTL24
+  item_id: 01EFCYUZZMSJQ26GLY2FC3OZQ2TUENK6JM
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZZMSJQ26GLY2FC3OZQ2TUENK6JM
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/00 Progetto/Handoff/handoff-2026-10-05-app-eos-adr-chiusa-e-ivc.md
   name: handoff-2026-10-05-app-eos-adr-chiusa-e-ivc.md
   last_modified: 2026-10-08T10:43:55Z
 versions:
   - { name: handoff-2026-10-05-app-eos-adr-chiusa-e-ivc.md, item_id: 01EFCYUZ4F5XHYIXXIRJEIP23DPFVJTL24, last_modified: 2026-10-08T10:43:55Z }
-also_at:
-  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/00 Progetto/Handoff/handoff-2026-10-05-app-eos-adr-chiusa-e-ivc.md", item_id: 01EFCYUZZMSJQ26GLY2FC3OZQ2TUENK6JM }
+also_at: []
 status: active
 partial: false
 ingested_at: 2026-10-22T13:25:33Z

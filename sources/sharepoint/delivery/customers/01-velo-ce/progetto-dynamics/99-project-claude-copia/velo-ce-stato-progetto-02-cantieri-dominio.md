@@ -5,7 +5,7 @@ family: velo-ce-stato-progetto-02-cantieri-dominio
 current:
   item_id: 01EFCYUZ6URZS5AFQ53BCIP343JBUJID2O
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ6URZS5AFQ53BCIP343JBUJID2O
-  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/99 Project Claude (copia)/velo-ce-stato-progetto-02-cantieri-dominio.md
+  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/velo-ce-stato-progetto-02-cantieri-dominio.md
   name: velo-ce-stato-progetto-02-cantieri-dominio.md
   last_modified: 2026-10-28T08:06:16Z
 versions:

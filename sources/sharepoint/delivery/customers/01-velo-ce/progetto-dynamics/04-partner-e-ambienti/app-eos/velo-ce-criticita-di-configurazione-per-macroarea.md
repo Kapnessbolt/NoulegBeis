@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-criticita-di-configurazione-per-macroarea
 current:
-  item_id: 01EFCYUZ3BKNERSEK2DBFLLRUUHRAMX6YS
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ3BKNERSEK2DBFLLRUUHRAMX6YS
+  item_id: 01EFCYUZZYQPOCJSFOABDZ6FF2I2AE47U3
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZZYQPOCJSFOABDZ6FF2I2AE47U3
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/04 Partner e ambienti/App EOS/Velo-CE - Criticità di configurazione per macroarea - v004.xlsx
   name: Velo-CE - Criticità di configurazione per macroarea - v004.xlsx
   last_modified: 2026-09-28T15:31:54Z

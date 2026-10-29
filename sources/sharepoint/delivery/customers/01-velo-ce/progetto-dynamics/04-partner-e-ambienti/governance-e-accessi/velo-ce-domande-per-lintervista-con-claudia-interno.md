@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-domande-per-lintervista-con-claudia-interno
 current:
-  item_id: 01EFCYUZ5VL2AU2T4GNNB2DRTK3XZW252S
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ5VL2AU2T4GNNB2DRTK3XZW252S
+  item_id: 01EFCYUZ3DBW2YJEA4DFFINBCT6C66ZAZ6
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ3DBW2YJEA4DFFINBCT6C66ZAZ6
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/04 Partner e ambienti/Governance e accessi/Velo-CE - Domande per l'intervista con Claudia - INTERNO - v001.xlsx
   name: Velo-CE - Domande per l'intervista con Claudia - INTERNO - v001.xlsx
   last_modified: 2026-10-06T05:51:51Z

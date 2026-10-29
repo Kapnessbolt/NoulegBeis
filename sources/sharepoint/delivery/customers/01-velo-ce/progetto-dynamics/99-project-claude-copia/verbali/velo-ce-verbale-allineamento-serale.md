@@ -3,15 +3,14 @@ type: source-doc
 source: sharepoint
 family: velo-ce-verbale-allineamento-serale
 current:
-  item_id: 01EFCYUZ6DRU7KP7L6RFEIYGHJCRAUHNSA
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ6DRU7KP7L6RFEIYGHJCRAUHNSA
+  item_id: 01EFCYUZ6Y4RMXYX3SGRCZO5U3IMHWEYOT
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ6Y4RMXYX3SGRCZO5U3IMHWEYOT
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/verbali/velo-ce-verbale-260929-1744-allineamento-serale.md
   name: velo-ce-verbale-260929-1744-allineamento-serale.md
   last_modified: 2026-10-08T10:44:36Z
 versions:
   - { name: velo-ce-verbale-260929-1744-allineamento-serale.md, item_id: 01EFCYUZ6DRU7KP7L6RFEIYGHJCRAUHNSA, last_modified: 2026-10-08T10:44:36Z }
-also_at:
-  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/99 Project Claude (copia)/verbali/velo-ce-verbale-260929-1744-allineamento-serale.md", item_id: 01EFCYUZ6Y4RMXYX3SGRCZO5U3IMHWEYOT }
+also_at: []
 status: active
 partial: false
 ingested_at: 2026-10-22T13:25:13Z

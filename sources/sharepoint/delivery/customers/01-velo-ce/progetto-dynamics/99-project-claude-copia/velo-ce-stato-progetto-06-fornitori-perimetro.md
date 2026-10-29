@@ -5,7 +5,7 @@ family: velo-ce-stato-progetto-06-fornitori-perimetro
 current:
   item_id: 01EFCYUZ52Q6DWZOBUNRBKBIY2QMEV523Q
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ52Q6DWZOBUNRBKBIY2QMEV523Q
-  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/99 Project Claude (copia)/velo-ce-stato-progetto-06-fornitori-perimetro.md
+  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/velo-ce-stato-progetto-06-fornitori-perimetro.md
   name: velo-ce-stato-progetto-06-fornitori-perimetro.md
   last_modified: 2026-10-28T08:06:17Z
 versions:

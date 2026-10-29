@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-sintesi-evidenze-e-metodo-cliente
 current:
-  item_id: 01EFCYUZYBTTYA67TK3JHZLRWW3X3YXHSU
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZYBTTYA67TK3JHZLRWW3X3YXHSU
+  item_id: 01EFCYUZ4Z2ECSFY22O5BYT3WXEB3YLNT4
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ4Z2ECSFY22O5BYT3WXEB3YLNT4
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/01 Deck cliente/Metodo e governo/Velo-CE - Sintesi evidenze e metodo - CLIENTE - v001.pdf
   name: Velo-CE - Sintesi evidenze e metodo - CLIENTE - v001.pdf
   last_modified: 2026-09-28T12:26:28Z

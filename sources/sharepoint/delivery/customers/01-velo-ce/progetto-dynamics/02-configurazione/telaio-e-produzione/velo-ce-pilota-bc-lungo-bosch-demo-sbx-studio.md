@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-pilota-bc-lungo-bosch-demo-sbx-studio
 current:
-  item_id: 01EFCYUZ7D6FTGQN7DQVFZXBJUYCNSQJ55
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ7D6FTGQN7DQVFZXBJUYCNSQJ55
+  item_id: 01EFCYUZ5SV5SXXWRF2BBLR4IDJ7YZPS2J
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ5SV5SXXWRF2BBLR4IDJ7YZPS2J
   web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/02 Configurazione/Telaio e produzione/Velo-CE - Pilota BC Lungo Bosch v006 - Demo sbx-studio - contenuti, copione e risposte a Leo - v001.docx"
   name: "Velo-CE - Pilota BC Lungo Bosch v006 - Demo sbx-studio - contenuti, copione e risposte a Leo - v001.docx"
   last_modified: 2026-09-28T18:50:51Z

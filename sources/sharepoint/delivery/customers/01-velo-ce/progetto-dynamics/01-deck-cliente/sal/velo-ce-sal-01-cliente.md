@@ -3,10 +3,10 @@ type: source-doc
 source: sharepoint
 family: velo-ce-sal-01-cliente
 current:
-  item_id: 01EFCYUZ2NQNATMPY4WZFJ7TK5ILBQAQ5V
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ2NQNATMPY4WZFJ7TK5ILBQAQ5V
-  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/01 Deck cliente/SAL/Velo-CE - SAL 01 del 6 ottobre - CLIENTE - v002.pptx
-  name: Velo-CE - SAL 01 del 6 ottobre - CLIENTE - v002.pptx
+  item_id: 01EFCYUZ334XIEOXV4OBH2FD4FDV66FVSO
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ334XIEOXV4OBH2FD4FDV66FVSO
+  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/01 Deck cliente/SAL/261006 Velo-CE - SAL 01 del 6 ottobre - CLIENTE - v002.pptx
+  name: 261006 Velo-CE - SAL 01 del 6 ottobre - CLIENTE - v002.pptx
   last_modified: 2026-10-06T14:04:00Z
 versions:
   - { name: Velo-CE - SAL 01 del 6 ottobre - CLIENTE - v002.pptx, item_id: 01EFCYUZ2NQNATMPY4WZFJ7TK5ILBQAQ5V, last_modified: 2026-10-06T14:04:00Z }

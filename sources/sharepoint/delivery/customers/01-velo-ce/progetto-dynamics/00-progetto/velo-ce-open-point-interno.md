@@ -5,7 +5,7 @@ family: velo-ce-open-point-interno
 current:
   item_id: 01EFCYUZ76445RDSDIRNBYDZ4OUDA5XCPG
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ76445RDSDIRNBYDZ4OUDA5XCPG
-  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/00 Progetto/Velo-CE - Open point - INTERNO - v002.xlsx
+  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/00 Progetto/Velo-CE - Open point - INTERNO - v002.xlsx
   name: Velo-CE - Open point - INTERNO - v002.xlsx
   last_modified: 2026-10-27T15:11:01Z
 versions:

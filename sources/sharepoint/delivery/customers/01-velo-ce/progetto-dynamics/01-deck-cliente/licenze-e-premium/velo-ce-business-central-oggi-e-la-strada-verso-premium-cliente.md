@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-business-central-oggi-e-la-strada-verso-premium-cliente
 current:
-  item_id: 01EFCYUZ6JJNZDZF7HUJAIJCVO5ZDMMJCN
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ6JJNZDZF7HUJAIJCVO5ZDMMJCN
+  item_id: 01EFCYUZY5IFCNOWGV7JDYBJL3NWI26XYQ
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZY5IFCNOWGV7JDYBJL3NWI26XYQ
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/01 Deck cliente/Licenze e Premium/Velo-CE - Business Central oggi e la strada verso Premium - CLIENTE - v003.pptx
   name: Velo-CE - Business Central oggi e la strada verso Premium - CLIENTE - v003.pptx
   last_modified: 2026-09-30T07:46:52Z

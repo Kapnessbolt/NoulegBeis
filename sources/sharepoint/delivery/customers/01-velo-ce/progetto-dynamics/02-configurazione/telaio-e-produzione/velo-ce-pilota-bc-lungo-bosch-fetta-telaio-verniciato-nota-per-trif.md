@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-pilota-bc-lungo-bosch-fetta-telaio-verniciato-nota-per-trif
 current:
-  item_id: 01EFCYUZ7KO4GIJ6WTZFGYAAGSST4TUV7H
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ7KO4GIJ6WTZFGYAAGSST4TUV7H
+  item_id: 01EFCYUZ7UYFCLZED26VBZBYVY7HMWOXZA
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ7UYFCLZED26VBZBYVY7HMWOXZA
   web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/02 Configurazione/Telaio e produzione/Velo-CE - Pilota BC Lungo Bosch - Fetta telaio verniciato - nota per Trif - v001.docx"
   name: "Velo-CE - Pilota BC Lungo Bosch - Fetta telaio verniciato - nota per Trif - v001.docx"
   last_modified: 2026-09-27T21:38:14Z

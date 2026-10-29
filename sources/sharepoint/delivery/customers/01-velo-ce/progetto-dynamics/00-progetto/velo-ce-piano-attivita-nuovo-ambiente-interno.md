@@ -5,7 +5,7 @@ family: velo-ce-piano-attivita-nuovo-ambiente-interno
 current:
   item_id: 01EFCYUZ6HSI2ZXMOWNRH2PGTDI6ZENUEE
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ6HSI2ZXMOWNRH2PGTDI6ZENUEE
-  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/00 Progetto/Velo-CE - Piano attività nuovo ambiente - INTERNO - v001.xlsx
+  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/00 Progetto/Velo-CE - Piano attività nuovo ambiente - INTERNO - v001.xlsx
   name: Velo-CE - Piano attività nuovo ambiente - INTERNO - v001.xlsx
   last_modified: 2026-10-27T05:19:47Z
 versions:

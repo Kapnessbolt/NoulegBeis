@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-mappa-cantieri-dynamics
 current:
-  item_id: 01EFCYUZ7R7D4RG2YY4FEJJDJY5HCZQUVO
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ7R7D4RG2YY4FEJJDJY5HCZQUVO
+  item_id: 01EFCYUZ4UNOICTXQBCJAILWMKOEIYEMH6
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ4UNOICTXQBCJAILWMKOEIYEMH6
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/00 Progetto/_fonti piano/Velo-CE - Mappa cantieri Dynamics.xlsx
   name: Velo-CE - Mappa cantieri Dynamics.xlsx
   last_modified: 2026-09-15T14:11:58Z

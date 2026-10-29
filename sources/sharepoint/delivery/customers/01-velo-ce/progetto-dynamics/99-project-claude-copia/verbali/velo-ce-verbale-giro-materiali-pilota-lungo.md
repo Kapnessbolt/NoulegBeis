@@ -3,15 +3,14 @@ type: source-doc
 source: sharepoint
 family: velo-ce-verbale-giro-materiali-pilota-lungo
 current:
-  item_id: 01EFCYUZ5O445S5ADGIVDK4MVRXX6PTPX7
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ5O445S5ADGIVDK4MVRXX6PTPX7
+  item_id: 01EFCYUZ5O5BAMV4MVLZHINYQTHGA76AXZ
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ5O5BAMV4MVLZHINYQTHGA76AXZ
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/verbali/velo-ce-verbale-260930-1503-giro-materiali-pilota-lungo.md
   name: velo-ce-verbale-260930-1503-giro-materiali-pilota-lungo.md
   last_modified: 2026-10-08T10:44:36Z
 versions:
   - { name: velo-ce-verbale-260930-1503-giro-materiali-pilota-lungo.md, item_id: 01EFCYUZ5O445S5ADGIVDK4MVRXX6PTPX7, last_modified: 2026-10-08T10:44:36Z }
-also_at:
-  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/99 Project Claude (copia)/verbali/velo-ce-verbale-260930-1503-giro-materiali-pilota-lungo.md", item_id: 01EFCYUZ5O5BAMV4MVLZHINYQTHGA76AXZ }
+also_at: []
 status: active
 partial: false
 ingested_at: 2026-10-22T13:25:13Z

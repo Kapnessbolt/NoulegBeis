@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-layout-etichetta-scatola-prova-code39-interno
 current:
-  item_id: 01EFCYUZ4C7OVPTYOCDVGJZQ7TG4YBBSB3
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ4C7OVPTYOCDVGJZQ7TG4YBBSB3
+  item_id: 01EFCYUZYKS4ERHVQ6P5FZGXRINKLZYJ3I
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZYKS4ERHVQ6P5FZGXRINKLZYJ3I
   web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/02 Configurazione/Anagrafica e codifica/Etichette/Velo-CE - Layout etichetta scatola prova Code39 - INTERNO - v002.docx"
   name: "Velo-CE - Layout etichetta scatola prova Code39 - INTERNO - v002.docx"
   last_modified: 2023-08-03T12:06:00Z

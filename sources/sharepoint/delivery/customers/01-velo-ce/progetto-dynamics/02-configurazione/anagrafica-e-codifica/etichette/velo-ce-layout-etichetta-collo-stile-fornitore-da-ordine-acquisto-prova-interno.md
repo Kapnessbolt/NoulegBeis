@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-layout-etichetta-collo-stile-fornitore-da-ordine-acquisto-prova-interno
 current:
-  item_id: 01EFCYUZ5CAHJ5SF6O65HK2DVGLU7BHSDX
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ5CAHJ5SF6O65HK2DVGLU7BHSDX
+  item_id: 01EFCYUZ3DJJC2CJLNWZHJ66TDEUKPI7JT
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ3DJJC2CJLNWZHJ66TDEUKPI7JT
   web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/02 Configurazione/Anagrafica e codifica/Etichette/Velo-CE - Layout etichetta collo stile fornitore da ordine acquisto prova - INTERNO - v002.docx"
   name: "Velo-CE - Layout etichetta collo stile fornitore da ordine acquisto prova - INTERNO - v002.docx"
   last_modified: 2022-02-07T14:22:00Z

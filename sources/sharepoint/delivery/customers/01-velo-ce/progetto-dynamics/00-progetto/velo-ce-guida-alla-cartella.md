@@ -5,7 +5,7 @@ family: velo-ce-guida-alla-cartella
 current:
   item_id: 01EFCYUZ5GPH3MGVJAXVFIK3TX3MNNYILU
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ5GPH3MGVJAXVFIK3TX3MNNYILU
-  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/00 Progetto/Velo-CE - Guida alla cartella.md
+  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/00 Progetto/Velo-CE - Guida alla cartella.md
   name: Velo-CE - Guida alla cartella.md
   last_modified: 2026-10-28T08:04:52Z
 versions:

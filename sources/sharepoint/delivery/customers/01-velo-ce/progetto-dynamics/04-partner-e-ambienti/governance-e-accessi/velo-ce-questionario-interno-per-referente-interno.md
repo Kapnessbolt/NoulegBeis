@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-questionario-interno-per-referente-interno
 current:
-  item_id: 01EFCYUZ7XGGQTDOP2WBFZEHXYNRJTL2SC
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ7XGGQTDOP2WBFZEHXYNRJTL2SC
+  item_id: 01EFCYUZ4LYOLQHPSIKFBY4FPIWC6GFNSI
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ4LYOLQHPSIKFBY4FPIWC6GFNSI
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/04 Partner e ambienti/Governance e accessi/Velo-CE - Questionario interno per referente - INTERNO - v003.xlsx
   name: Velo-CE - Questionario interno per referente - INTERNO - v003.xlsx
   last_modified: 2026-10-05T12:06:43Z

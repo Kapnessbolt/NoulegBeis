@@ -3,15 +3,14 @@ type: source-doc
 source: sharepoint
 family: velo-ce-stato-progetto-05-stato-info-quotazione
 current:
-  item_id: 01EFCYUZ5UHRWPQPA2URGITRMTLBLNSHJ5
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ5UHRWPQPA2URGITRMTLBLNSHJ5
+  item_id: 01EFCYUZYQ7B4FJHNKRJBLV5RXTI4YJ4V6
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZYQ7B4FJHNKRJBLV5RXTI4YJ4V6
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/velo-ce-stato-progetto-05-stato-info-quotazione.md
   name: velo-ce-stato-progetto-05-stato-info-quotazione.md
   last_modified: 2026-10-08T10:43:52Z
 versions:
   - { name: velo-ce-stato-progetto-05-stato-info-quotazione.md, item_id: 01EFCYUZ5UHRWPQPA2URGITRMTLBLNSHJ5, last_modified: 2026-10-08T10:43:52Z }
-also_at:
-  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/99 Project Claude (copia)/velo-ce-stato-progetto-05-stato-info-quotazione.md", item_id: 01EFCYUZYQ7B4FJHNKRJBLV5RXTI4YJ4V6 }
+also_at: []
 status: active
 partial: false
 ingested_at: 2026-10-22T13:25:37Z

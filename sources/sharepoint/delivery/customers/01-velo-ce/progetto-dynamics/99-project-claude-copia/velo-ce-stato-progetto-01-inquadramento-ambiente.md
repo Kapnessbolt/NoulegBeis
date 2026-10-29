@@ -5,7 +5,7 @@ family: velo-ce-stato-progetto-01-inquadramento-ambiente
 current:
   item_id: 01EFCYUZ2AQVYH6QUXYND3XMXYVVPPTTRA
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ2AQVYH6QUXYND3XMXYVVPPTTRA
-  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/99 Project Claude (copia)/velo-ce-stato-progetto-01-inquadramento-ambiente.md
+  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/velo-ce-stato-progetto-01-inquadramento-ambiente.md
   name: velo-ce-stato-progetto-01-inquadramento-ambiente.md
   last_modified: 2026-10-28T08:06:16Z
 versions:

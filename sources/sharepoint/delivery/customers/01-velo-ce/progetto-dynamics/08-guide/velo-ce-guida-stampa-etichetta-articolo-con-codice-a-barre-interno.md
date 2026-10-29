@@ -3,17 +3,15 @@ type: source-doc
 source: sharepoint
 family: velo-ce-guida-stampa-etichetta-articolo-con-codice-a-barre-interno
 current:
-  item_id: 01EFCYUZZSGZTVDM746NGZKLZXO4KIUL22
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZZSGZTVDM746NGZKLZXO4KIUL22
+  item_id: 01EFCYUZ4IJQUJK7RJJVGIDPS2D7J53W6P
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ4IJQUJK7RJJVGIDPS2D7J53W6P
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/08 Guide/Velo-CE - Guida stampa etichetta articolo con codice a barre - INTERNO - v002.pdf
   name: Velo-CE - Guida stampa etichetta articolo con codice a barre - INTERNO - v002.pdf
   last_modified: 2026-10-08T10:43:51Z
 versions:
   - { name: Velo-CE - Guida stampa etichetta articolo con codice a barre - INTERNO - v002.pdf, item_id: 01EFCYUZZSGZTVDM746NGZKLZXO4KIUL22, last_modified: 2026-10-08T10:43:51Z }
   - { name: Velo-CE - Guida stampa etichetta articolo con codice a barre - INTERNO - v002.docx, item_id: 01EFCYUZ4EHWZXOABV2ZEJUZKD6XAVSQFL, last_modified: 2026-10-07T10:04:03Z }
-also_at:
-  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/08 Guide/Velo-CE - Guida stampa etichetta articolo con codice a barre - INTERNO - v002.docx", item_id: 01EFCYUZ4EHWZXOABV2ZEJUZKD6XAVSQFL }
-  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/08 Guide/Velo-CE - Guida stampa etichetta articolo con codice a barre - INTERNO - v002.pdf", item_id: 01EFCYUZ4IJQUJK7RJJVGIDPS2D7J53W6P }
+also_at: []
 status: active
 partial: false
 ingested_at: 2026-10-22T13:25:42Z

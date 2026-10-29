@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-pilota-bc-lungo-bosch-modello-dati-5-fogli
 current:
-  item_id: 01EFCYUZ7RVPSSO235KRB3ZCNBGOROHLH3
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ7RVPSSO235KRB3ZCNBGOROHLH3
+  item_id: 01EFCYUZ7T342LVQDI5RFICNKT2ZKZ5LW6
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ7T342LVQDI5RFICNKT2ZKZ5LW6
   web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/02 Configurazione/Telaio e produzione/Velo-CE - Pilota BC Lungo Bosch - Modello dati 5 fogli - v008.xlsx"
   name: "Velo-CE - Pilota BC Lungo Bosch - Modello dati 5 fogli - v008.xlsx"
   last_modified: 2026-09-29T14:04:38Z
