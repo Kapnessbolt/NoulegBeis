@@ -5,14 +5,14 @@ family: velo-ce-stato-progetto
 current:
   item_id: 01EFCYUZYFANEIX47YHZBL3UOMRN2NZ4XA
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZYFANEIX47YHZBL3UOMRN2NZ4XA
-  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/99 Project Claude (copia)/velo-ce-stato-progetto.md
+  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/velo-ce-stato-progetto.md
   name: velo-ce-stato-progetto.md
   last_modified: 2026-10-28T08:06:17Z
 versions:
   - { name: velo-ce-stato-progetto.md, item_id: 01EFCYUZYFANEIX47YHZBL3UOMRN2NZ4XA, last_modified: 2026-10-28T08:06:17Z }
   - { name: velo-ce-stato-progetto.md, item_id: 01EFCYUZ52E4OBOOWJ75BZ2ODOVSRBAL3U, last_modified: 2026-10-08T10:43:53Z }
 also_at:
-  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/Claude outputs/proj18/velo-ce-stato-progetto.md.txt", item_id: 01EFCYUZ2JVDDMLJK26VBJX24PZVFFDSRR }
+  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/Claude outputs/proj18/velo-ce-stato-progetto.md.txt", item_id: 01EFCYUZ2JVDDMLJK26VBJX24PZVFFDSRR }
 status: active
 partial: false
 ingested_at: 2026-10-29T05:56:11Z

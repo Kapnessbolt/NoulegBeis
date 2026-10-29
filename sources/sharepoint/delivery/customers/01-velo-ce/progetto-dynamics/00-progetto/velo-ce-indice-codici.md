@@ -3,15 +3,14 @@ type: source-doc
 source: sharepoint
 family: velo-ce-indice-codici
 current:
-  item_id: 01EFCYUZZC3CHG27P26NGZNRMPDSVJFY4R
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZZC3CHG27P26NGZNRMPDSVJFY4R
+  item_id: 01EFCYUZYTT6HZYG7FGBDZ73J3OLHZWJGT
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZYTT6HZYG7FGBDZ73J3OLHZWJGT
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/00 Progetto/Velo-CE - Indice codici.md
   name: Velo-CE - Indice codici.md
   last_modified: 2026-10-08T10:43:47Z
 versions:
   - { name: Velo-CE - Indice codici.md, item_id: 01EFCYUZZC3CHG27P26NGZNRMPDSVJFY4R, last_modified: 2026-10-08T10:43:47Z }
-also_at:
-  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/00 Progetto/Velo-CE - Indice codici.md", item_id: 01EFCYUZYTT6HZYG7FGBDZ73J3OLHZWJGT }
+also_at: []
 status: active
 partial: false
 ingested_at: 2026-10-22T13:25:33Z

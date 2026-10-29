@@ -3,15 +3,14 @@ type: source-doc
 source: sharepoint
 family: velo-ce-verbale-avvio-gennaio-senza-cicli
 current:
-  item_id: 01EFCYUZZJON6LJ57VRFE2AKNRUT57BAC6
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZZJON6LJ57VRFE2AKNRUT57BAC6
+  item_id: 01EFCYUZ25HP4K2AU2YRFLNVR22ZDYI44R
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ25HP4K2AU2YRFLNVR22ZDYI44R
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/verbali/velo-ce-verbale-261005-1500-avvio-gennaio-senza-cicli.md
   name: velo-ce-verbale-261005-1500-avvio-gennaio-senza-cicli.md
   last_modified: 2026-10-08T10:44:37Z
 versions:
   - { name: velo-ce-verbale-261005-1500-avvio-gennaio-senza-cicli.md, item_id: 01EFCYUZZJON6LJ57VRFE2AKNRUT57BAC6, last_modified: 2026-10-08T10:44:37Z }
-also_at:
-  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/99 Project Claude (copia)/verbali/velo-ce-verbale-261005-1500-avvio-gennaio-senza-cicli.md", item_id: 01EFCYUZ25HP4K2AU2YRFLNVR22ZDYI44R }
+also_at: []
 status: active
 partial: false
 ingested_at: 2026-10-22T13:25:13Z

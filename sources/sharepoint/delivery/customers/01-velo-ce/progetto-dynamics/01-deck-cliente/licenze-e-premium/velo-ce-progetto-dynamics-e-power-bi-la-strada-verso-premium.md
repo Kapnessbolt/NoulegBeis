@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-progetto-dynamics-e-power-bi-la-strada-verso-premium
 current:
-  item_id: 01EFCYUZ6TPWKUS7PRCBFLA6QRILF4PETN
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ6TPWKUS7PRCBFLA6QRILF4PETN
+  item_id: 01EFCYUZ27FYBJ7UKKLJEI5DF7J7BZU7GH
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ27FYBJ7UKKLJEI5DF7J7BZU7GH
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/01 Deck cliente/Licenze e Premium/Velo-CE - Progetto Dynamics e Power BI - La strada verso Premium - v005.pptx
   name: Velo-CE - Progetto Dynamics e Power BI - La strada verso Premium - v005.pptx
   last_modified: 2013-01-27T09:15:58Z

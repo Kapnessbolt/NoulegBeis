@@ -3,15 +3,14 @@ type: source-doc
 source: sharepoint
 family: velo-ce-handoff-strade-tenant-unico
 current:
-  item_id: 01EFCYUZZMWFPWXVPJRVHYVI5IO4PBTNDU
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZZMWFPWXVPJRVHYVI5IO4PBTNDU
+  item_id: 01EFCYUZ2RDIVUAJPUQBF3SJU5LELKQZSG
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ2RDIVUAJPUQBF3SJU5LELKQZSG
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/00 Progetto/Handoff/handoff-2026-10-04-strade-tenant-unico.md
   name: handoff-2026-10-04-strade-tenant-unico.md
   last_modified: 2026-10-08T10:43:55Z
 versions:
   - { name: handoff-2026-10-04-strade-tenant-unico.md, item_id: 01EFCYUZZMWFPWXVPJRVHYVI5IO4PBTNDU, last_modified: 2026-10-08T10:43:55Z }
-also_at:
-  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/00 Progetto/Handoff/handoff-2026-10-04-strade-tenant-unico.md", item_id: 01EFCYUZ2RDIVUAJPUQBF3SJU5LELKQZSG }
+also_at: []
 status: active
 partial: false
 ingested_at: 2026-10-22T13:25:33Z

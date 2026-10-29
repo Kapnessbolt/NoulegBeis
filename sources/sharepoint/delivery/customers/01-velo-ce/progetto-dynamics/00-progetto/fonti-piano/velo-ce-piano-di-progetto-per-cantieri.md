@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-piano-di-progetto-per-cantieri
 current:
-  item_id: 01EFCYUZ4RC25RN4PTWRCZAWJLGMVCKHXI
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ4RC25RN4PTWRCZAWJLGMVCKHXI
+  item_id: 01EFCYUZ6FOQMAVJ5VPRFJKJVMCFHILPBV
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ6FOQMAVJ5VPRFJKJVMCFHILPBV
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/00 Progetto/_fonti piano/Velo-CE - Piano di progetto per cantieri.xlsx
   name: Velo-CE - Piano di progetto per cantieri.xlsx
   last_modified: 2026-09-21T12:23:52Z

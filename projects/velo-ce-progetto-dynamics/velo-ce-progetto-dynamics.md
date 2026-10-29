@@ -4,7 +4,7 @@ status: attivo
 role: "Non coinvolto: seguono Cristian Schifone e Leonardo Pinsone"
 clients: ["[[velo-ce]]"]
 people: ["[[cristian-schifone]]", "[[leonardo-pinsone]]", "[[stefano-moruzzi]]", "[[claudia-crippa]]", "[[gabriele-ranzini]]"]
-updated: 2026-10-23
+updated: 2026-10-29
 ---
 
 # Velo-CE · Progetto Dynamics
@@ -24,7 +24,7 @@ updated: 2026-10-23
 
 ## Attività
 
-- [ ] Chiedere a Cristian di rinominare su SharePoint la cartella `01 - Velo-CE/Cristian/` in `Progetto Dynamics`, senza cancellarla né copiarla: oggi è l'unica copia del progetto, e il nome nuovo tiene gli stessi ID dei file. Le note del vault restano sotto Progetto Dynamics (dall'utente) 📅 2026-10-31 ([[2026-10-29]])
+- [x] Chiedere a Cristian di rinominare su SharePoint la cartella `01 - Velo-CE/Cristian/` in `Progetto Dynamics`, senza cancellarla né copiarla: oggi è l'unica copia del progetto, e il nome nuovo tiene gli stessi ID dei file. Le note del vault restano sotto Progetto Dynamics (dall'utente) 📅 2026-10-31 ✅ 2026-10-29 ([[2026-10-29]], [[2026-10-29-cockpit-conteggi-e-step-13]])
 - [ ] Scelta della strada verso Premium e del partner, regola di codifica 📅 2026-10-30 ([[velo-ce-sal-01-cliente]], [[velo-ce-piano-attivita-nuovo-ambiente-interno]])
 - [ ] Sandbox Premium e nome definitivo della società (irreversibile) 📅 2026-10-31 ([[velo-ce-piano-attivita-nuovo-ambiente-interno]])
 - [ ] Regola di taglio fiscale e saldi d'apertura decisi con il commercialista, piano dei conti e metodo di costo 📅 2026-11-13 ([[velo-ce-piano-attivita-nuovo-ambiente-interno]])

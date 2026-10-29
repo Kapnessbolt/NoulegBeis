@@ -3,15 +3,14 @@ type: source-doc
 source: sharepoint
 family: velo-ce-regole-skill
 current:
-  item_id: 01EFCYUZ75CATPRT3RDBC3T6NW6PLKG43K
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ75CATPRT3RDBC3T6NW6PLKG43K
+  item_id: 01EFCYUZ46KIA7WDO4RVGYBLCMOPVFQDA6
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ46KIA7WDO4RVGYBLCMOPVFQDA6
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/00 Progetto/_regole skill.md
   name: _regole skill.md
   last_modified: 2026-10-08T10:43:48Z
 versions:
   - { name: _regole skill.md, item_id: 01EFCYUZ75CATPRT3RDBC3T6NW6PLKG43K, last_modified: 2026-10-08T10:43:48Z }
-also_at:
-  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/00 Progetto/_regole skill.md", item_id: 01EFCYUZ46KIA7WDO4RVGYBLCMOPVFQDA6 }
+also_at: []
 status: active
 partial: false
 ingested_at: 2026-10-22T13:25:33Z

@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-piano-ripresa-dati-interno
 current:
-  item_id: 01EFCYUZZHZIFH3MEBO5DJCYOEUSMIKJGA
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZZHZIFH3MEBO5DJCYOEUSMIKJGA
+  item_id: 01EFCYUZ45ABRXUWVOZZEIFLHIECSEJD7E
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ45ABRXUWVOZZEIFLHIECSEJD7E
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/00 Progetto/Velo-CE - Piano ripresa dati - INTERNO - v001.xlsx
   name: Velo-CE - Piano ripresa dati - INTERNO - v001.xlsx
   last_modified: 2026-10-08T07:59:37Z

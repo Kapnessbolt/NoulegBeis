@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-riorganizzazione-cartella-mappa-file
 current:
-  item_id: 01EFCYUZ2NXKPAXDHVI5HYPAVTOGZZ2FF5
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ2NXKPAXDHVI5HYPAVTOGZZ2FF5
+  item_id: 01EFCYUZ5JBEWNIX6S65H2Y5ZB2VDNTQLA
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ5JBEWNIX6S65H2Y5ZB2VDNTQLA
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/00 Progetto/Velo-CE - Riorganizzazione cartella - Mappa file - v001.xlsx
   name: Velo-CE - Riorganizzazione cartella - Mappa file - v001.xlsx
   last_modified: 2026-10-02T08:29:59Z

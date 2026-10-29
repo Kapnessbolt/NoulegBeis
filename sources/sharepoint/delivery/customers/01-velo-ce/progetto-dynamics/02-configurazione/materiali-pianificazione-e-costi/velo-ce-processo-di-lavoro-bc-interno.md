@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-processo-di-lavoro-bc-interno
 current:
-  item_id: 01EFCYUZ7DWFSTPPXDC5AIIGLJ7MOQUVLV
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ7DWFSTPPXDC5AIIGLJ7MOQUVLV
+  item_id: 01EFCYUZ5PVHA4CG2N65GZ6ELO6VP55VCQ
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ5PVHA4CG2N65GZ6ELO6VP55VCQ
   web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/02 Configurazione/Materiali, pianificazione e costi/Velo-CE - Processo di lavoro BC - INTERNO - v001.xlsx"
   name: "Velo-CE - Processo di lavoro BC - INTERNO - v001.xlsx"
   last_modified: 2026-10-05T08:48:20Z

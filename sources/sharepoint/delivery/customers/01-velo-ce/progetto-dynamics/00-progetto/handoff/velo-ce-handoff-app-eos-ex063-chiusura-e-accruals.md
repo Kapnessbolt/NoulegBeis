@@ -3,15 +3,14 @@ type: source-doc
 source: sharepoint
 family: velo-ce-handoff-app-eos-ex063-chiusura-e-accruals
 current:
-  item_id: 01EFCYUZ57CF5MNSHDKRG2DST2XCIN7A3Q
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ57CF5MNSHDKRG2DST2XCIN7A3Q
+  item_id: 01EFCYUZ54JMQSFLQO6BD2T5X6QWG2Q4ZP
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ54JMQSFLQO6BD2T5X6QWG2Q4ZP
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/00 Progetto/Handoff/handoff-2026-10-02-app-eos-ex063-chiusura-e-accruals.md
   name: handoff-2026-10-02-app-eos-ex063-chiusura-e-accruals.md
   last_modified: 2026-10-08T10:43:54Z
 versions:
   - { name: handoff-2026-10-02-app-eos-ex063-chiusura-e-accruals.md, item_id: 01EFCYUZ57CF5MNSHDKRG2DST2XCIN7A3Q, last_modified: 2026-10-08T10:43:54Z }
-also_at:
-  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/00 Progetto/Handoff/handoff-2026-10-02-app-eos-ex063-chiusura-e-accruals.md", item_id: 01EFCYUZ54JMQSFLQO6BD2T5X6QWG2Q4ZP }
+also_at: []
 status: active
 partial: false
 ingested_at: 2026-10-22T13:25:33Z

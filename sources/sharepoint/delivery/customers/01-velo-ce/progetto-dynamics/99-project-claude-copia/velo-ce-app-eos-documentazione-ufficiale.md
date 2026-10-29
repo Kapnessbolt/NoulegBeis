@@ -3,15 +3,14 @@ type: source-doc
 source: sharepoint
 family: velo-ce-app-eos-documentazione-ufficiale
 current:
-  item_id: 01EFCYUZ464D6R3ORXYZBJJ4SWZHBLV5FY
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ464D6R3ORXYZBJJ4SWZHBLV5FY
+  item_id: 01EFCYUZ3AVPJB64AFE5C3WX5P5IGPCGJN
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ3AVPJB64AFE5C3WX5P5IGPCGJN
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/velo-ce-app-eos-documentazione-ufficiale-2026-09-29.md
   name: velo-ce-app-eos-documentazione-ufficiale-2026-09-29.md
   last_modified: 2026-10-08T10:43:52Z
 versions:
   - { name: velo-ce-app-eos-documentazione-ufficiale-2026-09-29.md, item_id: 01EFCYUZ464D6R3ORXYZBJJ4SWZHBLV5FY, last_modified: 2026-10-08T10:43:52Z }
-also_at:
-  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/99 Project Claude (copia)/velo-ce-app-eos-documentazione-ufficiale-2026-09-29.md", item_id: 01EFCYUZ3AVPJB64AFE5C3WX5P5IGPCGJN }
+also_at: []
 status: active
 partial: false
 ingested_at: 2026-10-22T13:25:37Z

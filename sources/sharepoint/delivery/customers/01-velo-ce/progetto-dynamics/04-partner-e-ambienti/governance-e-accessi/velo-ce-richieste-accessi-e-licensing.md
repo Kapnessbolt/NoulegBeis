@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-richieste-accessi-e-licensing
 current:
-  item_id: 01EFCYUZ5PEKY5GPQEOVGKAH32YUIYUG6W
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ5PEKY5GPQEOVGKAH32YUIYUG6W
+  item_id: 01EFCYUZ4BI65UZAKTBFHKM3BFK2DVQYBT
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ4BI65UZAKTBFHKM3BFK2DVQYBT
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/04 Partner e ambienti/Governance e accessi/Velo-CE - Richieste accessi e licensing - v002.xlsx
   name: Velo-CE - Richieste accessi e licensing - v002.xlsx
   last_modified: 2026-09-27T18:32:52Z

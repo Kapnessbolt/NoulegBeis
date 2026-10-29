@@ -5,7 +5,7 @@ family: velo-ce-indice-evidenze
 current:
   item_id: 01EFCYUZ5R6F2FB6XZEFDYWFHHPPEFF36F
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ5R6F2FB6XZEFDYWFHHPPEFF36F
-  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/06 Evidenze/00 Indice evidenze Velo-CE.md
+  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/06 Evidenze/00 Indice evidenze Velo-CE.md
   name: 00 Indice evidenze Velo-CE.md
   last_modified: 2026-10-28T08:04:54Z
 versions:

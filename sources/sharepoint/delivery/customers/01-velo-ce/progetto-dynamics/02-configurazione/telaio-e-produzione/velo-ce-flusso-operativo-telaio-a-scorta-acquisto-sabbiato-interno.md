@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-flusso-operativo-telaio-a-scorta-acquisto-sabbiato-interno
 current:
-  item_id: 01EFCYUZ4ICYLUNLDM7ZBJ5QFNSUD77DPD
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ4ICYLUNLDM7ZBJ5QFNSUD77DPD
+  item_id: 01EFCYUZ53ANGCBLJG2FAZMBEVB7ZOM7G6
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ53ANGCBLJG2FAZMBEVB7ZOM7G6
   web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/02 Configurazione/Telaio e produzione/Velo-CE - Flusso operativo telaio a scorta, acquisto-sabbiato - INTERNO - v001.xlsx"
   name: "Velo-CE - Flusso operativo telaio a scorta, acquisto-sabbiato - INTERNO - v001.xlsx"
   last_modified: 2026-10-05T05:44:25Z

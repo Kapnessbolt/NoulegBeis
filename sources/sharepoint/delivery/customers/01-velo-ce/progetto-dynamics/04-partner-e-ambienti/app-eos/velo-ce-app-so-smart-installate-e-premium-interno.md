@@ -3,10 +3,10 @@ type: source-doc
 source: sharepoint
 family: velo-ce-app-so-smart-installate-e-premium-interno
 current:
-  item_id: 01EFCYUZ6QBDKWOAGRNRFIWFMFHFQHAHAU
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ6QBDKWOAGRNRFIWFMFHFQHAHAU
-  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/04 Partner e ambienti/App EOS/Velo-CE - App So Smart installate e Premium - INTERNO - v001.xlsx
-  name: Velo-CE - App So Smart installate e Premium - INTERNO - v001.xlsx
+  item_id: 01EFCYUZ65VF7UOKXBE5BKKEDZNAMEOFWX
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ65VF7UOKXBE5BKKEDZNAMEOFWX
+  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/04 Partner e ambienti/App EOS/Velo-CE - App So Smart installate e Premium - INTERNO - v002.xlsx
+  name: Velo-CE - App So Smart installate e Premium - INTERNO - v002.xlsx
   last_modified: 2026-10-06T11:35:37Z
 versions:
   - { name: Velo-CE - App So Smart installate e Premium - INTERNO - v001.xlsx, item_id: 01EFCYUZ6QBDKWOAGRNRFIWFMFHFQHAHAU, last_modified: 2026-10-06T11:35:37Z }

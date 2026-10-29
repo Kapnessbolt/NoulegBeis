@@ -106,7 +106,7 @@ def analizza(web_url):
     estensione = nome_file.rsplit(".", 1)[-1].lower() if "." in nome_file else None
     out["tipo_processato"] = None if estensione is None else estensione in p["tipi"]
 
-    prefisso = next((p for x in p["prefissi"] if basso.startswith(x.lower())), None)
+    prefisso = next((x for x in p["prefissi"] if basso.startswith(x.lower())), None)
     if not prefisso:
         if out["fonte"] == "sharepoint":
             if parti[0].lower() != p["sito"].lower():

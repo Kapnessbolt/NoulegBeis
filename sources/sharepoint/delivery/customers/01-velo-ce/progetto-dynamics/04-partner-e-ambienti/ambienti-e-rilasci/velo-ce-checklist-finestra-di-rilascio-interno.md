@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-checklist-finestra-di-rilascio-interno
 current:
-  item_id: 01EFCYUZ7SV6SW3MXQ3VD2XDOXE5BUVOXN
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ7SV6SW3MXQ3VD2XDOXE5BUVOXN
+  item_id: 01EFCYUZ6J3Z66K5RK4FH3IYLL3FKXXVPM
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ6J3Z66K5RK4FH3IYLL3FKXXVPM
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/04 Partner e ambienti/Ambienti e rilasci/Velo-CE - Checklist finestra di rilascio - INTERNO - v002.xlsx
   name: Velo-CE - Checklist finestra di rilascio - INTERNO - v002.xlsx
   last_modified: 2026-09-27T18:32:52Z

@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-layout-etichetta-articolo-standard-report-6625-interno
 current:
-  item_id: 01EFCYUZ6BN6SILI43QNAY3DG2EO7UOTV2
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ6BN6SILI43QNAY3DG2EO7UOTV2
+  item_id: 01EFCYUZ47HIUHRJH2HFB3QBTT6GATNTM2
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ47HIUHRJH2HFB3QBTT6GATNTM2
   web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/02 Configurazione/Anagrafica e codifica/Etichette/Velo-CE - Layout etichetta articolo standard report 6625 - INTERNO - v001.docx"
   name: "Velo-CE - Layout etichetta articolo standard report 6625 - INTERNO - v001.docx"
   last_modified: 2023-08-03T12:06:00Z

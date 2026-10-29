@@ -7,6 +7,7 @@ project: "[[velo-ce-progetto-dynamics]]"
 
 Una riga per avanzamento, dalla più recente: `- AAAA-MM-GG · cosa è successo · [[fonte]]`
 
+- 2026-10-29 · Cartella `Cristian/` rinominata da Cristian in `Progetto Dynamics` su SharePoint, con gli stessi ID; 118 note del vault riallineate ai file attuali (ID, indirizzo, copie in `also_at`, stato), 46 spostate da `cristian/` a `progetto-dynamics/`; 4 note senza più il file (Articoli version 1, Ricodifica rename o nuovo codice, App EOS quali servono, Domande per la call con So Smart) le segna rimosse la riconciliazione di domenica · [[2026-10-29-cockpit-conteggi-e-step-13]]
 - 2026-10-29 · Decisione di Lorenzo: le note restano sotto Progetto Dynamics; la cartella `Progetto Dynamics` non esiste più su SharePoint e `Cristian/` è l'unica copia, va rinominata, non cancellata. 64 note puntano ancora ai file spariti: se la riconciliazione di domenica gira prima della rinomina, le segna come rimosse · [[2026-10-29]]
 - 2026-10-28 · Cartella di progetto su SharePoint copiata da `Progetto Dynamics/` a `Cristian/` (ID nuovi, originali non più raggiungibili); stato progetto alla 025.109 del 27/10 · [[velo-ce-stato-progetto]]
 - 2026-10-27 · velo-ce-piano-afc-interno: nuova versione v002, voci del perimetro AFC da 49 a 65 e 55 open point aperti, nuovi fogli Anomalie e Playbook · [[velo-ce-piano-afc-interno]]

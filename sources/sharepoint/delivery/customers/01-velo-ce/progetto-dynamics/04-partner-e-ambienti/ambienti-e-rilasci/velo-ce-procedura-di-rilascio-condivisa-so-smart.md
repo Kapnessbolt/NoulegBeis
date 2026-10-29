@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-procedura-di-rilascio-condivisa-so-smart
 current:
-  item_id: 01EFCYUZ22YPHBOGH7V5GYEDKYAUC7Y2RH
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ22YPHBOGH7V5GYEDKYAUC7Y2RH
+  item_id: 01EFCYUZ55TDM5CLF23BAIHMOAAWWV6RHZ
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ55TDM5CLF23BAIHMOAAWWV6RHZ
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/04 Partner e ambienti/Ambienti e rilasci/Velo-CE - Procedura di rilascio condivisa - SO SMART - v002.docx
   name: Velo-CE - Procedura di rilascio condivisa - SO SMART - v002.docx
   last_modified: 2026-09-23T11:40:40Z

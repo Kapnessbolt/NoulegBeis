@@ -3,15 +3,14 @@ type: source-doc
 source: sharepoint
 family: velo-ce-project-claude-leggimi
 current:
-  item_id: 01EFCYUZYFNAIOKYMBSRC3KPPOPRKOEOIM
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZYFNAIOKYMBSRC3KPPOPRKOEOIM
+  item_id: 01EFCYUZ5SKT6H5ZYTERFJ6AU42TZHZJ7C
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ5SKT6H5ZYTERFJ6AU42TZHZJ7C
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/00 LEGGIMI - COPIA.md
   name: 00 LEGGIMI - COPIA.md
   last_modified: 2026-10-08T10:43:51Z
 versions:
   - { name: 00 LEGGIMI - COPIA.md, item_id: 01EFCYUZYFNAIOKYMBSRC3KPPOPRKOEOIM, last_modified: 2026-10-08T10:43:51Z }
-also_at:
-  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/99 Project Claude (copia)/00 LEGGIMI - COPIA.md", item_id: 01EFCYUZ5SKT6H5ZYTERFJ6AU42TZHZJ7C }
+also_at: []
 status: active
 partial: false
 ingested_at: 2026-10-22T13:25:37Z

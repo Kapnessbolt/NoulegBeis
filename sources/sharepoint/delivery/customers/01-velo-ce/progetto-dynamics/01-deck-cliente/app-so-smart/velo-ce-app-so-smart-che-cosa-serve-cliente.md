@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-app-so-smart-che-cosa-serve-cliente
 current:
-  item_id: 01EFCYUZ2RP2PAVY2TRBE3SFEPKXMJBPFN
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ2RP2PAVY2TRBE3SFEPKXMJBPFN
+  item_id: 01EFCYUZY4FVCFJRDOYVHZFMO23TWDBW3L
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZY4FVCFJRDOYVHZFMO23TWDBW3L
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/01 Deck cliente/App So Smart/Velo-CE - App So Smart, che cosa serve - CLIENTE - v002.pdf
   name: Velo-CE - App So Smart, che cosa serve - CLIENTE - v002.pdf
   last_modified: 2026-09-29T18:00:31Z

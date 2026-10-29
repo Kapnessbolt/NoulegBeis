@@ -3,15 +3,14 @@ type: source-doc
 source: sharepoint
 family: velo-ce-verbale-guida-anagrafica-ondate-mrp
 current:
-  item_id: 01EFCYUZZDP2QX55DJFNFKFWR4PUJLFNR6
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZZDP2QX55DJFNFKFWR4PUJLFNR6
+  item_id: 01EFCYUZZQWHKLBXDDTVDJWVD7IFL4WWPA
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZZQWHKLBXDDTVDJWVD7IFL4WWPA
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/verbali/velo-ce-verbale-260930-1424-guida-anagrafica-ondate-mrp.md
   name: velo-ce-verbale-260930-1424-guida-anagrafica-ondate-mrp.md
   last_modified: 2026-10-08T10:44:36Z
 versions:
   - { name: velo-ce-verbale-260930-1424-guida-anagrafica-ondate-mrp.md, item_id: 01EFCYUZZDP2QX55DJFNFKFWR4PUJLFNR6, last_modified: 2026-10-08T10:44:36Z }
-also_at:
-  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/99 Project Claude (copia)/verbali/velo-ce-verbale-260930-1424-guida-anagrafica-ondate-mrp.md", item_id: 01EFCYUZZQWHKLBXDDTVDJWVD7IFL4WWPA }
+also_at: []
 status: active
 partial: false
 ingested_at: 2026-10-22T13:25:13Z

@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-layout-etichetta-da-ordine-acquisto-prova-interno
 current:
-  item_id: 01EFCYUZZKBA4WDDULGNH26LZE47HVB6GP
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZZKBA4WDDULGNH26LZE47HVB6GP
+  item_id: 01EFCYUZ7ESF6DXQGAS5EIE3XBXZIGQ3YB
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ7ESF6DXQGAS5EIE3XBXZIGQ3YB
   web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/02 Configurazione/Anagrafica e codifica/Etichette/Velo-CE - Layout etichetta da ordine acquisto prova - INTERNO - v001.docx"
   name: "Velo-CE - Layout etichetta da ordine acquisto prova - INTERNO - v001.docx"
   last_modified: 2022-02-07T14:22:00Z
