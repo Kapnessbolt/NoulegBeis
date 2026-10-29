@@ -32,7 +32,7 @@ Capire se, quando e come il Second Brain commerciale richiede un database vettor
 
 ## Aperti
 
-- [ ] Unire la PR di questa sessione (SPEC 1.25, scheda, tema)
+- [x] Unire la PR di questa sessione (SPEC 1.25, scheda, tema) (chiuso: PR #51 unita)
 - [ ] Set di valutazione della ricerca: circa 50 domande con le note attese e script che calcola la recall dei primi 5 risultati
 - [ ] Registro dei "non trovato" e dei giri di ricerca del librarian, nelle metriche dello step 20
 - [ ] BM25 in `cerca.py` e `aliases:` nei template di cliente, tema e progetto
