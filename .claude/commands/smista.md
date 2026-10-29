@@ -19,9 +19,7 @@ Argomenti: `$ARGUMENTS` (una nota di `inbox/` da smistare da sola; senza, tutte)
    - cliente: punto nella sezione `sezioni.relazione` di `vault.yaml` (oggi `## Relazione con BlueAge`) di `clients/<slug>.md`;
    - nota nuova da creare (progetto o tema): solo come proposta, con nome e slug; i progetti non si creano da soli (`CLAUDE.md` §2). Se l'utente dice sì, la crea la sessione con `nuova-nota.py`;
    - scarto: già presente nel vault (di' dove), superata, estranea al lavoro (`vault.organizzazione`).
-   Un'informazione su un progetto va in due posti: log e, se cambia lo stato, scheda (`CLAUDE.md` §2).
 5. Mostra una tabella: `cattura → destinazione → testo che scriverai`, con la fonte in coda a ogni testo. Nessuna destinazione certa: dillo e lascia la cattura in `inbox/`.
 6. Applica solo dopo l'ok, nota per nota o tutte insieme, come dice l'utente. Per ogni cattura applicata: scrivi le righe, poi `git rm inbox/<nota>.md`. Le catture non approvate restano.
 7. Se il diario del passo 2 non c'è ancora, crealo ora: `python3 .claude/scripts/nuova-nota.py session sessions/<oggi>-<slug-sessione>.md --titolo "<titolo>" --campo surface=<cloud | locale> --campo 'outcome=smistamento di inbox/'`, con `## Obiettivo` (smistare `inbox/`) e `## Decisioni` (una riga per destinazione approvata). Va nello stesso commit dello smistamento; a fine sessione `/chiudi-sessione` lo aggiorna invece di riscriverlo.
-8. `python3 .claude/scripts/controlla-vault.py`; correggi gli errori introdotti.
-9. Commit `inbox: smistamento` con i file toccati, il diario se l'hai creato e le catture rimosse. `git branch --show-current`: su `main`, `git pull --rebase origin main` e push; su un branch `claude/`, commit lì e dillo.
+8. Controllo e commit come `CLAUDE.md` §7 (anche per i branch `claude/`): commit `inbox: smistamento` con i file toccati, il diario se l'hai creato e le catture rimosse.

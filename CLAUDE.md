@@ -7,6 +7,7 @@ Questo repo è il second brain personale di Lorenzo Curione sulla knowledge Blue
 1. `git pull --rebase origin main`. Lo fa l'hook di avvio (`.claude/hooks/pull-inizio-sessione.sh`), in cloud e in locale: se nel contesto c'è "Vault allineato" è fatto; se dice saltato o non riuscito, fallo tu.
 2. Leggi questo file. Leggi `SPEC.md` solo nelle sezioni che servono al compito.
 3. Se il compito tocca un progetto, apri prima `projects/<slug>/<slug>.md`.
+4. Le regole di una cartella stanno in `.claude/rules/` (oggi `fonti.md` per `sources/`) e arrivano nel contesto quando leggi o modifichi un file di quella cartella: non le cercare a mano.
 
 ## 2. Dove scrivere ogni tipo di nota
 
@@ -32,9 +33,7 @@ Questo repo è il second brain personale di Lorenzo Curione sulla knowledge Blue
 
 Regole di instradamento:
 - La scheda progetto si chiama come la cartella (`projects/<slug>/<slug>.md`), così `[[<slug>]]` la apre; la cronologia è `<slug>-log.md`.
-- `<percorso>` riproduce le cartelle dell'originale, in slug (`SalesMarketing/Offerte 2026/` → `salesmarketing/offerte-2026/`).
-- `AAAA-MM` della mail è il mese del primo messaggio del thread. `<slug-oggetto>` è l'oggetto senza prefissi di risposta e inoltro (`RE:`, `R:`, `FW:`, `FWD:`, `I:`).
-- I partecipanti di un thread si collegano a `people/<nome-cognome>.md`. Se la persona non ha una nota, creala dal template.
+- Percorso, famiglia e collegamenti delle note in `sources/`: regola `.claude/rules/fonti.md` (arriva quando tocchi la cartella) e script `perimetro.py`, `famiglia.py`, `nuova-nota.py`.
 - Se non sai a quale progetto, cliente o tema appartiene qualcosa, scrivi in `inbox/` e non inventare collegamenti.
 - Un'informazione nuova su un progetto va in due posti: una riga datata in `<slug>-log.md` e, se cambia lo stato, la sezione corrispondente di `<slug>.md`.
 - Un'azione o una scadenza emersa da una fonte va come checkbox in `## Attività` di `<slug>.md` (con data e fonte) e come riga in `<slug>-log.md`.
@@ -59,20 +58,12 @@ Il curator non modifica mai `CLAUDE.md`, `.claude/` o `SPEC.md`: propone, e le m
 - Collegamenti: wikilink `[[slug]]` (senza percorso e senza `.md`). Gli slug devono essere unici in tutto il vault.
 - Integrità: mai un wikilink verso una nota che non esiste. Se la destinazione manca, creala. Per rinominare una nota usa `python3 .claude/scripts/rinomina-nota.py <vecchio> <nuovo>`: aggiorna tutti i collegamenti e lo stato.
 - Tracciabilità: nei temi (`## Punti chiave`), clienti (`## Chi sono`, `## Relazione con BlueAge`) e progetti (`## Stato`, `## Decisioni`) ogni punto finisce con la fonte, `([[slug-fonte]])`. Se l'informazione viene da te in sessione, la fonte è il diario della sessione.
-- Ogni nota in `sources/` si collega ad almeno un progetto, cliente o tema con i campi `projects`, `clients`, `topics`. Se la persona, il cliente o il tema non esiste ancora, crea la nota dal template. Nei task schedulati clienti e temi nuovi nascono come note minime con il tag `da-verificare`: rivedile e togli il tag.
+- Se la persona, il cliente o il tema che devi collegare non esiste ancora, crea la nota dal template. Nei task schedulati clienti e temi nuovi nascono come note minime con il tag `da-verificare`: rivedile e togli il tag.
 - Persone: prima di crearne una cerca la sua email in `people/` (`email:`). Stessa email → è la stessa persona. Nome simile in una nota senza email → è la stessa persona. Nome simile con email diversa → crea la nuova persona. Negli ultimi due casi segnala il possibile doppione.
 - Frontmatter YAML obbligatorio, con i campi del template del suo tipo. Non togliere campi: se non c'è il valore, lascia `[]`, `""` o `null`.
 - Una nota descrive, non copia: riassunto, punti chiave, numeri, decisioni, azioni. Il dettaglio si legge dall'originale con il connettore.
 - Attività: checkbox con data nel formato Obsidian Tasks `- [ ] testo 📅 AAAA-MM-GG` e la fonte in coda (`([[slug-fonte]])`).
 - Date nel frontmatter: `AAAA-MM-GG` per i giorni, ISO 8601 UTC (`2026-10-22T06:50:00Z`) per gli istanti.
-
-### Versioni dei documenti (SPEC 4.3)
-
-- Una nota per famiglia, non per versione.
-- Chiave della famiglia: cartella + nome normalizzato, senza suffissi di versione (`_v15`, `v2`, `- v001`), date ed estensione. Esempio: `BlueAge_CompanyProfile_v24.pdf` → `blueage-companyprofile`.
-- `current` punta all'ultima versione; `versions` tiene lo storico dalla più recente.
-- Nuova versione: rigenera il riassunto e scrivi le differenze rilevanti nel `<slug>-log.md` del progetto collegato.
-- Stessa famiglia in un'altra posizione: aggiungi la posizione in `also_at`, non creare un'altra nota.
 
 ## 5. Cosa non va nel repo
 
@@ -82,20 +73,18 @@ Il curator non modifica mai `CLAUDE.md`, `.claude/` o `SPEC.md`: propone, e le m
 - Dati reali dei clienti riga per riga (DDT, ordini, anagrafiche, export di tabelle): restano su OneDrive nelle cartelle `Dati/` e non generano note. La nota del progetto cita solo la cartella e i numeri aggregati. Se la policy AI del cliente limita l'uso dei dati, scrivilo nella nota del cliente.
 - Thread personali o estranei a BlueAge: non si ingeriscono. Nel dubbio, in sessione chiedi; nei task schedulati scartali e annotali come gli altri scarti (mittente · oggetto).
 
-## 6. Perimetro delle fonti (sintesi di SPEC 5)
+## 6. Perimetro delle fonti (SPEC 5)
 
 I valori del vault (tenant, librerie, cartella OneDrive, esclusioni, repository, task con orari, fuso, nomi dei connettori e delle sezioni) stanno in `vault.yaml` (SPEC 2.1): gli script li leggono da lì, e in sessione si leggono con `python3 .claude/scripts/config.py` (`oggi`, `ora`, `valore <chiave>`). Un valore del vault non si scrive in `.claude/`.
 
-- SharePoint `sites/internal`: librerie SalesMarketing, Delivery, Shared Documents. Escluse le librerie Knowledge (corsi Anthropic) e SiteAssets, e le cartelle `_originali` e `_sorgenti`.
-- OneDrive: solo la cartella `BlueAge/`, con tutte le sue sottocartelle tranne le cartelle `Dati` (dati reali dei clienti, §5). La cartella il cui nome finisce con `chat` (oggi `BlueAge/00_chat/`) contiene i riassunti delle chat claude.ai → note `session` con `surface: claude-ai`.
-- Outlook: tutta la casella, Inviate comprese. Scarta no-reply, notifiche di servizi, newsletter e marketing.
-- GitHub: solo i file e le issue elencati in SPEC 5.4 (oggi il repo `cristian-schifone/parts-radar`, branch `main`). Nel vault va il livello di progetto (stato, decisioni, scadenze, azioni fuori dal codice), mai il dettaglio tecnico.
+Cosa si ingerisce e cosa no lo decide `python3 .claude/scripts/perimetro.py "<webUrl>" --json` (SharePoint e OneDrive) e l'agente `ingestor` (filtri di scarto della posta, file e issue dei repo GitHub di SPEC 5.4). Un documento fuori perimetro si ingerisce solo a richiesta con `/ingest-file`. Nel vault va il livello di progetto (stato, decisioni, scadenze, azioni), mai il dettaglio tecnico o i dati reali dei clienti (§5).
 
 ## 7. Git
 
 - Prima di ogni commit: `python3 .claude/scripts/controlla-vault.py` (SPEC 4.4) e correggi gli errori che hai introdotto. Il pre-commit di git (`.githooks/pre-commit`, attivato a inizio sessione) blocca comunque il commit se restano errori nei file modificati. Il controllo segnala come errore anche i possibili dati riservati nel corpo delle note (§5): toglili, non aggirarlo. Poi commit, `git pull --rebase origin main` (dopo il commit: con modifiche non committate il rebase si rifiuta) e push diretto su `main`.
 - Conflitti su `.state/*.json`: li risolve il merge driver `stato` (`.gitattributes`, registrato dall'hook di avvio): vince il watermark più avanzato e le voci si uniscono. Se il rebase si ferma comunque su un file di stato: `python3 .claude/scripts/stato.py risolvi`, poi `git rebase --continue`. Altri conflitti: riapplica la tua modifica sulla versione remota.
 - Eccezione: il curator lavora su un branch `claude/` e apre una PR (`claude/curator-AAAA-MM-DD` con `/curator`, il branch assegnato alla sessione nel task schedulato).
+- Su un branch `claude/` (`git branch --show-current`): commit lì, niente push su `main`, e dillo all'utente; la modifica arriva su `main` con la PR del branch.
 - Messaggi di commit: `ingest(sharepoint): 12 note aggiornate`, `session: <slug>`, `project(<slug>): <cosa>`, `inbox: cattura <slug>` e `inbox: smistamento` per `/cattura` e `/smista`, `vault: <cosa>` per struttura e configurazione.
 
 ## 8. Fine sessione

@@ -150,3 +150,32 @@ def test_stato_illeggibile_e_errore_e_documento_non_registrato_e_avviso(vault):
     assert res.returncode == 1
     assert "`.state/onedrive.json` · illeggibile" in res.stdout
     assert "documento non registrato nello stato (.state/sharepoint.json)" in res.stdout
+
+
+def test_regola_a_percorso_valida_nessun_errore(vault):
+    scrivi(vault, ".claude/rules/fonti.md", '---\npaths:\n  - "sources/**"\n---\n\n# Fonti\n\nRegola di prova.\n')
+    scrivi(vault, ".claude/rules/sempre.md", "# Sempre\n\nRegola senza paths, caricata sempre.\n")
+    res = controlla(vault)
+    assert res.returncode == 0, res.stdout
+    assert errori(res) == 0
+
+
+def test_regola_con_frontmatter_rotto_e_errore(vault):
+    scrivi(vault, ".claude/rules/rotta.md", "---\npaths: [sources/**\n---\n\n# Rotta\n")
+    res = controlla(vault)
+    assert res.returncode == 1
+    assert "rotta.md" in res.stdout and "caricata in ogni sessione" in res.stdout
+
+
+def test_regola_con_paths_non_lista_e_errore(vault):
+    scrivi(vault, ".claude/rules/mappa.md", "---\npaths:\n  sources: true\n---\n\n# Mappa\n")
+    res = controlla(vault)
+    assert res.returncode == 1
+    assert "`paths` deve essere una lista" in res.stdout
+
+
+def test_regola_su_cartella_inesistente_e_avviso(vault):
+    scrivi(vault, ".claude/rules/altrove.md", '---\npaths: ["cartella-che-non-esiste/**"]\n---\n\n# Altrove\n')
+    res = controlla(vault)
+    assert res.returncode == 0, res.stdout
+    assert "non esiste nel vault" in res.stdout

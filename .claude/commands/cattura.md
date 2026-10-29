@@ -16,7 +16,5 @@ Testo: `$ARGUMENTS`
    - il testo dell'utente così com'è, senza riscriverlo;
    - una riga `Contesto: [[slug]]` solo se il progetto, il cliente o il tema sono certi (nominati nel testo o nella conversazione corrente) e la nota esiste (`python3 .claude/scripts/cerca.py --nota <slug>` esce con 0). Nel dubbio niente collegamenti (`CLAUDE.md` §2: non inventare);
    - se il testo è un'azione con una data, anche `## Da fare` con `- [ ] <azione> 📅 AAAA-MM-GG`: così la vedono la plancia e `/oggi`.
-7. Controllo e commit:
-   - `python3 .claude/scripts/controlla-vault.py`; correggi gli errori della nota (`CLAUDE.md` §7);
-   - `git branch --show-current`. Su `main`: `git add inbox/<data>-<slug>.md`, commit `inbox: cattura <slug>`, `git pull --rebase origin main`, push (`CLAUDE.md` §7). Su un branch `claude/`: commit sullo stesso branch, senza push su `main`, e dillo all'utente (la cattura arriva su `main` con il branch).
+7. Controllo e commit come `CLAUDE.md` §7 (anche per i branch `claude/`): `git add inbox/<data>-<slug>.md`, commit `inbox: cattura <slug>`.
 8. Rispondi in una riga: file creato e collegamento (se c'è), e che si smista con `/smista`.
