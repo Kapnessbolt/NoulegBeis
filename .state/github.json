@@ -1,21 +1,21 @@
 {
   "items": {
     "cristian-schifone/parts-radar#379": {
-      "last_modified": "2026-10-27T17:13:27Z",
+      "last_modified": "2026-10-28T23:18:54Z",
       "note": "sources/github/parts-radar/issues/parts-radar-issue-379.md"
     },
     "cristian-schifone/parts-radar#420": {
-      "last_modified": "2026-10-27T18:02:06Z",
+      "last_modified": "2026-10-28T18:01:32Z",
       "note": "sources/github/parts-radar/issues/parts-radar-issue-420.md"
     },
     "cristian-schifone/parts-radar:docs/architettura.md": {
-      "commit": "53f469df015607142d5ecc5d3b9d348d5ebae8fa",
-      "last_modified": "2026-10-27T22:36:39Z",
+      "commit": "733d0a69b3c6797d3453eae26042555fadb04f2f",
+      "last_modified": "2026-10-28T23:22:29Z",
       "note": "sources/github/parts-radar/docs/parts-radar-architettura.md"
     },
     "cristian-schifone/parts-radar:docs/changelog.md": {
-      "commit": "a6cfb1f305f749441084c8ced7581f79270861a3",
-      "last_modified": "2026-10-27T22:43:07Z",
+      "commit": "733d0a69b3c6797d3453eae26042555fadb04f2f",
+      "last_modified": "2026-10-28T23:22:29Z",
       "note": "sources/github/parts-radar/docs/parts-radar-changelog.md"
     },
     "cristian-schifone/parts-radar:docs/decisione-stack-python.md": {
@@ -24,25 +24,25 @@
       "note": "sources/github/parts-radar/docs/parts-radar-decisione-stack-python.md"
     },
     "cristian-schifone/parts-radar:docs/kromeda-fase0-risultati.md": {
-      "commit": "7777221f21b07a0337166fa83a3e9fed95924c8f",
-      "last_modified": "2026-10-22T08:13:17Z",
+      "commit": "222c6cb001c476a87939e31d8c0ca81700b2a6e3",
+      "last_modified": "2026-10-28T17:09:10Z",
       "note": "sources/github/parts-radar/docs/parts-radar-kromeda-fase0-risultati.md"
     },
     "cristian-schifone/parts-radar:docs/kromeda-impatto-parts-radar.md": {
-      "commit": "cfbf3b2383cb86a26b5e4f3df57ffbefcbf9c4e6",
-      "last_modified": "2026-10-27T15:11:05Z",
+      "commit": "222c6cb001c476a87939e31d8c0ca81700b2a6e3",
+      "last_modified": "2026-10-28T17:09:10Z",
       "note": "sources/github/parts-radar/docs/parts-radar-kromeda-impatto.md"
     },
     "cristian-schifone/parts-radar:docs/whatsapp-fornitori.md": {
-      "commit": "28674546e6b6aea0489bb23f984ea2805ec4e364",
-      "last_modified": "2026-10-20T05:20:11Z",
+      "commit": "733d0a69b3c6797d3453eae26042555fadb04f2f",
+      "last_modified": "2026-10-28T23:22:29Z",
       "note": "sources/github/parts-radar/docs/parts-radar-whatsapp-fornitori.md"
     }
   },
   "repos": {
     "cristian-schifone/parts-radar": {
-      "commit": "23aa412d41ae9db7896eb897ffa895080ccdcda6",
-      "watermark": "2026-10-27T22:48:55Z"
+      "commit": "421710bd4a1d58c35ba61b1d4d88a51cabd8862c",
+      "watermark": "2026-10-28T23:24:36Z"
     }
   }
 }

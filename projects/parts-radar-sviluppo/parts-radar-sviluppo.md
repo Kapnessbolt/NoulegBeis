@@ -61,6 +61,12 @@ updated: 2026-10-26
 - [ ] Lorenzo: compilare il file locale delle auto e dei telefoni della prova controllata (fuori da git) ([[parts-radar-changelog]], [[parts-radar-issue-420]])
 - [ ] Prova a secco del flusso (0 crediti targa), appena ci sono le auto ([[parts-radar-issue-420]])
 - [ ] Cristian: decidere conservazione e copia delle registrazioni dal vivo di Kromeda; prima del rilascio serve una scadenza o la registrazione spenta ([[parts-radar-changelog]])
+- [ ] ADAC: registrarsi su 360dialog con l'account Regular e passare la chiave dell'API ([[parts-radar-whatsapp-fornitori]], [[parts-radar-issue-379]])
+- [ ] Vincoli V1-V8 del webhook senza firma, prima dell'attivazione del numero: Cristian cifratura solo sul proxy, segreto fuori dai log, IP di 360dialog e tetto alle chiamate; Lorenzo domanda a 360dialog sugli IP fissi, segreto nuovo e controlli del servizio ([[parts-radar-whatsapp-fornitori]], [[parts-radar-issue-379]])
+- [ ] Nomina a responsabile da ADAC a BlueAge (art. 28 GDPR) coi sub-responsabili (Anthropic, Soniox e Google, server del pilot); l'informativa alle officine la fa ADAC ([[parts-radar-whatsapp-fornitori]], [[parts-radar-issue-379]])
+- [ ] Cristian: allineare lo staging dopo le correzioni del 28/10 (migration 087 e rebuild del servizio); l'avviso lo manda Lorenzo ([[parts-radar-changelog]], [[parts-radar-issue-379]])
+- [ ] Finestra dal vivo di Kromeda (via di Lorenzo, utenza libera da Cristian): sonda dei modelli e resto del giro degli alberi, circa 1.400 chiamate ([[parts-radar-issue-379]])
+- [ ] Lorenzo: decidere la mappatura dei brand per il pilot (basta l'ordine di fascia?) e le targhe provinciali (proposta «dritte al banco») ([[parts-radar-issue-379]], [[parts-radar-architettura]])
 
 ## Decisioni
 
