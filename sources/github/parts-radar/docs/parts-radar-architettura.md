@@ -4,11 +4,12 @@ source: github
 family: parts-radar-architettura
 current:
   item_id: "cristian-schifone/parts-radar:docs/architettura.md"
-  uri: "github://cristian-schifone/parts-radar/docs/architettura.md@53f469df015607142d5ecc5d3b9d348d5ebae8fa"
+  uri: "github://cristian-schifone/parts-radar/docs/architettura.md@733d0a69b3c6797d3453eae26042555fadb04f2f"
   web_url: "https://github.com/cristian-schifone/parts-radar/blob/main/docs/architettura.md"
   name: "docs/architettura.md"
-  last_modified: 2026-10-27T22:36:39Z
+  last_modified: 2026-10-28T23:22:29Z
 versions:
+  - { name: docs/architettura.md@733d0a6, item_id: cristian-schifone/parts-radar:docs/architettura.md, last_modified: 2026-10-28T23:22:29Z }
   - { name: docs/architettura.md@53f469d, item_id: cristian-schifone/parts-radar:docs/architettura.md, last_modified: 2026-10-27T22:36:39Z }
   - { name: docs/architettura.md@48bd26c, item_id: cristian-schifone/parts-radar:docs/architettura.md, last_modified: 2026-10-26T23:47:59Z }
   - { name: docs/architettura.md@fe70fa4, item_id: cristian-schifone/parts-radar:docs/architettura.md, last_modified: 2026-10-25T23:55:16Z }
@@ -16,7 +17,7 @@ versions:
 also_at: []
 status: active
 partial: true
-ingested_at: 2026-10-28T06:23:41Z
+ingested_at: 2026-10-29T06:23:58Z
 projects: ["[[parts-radar-sviluppo]]"]
 clients: ["[[adac-bologna]]", "[[solera]]"]
 topics: ["[[parts-radar]]"]
@@ -27,7 +28,7 @@ tags: []
 
 ## Riassunto
 
-Documento di stato del repo di sviluppo: com'è fatto il sistema oggi, a che punto sono le fasi, le decisioni aperte e i rischi. Si aggiorna a ogni PR (la testata dice lo stato del giorno). Nel vault si leggono solo §1 (scopo), §5 (stato e sequenza), §8 (decisioni aperte) e §9 (rischi); componenti e decisioni tecniche in vigore (§4, §6) restano nel repo. Stato letto: 27/10/2026 sera, dopo la doppia lettura dei vocali (trascrizione ancora spenta) e le regole delle prove del pilot.
+Documento di stato del repo di sviluppo: com'è fatto il sistema oggi, a che punto sono le fasi, le decisioni aperte e i rischi. Si aggiorna a ogni PR (la testata dice lo stato del giorno). Nel vault si leggono solo §1 (scopo), §5 (stato e sequenza), §8 (decisioni aperte) e §9 (rischi); componenti e decisioni tecniche in vigore (§4, §6) restano nel repo. Stato letto: 29/10/2026, dopo la prova a secco del pilot, le correzioni che ne sono nate, la misura dei vocali sul test e la decisione su 360dialog.
 
 ## Punti chiave
 
@@ -43,6 +44,9 @@ Documento di stato del repo di sviluppo: com'è fatto il sistema oggi, a che pun
 - 27/10: la targa di un pezzo aggiunto dopo (#346) chiusa con la misura sulle etichette; la finestra di recupero resta 30 minuti e si tara sul traffico del pilot. Nei gruppi con un vocale la targa si recupera solo per citazione
 - 27/10: doppia lettura dei vocali, Soniox UE primo motore e Gemini di controllo; una targa che viene solo da un vocale vale se le due letture coincidono, altrimenti il gruppo va al banco come «targa da ascoltare». Tetto di spesa di 1 $ al giorno. Trascrizione ancora spenta
 - 27/10: regole delle prove del pilot scritte e congelate (scenari, soglie, come si misura la catena) e scheletro del report unico; la prova controllata segue l'attivazione del numero di ADAC, prima c'è una prova a secco
+- 28/10: prova a secco fatta, la prima volta del flusso intero dal vivo (dal webhook alla dashboard, ricerca targa dalle registrazioni): 38 messaggi, 39 richieste, 0 errori, 0 crediti targa, 0,12 $; 30 componenti su 40 alla proposta giusta o al banco col motivo giusto. I 10 che non tornano aprono cinque issue; quattro chiuse in giornata (codice del meccanico per codice col controllo sull'auto, lessico di frizione e filtri, varianti della stessa voce al banco come alternative, lato gemello sugli affini), resta il motivo dei kit
+- 28/10: misura dei vocali sul test: targa confermata giusta 72,9% (soglia 65%), da ascoltare 20,4% (soglia 25%), codici dettati esatti 33,3% (soglia 80%). Il cancello delle targhe dai vocali è caduto su un gruppo; corretto in giornata (targa letta a metà → gruppo da ascoltare: 0 targhe sbagliate, ma da ascoltare sale al 27,1%, sopra soglia). Codici dettati portati a 16 su 20 (80%, al limite). Trascrizione ancora spenta
+- 29/10: fornitore WhatsApp deciso (D47): 360dialog Regular a nome di ADAC, coi vincoli del webhook senza firma da verificare prima dell'attivazione del numero
 
 ## Numeri
 
@@ -56,21 +60,22 @@ Decisioni aperte (§8) che toccano il livello di progetto:
 - D1 · modello commerciale e di installazione (issue #145): Lorenzo e Cristian, blocca il modello del primo cliente
 - D43 · dataset delle chat reali (Lorenzo): etichette di sviluppo riviste il 25-26/10, etichette del test e misura del router sul test fatte il 26/10 (revisione affidata a Opus su delega di Lorenzo); resta «la voce» e la lettura delle etichette nella misura della targa dei pezzi aggiunti
 - D13 · data del pilot e partenza direttamente sul nuovo stack: Lorenzo con ADAC (chiesta a Luca Degli Esposti il 22/10)
-- D19 · mappatura dei brand di ADAC sui codici listino Kromeda: senza, la proposta esce in ordine alfabetico. Lista dei brand e listini (CONTINENTAL, DIPA, DEPO, Pierburg, AJUSA) chiesti a Luca il 22/10. Blocca il pilot
+- D19 · mappatura dei brand di ADAC sui codici listino Kromeda: senza, la proposta esce in ordine alfabetico. Lista dei brand e listini (CONTINENTAL, DIPA, DEPO, Pierburg, AJUSA) chiesti a Luca il 22/10. Qui «blocca il pilot», mentre l'ordine dei lavori la mette «prima della produzione»: da allineare (proposta: basta l'ordine di fascia, l'operatore sceglie il brand)
 - D34 · chi cambia sconti, margini e fidi dei clienti (oggi solo gli ADMIN): da confermare con ADAC
-- D44 · vocali (1.233 in 9,6 ore nelle chat reali): integrazione fatta il 27/10, spenta; dalla sera del 27/10 doppia lettura, Soniox UE primo motore e Gemini 3.5 Transcribe di controllo. Per accendere: il consenso di ADAC che nomini Soniox e Google (ogni vocale va a tutti e due), il progetto Soniox UE a nome di BlueAge (regione UE da far approvare a Soniox), il contratto sul trattamento dei dati con Soniox, il progetto Google a nome di BlueAge
+- D44 · vocali (1.233 in 9,6 ore nelle chat reali): integrazione fatta il 27/10, spenta; dalla sera del 27/10 doppia lettura, Soniox UE primo motore e Gemini 3.5 Transcribe di controllo; misurata sul test il 28/10 (sopra). Per accendere: il consenso di ADAC che nomini Soniox e Google (ogni vocale va a tutti e due), il progetto Soniox UE a nome di BlueAge (regione UE da far approvare a Soniox), il contratto sul trattamento dei dati con Soniox, il progetto Google a nome di BlueAge
 - D41 · targa dei pezzi aggiunti dopo: chiusa la misura il 27/10; resta la taratura della finestra di recupero sul traffico del pilot (#472). Il banco che sceglie la targa da ascoltare e fa ripartire il gruppo è la #482, dopo i numeri del pilot
-- D48 · targhe nel vecchio formato provinciale (2 casi su 550 gruppi del test): oggi nessun passo le accetta; da capire se Kromeda le trova e come le tratta il flusso (Lorenzo, priorità bassa)
+- D48 · targhe nel vecchio formato provinciale (2 casi su 550 gruppi del test): oggi nessun passo le accetta; proposta «dritte al banco», da decidere una volta (Lorenzo)
 - D45 · gruppi WhatsApp: chiesto ad ADAC se quei clienti passano alla chat singola
 - D46 · hosting e rete del webhook (Cristian): un server con tutto lo stack; è anche la condizione per accendere l'invio in produzione
-- D47 · fornitore WhatsApp: 360dialog con la Coexistence (19/10); resta da scegliere il piano Regular o Partner prima di attivare il numero di ADAC
+- D47 · fornitore WhatsApp: 360dialog con la Coexistence (19/10); il 29/10 Lorenzo sceglie il piano Regular a nome di ADAC (Partner di BlueAge dal secondo cliente). Il webhook senza firma è un rischio accettato coi vincoli V1-V8, da verificare prima dell'attivazione (Cristian per server e proxy, Lorenzo per IP di 360dialog, segreto e controlli del servizio); il contratto sui dati con 360dialog lo accetta ADAC
 - Domande a Solera ancora da mandare (Lorenzo): cache oltre le 24 ore, versioni degli affini, copia del dizionario, fasce di consumo, URL delle foto (D12)
 - Nodi aperti fuori dal codice: Rihag/Cati per lo Step 2 e nome e API del gestionale ADAC per lo Step 3 (chiesti a Luca il 22/10); messaggi fuori orario; segreti e backup in produzione
 
-Rischi principali (§9): scadenza della demo Kromeda; superamento della fascia di chiamate (account sospeso fino al mattino dopo); cache oltre le 24 ore in tensione col contratto Solera; brand non mappati; gruppi WhatsApp fuori dall'API; foto delle officine da raccogliere da ora.
+Rischi principali (§9): scadenza della demo Kromeda; webhook di 360dialog senza firma sul Regular (accettato coi vincoli V1-V8); superamento della fascia di chiamate (account sospeso fino al mattino dopo); cache oltre le 24 ore in tensione col contratto Solera; brand non mappati; gruppi WhatsApp fuori dall'API; foto delle officine da raccogliere da ora.
 
 ## Versioni
 
+- docs/architettura.md@733d0a6 · 2026-10-29 · §5, §8 e §9: prova a secco del pilot e correzioni del 28/10, misura dei vocali sul test (cancello caduto e rientrato, da ascoltare sopra soglia), codici dettati all'80%; D47 decisa (Regular a nome di ADAC, vincoli V1-V8 del webhook, anche nei rischi); §1 invariato
 - docs/architettura.md@53f469d · 2026-10-27 · §5 e §8: misura della targa dei pezzi aggiunti chiusa (D41), doppia lettura dei vocali con Soniox primo motore e targa da ascoltare (D44, condizioni di accensione), regole delle prove del pilot; §1 e §9 invariati
 - docs/architettura.md@48bd26c · 2026-10-27 · §5 e §8: etichette del test e misura del router fatte (D43), motore dei vocali deciso e trascrizione integrata ma spenta (D44), nuova D48 sulle targhe nel vecchio formato; §1 e §9 invariati
 - docs/architettura.md@fe70fa4 · 2026-10-26 · §8: D43 aggiornata con la revisione delle etichette di sviluppo e i prompt congelati; il resto delle parti lette invariato

@@ -10,7 +10,8 @@ current:
   last_modified: 2026-10-08T10:43:51Z
 versions:
   - { name: 00 LEGGIMI - COPIA.md, item_id: 01EFCYUZYFNAIOKYMBSRC3KPPOPRKOEOIM, last_modified: 2026-10-08T10:43:51Z }
-also_at: []
+also_at:
+  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/99 Project Claude (copia)/00 LEGGIMI - COPIA.md", item_id: 01EFCYUZ5SKT6H5ZYTERFJ6AU42TZHZJ7C }
 status: active
 partial: false
 ingested_at: 2026-10-22T13:25:37Z

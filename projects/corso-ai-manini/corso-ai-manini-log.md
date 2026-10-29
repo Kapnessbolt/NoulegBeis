@@ -7,6 +7,7 @@ project: "[[corso-ai-manini]]"
 
 Una riga per avanzamento, dalla più recente: `- AAAA-MM-GG · cosa è successo · [[fonte]]`
 
+- 2026-10-28 · Chiuse due attività superate sul calendario (conferma della proposta del 9/10, chiusura con UBS del 27/9): vale il foglio [[gruppi]]; le 9 sessioni sono nel calendario Outlook di Lorenzo, orari indicativi 9-13 e 14-18; Manini non ha ancora proposto data e contenuti delle 8 ore IT · [[2026-10-28-calendario-manini]]
 - 2026-10-26 · Chiusa l'attività del parere con Silvia sul caso entrata merci v3: superata dal lavoro su [[manini-automazione-ddt]], secondo l'utente · [[2026-10-26-punti-aperti-vault]]
 - 2026-10-23 · Il caso DDT diventa un progetto a sé, [[manini-automazione-ddt]]; emerso il problema di audience per i gruppi B e C · [[manini-ddt-essenziale]]
 - 2026-10-22 · Progetto creato nel vault su indicazione dell'utente · [[2026-10-22-temi-ruoli-e-hook]]

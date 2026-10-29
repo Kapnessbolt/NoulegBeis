@@ -10,7 +10,8 @@ current:
   last_modified: 2026-10-08T10:43:53Z
 versions:
   - { name: velo-ce-procedura-rilascio-ripristino-2026-09-22.md, item_id: 01EFCYUZ65RXRKSPMBORFYWBVYZIOCXIUJ, last_modified: 2026-10-08T10:43:53Z }
-also_at: []
+also_at:
+  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/99 Project Claude (copia)/velo-ce-procedura-rilascio-ripristino-2026-09-22.md", item_id: 01EFCYUZ5K2FUQZDBRGVHIXP6PZIXGEQZD }
 status: active
 partial: false
 ingested_at: 2026-10-22T13:25:37Z

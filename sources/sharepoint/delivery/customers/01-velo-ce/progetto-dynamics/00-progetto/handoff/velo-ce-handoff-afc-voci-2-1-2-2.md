@@ -10,7 +10,8 @@ current:
   last_modified: 2026-10-08T10:43:55Z
 versions:
   - { name: handoff-2026-10-08-afc-voci-2.1-2.2.md, item_id: 01EFCYUZ3WBFADKRR3SNAJGYQZV6RY7QRA, last_modified: 2026-10-08T10:43:55Z }
-also_at: []
+also_at:
+  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/00 Progetto/Handoff/handoff-2026-10-08-afc-voci-2.1-2.2.md", item_id: 01EFCYUZ6FJRYH2EB5IZDYQTNG5YEUROJD }
 status: active
 partial: false
 ingested_at: 2026-10-22T13:25:33Z

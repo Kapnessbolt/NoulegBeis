@@ -10,7 +10,8 @@ current:
   last_modified: 2026-10-08T10:44:36Z
 versions:
   - { name: velo-ce-verbale-260930-1754-strada-premium-tenant-unico.md, item_id: 01EFCYUZY7KUVQ22PWD5HY3BL6LCGXXAEG, last_modified: 2026-10-08T10:44:36Z }
-also_at: []
+also_at:
+  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/99 Project Claude (copia)/verbali/velo-ce-verbale-260930-1754-strada-premium-tenant-unico.md", item_id: 01EFCYUZYFPZMJ7TLKVJCLR5IIJIY6HEPE }
 status: active
 partial: false
 ingested_at: 2026-10-22T13:25:13Z

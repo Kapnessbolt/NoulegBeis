@@ -53,7 +53,7 @@ updated: 2026-10-26
 - [ ] Cristian: decidere le parti 3 e 4 della #447 (decisioni in file separati, archivio del changelog) ([[parts-radar-changelog]])
 - [ ] Prova controllata del flusso intero 📅 2026-11-04 ([[parts-radar-issue-379]], [[parts-radar-issue-420]])
 - [ ] Traffico vero di ADAC con le targhe e report dei risultati 📅 2026-11-17 ([[parts-radar-issue-379]], [[parts-radar-issue-420]])
-- [ ] Avvisare Cristian per lo staging: trascrizione dei vocali (aggiornamento del DB prima del servizio nuovo, variabili nuove, chiave all'accensione) ed etichettatore; testo preparato, lo manda Lorenzo ([[parts-radar-changelog]])
+- [x] Avvisare Cristian per lo staging: trascrizione dei vocali (aggiornamento del DB prima del servizio nuovo, variabili nuove, chiave all'accensione) ed etichettatore; testo preparato, lo manda Lorenzo ✅ 2026-10-27 ([[parts-radar-changelog]])
 - [ ] Lorenzo: creare il progetto Google a nome di BlueAge con un account di servizio per la trascrizione dei vocali, poi cancellare la chiave di prova sull'account personale ([[parts-radar-changelog]], [[parts-radar-architettura]])
 - [ ] Lorenzo: cancellare dal dispositivo le pagine autonome e i file delle etichette del test (chat e vocali veri) ([[parts-radar-changelog]])
 - [ ] Lorenzo: progetto Soniox UE a nome di BlueAge per la trascrizione (regione UE da far approvare a Soniox, contratto sul trattamento dei dati dalla Console) ([[parts-radar-issue-379]], [[parts-radar-changelog]])
@@ -61,6 +61,12 @@ updated: 2026-10-26
 - [ ] Lorenzo: compilare il file locale delle auto e dei telefoni della prova controllata (fuori da git) ([[parts-radar-changelog]], [[parts-radar-issue-420]])
 - [ ] Prova a secco del flusso (0 crediti targa), appena ci sono le auto ([[parts-radar-issue-420]])
 - [ ] Cristian: decidere conservazione e copia delle registrazioni dal vivo di Kromeda; prima del rilascio serve una scadenza o la registrazione spenta ([[parts-radar-changelog]])
+- [ ] ADAC: registrarsi su 360dialog con l'account Regular e passare la chiave dell'API ([[parts-radar-whatsapp-fornitori]], [[parts-radar-issue-379]])
+- [ ] Vincoli V1-V8 del webhook senza firma, prima dell'attivazione del numero: Cristian cifratura solo sul proxy, segreto fuori dai log, IP di 360dialog e tetto alle chiamate; Lorenzo domanda a 360dialog sugli IP fissi, segreto nuovo e controlli del servizio ([[parts-radar-whatsapp-fornitori]], [[parts-radar-issue-379]])
+- [ ] Nomina a responsabile da ADAC a BlueAge (art. 28 GDPR) coi sub-responsabili (Anthropic, Soniox e Google, server del pilot); l'informativa alle officine la fa ADAC ([[parts-radar-whatsapp-fornitori]], [[parts-radar-issue-379]])
+- [ ] Cristian: allineare lo staging dopo le correzioni del 28/10 (migration 087 e rebuild del servizio); l'avviso lo manda Lorenzo ([[parts-radar-changelog]], [[parts-radar-issue-379]])
+- [ ] Finestra dal vivo di Kromeda (via di Lorenzo, utenza libera da Cristian): sonda dei modelli e resto del giro degli alberi, circa 1.400 chiamate ([[parts-radar-issue-379]])
+- [ ] Lorenzo: decidere la mappatura dei brand per il pilot (basta l'ordine di fascia?) e le targhe provinciali (proposta «dritte al banco») ([[parts-radar-issue-379]], [[parts-radar-architettura]])
 
 ## Decisioni
 

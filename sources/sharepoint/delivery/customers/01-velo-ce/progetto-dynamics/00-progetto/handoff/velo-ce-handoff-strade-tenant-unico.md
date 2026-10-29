@@ -10,7 +10,8 @@ current:
   last_modified: 2026-10-08T10:43:55Z
 versions:
   - { name: handoff-2026-10-04-strade-tenant-unico.md, item_id: 01EFCYUZZMWFPWXVPJRVHYVI5IO4PBTNDU, last_modified: 2026-10-08T10:43:55Z }
-also_at: []
+also_at:
+  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/00 Progetto/Handoff/handoff-2026-10-04-strade-tenant-unico.md", item_id: 01EFCYUZ2RDIVUAJPUQBF3SJU5LELKQZSG }
 status: active
 partial: false
 ingested_at: 2026-10-22T13:25:33Z

@@ -6,9 +6,10 @@ current:
   item_id: "cristian-schifone/parts-radar#379"
   uri: "github://cristian-schifone/parts-radar/issues/379"
   web_url: "https://github.com/cristian-schifone/parts-radar/issues/379"
-  name: "Issue #379 · Pilot ADAC: ordine dei lavori verso il test reale (rifatto il 21/10, rivisto il 27/10)"
-  last_modified: 2026-10-27T17:13:27Z
+  name: "Issue #379 · Pilot ADAC: ordine dei lavori verso il test reale (rifatto il 21/10, rivisto il 28/10)"
+  last_modified: 2026-10-28T23:18:54Z
 versions:
+  - { name: "Issue #379", item_id: cristian-schifone/parts-radar#379, last_modified: 2026-10-28T23:18:54Z }
   - { name: "Issue #379", item_id: cristian-schifone/parts-radar#379, last_modified: 2026-10-27T17:13:27Z }
   - { name: "Issue #379", item_id: cristian-schifone/parts-radar#379, last_modified: 2026-10-26T08:49:21Z }
   - { name: "Issue #379", item_id: cristian-schifone/parts-radar#379, last_modified: 2026-10-25T23:26:55Z }
@@ -16,7 +17,7 @@ versions:
 also_at: []
 status: active
 partial: false
-ingested_at: 2026-10-28T06:23:42Z
+ingested_at: 2026-10-29T06:23:58Z
 projects: ["[[parts-radar-sviluppo]]"]
 clients: ["[[adac-bologna]]", "[[solera]]"]
 topics: ["[[parts-radar]]"]
@@ -27,43 +28,41 @@ tags: []
 
 ## Riassunto
 
-Issue di pianificazione della milestone "Pilot ADAC", rifatta il 21/10/2026 con Lorenzo e rivista il 27/10 per allinearla al lavoro fatto. Fissa il traguardo (il test reale della #420, prima della scadenza della demo Kromeda intorno al 18/11) e un piano in quattro settimane, più i passi fuori dal codice che sono di Lorenzo e di [[cristian-schifone]]. Rifatta perché dal 14/10 la catena AI non era avanzata e mancava una definizione di "fatto".
+Issue di pianificazione della milestone "Pilot ADAC", rifatta il 21/10/2026 con Lorenzo, rivista il 27/10 e due volte il 28/10 (l'ordine in vigore è la revisione del 28/10 sera). Fissa il traguardo (il test reale della #420, prima della scadenza della demo Kromeda intorno al 18/11) e un piano in quattro settimane, più i passi fuori dal codice di Lorenzo e di [[cristian-schifone]]. Al 28/10 sera del codice della settimana 2 resta solo la voce: il percorso critico non è più il codice ma l'attivazione del numero di ADAC, che dipende dai passi fuori dal codice.
 
 ## Punti chiave
 
-- Test in due tempi: prima una prova controllata (il team fa da meccanico, inizio novembre, 3-4 targhe), poi il traffico vero di ADAC con le targhe che restano
-- Modalità ascolto: il numero di ADAC in Coexistence si attiva presto, la catena AI gira su tutto il traffico vero, catalogo e messaggi automatici solo per i clienti abilitati
-- Chiarimenti automatici dell'AI al meccanico accesi nella prova controllata, spenti sul traffico vero finché il router non ha numeri
-- Dopo la demo i test continuano sulle chiamate registrate
-- Fuori dal percorso del pilot, nella milestone "Prima della produzione": brand e collasso articoli, CI, veicolo sbagliato, dataset completo, messaggi oltre le 24 ore; dopo i numeri del pilot anche la scelta della targa da ascoltare da parte del banco (#482)
-- Revisione del 27/10: il piano della #420 (scenari, soglie fissate prima dei numeri dei vocali, scheletro del report) passa in testa alla settimana 2; l'allarme sul distacco della Coexistence va dopo l'attivazione del numero, tarato sulle eco vere, e deve funzionare entro circa 10 giorni da lì; se la settimana 3 slitta escono prima la seconda parte della #430, poi il pezzo senza etichetta in foto
-- Settimana 1 (22-28/10) fatta, salvo la voce: etichette di sviluppo e del test, targa dei pezzi aggiunti chiusa con la misura (taratura della finestra sul traffico del pilot)
-- Settimana 2 (29/10-04/11): già fatti router, vocali nel servizio (doppia lettura Soniox più Gemini, resta l'accensione) e modalità ascolto; restano il piano della #420, la misura dei vocali sul test, la voce, un giro dal vivo degli alberi Kromeda, la nota per il banco, l'attivazione del numero di ADAC e la prova controllata
-- Settimana 3 (05-11/11): allarme Coexistence, estrazione strutturata, foto, chiarimenti dell'AI (anche la domanda al meccanico sulla targa da ascoltare), suggerimenti all'operatore, confronto finale dei modelli
-- Settimana 4 (12-17/11): sicurezza della dashboard, manuale del banco, server del pilot, traffico vero con le targhe, taratura della finestra di recupero della targa, report dei risultati
+- Test in due tempi: prima una prova controllata (il team fa da meccanico, 3-4 targhe), poi il traffico vero di ADAC con le targhe che restano; in mezzo l'ascolto sul numero di ADAC in Coexistence
+- Chiarimenti automatici dell'AI al meccanico accesi nella prova controllata, spenti sul traffico vero finché il router non ha numeri; dopo la demo i test continuano sulle chiamate registrate
+- Fuori dal percorso del pilot, nella milestone "Prima della produzione": brand e collasso articoli, CI, veicolo sbagliato, dataset completo, messaggi oltre le 24 ore e, dal 28/10, due migliorie del percorso per codice
+- Revisione del 28/10 mattina, dopo la prova a secco: cinque issue nuove; prima dell'attivazione il codice del meccanico per codice, il lessico e le varianti della voce, la misura dei vocali; nella stessa finestra dal vivo di Kromeda (utenza libera, un solo avviso a Cristian) la sonda dei modelli e il giro degli alberi
+- Col credito API personale di Lorenzo (100 $ al mese dal 28/10, con l'accordo di ADAC sui dati veri): benchmark del router su 810 gruppi con Haiku, Sonnet e Opus (~50 $) ed estrazione e voce con Sonnet e Opus (~50 $), anticipando la parte costosa del confronto finale dei modelli
+- Revisione del 28/10 sera: tredici voci chiuse; regole congelate di slittamento: numero non attivo entro circa l'11/11 → la prova controllata va in settimana 4; non attivo entro circa il 16/11 → niente test con le targhe prima della fine della demo
+- Codice dei prossimi sette giorni (29/10-04/11), tutto senza il numero: la voce (ultimo anello senza misura), il resto del giro dal vivo degli alberi con la sonda, la nota per il banco, il benchmark del router; se l'attivazione slitta oltre il 4/11 si anticipano le PR di sola estrazione, foto e modelli
+- Settimana 3 alleggerita; valvola nell'ordine: seconda parte dell'estrazione strutturata, poi il pezzo senza etichetta in foto
 
 ## Numeri
 
 - 17 crediti targa al 21/10
-- Prova controllata verso il 04/11; traffico vero nella settimana 12-17/11; demo Kromeda fino a circa il 18/11
+- Al 28/10 mancano 7 giorni al 04/11 e 14 all'11/11; traffico vero nella settimana 12-17/11; demo Kromeda fino a circa il 18/11
+- Giro dal vivo degli alberi: 900 chiamate fatte il 28/10 (221 coppie modello/anno su 268), ne restano circa 1.400 in due giorni
 
 ## Decisioni e azioni
 
-Passi fuori dal codice (al 27/10):
-- 360dialog: scegliere Partner o Regular. È sul percorso critico (Lorenzo)
-- Foto delle officine da ADAC (in corso)
-- Numeri WhatsApp delle officine registrati come clienti attivi
-- Consenso scritto di ADAC al trattamento dal vivo coi fornitori: LLM, trascrizione (deve nominare Soniox e Google), 360dialog
-- Trascrizione a nome di BlueAge: progetto Soniox UE (regione UE da far approvare, contratto sui dati dalla Console) e progetto Google; poi l'accensione
-- Server del pilot raggiungibile dal webhook, e cosa fa già il proxy (Cristian)
-- Canale degli allarmi (Cristian, D4: email, Telegram...): serve all'allarme sulla Coexistence e a tutti gli altri
-- Avviso a Cristian (invio WhatsApp nello Step 1, migration fino alla 086, variabili della trascrizione, ascolto sul numero di ADAC): spuntato, mandato da Lorenzo il 27/10, in attesa di risposta
-- Kromeda di produzione: BlueAge sul piano commerciale, coi risultati della #420
-- Brand preferiti di ADAC (in attesa)
-- Da decidere (Lorenzo): le targhe nel vecchio formato provinciale
+Fuori dal codice, in ordine di urgenza (revisione del 28/10 sera, aggiornata al 29/10):
+- 360dialog: deciso il 29/10, Regular a nome di ADAC (Partner dal secondo cliente, ADAC non migra). Ora ADAC si registra e passa la chiave
+- Vincoli del webhook senza firma (#531), prima dell'attivazione: server e proxy a Cristian; domanda a 360dialog sugli IP fissi, segreto nuovo e controlli del servizio a Lorenzo; l'allarme sui rifiuti va col canale degli allarmi
+- Nomina a responsabile da ADAC a BlueAge (art. 28) coi sub-responsabili (LLM, Soniox e Google, server del pilot): prende il posto del consenso scritto; l'informativa alle officine la fa ADAC
+- Cristian: server del pilot raggiungibile dal webhook e rete del webhook (D46), canale degli allarmi (D4), staging allineato
+- Le auto T1-T4 e i telefoni M1-M3 della prova controllata, col file fuori da git
+- Progetti Soniox UE e Google a nome di BlueAge, poi l'accensione dei vocali
+- Numeri delle officine come clienti attivi, all'attivazione; foto delle officine da ADAC (raccolte nel dataset: 56 di sviluppo, 23 di test)
+- Kromeda di produzione: BlueAge sul piano commerciale, coi risultati della #420; brand preferiti di ADAC in attesa
+- Da chiudere nei documenti (Lorenzo): mappatura dei brand (per il pilot basta l'ordine di fascia?), targhe provinciali (proposta «dritte al banco»); il cancello dei vocali resta caduto (da ascoltare al 27,1% contro il 25%), le targhe dai vocali vanno al banco nel traffico vero
 
 ## Versioni
 
+- Issue #379 · 2026-10-28 · due revisioni del 28/10 (dopo la prova a secco e la sera): tredici voci chiuse, percorso critico sui passi fuori dal codice, regole di slittamento (~11/11, ~16/11), benchmark col credito personale; 360dialog spuntato (Regular a nome di ADAC, 29/10), nomina a responsabile al posto del consenso, vincoli del webhook (#531)
 - Issue #379 · 2026-10-27 · revisione del 27/10: piano della #420 in testa alla settimana 2, allarme Coexistence dopo l'attivazione, settimana 1 chiusa salvo la voce; nuovi passi fuori dal codice (trascrizione a nome di BlueAge, canale degli allarmi), avviso a Cristian spuntato
 - Issue #379 · 2026-10-26 · settimana 1: etichettatore Opus tarato per le etichette del test; passi fuori dal codice invariati
 - Issue #379 · 2026-10-25 · avanzamento della settimana 1: etichette di sviluppo fatte e riviste, prompt congelati; passi fuori dal codice invariati

@@ -3,17 +3,18 @@ type: source-doc
 source: sharepoint
 family: velo-ce-piano-attivita-nuovo-ambiente-interno
 current:
-  item_id: 01EFCYUZ6RIEAUZIVBTFALWN7QUVTPOXUO
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ6RIEAUZIVBTFALWN7QUVTPOXUO
-  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/00 Progetto/Velo-CE - Piano attività nuovo ambiente - INTERNO - v001.xlsx
+  item_id: 01EFCYUZ6HSI2ZXMOWNRH2PGTDI6ZENUEE
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ6HSI2ZXMOWNRH2PGTDI6ZENUEE
+  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/00 Progetto/Velo-CE - Piano attività nuovo ambiente - INTERNO - v001.xlsx
   name: Velo-CE - Piano attività nuovo ambiente - INTERNO - v001.xlsx
-  last_modified: 2026-10-07T17:32:19Z
+  last_modified: 2026-10-27T05:19:47Z
 versions:
-  - { name: Velo-CE - Piano attività nuovo ambiente - INTERNO - v001.xlsx, item_id: 01EFCYUZ6RIEAUZIVBTFALWN7QUVTPOXUO, last_modified: 2026-10-07T17:32:19Z }
+  - { name: "Velo-CE - Piano attività nuovo ambiente - INTERNO - v001.xlsx", item_id: 01EFCYUZ6HSI2ZXMOWNRH2PGTDI6ZENUEE, last_modified: 2026-10-27T05:19:47Z }
+  - { name: "Velo-CE - Piano attività nuovo ambiente - INTERNO - v001.xlsx", item_id: 01EFCYUZ6RIEAUZIVBTFALWN7QUVTPOXUO, last_modified: 2026-10-07T17:32:19Z }
 also_at: []
 status: active
 partial: true
-ingested_at: 2026-10-22T13:25:33Z
+ingested_at: 2026-10-29T06:00:34Z
 projects: ["[[velo-ce-progetto-dynamics]]"]
 clients: ["[[velo-ce]]"]
 topics: ["[[business-central-ai]]", "[[fatturazione-elettronica-sdi]]"]
@@ -37,12 +38,13 @@ Piano interno BlueAge (v001 del 07/10/2026, registro vivo, non mostrabile al cli
 - **Taglio fiscale**: dal 01/01/2027 tutti i documenti 2027 nascono nel nuovo BC; dal vecchio restano differite e autofatture di dicembre, liquidazione, acconto e bollo del quarto trimestre; fra 01/01 e 08/01 ci sono tre giorni lavorativi senza giacenze nel nuovo BC.
 - **Open point proposti dalla revisione (10)**: chi installa le app EOS, GDAP del nuovo tenant, confine fra BlueAge e So Smart sulla configurazione non di produzione, utenze BlueAge, SMTP del BC di oggi (autenticazione di base disattivata a fine dicembre 2026), verniciatore del 2026, chiusura di inizio gennaio, etichette collo, postazioni e stampa in reparto, distinte bici a R4.
 - **Contraddizioni con la SAL 01 per il cliente**: imballo nella distinta del sabbiato, scorta sui colori classici, amministratore interno, verniciatore, posizione di So Smart su Premium superata dai fatti del 07/10, date sulle righe delle distinte di assemblaggio (non esistono), CU fra le app in uso, funzioni presentate al cliente senza prova.
+- **Aggiornamenti fino al 27/10**: dal 15/10 il foglio «Ambiente base» con la sequenza fino a «pronto per caricare», partendo subito da una sandbox BlueAge (opzione 3 confermata, [[velo-ce-stato-progetto-03-decisioni-aperte]]); le righe NBC passano da 185 a 189; il tenant di destinazione indicato come `veloe.eu` va letto `velo-ce.eu` (decisione del 20/10).
 
 ## Numeri
 
-- 185 attività: per fase 21 R0-a, 69 R0-b, 71 R0-c, 17 R1, 3 R2-R4, 4 Dopo; tutte «Da fare» al 07/10.
-- Per esecutore: BlueAge 80, Cliente 76, So Smart 9, Commercialista 3, Fornitore del client 2, Partner licenze 1, Da decidere 14.
-- Per tipo: 51 decisioni, 16 informazioni, 81 attività a sistema, 16 caricamenti dati, 14 test, 7 formazione.
+- 189 attività al 27/10 (185 al 07/10): per fase 21 R0-a, 72 R0-b, 72 R0-c, 17 R1, 3 R2-R4, 4 Dopo; tutte ancora «Da fare» nel foglio di riepilogo.
+- Per esecutore (27/10): BlueAge 83, Cliente 77, So Smart 9, Commercialista 3, Fornitore del client 2, Partner licenze 1, Da decidere 14.
+- Per tipo (27/10): 51 decisioni, 16 informazioni, 82 attività a sistema, 16 caricamenti dati, 17 test, 7 formazione.
 - 32 righe sul percorso critico; la regola di codifica blocca circa 38 righe a cascata.
 - Bollo virtuale 2,00 euro sulle fatture senza IVA sopra 77,47 euro; prova EOS di 20 giorni non sufficiente; aggiornamento principale di aprile 2027 = versione 30.0.
 
@@ -70,3 +72,5 @@ Piano interno BlueAge (v001 del 07/10/2026, registro vivo, non mostrabile al cli
 ## Versioni
 
 - Velo-CE - Piano attività nuovo ambiente - INTERNO - v001.xlsx · 2026-10-07 · prima versione ingerita; lettura parziale del foglio Attività (fino a NBC-172 di 185), letti per intero gli altri sei fogli
+- Velo-CE - Piano attività nuovo ambiente - INTERNO - v001.xlsx · 2026-10-27 · registro aggiornato sul posto: foglio «Ambiente base» (15/10), 189 righe NBC (letti Leggimi e Riepilogo); nella cartella `Cristian/00 Progetto/`
+

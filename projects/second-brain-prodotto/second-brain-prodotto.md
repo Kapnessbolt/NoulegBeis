@@ -4,15 +4,18 @@ status: attivo
 role: "Product owner e sviluppatore: dal vault personale al prodotto Second Brain"
 clients: []
 people: []
-updated: 2026-10-27
+updated: 2026-10-28
 ---
 
 # Second Brain · dal vault al prodotto
 
 ## Stato
 
+- Forma del prodotto decisa (28/10): installazione fatta da BlueAge in una giornata e gestione mensile come prodotto; il cliente vede tre gesti (Leggi il Cockpit, Chiedi alla chat sul vault, Lavora nella chat sul vault con tutto che resta nel vault); chiusura automatica, consegna dei file, integrità invisibile e skill del cliente passano alla macchina; repo del cliente nell'organizzazione GitHub di BlueAge con accordo sui dati; step 18 e 19 riscritti in SPEC 1.22 (§13.2) ([[2026-10-28-second-brain-forma-del-prodotto]])
+- Secondo giorno di osservazione (28/10) pulito: 7 giri su 7 OK, watermark di Outlook e GitHub avanzati, nessun doppione, numeri del Cockpit uguali a `plancia.py`; confermati i due difetti già tracciati per il 31/10. Il log di parts-radar ha due righe del 27/10 per nota perché il repo ha lavorato prima e dopo il watermark: non è un doppione, SPEC 6.6 da chiarire ([[2026-10-28-verifica-task-28-10]])
 - Cockpit v2 costruito come step 16: pagina HTML statica generata da `cockpit.py` (template versionato, dati da `plancia.py`, fotografia del calendario dal task), pubblicata su claude.ai e ripubblicata dal task con una chiamata; mod e dashboard di tipo Dashboard ritirate; in attesa del criterio (3 giri) ([[2026-10-27-step-17-librarian]])
 - Primo giorno di osservazione (27/10) pulito: 7 giri su 7 OK, watermark avanzati, nessun doppione, numeri del Cockpit uguali a `plancia.py`, calendario letto dal connettore; Lorenzo ha aperto la pagina dal telefono la mattina e funziona. Due difetti di visualizzazione da correggere dopo il criterio ([[2026-10-27-verifica-task-27-10]])
+- Step 17 chiuso anche nella prova: i quattro comandi provati in una sessione nuova (28/10), tutti funzionanti; corretti `/cattura` (riga vuota dopo il titolo) e l'ordine del log ([[2026-10-28-verifica-task-28-10]])
 - Step 17 fatto: `cerca.py` (ricerca su titolo, frontmatter e corpo, ordinata per punteggio, backlink e data, 51 test), agente `librarian` e comandi `/oggi`, `/progetto`, `/cattura`, `/smista`; 10 domande di prova su 10 corrette con le fonti, una domanda fuori knowledge senza invenzioni; SPEC 1.20 ([[2026-10-27-step-17-librarian]])
 - Il vault è la versione personale e il banco di prova dell'offerta [[second-brain]]; dopo la prima settimana ha 310 note, 0 errori di controllo, 7 task schedulati al giorno e un loop di miglioramento (diari → curator → proposte) ([[2026-10-26-piano-prodotto-second-brain]])
 - Base solida da conservare: SPEC con PR, matrice delle scritture, controllo d'integrità a tre livelli, tracciabilità alla fonte, famiglia/versione, watermark con sovrapposizione, privacy by design, Obsidian in sola lettura ([[2026-10-26-piano-prodotto-second-brain]])
@@ -36,15 +39,22 @@ updated: 2026-10-27
 - [ ] Step 16 · dopo il criterio: cancellare la vecchia dashboard e disattivare la mod sul PC ([[2026-10-27-step-17-librarian]])
 - [ ] Step 16 · dopo il criterio: `plancia.py` conta come note nuove anche le righe "nuova versione" del digest (il 27/10 6 invece di 2); correggere e aggiungere il test 📅 2026-10-31 ([[2026-10-27-verifica-task-27-10]])
 - [ ] Step 16 · dopo il criterio: `cockpit.py` mostra il proprio giro come "Da eseguire" perché la pagina si genera prima della riga nel digest; contarlo come in corso 📅 2026-10-31 ([[2026-10-27-verifica-task-27-10]])
+- [ ] Step 16 · dopo il criterio: `plancia.py` conta in `digest.json` solo le decisioni datate (`- AAAA-MM-GG ·`), ma il digest scrive righe senza data: `decisioni` esce sempre 0; contare tutte le righe della sezione 📅 2026-10-31 ([[2026-10-28-verifica-task-28-10]])
 - [x] Step 17 · Librarian e ricerca: `cerca.py`, agente `librarian`, comandi `/oggi`, `/progetto`, `/cattura`, `/smista` · modello: Opus, revisione Fable ✅ 2026-10-27 ([[2026-10-27-step-17-librarian]])
 - [x] Step 17 · permessi in `.claude/settings.json` per `cerca.py`, `plancia.py` e `mcp__github__get_file_contents`, con l'ok di Lorenzo ✅ 2026-10-27 ([[2026-10-27-step-17-librarian]])
-- [ ] Step 17 · prova dei quattro comandi `/oggi`, `/progetto`, `/cattura`, `/smista` in una sessione nuova ([[2026-10-27-step-17-librarian]])
-- [ ] Step 18 · Onboarding come prodotto: `/avvia` per il primo caricamento a lotti con campione di QA, controllo di qualità a campione nel curator, manuale per il manager, guida di installazione provata su un clone nuovo · modello: Fable ([[2026-10-26-piano-prodotto-second-brain]])
-- [ ] Step 19 · Separazione IP e governance: repo template del motore senza contenuti BlueAge, repo nell'organizzazione BlueAge, secret scanning, policy dati, prerequisiti del cliente · modello: Fable ([[2026-10-26-piano-prodotto-second-brain]])
+- [x] Step 17 · prova dei quattro comandi `/oggi`, `/progetto`, `/cattura`, `/smista` in una sessione nuova ✅ 2026-10-28 ([[2026-10-27-step-17-librarian]], [[2026-10-28-verifica-task-28-10]])
+- [ ] Step 18 · prerequisito: consegna dei file prodotti dal cloud (scheda scaricabile nella chat e nome nella nota del progetto, o connettore che carica i binari); da chiudere prima di qualunque installazione esterna ([[2026-10-28-second-brain-forma-del-prodotto]])
+- [ ] Step 18 · Onboarding come prodotto: `/installa` (wizard del briefing che scrive `vault.yaml`, task schedulati creati dalla sessione, controllo di connettore e permessi, giro di prova), `/avvia` per il primo caricamento a lotti con campione di QA, chiusura automatica delle sessioni (hook di fine turno con commit e push, task notturno che scrive diario, log e attività), integrità invisibile, cattura via mail `Appunto: …`, controllo di qualità a campione nel curator, manuale sui tre gesti, guida di installazione provata su un clone nuovo · modello: Fable ([[2026-10-26-piano-prodotto-second-brain]], [[2026-10-28-second-brain-forma-del-prodotto]])
+- [ ] Step 19 · Separazione IP e governance: repo template del motore senza contenuti BlueAge, procedura di upgrade del motore nei vault installati, skill del cliente dal suo template pptx, repo dei clienti nell'organizzazione BlueAge con un team per cliente e secret scanning, accordo sul trattamento dei dati come documento contrattuale, prerequisiti del cliente (piano Claude da verificare, account GitHub anche gratuito, connettore Microsoft 365) · modello: Fable ([[2026-10-26-piano-prodotto-second-brain]], [[2026-10-28-second-brain-forma-del-prodotto]])
+- [ ] Step 19 · prova: prima installazione interna a Leonardo con template e wizard, giornata cronometrata e passi manuali annotati; la lista diventa guida di installazione e perimetro del contratto di gestione ([[2026-10-28-second-brain-forma-del-prodotto]])
+- [ ] Verificare quale piano Claude serve al cliente per sessioni cloud e task schedulati ([[2026-10-28-second-brain-forma-del-prodotto]])
 - [ ] Step 20 · Metriche di valore: riga settimanale nel resoconto del curator (note, giri OK, errori, domande risposte, consumo) · modello: Sonnet ([[2026-10-26-piano-prodotto-second-brain]])
 
 ## Decisioni
 
+- Forma del prodotto (28/10): non self-installing per il cliente ma installato da BlueAge e gestito ogni mese, perché la fatica della prima settimana è stata operare, non installare; `/installa` è lo strumento interno. I tier si distinguono per le skill (Start, Completo con deck sul template del cliente, Executive) ([[2026-10-28-second-brain-forma-del-prodotto]])
+- Il cliente vede tre gesti, Leggi, Chiedi, Lavora, e mai git, PR, SPEC, permessi, verifica dei giri e curator; il briefing è il wizard di `/installa`, facoltativo perché la stessa conversazione la fa il cliente da solo ([[2026-10-28-second-brain-forma-del-prodotto]])
+- Repo del cliente privato nell'organizzazione GitHub di BlueAge, cliente collaboratore, con accordo sul trattamento dei dati e accesso minimo di BlueAge; nell'organizzazione del cliente solo per chi ha un IT. Sessioni e task girano sull'account Claude del cliente: BlueAge gestisce via repo e, per i guasti, con il cliente collegato ([[2026-10-28-second-brain-forma-del-prodotto]])
 - Cockpit v2 (27/10): sola lettura, da telefono e da PC, pagina statica generata dal vault e pubblicata come artifact; niente funzioni in early access; `home.md` resta la riserva; la mod dell'app desktop è ritirata ([[2026-10-27-step-17-librarian]])
 - Ordine: affidabilità, poi uso, poi prodotto. Il refactor "motore + configurazione" si fa quando il codice è testato, non prima ([[2026-10-26-piano-prodotto-second-brain]])
 - Il piano vive qui come attività e in SPEC §13 come fase 2; il tema [[second-brain]] resta l'offerta commerciale ([[2026-10-26-piano-prodotto-second-brain]])
@@ -54,12 +64,15 @@ updated: 2026-10-27
 
 ## Prossimi passi
 
-- Giri del 28 e 29/10 con `/verifica-task` per chiudere i criteri degli step 12 e 16 (il 27/10 è pulito, la prova dal telefono è fatta)
+- Giro del 29/10 con `/verifica-task` per chiudere i criteri degli step 12 e 16 (27 e 28/10 puliti, la prova dal telefono è fatta); nella PR di chiusura chiarire SPEC 6.6 (una riga di log per giorno e per giro)
 - Dopo il criterio dello step 16: i due difetti del Cockpit, poi via la vecchia dashboard e la mod
-- Step 13 (configurazione separata dal motore)
+- Step 13 (configurazione separata dal motore), progettando `vault.yaml` come output del wizard di `/installa`
+- Chiudere la consegna dei file prodotti dal cloud prima di qualunque installazione esterna
 
 ## Fonti
 
 - [[2026-10-26-piano-prodotto-second-brain]]
 - [[2026-10-27-step-17-librarian]]
 - [[2026-10-27-verifica-task-27-10]]
+- [[2026-10-28-verifica-task-28-10]]
+- [[2026-10-28-second-brain-forma-del-prodotto]]

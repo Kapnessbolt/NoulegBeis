@@ -22,7 +22,7 @@ Thread interno BlueAge dopo l'incontro dell'8 ottobre tra [[leonardo-pinsone]], 
 ## Decisioni e azioni
 
 - [ ] Lorenzo e Cristian: inviare i CV a Leonardo con taglio tecnico Microsoft e IT (Lorenzo: Copilot Studio, casi d'uso Valvoil, Parts Radar; Cristian: Microsoft, Business Central Premium, dati e architettura, Parts Radar) 📅 2026-10-09
-- [ ] Lorenzo: confermare il calendario proposto
+- [x] Lorenzo: confermare il calendario proposto ✅ 2026-10-28 (superato dal calendario del foglio [[gruppi]], [[2026-10-28-calendario-manini]])
 - [ ] Cristian: attivare Copilot Studio sul tenant BlueAge per 3-4 agenti dimostrativi da usare in aula (da decidere con Lorenzo tra licenza mensile e consumo a pagamento)
 - [ ] Leonardo: chiedere a Manini 20-30 documenti di trasporto anonimizzati, ordini aperti e un ambiente di prova per il laboratorio CED
 

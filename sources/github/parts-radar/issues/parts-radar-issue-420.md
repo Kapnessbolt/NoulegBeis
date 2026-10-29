@@ -7,15 +7,16 @@ current:
   uri: "github://cristian-schifone/parts-radar/issues/420"
   web_url: "https://github.com/cristian-schifone/parts-radar/issues/420"
   name: "Issue #420 · Pilot ADAC, il traguardo: test reale del flusso intero e report dei risultati"
-  last_modified: 2026-10-27T18:02:06Z
+  last_modified: 2026-10-28T18:01:32Z
 versions:
+  - { name: "Issue #420", item_id: cristian-schifone/parts-radar#420, last_modified: 2026-10-28T18:01:32Z }
   - { name: "Issue #420", item_id: cristian-schifone/parts-radar#420, last_modified: 2026-10-27T18:02:06Z }
   - { name: "Issue #420", item_id: cristian-schifone/parts-radar#420, last_modified: 2026-10-26T15:16:56Z }
   - { name: "Issue #420", item_id: cristian-schifone/parts-radar#420, last_modified: 2026-10-21T13:10:57Z }
 also_at: []
 status: active
 partial: false
-ingested_at: 2026-10-28T06:23:42Z
+ingested_at: 2026-10-29T06:23:58Z
 projects: ["[[parts-radar-sviluppo]]"]
 clients: ["[[adac-bologna]]", "[[solera]]"]
 topics: ["[[parts-radar]]"]
@@ -26,7 +27,7 @@ tags: []
 
 ## Riassunto
 
-Definizione di "fatto" della milestone "Pilot ADAC" (Lorenzo, 21/10/2026): tre prove sul flusso intero e un report dei risultati. Il report serve a giustificare l'utenza Kromeda di produzione, che costa, e a dire quanto costa una richiesta. Va chiuso prima della fine della demo Kromeda, intorno al 18/11. Il 27/10 il piano è fatto: le regole delle prove e lo scheletro del report sono nel repo, congelate.
+Definizione di "fatto" della milestone "Pilot ADAC" (Lorenzo, 21/10/2026): tre prove sul flusso intero e un report dei risultati. Il report serve a giustificare l'utenza Kromeda di produzione, che costa, e a dire quanto costa una richiesta. Va chiuso prima della fine della demo Kromeda, intorno al 18/11. Il 27/10 il piano è fatto (regole e scheletro del report, congelati); il 28/10 è arrivata la misura dei vocali sul test.
 
 ## Punti chiave
 
@@ -38,7 +39,8 @@ Definizione di "fatto" della milestone "Pilot ADAC" (Lorenzo, 21/10/2026): tre p
 - Prova 3, traffico vero con le targhe (12-17/11): catalogo dal vivo per i clienti veri, il banco guarda le proposte in dashboard; messaggi automatici spenti
 - Le chiamate Kromeda dal vivo delle prove si registrano per il replay dopo la demo
 - Cosa si misura: quota di richieste che arrivano al banco con targa giusta e voce giusta tra le prime tre; il cancello, zero ricerche su un'auto sbagliata, che se cade manda al banco solo le targhe di quell'origine (vocale, recuperata, foto, scritta), non ferma il pilot; precisione per anello; tempo, costo per richiesta, cosa il banco conferma o corregge
-- 26/10, primi numeri di un anello, il router sui clienti del test senza i vocali: richiesta sì/no giusta nel 93% dei gruppi, numero di pezzi nell'88%; proposte non preparate 6,6%, richieste false 8% (concentrate nella chat di gruppo di un cliente)
+- 26/10, il router sui clienti del test senza i vocali: richiesta sì/no giusta nel 93% dei gruppi, numero di pezzi nell'88%; proposte non preparate 6,6%, richieste false 8% (concentrate nella chat di gruppo di un cliente)
+- 28/10, i vocali sul test: targa confermata giusta 72,9% (soglia 65%) e da ascoltare 20,4% (soglia 25%), al limite; codici dettati esatti 33,3% (soglia 80%), non raggiunta. Il cancello cade per le targhe dai vocali (un gruppo, errore di tutti e due i motori): nel traffico vero queste targhe vanno al banco finché non è corretto
 
 ## Numeri
 
@@ -49,11 +51,12 @@ Definizione di "fatto" della milestone "Pilot ADAC" (Lorenzo, 21/10/2026): tre p
 ## Decisioni e azioni
 
 - Fatto quando: tre prove eseguite con le chiamate registrate, soglie fissate al piano, un report unico che risponde a "la catena funziona abbastanza da giustificare Kromeda di produzione?" e "quanto costa una richiesta?"
-- Passi aperti al 27/10: registrazione delle chiamate dal vivo nel servizio (seconda PR), prova a secco appena ci sono le auto, prova controllata dopo l'attivazione del numero di ADAC, ascolto, traffico vero con le targhe (12-17/11), report
+- Passi aperti nel commento del piano: registrazione delle chiamate dal vivo nel servizio, prova a secco, prova controllata dopo l'attivazione del numero di ADAC, ascolto, traffico vero con le targhe (12-17/11), report (lo stato reale è più avanti: registrazione e prova a secco fatte, secondo [[parts-radar-changelog]])
 - Prima del traffico vero: sicurezza della dashboard e del proxy, server del pilot (Cristian), allarme sulla Coexistence, manuale del banco, prova vera della Coexistence
 
 ## Versioni
 
+- Issue #420 · 2026-10-28 · commento con la misura dei vocali sul test: targa al limite delle soglie, codici dettati sotto soglia, cancello caduto per le targhe dai vocali; testo della issue invariato
 - Issue #420 · 2026-10-27 · commento col piano (Lorenzo, 27/10): auto e scenari della prova controllata, soglie congelate (catena almeno 70%), cancello per origine della targa, la prova segue l'attivazione del numero; prima PR fatta, passi delle prove aperti
 - Issue #420 · 2026-10-26 · commento coi primi numeri del router sui clienti del test; testo della issue invariato
 - Issue #420 · 2026-10-21 · prima lettura nel vault

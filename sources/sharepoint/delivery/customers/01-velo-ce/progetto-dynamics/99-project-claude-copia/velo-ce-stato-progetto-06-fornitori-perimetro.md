@@ -3,17 +3,18 @@ type: source-doc
 source: sharepoint
 family: velo-ce-stato-progetto-06-fornitori-perimetro
 current:
-  item_id: 01EFCYUZZAECEXU6XR6RDLODDRQ2ZDZBWV
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZZAECEXU6XR6RDLODDRQ2ZDZBWV
-  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/velo-ce-stato-progetto-06-fornitori-perimetro.md
+  item_id: 01EFCYUZ52Q6DWZOBUNRBKBIY2QMEV523Q
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ52Q6DWZOBUNRBKBIY2QMEV523Q
+  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/99 Project Claude (copia)/velo-ce-stato-progetto-06-fornitori-perimetro.md
   name: velo-ce-stato-progetto-06-fornitori-perimetro.md
-  last_modified: 2026-10-08T10:43:52Z
+  last_modified: 2026-10-28T08:06:17Z
 versions:
+  - { name: velo-ce-stato-progetto-06-fornitori-perimetro.md, item_id: 01EFCYUZ52Q6DWZOBUNRBKBIY2QMEV523Q, last_modified: 2026-10-28T08:06:17Z }
   - { name: velo-ce-stato-progetto-06-fornitori-perimetro.md, item_id: 01EFCYUZZAECEXU6XR6RDLODDRQ2ZDZBWV, last_modified: 2026-10-08T10:43:52Z }
 also_at: []
 status: active
 partial: false
-ingested_at: 2026-10-22T13:25:37Z
+ingested_at: 2026-10-29T05:57:56Z
 projects: ["[[velo-ce-progetto-dynamics]]"]
 clients: ["[[velo-ce]]"]
 topics: ["[[business-central-ai]]"]
@@ -39,6 +40,7 @@ Blocco 06 (§12-§13) dello stato progetto Velo-CE, interno BlueAge. Raccoglie c
 - **Razionalizzazione app EOS (29/09)**: criterio per tenere un'app (la usa Velo-CE, serve a un obbligo fiscale, o è una dipendenza di un'app che resta); IVC da sostituire con la valutazione fiscale standard italiana dopo la chiusura 2026; classificazione proposta: 7 in uso, 20 componenti e dipendenze, 11 da chiarire, 16 senza ruolo da disinstallare. Dal 01/10 la razionalizzazione passa in secondo piano.
 - **Strada 6 (04/10)**: produzione sugli ordini di assemblaggio con l'app So Smart «Manufacturing and Assembly», senza Premium: in regola con la licenza ma non standard; vicina a Premium sul costo dello stock, non sul modello del pilota Lungo. Da aggiungere al deck solo se la dimostrazione regge.
 - **Mappa dei fornitori**: So Smart (rischio medio, nessun contratto noto), We Make Code (rischio alto, tre processi centrali senza documentazione), società di Luigi Sacchi (rischio alto), marketing Van Nicholas Belgio (medio), Team System Fatture in Cloud per il conto lavoro (da valutare), Microsoft app Subcontracting (basso), fornitori di materie prime del telaio (basso, ordini per telefono o mail). Nessun fornitore ha un'evidenza contrattuale con il cliente.
+- **Aggiornamenti dal 08/10 al 27/10** ([[velo-ce-stato-progetto-99-log-revisioni]]): §12.2 conferma scritta di So Smart (mail del 07/10, giunta il 09/10): licenza Premium rivenduta da So Smart a 30 € per utente al mese, configurazione della Produzione a BlueAge, supporto su tutto ciò che riguarda So Smart esclusa la «Produzione Avanzata», migrazione su un altro tenant fattibile con ticket; restano da chiarire edizione Premium delle app, SLA e abbonamenti EOS sul nuovo tenant. Riga del 15/10: risposta di So Smart al ticket e ripresa dei saldi a So Smart tranne gli articoli (§12.5 data entry e ricodifica).
 
 ## Numeri
 
@@ -66,3 +68,5 @@ Blocco 06 (§12-§13) dello stato progetto Velo-CE, interno BlueAge. Raccoglie c
 ## Versioni
 
 - velo-ce-stato-progetto-06-fornitori-perimetro.md · 2026-10-08 · prima versione ingerita (stato progetto 025.66); data di modifica della riorganizzazione della cartella
+- velo-ce-stato-progetto-06-fornitori-perimetro.md · 2026-10-28 · stato progetto 025.109 del 27/10; conferma scritta di So Smart e riga del 15/10 (differenze ricavate dal log revisioni, blocco non riletto per intero); copia della cartella in `Cristian/`
+
