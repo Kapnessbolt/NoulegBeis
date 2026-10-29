@@ -6,7 +6,7 @@ participants: ["[[leonardo-pinsone]]", "[[cristian-schifone]]", "[[anna-bono]]"]
 first_message: 2026-09-27T19:58:19Z
 last_message: 2026-09-27T19:58:19Z
 messages: 1
-attachments: ["[[proposta-formazione-ai-utenti-tradizionali]]", "[[manini-corso-ai-domande-preliminari-blueage]]"]
+attachments: ["[[proposta-formazione-ai-utenti-tradizionali]]", "[[manini-corso-ai-domande-preliminari]]"]
 projects: ["[[corso-ai-manini]]"]
 clients: ["[[manini]]"]
 topics: []

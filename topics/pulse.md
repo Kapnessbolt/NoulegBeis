@@ -53,7 +53,7 @@ Sistema di execution proprietario di [[blueage]]. Legge i dati che l'azienda gi√
 - [[blueage-possibilita]]
 - [[pulse-faq-vendita]]
 - [[pulse-i-en]]
-- [[todo-partner-e-aziende]]
+- [[to-do-partner-e-aziende]]
 - [[pulse-sintesi-5-pagine-revamp]]
 - [[riunione-generale-blueage-28-9-sintesi-e-azioni]]
 - [[call-di-oggi-prossimi-passi-architettura-copilot-manini-meccanotecnica-second-brain]]

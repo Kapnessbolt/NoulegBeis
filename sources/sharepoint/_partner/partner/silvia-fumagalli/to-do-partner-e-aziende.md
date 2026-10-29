@@ -1,7 +1,7 @@
 ---
 type: source-doc
 source: sharepoint
-family: todo-partner-e-aziende
+family: to-do-partner-e-aziende
 current:
   item_id: 01GEQYSS4G7LNL2NPYG5CZOU25SXYQ6UDL
   uri: file:///b!A7b6m_TYN0WCnuUFi2d1SUF8cl0xQY1JqFaa3mGO8LaO54eDFnSESI_kxYrC6RpW/01GEQYSS4G7LNL2NPYG5CZOU25SXYQ6UDL

@@ -39,7 +39,7 @@ updated: 2026-10-28
 - [ ] Copilot Studio sul tenant BlueAge per 3–4 agenti dimostrativi, con Cristian: scegliere tra piano da 207 €/mese e consumo ([[manini-corso-ai-impostazione-calendario-e-cv]])
 - [x] Parere, con Silvia, sul caso entrata merci v3 ✅ 2026-10-26 ([[automazione-entrata-merci-caso-manini]])
 - [ ] Ricevere da Manini data e contenuti delle 8 ore per i Sistemi Informativi ([[manini-corso-ai-recap-della-call-del-16-10]])
-- [ ] Ricevere da Manini uffici dei partecipanti, agenti interni da presentare e documenti di prova anonimizzati ([[manini-corso-ai-raccolta-dati-blueage]])
+- [ ] Ricevere da Manini uffici dei partecipanti, agenti interni da presentare e documenti di prova anonimizzati ([[manini-corso-ai-raccolta-dati]])
 - [ ] Caso preventivi per i gruppi B e C: ottenere da Manini preventivi o fatture anonimizzati ([[manini-ddt-essenziale]])
 - [ ] Moduli per funzione (produzione, qualità, commerciale, HR) con versione Copilot gratuito e Pro, riusabili per MTU, Manini, TiFast e Tarkett ([[call-di-oggi-prossimi-passi-architettura-copilot-manini-meccanotecnica-second-brain]])
 
@@ -47,7 +47,7 @@ updated: 2026-10-28
 
 - Formato come il corso supply chain (pillole, casi Manini, esercizi, Red Tag), niente prodotti BlueAge in aula, tavolo dimostrativo proiettato invece di un PC a testa ([[manini-corso-ai-impostazione-calendario-e-cv]])
 - AI Act e policy si propongono a parte, fuori dal corso ([[manini-corso-ai-da-36-ore-contesto-opportunita-e-come-lo-impostiamo]])
-- [[compass]] entra nel modulo 1 ([[manini-corso-ai-quadro-interno-blueage]])
+- [[compass]] entra nel modulo 1 ([[manini-corso-ai-quadro-interno]])
 - Il caso entrata merci si presenta a voce, senza girare le slide e senza nominare il cliente ([[blueage-automation-entrata-merci]])
 - Ore del corso: 36 per il corso utenti (tre gruppi da 12) più 8 per i Sistemi Informativi; l'ipotesi di 48 ore è superata (utente in sessione, [[2026-10-22-primo-caricamento-outlook]]; [[manini-corso-ai-recap-della-call-del-16-10]])
 
@@ -68,10 +68,10 @@ updated: 2026-10-28
 - [[automazione-entrata-merci-caso-manini]]
 - [[blueage-automation-entrata-merci]]
 - [[manini-percorso-ai-per-i-sistemi-informativi-16-ore]]
-- [[manini-corso-ai-indice-sistemi-informativi-blueage]]
-- [[manini-corso-ai-quadro-interno-blueage]]
-- [[manini-corso-ai-raccolta-dati-blueage]]
-- [[manini-corso-ai-domande-preliminari-blueage]]
+- [[manini-corso-ai-indice-sistemi-informativi]]
+- [[manini-corso-ai-quadro-interno]]
+- [[manini-corso-ai-raccolta-dati]]
+- [[manini-corso-ai-domande-preliminari]]
 - [[proposta-formazione-ai-utenti-tradizionali]]
 - [[deck-corso-ai-m1-v15-su-sharepoint]]
 - [[call-di-oggi-prossimi-passi-architettura-copilot-manini-meccanotecnica-second-brain]]

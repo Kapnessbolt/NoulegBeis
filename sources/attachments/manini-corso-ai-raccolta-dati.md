@@ -1,7 +1,7 @@
 ---
 type: source-doc
 source: attachment
-family: manini-corso-ai-raccolta-dati-blueage
+family: manini-corso-ai-raccolta-dati
 current:
   item_id: "AAMkAGMyY2M5ZTczLTYwNDEtNGZiOC1iYjJjLTFhZjJhOGY1YjFiMQBGAAAAAADRF2aJ18MKT6wbnyNtwv9jBwCNJoMhLsxPT4EkGUihNeQOAAAAAAEMAACNJoMhLsxPT4EkGUihNeQOAAA2iidYAAABEgAQAIZA6__h-qZNinkm_XY92MY="
   uri: "mail:///messages/AAMkAGMyY2M5ZTczLTYwNDEtNGZiOC1iYjJjLTFhZjJhOGY1YjFiMQBGAAAAAADRF2aJ18MKT6wbnyNtwv9jBwCNJoMhLsxPT4EkGUihNeQOAAAAAAEMAACNJoMhLsxPT4EkGUihNeQOAAA2iidYAAA%3D/attachments/AAMkAGMyY2M5ZTczLTYwNDEtNGZiOC1iYjJjLTFhZjJhOGY1YjFiMQBGAAAAAADRF2aJ18MKT6wbnyNtwv9jBwCNJoMhLsxPT4EkGUihNeQOAAAAAAEMAACNJoMhLsxPT4EkGUihNeQOAAA2iidYAAABEgAQAIZA6__h-qZNinkm_XY92MY%3D"
@@ -24,7 +24,7 @@ tags: [formazione, ai, questionario, materiali]
 
 ## Riassunto
 
-Modulo BlueAge di ottobre 2026 inviato a [[manini]] con la mail di impostazione del [[corso-ai-manini]] ([[manini-corso-ai-impostazione-calendario-cv-e-materiali]]). Elenca le informazioni e i materiali che servono per preparare esempi ed esercitazioni: regole e strumenti in uso, materiali per il laboratorio del gruppo CED, casi di lavoro dai referenti di ciascuna area. Aggiorna e restringe il questionario di settembre ([[manini-corso-ai-domande-preliminari-blueage]]).
+Modulo BlueAge di ottobre 2026 inviato a [[manini]] con la mail di impostazione del [[corso-ai-manini]] ([[manini-corso-ai-impostazione-calendario-cv-e-materiali]]). Elenca le informazioni e i materiali che servono per preparare esempi ed esercitazioni: regole e strumenti in uso, materiali per il laboratorio del gruppo CED, casi di lavoro dai referenti di ciascuna area. Aggiorna e restringe il questionario di settembre ([[manini-corso-ai-domande-preliminari]]).
 
 ## Punti chiave
 

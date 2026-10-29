@@ -39,4 +39,4 @@ Metodo BlueAge per portare l'AI nei processi aziendali, costruito sull'analogia 
 - [[ai-data-driven-management-indice-del-corso]]
 - [[meccanotecnica-umbria-bozza-di-programma]]
 - [[riunione-generale-blueage-5-10-sintesi-e-azioni]]
-- [[manini-corso-ai-quadro-interno-blueage]]
+- [[manini-corso-ai-quadro-interno]]

@@ -6,7 +6,7 @@ participants: ["[[leonardo-pinsone]]", "[[luciano-baccarelli]]", "[[angelo-santi
 first_message: 2026-10-09T15:43:07Z
 last_message: 2026-10-12T09:24:59Z
 messages: 2
-attachments: ["[[manini-corso-ai-raccolta-dati-blueage]]", "[[manini-corso-ai-indice-sistemi-informativi-blueage]]"]
+attachments: ["[[manini-corso-ai-raccolta-dati]]", "[[manini-corso-ai-indice-sistemi-informativi]]"]
 projects: ["[[corso-ai-manini]]"]
 clients: ["[[manini]]"]
 topics: []

@@ -21,7 +21,7 @@ L'azienda: posizionamento, linee di offerta e metodo. BlueAge risponde del risul
 - Offerte: [[ai-nei-processi]], [[business-central-ai]], [[trade-spending]], [[ai-foundation-program]]; metodo [[compass]] ([[blueage-onepage-ai-nei-processi]])
 - One-page istituzionale per i partner: tre situazioni di ingresso (azioni che arrivano tardi → [[pulse]]; processi su e-mail ed Excel → automazione; bisogno di guida operativa → senior BlueAge a tempo parziale) ([[blueage-onepage]])
 - Remunerazione del canale fino al 31/12/2026, ruoli Master, Partner, Originator, Operating e Delivery; nelle commesse il pool commerciale è il maggiore tra 25% del margine e 5% dell'incassato, diviso 50/30/20 tra Originator, Operating e Master; BlueAge fattura sempre al cliente e paga dopo l'incasso ([[blueage-condizioni-commerciali-slide]])
-- Sviluppo commerciale tramite partner e consulenti: al 28/09/2026 21 partner contattati e 20 aziende prospect (6 incontri fatti, 3 fissati), soprattutto beni di consumo, food, farma e cosmesi ([[todo-partner-e-aziende]])
+- Sviluppo commerciale tramite partner e consulenti: al 28/09/2026 21 partner contattati e 20 aziende prospect (6 incontri fatti, 3 fissati), soprattutto beni di consumo, food, farma e cosmesi ([[to-do-partner-e-aziende]])
 - Dopo circa 30 incontri con aziende e partner (28/09/2026) si entra in azienda con la [[giornata-in-azienda]] e la formazione AI; General dei soci ogni lunedì 18:30–19:30; su SharePoint solo l'ultima versione di ogni materiale ([[riunione-generale-blueage-28-9-sintesi-e-azioni]])
 - Dal 5/10/2026 nel programma partner Microsoft (AI Cloud Partner Program); certificazioni personali su Microsoft Learn, prima Business Central e Copilot ([[riunione-generale-blueage-5-10-sintesi-e-azioni]], [[microsoft-partner-center-collegamento-profili-microsoft-learn]])
 - Crescita: le giornate di formazione sono investimenti d'ingresso, non fatturato; colli di bottiglia il tempo di Leonardo e quello tecnico di Cristian; si punta a qualità sui volumi e a progetti come Velo-CE ([[riunione-generale-blueage-12-10-punti-emersi-e-prossimi-passi]])
@@ -53,7 +53,7 @@ L'azienda: posizionamento, linee di offerta e metodo. BlueAge risponde del risul
 - [[blueage-onepage]]
 - [[blueage-possibilita]]
 - [[pulse-i-en]]
-- [[todo-partner-e-aziende]]
+- [[to-do-partner-e-aziende]]
 - [[bozza-cp-blueage]]
 - [[blueage-company-profile-ultimo-aggiornamento]]
 - [[linkedin-blueage-le-compenteze-cambiano-la-regia-no]]

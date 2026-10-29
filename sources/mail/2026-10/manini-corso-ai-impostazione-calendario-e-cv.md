@@ -6,7 +6,7 @@ participants: ["[[leonardo-pinsone]]", "[[cristian-schifone]]", "[[anna-bono]]"]
 first_message: 2026-10-08T22:42:38Z
 last_message: 2026-10-09T13:52:09Z
 messages: 5
-attachments: ["[[manini-corso-ai-quadro-interno-blueage]]", "[[manini-percorso-ai-per-i-sistemi-informativi-16-ore]]"]
+attachments: ["[[manini-corso-ai-quadro-interno]]", "[[manini-percorso-ai-per-i-sistemi-informativi-16-ore]]"]
 projects: ["[[corso-ai-manini]]", "[[corso-ai-tifast]]"]
 clients: ["[[manini]]"]
 topics: []
