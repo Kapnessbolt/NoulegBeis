@@ -7,6 +7,7 @@ project: "[[second-brain-prodotto]]"
 
 Una riga per avanzamento, dalla più recente: `- AAAA-MM-GG · cosa è successo · [[fonte]]`
 
+- 2026-10-29 · Step 14 avviato: regola a percorso `fonti.md` per `sources/`, `CLAUDE.md` snellito, agenti e routine senza copie, controllo delle regole nel pre-commit (PR #49 e #50 unite, SPEC 1.24); test sul caricamento di `.claude/rules/`: scatta con Read/Write/Edit e `cat`/`head`, non con Grep, Glob, script, redirezioni, né dopo `/compact` · [[2026-10-29-regole-percorso]]
 - 2026-10-29 · Plugin `cockpit` rimosso da Lorenzo sull'app desktop del PC; nessun plugin attivo sull'account claude.ai: la pulizia dello step 16 è chiusa · [[2026-10-29-cockpit-conteggi-e-step-13]]
 - 2026-10-29 · Vecchia dashboard Cockpit (artifact di tipo Dashboard del 23/10) cancellata su richiesta di Lorenzo; resta da disattivare la mod sul PC · [[2026-10-29-cockpit-conteggi-e-step-13]]
 - 2026-10-29 · Script di setup dell'ambiente cloud configurato da Lorenzo su claude.ai: richiama `.claude/setup/ambiente-cloud.sh`; in una sessione nuova i quattro pacchetti (pyyaml, pytest, python-pptx, fonttools) ci sono · [[2026-10-29-cockpit-conteggi-e-step-13]]
