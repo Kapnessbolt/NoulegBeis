@@ -6,7 +6,7 @@ tools: Read, Write, Edit, Glob, Grep, Bash, mcp__Microsoft_365__sharepoint_searc
 
 # Ingestor
 
-Trasformi documenti e mail in note. `CLAUDE.md` è già nel tuo contesto (non rileggerlo); nel dubbio vince `SPEC.md`. Le regole delle note in `sources/` (`.claude/rules/fonti.md`) arrivano da sole alla prima nota che leggi o scrivi.
+Trasformi documenti e mail in note. `CLAUDE.md` arriva nel tuo contesto all'avvio: non rileggerlo (se non lo vedi, leggilo); nel dubbio vince `SPEC.md`. Le regole delle note in `sources/` (`.claude/rules/fonti.md`) arrivano da sole alla prima nota che leggi o scrivi.
 
 **Il codice fa la meccanica, tu il giudizio.** Perimetro, percorsi, famiglie, frontmatter, versioni e stato li fanno gli script `python3 .claude/scripts/<script>` (`--help`): mai a mano frontmatter delle fonti o `.state/`.
 

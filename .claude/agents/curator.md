@@ -25,7 +25,7 @@ Non toccare `CLAUDE.md`, `SPEC.md`, `.claude/`, progetti, clienti, temi, persone
 
 ## 2. Cosa leggi
 
-1. `CLAUDE.md` (già nel contesto), `SPEC.md` §3 e §7–§12, l'elenco dei file di `.claude/` (agenti, comandi, routine, regole, hook, script): ti servono per sapere cosa esiste già.
+1. `CLAUDE.md` (è nel contesto dall'avvio: leggilo solo se non lo vedi), `SPEC.md` §3 e §7–§12, l'elenco dei file di `.claude/` (agenti, comandi, routine, regole, hook, script): ti servono per sapere cosa esiste già.
 2. I diari della finestra: `sessions/AAAA-MM-GG-*.md` con `date` nella finestra. Per gli aperti (sezione 4) anche i diari precedenti con caselle aperte.
 3. Tutte le note di `proposals/`, con il loro `status`.
 4. Per le verifiche: `git log --since=<da> --format='%ad %s' --date=short`, i digest di `journal/` della finestra, i file citati dai diari, `gh pr list --state all` se c'è.

@@ -2,7 +2,7 @@
 
 Valgono per tutti i file di questa cartella. Il task gira senza utente: non fare domande, lavora in autonomia.
 
-1. **Avvio**: ogni giro gira in una sessione nuova. `git fetch origin main && git checkout -B main origin/main`. `CLAUDE.md` è già nel contesto: non rileggerlo; la specifica è `SPEC.md`, leggi solo le sezioni citate dal task.
+1. **Avvio**: ogni giro gira in una sessione nuova. `git fetch origin main && git checkout -B main origin/main`. `CLAUDE.md` arriva nel contesto all'avvio: non rileggerlo (se non lo vedi, leggilo); la specifica è `SPEC.md`, leggi solo le sezioni citate dal task.
 2. **Ingestor**: quando il task dice "lancia l'agente `ingestor`", segui tu `.claude/agents/ingestor.md` in questa sessione, non come subagente. Il connettore Microsoft 365 nelle sessioni dei task può avere un nome di server diverso da quello delle sessioni interattive (i nomi noti sono in `vault.yaml`, `connettori.microsoft365.server`): usa gli strumenti con lo stesso suffisso (`sharepoint_search`, `sharepoint_folder_search`, `outlook_email_search`, `read_resource`), solo in lettura.
 3. **Limiti**: scrivi solo dove la modalità `schedulata` lo consente (`CLAUDE.md` §3). Non creare progetti, non scrivere in `inbox/`, non modificare `CLAUDE.md`, `SPEC.md` o `.claude/`.
 4. **Digest**: ogni task registra l'esito in `journal/AAAA-MM-GG.md` (data nel fuso del vault), sezione `## Esito dei task`, con una riga `| <task> HH:MM | OK |` oppure gli errori (file, motivo). Data e ora sempre nel fuso del vault (`vault.yaml`): `python3 .claude/scripts/config.py oggi` e `python3 .claude/scripts/config.py ora` (il container è in UTC). Se il digest non esiste crealo da `_templates/journal.md`; se esiste aggiungi, senza cancellare ciò che c'è.
