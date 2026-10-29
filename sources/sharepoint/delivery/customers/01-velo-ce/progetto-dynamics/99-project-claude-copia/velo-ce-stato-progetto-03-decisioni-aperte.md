@@ -3,17 +3,19 @@ type: source-doc
 source: sharepoint
 family: velo-ce-stato-progetto-03-decisioni-aperte
 current:
-  item_id: 01EFCYUZ7LPNBMHRTVJFHI467EREJPGL4B
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ7LPNBMHRTVJFHI467EREJPGL4B
-  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/velo-ce-stato-progetto-03-decisioni-aperte.md
+  item_id: 01EFCYUZ4KI2E7NODW6VFZLEBW6P6ZP6KZ
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ4KI2E7NODW6VFZLEBW6P6ZP6KZ
+  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/99 Project Claude (copia)/velo-ce-stato-progetto-03-decisioni-aperte.md
   name: velo-ce-stato-progetto-03-decisioni-aperte.md
-  last_modified: 2026-10-08T10:43:52Z
+  last_modified: 2026-10-28T08:06:16Z
 versions:
+  - { name: velo-ce-stato-progetto-03-decisioni-aperte.md, item_id: 01EFCYUZ4KI2E7NODW6VFZLEBW6P6ZP6KZ, last_modified: 2026-10-28T08:06:16Z }
   - { name: velo-ce-stato-progetto-03-decisioni-aperte.md, item_id: 01EFCYUZ7LPNBMHRTVJFHI467EREJPGL4B, last_modified: 2026-10-08T10:43:52Z }
-also_at: []
+also_at:
+  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/Claude outputs/proj18/velo-ce-stato-progetto-03-decisioni-aperte.md.txt", item_id: 01EFCYUZ6E4QZ6RF4BYFFJSK5AGDAGCLOW }
 status: active
 partial: false
-ingested_at: 2026-10-22T13:25:37Z
+ingested_at: 2026-10-29T05:57:56Z
 projects: ["[[velo-ce-progetto-dynamics]]"]
 clients: ["[[velo-ce]]"]
 topics: ["[[business-central-ai]]", "[[fatturazione-elettronica-sdi]]"]
@@ -41,6 +43,8 @@ Blocco 03 (§7) dello stato progetto Velo-CE, interno BlueAge, il più aggiornat
 - **Governance**: il canale ordini MMI gira con l'identità personale del titolare tramite l'app Entra «CRM» del cliente, con due client esterni (uno verosimilmente We Make Code); l'app ha anche permessi di gestione degli ambienti; So Smart ha più canali sul tenant (utenze, delega GDAP, account amministratore globale, due app). I temi di governance sono stati spostati in un registro dedicato (GOV-01…GOV-21) per decisione di Cristian del 25/09.
 - **Giro d'acquisto (p.84-87)**: ordini mai fatturati sulle righe, da maggio 2026 mai ricevuti; ordini aperti per merce già entrata da pulire prima dell'MRP; rivalutazione dei carichi a costo zero da decidere con il commercialista; possibile obbligo di scritture ausiliarie di magazzino. Demo del flusso standard del 08/10 e guida per l'amministrazione.
 - **Pilota (p.80-83)**: costo del terzista a zero nel modello v006, regola di consuntivazione delle fasi con scarto (Manuale dove si dichiara lo scarto), righe di distinta fantasma da correggere nei pacchetti, trasferimento al terzista con l'app Subcontracting da provare.
+- **Aggiornamenti dal 08/10 al 27/10** ([[velo-ce-stato-progetto-99-log-revisioni]]): §7.1 p.12 — 09/10 confermata la ripartenza di BC in Premium su un tenant nuovo con partenza al 01/01/2027; 15/10 confermata l'opzione 3 (ambiente nuovo senza storico, BC di oggi nel tenant So Smart fino al bilancio 2026) con avvio subito su una società di prova nel tenant BlueAge, CT-01 chiuso; 15/10 sera ripresa dei saldi affidata a So Smart tranne gli articoli ([[velo-ce-articoli-codici-nuovi]]); 20/10 tenant unico `velo-ce.eu`.
+- §7.4: p.34 e p.47 (21/10) D22 chiusa, conto lavoro solo sugli ordini di produzione con l'app Microsoft «Subcontracting»; nuovo p.89 (26/10) sugli impatti contabili della nuova operatività con orientamento di Cristian per il modello «per natura» dal 01/01/2027, da confermare con il commercialista prima del 13/11, metodo di valutazione (FIFO o medio ponderato) ancora aperto; nota del 26/10 sera sulla proposta dei conti delle nuove categorie per Claudia (OP-47).
 
 ## Numeri
 
@@ -73,7 +77,14 @@ Blocco 03 (§7) dello stato progetto Velo-CE, interno BlueAge, il più aggiornat
 - [ ] Pulire gli ordini d'acquisto aperti per merce già entrata prima di qualunque calcolo MRP.
 - [ ] Decidere con Stefano la messa in sicurezza dell'app «CRM» (permessi non usati, segreto vecchio, utenza dedicata al canale).
 - [ ] Rischi dell'avvio: settimana 01-08/01/2027 (giacenze negative e carico d'apertura con l'inventario dell'08/01) e due BC che inviano allo SdI con la stessa partita IVA fino al 15/01.
+- 09/10: BC riparte in Premium sul nuovo tenant, partenza 01/01/2027 (Cristian).
+- 15/10: opzione 3 per il nuovo tenant, avvio su società di prova BlueAge; CT-01 chiuso.
+- 20/10: tenant unico `velo-ce.eu` (Cristian, confermato da Stefano).
+- 21/10: D22 chiusa, conto lavoro con l'app Microsoft «Subcontracting».
+- [ ] Conferma del commercialista sul modello contabile «per natura» 📅 2026-11-13 ([[velo-ce-stato-progetto-99-log-revisioni]])
 
 ## Versioni
 
 - velo-ce-stato-progetto-03-decisioni-aperte.md · 2026-10-08 · prima versione ingerita (stato progetto 025.66); data di modifica della riorganizzazione della cartella
+- velo-ce-stato-progetto-03-decisioni-aperte.md · 2026-10-28 · stato progetto 025.109 del 27/10; p.12 su tenant e opzione 3, D22 chiusa, p.89 sul giro contabile (differenze ricavate dal log revisioni, blocco non riletto per intero); copia della cartella in `Cristian/`
+

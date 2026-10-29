@@ -3,17 +3,18 @@ type: source-doc
 source: sharepoint
 family: velo-ce-guida-alla-cartella
 current:
-  item_id: 01EFCYUZ6MFKTCPQS6OZEICA65NE5QYARE
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ6MFKTCPQS6OZEICA65NE5QYARE
-  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/00 Progetto/Velo-CE - Guida alla cartella.md
+  item_id: 01EFCYUZ5GPH3MGVJAXVFIK3TX3MNNYILU
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ5GPH3MGVJAXVFIK3TX3MNNYILU
+  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/00 Progetto/Velo-CE - Guida alla cartella.md
   name: Velo-CE - Guida alla cartella.md
-  last_modified: 2026-10-08T10:43:47Z
+  last_modified: 2026-10-28T08:04:52Z
 versions:
-  - { name: Velo-CE - Guida alla cartella.md, item_id: 01EFCYUZ6MFKTCPQS6OZEICA65NE5QYARE, last_modified: 2026-10-08T10:43:47Z }
+  - { name: "Velo-CE - Guida alla cartella.md", item_id: 01EFCYUZ5GPH3MGVJAXVFIK3TX3MNNYILU, last_modified: 2026-10-28T08:04:52Z }
+  - { name: "Velo-CE - Guida alla cartella.md", item_id: 01EFCYUZ6MFKTCPQS6OZEICA65NE5QYARE, last_modified: 2026-10-08T10:43:47Z }
 also_at: []
 status: active
 partial: false
-ingested_at: 2026-10-22T13:25:33Z
+ingested_at: 2026-10-29T06:00:49Z
 projects: ["[[velo-ce-progetto-dynamics]]"]
 clients: ["[[velo-ce]]"]
 topics: []
@@ -38,6 +39,8 @@ Guida interna BlueAge alla cartella del progetto Velo-CE, nella struttura nata c
 - **08 Guide** (dal 07/10): guide operative su Business Central; prima guida la stampa dell'etichetta articolo con codice a barre (report 6625, layout Code 39), dall'08/10 la guida per il cliente del ciclo d'acquisto ordine, carico, fattura.
 - **98 Share Team** (dall'08/10): materiali per il team BlueAge, primo la sintesi dell'area AFC per Leonardo.
 - **Regole**: la versione sostituita va in `_superato/<stesso percorso>`; nome `Velo-CE - <Titolo> - <DESTINATARIO> - vNNN` con destinatario CLIENTE, SO SMART, INTERNO o niente; nessuna cancellazione, solo spostamenti; cartella giusta al primo colpo.
+- **Aggiornamenti dal 08/10 al 20/10**: in `01 Deck cliente/SAL/` i deck portano in testa la data della riunione (`AAMMGG`, decisione di Cristian del 16/10), con il deck «Le fondamenta» del 21/09, il SAL 01 del 06/10 e i quattro deck del 14/10; `03 Mappa sistemi` contiene solo mappe (decisione del 20/10): mappa dei sistemi CLIENTE v004 con i tre tenant della posta e Zucchetti, pagina sui tenant Microsoft e la posta, flussi SdI; in `07 Aree/AFC` il piano operativo del passaggio della fattura elettronica fra vecchio e nuovo BC (dal 12/10); in `08 Guide` la guida all'etichetta collo, la guida e i link ufficiali sulla migrazione della posta al tenant unico (20/10); nuova cartella `98 Share Team` per le sintesi al team BlueAge (08/10).
+- Nuova regola: se un file da aggiornare è aperto, Claude crea la versione successiva e non tocca quello aperto.
 
 ## Numeri
 
@@ -53,3 +56,5 @@ Guida interna BlueAge alla cartella del progetto Velo-CE, nella struttura nata c
 ## Versioni
 
 - Velo-CE - Guida alla cartella.md · 2026-10-08 · prima versione ingerita (data della riorganizzazione della cartella)
+- Velo-CE - Guida alla cartella.md · 2026-10-28 · aggiornata fino al 20/10: SAL con data della riunione, 03 solo mappe, guide nuove, 98 Share Team; nella cartella `Cristian/00 Progetto/`
+

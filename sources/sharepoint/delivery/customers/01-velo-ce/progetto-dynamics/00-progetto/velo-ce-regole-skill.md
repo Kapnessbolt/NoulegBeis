@@ -10,7 +10,8 @@ current:
   last_modified: 2026-10-08T10:43:48Z
 versions:
   - { name: _regole skill.md, item_id: 01EFCYUZ75CATPRT3RDBC3T6NW6PLKG43K, last_modified: 2026-10-08T10:43:48Z }
-also_at: []
+also_at:
+  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/00 Progetto/_regole skill.md", item_id: 01EFCYUZ46KIA7WDO4RVGYBLCMOPVFQDA6 }
 status: active
 partial: false
 ingested_at: 2026-10-22T13:25:33Z

@@ -3,17 +3,18 @@ type: source-doc
 source: sharepoint
 family: velo-ce-stato-progetto-01-inquadramento-ambiente
 current:
-  item_id: 01EFCYUZ3MUEM32WVBQRHZKSGTLF2AKPUO
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ3MUEM32WVBQRHZKSGTLF2AKPUO
-  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/velo-ce-stato-progetto-01-inquadramento-ambiente.md
+  item_id: 01EFCYUZ2AQVYH6QUXYND3XMXYVVPPTTRA
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ2AQVYH6QUXYND3XMXYVVPPTTRA
+  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/99 Project Claude (copia)/velo-ce-stato-progetto-01-inquadramento-ambiente.md
   name: velo-ce-stato-progetto-01-inquadramento-ambiente.md
-  last_modified: 2026-10-08T10:43:53Z
+  last_modified: 2026-10-28T08:06:16Z
 versions:
+  - { name: velo-ce-stato-progetto-01-inquadramento-ambiente.md, item_id: 01EFCYUZ2AQVYH6QUXYND3XMXYVVPPTTRA, last_modified: 2026-10-28T08:06:16Z }
   - { name: velo-ce-stato-progetto-01-inquadramento-ambiente.md, item_id: 01EFCYUZ3MUEM32WVBQRHZKSGTLF2AKPUO, last_modified: 2026-10-08T10:43:53Z }
 also_at: []
 status: active
 partial: false
-ingested_at: 2026-10-22T13:25:37Z
+ingested_at: 2026-10-29T05:57:56Z
 projects: ["[[velo-ce-progetto-dynamics]]"]
 clients: ["[[velo-ce]]"]
 topics: ["[[business-central-ai]]"]
@@ -42,6 +43,7 @@ Blocco 01 (§1-§2) dello stato progetto Velo-CE, interno BlueAge. Inquadra il c
 - **Accessi (round 6)**: ruoli Entra e set di autorizzazioni BC sono strati separati; la pagina Gestione estensioni (2500) resta chiusa anche al titolare con licenza: domanda aperta a So Smart (R11).
 - **Job schedulati**: sei job So Smart (dispatcher per fasce) e il job del flusso MMI ogni 2 minuti; quattro job in errore da oltre due anni (indicatore di manutenzione assente).
 - **Flusso MMI**: canale automatico degli ordini di vendita (anche bici Veloe complete), scritto da due client esterni tramite l'app «CRM» con l'identità del titolare: rischio di governance (un cambio di password o MFA può fermare gli ordini) e vincolo sulla ricodifica (il canale usa il numero articolo di BC senza traduzione).
+- **Aggiornamenti dal 08/10 al 27/10** ([[velo-ce-stato-progetto-99-log-revisioni]]): posta su tre tenant Microsoft 365, tenant unico per BC e posta deciso il 20/10: `velo-ce.eu` (§2.1); nuovo §2.5 j) del 27/10 sull'import del master articoli v005 nella società di prova VC-IMPORT PROVA del tenant BlueAge con i pacchetti di configurazione (136 articoli, distinte, conti delle nuove categorie con il pacchetto VC-CONTI-01), con il limite che il pacchetto creato da Excel scrive anche i campi assenti.
 
 ## Numeri
 
@@ -66,3 +68,5 @@ Blocco 01 (§1-§2) dello stato progetto Velo-CE, interno BlueAge. Inquadra il c
 ## Versioni
 
 - velo-ce-stato-progetto-01-inquadramento-ambiente.md · 2026-10-08 · prima versione ingerita (stato progetto 025.66); data di modifica della riorganizzazione della cartella
+- velo-ce-stato-progetto-01-inquadramento-ambiente.md · 2026-10-28 · stato progetto 025.109 del 27/10; tenant velo-ce.eu e §2.5 j) sull'import del master articoli (differenze ricavate dal log revisioni, blocco non riletto per intero); copia della cartella in `Cristian/`
+

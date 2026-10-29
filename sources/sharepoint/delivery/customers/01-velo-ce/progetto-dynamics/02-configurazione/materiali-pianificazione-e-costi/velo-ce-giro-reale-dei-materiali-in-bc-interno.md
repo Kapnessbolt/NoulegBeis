@@ -10,7 +10,8 @@ current:
   last_modified: 2026-10-08T10:44:30Z
 versions:
   - { name: "Velo-CE - Giro reale dei materiali in BC - INTERNO - v001.md", item_id: 01EFCYUZ6OFXE7KPGLDJD33VFH5FAQZAQD, last_modified: 2026-10-08T10:44:30Z }
-also_at: []
+also_at:
+  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/02 Configurazione/Materiali, pianificazione e costi/Velo-CE - Giro reale dei materiali in BC - INTERNO - v001.md", item_id: 01EFCYUZ4DGDZTWBEKPJDKXBWJ3N2PBO5W }
 status: active
 partial: false
 ingested_at: 2026-10-22T13:28:59Z

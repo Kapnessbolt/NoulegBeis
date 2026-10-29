@@ -10,7 +10,8 @@ current:
   last_modified: 2026-10-08T10:43:52Z
 versions:
   - { name: velo-ce-stato-progetto-04-backlog.md, item_id: 01EFCYUZ3ZR5JYAVFM2BD2V2AJSHMX4SKB, last_modified: 2026-10-08T10:43:52Z }
-also_at: []
+also_at:
+  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/99 Project Claude (copia)/velo-ce-stato-progetto-04-backlog.md", item_id: 01EFCYUZYKGV676ZHLAJB2K62BTOWI5SES }
 status: active
 partial: false
 ingested_at: 2026-10-22T13:25:37Z

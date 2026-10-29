@@ -46,6 +46,15 @@ updated: 2026-10-23
 - [x] V8 chiedere in sede chi registra i 571 ordini di assemblaggio (Leonardo) 📅 2026-09-21 ✅ 2026-10-23 ([[velo-ce-il-giro-del-telaio-in-essential-e-in-premium]])
 - [ ] Verificare autorizzazioni e privacy per usare i dati Velo-CE come vetrina delle automazioni (Cristian) ([[riunione-generale-blueage-19-10-sintesi-azioni-e-one-page]])
 - [ ] Cercare su SharePoint o OneDrive il foglio quotazione blocchi (citato nel vault ma non ingerito) e ingerirlo con /ingest-file ([[2026-10-28-verifica-task-28-10]])
+- [ ] Conferma del commercialista sul modello contabile «per natura» per l'avvio del 01/01/2027 📅 2026-11-13 ([[velo-ce-stato-progetto-03-decisioni-aperte]])
+- [ ] Preparare l'Excel delle combinazioni bici con le soglie di codifica, da far decidere a Stefano ([[velo-ce-verbale-consegna-codifica-bici-etichettatura]])
+- [ ] Chiedere allo sviluppatore del portale B2B una riga per bici con riferimento del cliente e numero del portale ([[velo-ce-verbale-pianificazione-giro-bici-gennaio]])
+- [ ] Far mandare da Stefano a So Smart la mail per l'abbonamento sul nuovo tenant e fissare la call di attivazione ([[velo-ce-verbale-demo-product-configurator]])
+- [ ] Dividere con So Smart il setup di base e di magazzino del nuovo ambiente prima che parta ([[velo-ce-verbale-demo-product-configurator]])
+- [ ] Inviare a We Make Code l'Excel vecchi → nuovi codici e la regola del codice bici 📅 2026-11-05 ([[velo-ce-verbale-integrazioni-we-make-code]])
+- [ ] Far decidere a Stefano se Van Nicholas entra nella ricodifica 📅 2026-10-30 ([[velo-ce-articoli-codici-nuovi]])
+- [ ] Preparare la tabella di raccordo vecchi → nuovi codici articolo 📅 2026-12-04 ([[velo-ce-articoli-codici-nuovi]])
+- [ ] Far confermare a Claudia i conti delle nuove categorie di registrazione articolo (OP-47) ([[velo-ce-proposta-conti-categorie-articolo-cliente]])
 
 ## Decisioni
 

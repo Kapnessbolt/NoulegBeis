@@ -3,17 +3,18 @@ type: source-doc
 source: sharepoint
 family: velo-ce-stato-progetto-02-cantieri-dominio
 current:
-  item_id: 01EFCYUZ5HJLEOWEM7CVF3LWGLI24GP6BY
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ5HJLEOWEM7CVF3LWGLI24GP6BY
-  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/velo-ce-stato-progetto-02-cantieri-dominio.md
+  item_id: 01EFCYUZ6URZS5AFQ53BCIP343JBUJID2O
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ6URZS5AFQ53BCIP343JBUJID2O
+  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/99 Project Claude (copia)/velo-ce-stato-progetto-02-cantieri-dominio.md
   name: velo-ce-stato-progetto-02-cantieri-dominio.md
-  last_modified: 2026-10-08T10:43:52Z
+  last_modified: 2026-10-28T08:06:16Z
 versions:
+  - { name: velo-ce-stato-progetto-02-cantieri-dominio.md, item_id: 01EFCYUZ6URZS5AFQ53BCIP343JBUJID2O, last_modified: 2026-10-28T08:06:16Z }
   - { name: velo-ce-stato-progetto-02-cantieri-dominio.md, item_id: 01EFCYUZ5HJLEOWEM7CVF3LWGLI24GP6BY, last_modified: 2026-10-08T10:43:52Z }
 also_at: []
 status: active
 partial: false
-ingested_at: 2026-10-22T13:25:37Z
+ingested_at: 2026-10-29T05:57:56Z
 projects: ["[[velo-ce-progetto-dynamics]]"]
 clients: ["[[velo-ce]]"]
 topics: ["[[business-central-ai]]"]
@@ -40,6 +41,7 @@ Blocco 02 (§3-§6) dello stato progetto Velo-CE, interno BlueAge. Fissa l'esige
 - **Telaio verniciato**: verniciato (variante RAL) ← sabbiato ← saldato; verniciatura esterna con addebito articolo sul rientro dal terzista, non come articolo non di inventario.
 - **Etichette (07/10)**: in standard e in Essentials l'etichetta articolo con layout Velo-CE stampa il codice in Code 39 senza sviluppo; dall'ordine d'acquisto si stampano etichette per riga (A6) e un'etichetta collo A5; quantità per collo, collo «n di m» e Code 128 richiedono un'estensione (esecutore da decidere fra BlueAge e So Smart). Capitolato di etichettatura per i fornitori in bozza, da inviare solo con i codici definitivi.
 - **Rischio ricodifica**: il canale ordini MMI usa il numero articolo di BC come chiave; l'etichettatura oggi è prodotta da Veloce-CRM (We Make Code).
+- **Aggiornamenti dal 08/10 al 27/10** ([[velo-ce-stato-progetto-99-log-revisioni]]): §6.2 nota del 21/10 sulle etichette (Code 128 rimandato, il report di ricevimento non ha DDT né numero d'ordine, collo «n di m» solo con un report dedicato, scheda a scaffale da prevedere; proposta di una piccola estensione con due report, decide Stefano); §5.4 dazi verificati in circa 150.300 € dal 01/01 al 03/08/2026 sul conto dei dazi, al posto della stima di circa 50.000 €.
 
 ## Numeri
 
@@ -67,3 +69,5 @@ Blocco 02 (§3-§6) dello stato progetto Velo-CE, interno BlueAge. Fissa l'esige
 ## Versioni
 
 - velo-ce-stato-progetto-02-cantieri-dominio.md · 2026-10-08 · prima versione ingerita (stato progetto 025.66); data di modifica della riorganizzazione della cartella
+- velo-ce-stato-progetto-02-cantieri-dominio.md · 2026-10-28 · stato progetto 025.109 del 27/10; note su etichette (21/10) e dazi verificati (26/10) (differenze ricavate dal log revisioni, blocco non riletto per intero); copia della cartella in `Cristian/`
+

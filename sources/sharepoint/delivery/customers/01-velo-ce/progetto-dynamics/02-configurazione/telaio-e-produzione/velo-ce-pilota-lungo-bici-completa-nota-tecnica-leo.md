@@ -12,6 +12,8 @@ versions:
   - { name: "Velo-CE - Pilota Lungo bici completa - Nota tecnica Leo - v001.md", item_id: 01EFCYUZ75RIELC5KSFFA2YVLALKINI7LM, last_modified: 2026-10-08T10:44:31Z }
 also_at:
   - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/velo-ce-pilota-lungo-nota-tecnica-2026-09-23.md", item_id: 01EFCYUZZBKCZATY5JT5B3R7PQXW6PRNDR }
+  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/99 Project Claude (copia)/velo-ce-pilota-lungo-nota-tecnica-2026-09-23.md", item_id: 01EFCYUZYDLXD6IEP5ZJEKUFF7IJVEXA2S }
+  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Cristian/02 Configurazione/Telaio e produzione/Velo-CE - Pilota Lungo bici completa - Nota tecnica Leo - v001.md", item_id: 01EFCYUZ4A35G73C6BC5ALSAR3HRFHVNK5 }
 status: active
 partial: false
 ingested_at: 2026-10-22T13:28:59Z
