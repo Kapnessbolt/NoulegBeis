@@ -7,6 +7,7 @@ project: "[[second-brain-prodotto]]"
 
 Una riga per avanzamento, dalla più recente: `- AAAA-MM-GG · cosa è successo · [[fonte]]`
 
+- 2026-10-29 · Step 12, giro 3 di 3 verificato e criterio chiuso: cinque task OK; prova di carico con la copia della cartella Velo-CE su SharePoint (298 risultati, 45 note nuove, 13 nuove versioni, 32 copie in `also_at`); 0 errori su 369 note, nessun doppione; da decidere alla riconciliazione se spostare le note Velo-CE sotto `cristian/` · [[2026-10-26-piano-prodotto-second-brain]]
 - 2026-10-28 · Step 12, giro 2 di 3 verificato: cinque task OK; sharepoint e outlook senza novità (watermark fermi, corretto), github avanzato a 23aa412 con 5 righe di log e 5 attività; 0 errori, nessun doppione · [[2026-10-26-piano-prodotto-second-brain]]
 - 2026-10-27 · Step 12, giro 1 di 3 verificato: i cinque task del mattino OK con gli script nuovi e lo stato per fonte; watermark avanzati (onedrive, outlook, github), 0 errori, nessun doppione, nessuna chiamata bloccata · [[2026-10-26-piano-prodotto-second-brain]]
 - 2026-10-26 · One pager e pagina navigabile dell'architettura inviati a Leonardo Pinsone (cc Cristian Schifone) per un parere · [[one-pager-second-brain]]
