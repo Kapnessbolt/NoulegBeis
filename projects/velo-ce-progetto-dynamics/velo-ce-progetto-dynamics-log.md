@@ -7,6 +7,7 @@ project: "[[velo-ce-progetto-dynamics]]"
 
 Una riga per avanzamento, dalla più recente: `- AAAA-MM-GG · cosa è successo · [[fonte]]`
 
+- 2026-10-29 · Decisione di Lorenzo: le note restano sotto Progetto Dynamics; la cartella `Progetto Dynamics` non esiste più su SharePoint e `Cristian/` è l'unica copia, va rinominata, non cancellata. 64 note puntano ancora ai file spariti: se la riconciliazione di domenica gira prima della rinomina, le segna come rimosse · [[2026-10-29]]
 - 2026-10-28 · Cartella di progetto su SharePoint copiata da `Progetto Dynamics/` a `Cristian/` (ID nuovi, originali non più raggiungibili); stato progetto alla 025.109 del 27/10 · [[velo-ce-stato-progetto]]
 - 2026-10-27 · velo-ce-piano-afc-interno: nuova versione v002, voci del perimetro AFC da 49 a 65 e 55 open point aperti, nuovi fogli Anomalie e Playbook · [[velo-ce-piano-afc-interno]]
 - 2026-10-27 · velo-ce-open-point-interno: registro aggiornato al 27/10, 87 open point aperti su 91 (43 ad alta priorità) e 88 to-do aperte; nuove OP-47 (conti delle categorie articolo per Claudia) e OP-48 (unità di stockkeeping per colore) · [[velo-ce-open-point-interno]]
