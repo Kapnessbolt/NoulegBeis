@@ -7,6 +7,7 @@ project: "[[second-brain-prodotto]]"
 
 Una riga per avanzamento, dalla più recente: `- AAAA-MM-GG · cosa è successo · [[fonte]]`
 
+- 2026-10-29 · Script di setup dell'ambiente cloud configurato da Lorenzo su claude.ai: richiama `.claude/setup/ambiente-cloud.sh`; in una sessione nuova i quattro pacchetti (pyyaml, pytest, python-pptx, fonttools) ci sono · [[2026-10-29-cockpit-conteggi-e-step-13]]
 - 2026-10-29 · Step 13 codificato: `vault.yaml` e `config.py`, script, agenti, routine e comandi senza valori del vault, controllo degli orari di SPEC 7 contro `vault.yaml` in CI, setup cloud committato, 268 test; SPEC 1.23 in PR; in osservazione per 3 giri dei task · [[2026-10-29-cockpit-conteggi-e-step-13]]
 - 2026-10-29 · Tre difetti di conteggio del Cockpit corretti in `plancia.py` e `cockpit.py`, con 6 casi di test che falliscono prima e passano dopo (228 test); trovato un quarto problema: il digest del 29/10 ha righe di novità aggregate che il contatore non legge · [[2026-10-29-cockpit-conteggi-e-step-13]]
 - 2026-10-29 · Step 16 chiuso: tre giri del task `cockpit` OK (27, 28, 29/10) e pagina verificata da Lorenzo dal telefono; restano i tre difetti di conteggio di `plancia.py` e `cockpit.py`, in scadenza il 31/10 · [[2026-10-26-piano-prodotto-second-brain]]
