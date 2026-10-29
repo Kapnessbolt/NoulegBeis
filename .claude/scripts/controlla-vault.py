@@ -2,7 +2,9 @@
 """Controllo del vault (SPEC 4.4): integrità dei collegamenti, tracciabilità, schema, doppioni,
 possibili dati riservati (CLAUDE.md §5) nel corpo delle note, e la configurazione: `vault.yaml`
 valido, orari dei task uguali a SPEC 7, permessi mcp di `.claude/settings.json` e `tools` degli
-agenti uguali a quelli che `vault.yaml` dà (config.py, `verifica`).
+agenti uguali a quelli che `vault.yaml` dà (config.py, `verifica`), regole di `.claude/rules/`
+con il frontmatter leggibile e `paths` valido (una regola con il frontmatter rotto verrebbe
+caricata in ogni sessione, senza avvisare).
 
 Dati riservati: controllo a pattern sul corpo delle note (non sul frontmatter, che contiene
 legittimamente `item_id`, `uri` e `conversation_id` lunghi). Ogni corrispondenza è un errore,
@@ -342,11 +344,49 @@ def controlla_configurazione():
     return conf
 
 
+def controlla_regole():
+    """Regole di `.claude/rules/**/*.md` (CLAUDE.md §1): frontmatter leggibile e `paths` una lista
+    di pattern (o una stringa separata da virgole). Claude Code tratta una regola con il
+    frontmatter illeggibile come una regola senza `paths`, cioè caricata in ogni sessione."""
+    cartella = ROOT / ".claude" / "rules"
+    if not cartella.is_dir():
+        return
+    for p in sorted(cartella.rglob("*.md")):
+        rel = p.relative_to(ROOT)
+        text = p.read_text(encoding="utf-8")
+        fm, _ = split_frontmatter(text)
+        if fm is None:
+            if text.startswith("---"):
+                err(rel, "frontmatter non chiuso: la regola verrebbe caricata in ogni sessione")
+            continue
+        try:
+            data = yaml.safe_load(fm)
+        except yaml.YAMLError as e:
+            err(rel, f"frontmatter non valido ({str(e).splitlines()[0]}): la regola verrebbe caricata in ogni sessione")
+            continue
+        if not isinstance(data, dict):
+            err(rel, "frontmatter non valido (non è una mappa): la regola verrebbe caricata in ogni sessione")
+            continue
+        if "paths" not in data:
+            continue
+        paths = data["paths"]
+        if isinstance(paths, str):
+            paths = [s.strip() for s in paths.split(",")]
+        if not isinstance(paths, list) or not paths or not all(isinstance(s, str) and s.strip() for s in paths):
+            err(rel, "`paths` deve essere una lista di pattern (stringhe), es. `[\"sources/**\"]`")
+            continue
+        for pat in paths:
+            base = pat.split("*")[0].split("{")[0].split("[")[0].rstrip("/")
+            if base and not (ROOT / base).exists():
+                avv(rel, f"`paths` `{pat}`: `{base}` non esiste nel vault")
+
+
 def main():
     indice = "--indice" in sys.argv
     solo_modificati = "--modificati" in sys.argv
     templates = load_templates()
     conf = controlla_configurazione()
+    controlla_regole()
     noti = guid_noti(conf)
     by_slug = defaultdict(list)
     parsed = {}

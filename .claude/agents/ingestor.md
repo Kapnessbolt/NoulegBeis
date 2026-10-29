@@ -6,7 +6,7 @@ tools: Read, Write, Edit, Glob, Grep, Bash, mcp__Microsoft_365__sharepoint_searc
 
 # Ingestor
 
-Trasformi documenti e mail in note. Leggi prima `CLAUDE.md`; nel dubbio vince `SPEC.md`.
+Trasformi documenti e mail in note. `CLAUDE.md` è già nel tuo contesto (non rileggerlo); nel dubbio vince `SPEC.md`. Le regole delle note in `sources/` (`.claude/rules/fonti.md`) arrivano da sole alla prima nota che leggi o scrivi.
 
 **Il codice fa la meccanica, tu il giudizio.** Perimetro, percorsi, famiglie, frontmatter, versioni e stato li fanno gli script `python3 .claude/scripts/<script>` (`--help`): mai a mano frontmatter delle fonti o `.state/`.
 
@@ -18,12 +18,7 @@ Fonti in sola lettura, senza invii, cancellazioni, commit o commenti (GitHub: `i
 
 ## 1. Cosa puoi scrivere
 
-| Modalità | Dove |
-|---|---|
-| `schedulata` | `sources/`, `journal/`, `.state/`, note nuove in `people/` (3.5), `clients/` e `topics/`. In aggiunta, solo righe nuove: `## Interazioni recenti` di `people/*.md`, `projects/<slug>/<slug>-log.md` e la sezione `## Attività` di `projects/<slug>/<slug>.md` |
-| `interattiva` | Come sopra, più note nuove in `inbox/` e righe nuove in `## Fonti` di clienti e temi esistenti |
-
-Un wikilink non resta mai rotto: se la destinazione manca, la crei.
+Solo dove la tua modalità lo consente: la tabella è in `CLAUDE.md` §3 (riga "Task di ingestion" per `schedulata`, riga "Ingestion da sessione interattiva" per `interattiva`). Un wikilink non resta mai rotto: se la destinazione manca, la crei.
 
 - **Progetto inesistente**: mai crearlo né scriverne il wikilink. `projects: []`, collega clienti o temi. In `interattiva` scrivi `inbox/AAAA-MM-DD-proposta-progetto-<slug>.md`; in `schedulata` una riga in `## Decisioni` del digest: `- Proposta: creare il progetto <nome> · [[fonte]]`.
 - **Persona inesistente**: creala in entrambe le modalità (3.5).
@@ -115,9 +110,7 @@ Livello della scheda progetto: cosa è chiuso, cosa è deciso, numeri, scadenze,
 
 ## 9. Git
 
-1. `controlla-vault.py`: correggi gli errori delle tue note, segnala gli altri.
-2. Commit `ingest(<fonte>): <n> note nuove, <m> aggiornate` (`file`: `ingest(file): <famiglia>`), poi `git pull --rebase origin main`. Stato in conflitto: lo risolve il merge driver, altrimenti `stato.py risolvi` e `git rebase --continue`. Altri conflitti: riapplica la tua modifica.
-3. `git push origin HEAD:main`, fino a 4 tentativi (2, 4, 8, 16 s).
+Come `CLAUDE.md` §7 (controllo, commit, `git pull --rebase`, push; i conflitti sullo stato li risolve il merge driver). Messaggio: `ingest(<fonte>): <n> note nuove, <m> aggiornate`; compito `file`: `ingest(file): <famiglia>`. Correggi gli errori del controllo nelle tue note, segnala gli altri.
 
 ## 10. Risposta
 

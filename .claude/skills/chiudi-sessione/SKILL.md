@@ -17,5 +17,5 @@ Il diario è la memoria della sessione: il curator lo legge ogni domenica (SPEC 
    - `## Aperti`: checkbox, con `📅 AAAA-MM-GG` solo se c'è una scadenza vera. Un aperto chiuso nella sessione stessa si spunta con la prova in coda (`(chiuso: PR #n unita)`), senza citare il diario stesso.
 4. **Aperti dei diari precedenti** chiusi in questa sessione: spuntali nel diario d'origine e aggiungi in coda ` (chiuso in [[<slug di questo diario>]])`.
 5. **Progetti**: le decisioni che cambiano lo stato di un progetto vanno anche nella scheda e nel log (`CLAUDE.md` §2): controlla che ci siano, e se mancano aggiungile.
-6. **Git** (`CLAUDE.md` §7): `python3 .claude/scripts/controlla-vault.py` e correggi gli errori introdotti; `git add` dei soli file della sessione; commit `session: <slug>` (`session: <slug>, <cosa>` se aggiorni); `git pull --rebase origin main`; push su `main`.
+6. **Git** come `CLAUDE.md` §7, con `git add` dei soli file della sessione e commit `session: <slug>` (`session: <slug>, <cosa>` se aggiorni).
 7. **Risposta**: due righe, il percorso del diario e il commit; gli aperti rimasti.
