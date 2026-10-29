@@ -3,7 +3,7 @@ type: session
 date: 2026-10-29
 surface: cloud
 topics: ["[[second-brain]]"]
-outcome: "Tre difetti di conteggio del Cockpit corretti con i test (PR #40, mergiata); step 13 codificato con vault.yaml e config.py, in osservazione per tre giri dei task"
+outcome: "Tre difetti di conteggio del Cockpit corretti con i test (PR #40, mergiata); step 13 codificato con vault.yaml e config.py, in osservazione per tre giri dei task; script di setup cloud configurato e verificato (PR #40, #41, #42 unite)"
 ---
 
 # Conteggi del Cockpit e step 13
