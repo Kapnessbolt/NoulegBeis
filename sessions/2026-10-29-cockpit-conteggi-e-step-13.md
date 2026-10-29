@@ -26,6 +26,7 @@ Correggere i tre difetti di conteggio del Cockpit in scadenza il 31/10, ognuno c
 - Il quarto problema del Cockpit (righe di novità aggregate nel digest del 29/10, ammesse dalla routine `digest` oltre 30 voci) non entra in questa sessione: resta un'attività.
 
 - Velo-CE: la rinomina di `Cristian/` in `Progetto Dynamics` non bastava, perché 64 note puntavano ancora agli ID dei file originali spariti con la copia e la riconciliazione, che ragiona per ID, le avrebbe segnate come rimosse. Riallineamento a mano delle note prima di domenica invece di rimandare la riconciliazione (dall'utente): elenco completo dei file della cartella (subagente Sonnet), abbinamento per ID, poi per copia in `also_at`, poi per famiglia ed estensione; 118 note aggiornate, 46 spostate da `cristian/` a `progetto-dynamics/`, 4 senza file lasciate alla riconciliazione. Promemoria di sabato cancellato: avrebbe detto che la riconciliazione sposta le note da sola.
+- Vecchia dashboard Cockpit cancellata (dall'utente): sostituita dal Cockpit v2, nessun task la aggiornava più. La mod sul PC la disattiva l'utente.
 - `perimetro.py` scriveva nel motivo la configurazione intera al posto del prefisso (regressione dello step 13, trovata nel riallineamento): corretta con un test.
 - Lo script di setup su claude.ai cerca il file nel repo invece di richiamarlo con un percorso fisso, perché non è documentato se gira prima o dopo il clone; se non lo trova installa i pacchetti direttamente. Il vecchio `npm install` è tolto: il vault non ha `package.json`.
 
@@ -39,7 +40,7 @@ Correggere i tre difetti di conteggio del Cockpit in scadenza il 31/10, ognuno c
 - `SPEC.md` (1.23: nuova 2.1, 3, 4.4, 7, 10, 14), `CLAUDE.md` §6
 - `projects/second-brain-prodotto/second-brain-prodotto.md`, `projects/second-brain-prodotto/second-brain-prodotto-log.md`
 - `sources/sharepoint/delivery/customers/01-velo-ce/` (118 note, 46 spostate da `cristian/`), `.state/sharepoint.json`, `projects/velo-ce-progetto-dynamics/`
-- Fuori dal repo: promemoria "Controllo rinomina cartella Velo-CE" del 31/10 cancellato
+- Fuori dal repo: vecchia dashboard Cockpit (`KN8Wp48…`) cancellata; promemoria "Controllo rinomina cartella Velo-CE" del 31/10 cancellato
 
 ## Aperti
 
@@ -47,4 +48,5 @@ Correggere i tre difetti di conteggio del Cockpit in scadenza il 31/10, ognuno c
 - [ ] Step 13: tre giri dei task dopo il merge (30, 31/10, 1/11) con `/verifica-task`
 - [x] Script di setup dell'ambiente cloud nell'interfaccia di claude.ai: cerca `.claude/setup/ambiente-cloud.sh` e lo esegue, altrimenti installa i quattro pacchetti; verificato in una sessione nuova (yaml 6.0.3, pytest 9.2.0, pptx 1.0.2, fontTools 4.68.0)
 - [ ] Step 14 solo con l'ok dell'utente
+- [ ] Disattivare la mod del Cockpit sull'app desktop del PC (utente)
 - [ ] Riconciliazione del 1/11: controllare che segni rimosse solo le 4 note Velo-CE senza file (Articoli version 1, Ricodifica rename o nuovo codice, App EOS quali servono, Domande per la call con So Smart)
