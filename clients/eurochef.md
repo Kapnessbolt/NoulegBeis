@@ -12,11 +12,11 @@ updated: 2026-10-22
 
 ## Chi sono
 
-- Azienda alimentare; referente con ruolo di direttore vendite e marketing ([[todo-partner-e-aziende]])
+- Azienda alimentare; referente con ruolo di direttore vendite e marketing ([[to-do-partner-e-aziende]])
 
 ## Relazione con BlueAge
 
-- Incontro fatto al 28/09/2026 ([[todo-partner-e-aziende]])
+- Incontro fatto al 28/09/2026 ([[to-do-partner-e-aziende]])
 
 ## Persone di riferimento
 
@@ -28,4 +28,4 @@ updated: 2026-10-22
 
 ## Fonti
 
-- [[todo-partner-e-aziende]]
+- [[to-do-partner-e-aziende]]

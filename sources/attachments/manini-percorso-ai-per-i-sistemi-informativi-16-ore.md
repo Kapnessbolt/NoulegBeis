@@ -24,7 +24,7 @@ tags: [formazione, ai, sistemi-informativi, indice]
 
 ## Riassunto
 
-Bozza di indice scritta da Lorenzo Curione il 9 ottobre 2026 per il gruppo sistemi informativi (CED) del [[corso-ai-manini]], inviata a [[leonardo-pinsone]] in risposta alla richiesta del CED di [[manini]] ([[manini-corso-ai-impostazione-calendario-e-cv]]). Quattro moduli da 4 ore che seguono il filo capire, progettare, costruire, governare, tutti costruiti sul caso reale della lettura automatica dei documenti di trasporto. Diventa la base dell'indice inviato a Manini ([[manini-corso-ai-indice-sistemi-informativi-blueage]]).
+Bozza di indice scritta da Lorenzo Curione il 9 ottobre 2026 per il gruppo sistemi informativi (CED) del [[corso-ai-manini]], inviata a [[leonardo-pinsone]] in risposta alla richiesta del CED di [[manini]] ([[manini-corso-ai-impostazione-calendario-e-cv]]). Quattro moduli da 4 ore che seguono il filo capire, progettare, costruire, governare, tutti costruiti sul caso reale della lettura automatica dei documenti di trasporto. Diventa la base dell'indice inviato a Manini ([[manini-corso-ai-indice-sistemi-informativi]]).
 
 ## Punti chiave
 

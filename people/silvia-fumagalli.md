@@ -12,7 +12,7 @@ updated: 2026-10-22
 
 ## Ruolo e contesto
 
-Socia di [[blueage]] sul fronte commerciale: incontri con aziende, partner e professionisti, raccolta dei contatti, prime giornate in azienda con Leonardo; è il contatto commerciale dell'offerta [[ai-che-cresce-con-lazienda]] e ha scritto a [[liuc]] la proposta di osservatorio ([[riunione-generale-blueage-28-9-sintesi-e-azioni]], [[blueage-ai-che-cresce-onepage]], [[osservatorio-ai-nelle-pmi-cosa-misureremmo-e-come-partiremmo]]). Sul sito partner c'è una cartella a suo nome con il materiale commerciale e la pipeline ([[todo-partner-e-aziende]])
+Socia di [[blueage]] sul fronte commerciale: incontri con aziende, partner e professionisti, raccolta dei contatti, prime giornate in azienda con Leonardo; è il contatto commerciale dell'offerta [[ai-che-cresce-con-lazienda]] e ha scritto a [[liuc]] la proposta di osservatorio ([[riunione-generale-blueage-28-9-sintesi-e-azioni]], [[blueage-ai-che-cresce-onepage]], [[osservatorio-ai-nelle-pmi-cosa-misureremmo-e-come-partiremmo]]). Sul sito partner c'è una cartella a suo nome con il materiale commerciale e la pipeline ([[to-do-partner-e-aziende]])
 
 ## Interazioni recenti
 

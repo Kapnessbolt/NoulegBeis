@@ -12,7 +12,7 @@ updated: 2026-10-22
 
 ## Chi sono
 
-- Azienda chimica tra i prospect della pipeline partner, con un incontro fissato a fine settembre ([[todo-partner-e-aziende]])
+- Azienda chimica tra i prospect della pipeline partner, con un incontro fissato a fine settembre ([[to-do-partner-e-aziende]])
 
 ## Relazione con BlueAge
 
@@ -28,5 +28,5 @@ updated: 2026-10-22
 
 ## Fonti
 
-- [[todo-partner-e-aziende]]
+- [[to-do-partner-e-aziende]]
 - [[riunione-generale-blueage-12-10-punti-emersi-e-prossimi-passi]]

@@ -12,11 +12,11 @@ updated: 2026-10-22
 
 ## Chi sono
 
-- Produttore di prodotti per la casa a marchio privato ([[todo-partner-e-aziende]])
+- Produttore di prodotti per la casa a marchio privato ([[to-do-partner-e-aziende]])
 
 ## Relazione con BlueAge
 
-- Incontro fatto; prossimi passi al 28/09/2026: inviare la presentazione di [[pulse]] in inglese e organizzare un secondo incontro ([[todo-partner-e-aziende]])
+- Incontro fatto; prossimi passi al 28/09/2026: inviare la presentazione di [[pulse]] in inglese e organizzare un secondo incontro ([[to-do-partner-e-aziende]])
 
 ## Persone di riferimento
 
@@ -28,4 +28,4 @@ updated: 2026-10-22
 
 ## Fonti
 
-- [[todo-partner-e-aziende]]
+- [[to-do-partner-e-aziende]]

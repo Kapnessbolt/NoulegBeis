@@ -16,7 +16,7 @@ updated: 2026-10-26
 - Gestionale AS400 con sistemi informativi interni; già presenti portale acquisti, abbinamento automatico fattura-ordine-movimento, cruscotto di direzione notturno, pesa automatica del cemento ([[manini-relazione-processi-gestione-materiali]])
 - Indice qualità salito dal 78 al 94%, con circa 1.200 rilevazioni l'anno contro circa 200 prima del 2018 ([[manini-relazione-processi-gestione-materiali]])
 - Prefabbricati in calcestruzzo armato precompresso, circa 110 M€ di fatturato ([[manini-corso-ai-da-36-ore-contesto-opportunita-e-come-lo-impostiamo]])
-- Gestionale AS400 sviluppato internamente, ecosistema Microsoft 365 con poche licenze Copilot a pagamento, ChatGPT bloccato ([[manini-corso-ai-quadro-interno-blueage]])
+- Gestionale AS400 sviluppato internamente, ecosistema Microsoft 365 con poche licenze Copilot a pagamento, ChatGPT bloccato ([[manini-corso-ai-quadro-interno]])
 
 ## Relazione con BlueAge
 
@@ -51,7 +51,7 @@ updated: 2026-10-26
 - [[manini-corso-ai-impostazione-calendario-cv-e-materiali]]
 - [[manini-corso-ai-recap-della-call-del-16-10]]
 - [[manini-relazione-sui-materiali-e-proposte-di-progetto]]
-- [[manini-corso-ai-quadro-interno-blueage]]
+- [[manini-corso-ai-quadro-interno]]
 - [[riunione-generale-blueage-28-9-sintesi-e-azioni]]
 - [[automazione-entrata-merci-caso-manini]]
 - [[call-di-oggi-prossimi-passi-architettura-copilot-manini-meccanotecnica-second-brain]]
@@ -61,9 +61,9 @@ updated: 2026-10-26
 - [[riunione-generale-blueage-5-10-sintesi-e-azioni]]
 - [[blueage-automation-entrata-merci]]
 - [[blueage-le-idee-per-crescere]]
-- [[manini-corso-ai-domande-preliminari-blueage]]
-- [[manini-corso-ai-indice-sistemi-informativi-blueage]]
-- [[manini-corso-ai-raccolta-dati-blueage]]
+- [[manini-corso-ai-domande-preliminari]]
+- [[manini-corso-ai-indice-sistemi-informativi]]
+- [[manini-corso-ai-raccolta-dati]]
 - [[manini-percorso-ai-per-i-sistemi-informativi-16-ore]]
 - [[proposta-formazione-ai-utenti-tradizionali]]
 - [[manini-ddt-essenziale]]

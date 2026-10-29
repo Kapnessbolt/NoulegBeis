@@ -38,7 +38,7 @@ Primo passo commerciale di [[blueage]]: una giornata gratuita in azienda con lo 
 - [[pulse-sintesi]]
 - [[blueage-sintesi]]
 - [[blueage-onepage]]
-- [[todo-partner-e-aziende]]
+- [[to-do-partner-e-aziende]]
 - [[riunione-generale-blueage-28-9-sintesi-e-azioni]]
 - [[blueage-ripresa-della-call-di-oggi-e-quattro-ore-con-lo-studio]]
 - [[nuovi-one-pager-per-tema-su-sharepoint]]

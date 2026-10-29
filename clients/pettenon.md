@@ -12,7 +12,7 @@ updated: 2026-10-22
 
 ## Chi sono
 
-- Azienda di prodotti per capelli tra i prospect della pipeline partner ([[todo-partner-e-aziende]])
+- Azienda di prodotti per capelli tra i prospect della pipeline partner ([[to-do-partner-e-aziende]])
 
 ## Relazione con BlueAge
 
@@ -28,5 +28,5 @@ updated: 2026-10-22
 
 ## Fonti
 
-- [[todo-partner-e-aziende]]
+- [[to-do-partner-e-aziende]]
 - [[riunione-generale-blueage-19-10-sintesi-azioni-e-one-page]]

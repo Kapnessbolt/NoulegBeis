@@ -1,7 +1,7 @@
 ---
 type: source-doc
 source: sharepoint
-family: velo-ce-master-di-codifica-e-anagrafiche
+family: velo-ce-master-di-codifica-e-anagrafiche-interno
 current:
   item_id: 01EFCYUZ46LJIF6FJ2RRD26TSV5X6EDYW2
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ46LJIF6FJ2RRD26TSV5X6EDYW2

@@ -12,11 +12,11 @@ updated: 2026-10-22
 
 ## Chi sono
 
-- Azienda alimentare ([[todo-partner-e-aziende]])
+- Azienda alimentare ([[to-do-partner-e-aziende]])
 
 ## Relazione con BlueAge
 
-- Incontro fatto; prossimi passi al 28/09/2026: organizzare una demo di [[pulse]] e una [[giornata-in-azienda]] in sede ([[todo-partner-e-aziende]])
+- Incontro fatto; prossimi passi al 28/09/2026: organizzare una demo di [[pulse]] e una [[giornata-in-azienda]] in sede ([[to-do-partner-e-aziende]])
 
 ## Persone di riferimento
 
@@ -28,4 +28,4 @@ updated: 2026-10-22
 
 ## Fonti
 
-- [[todo-partner-e-aziende]]
+- [[to-do-partner-e-aziende]]
