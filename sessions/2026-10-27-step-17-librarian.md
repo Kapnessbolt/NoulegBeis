@@ -55,6 +55,6 @@ Eseguire lo step 17 di SPEC §13.1 (ricerca nel vault, agente `librarian`, coman
 - [x] Lorenzo: dare il connettore Microsoft 365 (e il modello Sonnet) ai due task `cockpit` su claude.ai, altrimenti la pagina esce senza calendario (chiuso: fatto da Lorenzo il 27/10)
 - [x] Unire la PR dello step 16 (chiuso: PR #30 unita)
 - [ ] Criterio dello step 16: 3 giri del task `cockpit` (27, 28, 29/10) senza errori, con `/verifica-task cockpit`, e pagina aperta dal telefono la mattina 📅 2026-10-30
-- [ ] Dopo il criterio: cancellare la vecchia dashboard Cockpit (artifact di tipo Dashboard) e disattivare la mod sul PC (dashboard cancellata in [[2026-10-29-cockpit-conteggi-e-step-13]]; resta la mod)
+- [x] Dopo il criterio: cancellare la vecchia dashboard Cockpit (artifact di tipo Dashboard) e disattivare la mod sul PC (chiuso in [[2026-10-29-cockpit-conteggi-e-step-13]])
 - [ ] Lacune del vault segnalate dal librarian (`sessions/_raw/2026-10-27-librarian-10-domande.md`): nome dell'AD di Manini; riga "sei giornate" nel log di [[manini-supply-chain-magazzino]]; quale calendario MTU è stato confermato il 26/10; foglio quotazione blocchi di Velo-CE non ingerito; risposta di Bollazzi (LIUC) da ingerire quando arriva
 - [x] Provare `/oggi`, `/progetto`, `/cattura` e `/smista` in una sessione nuova (i comandi compaiono al riavvio) e correggere ciò che non torna (chiuso in [[2026-10-28-verifica-task-28-10]])
