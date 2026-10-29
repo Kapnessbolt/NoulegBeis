@@ -17,7 +17,7 @@ Schema di calendario.json (una lista di eventi; campi mancanti tollerati):
   [{"inizio": "2026-10-27T09:00:00+01:00", "fine": "2026-10-27T10:00:00+01:00",
     "tutto_il_giorno": false, "titolo": "Call Manini", "luogo": "Teams", "online": true,
     "organizzatore": "Leonardo Pinsone", "risposta": "accettato"}]
-  - `inizio` e `fine`: istanti ISO 8601 con offset (senza offset valgono in Europe/Rome);
+  - `inizio` e `fine`: istanti ISO 8601 con offset (senza offset valgono nel fuso del vault);
     con `tutto_il_giorno: true` sono date AAAA-MM-GG e `fine` è esclusa, come in Outlook (un
     evento del solo 27 ha inizio 2026-10-27 e fine 2026-10-28; senza `fine` dura un giorno).
   - `risposta`: accettato, provvisorio, non risposto, organizzatore o rifiutato. Gli eventi
@@ -36,6 +36,8 @@ radice del vault; `--repo-url ""` toglie i link. Stampa su stdout la riga di rie
 digest. Esce con 1 se un JSON obbligatorio manca o non si legge, con 2 se gli argomenti non
 sono validi. Solo libreria standard.
 
+Fuso e titolo predefinito vengono da `vault.yaml` (config.py).
+
 La variabile d'ambiente VAULT_ROOT, se presente, indica la radice del vault al posto della
 cartella che contiene `.claude/` (serve ai test in `.claude/scripts/tests/`).
 """
@@ -50,12 +52,13 @@ from datetime import date, datetime, timedelta
 from html import escape
 from pathlib import Path
 from urllib.parse import quote
-from zoneinfo import ZoneInfo
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import config  # noqa: E402
 
 ROOT = Path(os.environ.get("VAULT_ROOT") or Path(__file__).resolve().parents[2]).resolve()
 TEMPLATE = Path(__file__).resolve().parents[1] / "templates" / "cockpit.html"
 SKIP_DIRS = {".git", ".github", ".claude", "_templates", ".obsidian", ".trash"}
-ROMA = ZoneInfo("Europe/Rome")
 
 OBBLIGATORI = ("progetti", "attivita", "log", "inbox", "task", "digest")
 GIORNI_SETTIMANA = 7
@@ -135,12 +138,13 @@ def leggi_json(cartella, nome):
 
 
 def istante(valore):
-    """Un istante ISO 8601 in Europe/Rome; senza offset vale già in Europe/Rome."""
+    """Un istante ISO 8601 nel fuso del vault; senza offset vale già in quel fuso."""
     try:
         t = datetime.fromisoformat(str(valore).strip().replace("Z", "+00:00"))
     except (TypeError, ValueError):
         return None
-    return t.replace(tzinfo=ROMA) if t.tzinfo is None else t.astimezone(ROMA)
+    fuso = config.fuso()
+    return t.replace(tzinfo=fuso) if t.tzinfo is None else t.astimezone(fuso)
 
 
 def leggi_calendario(cartella, primo, ultimo):
@@ -679,13 +683,19 @@ def argomenti(argv):
     parser.add_argument("-h", "--help", action="help", help="mostra questo aiuto ed esce")
     parser.add_argument("cartella_dati", type=Path, help="cartella scritta da plancia.py (più calendario.json, facoltativo)")
     parser.add_argument("file_html", type=Path, help="file HTML da scrivere")
-    parser.add_argument("--oggi", help="giorno di riferimento AAAA-MM-GG (predefinito: oggi in Europe/Rome)")
-    parser.add_argument("--ora", help="ora dell'aggiornamento HH:MM (predefinito: adesso in Europe/Rome)")
+    parser.add_argument("--oggi", help="giorno di riferimento AAAA-MM-GG (predefinito: oggi nel fuso del vault)")
+    parser.add_argument("--ora", help="ora dell'aggiornamento HH:MM (predefinito: adesso nel fuso del vault)")
     parser.add_argument("--repo-url", help="base dei link alle note, per esempio https://github.com/<owner>/<repo> "
                                            "(predefinito: dal remote origin del vault; \"\" toglie i link)")
-    parser.add_argument("--titolo", default="Cockpit BlueAge", help="titolo della pagina (predefinito: %(default)s)")
+    parser.add_argument("--titolo", help="titolo della pagina (predefinito: `vault.titolo_cockpit` di vault.yaml)")
     args = parser.parse_args(argv)
-    adesso = datetime.now(ROMA)
+    try:
+        conf = config.carica()
+    except config.ConfigErrata as e:
+        parser.error("configurazione non valida: " + "; ".join(e.errori))
+    if args.titolo is None:
+        args.titolo = conf["vault"]["titolo_cockpit"]
+    adesso = config.adesso(conf)
     if args.oggi is None:
         args.oggi = adesso.date()
     else:

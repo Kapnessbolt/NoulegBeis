@@ -11,6 +11,7 @@ updated: 2026-10-29
 
 ## Stato
 
+- Step 13 fatto, in osservazione (29/10): `vault.yaml` alla radice con utente, fuso, lingua, sezioni, connettori e strumenti per agente, perimetro, repository e task; `config.py` lo valida e lo serve a script, agenti, routine e comandi; il controllo del vault dà errore se gli orari di SPEC 7 e di `vault.yaml` divergono o se i permessi dei connettori non tornano; `grep -ri blueagesrl .claude` vuoto; script di setup cloud committato; 268 test; SPEC 1.23 ([[2026-10-29-cockpit-conteggi-e-step-13]])
 - Tre difetti di conteggio del Cockpit corretti (29/10) con un test ciascuno: nuove versioni contate tra le aggiornate, decisioni del digest contate anche senza data, il giro del cockpit mostrato "In corso" nella propria pagina ([[2026-10-29-cockpit-conteggi-e-step-13]])
 - Forma del prodotto decisa (28/10): installazione fatta da BlueAge in una giornata e gestione mensile come prodotto; il cliente vede tre gesti (Leggi il Cockpit, Chiedi alla chat sul vault, Lavora nella chat sul vault con tutto che resta nel vault); chiusura automatica, consegna dei file, integrità invisibile e skill del cliente passano alla macchina; repo del cliente nell'organizzazione GitHub di BlueAge con accordo sui dati; step 18 e 19 riscritti in SPEC 1.22 (§13.2) ([[2026-10-28-second-brain-forma-del-prodotto]])
 - Secondo giorno di osservazione (28/10) pulito: 7 giri su 7 OK, watermark di Outlook e GitHub avanzati, nessun doppione, numeri del Cockpit uguali a `plancia.py`; confermati i due difetti già tracciati per il 31/10. Il log di parts-radar ha due righe del 27/10 per nota perché il repo ha lavorato prima e dopo il watermark: non è un doppione, SPEC 6.6 da chiarire ([[2026-10-28-verifica-task-28-10]])
@@ -33,7 +34,9 @@ updated: 2026-10-29
 - [x] Step 12 · Meccanica in codice: `famiglia.py`, `perimetro.py`, `stato.py`, `nuova-nota.py`; stato per fonte in `.state/<fonte>.json`; ingestor che chiama gli script e scrive solo i riassunti; golden test sulle famiglie reali del vault · modello: Opus, revisione Fable ✅ 2026-10-26 ([[2026-10-26-piano-prodotto-second-brain]])
 - [x] Step 12 · criterio di accettazione: 3 giri dei task (27, 28, 29/10) senza differenze rispetto a prima, con `/verifica-task` ✅ 2026-10-29 ([[2026-10-26-piano-prodotto-second-brain]])
 - [ ] Step 12 · decidere le 11 famiglie e la nota del company profile in disaccordo con gli script (rinominare con `rinomina-nota.py` o lasciare): elenco nel diario ([[2026-10-26-piano-prodotto-second-brain]])
-- [ ] Step 13 · Configurazione separata dal motore: `vault.yaml` (nome, fuso, lingua, fonti con perimetro ed esclusioni, nomi del connettore, repository, task con orari, modello e connettori); script, agenti e `cockpit.py` leggono da lì; setup cloud committato; nessun valore BlueAge in `.claude/` · modello: Fable ([[2026-10-26-piano-prodotto-second-brain]])
+- [x] Step 13 · Configurazione separata dal motore: `vault.yaml` (nome, fuso, lingua, fonti con perimetro ed esclusioni, nomi del connettore, repository, task con orari, modello e connettori); script, agenti e `cockpit.py` leggono da lì; setup cloud committato; nessun valore BlueAge in `.claude/` · modello: Fable ✅ 2026-10-29 ([[2026-10-26-piano-prodotto-second-brain]], [[2026-10-29-cockpit-conteggi-e-step-13]])
+- [ ] Step 13 · criterio di accettazione: 3 giri dei task (30, 31/10, 1/11) senza errori dopo il merge, con `/verifica-task` 📅 2026-11-01 ([[2026-10-29-cockpit-conteggi-e-step-13]])
+- [ ] Step 13 · nell'interfaccia di claude.ai lo script di setup dell'ambiente diventa `bash .claude/setup/ambiente-cloud.sh` (o il suo contenuto, se il repo non è ancora clonato quando gira) ([[2026-10-29-cockpit-conteggi-e-step-13]])
 - [ ] Step 14 · Fonte unica delle regole: matrice delle scritture e perimetro in un posto solo, con rimandi da CLAUDE.md e dagli agenti · modello: Fable ([[2026-10-26-piano-prodotto-second-brain]])
 - [ ] Step 15 · Retention delle note hub: interazioni recenti alle ultime 20, `## Fonti` da backlink o generate, ripresa delle note `partial`, archivio dei progetti chiusi · modello: Sonnet ([[2026-10-26-piano-prodotto-second-brain]])
 - [x] Step 16 · Cockpit v2: `cockpit.py`, template `.claude/templates/cockpit.html`, `plancia.py` esteso, task `cockpit` riscritto con il calendario dal connettore, prima pubblicazione · modello: Opus, revisione Fable ✅ 2026-10-27 ([[2026-10-27-step-17-librarian]])
@@ -68,7 +71,7 @@ updated: 2026-10-29
 ## Prossimi passi
 
 - Via la vecchia dashboard e la mod sul PC (step 16)
-- Step 13 (configurazione separata dal motore), progettando `vault.yaml` come output del wizard di `/installa`
+- Step 13: osservare tre giri dei task dopo il merge con `/verifica-task`, poi chiudere il criterio; lo step 14 parte solo con l'ok di Lorenzo
 - Chiudere la consegna dei file prodotti dal cloud prima di qualunque installazione esterna
 
 ## Fonti

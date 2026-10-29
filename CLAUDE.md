@@ -84,6 +84,8 @@ Il curator non modifica mai `CLAUDE.md`, `.claude/` o `SPEC.md`: propone, e le m
 
 ## 6. Perimetro delle fonti (sintesi di SPEC 5)
 
+I valori del vault (tenant, librerie, cartella OneDrive, esclusioni, repository, task con orari, fuso, nomi dei connettori e delle sezioni) stanno in `vault.yaml` (SPEC 2.1): gli script li leggono da lì, e in sessione si leggono con `python3 .claude/scripts/config.py` (`oggi`, `ora`, `valore <chiave>`). Un valore del vault non si scrive in `.claude/`.
+
 - SharePoint `sites/internal`: librerie SalesMarketing, Delivery, Shared Documents. Escluse le librerie Knowledge (corsi Anthropic) e SiteAssets, e le cartelle `_originali` e `_sorgenti`.
 - OneDrive: solo la cartella `BlueAge/`, con tutte le sue sottocartelle tranne le cartelle `Dati` (dati reali dei clienti, §5). La cartella il cui nome finisce con `chat` (oggi `BlueAge/00_chat/`) contiene i riassunti delle chat claude.ai → note `session` con `surface: claude-ai`.
 - Outlook: tutta la casella, Inviate comprese. Scarta no-reply, notifiche di servizi, newsletter e marketing.

@@ -179,7 +179,7 @@ def test_pagina_ben_formata(vault, dati, tmp_path):
     assert res.returncode == 0, res.stderr
     p = analizza(html)
     assert p.errori == [] and p.pila == []
-    assert "<title>Cockpit BlueAge</title>" in html[:8192]
+    assert "<title>Cockpit di prova</title>" in html[:8192]  # `vault.titolo_cockpit`
     assert "{{" not in html and "}}" not in html
     # Una scheda per progetto attivo, una riga apribile per attività in Oggi e Settimana, le senza data
     assert p.conta["details"] == 4 + 3 + 2 + 1

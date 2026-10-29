@@ -36,7 +36,12 @@
       "Bash(python3 .claude/scripts/aggiorna-nota.py:*)",
       "Bash(python3 .claude/scripts/cerca.py:*)",
       "Bash(python3 .claude/scripts/plancia.py:*)",
-      "Bash(python3 .claude/scripts/cockpit.py:*)"
+      "Bash(python3 .claude/scripts/cockpit.py:*)",
+      "Bash(python3 .claude/scripts/config.py oggi:*)",
+      "Bash(python3 .claude/scripts/config.py ora:*)",
+      "Bash(python3 .claude/scripts/config.py valore:*)",
+      "Bash(python3 .claude/scripts/config.py task:*)",
+      "Bash(python3 .claude/scripts/config.py verifica:*)"
     ]
   },
   "hooks": {

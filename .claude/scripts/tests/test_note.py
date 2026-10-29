@@ -21,7 +21,7 @@ family: blueage-companyprofile
 current:
   item_id: 01GEQYSS5CERFZRWVHNRGIGQNT5GBJMIF5
   uri: file:///b!A7b6m_TYN0WCnuUFi2d1SUF8cl0xQY1JqFaa3mGO8LaO54eDFnSESI_kxYrC6RpW/01GEQYSS5CERFZRWVHNRGIGQNT5GBJMIF5
-  web_url: https://blueagesrl.sharepoint.com/sites/partner/Partner/Condivisi/BlueAge_CompanyProfile.pdf
+  web_url: https://example.sharepoint.com/sites/partner/Partner/Condivisi/BlueAge_CompanyProfile.pdf
   name: BlueAge_CompanyProfile.pdf
   last_modified: 2026-10-19T16:12:01Z
 versions:
@@ -29,7 +29,7 @@ versions:
   - { name: BlueAge_CompanyProfile_v24.pdf, item_id: 01EFCYUZYLVH33U2NLBVGZ45BE6NPUJZD5, last_modified: 2026-10-01T17:20:46Z }
   - { name: BlueAge_CompanyProfile_v21.pdf, item_id: "", last_modified: 2026-09-07T12:11:59Z }
 also_at:
-  - { web_url: "https://blueagesrl.sharepoint.com/sites/partner/Partner/Silvia Fumagalli/BlueAge_CompanyProfile.pdf", item_id: 01GEQYSSZ72VIUFCZWXJFIPDPVV5PYCYCF }
+  - { web_url: "https://example.sharepoint.com/sites/partner/Partner/Silvia Fumagalli/BlueAge_CompanyProfile.pdf", item_id: 01GEQYSSZ72VIUFCZWXJFIPDPVV5PYCYCF }
 status: active
 partial: false
 ingested_at: 2026-10-22T15:05:00Z
@@ -128,7 +128,7 @@ def fm(root, rel):
 # --- nuova-nota.py ----------------------------------------------------------------------
 
 CAMPI_DOC = ["--campo", "current.item_id=01ABC", "--campo", "current.uri=file:///b!drive/01ABC",
-             "--campo", "current.web_url=https://blueagesrl.sharepoint.com/sites/internal/Delivery/Doc_Gamma_v3.pdf",
+             "--campo", "current.web_url=https://example.sharepoint.com/sites/internal/Delivery/Doc_Gamma_v3.pdf",
              "--campo", "current.name=Doc_Gamma_v3.pdf", "--campo", "current.last_modified=2026-10-20T10:00:00Z",
              "--campo", "projects=[[alfa]]", "--campo", "tags=[prova, pilota]"]
 
@@ -235,7 +235,7 @@ def test_nuova_versione(vault):
                    "--campo", "current.item_id=01NUOVO",
                    "--campo", "current.last_modified=2026-10-26T09:00:00Z",
                    "--campo", "current.uri=file:///b!drive/01NUOVO",
-                   "--campo", "current.web_url=https://blueagesrl.sharepoint.com/sites/internal/SalesMarketing/Deck/BlueAge_CompanyProfile_v25.pdf")
+                   "--campo", "current.web_url=https://example.sharepoint.com/sites/internal/SalesMarketing/Deck/BlueAge_CompanyProfile_v25.pdf")
     assert res.returncode == 0, res.stderr
     d = fm(vault, CP)
     assert d["current"]["item_id"] == "01NUOVO"
@@ -280,7 +280,7 @@ def test_nuova_versione_github_porta_il_commit_nel_nome(vault):
 
 def test_also_at_e_posta(vault):
     scrivi(vault, CP, COMPANY_PROFILE)
-    url = "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Copie/BlueAge_CompanyProfile.pdf"
+    url = "https://example.sharepoint.com/sites/internal/Delivery/Copie/BlueAge_CompanyProfile.pdf"
     assert aggiorna(vault, CP, "--also-at", f"web_url={url}", "item_id=01COPIA").returncode == 0
     assert aggiorna(vault, CP, "--also-at", f"web_url={url}", "item_id=01COPIA").returncode == 0  # già c'è
     d = fm(vault, CP)

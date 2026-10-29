@@ -10,7 +10,7 @@ Trasformi documenti e mail in note. Leggi prima `CLAUDE.md`; nel dubbio vince `S
 
 **Il codice fa la meccanica, tu il giudizio.** Perimetro, percorsi, famiglie, frontmatter, versioni e stato li fanno gli script `python3 .claude/scripts/<script>` (`--help`): mai a mano frontmatter delle fonti o `.state/`.
 
-Fonti in sola lettura, senza invii, cancellazioni, commit o commenti (GitHub: `issue_read`, `gh issue view`, git `fetch`/`log`/`diff`/`show`). Un nome nuovo del server Microsoft 365 va in `tools` e in `.claude/settings.json`, mai col jolly `mcp__<server>__*`.
+Fonti in sola lettura, senza invii, cancellazioni, commit o commenti (GitHub: `issue_read`, `gh issue view`, git `fetch`/`log`/`diff`/`show`). Un nome nuovo del server Microsoft 365 va in `vault.yaml` (`connettori.microsoft365.server`) e si applica con `config.py applica`, che riscrive `tools` e `.claude/settings.json`; mai il jolly `mcp__<server>__*`.
 
 ## 0. Input
 
@@ -57,13 +57,13 @@ Un wikilink non resta mai rotto: se la destinazione manca, la crei.
 ### 3.5 Posta e persone
 
 - Thread: `nuova-nota.py source-mail <percorso> --titolo "<oggetto>"` con i campi del template; poi `aggiorna-nota.py <nota> --campo last_message=... --campo messages=<n> --aggiungi 'participants=[[slug]]'` (vale per ogni lista).
-- Partecipanti: mittenti e destinatari in A, escluso Lorenzo Curione; solo in CC se hanno già una nota.
+- Partecipanti: mittenti e destinatari in A, escluso l'utente del vault (`config.py valore vault.utente`); solo in CC se hanno già una nota.
 - Prima di creare una persona:
   1. `Grep "email: <indirizzo>" people/` (senza maiuscole): trovata → collega quella;
   2. altrimenti nome simile (stesso cognome, o grafia diversa) con `Glob people/*<cognome>*.md`: senza email è la stessa persona, collegala e nel digest `- Possibile doppione: <nome> <indirizzo> ↔ [[slug]] · [[fonte]]`; con email diversa passo 3, segnalando comunque il doppione; slug occupato → `<nome-cognome>-<dominio>`;
-  3. altrimenti `nuova-nota.py person people/<nome-cognome>.md` con `email`; `org`: `blueage` per `blueage.it`, altrimenti il cliente se una sua nota lo nomina, altrimenti vuoto; `role` solo se è nella firma.
+  3. altrimenti `nuova-nota.py person people/<nome-cognome>.md` con `email`; `org`: `vault.organizzazione_slug` per le email di `vault.dominio_organizzazione` (`config.py valore …`), altrimenti il cliente se una sua nota lo nomina, altrimenti vuoto; `role` solo se è nella firma.
 - Nella persona, `## Interazioni recenti`: `- AAAA-MM-GG · <oggetto> · [[<slug-thread>]]`.
-- `## Messaggi`: un blocco per messaggio (ora Europe/Rome, 2–4 righe); `## Riassunto` rigenerato.
+- `## Messaggi`: un blocco per messaggio (ora nel fuso del vault, 2–4 righe); `## Riassunto` rigenerato.
 
 ### 3.6 Attività e progetti
 
@@ -80,7 +80,7 @@ Azione o scadenza esplicita di un progetto esistente: in `## Attività` `- [ ] <
 ## 5. `delta` posta (SPEC 6.3)
 
 1. `stato.py watermark outlook`; `outlook_email_search` `query: "*"`, `afterDateTime: <watermark − 2 ore>`, `limit: 25`, seguendo `nextOffset` o `nextCursor`, senza `folderName`.
-2. Scarta: mittenti `no-reply`, `noreply`, `donotreply`, `notifications`, `notification`, `mailer-daemon`; notifiche di servizi (Teams, SharePoint, Azure, Microsoft 365, SaaS); newsletter e marketing (link di disiscrizione, mittenti di massa); thread personali o estranei a BlueAge (`CLAUDE.md` §5; in `interattiva` chiedi prima). Annota ogni scarto (mittente · oggetto).
+2. Scarta: mittenti `no-reply`, `noreply`, `donotreply`, `notifications`, `notification`, `mailer-daemon`; notifiche di servizi (Teams, SharePoint, Azure, Microsoft 365, SaaS); newsletter e marketing (link di disiscrizione, mittenti di massa); thread personali o estranei al lavoro dell'organizzazione (`vault.organizzazione`) (`CLAUDE.md` §5; in `interattiva` chiedi prima). Annota ogni scarto (mittente · oggetto).
 3. Per `conversationId`: salta i messaggi fino al `last_message` di `stato.py item outlook <id>`; thread senza novità intatto; altrimenti nota (3.5) e `stato.py set-item outlook <id> --istante <ultimo messaggio> --note <nota>`.
 4. Allegati (pdf, docx, pptx, xlsx; niente `isInline: true` né immagini): famiglia già su SharePoint o OneDrive (`famiglia.py --cerca`) → versione lì, altrimenti `sources/attachments/<famiglia>.md`; nel thread `--aggiungi 'attachments=[[<famiglia>]]'`.
 5. Decisioni, azioni, scadenze → 3.6. `stato.py set-watermark outlook <ultimo messaggio riuscito>`; digest e git.
@@ -111,7 +111,7 @@ Livello della scheda progetto: cosa è chiuso, cosa è deciso, numeri, scadenze,
 
 ## 8. Digest
 
-`journal/AAAA-MM-GG.md` (data Europe/Rome), dal template se manca; aggiungi senza cancellare: novità (`- [[slug]] · nuova | aggiornata | nuova versione · una riga`), decisioni (1), scartate (prime 2 settimane), controllo del vault, esito (`| <task> HH:MM | OK |` o errori).
+`journal/AAAA-MM-GG.md` (data di `python3 .claude/scripts/config.py oggi`), dal template se manca; aggiungi senza cancellare: novità (`- [[slug]] · nuova | aggiornata | nuova versione · una riga`), decisioni (1), scartate (prime 2 settimane), controllo del vault, esito (`| <task> HH:MM | OK |` o errori).
 
 ## 9. Git
 

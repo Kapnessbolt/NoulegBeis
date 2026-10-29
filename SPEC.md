@@ -1,6 +1,6 @@
 # SPEC · Second Brain BlueAge (personale)
 
-Versione 1.22 · 28/10/2026 · Owner: Lorenzo Curione
+Versione 1.23 · 29/10/2026 · Owner: Lorenzo Curione
 
 Questo file è la specifica di riferimento del vault. Ogni sessione Claude Code che costruisce o modifica il sistema parte da qui. Le modifiche alla specifica si fanno con una PR dedicata.
 
@@ -30,6 +30,12 @@ Utente unico. Il repo è privato, ma i dati riservati (credenziali, coordinate b
 | Riepilogo | Cockpit: pagina HTML statica e autosufficiente su claude.ai (artifact privato), generata dal vault da `cockpit.py` (4.4) e ripubblicata dal task `cockpit` (7) | Briefing in sola lettura, da telefono e da PC: eventi dei prossimi 7 giorni (fotografia del calendario Outlook presa dal task), attività scadute e in scadenza, progetti con semaforo e prossimi passi; il dettaglio si apre con un tocco, il resto (inbox, novità, task) in fondo. Nessuna funzione in early access: la pagina contiene i suoi dati. `home.md` in Obsidian è la vista di riserva |
 | Documenti originali | Restano su SharePoint, OneDrive e Outlook | Nel repo vanno solo le note markdown che li citano |
 
+### 2.1 Configurazione e motore
+
+Il vault ha due parti. Il **motore** (`.claude/`: script, agenti, routine, comandi, template, hook) è uguale per ogni vault e non contiene valori di questo. La **configurazione** (`vault.yaml` alla radice) contiene tutto ciò che distingue questo vault: utente e organizzazione, fuso e lingua, fonti con perimetro ed esclusioni (5), nomi dei server del connettore, repository di progetto (5.4), task schedulati con orari, giorni, modello e connettori (7), nomi delle sezioni che gli script leggono. La sezione `agenti` dice quali strumenti dei connettori ha ogni agente: `config.py applica` ne ricava la riga `tools` degli agenti e i permessi di `.claude/settings.json`, che non si modificano a mano. `applica` non è tra i permessi automatici, perché riscrive i permessi: si lancia solo con l'ok dell'utente. Gli script la leggono con il modulo `config.py`; agenti, routine e comandi con `python3 .claude/scripts/config.py` (`oggi`, `ora`, `valore <chiave>`, `task`), al posto di date e valori scritti nel testo. Le note e la knowledge (clienti, temi, persone, skill `blueage-*`) non sono né motore né configurazione: sono il contenuto del vault.
+
+Questa SPEC descrive le regole e, finché lo step 14 non decide la fonte unica, ripete in prosa perimetro (5) e task (7). Gli orari dei task stanno in tre posti, `vault.yaml`, la tabella di 7 e l'interfaccia di claude.ai: il controllo del vault (4.4) dà errore se `vault.yaml` e la tabella di 7 divergono; i task di claude.ai si cambiano a mano.
+
 Vincoli dell'ambiente cloud da rispettare:
 - Ogni sessione parte da un clone nuovo. Tutto ciò che conta (regole, skill, agenti, hook, stato) deve essere committato.
 - Il setup locale di Claude Code (impostazioni utente, mod) non arriva in cloud: ciò che deve valere ovunque sta in `.claude/` del vault.
@@ -41,7 +47,7 @@ Sessioni locali (app desktop sul PC):
 - Il clone resta sul PC e va allineato: lo fa l'hook di avvio (sezione 11).
 - Requisiti del PC: git, python3 (script e pre-commit, 4.4), login GitHub con `gh auth login`, app desktop aggiornata.
 - GitHub passa dal login del PC, senza connettore: le issue si leggono con `gh issue view` (6.6).
-- Il connettore Microsoft 365 ha un nome di server diverso per ambiente (`Microsoft_365` nelle sessioni cloud, `Microsoft-365` nei task schedulati, l'id del connettore nelle sessioni locali). I permessi in `.claude/settings.json` e i `tools` dell'agente `ingestor` li elencano tutti: un nome nuovo va aggiunto in entrambi, altrimenti la modalità Auto blocca le letture e l'ingestor parte senza connettore. Il controllo del vault (4.4) segnala come errore i nomi che non coincidono.
+- Il connettore Microsoft 365 ha un nome di server diverso per ambiente (`Microsoft_365` nelle sessioni cloud, `Microsoft-365` nei task schedulati, l'id del connettore nelle sessioni locali). I nomi stanno in `vault.yaml` (`connettori`); `python3 .claude/scripts/config.py applica` li riscrive nei permessi di `.claude/settings.json` e nei `tools` degli agenti `ingestor` e `librarian`. Un nome nuovo va aggiunto in `vault.yaml` e applicato, altrimenti la modalità Auto blocca le letture e l'ingestor parte senza connettore. Il controllo del vault (4.4) segnala come errore i nomi che non coincidono con `vault.yaml`.
 - I task schedulati restano in cloud qualunque sessione si usi.
 
 ## 3. Struttura del vault
@@ -50,19 +56,21 @@ Sessioni locali (app desktop sul PC):
 /
 ├── SPEC.md                  questa specifica
 ├── CLAUDE.md                istruzioni operative per ogni sessione
+├── vault.yaml               configurazione del vault (2.1): perimetro, connettori, task, fuso, lingua, sezioni
 ├── .github/workflows/       controllo del vault su ogni push (4.4)
 ├── .githooks/pre-commit     controllo del vault prima di ogni commit (4.4)
 ├── .gitattributes           merge driver `stato` per i file di `.state/` (6.1, 11)
 ├── README.md                guida rapida per l'utente
 ├── home.md                  vista Obsidian con Tasks e Dataview (fuori dal controllo 4.4)
 ├── .claude/
-│   ├── settings.json        hook e permessi
+│   ├── settings.json        hook e permessi (i permessi dei connettori generati da `vault.yaml`)
+│   ├── setup/               script di setup dell'ambiente cloud (`ambiente-cloud.sh`)
 │   ├── commands/            comandi manuali (sezione 8)
 │   ├── agents/              agenti specializzati (sezione 9)
 │   ├── hooks/               hook di Claude Code (controllo prima del commit 4.4, pull all'avvio 11)
 │   ├── routines/            procedure dei task schedulati (sezione 7)
 │   ├── templates/           template della pagina Cockpit (`cockpit.html`, 4.4)
-│   ├── scripts/             script di servizio testati (4.4): controllo e rinomina delle note, famiglia, perimetro, stato, note dal template, ricerca (9.3), dati della dashboard (7)
+│   ├── scripts/             script di servizio testati (4.4): configurazione, controllo e rinomina delle note, famiglia, perimetro, stato, note dal template, ricerca (9.3), dati della dashboard (7)
 │   └── skills/              skill (sezione 10): `chiudi-sessione`, `blueage-deck`, `blueage-corso`, `blueage-animazioni`
 ├── .state/                  stato dell'ingestion, un file per fonte (6.1)
 │   ├── sharepoint.json
@@ -288,7 +296,7 @@ Lo script `python3 .claude/scripts/controlla-vault.py` verifica le note (tranne 
 
 | Livello | Cosa controlla |
 |---|---|
-| Errore | **Integrità**: wikilink (nel frontmatter o nel testo) verso note inesistenti; wikilink con percorso o estensione; slug duplicati; voci dello stato (`.state/<fonte>.json`) che puntano a note inesistenti, file di stato illeggibili. **Tracciabilità**: punti senza fonte nelle sezioni elencate in 4.1; fonti senza progetto, cliente o tema. **Schema**: frontmatter mancante o non valido; `type` sconosciuto o nella cartella sbagliata; campi del template mancanti; valori fuori dagli elenchi ammessi; nomi file non in slug; scheda progetto con nome diverso dalla cartella. **Doppioni certi**: stessa email su due persone; stessa `family`, `item_id` o `conversation_id` su due note. **Configurazione**: nomi del server Microsoft 365 diversi tra i `tools` dell'agente `ingestor` e i permessi di `.claude/settings.json`, o con uno dei 4 strumenti in lettura mancante (2). **Dati riservati** (CLAUDE.md §5), solo nel corpo delle note e non nel frontmatter: IBAN, telefoni italiani (`+39` e cellulari, esclusi importi, ore e percentuali), chiavi e token con prefisso noto (`sk-`, `ghp_`, `github_pat_`, `xox?-`, `AKIA`, JWT) o stringhe esadecimali e base64 di 40+ caratteri, GUID (tranne i nomi di server MCP già in `.claude/settings.json`), ID e passcode di riunione, password in chiaro (`password: valore`); il messaggio dice la categoria e la riga, del valore al massimo i primi 4 caratteri |
+| Errore | **Integrità**: wikilink (nel frontmatter o nel testo) verso note inesistenti; wikilink con percorso o estensione; slug duplicati; voci dello stato (`.state/<fonte>.json`) che puntano a note inesistenti, file di stato illeggibili. **Tracciabilità**: punti senza fonte nelle sezioni elencate in 4.1; fonti senza progetto, cliente o tema. **Schema**: frontmatter mancante o non valido; `type` sconosciuto o nella cartella sbagliata; campi del template mancanti; valori fuori dagli elenchi ammessi; nomi file non in slug; scheda progetto con nome diverso dalla cartella. **Doppioni certi**: stessa email su due persone; stessa `family`, `item_id` o `conversation_id` su due note. **Configurazione**: `vault.yaml` illeggibile o non valido (2.1); orari, giorni o task diversi tra `vault.yaml` e la tabella di 7; nomi del server Microsoft 365 nei `tools` degli agenti `ingestor` e `librarian` e nei permessi di `.claude/settings.json` diversi da quelli di `vault.yaml`, o con uno strumento in lettura mancante (2). **Dati riservati** (CLAUDE.md §5), solo nel corpo delle note e non nel frontmatter: IBAN, telefoni italiani (`+39` e cellulari, esclusi importi, ore e percentuali), chiavi e token con prefisso noto (`sk-`, `ghp_`, `github_pat_`, `xox?-`, `AKIA`, JWT) o stringhe esadecimali e base64 di 40+ caratteri, GUID (tranne i nomi di server MCP già in `.claude/settings.json`), ID e passcode di riunione, password in chiaro (`password: valore`); il messaggio dice la categoria e la riga, del valore al massimo i primi 4 caratteri |
 | Avviso | Note orfane (persone, clienti, temi che nessuna nota collega); note che citano una fonte rimossa; note più vecchie di una fonte che citano (la fonte è stata aggiornata dopo); note `da-verificare`; nomi quasi uguali nella stessa categoria (possibili doppioni); persone senza email; campi non previsti dal template; documenti SharePoint, OneDrive e GitHub non registrati nello stato |
 
 Quando si esegue:
@@ -302,6 +310,7 @@ Quando si esegue:
 
 | Script | Cosa fa |
 |---|---|
+| `config.py` | Legge e valida `vault.yaml` (2.1) per gli altri script; da riga di comando data e ora nel fuso del vault, un valore, i giri attesi del giorno, `verifica` e `applica` (permessi dei connettori in `settings.json` e nei `tools` degli agenti) |
 | `controlla-vault.py` | Controllo del vault (questa sezione) |
 | `rinomina-nota.py` | Rinomina una nota, aggiorna wikilink e stato (4.1) |
 | `famiglia.py` | Chiave di famiglia da un nome di file (4.3), slug di un testo o dell'oggetto di una mail, ricerca delle note della stessa famiglia (`--cerca`), golden test sulle famiglie del vault (`--verifica`, accordo minimo 90%) |
@@ -313,7 +322,7 @@ Quando si esegue:
 | `plancia.py` | Dati del Cockpit (7) in JSON: progetti con attività, prossimi passi e scadute, attività, log, inbox, task del giorno, digest |
 | `cockpit.py` | Pagina HTML del Cockpit dai JSON di `plancia.py` e da `calendario.json` (scritto dal task con il connettore), con il template `.claude/templates/cockpit.html`; nessuna risorsa esterna; stampa la riga di riepilogo per il digest |
 
-Prefissi ed esclusioni del perimetro, e la firma dell'autore che `famiglia.py` toglie in coda ai nomi (`_BlueAge`), sono costanti in testa agli script: nello step 13 passano in `vault.yaml`.
+Prefissi ed esclusioni del perimetro, tipi processati, fuso, task attesi e nomi delle sezioni li prendono da `vault.yaml` (2.1, step 13).
 
 ## 5. Perimetro delle fonti
 
@@ -471,7 +480,7 @@ Senza clone o senza connettore GitHub il task non inventa nulla: scrive l'errore
 
 ## 7. Task schedulati
 
-Orari in Europe/Rome, fuori dagli orari pieni per evitare i ritardi del sistema.
+Orari nel fuso del vault (`vault.yaml`, oggi Europe/Rome), fuori dagli orari pieni per evitare i ritardi del sistema. Questa tabella e `task` di `vault.yaml` devono coincidere su task, orari e giorni: il controllo del vault (4.4) dà errore se divergono.
 
 | Task | Quando | Connettori | Modello | Cosa fa |
 |---|---|---|---|---|
@@ -490,7 +499,7 @@ Ogni task:
 - ha come prompt `Esegui il task descritto in .claude/routines/<task>.md, seguendo anche .claude/routines/_comune.md.`: la procedura sta nel repo e rimanda alla sezione pertinente di questa SPEC; le regole comuni (avvio, limiti, digest, errori, git) sono in `_comune.md`;
 - esegue l'agente `ingestor` dentro la propria sessione, non come subagente;
 - fa commit, poi `git pull --rebase` e push su `main`;
-- registra l'esito nel digest del giorno ("OK" oppure gli errori), con l'ora in Europe/Rome.
+- registra l'esito nel digest del giorno ("OK" oppure gli errori), con l'ora nel fuso del vault.
 
 Eccezione: il `curator` non scrive nel digest e non fa push su `main` (sezione 3). Lavora sul branch che la sessione del task gli assegna (`claude/<nome>`) e il suo esito è la PR; se non trova niente da proporre non apre la PR.
 
@@ -556,7 +565,7 @@ Lo usano la sessione interattiva, per le domande di Lorenzo, e in prospettiva i 
 
 I file prodotti dalle skill (pptx, mp4, png) non vanno nel repo. Si caricano su SharePoint o OneDrive con il connettore, e la nota del progetto ne riporta il link. Il `.gitignore` esclude `*.pptx`, `*.mp4` e `*.png` in tutto il vault, tranne dentro `.claude/skills/` (dove stanno gli asset delle skill).
 
-Prerequisito: lo script di setup dell'ambiente cloud installa le dipendenze delle skill (es. `python-pptx`) e `pyyaml` per il controllo del vault.
+Prerequisito: lo script di setup dell'ambiente cloud installa le dipendenze delle skill (es. `python-pptx`), `pyyaml` e `pytest`. È committato in `.claude/setup/ambiente-cloud.sh`; nell'interfaccia di claude.ai lo script di setup dell'ambiente lo richiama. L'hook di avvio installa `pyyaml` se manca, come rete di sicurezza.
 
 ## 11. Workflow git
 
@@ -640,5 +649,5 @@ Decisioni prese con l'utente il 28/10 (diario `2026-10-28-second-brain-forma-del
 - Consegna dei file prodotti dalle skill: dal cloud il connettore non carica su OneDrive un PDF o un pptx oltre pochi KB (26/10), quindi il criterio dello step 6 ("deck caricato su SharePoint") per ora richiede il caricamento a mano. Dal 28/10 la consegna dei file prodotti è un prerequisito dello step 18 (13.2).
 - Un vault = un utente (1). Un reparto o un team sono più vault, forse con temi condivisi: da decidere con il primo cliente a più persone, dopo lo step 19.
 - Il Cockpit v2 (step 16) è una pagina statica pubblicata come artifact su claude.ai: dipende da claude.ai solo come hosting, non da funzioni in early access. Se anche quello cambiasse, la stessa pagina si può pubblicare altrove senza toccare lo script; `home.md` e il digest restano la vista di riserva. La dashboard di tipo Dashboard con `ArtifactData` e la mod dell'app desktop sono ritirate il 27/10.
-- Fonti diverse da Microsoft 365 (Google Workspace, altri repository): si valutano solo dopo lo step 13, quando il perimetro è configurazione e non prosa.
-- Lingua: sezioni e regole sono in italiano, anche negli script (`controlla-vault.py` cerca "Relazione con BlueAge"). Nello step 13 i nomi delle sezioni passano in configurazione; una versione in altra lingua è una decisione commerciale, non tecnica.
+- Fonti diverse da Microsoft 365 (Google Workspace, altri repository): dallo step 13 il perimetro è configurazione (`vault.yaml`); una fonte nuova richiede però un ramo nuovo in `perimetro.py` e nell'ingestor.
+- Lingua: regole, template e etichette del Cockpit sono in italiano. Dallo step 13 i nomi delle sezioni che gli script leggono stanno in `vault.yaml` (`sezioni`) e la lingua è un campo (`vault.lingua`); una versione in altra lingua (template, regole, etichette) è una decisione commerciale, non tecnica.

@@ -1,4 +1,4 @@
-# Task `reconcile` · ogni domenica alle 08:45 (Europe/Rome)
+# Task `reconcile` · orari in `vault.yaml` (`task`)
 
 Connettore: Microsoft 365. Prima leggi `.claude/routines/_comune.md` e seguilo.
 
