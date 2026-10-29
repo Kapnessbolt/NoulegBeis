@@ -34,6 +34,8 @@ def test_dentro(url, cartella):
     r = analizza(url)
     assert r["dentro"] is True, r
     assert r["cartella_nota"] == cartella
+    # il motivo nomina il prefisso trovato, non la configurazione intera
+    assert r["motivo"].startswith("prefisso `https://") and "{" not in r["motivo"], r["motivo"]
 
 
 @pytest.mark.parametrize("url, motivo", [
