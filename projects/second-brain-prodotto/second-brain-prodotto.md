@@ -56,10 +56,14 @@ updated: 2026-10-29
 - [ ] Step 19 · Separazione IP e governance: repo template del motore senza contenuti BlueAge, procedura di upgrade del motore nei vault installati, skill del cliente dal suo template pptx, repo dei clienti nell'organizzazione BlueAge con un team per cliente e secret scanning, accordo sul trattamento dei dati come documento contrattuale, prerequisiti del cliente (piano Claude da verificare, account GitHub anche gratuito, connettore Microsoft 365) · modello: Fable ([[2026-10-26-piano-prodotto-second-brain]], [[2026-10-28-second-brain-forma-del-prodotto]])
 - [ ] Step 19 · prova: prima installazione interna a Leonardo con template e wizard, giornata cronometrata e passi manuali annotati; la lista diventa guida di installazione e perimetro del contratto di gestione ([[2026-10-28-second-brain-forma-del-prodotto]])
 - [ ] Verificare quale piano Claude serve al cliente per sessioni cloud e task schedulati ([[2026-10-28-second-brain-forma-del-prodotto]])
+- [ ] Ricerca · set di valutazione: circa 50 domande con le note attese e script che calcola la recall dei primi 5 risultati; misura quando serve la ricerca ibrida ([[2026-10-29-database-vettoriale]])
+- [ ] Ricerca · registro dei "non trovato" e dei giri di ricerca del librarian, da contare nelle metriche dello step 20 ([[2026-10-29-database-vettoriale]])
+- [ ] Ricerca · BM25 in `cerca.py` al posto dei pesi fissi 10/3/1 e `aliases:` nei template di cliente, tema e progetto · modello: Opus ([[2026-10-29-database-vettoriale]])
 - [ ] Step 20 · Metriche di valore: riga settimanale nel resoconto del curator (note, giri OK, errori, domande risposte, consumo) · modello: Sonnet ([[2026-10-26-piano-prodotto-second-brain]])
 
 ## Decisioni
 
+- Ricerca (29/10): niente database vettoriale oggi; ricerca lessicale potenziata (BM25, `aliases:`) subito, ricerca ibrida locale (indice sqlite-vec o LanceDB come file derivato dietro `cerca.py`, embedding locali o Voyage con accordo sui dati) solo al primo trigger: recall sotto il 90% sul set di prova, oltre circa 5.000 note, primo cliente a più persone o lingue miste. Esclusi un database vettoriale gestito (solo se BlueAge diventa piattaforma) e un RAG nostro sugli originali, coperti dal connettore e da Copilot; per i clienti con Copilot, variante con il vault su SharePoint ([[2026-10-29-database-vettoriale]])
 - Forma del prodotto (28/10): non self-installing per il cliente ma installato da BlueAge e gestito ogni mese, perché la fatica della prima settimana è stata operare, non installare; `/installa` è lo strumento interno. I tier si distinguono per le skill (Start, Completo con deck sul template del cliente, Executive) ([[2026-10-28-second-brain-forma-del-prodotto]])
 - Il cliente vede tre gesti, Leggi, Chiedi, Lavora, e mai git, PR, SPEC, permessi, verifica dei giri e curator; il briefing è il wizard di `/installa`, facoltativo perché la stessa conversazione la fa il cliente da solo ([[2026-10-28-second-brain-forma-del-prodotto]])
 - Repo del cliente privato nell'organizzazione GitHub di BlueAge, cliente collaboratore, con accordo sul trattamento dei dati e accesso minimo di BlueAge; nell'organizzazione del cliente solo per chi ha un IT. Sessioni e task girano sull'account Claude del cliente: BlueAge gestisce via repo e, per i guasti, con il cliente collegato ([[2026-10-28-second-brain-forma-del-prodotto]])
@@ -83,3 +87,4 @@ updated: 2026-10-29
 - [[2026-10-28-verifica-task-28-10]]
 - [[2026-10-28-second-brain-forma-del-prodotto]]
 - [[2026-10-29-cockpit-conteggi-e-step-13]]
+- [[2026-10-29-database-vettoriale]]
