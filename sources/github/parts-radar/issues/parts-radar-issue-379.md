@@ -7,8 +7,9 @@ current:
   uri: "github://cristian-schifone/parts-radar/issues/379"
   web_url: "https://github.com/cristian-schifone/parts-radar/issues/379"
   name: "Issue #379 · Pilot ADAC: ordine dei lavori verso il test reale (rifatto il 21/10, rivisto il 28/10)"
-  last_modified: 2026-10-28T23:18:54Z
+  last_modified: 2026-10-29T11:47:04Z
 versions:
+  - { name: "Issue #379", item_id: cristian-schifone/parts-radar#379, last_modified: 2026-10-29T11:47:04Z }
   - { name: "Issue #379", item_id: cristian-schifone/parts-radar#379, last_modified: 2026-10-28T23:18:54Z }
   - { name: "Issue #379", item_id: cristian-schifone/parts-radar#379, last_modified: 2026-10-27T17:13:27Z }
   - { name: "Issue #379", item_id: cristian-schifone/parts-radar#379, last_modified: 2026-10-26T08:49:21Z }
@@ -17,7 +18,7 @@ versions:
 also_at: []
 status: active
 partial: false
-ingested_at: 2026-10-29T06:23:58Z
+ingested_at: 2026-10-30T06:30:05Z
 projects: ["[[parts-radar-sviluppo]]"]
 clients: ["[[adac-bologna]]", "[[solera]]"]
 topics: ["[[parts-radar]]"]
@@ -38,14 +39,14 @@ Issue di pianificazione della milestone "Pilot ADAC", rifatta il 21/10/2026 con 
 - Revisione del 28/10 mattina, dopo la prova a secco: cinque issue nuove; prima dell'attivazione il codice del meccanico per codice, il lessico e le varianti della voce, la misura dei vocali; nella stessa finestra dal vivo di Kromeda (utenza libera, un solo avviso a Cristian) la sonda dei modelli e il giro degli alberi
 - Col credito API personale di Lorenzo (100 $ al mese dal 28/10, con l'accordo di ADAC sui dati veri): benchmark del router su 810 gruppi con Haiku, Sonnet e Opus (~50 $) ed estrazione e voce con Sonnet e Opus (~50 $), anticipando la parte costosa del confronto finale dei modelli
 - Revisione del 28/10 sera: tredici voci chiuse; regole congelate di slittamento: numero non attivo entro circa l'11/11 → la prova controllata va in settimana 4; non attivo entro circa il 16/11 → niente test con le targhe prima della fine della demo
-- Codice dei prossimi sette giorni (29/10-04/11), tutto senza il numero: la voce (ultimo anello senza misura), il resto del giro dal vivo degli alberi con la sonda, la nota per il banco, il benchmark del router; se l'attivazione slitta oltre il 4/11 si anticipano le PR di sola estrazione, foto e modelli
+- Codice dei prossimi sette giorni (29/10-04/11), tutto senza il numero: la voce (ultimo anello senza misura), la nota per il banco, il benchmark del router; il giro degli alberi è chiuso il 29/10, restano la sonda dei modelli (6 chiamate, 0 crediti targa, con l'utenza libera da Cristian) e i codici delle voci frequenti, dopo la voce; se l'attivazione slitta oltre il 4/11 si anticipano le PR di sola estrazione, foto e modelli
 - Settimana 3 alleggerita; valvola nell'ordine: seconda parte dell'estrazione strutturata, poi il pezzo senza etichetta in foto
 
 ## Numeri
 
 - 17 crediti targa al 21/10
 - Al 28/10 mancano 7 giorni al 04/11 e 14 all'11/11; traffico vero nella settimana 12-17/11; demo Kromeda fino a circa il 18/11
-- Giro dal vivo degli alberi: 900 chiamate fatte il 28/10 (221 coppie modello/anno su 268), ne restano circa 1.400 in due giorni
+- Giro dal vivo degli alberi: 900 chiamate il 28/10 (221 coppie modello/anno su 268) e 767 il 29/10: alberi completi, 268 coppie su 268, crediti targa invariati (la stima di circa 1.400 era larga)
 
 ## Decisioni e azioni
 
@@ -62,6 +63,7 @@ Fuori dal codice, in ordine di urgenza (revisione del 28/10 sera, aggiornata al 
 
 ## Versioni
 
+- Issue #379 · 2026-10-29 · giro degli alberi chiuso il 29/10 (268 coppie su 268, 767 chiamate, crediti invariati); restano la sonda dei modelli e i codici delle voci frequenti dopo la voce
 - Issue #379 · 2026-10-28 · due revisioni del 28/10 (dopo la prova a secco e la sera): tredici voci chiuse, percorso critico sui passi fuori dal codice, regole di slittamento (~11/11, ~16/11), benchmark col credito personale; 360dialog spuntato (Regular a nome di ADAC, 29/10), nomina a responsabile al posto del consenso, vincoli del webhook (#531)
 - Issue #379 · 2026-10-27 · revisione del 27/10: piano della #420 in testa alla settimana 2, allarme Coexistence dopo l'attivazione, settimana 1 chiusa salvo la voce; nuovi passi fuori dal codice (trascrizione a nome di BlueAge, canale degli allarmi), avviso a Cristian spuntato
 - Issue #379 · 2026-10-26 · settimana 1: etichettatore Opus tarato per le etichette del test; passi fuori dal codice invariati

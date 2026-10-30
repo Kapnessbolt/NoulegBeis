@@ -67,6 +67,8 @@ updated: 2026-10-26
 - [ ] Cristian: allineare lo staging dopo le correzioni del 28/10 (migration 087 e rebuild del servizio); l'avviso lo manda Lorenzo ([[parts-radar-changelog]], [[parts-radar-issue-379]])
 - [ ] Finestra dal vivo di Kromeda (via di Lorenzo, utenza libera da Cristian): sonda dei modelli e resto del giro degli alberi, circa 1.400 chiamate ([[parts-radar-issue-379]])
 - [ ] Lorenzo: decidere la mappatura dei brand per il pilot (basta l'ordine di fascia?) e le targhe provinciali (proposta «dritte al banco») ([[parts-radar-issue-379]], [[parts-radar-architettura]])
+- [ ] Cristian: allineare il clone dello staging dopo il lessico della voce (il prompt si legge da lì, niente immagine da ricostruire); l'avviso lo dà Lorenzo ([[parts-radar-changelog]])
+- [ ] Lorenzo: confermare il testo della riga alzavetro nel prompt della voce (A tenuto senza di lui, oppure C) ([[parts-radar-changelog]])
 
 ## Decisioni
 

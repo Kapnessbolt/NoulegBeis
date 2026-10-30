@@ -1,7 +1,7 @@
 {
   "items": {
     "cristian-schifone/parts-radar#379": {
-      "last_modified": "2026-10-28T23:18:54Z",
+      "last_modified": "2026-10-29T11:47:04Z",
       "note": "sources/github/parts-radar/issues/parts-radar-issue-379.md"
     },
     "cristian-schifone/parts-radar#420": {
@@ -9,13 +9,13 @@
       "note": "sources/github/parts-radar/issues/parts-radar-issue-420.md"
     },
     "cristian-schifone/parts-radar:docs/architettura.md": {
-      "commit": "733d0a69b3c6797d3453eae26042555fadb04f2f",
-      "last_modified": "2026-10-28T23:22:29Z",
+      "commit": "2be8540128a7fb61cdf4f7c7b2eb2c1385ef5e9e",
+      "last_modified": "2026-10-29T22:57:06Z",
       "note": "sources/github/parts-radar/docs/parts-radar-architettura.md"
     },
     "cristian-schifone/parts-radar:docs/changelog.md": {
-      "commit": "733d0a69b3c6797d3453eae26042555fadb04f2f",
-      "last_modified": "2026-10-28T23:22:29Z",
+      "commit": "2be8540128a7fb61cdf4f7c7b2eb2c1385ef5e9e",
+      "last_modified": "2026-10-29T22:57:06Z",
       "note": "sources/github/parts-radar/docs/parts-radar-changelog.md"
     },
     "cristian-schifone/parts-radar:docs/decisione-stack-python.md": {
@@ -41,8 +41,8 @@
   },
   "repos": {
     "cristian-schifone/parts-radar": {
-      "commit": "421710bd4a1d58c35ba61b1d4d88a51cabd8862c",
-      "watermark": "2026-10-28T23:24:36Z"
+      "commit": "a775f4fb6529dcd8bb3a60d9bb1d612be635d878",
+      "watermark": "2026-10-29T23:44:12Z"
     }
   }
 }

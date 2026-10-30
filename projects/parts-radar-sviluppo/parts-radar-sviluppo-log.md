@@ -7,6 +7,9 @@ project: "[[parts-radar-sviluppo]]"
 
 Una riga per avanzamento, dalla più recente: `- AAAA-MM-GG · cosa è successo · [[fonte]]`
 
+- 2026-10-29 · Voce misurata sulle chat reali, l'ultimo anello della catena del pilot: giusta tra le prime tre 94,9% sullo sviluppo e 93,8% sul test (soglia 90%), sbagliata data per sicura 1,4% e 0,6% (soglia 2%); col lessico dei meccanici nel prompt lo sviluppo sale al 95,6% e il test resta neutro (93,6%). Circa 8,7 $ sul credito API di Lorenzo, 0 chiamate Kromeda. Metodo nuovo: una sessione sola per feature o fix, risparmio da misurare sulla prima feature (D50). Prossimo: la misura della catena intera (#319); staging da allineare (Cristian) · [[parts-radar-changelog]]
+- 2026-10-29 · Ordine dei lavori: giro degli alberi Kromeda chiuso (268 coppie modello/anno su 268, 767 chiamate, crediti targa invariati); restano la sonda dei modelli e i codici delle voci frequenti · [[parts-radar-issue-379]]
+- 2026-10-29 · architettura: nuova versione, D43 con la voce misurata e il lessico, nuova D50 sul risparmio del ciclo a sessione unica · [[parts-radar-architettura]]
 - 2026-10-29 · 360dialog: Lorenzo sceglie il Regular a nome di ADAC (Partner di BlueAge dal secondo cliente, ADAC non migra); il webhook senza firma è un rischio accettato con otto vincoli da verificare prima dell'attivazione; sul piano legale bastano la nomina a responsabile da ADAC a BlueAge e l'informativa di ADAC alle officine. Ordine dei lavori: il percorso critico è nei passi fuori dal codice · [[parts-radar-changelog]]
 - 2026-10-29 · whatsapp-fornitori: nuova versione, Regular a nome di ADAC, tre adempimenti legali e i vincoli V1-V8 del webhook · [[parts-radar-whatsapp-fornitori]]
 - 2026-10-29 · architettura: nuova versione, prova a secco e correzioni del 28/10, misura dei vocali (D44), D47 decisa, rischio del webhook senza firma accettato coi vincoli · [[parts-radar-architettura]]
