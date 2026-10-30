@@ -7,6 +7,7 @@ project: "[[manini-automazione-ddt]]"
 
 Una riga per avanzamento, dalla più recente: `- AAAA-MM-GG · cosa è successo · [[fonte]]`
 
+- 2026-10-29 · General del 26/10: il caso diventa un deck per vendere il servizio di automazione a un interlocutore tecnico, con due-quattro slide tecniche in più sul deck di processo di Leonardo; la soluzione non si costruisce in aula; la parte è in revisione e andrà nel corso AI funzionale · [[riunione-generale-blueage-26-10-sintesi-e-azioni]]
 - 2026-10-25 · Essenziale aggiornato al 25/10 (ritest v1.1 e matching sull'estrazione) nella Library di Progetto Automazione · [[manini-ddt-essenziale]]
 - 2026-10-26 · Il repo di progetto non scrive più nel vault: lo aggiorna solo l'ingestion dalle copie in `Library/`; essenziale unito in una sola nota · [[2026-10-26-diari-mancanti-e-vault-sola-lettura]]
 - 2026-10-25 · Matching sull'estrazione reale, H29 chiusa: con il modello standard nessun DDT cambia stato e 0 abbinamenti automatici errati; due difetti del motore da correggere (H33, H34) · [[05-matching]]

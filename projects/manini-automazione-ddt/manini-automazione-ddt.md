@@ -39,6 +39,7 @@ updated: 2026-10-26
 - [x] Estrarre su OneDrive i PDF dallo ZIP dei DDT, così le sessioni Claude Code li leggono con il connettore ([[2026-10-23-manini-automazione-ddt]])
 - [ ] Prompt v1.2 con le correzioni del ritest (peso totale in testata, peso 0 solo se stampato, ordine tra gli altri riferimenti), da ritestare prima dell'uso ([[04-benchmark]])
 - [ ] Misurare la variabilità: 3 giri sui DDT difficili (H31), un giro v1.0 con i modelli di oggi (H32), matching sull'estrazione su 30 seed (H35) ([[04-benchmark]], [[05-matching]])
+- [ ] Aggiungere due-quattro slide tecniche al deck di processo di Leonardo per vendere il servizio di automazione a un interlocutore tecnico ([[riunione-generale-blueage-26-10-sintesi-e-azioni]])
 
 ## Decisioni
 

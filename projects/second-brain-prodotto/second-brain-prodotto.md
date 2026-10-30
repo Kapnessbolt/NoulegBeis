@@ -60,6 +60,8 @@ updated: 2026-10-29
 - [ ] Ricerca · registro dei "non trovato" e dei giri di ricerca del librarian, da contare nelle metriche dello step 20 ([[2026-10-29-database-vettoriale]])
 - [ ] Ricerca · BM25 in `cerca.py` al posto dei pesi fissi 10/3/1 e `aliases:` nei template di cliente, tema e progetto · modello: Opus ([[2026-10-29-database-vettoriale]])
 - [ ] Step 20 · Metriche di valore: riga settimanale nel resoconto del curator (note, giri OK, errori, domande risposte, consumo) · modello: Sonnet ([[2026-10-26-piano-prodotto-second-brain]])
+- [ ] One-page produttività personale: aggiungere il differenziale tecnico (architettura, recupero del contesto, lavoro del team tecnico) ([[riunione-generale-blueage-26-10-sintesi-e-azioni]])
+- [ ] Second Brain: versione più generale e commerciale e ipotesi di variante per l'ambiente Microsoft ([[riunione-generale-blueage-26-10-sintesi-e-azioni]])
 
 ## Decisioni
 

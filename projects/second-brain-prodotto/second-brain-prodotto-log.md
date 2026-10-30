@@ -7,6 +7,7 @@ project: "[[second-brain-prodotto]]"
 
 Una riga per avanzamento, dalla più recente: `- AAAA-MM-GG · cosa è successo · [[fonte]]`
 
+- 2026-10-29 · General del 26/10: il one-page sulla produttività personale funziona ma deve spiegare il differenziale tecnico (architettura e lavoro del team); prossimo passo una versione più generale e commerciale e una variante per l'ambiente Microsoft · [[riunione-generale-blueage-26-10-sintesi-e-azioni]]
 - 2026-10-29 · Valutato il database vettoriale: oggi non serve; ricerca lessicale potenziata subito, ricerca ibrida locale al primo trigger misurato (recall, dimensione, team, lingue); tre attività di predisposizione, SPEC 1.25 §14 in PR · [[2026-10-29-database-vettoriale]]
 - 2026-10-29 · Step 14 avviato: regola a percorso `fonti.md` per `sources/`, `CLAUDE.md` snellito, agenti e routine senza copie, controllo delle regole nel pre-commit (PR #49 e #50 unite, SPEC 1.24); test sul caricamento di `.claude/rules/`: scatta con Read/Write/Edit e `cat`/`head`, non con Grep, Glob, script, redirezioni, né dopo `/compact` · [[2026-10-29-regole-percorso]]
 - 2026-10-29 · Plugin `cockpit` rimosso da Lorenzo sull'app desktop del PC; nessun plugin attivo sull'account claude.ai: la pulizia dello step 16 è chiusa · [[2026-10-29-cockpit-conteggi-e-step-13]]
