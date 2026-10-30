@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-verbale-consegna-codifica-bici-etichettatura
 current:
-  item_id: 01EFCYUZYHIF7KVUWOKBAJRWPQIXDEM2BP
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZYHIF7KVUWOKBAJRWPQIXDEM2BP
+  item_id: 01EFCYUZ7FC3XPHF4EJ5D2THO3PETZUXE3
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ7FC3XPHF4EJ5D2THO3PETZUXE3
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/verbali/velo-ce-verbale-261014-1328-consegna-codifica-bici-etichettatura.md
   name: velo-ce-verbale-261014-1328-consegna-codifica-bici-etichettatura.md
   last_modified: 2026-10-28T08:06:44Z

@@ -3,19 +3,20 @@ type: source-doc
 source: sharepoint
 family: velo-ce-stato-progetto-99-log-revisioni
 current:
-  item_id: 01EFCYUZZDUQ4FJP2FMFE3DHTG55WCZAP4
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZZDUQ4FJP2FMFE3DHTG55WCZAP4
+  item_id: 01EFCYUZ2BPWJKSKHNBBF3DWWYJ2JH536X
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ2BPWJKSKHNBBF3DWWYJ2JH536X
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/velo-ce-stato-progetto-99-log-revisioni.md
   name: velo-ce-stato-progetto-99-log-revisioni.md
-  last_modified: 2026-10-28T08:06:17Z
+  last_modified: 2026-10-29T16:14:35Z
 versions:
+  - { name: velo-ce-stato-progetto-99-log-revisioni.md, item_id: 01EFCYUZ2BPWJKSKHNBBF3DWWYJ2JH536X, last_modified: 2026-10-29T16:14:35Z }
   - { name: velo-ce-stato-progetto-99-log-revisioni.md, item_id: 01EFCYUZZDUQ4FJP2FMFE3DHTG55WCZAP4, last_modified: 2026-10-28T08:06:17Z }
   - { name: velo-ce-stato-progetto-99-log-revisioni.md, item_id: 01EFCYUZ5VRUD5W5OLMZEKSLK2RYJNSLYQ, last_modified: 2026-10-08T10:43:53Z }
 also_at:
   - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/Claude outputs/proj18/velo-ce-stato-progetto-99-log-revisioni.md.txt", item_id: 01EFCYUZ3QFXW7D5ZLHZBLWXH7SZCYZYXN }
 status: active
 partial: false
-ingested_at: 2026-10-29T05:57:56Z
+ingested_at: 2026-10-30T05:58:45Z
 projects: ["[[velo-ce-progetto-dynamics]]"]
 clients: ["[[velo-ce]]"]
 topics: ["[[business-central-ai]]"]
@@ -26,7 +27,7 @@ tags: [velo-ce, business-central, log, cronologia, interno]
 
 ## Riassunto
 
-Registro delle revisioni dello stato progetto Velo-CE, scritto solo in aggiunta: una riga per versione, dalla 001 dell'08/09/2026 alla 025.109 del 27/10/2026 (circa 135 righe). È la cronologia più completa del progetto: per ogni versione dice che cosa è stato verificato o deciso, quali blocchi sono cambiati e quali file sono stati prodotti. Permette di ricostruire la sequenza delle prove a sistema, delle decisioni del cliente e di Cristian, dei materiali per So Smart e per il cliente, e anche gli incidenti di lavoro (collisione fra sessioni del 29-30/09).
+Registro delle revisioni dello stato progetto Velo-CE, scritto solo in aggiunta: una riga per versione, dalla 001 dell'08/09/2026 alla 025.119 del 29/10/2026 (circa 135 righe). È la cronologia più completa del progetto: per ogni versione dice che cosa è stato verificato o deciso, quali blocchi sono cambiati e quali file sono stati prodotti. Permette di ricostruire la sequenza delle prove a sistema, delle decisioni del cliente e di Cristian, dei materiali per So Smart e per il cliente, e anche gli incidenti di lavoro (collisione fra sessioni del 29-30/09).
 
 ## Punti chiave
 
@@ -44,6 +45,7 @@ Registro delle revisioni dello stato progetto Velo-CE, scritto solo in aggiunta:
 - **08-12/10 (025.67-025.80)**: guida dell'etichetta collo; cartella `98 Share Team`; quattro opzioni per il tenant unico; BC in Premium sul nuovo tenant dal 01/01/2027; conferma scritta di So Smart; passaggio della fattura elettronica fra vecchio e nuovo BC con piano operativo; scritture ausiliarie di magazzino con obbligo probabile dal 2029; traccia e mappa del ciclo passivo per Claudia.
 - **15-20/10 (025.81-025.103)**: opzione 3 confermata e avvio su sandbox BlueAge; colore della bici in variante provato con report Power BI; risposta di So Smart al ticket e analisi degli articoli con codici nuovi; deck SAL con la data della riunione; demo del flusso completo in VC-NBC PROVA per Stefano; schede operative HTML; guide di assemblaggio, conto lavoro e migrazione della posta; tenant unico `velo-ce.eu`; mappa dei sistemi v004.
 - **21-27/10 (025.104-025.109)**: D22 chiusa (conto lavoro con app Subcontracting); etichette e Code 128 rimandato; costi accessori d'acquisto con letture e prove, guida v003 e deck del 27/10; impatti contabili e orientamento «per natura»; import del master articoli v005 nella società di prova e proposta conti per Claudia (OP-47, OP-48).
+- **28-29/10 (025.110-025.119)**: inventario dei tre tenant della posta e invio delle mail di BC; sottocartelle `Oda` del ciclo d'acquisto; magazzino fuori dalla contabilità nel 2027 (D-01); costi accessori chiusi e conti del ciclo d'acquisto per scenario provati in sandbox; Setup registrazioni COGE e conti per natura o per area; anticipi ai fornitori extra-UE con la categoria ANT, provati e chiusi; scheda operativa v003 e guida del ciclo d'acquisto v005; specifiche delle integrazioni We Make Code.
 
 ## Numeri
 
@@ -73,4 +75,4 @@ Registro delle revisioni dello stato progetto Velo-CE, scritto solo in aggiunta:
 
 - velo-ce-stato-progetto-99-log-revisioni.md · 2026-10-08 · prima versione ingerita (log fino alla 025.66); data di modifica della riorganizzazione della cartella
 - velo-ce-stato-progetto-99-log-revisioni.md · 2026-10-28 · log fino alla 025.109 del 27/10 (43 righe nuove); copia della cartella in `Cristian/` e in `Claude outputs/proj18/`
-
+- velo-ce-stato-progetto-99-log-revisioni.md · 2026-10-29 · log fino alla 025.119 del 29/10 (10 righe nuove dalla 025.110)

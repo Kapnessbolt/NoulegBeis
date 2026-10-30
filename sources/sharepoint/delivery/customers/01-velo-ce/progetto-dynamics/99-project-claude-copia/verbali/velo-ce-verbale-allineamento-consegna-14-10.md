@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-verbale-allineamento-consegna-14-10
 current:
-  item_id: 01EFCYUZ3GLQ4KM7QQOVB27WX7O2O7BRQJ
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ3GLQ4KM7QQOVB27WX7O2O7BRQJ
+  item_id: 01EFCYUZ2OUBDJ6UNGZRFYT3H56HI33GRE
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ2OUBDJ6UNGZRFYT3H56HI33GRE
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/verbali/velo-ce-verbale-261013-1020-allineamento-consegna-14-10.md
   name: velo-ce-verbale-261013-1020-allineamento-consegna-14-10.md
   last_modified: 2026-10-28T08:06:44Z

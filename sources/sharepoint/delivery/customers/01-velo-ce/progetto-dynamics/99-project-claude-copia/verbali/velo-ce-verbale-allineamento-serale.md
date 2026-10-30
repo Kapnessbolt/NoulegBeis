@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-verbale-allineamento-serale
 current:
-  item_id: 01EFCYUZ6Y4RMXYX3SGRCZO5U3IMHWEYOT
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ6Y4RMXYX3SGRCZO5U3IMHWEYOT
+  item_id: 01EFCYUZYBAS3P2CB4H5C3DMWHAL4RC4AR
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZYBAS3P2CB4H5C3DMWHAL4RC4AR
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/verbali/velo-ce-verbale-260929-1744-allineamento-serale.md
   name: velo-ce-verbale-260929-1744-allineamento-serale.md
   last_modified: 2026-10-08T10:44:36Z

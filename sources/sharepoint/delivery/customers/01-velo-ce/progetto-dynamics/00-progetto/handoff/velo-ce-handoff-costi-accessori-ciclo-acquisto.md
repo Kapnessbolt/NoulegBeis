@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-handoff-costi-accessori-ciclo-acquisto
 current:
-  item_id: 01EFCYUZ4I34DN5ZOFHZAZFAXGITY6VGWD
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ4I34DN5ZOFHZAZFAXGITY6VGWD
+  item_id: 01EFCYUZ3SMZC3N4DACRA2252SJWWRCAEO
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ3SMZC3N4DACRA2252SJWWRCAEO
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/00 Progetto/Handoff/handoff-2026-10-26-costi-accessori-ciclo-acquisto.md
   name: handoff-2026-10-26-costi-accessori-ciclo-acquisto.md
   last_modified: 2026-10-28T08:06:23Z

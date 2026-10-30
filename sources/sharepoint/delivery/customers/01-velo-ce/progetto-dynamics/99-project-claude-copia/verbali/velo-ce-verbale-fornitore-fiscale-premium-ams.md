@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-verbale-fornitore-fiscale-premium-ams
 current:
-  item_id: 01EFCYUZZQSEHCZZ2Y2NFYXJIMFTC37IJM
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZZQSEHCZZ2Y2NFYXJIMFTC37IJM
+  item_id: 01EFCYUZ7OEVI4OUXFWZBZ3JB545RRZKIP
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ7OEVI4OUXFWZBZ3JB545RRZKIP
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/verbali/velo-ce-verbale-261005-1117-fornitore-fiscale-premium-ams.md
   name: velo-ce-verbale-261005-1117-fornitore-fiscale-premium-ams.md
   last_modified: 2026-10-08T10:44:36Z

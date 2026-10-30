@@ -3,20 +3,22 @@ type: source-doc
 source: sharepoint
 family: velo-ce-guida-ciclo-dacquisto-ordine-ricevimento-fattura-cliente
 current:
-  item_id: 01EFCYUZ6GGXZ5TZMZTNA3DK7CD4UKMWC5
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ6GGXZ5TZMZTNA3DK7CD4UKMWC5
-  web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/08 Guide/Velo-CE - Guida ciclo d'acquisto ordine ricevimento fattura - CLIENTE - v003.pdf"
-  name: "Velo-CE - Guida ciclo d'acquisto ordine ricevimento fattura - CLIENTE - v003.pdf"
-  last_modified: 2026-10-28T08:06:12Z
+  item_id: 01EFCYUZZKU4ICGM5RRVE3V4BTBGMOIQGS
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZZKU4ICGM5RRVE3V4BTBGMOIQGS
+  web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/08 Guide/Velo-CE - Guida ciclo d'acquisto ordine ricevimento fattura - CLIENTE - v005.pdf"
+  name: "Velo-CE - Guida ciclo d'acquisto ordine ricevimento fattura - CLIENTE - v005.pdf"
+  last_modified: 2026-10-29T16:14:37Z
 versions:
+  - { name: "Velo-CE - Guida ciclo d'acquisto ordine ricevimento fattura - CLIENTE - v005.pdf", item_id: 01EFCYUZZKU4ICGM5RRVE3V4BTBGMOIQGS, last_modified: 2026-10-29T16:14:37Z }
   - { name: "Velo-CE - Guida ciclo d'acquisto ordine ricevimento fattura - CLIENTE - v003.pdf", item_id: 01EFCYUZ6GGXZ5TZMZTNA3DK7CD4UKMWC5, last_modified: 2026-10-28T08:06:12Z }
   - { name: "Velo-CE - Guida ciclo d'acquisto ordine ricevimento fattura - CLIENTE - v001.pdf", item_id: 01EFCYUZ2NFY7SHZIZHNCK2HCAV2ZD6TXR, last_modified: 2026-10-08T10:43:50Z }
   - { name: "Velo-CE - Guida ciclo d'acquisto ordine ricevimento fattura - CLIENTE - v001.docx", item_id: 01EFCYUZZFBAAZ4ZQ7OBDJR4NEJPX3UNAK, last_modified: 2026-10-08T09:38:16Z }
 also_at:
   - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/08 Guide/Velo-CE - Guida ciclo d'acquisto ordine ricevimento fattura - CLIENTE - v003.docx", item_id: 01EFCYUZ2IVKUVOYPS2JH25GXPEAKCG5OI }
+  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/08 Guide/Velo-CE - Guida ciclo d'acquisto ordine ricevimento fattura - CLIENTE - v005.docx", item_id: 01EFCYUZYCY5HZ7FQCWZDII455LQVPQE3K }
 status: active
 partial: false
-ingested_at: 2026-10-29T05:59:14Z
+ingested_at: 2026-10-30T05:59:03Z
 projects: ["[[velo-ce-progetto-dynamics]]"]
 clients: ["[[velo-ce]]"]
 topics: ["[[business-central-ai]]"]
@@ -27,7 +29,7 @@ tags: [guida-operativa, business-central, acquisti, ricevimento-merci, fattura-p
 
 ## Riassunto
 
-Guida operativa BlueAge per Velo-CE (v003 del 24/10/2026, 18 pagine; v001 dell'08/10, 9 pagine) su come passare dal carico di magazzino a mano con fattura su conto di costo al flusso standard di Business Central in tre passaggi: ordine d'acquisto, ricevimento sull'ordine, fattura che prende le righe del carico. Usa solo funzioni standard comprese nella licenza Essentials, nessuna app aggiuntiva. È costruita su una prova eseguita da BlueAge in un ambiente dimostrativo, con lo stesso acquisto registrato nei due modi per mostrare la differenza sul costo dell'articolo. La v003 aggiunge il capitolo 3 sui costi accessori: trasporti, dazi e spese di spedizionieri e corrieri entrano nel costo dell'articolo con due soli addebiti articolo (TRASP e DAZI), provati il 24/10 in una società dimostrativa con piano dei conti, categorie e IVA di Velo-CE. Chiude con un confronto oggi/domani, la ripartizione dei compiti e dieci punti da sapere prima di partire.
+Guida operativa BlueAge per Velo-CE (v005 del 29/10/2026, 32 pagine; v003 del 24/10, 18 pagine; v001 dell'08/10, 9 pagine) su come passare dal carico di magazzino a mano con fattura su conto di costo al flusso standard di Business Central in tre passaggi: ordine d'acquisto, ricevimento sull'ordine, fattura che prende le righe del carico. Usa solo funzioni standard comprese nella licenza Essentials, nessuna app aggiuntiva. È costruita su una prova eseguita da BlueAge in un ambiente dimostrativo, con lo stesso acquisto registrato nei due modi per mostrare la differenza sul costo dell'articolo. La v003 aggiunge il capitolo 3 sui costi accessori: trasporti, dazi e spese di spedizionieri e corrieri entrano nel costo dell'articolo con due soli addebiti articolo (TRASP e DAZI), provati il 24/10 in una società dimostrativa con piano dei conti, categorie e IVA di Velo-CE. Chiude con un confronto oggi/domani, la ripartizione dei compiti e dieci punti da sapere prima di partire.
 
 ## Punti chiave
 
@@ -39,6 +41,7 @@ Guida operativa BlueAge per Velo-CE (v003 del 24/10/2026, 18 pagine; v001 dell'0
 - **Costi accessori (v003)**: TRASP raccoglie trasporto e tutte le voci di spedizionieri e corrieri, DAZI il dazio; IVA all'importazione, bolli, spese bancarie e trasporti su vendite restano righe su conto. Il trasporto si ripartisce per volume o per peso (da decidere), il dazio sempre per importo; l'addebito si aggancia a un carico registrato, ritrovato dalla lettera di vettura scritta sull'ordine nel campo del documento di trasporto.
 - **Casi provati**: trasporto nella fattura del fornitore; spedizioniere dell'import con fattura della bolla (dazio come addebito, IVA e bollo su conto) e fattura del nolo; corriere espresso con fattura della bolla e fattura mensile DHL (una riga TRASP per spedizione d'acquisto, da automatizzare dall'XML); fatture arrivate dopo il consumo, con rettifiche automatiche del costo.
 - **Da sapere prima di partire (v003)**: carico registrato prima delle fatture di trasporto e dazio; «% costi indiretti» a zero sugli articoli con addebiti, altrimenti il costo si conta due volte; volume e peso per pezzo sulla scheda articolo almeno per i componenti importati; IVA dell'addebito DAZI da impostare a ESC15; cambio del dollaro e anticipi ai fornitori esteri da scegliere con il commercialista.
+- **Scenari e anticipi (v004-v005, 28-29/10)**: guida rifatta sugli scenari d'acquisto provati in sandbox (Italia, Italia con plafond, UE, extra-UE con e senza plafond) e, nella v005, con gli anticipi ai fornitori esteri registrati sul fornitore con la categoria ANT e collegati alla fattura; versione corretta il 29/10 con le indicazioni su «Qtà da ricevere» ([[velo-ce-stato-progetto-99-log-revisioni]], [[velo-ce-conti-del-ciclo-dacquisto-per-scenario-interno]]).
 
 ## Numeri
 
@@ -61,4 +64,4 @@ Guida operativa BlueAge per Velo-CE (v003 del 24/10/2026, 18 pagine; v001 dell'0
 - Velo-CE - Guida ciclo d'acquisto ordine ricevimento fattura - CLIENTE - v001.pdf · 2026-10-08 · prima versione ingerita (v001 dell'08/10/2026); data di modifica dovuta alla riorganizzazione della cartella
 - Velo-CE - Guida ciclo d'acquisto ordine ricevimento fattura - CLIENTE - v001.docx · 2026-10-08 · sorgente modificabile dello stesso documento
 - Velo-CE - Guida ciclo d'acquisto ordine ricevimento fattura - CLIENTE - v003.pdf · 2026-10-28 · v003 del 24/10: capitolo 3 sui costi accessori (TRASP e DAZI), 18 pagine; v002 del 18/10 non vista; anche in .docx del 27/10; nella cartella `Cristian/08 Guide/`
-
+- Velo-CE - Guida ciclo d'acquisto ordine ricevimento fattura - CLIENTE - v005.pdf · 2026-10-29 · v005 del 29/10 (32 pagine): anticipi ai fornitori sul fornitore con la categoria ANT e pagamento extra-UE (punti 8.6-8.9, 9.4, righe nuove nei capitoli 10-12); v004 del 28/10 con i sei scenari; anche in .docx; contenuto dal log revisioni 025.114-025.119, guida non riletta

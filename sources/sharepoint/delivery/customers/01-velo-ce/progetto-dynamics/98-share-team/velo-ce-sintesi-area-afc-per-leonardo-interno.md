@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-sintesi-area-afc-per-leonardo-interno
 current:
-  item_id: 01EFCYUZ35ZPGRRMVNBRG236F36GBD4ZVF
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ35ZPGRRMVNBRG236F36GBD4ZVF
+  item_id: 01EFCYUZ2D4F64KOQODND2M5XTVOQIM4TB
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ2D4F64KOQODND2M5XTVOQIM4TB
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/98 Share Team/Velo-CE - Sintesi area AFC per Leonardo - INTERNO - v001.md
   name: Velo-CE - Sintesi area AFC per Leonardo - INTERNO - v001.md
   last_modified: 2026-10-08T10:43:50Z

@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-verbale-revisione-file-codifica-articoli
 current:
-  item_id: 01EFCYUZ5KYQQAJ7VPGZA33ULE2ZMQDX3J
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ5KYQQAJ7VPGZA33ULE2ZMQDX3J
+  item_id: 01EFCYUZ2LGWU5VQCBRZEKWE7MSZ6DQJ4W
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ2LGWU5VQCBRZEKWE7MSZ6DQJ4W
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/verbali/velo-ce-verbale-261022-1104-revisione-file-codifica-articoli.md
   name: velo-ce-verbale-261022-1104-revisione-file-codifica-articoli.md
   last_modified: 2026-10-28T08:06:46Z

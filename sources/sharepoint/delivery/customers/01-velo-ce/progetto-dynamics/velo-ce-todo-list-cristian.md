@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-todo-list-cristian
 current:
-  item_id: 01EFCYUZ3YOUV4TK7ZD5F33EMGJPKAKROA
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ3YOUV4TK7ZD5F33EMGJPKAKROA
+  item_id: 01EFCYUZ7IPSLEOTOVMND2HPKKVA5JD2MN
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ7IPSLEOTOVMND2HPKKVA5JD2MN
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/ToDo List.txt
   name: ToDo List.txt
   last_modified: 2026-10-28T08:04:44Z

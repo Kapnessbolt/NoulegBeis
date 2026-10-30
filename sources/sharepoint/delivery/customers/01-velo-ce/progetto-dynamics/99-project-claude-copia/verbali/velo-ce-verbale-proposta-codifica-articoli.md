@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-verbale-proposta-codifica-articoli
 current:
-  item_id: 01EFCYUZYY7VHOCG6ZZNC2J2H23Q2BMJAQ
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZYY7VHOCG6ZZNC2J2H23Q2BMJAQ
+  item_id: 01EFCYUZ6TBUOWMFMC6JDKMWACC63BCGCH
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ6TBUOWMFMC6JDKMWACC63BCGCH
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/verbali/velo-ce-verbale-261014-1119-proposta-codifica-articoli.md
   name: velo-ce-verbale-261014-1119-proposta-codifica-articoli.md
   last_modified: 2026-10-28T08:06:44Z

@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-verbale-flusso-ordini-b2b-configuratori
 current:
-  item_id: 01EFCYUZ3LMY7D5ZSKD5AY7YKNAZCE35JB
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ3LMY7D5ZSKD5AY7YKNAZCE35JB
+  item_id: 01EFCYUZ45ZVBA6VCQHVAZ6EW2WOGUWAAD
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ45ZVBA6VCQHVAZ6EW2WOGUWAAD
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/verbali/velo-ce-verbale-260929-1241-flusso-ordini-b2b-configuratori.md
   name: velo-ce-verbale-260929-1241-flusso-ordini-b2b-configuratori.md
   last_modified: 2026-10-08T10:44:36Z

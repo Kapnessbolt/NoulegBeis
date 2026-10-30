@@ -3,19 +3,21 @@ type: source-doc
 source: sharepoint
 family: velo-ce-stato-progetto
 current:
-  item_id: 01EFCYUZYFANEIX47YHZBL3UOMRN2NZ4XA
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZYFANEIX47YHZBL3UOMRN2NZ4XA
+  item_id: 01EFCYUZYGHFQJ7KW5PND2UL7BXNCIBOFX
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZYGHFQJ7KW5PND2UL7BXNCIBOFX
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/velo-ce-stato-progetto.md
   name: velo-ce-stato-progetto.md
-  last_modified: 2026-10-28T08:06:17Z
+  last_modified: 2026-10-29T16:14:36Z
 versions:
+  - { name: velo-ce-stato-progetto.md, item_id: 01EFCYUZYGHFQJ7KW5PND2UL7BXNCIBOFX, last_modified: 2026-10-29T16:14:36Z }
   - { name: velo-ce-stato-progetto.md, item_id: 01EFCYUZYFANEIX47YHZBL3UOMRN2NZ4XA, last_modified: 2026-10-28T08:06:17Z }
   - { name: velo-ce-stato-progetto.md, item_id: 01EFCYUZ52E4OBOOWJ75BZ2ODOVSRBAL3U, last_modified: 2026-10-08T10:43:53Z }
 also_at:
   - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/Claude outputs/proj18/velo-ce-stato-progetto.md.txt", item_id: 01EFCYUZ2JVDDMLJK26VBJX24PZVFFDSRR }
+  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/98 Share Team/Velo-CE - Contesto Claude per Leonardo - INTERNO - v001/velo-ce-stato-progetto.md", item_id: 01EFCYUZ3OC2OQN6PXBJAIFT4W4W7CWFU5 }
 status: active
 partial: false
-ingested_at: 2026-10-29T05:56:11Z
+ingested_at: 2026-10-30T05:58:45Z
 projects: ["[[velo-ce-progetto-dynamics]]"]
 clients: ["[[velo-ce]]"]
 topics: ["[[business-central-ai]]"]
@@ -26,7 +28,7 @@ tags: [velo-ce, business-central, stato-progetto, indice, interno]
 
 ## Riassunto
 
-Indice del documento di lavoro che è la fonte di verità operativa del progetto Velo-CE su Business Central (versione 025.109 del 27/10/2026), interno BlueAge e non mostrabile al cliente. Dal 24/09 il documento è diviso in sette blocchi (inquadramento e ambiente, cantieri, decisioni aperte, backlog, stato informazioni e quotazione, fornitori e perimetro, log revisioni); l'indice ne descrive contenuto e frequenza di aggiornamento, elenca i documenti collegati e riporta la nuova struttura della cartella di progetto dal 02/10/2026 con le regole di versione e di aggiornamento.
+Indice del documento di lavoro che è la fonte di verità operativa del progetto Velo-CE su Business Central (versione 025.119 del 29/10/2026), interno BlueAge e non mostrabile al cliente. Dal 24/09 il documento è diviso in sette blocchi (inquadramento e ambiente, cantieri, decisioni aperte, backlog, stato informazioni e quotazione, fornitori e perimetro, log revisioni); l'indice ne descrive contenuto e frequenza di aggiornamento, elenca i documenti collegati e riporta la nuova struttura della cartella di progetto dal 02/10/2026 con le regole di versione e di aggiornamento.
 
 ## Punti chiave
 
@@ -40,10 +42,11 @@ Indice del documento di lavoro che è la fonte di verità operativa del progetto
 - **Regole della cartella**: la versione precedente va in `_superato/` con lo stesso percorso; nomi `Velo-CE - <Titolo> - <DESTINATARIO> - vNNN` senza data in testa (eccezioni: evidenze e transcript); nessuna cancellazione, solo spostamenti.
 - **Regole di aggiornamento**: numerazione dei paragrafi invariata; un fatto in un solo blocco; ogni aggiornamento aggiunge una riga al log; si riscrive solo il blocco toccato.
 - I temi di identità, permessi e accessi dei partner stanno in un registro di governance separato (GOV-01…), per decisione di Cristian.
+- Dal 28/10 l'indice registra le evidenze fino a E264 (prossimo E265) e T334 (prossimo T335), le sottocartelle `Oda` del ciclo d'acquisto in `07 Aree/AFC/` e le cartelle `08 Guide/Schede operative` e `08 Guide/Setup tecnici` ([[velo-ce-stato-progetto-99-log-revisioni]]).
 
 ## Numeri
 
-- Versione 025.109 del 27/10/2026 (era 025.66 all'08/10).
+- Versione 025.119 del 29/10/2026 (era 025.109 il 27/10, 025.66 all'08/10).
 - Evidenze: E01-E224 sul tenant del cliente, T01-T295 sul tenant BlueAge (erano E160 e T172).
 - Verbali elencati nell'indice: 17, dal 29/09 al 14/10; nella cartella `verbali/` altri 12 fino al 27/10.
 
@@ -59,3 +62,4 @@ Indice del documento di lavoro che è la fonte di verità operativa del progetto
 
 - velo-ce-stato-progetto.md · 2026-10-08 · prima versione ingerita (versione documento 025.66); data di modifica della riorganizzazione della cartella
 - velo-ce-stato-progetto.md · 2026-10-28 · versione documento 025.109 del 27/10; la cartella di progetto passa da `Progetto Dynamics/` a `Cristian/` (copia del 28/10); copia anche in `Claude outputs/proj18/`
+- velo-ce-stato-progetto.md · 2026-10-29 · versione documento 025.119 del 29/10: evidenze fino a E264 e T334, cartelle `04`, `07` (sottocartelle `Oda`) e `08` (`Schede operative`, `Setup tecnici`); di nuovo in `Progetto Dynamics/` con ID nuovi

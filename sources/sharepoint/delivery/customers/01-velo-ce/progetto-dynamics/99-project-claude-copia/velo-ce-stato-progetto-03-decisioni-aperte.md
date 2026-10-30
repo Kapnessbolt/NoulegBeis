@@ -3,19 +3,21 @@ type: source-doc
 source: sharepoint
 family: velo-ce-stato-progetto-03-decisioni-aperte
 current:
-  item_id: 01EFCYUZ4KI2E7NODW6VFZLEBW6P6ZP6KZ
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ4KI2E7NODW6VFZLEBW6P6ZP6KZ
+  item_id: 01EFCYUZ6FLONC3FDJJFEIMLFVJX7MKTRZ
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ6FLONC3FDJJFEIMLFVJX7MKTRZ
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/velo-ce-stato-progetto-03-decisioni-aperte.md
   name: velo-ce-stato-progetto-03-decisioni-aperte.md
-  last_modified: 2026-10-28T08:06:16Z
+  last_modified: 2026-10-29T16:14:35Z
 versions:
+  - { name: velo-ce-stato-progetto-03-decisioni-aperte.md, item_id: 01EFCYUZ6FLONC3FDJJFEIMLFVJX7MKTRZ, last_modified: 2026-10-29T16:14:35Z }
   - { name: velo-ce-stato-progetto-03-decisioni-aperte.md, item_id: 01EFCYUZ4KI2E7NODW6VFZLEBW6P6ZP6KZ, last_modified: 2026-10-28T08:06:16Z }
   - { name: velo-ce-stato-progetto-03-decisioni-aperte.md, item_id: 01EFCYUZ7LPNBMHRTVJFHI467EREJPGL4B, last_modified: 2026-10-08T10:43:52Z }
 also_at:
   - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/Claude outputs/proj18/velo-ce-stato-progetto-03-decisioni-aperte.md.txt", item_id: 01EFCYUZ6E4QZ6RF4BYFFJSK5AGDAGCLOW }
+  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/98 Share Team/Velo-CE - Contesto Claude per Leonardo - INTERNO - v001/velo-ce-stato-progetto-03-decisioni-aperte.md", item_id: 01EFCYUZ7WXPBVVZ2Y7BEJLKSOCAEI6DH3 }
 status: active
 partial: false
-ingested_at: 2026-10-29T05:57:56Z
+ingested_at: 2026-10-30T05:58:45Z
 projects: ["[[velo-ce-progetto-dynamics]]"]
 clients: ["[[velo-ce]]"]
 topics: ["[[business-central-ai]]", "[[fatturazione-elettronica-sdi]]"]
@@ -45,6 +47,10 @@ Blocco 03 (§7) dello stato progetto Velo-CE, interno BlueAge, il più aggiornat
 - **Pilota (p.80-83)**: costo del terzista a zero nel modello v006, regola di consuntivazione delle fasi con scarto (Manuale dove si dichiara lo scarto), righe di distinta fantasma da correggere nei pacchetti, trasferimento al terzista con l'app Subcontracting da provare.
 - **Aggiornamenti dal 08/10 al 27/10** ([[velo-ce-stato-progetto-99-log-revisioni]]): §7.1 p.12 — 09/10 confermata la ripartenza di BC in Premium su un tenant nuovo con partenza al 01/01/2027; 15/10 confermata l'opzione 3 (ambiente nuovo senza storico, BC di oggi nel tenant So Smart fino al bilancio 2026) con avvio subito su una società di prova nel tenant BlueAge, CT-01 chiuso; 15/10 sera ripresa dei saldi affidata a So Smart tranne gli articoli ([[velo-ce-articoli-codici-nuovi]]); 20/10 tenant unico `velo-ce.eu`.
 - §7.4: p.34 e p.47 (21/10) D22 chiusa, conto lavoro solo sugli ordini di produzione con l'app Microsoft «Subcontracting»; nuovo p.89 (26/10) sugli impatti contabili della nuova operatività con orientamento di Cristian per il modello «per natura» dal 01/01/2027, da confermare con il commercialista prima del 13/11, metodo di valutazione (FIFO o medio ponderato) ancora aperto; nota del 26/10 sera sulla proposta dei conti delle nuove categorie per Claudia (OP-47).
+- **p.89, 28/10 (025.113)**: orientamento BlueAge chiuso (D-01): nel 2027 il flag «Reg. automatica costi» resta spento e il magazzino non entra in contabilità, per il lavoro in più che darebbe a Claudia; supera l'orientamento dell'08/10; da presentare a Stefano; accensione dal 01/01/2028 dopo una prova in sandbox. Conseguenza: i conti del ciclo d'acquisto restano quelli di oggi e cade per il 2027 la domanda al commercialista «per natura o costo del venduto» ([[velo-ce-contabilita-di-magazzino-attivita-di-claudia-con-il-flag-acceso-e-spento-interno]]).
+- **p.89, 28/10 sera (025.115)**: il Setup registrazioni COGE arriva «come oggi» con le riprese dati di So Smart, ma non ha righe per le categorie del master nuovo e non è mai stato usato per gli acquisti; scelta D-09 fra conti per area, per natura o via di mezzo nel file per Claudia, orientamento di Claude per area nel 2027 ([[velo-ce-conti-acquisti-per-natura-o-per-area-cliente]]).
+- **p.84, 24-28/10 (025.114)**: costi accessori d'acquisto chiusi con l'incontro con Claudia del 27/10 (due addebiti TRASP e DAZI, transitorio dogana verificato); conti del ciclo d'acquisto mappati per sei scenari e provati in sandbox ([[velo-ce-conti-del-ciclo-dacquisto-per-scenario-interno]]).
+- **Nuovo p.90 «Anticipi ai fornitori extra-UE e cambi» (025.114-025.119)**: oggi anticipi su 03038110 senza fornitore (saldo circa 2,02 milioni al 27/10) e differenze di cambio a mano; per indicazione di Cristian (29/10) l'anticipo si traccia sul fornitore con la categoria alternativa ANT, provata in sandbox con collegamento alla fattura e differenza di cambio calcolata da BC; la rettifica cambi rivaluta anche gli anticipi aperti e non li esclude: decide il commercialista ([[velo-ce-setup-anticipi-fornitori-so-smart]]).
 
 ## Numeri
 
@@ -87,4 +93,4 @@ Blocco 03 (§7) dello stato progetto Velo-CE, interno BlueAge, il più aggiornat
 
 - velo-ce-stato-progetto-03-decisioni-aperte.md · 2026-10-08 · prima versione ingerita (stato progetto 025.66); data di modifica della riorganizzazione della cartella
 - velo-ce-stato-progetto-03-decisioni-aperte.md · 2026-10-28 · stato progetto 025.109 del 27/10; p.12 su tenant e opzione 3, D22 chiusa, p.89 sul giro contabile (differenze ricavate dal log revisioni, blocco non riletto per intero); copia della cartella in `Cristian/`
-
+- velo-ce-stato-progetto-03-decisioni-aperte.md · 2026-10-29 · stato progetto 025.119; p.89 (magazzino fuori dalla contabilità nel 2027, conto acquisti per natura o per area), p.84 (costi accessori chiusi, conti per scenario) e nuovo p.90 (anticipi ai fornitori extra-UE e cambi); aggiornato dalle righe del log revisioni, blocco non riletto per intero

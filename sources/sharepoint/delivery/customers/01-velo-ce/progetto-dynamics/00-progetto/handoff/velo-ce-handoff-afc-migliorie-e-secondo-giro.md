@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-handoff-afc-migliorie-e-secondo-giro
 current:
-  item_id: 01EFCYUZYLZDNO7XYBRFDZN4HAWGKRBPZX
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZYLZDNO7XYBRFDZN4HAWGKRBPZX
+  item_id: 01EFCYUZ2QH3GCBVT2NBEZWHFWGQRSBXWX
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ2QH3GCBVT2NBEZWHFWGQRSBXWX
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/00 Progetto/Handoff/handoff-2026-10-15-afc-migliorie-e-secondo-giro.md
   name: handoff-2026-10-15-afc-migliorie-e-secondo-giro.md
   last_modified: 2026-10-28T08:06:23Z

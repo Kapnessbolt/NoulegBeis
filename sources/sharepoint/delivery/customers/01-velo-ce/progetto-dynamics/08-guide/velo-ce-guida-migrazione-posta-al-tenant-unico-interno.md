@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-guida-migrazione-posta-al-tenant-unico-interno
 current:
-  item_id: 01EFCYUZYJF6K5NLKSQZCZSTBGR2YZLXY4
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZYJF6K5NLKSQZCZSTBGR2YZLXY4
+  item_id: 01EFCYUZYGRY7LCZNT45BI4MUPYV6X7FMM
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZYGRY7LCZNT45BI4MUPYV6X7FMM
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/08 Guide/Velo-CE - Guida migrazione posta al tenant unico - INTERNO - v001.pdf
   name: Velo-CE - Guida migrazione posta al tenant unico - INTERNO - v001.pdf
   last_modified: 2026-10-28T08:06:12Z

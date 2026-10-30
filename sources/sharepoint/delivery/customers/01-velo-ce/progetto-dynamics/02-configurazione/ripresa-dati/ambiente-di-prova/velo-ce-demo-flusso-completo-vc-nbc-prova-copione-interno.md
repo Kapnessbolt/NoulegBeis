@@ -10,7 +10,8 @@ current:
   last_modified: 2026-10-28T08:06:49Z
 versions:
   - { name: "Velo-CE - Demo flusso completo VC-NBC PROVA - copione - INTERNO - v001.md", item_id: 01EFCYUZZV73IGQAD5YBAKG3BJFLEUUX2R, last_modified: 2026-10-28T08:06:49Z }
-also_at: []
+also_at:
+  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/02 Configurazione/Telaio e produzione/Ambiente di prova/Velo-CE - Demo flusso completo VC-NBC PROVA - copione - INTERNO - v001.md", item_id: 01EFCYUZ4QT5LPFXKRSFDJY4TORQ6KBDRK }
 status: active
 partial: false
 ingested_at: 2026-10-29T06:13:53Z

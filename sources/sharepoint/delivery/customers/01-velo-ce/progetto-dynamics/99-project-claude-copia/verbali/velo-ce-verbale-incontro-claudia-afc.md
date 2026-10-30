@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-verbale-incontro-claudia-afc
 current:
-  item_id: 01EFCYUZ2BOWMFEPXW4JFJ4UQ26Y5GZDPD
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ2BOWMFEPXW4JFJ4UQ26Y5GZDPD
+  item_id: 01EFCYUZ73B2PCEVXLM5BZL5UZZ5IBM4OH
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ73B2PCEVXLM5BZL5UZZ5IBM4OH
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/verbali/velo-ce-verbale-261013-1357-incontro-claudia-afc.md
   name: velo-ce-verbale-261013-1357-incontro-claudia-afc.md
   last_modified: 2026-10-28T08:06:44Z

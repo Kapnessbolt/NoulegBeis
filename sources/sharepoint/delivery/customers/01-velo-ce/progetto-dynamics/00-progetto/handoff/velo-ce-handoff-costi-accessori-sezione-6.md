@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-handoff-costi-accessori-sezione-6
 current:
-  item_id: 01EFCYUZY4DVIDHCOKNBBLZ47DGDSBG3GG
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZY4DVIDHCOKNBBLZ47DGDSBG3GG
+  item_id: 01EFCYUZY6LW7G2EXCXJEKR3SHU6AXDGOQ
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZY6LW7G2EXCXJEKR3SHU6AXDGOQ
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/00 Progetto/Handoff/handoff-2026-10-27-costi-accessori-sezione-6.md
   name: handoff-2026-10-27-costi-accessori-sezione-6.md
   last_modified: 2026-10-28T08:06:23Z

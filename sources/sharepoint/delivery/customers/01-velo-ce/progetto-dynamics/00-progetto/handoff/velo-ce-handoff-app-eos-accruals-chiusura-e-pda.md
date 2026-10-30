@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-handoff-app-eos-accruals-chiusura-e-pda
 current:
-  item_id: 01EFCYUZ6OBEXVJ4K3ZZELYJ5EZ6CNUMBC
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ6OBEXVJ4K3ZZELYJ5EZ6CNUMBC
+  item_id: 01EFCYUZ6U5577QBRWLJHITRCV25FEYSWX
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ6U5577QBRWLJHITRCV25FEYSWX
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/00 Progetto/Handoff/handoff-2026-10-04-app-eos-accruals-chiusura-e-pda.md
   name: handoff-2026-10-04-app-eos-accruals-chiusura-e-pda.md
   last_modified: 2026-10-08T10:43:54Z

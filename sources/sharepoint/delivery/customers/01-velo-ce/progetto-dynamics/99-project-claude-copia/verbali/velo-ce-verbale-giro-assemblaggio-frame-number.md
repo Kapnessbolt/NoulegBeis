@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-verbale-giro-assemblaggio-frame-number
 current:
-  item_id: 01EFCYUZZMNCRPYHBSUBFK7UAYRQGQ77EF
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZZMNCRPYHBSUBFK7UAYRQGQ77EF
+  item_id: 01EFCYUZ6Q6D2ZFKOWGFC3ZUTBBLKHI2BQ
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ6Q6D2ZFKOWGFC3ZUTBBLKHI2BQ
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/verbali/velo-ce-verbale-261021-0845-giro-assemblaggio-frame-number.md
   name: velo-ce-verbale-261021-0845-giro-assemblaggio-frame-number.md
   last_modified: 2026-10-28T08:06:44Z

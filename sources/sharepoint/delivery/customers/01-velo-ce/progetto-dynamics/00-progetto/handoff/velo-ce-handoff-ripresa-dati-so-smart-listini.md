@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-handoff-ripresa-dati-so-smart-listini
 current:
-  item_id: 01EFCYUZ5JIJB2MXI5NJAZ5CLEG343JD62
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ5JIJB2MXI5NJAZ5CLEG343JD62
+  item_id: 01EFCYUZ763YDQO4TYYJAKI5IP2B5VB535
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ763YDQO4TYYJAKI5IP2B5VB535
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/00 Progetto/Handoff/handoff-2026-10-16-ripresa-dati-so-smart-listini.md
   name: handoff-2026-10-16-ripresa-dati-so-smart-listini.md
   last_modified: 2026-10-28T08:06:23Z

@@ -3,17 +3,18 @@ type: source-doc
 source: sharepoint
 family: velo-ce-verbale-import-extra-ue-anticipi-bolle
 current:
-  item_id: 01EFCYUZYTJIBKZFEQMRF3GA2Y5NFKM7E4
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZYTJIBKZFEQMRF3GA2Y5NFKM7E4
+  item_id: 01EFCYUZ5OLHRWWVQM55C2NAIRQ7L2W75J
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ5OLHRWWVQM55C2NAIRQ7L2W75J
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/verbali/velo-ce-verbale-261027-1400-import-extra-ue-anticipi-bolle.md
   name: velo-ce-verbale-261027-1400-import-extra-ue-anticipi-bolle.md
-  last_modified: 2026-10-28T08:06:46Z
+  last_modified: 2026-10-29T16:15:51Z
 versions:
+  - { name: velo-ce-verbale-261027-1400-import-extra-ue-anticipi-bolle.md, item_id: 01EFCYUZ5OLHRWWVQM55C2NAIRQ7L2W75J, last_modified: 2026-10-29T16:15:51Z }
   - { name: velo-ce-verbale-261027-1400-import-extra-ue-anticipi-bolle.md, item_id: 01EFCYUZYTJIBKZFEQMRF3GA2Y5NFKM7E4, last_modified: 2026-10-28T08:06:46Z }
 also_at: []
 status: active
 partial: false
-ingested_at: 2026-10-29T06:05:56Z
+ingested_at: 2026-10-30T05:58:45Z
 projects: ["[[velo-ce-progetto-dynamics]]"]
 clients: ["[[velo-ce]]"]
 topics: ["[[business-central-ai]]"]
@@ -49,3 +50,4 @@ Sessione in sede del 27/10/2026 dalle 14:00 a circa le 14:45 fra BlueAge (Cristi
 ## Versioni
 
 - velo-ce-verbale-261027-1400-import-extra-ue-anticipi-bolle.md · 2026-10-28 · prima versione ingerita; cartella `Cristian/99 Project Claude (copia)/verbali/`
+- velo-ce-verbale-261027-1400-import-extra-ue-anticipi-bolle.md · 2026-10-29 · tre citazioni delle righe del transcript corrette (025.114); contenuto invariato

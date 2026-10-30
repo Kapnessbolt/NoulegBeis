@@ -3,18 +3,20 @@ type: source-doc
 source: sharepoint
 family: velo-ce-stato-progetto-01-inquadramento-ambiente
 current:
-  item_id: 01EFCYUZ2AQVYH6QUXYND3XMXYVVPPTTRA
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ2AQVYH6QUXYND3XMXYVVPPTTRA
+  item_id: 01EFCYUZ2DT2PWF3O6HVDJXLRXJJM7MMNE
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ2DT2PWF3O6HVDJXLRXJJM7MMNE
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/velo-ce-stato-progetto-01-inquadramento-ambiente.md
   name: velo-ce-stato-progetto-01-inquadramento-ambiente.md
-  last_modified: 2026-10-28T08:06:16Z
+  last_modified: 2026-10-29T16:14:34Z
 versions:
+  - { name: velo-ce-stato-progetto-01-inquadramento-ambiente.md, item_id: 01EFCYUZ2DT2PWF3O6HVDJXLRXJJM7MMNE, last_modified: 2026-10-29T16:14:34Z }
   - { name: velo-ce-stato-progetto-01-inquadramento-ambiente.md, item_id: 01EFCYUZ2AQVYH6QUXYND3XMXYVVPPTTRA, last_modified: 2026-10-28T08:06:16Z }
   - { name: velo-ce-stato-progetto-01-inquadramento-ambiente.md, item_id: 01EFCYUZ3MUEM32WVBQRHZKSGTLF2AKPUO, last_modified: 2026-10-08T10:43:53Z }
-also_at: []
+also_at:
+  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/98 Share Team/Velo-CE - Contesto Claude per Leonardo - INTERNO - v001/velo-ce-stato-progetto-01-inquadramento-ambiente.md", item_id: 01EFCYUZZB54MCEFFOOZGY6BZPICBUMC6N }
 status: active
 partial: false
-ingested_at: 2026-10-29T05:57:56Z
+ingested_at: 2026-10-30T05:58:45Z
 projects: ["[[velo-ce-progetto-dynamics]]"]
 clients: ["[[velo-ce]]"]
 topics: ["[[business-central-ai]]"]
@@ -44,6 +46,8 @@ Blocco 01 (§1-§2) dello stato progetto Velo-CE, interno BlueAge. Inquadra il c
 - **Job schedulati**: sei job So Smart (dispatcher per fasce) e il job del flusso MMI ogni 2 minuti; quattro job in errore da oltre due anni (indicatore di manutenzione assente).
 - **Flusso MMI**: canale automatico degli ordini di vendita (anche bici Veloe complete), scritto da due client esterni tramite l'app «CRM» con l'identità del titolare: rischio di governance (un cambio di password o MFA può fermare gli ordini) e vincolo sulla ricodifica (il canale usa il numero articolo di BC senza traduzione).
 - **Aggiornamenti dal 08/10 al 27/10** ([[velo-ce-stato-progetto-99-log-revisioni]]): posta su tre tenant Microsoft 365, tenant unico per BC e posta deciso il 20/10: `velo-ce.eu` (§2.1); nuovo §2.5 j) del 27/10 sull'import del master articoli v005 nella società di prova VC-IMPORT PROVA del tenant BlueAge con i pacchetti di configurazione (136 articoli, distinte, conti delle nuove categorie con il pacchetto VC-CONTI-01), con il limite che il pacchetto creato da Excel scrive anche i campi assenti.
+- **Tenant della posta (28/10, 025.110)**: inventario dei tre tenant Microsoft 365 della posta (solo posta, Exchange Online Piano 1, 22 licenze assegnate, rinnovo delle 14 licenze di `veloe.eu` il 05/12/2026, circa 54,6 GB); impostazioni di sicurezza predefinite spente e MFA solo su una casella in `veloe.eu`; la stima di «circa 6 caselle» dell'08/09 è superata ([[velo-ce-migrazione-posta-al-tenant-unico-inventario-e-proposte-cliente]]).
+- **Invio delle mail di BC (28/10, 025.111)**: nel tenant di BC nessuna posta da migrare (3 caselle, circa 30 MB); BC Production invia tutte le mail da `noreply@veloe.eu` con SMTP e autenticazione di base, che per impostazione predefinita finisce a fine dicembre 2026: serve il passaggio a OAuth 2.0 prima di spostare la casella (proposta P-13).
 
 ## Numeri
 
@@ -69,4 +73,4 @@ Blocco 01 (§1-§2) dello stato progetto Velo-CE, interno BlueAge. Inquadra il c
 
 - velo-ce-stato-progetto-01-inquadramento-ambiente.md · 2026-10-08 · prima versione ingerita (stato progetto 025.66); data di modifica della riorganizzazione della cartella
 - velo-ce-stato-progetto-01-inquadramento-ambiente.md · 2026-10-28 · stato progetto 025.109 del 27/10; tenant velo-ce.eu e §2.5 j) sull'import del master articoli (differenze ricavate dal log revisioni, blocco non riletto per intero); copia della cartella in `Cristian/`
-
+- velo-ce-stato-progetto-01-inquadramento-ambiente.md · 2026-10-29 · stato progetto 025.119; §2.1 «Tenant e domini della posta» con l'inventario dei tre tenant (025.110) e l'invio delle mail di BC (025.111); aggiornato dalle righe del log revisioni, blocco non riletto per intero

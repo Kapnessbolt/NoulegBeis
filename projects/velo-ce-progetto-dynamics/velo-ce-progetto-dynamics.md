@@ -56,6 +56,12 @@ updated: 2026-10-29
 - [ ] Far decidere a Stefano se Van Nicholas entra nella ricodifica 📅 2026-10-30 ([[velo-ce-articoli-codici-nuovi]])
 - [ ] Preparare la tabella di raccordo vecchi → nuovi codici articolo 📅 2026-12-04 ([[velo-ce-articoli-codici-nuovi]])
 - [ ] Far confermare a Claudia i conti delle nuove categorie di registrazione articolo (OP-47) ([[velo-ce-proposta-conti-categorie-articolo-cliente]])
+- [ ] Presentare a Stefano l'orientamento BlueAge: magazzino fuori dalla contabilità nel 2027 (D-01) ([[velo-ce-stato-progetto-03-decisioni-aperte]])
+- [ ] Raccogliere le risposte di Claudia sul criterio dei conti acquisti, per area, per natura o via di mezzo (D-09) ([[velo-ce-conti-acquisti-per-natura-o-per-area-cliente]])
+- [ ] Decidere con il commercialista il trattamento degli anticipi aperti alla rettifica dei cambi e il cambio della fattura estera ([[velo-ce-setup-anticipi-fornitori-so-smart]])
+- [ ] Passare l'invio delle mail di BC Production a OAuth 2.0 prima di spostare la casella `noreply@` (l'autenticazione di base SMTP finisce per impostazione predefinita a fine dicembre 2026) ([[velo-ce-migrazione-posta-al-tenant-unico-inventario-e-proposte-cliente]])
+- [ ] Raccogliere le risposte di Luigi Sacchi e Stefano alle domande sulla migrazione della posta (D-01…D-12) ([[velo-ce-migrazione-posta-al-tenant-unico-inventario-e-proposte-cliente]])
+- [ ] Rispondere a We Make Code con le domande W1-W10 e avvisare che la prova delle integrazioni richiede una sandbox del tenant `velo-ce.eu` con le app EOS ([[velo-ce-integrazioni-we-make-code-specifiche]])
 
 ## Decisioni
 

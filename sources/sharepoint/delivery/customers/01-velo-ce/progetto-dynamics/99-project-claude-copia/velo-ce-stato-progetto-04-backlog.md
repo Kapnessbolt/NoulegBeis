@@ -3,14 +3,15 @@ type: source-doc
 source: sharepoint
 family: velo-ce-stato-progetto-04-backlog
 current:
-  item_id: 01EFCYUZYKGV676ZHLAJB2K62BTOWI5SES
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZYKGV676ZHLAJB2K62BTOWI5SES
+  item_id: 01EFCYUZ2CDC5LHTGEP5A2H7ECMMBKYSGA
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ2CDC5LHTGEP5A2H7ECMMBKYSGA
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/velo-ce-stato-progetto-04-backlog.md
   name: velo-ce-stato-progetto-04-backlog.md
   last_modified: 2026-10-08T10:43:52Z
 versions:
   - { name: velo-ce-stato-progetto-04-backlog.md, item_id: 01EFCYUZ3ZR5JYAVFM2BD2V2AJSHMX4SKB, last_modified: 2026-10-08T10:43:52Z }
-also_at: []
+also_at:
+  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/98 Share Team/Velo-CE - Contesto Claude per Leonardo - INTERNO - v001/velo-ce-stato-progetto-04-backlog.md", item_id: 01EFCYUZ5FEGKBSVB3GNHLI4Y5EEFWNCAX }
 status: active
 partial: false
 ingested_at: 2026-10-22T13:25:37Z

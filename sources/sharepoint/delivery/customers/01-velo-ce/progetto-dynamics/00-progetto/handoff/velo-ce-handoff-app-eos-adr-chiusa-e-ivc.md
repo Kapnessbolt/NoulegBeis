@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-handoff-app-eos-adr-chiusa-e-ivc
 current:
-  item_id: 01EFCYUZZMSJQ26GLY2FC3OZQ2TUENK6JM
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZZMSJQ26GLY2FC3OZQ2TUENK6JM
+  item_id: 01EFCYUZ7YAJBOGIDLYJCLOUFYUDKEQ3LL
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ7YAJBOGIDLYJCLOUFYUDKEQ3LL
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/00 Progetto/Handoff/handoff-2026-10-05-app-eos-adr-chiusa-e-ivc.md
   name: handoff-2026-10-05-app-eos-adr-chiusa-e-ivc.md
   last_modified: 2026-10-08T10:43:55Z

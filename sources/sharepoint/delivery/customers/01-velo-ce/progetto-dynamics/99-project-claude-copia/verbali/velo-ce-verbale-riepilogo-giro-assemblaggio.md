@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-verbale-riepilogo-giro-assemblaggio
 current:
-  item_id: 01EFCYUZ3OGGA52P5EAVDIY772AR5PLZGK
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ3OGGA52P5EAVDIY772AR5PLZGK
+  item_id: 01EFCYUZ3JD7UK7E4PKFAYZSV433QSITCG
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ3JD7UK7E4PKFAYZSV433QSITCG
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/verbali/velo-ce-verbale-261021-0920-riepilogo-giro-assemblaggio.md
   name: velo-ce-verbale-261021-0920-riepilogo-giro-assemblaggio.md
   last_modified: 2026-10-28T08:06:44Z

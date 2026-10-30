@@ -3,8 +3,8 @@ type: source-doc
 source: sharepoint
 family: velo-ce-verbale-censimento-app-eos
 current:
-  item_id: 01EFCYUZ5VYOSTUD6AKFDYDHQVQZ47Q5GB
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ5VYOSTUD6AKFDYDHQVQZ47Q5GB
+  item_id: 01EFCYUZ4HBKRKHVT4SJG2T5GSVD7LYDHD
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ4HBKRKHVT4SJG2T5GSVD7LYDHD
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/verbali/velo-ce-verbale-260929-1230-censimento-app-eos.md
   name: velo-ce-verbale-260929-1230-censimento-app-eos.md
   last_modified: 2026-10-08T10:44:36Z
