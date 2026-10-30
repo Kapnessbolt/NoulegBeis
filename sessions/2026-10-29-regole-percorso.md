@@ -35,6 +35,6 @@ Capire se e come spostare parte di `CLAUDE.md` in regole a percorso (`.claude/ru
 
 ## Aperti
 
-- [ ] Primo giro reale dei task con le routine senza rilettura di `CLAUDE.md`: `/verifica-task` sul 2026-10-30 📅 2026-10-30
+- [x] Primo giro reale dei task con le routine senza rilettura di `CLAUDE.md`: `/verifica-task` sul 2026-10-30 📅 2026-10-30 (chiuso in [[2026-10-30]])
 - [ ] Chiudere lo step 14: la matrice delle scritture è ancora in due posti (SPEC §3 e `CLAUDE.md` §3), il perimetro in prosa in SPEC §5 e in `vault.yaml`
 - [ ] Rivedere le regole a percorso se una sessione lunga che compatta mostra errori ricorrenti sulle note fonte: la regola non torna dopo `/compact`
