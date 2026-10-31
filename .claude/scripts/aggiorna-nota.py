@@ -5,7 +5,8 @@ agente ingestor §3.4-3.6).
 Uso:
   python3 .claude/scripts/aggiorna-nota.py <percorso> [--campo chiave=valore ...]
           [--aggiungi lista=valore ...] [--also-at web_url=... item_id=...]
-          [--versione name=... item_id=... last_modified=... ...] [--versioni-in-ordine]
+          [--versione name=... item_id=... last_modified=... ...] [--togli-versione <item_id> ...]
+          [--versioni-in-ordine]
           [--nuova-versione --campo current.name=... --campo current.item_id=...
            --campo current.last_modified=... [--campo current.uri=... --campo current.web_url=...]]
           [--json]
@@ -19,12 +20,20 @@ Uso:
   già lo stesso `item_id` o lo stesso `web_url`.
 - `--versione name=... item_id=... last_modified=...` (source-doc, SPEC 4.3 e 6.4): registra in
   `versions` un ID superato dello stesso documento (un file ricaricato o una copia sparita, il
-  cui ID resta nello stato), se nessuna voce ha già lo stesso `item_id`. La prima voce di
-  `versions` resta dov'è (la corrente, schema 4.2; con `versions` vuoto la prima voce diventa
-  la `current`); le altre si tengono in ordine di `last_modified` decrescente. Non tocca
-  `current` né `ingested_at`. I tre valori sono obbligatori, `last_modified` è un istante UTC;
-  l'`item_id` della `current` è rifiutato (per una nuova corrente c'è `--nuova-versione`). Si
-  può ripetere per registrare più voci.
+  cui ID resta nello stato), se nessuna voce ha già lo stesso `item_id`. Alla fine applica da
+  solo il riordino di `--versioni-in-ordine` (in testa la voce della `current`, creata o
+  allineata se serve, poi le altre per `last_modified` decrescente, senza doppioni): così non
+  lascia mai una `current` fuori testa, e con `--json` riporta anche `versioni_in_ordine`. Non
+  tocca `current` né `ingested_at`. I tre valori sono obbligatori, `last_modified` è un istante
+  UTC; l'`item_id` della `current` è rifiutato (per una nuova corrente c'è `--nuova-versione`).
+  Si può ripetere per registrare più voci.
+- `--togli-versione <item_id>` (source-doc): toglie da `versions` tutte le voci con
+  quell'`item_id`. Serve solo per un ID refuso, mai esistito alla fonte, che si toglie anche
+  dallo stato con `stato.py rimuovi-voce` (prima quello, poi questo): un ID superato vero resta
+  in `versions` (SPEC 4.3, 6.4). L'`item_id` della `current` è rifiutato (esce con 2; per
+  GitHub, dove tutte le versioni hanno lo stesso `item_id`, è quindi sempre rifiutato). Un ID
+  che non c'è non cambia niente (idempotente); con `--json` `versioni_tolte` dice quante voci
+  ha tolto. Si può ripetere; si applica dopo `--versione` e prima di `--versioni-in-ordine`.
 - `--nuova-versione` (source-doc, ingestor §3.5 passo 1): la `current` attuale entra in testa a
   `versions` se non c'è già una voce con lo stesso `item_id` e `last_modified`, poi i `--campo
   current.*` passati diventano la nuova `current` (quelli non passati restano), che entra a sua
@@ -90,12 +99,21 @@ def aggiungi_versione(nuovo, voce):
         raise nota.Errore(f"--versione: `{voce['item_id']}` è l'item_id della current "
                           "(per una nuova corrente usa --nuova-versione)")
     versioni = list(nuovo.get("versions") or [])
-    if not versioni:
-        versioni = [voce_versione(nuovo)]
     if any(isinstance(v, dict) and str(v.get("item_id") or "") == voce["item_id"] for v in versioni):
         return  # già registrata: nessuna modifica
-    altre = sorted(versioni[1:] + [voce], key=chiave_data, reverse=True)
-    nuovo["versions"] = [versioni[0]] + altre
+    nuovo["versions"] = versioni + [voce]  # posto giusto e testa: versioni_in_ordine, dopo
+
+
+def togli_versione(nuovo, item_id):
+    """Toglie da `versions` le voci con quell'`item_id` (non la `current`); ritorna quante."""
+    cur = nuovo.get("current") if isinstance(nuovo.get("current"), dict) else {}
+    if item_id == str(cur.get("item_id") or ""):
+        raise nota.Errore(f"--togli-versione: `{item_id}` è l'item_id della current")
+    versioni = list(nuovo.get("versions") or [])
+    restano = [v for v in versioni if not (isinstance(v, dict) and str(v.get("item_id") or "") == item_id)]
+    if len(restano) != len(versioni):
+        nuovo["versions"] = restano
+    return len(versioni) - len(restano)
 
 
 def chiave_voce(v, github):
@@ -142,7 +160,8 @@ def versioni_in_ordine(nuovo):
             "riordinate": ordinate != altre}
 
 
-def aggiorna(rel, campi, aggiunte, also_at, nuova_versione, versioni_da_aggiungere=(), in_ordine=False):
+def aggiorna(rel, campi, aggiunte, also_at, nuova_versione, versioni_da_aggiungere=(), in_ordine=False,
+             versioni_da_togliere=()):
     p = nota.ROOT / rel
     if not p.is_file():
         raise nota.Errore(f"la nota `{rel}` non esiste: usa nuova-nota.py")
@@ -208,6 +227,13 @@ def aggiorna(rel, campi, aggiunte, also_at, nuova_versione, versioni_da_aggiunge
             voce = {"name": v["name"], "item_id": v["item_id"],
                     "last_modified": nota.a_istante(v["last_modified"], "--versione last_modified")}
             aggiungi_versione(nuovo, voce)
+        in_ordine = True  # --versione non lascia mai la current fuori testa
+
+    tolte = None
+    if versioni_da_togliere:
+        if sch["tipo"] != "source-doc":
+            raise nota.Errore("--togli-versione vale solo per le note source-doc")
+        tolte = sum(togli_versione(nuovo, iid) for iid in versioni_da_togliere)
 
     esito_ordine = None
     if in_ordine:
@@ -226,7 +252,7 @@ def aggiorna(rel, campi, aggiunte, also_at, nuova_versione, versioni_da_aggiunge
     cambiati = [k for k in nuovo if nota.normale(nuovo.get(k)) != nota.normale(vecchio.get(k))]
     if cambiati:
         nota.scrivi_atomico(p, nota.unisci(nota.riscrivi_frontmatter(fm, vecchio, nuovo), resto))
-    return cambiati, avvisi, esito_ordine
+    return cambiati, avvisi, esito_ordine, tolte
 
 
 def main(argv):
@@ -234,7 +260,7 @@ def main(argv):
         print(__doc__)
         return 0 if argv else 2
     rel = argv[0]
-    campi, aggiunte, also_at, versioni = [], [], {}, []
+    campi, aggiunte, also_at, versioni, da_togliere = [], [], {}, [], []
     nuova_versione = as_json = in_ordine = False
     i = 1
     while i < len(argv):
@@ -257,6 +283,11 @@ def main(argv):
                 i += 1
             if "web_url" not in also_at:
                 raise nota.Errore("--also-at vuole almeno web_url=...")
+        elif a == "--togli-versione":
+            if i + 1 >= len(argv) or argv[i + 1].startswith("--") or not argv[i + 1].strip():
+                raise nota.Errore("--togli-versione vuole un item_id")
+            da_togliere.append(argv[i + 1].strip())
+            i += 1
         elif a == "--versione":
             voce = {}
             while i + 1 < len(argv) and re.match(r"^(name|item_id|last_modified)=", argv[i + 1]):
@@ -270,17 +301,19 @@ def main(argv):
         else:
             raise nota.Errore(f"argomento non riconosciuto: {a}")
         i += 1
-    if not (campi or aggiunte or also_at or nuova_versione or versioni or in_ordine):
+    if not (campi or aggiunte or also_at or nuova_versione or versioni or in_ordine or da_togliere):
         raise nota.Errore("niente da fare: passa --campo, --aggiungi, --also-at, --versione, "
-                          "--nuova-versione o --versioni-in-ordine")
-    cambiati, avvisi, esito_ordine = aggiorna(rel, campi, aggiunte, also_at, nuova_versione, versioni,
-                                              in_ordine)
+                          "--togli-versione, --nuova-versione o --versioni-in-ordine")
+    cambiati, avvisi, esito_ordine, tolte = aggiorna(rel, campi, aggiunte, also_at, nuova_versione, versioni,
+                                                     in_ordine, da_togliere)
     for a in avvisi:
         sys.stderr.write(f"avviso: {a}\n")
     if as_json:
         out = {"nota": rel, "cambiati": cambiati, "avvisi": avvisi}
         if esito_ordine is not None:
             out["versioni_in_ordine"] = esito_ordine
+        if tolte is not None:
+            out["versioni_tolte"] = tolte
         print(json.dumps(out, ensure_ascii=False))
     else:
         print(f"{rel}: " + (", ".join(cambiati) if cambiati else "nessuna modifica"))

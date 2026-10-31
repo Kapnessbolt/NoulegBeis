@@ -495,3 +495,86 @@ def test_help_dei_comandi_nuovi(vault):
         assert res.returncode == 0, res.stderr
         assert res.stdout.lstrip().startswith(f"stato.py {cmd}"), res.stdout
     assert "--da-giro" in stato(vault, "set-watermark", "--help").stdout
+
+
+# --- rimuovi-voce (refusi) --------------------------------------------------------------
+
+DOC_ALFA = "sources/sharepoint/delivery/doc-alfa.md"
+ID_ALFA = "01EFCYUZYLVH33U2NLBVGZ45BE6NPUJZD5aGVsbG8gd29ybGQgdGhpcyBpcyBhIHNlY3JldA"  # current di doc-alfa
+
+
+def con_voci(vault, voci):
+    data = leggi_stato(vault, "sharepoint")
+    data["items"].update(voci)
+    scrivi_json(vault / ".state" / "sharepoint.json", data)
+
+
+def test_rimuovi_voce_toglie_un_refuso(vault):
+    refuso = {"last_modified": "2026-10-28T08:06:23Z", "note": DOC_ALFA}
+    con_voci(vault, {"drv/01REFUSO": refuso, f"drv/{ID_ALFA}": {"last_modified": "2026-10-29T16:14:40Z",
+                                                                 "note": DOC_ALFA}})
+    res = stato(vault, "rimuovi-voce", "sharepoint", "drv/01REFUSO", "--motivo", "refuso di prova", "--json")
+    assert res.returncode == 0, res.stderr
+    assert json.loads(res.stdout) == {"fonte": "sharepoint", "chiave": "drv/01REFUSO", "voce": refuso,
+                                      "motivo": "refuso di prova"}
+    items = leggi_stato(vault, "sharepoint")["items"]
+    assert "drv/01REFUSO" not in items and f"drv/{ID_ALFA}" in items and "item-1" in items
+    # senza --json una riga con la voce tolta e il motivo; una seconda volta la chiave non c'è più
+    con_voci(vault, {"drv/01REFUSO": refuso})
+    res = stato(vault, "rimuovi-voce", "sharepoint", "drv/01REFUSO", "--motivo", "refuso di prova")
+    assert res.returncode == 0 and "tolta" in res.stdout and "refuso di prova" in res.stdout
+    assert DOC_ALFA in res.stdout and "2026-10-28T08:06:23Z" in res.stdout
+
+
+def test_rimuovi_voce_rifiuta_la_current(vault):
+    con_voci(vault, {f"drv/{ID_ALFA}": {"last_modified": "2026-10-29T16:14:40Z", "note": DOC_ALFA}})
+    prima = (vault / ".state" / "sharepoint.json").read_text(encoding="utf-8")
+    res = stato(vault, "rimuovi-voce", "sharepoint", f"drv/{ID_ALFA}", "--motivo", "prova")
+    assert res.returncode == 1 and "ID corrente" in res.stderr
+    assert (vault / ".state" / "sharepoint.json").read_text(encoding="utf-8") == prima
+
+
+def test_rimuovi_voce_rifiuta_senza_motivo(vault):
+    con_voci(vault, {"drv/01REFUSO": {"last_modified": "2026-10-28T08:06:23Z", "note": DOC_ALFA}})
+    prima = (vault / ".state" / "sharepoint.json").read_text(encoding="utf-8")
+    for args in ([], ["--motivo", "  "], ["--motivo"]):
+        res = stato(vault, "rimuovi-voce", "sharepoint", "drv/01REFUSO", *args)
+        assert res.returncode == 2, (args, res.stderr)
+    assert "--motivo" in stato(vault, "rimuovi-voce", "sharepoint", "drv/01REFUSO").stderr
+    assert (vault / ".state" / "sharepoint.json").read_text(encoding="utf-8") == prima
+
+
+def test_rimuovi_voce_chiave_inesistente_o_nota_sparita(vault):
+    con_voci(vault, {"drv/01SPARITO": {"last_modified": "2026-10-28T08:06:23Z",
+                                       "note": "sources/sharepoint/delivery/non-esiste.md"}})
+    prima = (vault / ".state" / "sharepoint.json").read_text(encoding="utf-8")
+    res = stato(vault, "rimuovi-voce", "sharepoint", "drv/01MANCA", "--motivo", "prova")
+    assert res.returncode == 1 and "nessuna voce" in res.stderr
+    # un documento sparito non è un refuso: la voce resta (SPEC 6.4)
+    res = stato(vault, "rimuovi-voce", "sharepoint", "drv/01SPARITO", "--motivo", "prova")
+    assert res.returncode == 1 and "non esiste" in res.stderr
+    assert (vault / ".state" / "sharepoint.json").read_text(encoding="utf-8") == prima
+    assert stato(vault, "rimuovi-voce", "sconosciuta", "x", "--motivo", "prova").returncode == 2
+    res = stato(vault, "rimuovi-voce", "--help")
+    assert res.returncode == 0 and res.stdout.startswith("stato.py rimuovi-voce")
+
+
+def test_merge_driver_tiene_tolta_la_voce_rimossa(vault, tmp_path):
+    voce = {"last_modified": "2026-10-28T08:06:23Z", "note": "sources/a.md"}
+    base = {"watermark": "2026-10-01T00:00:00Z", "items": {"refuso": voce, "a": voce}}
+    con_altra = {"watermark": "2026-10-02T00:00:00Z", "items": {"refuso": voce, "a": voce, "b": voce}}
+    senza = {"watermark": "2026-10-01T00:00:00Z", "items": {"a": voce}}
+    pb, pn, pl = tmp_path / "base", tmp_path / "nostro", tmp_path / "loro"
+    # tolta da uno dei due lati e invariata dall'altro: resta tolta, in entrambi i versi
+    for nostro, loro in ((senza, con_altra), (con_altra, senza)):
+        for p, d in ((pb, base), (pn, nostro), (pl, loro)):
+            scrivi_json(p, d)
+        assert stato(vault, "merge-driver", pb, pn, pl).returncode == 0
+        assert set(json.loads(pn.read_text(encoding="utf-8"))["items"]) == {"a", "b"}
+    # cambiata dall'altro lato (una versione nuova vera): resta
+    cambiata = {**con_altra, "items": {**con_altra["items"],
+                                        "refuso": {**voce, "last_modified": "2026-10-30T00:00:00Z"}}}
+    for p, d in ((pb, base), (pn, senza), (pl, cambiata)):
+        scrivi_json(p, d)
+    assert stato(vault, "merge-driver", pb, pn, pl).returncode == 0
+    assert "refuso" in json.loads(pn.read_text(encoding="utf-8"))["items"]

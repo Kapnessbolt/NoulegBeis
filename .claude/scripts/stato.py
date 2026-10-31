@@ -60,6 +60,15 @@ Uso (fonte: sharepoint | onedrive | outlook | github | reconcile):
       onedrive; SPEC 6.4: `status: removed` solo alla seconda): incrementa `assente` (da 0) e
       stampa il valore; con --azzera toglie il campo (la nota è stata ritrovata), e se non
       c'era non scrive niente (`cambiato: false`)
+  stato.py rimuovi-voce <fonte> <chiave> --motivo "<testo>"
+      toglie una voce da `items` o `threads`: l'unica eccezione alla regola «le voci non si
+      cancellano» (SPEC 6.1, 6.4), solo per una chiave che non è mai esistita alla fonte (un
+      refuso del riallineamento a mano), mai per un documento sparito (quello ha `status:
+      removed` e la voce resta). --motivo è obbligatorio e finisce nell'uscita con la voce
+      tolta. Esce con 1 senza scrivere niente se la chiave non c'è, se la nota a cui punta non
+      esiste, o se la chiave è l'ID corrente di quella nota (`current.item_id`; per la posta
+      `conversation_id`). Dopo, l'ID va tolto anche da `versions` con `aggiorna-nota.py
+      --togli-versione`
   stato.py set-watermark <fonte> <ISO UTC> [--forza]
   stato.py set-watermark <fonte> [<ISO UTC>] --da-giro
       non abbassa mai il watermark: se il nuovo è più vecchio esce con 0 e un avviso, a meno
@@ -117,8 +126,11 @@ Regole: istanti nel formato AAAA-MM-GGTHH:MM:SSZ (errore altrimenti); --note è 
 relativo dentro sources/ (avviso se il file non esiste ancora: l'agente può scrivere la nota
 dopo). Scrittura atomica (file temporaneo e rename), JSON con indentazione 2 e chiavi ordinate.
 Le voci non si cancellano mai (SPEC 6.4): una nota rimossa ha `status: removed`, la voce resta.
+L'unica eccezione è `rimuovi-voce`, per i refusi.
 
-Merge driver: il watermark (e last_run) più avanzato vince; items, threads e repos si uniscono.
+Merge driver: il watermark (e last_run) più avanzato vince; items, threads e repos si uniscono,
+salvo una voce di items o threads tolta da un lato (`rimuovi-voce`) e lasciata uguale alla base
+dall'altro: quella resta tolta.
 Per la stessa chiave di items e threads l'unione è campo per campo: `last_modified` e
 `last_message` il più recente; `note` e `assente` dal lato che li ha cambiati rispetto alla
 base (cambiati da entrambi: il lato con l'istante più recente, a parità il nostro; per `assente`
@@ -674,6 +686,43 @@ def cmd_collega(fonte, nuova, vecchia, ist):
     return {"fonte": fonte, "chiave": nuova, "stessa_nota_di": vecchia, "cambiato": cambiato, **voce}
 
 
+class Rifiuto(Errore):
+    """Rifiuto di un comando che esce con 1 (non un errore d'uso, che esce con 2)."""
+
+
+def id_corrente(nota_rel):
+    """ID corrente della nota: `current.item_id` (source-doc) o `conversation_id` (source-mail)."""
+    d = _modulo_famiglia()._frontmatter(ROOT / nota_rel)
+    if not isinstance(d, dict):
+        return ""
+    if d.get("type") == "source-mail":
+        return str(d.get("conversation_id") or "")
+    corrente = d.get("current") if isinstance(d.get("current"), dict) else {}
+    return str(corrente.get("item_id") or "")
+
+
+def cmd_rimuovi_voce(fonte, chiave, motivo):
+    """Toglie una voce refuso dallo stato (unica eccezione a SPEC 6.4); rifiuta la voce corrente."""
+    controlla_fonte(fonte, COLLEZIONE)
+    if not motivo or not str(motivo).strip():
+        raise Errore("rimuovi-voce vuole --motivo \"<testo>\"")
+    data = leggi(fonte)
+    coll = data[COLLEZIONE[fonte]]
+    voce = coll.get(chiave)
+    if voce is None:
+        raise Rifiuto(f"nessuna voce `{chiave}` in .state/{fonte}.json")
+    nota_rel = voce.get("note") if isinstance(voce, dict) else None
+    if not nota_rel or not (ROOT / nota_rel).is_file():
+        raise Rifiuto(f"`{chiave}` punta a una nota che non esiste ({nota_rel or 'nessuna'}): "
+                      "per un documento sparito la voce resta (SPEC 6.4)")
+    corrente = id_corrente(nota_rel)
+    if corrente and (chiave == corrente or chiave.endswith("/" + corrente)):
+        raise Rifiuto(f"`{chiave}` è l'ID corrente di {nota_rel}: non si toglie")
+    del coll[chiave]
+    scrivi(fonte, data)
+    return {"fonte": fonte, "chiave": chiave, "voce": voce, "motivo": str(motivo).strip()}
+
+
 def cmd_set_assente(fonte, chiave, azzera=False):
     """Conteggio delle riconciliazioni consecutive che non hanno trovato la voce (SPEC 6.4)."""
     controlla_fonte(fonte, FONTI_CARTELLE)
@@ -798,6 +847,10 @@ def unisci(base, nostro, loro):
             b = base.get(k) if isinstance(base.get(k), dict) else {}
             coll = {}
             for chiave in sorted(set(nostro[k]) | set(loro[k])):
+                if k != "repos" and chiave in b and (
+                        (chiave not in loro[k] and nostro[k][chiave] == b[chiave])
+                        or (chiave not in nostro[k] and loro[k][chiave] == b[chiave])):
+                    continue  # tolta da un lato con rimuovi-voce, invariata dall'altro
                 if chiave not in loro[k]:
                     coll[chiave] = nostro[k][chiave]
                 elif chiave not in nostro[k]:
@@ -1013,6 +1066,17 @@ def main(argv):
         else:
             testo = f"{fonte} `{chiave}`: assente {r['assente']}"
         stampa(r if as_json else testo, as_json)
+        return 0
+    if cmd == "rimuovi-voce":
+        pos, opt = opzioni(args, ("--motivo",))
+        fonte, chiave = posizionali(pos, 2, "rimuovi-voce <fonte> <chiave> --motivo \"<testo>\"")
+        try:
+            r = cmd_rimuovi_voce(fonte, chiave, opt.get("--motivo"))
+        except Rifiuto as e:
+            sys.stderr.write(f"rifiutato: {e}\n")
+            return 1
+        stampa(r if as_json else f"{fonte} `{chiave}` tolta ({r['voce'].get('note')}, "
+                                  f"{r['voce'].get(CAMPO_ISTANTE[fonte])}): {r['motivo']}", as_json)
         return 0
     if cmd == "set-riconciliazione-dovuta":
         pos, opt = opzioni(args, ("--istante", "--motivo"))

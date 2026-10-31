@@ -346,11 +346,14 @@ def test_versione_con_versions_vuoto_mette_prima_la_corrente(vault):
     assert nota.normale(d["versions"][0]["last_modified"]) == "2026-10-01T10:00:00Z"
 
 
+ID_ALFA = "01EFCYUZYLVH33U2NLBVGZ45BE6NPUJZD5aGVsbG8gd29ybGQgdGhpcyBpcyBhIHNlY3JldA"  # current di doc-alfa
+
+
 def test_versione_lascia_com_erano_le_righe_delle_voci_invariate(vault):
     rel = "sources/sharepoint/delivery/doc-alfa.md"
     testo = (vault / rel).read_text(encoding="utf-8")
     vecchie = ("versions:\n"
-               "  - { name: Doc Alfa v2.pdf, item_id: item-1, last_modified: 2026-10-01T10:00:00Z }\n"
+               f"  - {{ name: Doc_Alfa_v2.pdf, item_id: {ID_ALFA}, last_modified: 2026-10-01T10:00:00Z }}\n"
                "  - { name: Doc Alfa v1.docx, item_id: item-0, last_modified: 2026-09-01T10:00:00Z }\n")
     scrivi(vault, rel, testo.replace("versions: []\n", vecchie))
     res = aggiorna(vault, rel, "--versione", "name=Doc Alfa v2.pdf", "item_id=item-copia",
@@ -361,12 +364,32 @@ def test_versione_lascia_com_erano_le_righe_delle_voci_invariate(vault):
     attesa = vecchie.replace("  - { name: Doc Alfa v1.docx", nuova_riga + "  - { name: Doc Alfa v1.docx")
     assert (vault / rel).read_text(encoding="utf-8") == testo.replace("versions: []\n", attesa)
     # con i nomi tra virgolette, la voce nuova va tra virgolette
-    scrivi(vault, rel, testo.replace("versions: []\n", vecchie.replace("Doc Alfa v2.pdf", '"Doc Alfa v2.pdf"')
+    scrivi(vault, rel, testo.replace("versions: []\n", vecchie.replace("Doc_Alfa_v2.pdf", '"Doc_Alfa_v2.pdf"')
                                      .replace("Doc Alfa v1.docx", '"Doc Alfa v1.docx"')))
     assert aggiorna(vault, rel, "--versione", "name=Doc Alfa v2.pdf", "item_id=item-copia",
                     "last_modified=2026-10-28T08:06:21Z").returncode == 0
     assert ('  - { name: "Doc Alfa v2.pdf", item_id: item-copia, last_modified: 2026-10-28T08:06:21Z }\n'
             '  - { name: "Doc Alfa v1.docx",') in (vault / rel).read_text(encoding="utf-8")
+
+
+def test_versione_porta_in_testa_la_current_fuori_posto(vault):
+    # --versione applica da solo il riordino di --versioni-in-ordine: una current fuori testa (o
+    # assente da versions, come nelle note Velo-CE del 29/10) torna prima
+    scrivi(vault, CP, con_versioni(RIGA_V24, RIGA_V21))
+    res = aggiorna(vault, CP, "--versione", "name=BlueAge_CompanyProfile.pdf", "item_id=01RICARICATO",
+                   "last_modified=2026-10-28T08:06:21Z", "--json")
+    assert res.returncode == 0, res.stderr
+    out = json.loads(res.stdout)
+    assert out["cambiati"] == ["versions"]
+    assert out["versioni_in_ordine"]["creata"]
+    assert (vault / CP).read_text(encoding="utf-8") == con_versioni(RIGA_CUR, RIGA_RIC, RIGA_V24, RIGA_V21)
+    # anche quando la voce c'era già: niente di nuovo da registrare, ma la testa si sistema
+    scrivi(vault, CP, con_versioni(RIGA_V24, RIGA_CUR, RIGA_RIC, RIGA_V21))
+    res = aggiorna(vault, CP, "--versione", "name=BlueAge_CompanyProfile.pdf", "item_id=01RICARICATO",
+                   "last_modified=2026-10-28T08:06:21Z", "--json")
+    assert res.returncode == 0, res.stderr
+    assert json.loads(res.stdout)["versioni_in_ordine"]["spostata"]
+    assert (vault / CP).read_text(encoding="utf-8") == con_versioni(RIGA_CUR, RIGA_RIC, RIGA_V24, RIGA_V21)
 
 
 def test_versione_rifiuta_argomenti_mancanti_o_non_validi(vault):
@@ -511,4 +534,48 @@ def test_versioni_in_ordine_solo_per_source_doc(vault):
     res = aggiorna(vault, ML, "--versioni-in-ordine")
     assert res.returncode == 2
     assert "solo per le note source-doc" in res.stderr
+    assert (vault / ML).read_text(encoding="utf-8") == MAIL
+
+
+# --- aggiorna-nota.py --togli-versione --------------------------------------------------
+
+def test_togli_versione_toglie_le_voci_con_quell_item_id(vault):
+    refuso = RIGA_RIC.replace("01RICARICATO", "01RICRAICATO")
+    scrivi(vault, CP, con_versioni(RIGA_CUR, RIGA_RIC, refuso, RIGA_V24, refuso, RIGA_V21))
+    res = aggiorna(vault, CP, "--togli-versione", "01RICRAICATO", "--json")
+    assert res.returncode == 0, res.stderr
+    out = json.loads(res.stdout)
+    assert out["cambiati"] == ["versions"] and out["versioni_tolte"] == 2
+    # le altre righe, current, ingested_at e corpo restano identici
+    assert (vault / CP).read_text(encoding="utf-8") == con_versioni(RIGA_CUR, RIGA_RIC, RIGA_V24, RIGA_V21)
+
+
+def test_togli_versione_idempotente(vault):
+    scrivi(vault, CP, COMPANY_PROFILE)
+    res = aggiorna(vault, CP, "--togli-versione", "01NONCE", "--json")
+    assert res.returncode == 0, res.stderr
+    out = json.loads(res.stdout)
+    assert out["cambiati"] == [] and out["versioni_tolte"] == 0
+    assert "nessuna modifica" in aggiorna(vault, CP, "--togli-versione", "01NONCE").stdout
+    assert (vault / CP).read_text(encoding="utf-8") == COMPANY_PROFILE
+    # più ID insieme, poi lo stesso comando una seconda volta
+    args = ["--togli-versione", "01EFCYUZYLVH33U2NLBVGZ45BE6NPUJZD5", "--togli-versione", "01NONCE"]
+    assert aggiorna(vault, CP, *args).returncode == 0
+    dopo = (vault / CP).read_text(encoding="utf-8")
+    assert dopo == con_versioni(RIGA_CUR, RIGA_V21)
+    assert "nessuna modifica" in aggiorna(vault, CP, *args).stdout
+    assert (vault / CP).read_text(encoding="utf-8") == dopo
+
+
+def test_togli_versione_rifiuta_la_current_e_le_altre_note(vault):
+    scrivi(vault, CP, COMPANY_PROFILE)
+    scrivi(vault, ML, MAIL)
+    casi = [(CP, ["--togli-versione", "01GEQYSS5CERFZRWVHNRGIGQNT5GBJMIF5"]),  # è la current
+            (CP, ["--togli-versione"]), (CP, ["--togli-versione", "--json"]),
+            (ML, ["--togli-versione", "01X"])]
+    for rel, args in casi:
+        res = aggiorna(vault, rel, *args)
+        assert res.returncode == 2, (args, res.stdout, res.stderr)
+    assert "item_id della current" in aggiorna(vault, CP, *casi[0][1]).stderr
+    assert (vault / CP).read_text(encoding="utf-8") == COMPANY_PROFILE
     assert (vault / ML).read_text(encoding="utf-8") == MAIL
