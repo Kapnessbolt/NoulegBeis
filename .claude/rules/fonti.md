@@ -23,7 +23,8 @@ Regole che valgono quando scrivi o rileggi una nota in `sources/`. Le regole gen
 
 - Una nota per famiglia, non per versione.
 - Chiave della famiglia: cartella + nome normalizzato, senza suffissi di versione (`_v15`, `v2`, `- v001`), date ed estensione. Esempio: `BlueAge_CompanyProfile_v24.pdf` → `blueage-companyprofile`. La calcola `python3 .claude/scripts/famiglia.py "<nome file>"`; prima di creare una nota, `famiglia.py --cerca "<nome file>" --cartella <cartella>` dice se la famiglia esiste già.
-- `current` punta all'ultima versione; `versions` tiene lo storico dalla più recente. Il frontmatter lo scrivono `nuova-nota.py` e `aggiorna-nota.py` (`--nuova-versione`), mai a mano.
+- `current` punta all'ultima versione; `versions` tiene lo storico dalla più recente, con la `current` come prima voce. Il frontmatter lo scrivono `nuova-nota.py` e `aggiorna-nota.py`, mai a mano: `--nuova-versione` per una nuova corrente, `--versione name=... item_id=... last_modified=...` per un ID superato dello stesso documento che resta nello stato, `--versioni-in-ordine` se il controllo avvisa che la prima voce non è la `current`.
+- Le voci dello stato non si cancellano: un ID superato resta nello stato e in `versions`. Solo un ID refuso, mai esistito alla fonte, si toglie: prima `python3 .claude/scripts/stato.py rimuovi-voce <fonte> <chiave> --motivo "<perché è un refuso>"`, poi `aggiorna-nota.py <nota> --togli-versione <item_id>` (SPEC 6.1). Mai per un documento sparito: quello lo segna la riconciliazione con `status: removed`.
 - Nuova versione: rigenera il riassunto e scrivi le differenze rilevanti in testa al `<slug>-log.md` del progetto collegato.
 - Stessa famiglia in un'altra posizione: aggiungi la posizione in `also_at` (`aggiorna-nota.py <nota> --also-at web_url=<url> item_id=<id>`), non creare un'altra nota.
 
