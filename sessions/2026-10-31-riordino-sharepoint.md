@@ -3,7 +3,7 @@ type: session
 date: 2026-10-31
 surface: cloud
 topics: ["[[second-brain-prodotto]]", "[[blueage]]"]
-outcome: "Riordino SharePoint del 30/10 recepito: 25 note spostate, 5 file recuperati, «99 - old versions» esclusa"
+outcome: "Riordino SharePoint del 30/10 recepito (25 note spostate, 5 file recuperati, «99 - old versions» esclusa) e rilevatore di riordino nel delta, SPEC 1.26"
 ---
 
 # Verifica dell'ingestion dopo il riordino di SharePoint
@@ -40,7 +40,8 @@ Verificare l'ingestion del 31/10 dopo il riordino delle librerie SharePoint fatt
 
 - [ ] Rileggere `## Punti chiave` di [[ai-che-cresce-con-lazienda]] (descrive ancora la v2) e dei temi segnalati da `controlla-vault.py`: [[pulse]], [[parts-radar]], [[trade-spending]], [[manager-operativo]]
 - [ ] `famiglia.py` non riconosce `_MEETING` come suffisso (Possibilità v3 attribuita a mano alla famiglia `blueage-possibilita`)
-- [x] SPEC 5 (cartelle escluse) da allineare con `old versions`, con una PR dedicata (chiuso in [[2026-10-31-riordino-sharepoint]])
-- [x] Regola del delta dopo un riordino: finestra di 48 ore e rilevatore di riordino con riconciliazione ridotta, SPEC 1.26 (chiuso in [[2026-10-31-riordino-sharepoint]])
-- [x] Criterio dello step 13: il giro anomalo del 31/10 non conta come errore dello step, verifica confermata all'1/11 (chiuso in [[2026-10-31-riordino-sharepoint]])
-- [ ] Verificare che la riconciliazione del 01/11 sistemi il deck Trade Spending cliente e non generi note dalle versioni vecchie
+- [x] SPEC 5 (cartelle escluse) da allineare con `old versions`, con una PR dedicata (chiuso: PR #56 unita)
+- [x] Regola del delta dopo un riordino: finestra di 48 ore e rilevatore di riordino con riconciliazione ridotta, SPEC 1.26 (chiuso: PR #56 unita)
+- [x] Criterio dello step 13: il giro anomalo del 31/10 non conta come errore dello step, verifica confermata all'1/11, dall'utente (chiuso: PR #55 unita)
+- [ ] `/verifica-task` del 01/11: giri dello step 13, riconciliazione che sistema il deck Trade Spending cliente senza note dalle versioni vecchie, prima fotografia delle cartelle salvata in `.state/sharepoint.json` e `.state/onedrive.json` 📅 2026-11-01
+- [ ] Rilevatore di riordino: verificare il primo riordino reale rilevato (riga «Riordino rilevato» nel digest e riconciliazione ridotta) e tarare profondità e soglia in `vault.yaml`
