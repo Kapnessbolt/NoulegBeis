@@ -21,18 +21,26 @@ Verificare l'ingestion del 31/10 dopo il riordino delle librerie SharePoint fatt
 - L'esempio sull'entrata merci della v4 di [[blueage-ai-che-cresce-onepage]] è il caso [[manini]]: collegato il cliente.
 - Cockpit delle 07:40 mancante (nessun commit).
 
+## Decisioni sul rilevatore di riordino
+
+- Niente agente nuovo: il rilevatore è un passo del delta di SharePoint (SPEC 6.2 passo 7) e il lavoro grosso resta la riconciliazione dell'`ingestor`, ridotta a una libreria (6.4). Segnali: fotografia delle cartelle fino a 2 livelli in `.state/sharepoint.json` (`stato.py set-cartelle`), almeno 10 ID nuovi in famiglie già note nella stessa cartella; GitHub con `git diff -M`; la posta segnala nel digest un riordino annunciato dopo il giro.
+- Finestra del delta di SharePoint da 2 a 48 ore; parametri in `vault.yaml` (`fonti.rilevatore`), letti con `config.py rilevatore`.
+- Il rilevatore copre SharePoint, OneDrive (riconciliazione ridotta anche della cartella di OneDrive, `/ingest riconcilia onedrive`) e GitHub; quali fonti sorvegliare è configurazione (`fonti.rilevatore.fonti` in `vault.yaml`) e nel prodotto lo sceglie il cliente all'installazione con `/installa` (step 18).
+- La riconciliazione ridotta gira dentro `ingest-sharepoint`, quindi con Opus; quella settimanale resta con Sonnet. A mano: `/ingest riconcilia sharepoint:<libreria>`, senza un comando nuovo.
+
 ## File toccati
 
 - `vault.yaml` (esclusione `old versions`)
 - 25 note in `sources/sharepoint/` spostate; 5 note aggiornate come nuove versioni: [[blueage-companyprofile]], [[blueage-sintesi]], [[blueage-onepage]], [[blueage-possibilita]], [[blueage-ai-che-cresce-onepage]]
 - `.state/sharepoint.json`
 - `journal/2026-10-31.md` (esito dei task)
+- Rilevatore: `SPEC.md` (1.26: 5, 6.1–6.4, 6.6, 7, 8), `.claude/agents/ingestor.md`, `.claude/routines/ingest-sharepoint.md`, `.claude/commands/ingest.md`, `.claude/scripts/stato.py` e `config.py` con i test, `vault.yaml`
 
 ## Aperti
 
 - [ ] Rileggere `## Punti chiave` di [[ai-che-cresce-con-lazienda]] (descrive ancora la v2) e dei temi segnalati da `controlla-vault.py`: [[pulse]], [[parts-radar]], [[trade-spending]], [[manager-operativo]]
 - [ ] `famiglia.py` non riconosce `_MEETING` come suffisso (Possibilità v3 attribuita a mano alla famiglia `blueage-possibilita`)
-- [ ] SPEC 5 (cartelle escluse) da allineare con `old versions`, con una PR dedicata
-- [ ] Regola del delta dopo un riordino: il watermark non deve superare file che la ricerca non ha ancora restituito
+- [x] SPEC 5 (cartelle escluse) da allineare con `old versions`, con una PR dedicata (chiuso in [[2026-10-31-riordino-sharepoint]])
+- [x] Regola del delta dopo un riordino: finestra di 48 ore e rilevatore di riordino con riconciliazione ridotta, SPEC 1.26 (chiuso in [[2026-10-31-riordino-sharepoint]])
 - [x] Criterio dello step 13: il giro anomalo del 31/10 non conta come errore dello step, verifica confermata all'1/11 (chiuso in [[2026-10-31-riordino-sharepoint]])
 - [ ] Verificare che la riconciliazione del 01/11 sistemi il deck Trade Spending cliente e non generi note dalle versioni vecchie
