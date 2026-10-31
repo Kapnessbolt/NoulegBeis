@@ -7,6 +7,7 @@ project: "[[second-brain-prodotto]]"
 
 Una riga per avanzamento, dalla più recente: `- AAAA-MM-GG · cosa è successo · [[fonte]]`
 
+- 2026-10-31 · SPEC 1.28 unita (PR #64); note Velo-CE a schema: 95 con la `current` in testa a `versions`, 68 con `last_modified` allineato allo stato, 2 refusi di ID tolti; comandi nuovi `--versioni-in-ordine`, `--togli-versione`, `rimuovi-voce`; 534 test, 79 avvisi · [[2026-10-31-audit-p8-p13]]
 - 2026-10-31 · PR #63 unita; SPEC 1.28 in PR #64; 36 voci orfane di 33 note Velo-CE registrate in `versions` (`aggiorna-nota.py --versione`), avvisi da 112 a 79; task `reconcile-ridotta` attivo, T11 reale in attesa della cartella di prova · [[2026-10-31-audit-p8-p13]]
 - 2026-10-31 · Step 17b, P8, P10, P11, P13 implementati (PR `claude/audit-p8-p13`): `anomalie.py` e `plancia.py --anomalie` nel task `digest` e nelle metriche del curator, `scarta.py` e finestra della posta in `vault.yaml`, `perimetro.py` a lista di prefissi con `--profondita`, T11 simulato sul mini-vault; 512 test; restano il T11 reale e la PR della SPEC · [[2026-10-31-audit-p8-p13]]
 - 2026-10-31 · Step 17b, P1–P3, P6, P7 implementati (PR `claude/audit-p1-p3`): identità per regola in `stato.py`, `sposta-nota.py`, `riconcilia.py` con piano e `--applica` collaudati con T1–T10, controlli stato ↔ note e golden test in CI, merge per campo, routine `reconcile-ridotta`, `ingestor.md` sotto le 1.500 parole; 405 test; resta T11 e la PR della SPEC · [[2026-10-31-audit-p1-p3]]
