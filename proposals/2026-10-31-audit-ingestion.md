@@ -2,7 +2,7 @@
 type: proposal
 date: 2026-10-31
 kind: regola
-status: proposta
+status: accettata
 ---
 
 # Audit: affidabilità dinamica di ingestion, riconciliazione e conoscenza
@@ -139,12 +139,14 @@ Tutti su un mini-vault nello scratchpad (come i test esistenti), con elenchi del
 | T10 · Nuova versione e hub | `--nuova-versione` su una fonte citata da un tema | Riga «Da rileggere» nel tema, riga nel log del progetto, avviso del controllo; dopo la rilettura l'avviso sparisce |
 | T11 · Riordino reale (dopo P1–P5) | Chiedere a Leonardo di spostare e rinominare una cartella di prova in Delivery | Il giro del mattino rileva, riconcilia e il digest dice quante note ha spostato; nessun intervento in sessione |
 
-## 6. Domande aperte per Lorenzo
+## 6. Decisioni (Lorenzo, 31/10, in chat sull'audit)
 
-1. **Identità**: accetti che un ID sparito con un file «uguale» (stesso nome e famiglia nella stessa libreria) sia la stessa nota per regola, senza passare dal giudizio dell'agente? E `removed` solo dopo due riconciliazioni consecutive senza candidati?
-2. **Copie**: quale copia è `current` quando lo stesso documento sta sul sito partner e in SalesMarketing: l'ultima modificata o la cartella canonica dichiarata in `vault.yaml`? Il 31/10 hai scelto la copia interna caso per caso.
-3. **Riconciliazione**: dentro `ingest-sharepoint` con Opus (SPEC 1.26) o task separato con Sonnet dopo che lo script fa il piano (P12)? Dipende da quanto giudizio vuoi lasciare al giro del mattino.
-4. **Hub superate**: chi rilegge i punti chiave quando una fonte cambia versione: tu in sessione con una lista, o un task che propone la riscrittura in PR?
-5. **Soglie**: profondità 2 e 10 ID nuovi restano finché non c'è un riordino reale, o le tari subito (profondità 4 per Delivery, soglia 5) accettando qualche riconciliazione ridotta in più?
-6. **Step 13**: il criterio «3 giri senza errori» è soddisfatto con il giro anomalo del 31/10, oppure lo step si chiude dopo T11?
-7. **Prodotto**: il primo cliente riceve il rilevatore attivo su tutte le fonti e la riconciliazione automatica, o solo la settimanale con BlueAge che interviene? Cambia il contratto di gestione (13.2).
+1. **Identità per regola.** Un ID sparito con lo stesso nome o la stessa famiglia nella stessa libreria è la stessa nota, con una voce nuova nello stato; lo decide uno script, non l'agente. `removed` solo senza candidati per due riconciliazioni consecutive. Il controllo del vault segnala i casi con lo stesso nome in cartelle diverse.
+2. **Cartella canonica.** Quale copia è `current` lo dice una gerarchia dichiarata in `vault.yaml` (SalesMarketing sopra il sito partner, Delivery sopra OneDrive), non l'ultima modifica; le altre copie vanno in `also_at`.
+3. **Riconciliazione ridotta come task separato** (P12), con Sonnet, dopo che uno script prepara il piano (P3) e il rilevatore lascia il segnale persistente (P4). Finché il piano lo fa l'agente resta dentro `ingest-sharepoint` con Opus, come in SPEC 1.26.
+4. **Hub superate: rilettura in sessione**, con la lista nel digest delle hub da rileggere da più di 7 giorni e la riga `Da rileggere dopo [[fonte]] vN` scritta dall'ingestor nella hub (P8). La riscrittura proposta da un task in PR è rimandata al prodotto.
+5. **Soglie subito**: profondità 4 e soglia 5 ID nuovi, con la profondità per libreria se lo script lo permette (2 per SalesMarketing, 4 per Delivery). Qualche riconciliazione ridotta in più è accettata.
+6. **Step 13 chiuso**: il giro anomalo del 31/10 non è dello step. L'affidabilità ai riordini diventa uno step nuovo di SPEC 13.1, prima dello step 18, con il test T11 come criterio.
+7. **Prodotto**: il primo cliente riceve rilevatore e riconciliazione automatica su tutte le fonti; BlueAge interviene solo sulle eccezioni. È la conseguenza delle decisioni 1, 2 e 3, e definisce il perimetro del contratto di gestione (13.2).
+
+Implementazione in una sessione a parte, nell'ordine del piano: P4 e P5, poi P1–P3, poi P6 e P7, infine P8–P13. Le modifiche a SPEC passano dalla loro PR dedicata.
