@@ -255,6 +255,26 @@ def test_watermark_al_passo_o_giro_vuoto_nessun_avviso(vault):
     assert res.returncode == 0 and "fermo al" not in res.stdout
 
 
+def test_messaggi_dello_stato_vengono_da_anomalie(vault):
+    """Le regole stanno in anomalie.py (P8, P11): il rapporto ne stampa i messaggi così come sono,
+    gli stessi che `plancia.py --anomalie` usa per le righe del digest."""
+    import anomalie
+    giro = {"inizio": fa(hours=2), "fine": fa(hours=1), "risultati": 4,
+            "piu_recente": "2026-10-26T18:00:00Z", "falliti": 1}
+    modifica_stato(vault, "outlook", watermark="2026-10-19T16:22:49Z", ultimo_giro=giro)
+    modifica_stato(vault, "sharepoint", riconciliazione_dovuta={"Delivery": fa(days=3)})
+    res = controlla(vault)
+    assert res.returncode == 0, res.stdout
+    avvisi = res.stdout.split("## Avvisi")[1]
+    fermo = anomalie.watermark_fermo("outlook", leggi_stato(vault, "outlook"))
+    (dovuta,) = anomalie.riconciliazioni_dovute("sharepoint", leggi_stato(vault, "sharepoint"))
+    (orfana,) = anomalie.voci_orfane({DOC_ALFA: {"type": "source-doc", "source": "sharepoint", "current": {}}},
+                                     {"sharepoint": leggi_stato(vault, "sharepoint")["items"]})
+    assert f"- `.state/outlook.json` · {fermo['messaggio']}" in avvisi
+    assert f"- `.state/sharepoint.json` · {dovuta['messaggio']}" in avvisi
+    assert f"- `{DOC_ALFA}` · {orfana['messaggio']}" in avvisi
+
+
 # --- Stato ↔ note ↔ fonti: cartella, ID, famiglia, stesso nome (audit 2026-10-31, P6)
 
 from conftest import leggi_stato  # noqa: E402

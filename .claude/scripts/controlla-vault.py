@@ -8,7 +8,9 @@ caricata in ogni sessione, senza avvisare). Dallo stato dell'ingestion (`.state/
 riconciliazione dovuta (`riconciliazione_dovuta`) da più di 1 giorno è un avviso, da più di 7
 un errore; un watermark più di 2 giorni dietro il risultato più recente dell'ultimo giro
 (`ultimo_giro` con risultati) è un avviso. Questi errori non bloccano `--modificati`: il giro
-che scrive lo stato deve poter fare commit.
+che scrive lo stato deve poter fare commit. Le regole e le soglie di queste due anomalie e delle
+voci orfane (sotto) stanno in `anomalie.py`, che le condivide con `plancia.py --anomalie` (le
+righe del digest): qui diventano errori e avvisi del rapporto.
 
 Stato ↔ note ↔ fonti (SPEC 4.4 e 6.4, audit 2026-10-31 P6), sulle note `source-doc` con
 `source` sharepoint o onedrive (tranne quelle con il tag `fuori-perimetro`) e sulle voci di
@@ -16,11 +18,12 @@ Stato ↔ note ↔ fonti (SPEC 4.4 e 6.4, audit 2026-10-31 P6), sulle note `sour
 - errore (non blocca `--modificati`, come gli altri errori sullo stato): la nota non sta nella
   cartella che `perimetro.py` calcola dal suo `current.web_url` (la nota non ha seguito il file:
   `sposta-nota.py`); un URL non riconosciuto o senza cartella (`cartella_nota` null) non conta;
-- avviso: voci dello stato il cui itemId (la parte della chiave dopo l'ultima `/`) non compare né
-  in `current.item_id`, né in `versions`, né in `also_at` della nota a cui puntano. Una riga per
-  nota, con il numero di queste voci su quelle della nota: copre sia la voce con l'ID orfano
-  sia la nota con più voci senza le `versions` o le `also_at` corrispondenti (SPEC 4.4 elenca
-  i due casi, che sono gli stessi ID visti dalla voce o dalla nota);
+- avviso (regola di `anomalie.voci_orfane`): voci dello stato il cui itemId (la parte della
+  chiave dopo l'ultima `/`) non compare né in `current.item_id`, né in `versions`, né in
+  `also_at` della nota a cui puntano. Una riga per nota, con il numero di queste voci su quelle
+  della nota: copre sia la voce con l'ID orfano sia la nota con più voci senza le `versions` o
+  le `also_at` corrispondenti (SPEC 4.4 elenca i due casi, che sono gli stessi ID visti dalla
+  voce o dalla nota);
 - avviso: `family` diversa da `famiglia.famiglia(current.name)`, salvo il prefisso di
   disambiguazione (`family` che finisce con `-<calcolata>`);
 - avviso: lo stesso `current.name` (senza maiuscole) in cartelle diverse su note diverse dello
@@ -64,6 +67,7 @@ except ImportError:
     sys.exit("Manca PyYAML: pip install pyyaml")
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import anomalie  # noqa: E402
 import config  # noqa: E402
 import famiglia  # noqa: E402
 import perimetro  # noqa: E402
@@ -114,12 +118,6 @@ SLUG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 WIKILINK_RE = re.compile(r"\[\[([^\]|#^]+)(?:[#^][^\]|]*)?(?:\|[^\]]*)?\]\]")
 ENUM_RE = re.compile(r"#\s*([a-z-]+(?:\s*\|\s*[a-z-]+)+)\s*$")
 SIMILAR = 0.85
-# Stato dell'ingestion (audit 2026-10-31, P4 e P5): giorni oltre i quali una riconciliazione
-# dovuta è un avviso e poi un errore, e distacco massimo tra il watermark e il risultato più
-# recente dell'ultimo giro
-DOVUTA_AVVISO_GIORNI = 1
-DOVUTA_ERRORE_GIORNI = 7
-WATERMARK_FERMO_GIORNI = 2
 
 errori, avvisi = [], []
 
@@ -410,62 +408,31 @@ def controlla_regole():
                 avv(rel, f"`paths` `{pat}`: `{base}` non esiste nel vault")
 
 
-def istante_utc(v):
-    try:
-        return dt.datetime.strptime(str(v), "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=dt.timezone.utc)
-    except ValueError:
-        return None
-
-
 def controlla_giro_e_riconciliazione(fonte, rel_stato, state, adesso=None):
-    """Riconciliazione dovuta da troppo tempo (P4) e watermark fermo dietro l'ultimo giro (P5).
-    Gli errori non bloccano il pre-commit: fermare il giro che scrive lo stato perderebbe le
-    sue note e allargherebbe il ritardo; restano nel rapporto, nel digest e in CI."""
-    adesso = adesso or dt.datetime.now(dt.timezone.utc)
-    dovute = state.get("riconciliazione_dovuta") or {}
-    if not isinstance(dovute, dict):
-        err(rel_stato, "`riconciliazione_dovuta` illeggibile: deve essere {libreria: istante}", blocca_commit=False)
-        dovute = {}
-    for libreria, ist in sorted(dovute.items()):
-        t = istante_utc(ist)
-        if t is None:
-            err(rel_stato, f"`riconciliazione_dovuta` di {libreria}: istante `{ist}` non valido", blocca_commit=False)
-            continue
-        giorni = (adesso - t).total_seconds() / 86400
-        comando = "/ingest riconcilia onedrive" if fonte == "onedrive" else f"/ingest riconcilia sharepoint:{libreria}"
-        msg = (f"riconciliazione dovuta per {libreria} dal {ist} ({int(giorni)} giorni): {comando}, "
-               f"poi `stato.py set-riconciliata {fonte} \"{libreria}\"`")
-        if giorni > DOVUTA_ERRORE_GIORNI:
-            err(rel_stato, msg, blocca_commit=False)
-        elif giorni > DOVUTA_AVVISO_GIORNI:
-            avv(rel_stato, msg)
-    giro = state.get("ultimo_giro")
-    if not isinstance(giro, dict) or not giro.get("risultati"):
-        return
-    wm, piu_rec = istante_utc(state.get("watermark")), istante_utc(giro.get("piu_recente"))
-    if wm and piu_rec and (piu_rec - wm).total_seconds() > WATERMARK_FERMO_GIORNI * 86400:
-        falliti = giro.get("falliti") or 0
-        causa = (f"{falliti} falliti lo tengono fermo: riprova quei file" if falliti
-                 else "nessun fallito: `stato.py set-watermark " + fonte + " --da-giro`")
-        avv(rel_stato, f"watermark di {fonte} fermo al {state.get('watermark')}: l'ultimo giro "
-                       f"({giro.get('fine')}) ha {giro.get('risultati')} risultati fino al "
-                       f"{giro.get('piu_recente')}, più di {WATERMARK_FERMO_GIORNI} giorni dopo ({causa})")
+    """Riconciliazione dovuta da troppo tempo (P4) e watermark fermo dietro l'ultimo giro (P5),
+    con le regole e le soglie di `anomalie.py`. Gli errori non bloccano il pre-commit: fermare il
+    giro che scrive lo stato perderebbe le sue note e allargherebbe il ritardo; restano nel
+    rapporto, nel digest e in CI."""
+    for voce in anomalie.riconciliazioni_dovute(fonte, state, adesso):
+        if voce["livello"] == "errore":
+            err(rel_stato, voce["messaggio"], blocca_commit=False)
+        elif voce["livello"] == "avviso":
+            avv(rel_stato, voce["messaggio"])
+    fermo = anomalie.watermark_fermo(fonte, state)
+    if fermo:
+        avv(rel_stato, fermo["messaggio"])
 
 
 def controlla_stato_note(parsed, voci):
     """Controlli incrociati tra stato, note e fonti (SPEC 4.4, 6.4; audit P6). `voci`:
     {fonte: {chiave: voce}} di sharepoint e onedrive. Richiede una configurazione valida
     (perimetro e firme in coda vengono da `vault.yaml`)."""
-    per_nota = defaultdict(list)  # nota → [(fonte, chiave)]
-    for fonte, items in voci.items():
-        for chiave, v in items.items():
-            if isinstance(v, dict) and v.get("note"):
-                per_nota[v["note"]].append((fonte, chiave))
+    per_nota = anomalie.voci_per_nota(voci)  # nota → [(fonte, chiave)]
+    # ID dello stato senza versione o copia nella nota (una riga per nota): regola di anomalie.py
+    orfane = {o["nota"]: o for o in anomalie.voci_orfane({str(rel): d for rel, (d, _) in parsed.items()}, voci)}
     per_nome = defaultdict(list)  # current.name senza maiuscole → [nota]
     for rel, (d, _) in sorted(parsed.items()):
-        fonte = d.get("source")
-        if (rel.parts[0] != "sources" or d.get("type") != "source-doc" or fonte not in voci
-                or "fuori-perimetro" in as_list(d.get("tags"))):
+        if not anomalie.incrociabile(rel, d, voci):
             continue
         cur = d.get("current") if isinstance(d.get("current"), dict) else {}
         web_url, nome = str(cur.get("web_url") or ""), str(cur.get("name") or "")
@@ -484,16 +451,9 @@ def controlla_stato_note(parsed, voci):
                 avv(rel, f"`family` `{registrata}` diversa da `{calcolata}`, calcolata da `current.name`: "
                          f"correggila (`aggiorna-nota.py <nota> --campo family={calcolata}`, `rinomina-nota.py` "
                          f"se cambia lo slug) o, se è voluta, usa `<prefisso>-{calcolata}`")
-        # ID dello stato senza versione o copia nella nota (una riga per nota)
-        ids = {str(cur.get("item_id") or "")}
-        for k in ("versions", "also_at"):
-            ids |= {str(x.get("item_id") or "") for x in as_list(d.get(k)) if isinstance(x, dict)}
+        if str(rel) in orfane:
+            avv(rel, orfane[str(rel)]["messaggio"])
         chiavi = per_nota.get(str(rel), [])
-        orfane = [c for _, c in chiavi if c.rsplit("/", 1)[-1] not in ids]
-        if orfane:
-            quante = "1 voce" if len(orfane) == 1 else f"{len(orfane)} voci"
-            avv(rel, f"{quante} dello stato (su {len(chiavi)}) senza versione o copia nella nota: l'ID non è "
-                     f"né in `current`, né in `versions`, né in `also_at` (`stato.py voci {fonte} <nota>`)")
         if nome and chiavi:
             per_nome[nome.lower()].append(rel)
     # Stesso nome in cartelle diverse su note diverse: candidati alla stessa nota (6.4)
