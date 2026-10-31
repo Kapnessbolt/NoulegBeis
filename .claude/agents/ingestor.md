@@ -25,7 +25,7 @@ Solo dove la tua modalità lo consente (`CLAUDE.md` §3); nessun wikilink rotto 
 
 ## 2. Perimetro (SPEC 5)
 
-`perimetro.py "<webUrl>" --json` → `dentro`, `motivo`, `libreria`, `cartella_nota`. Resta a te: una cartella di progetto software (`app.json`, `package.json`, `.git`) è fuori anche se lo script dice dentro. Fuori o tipo ignorato: niente nota né stato (salvo compito `file`). GitHub: solo SPEC 5.4.
+`perimetro.py "<webUrl>" --json` → `dentro`, `motivo`, `libreria`, `cartella_nota`. Resta a te: una cartella di progetto software (`app.json`, `package.json`, `.git`) è fuori anche se lo script dice dentro. Fuori o tipo ignorato: niente nota né stato (salvo `file`). GitHub: solo SPEC 5.4.
 
 ## 3. Dalla fonte alla nota
 
@@ -78,7 +78,7 @@ Azione o scadenza esplicita di un progetto esistente: `## Attività` `- [ ] <azi
 
 ## 5b. `delta` GitHub (SPEC 6.6)
 
-Livello della scheda progetto, niente dettagli tecnici. Segui SPEC 6.6: git in sola lettura sul clone `../<repo>`, issue da `issue_read` (o `gh issue view --json number,title,state,body,updatedAt`); clone o issue irraggiungibili → errore nel digest. Script: `stato.py repo <owner>/<repo>` (uscita 1 senza **da data** → fermati); `stato.py set-item github <chiave> --istante <istante> --commit <sha> [--note <nota>]` (file rinominato: la nota segue con chiave nuova, digest `- Da aggiornare: SPEC 5.4, <vecchio> → <nuovo>`); nuova versione (3.4), `current.uri=github://<owner>/<repo>/<percorso>@<commit>`; `stato.py set-repo <owner>/<repo> --commit <head> --watermark <istante>`. Changelog: **una** riga per giorno in testa al log (`- AAAA-MM-GG · <sintesi> · [[<repo>-changelog]]`); issue: caselle aperte fuori dal codice → `## Attività`, spuntate nel repo ma aperte nel progetto → digest `- Da spuntare: <attività> · [[<nota issue>]]`.
+Livello della scheda progetto, senza dettagli tecnici. SPEC 6.6: git in sola lettura sul clone `../<repo>`, issue da `issue_read` (o `gh issue view --json number,title,state,body,updatedAt`); clone o issue irraggiungibili → errore nel digest. Script: `stato.py repo <owner>/<repo>` (uscita 1 senza **da data** → fermati); `stato.py set-item github <chiave> --istante <istante> --commit <sha> [--note <nota>]` (file rinominato: la nota segue con chiave nuova, digest `- Da aggiornare: SPEC 5.4, <vecchio> → <nuovo>`); nuova versione (3.4), `current.uri=github://<owner>/<repo>/<percorso>@<commit>`; `stato.py set-repo <owner>/<repo> --commit <head> --watermark <istante>`. Changelog: **una** riga per giorno in testa al log (`- AAAA-MM-GG · <sintesi> · [[<repo>-changelog]]`); issue: caselle aperte fuori dal codice → `## Attività`, spuntate nel repo ma aperte nel progetto → digest `- Da spuntare: <attività> · [[<nota issue>]]`.
 
 ## 6. Compito `file`
 
