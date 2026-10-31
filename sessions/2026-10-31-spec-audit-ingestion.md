@@ -32,6 +32,7 @@ Portare nella SPEC le decisioni dell'audit dell'ingestion (`proposals/2026-10-31
 
 ## Aperti
 
-- [ ] Unire la PR della SPEC 1.27 e creare a mano il task `reconcile-ridotta` in claude.ai (ogni giorno 09:10, Sonnet, Microsoft 365) quando la routine `.claude/routines/reconcile-ridotta.md` esiste (sessione P1–P3)
+- [x] Unire la PR della SPEC 1.27 ✅ 2026-10-31 (chiuso: PR #61 unita, 09:10 e 17b confermati dall'utente)
+- [ ] Creare a mano il task `reconcile-ridotta` in claude.ai (ogni giorno 09:10, Sonnet, Microsoft 365) quando la routine `.claude/routines/reconcile-ridotta.md` esiste (sessione P1–P3)
 - [ ] Sessione P1–P3 con il prompt della PR: `stato.py` (identità), `sposta-nota.py`, `riconcilia.py`, routine `reconcile-ridotta.md`, `ingestor.md` e `ingest-sharepoint.md` allineati a 6.2 e 6.4, workflow CI con `perimetro.py --verifica` e `famiglia.py --verifica`
-- [ ] Dopo l'unione: riga nel log di `second-brain-prodotto` per lo step 13 chiuso e lo step 17b aperto (non scritta qui perché la PR tocca solo SPEC e configurazione)
+- [x] Dopo l'unione: riga nel log di `second-brain-prodotto` per lo step 13 chiuso e lo step 17b aperto ✅ 2026-10-31 (chiuso: scheda e log aggiornati su main dopo l'unione)

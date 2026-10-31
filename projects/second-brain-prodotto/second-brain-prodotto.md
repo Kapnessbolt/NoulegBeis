@@ -11,6 +11,7 @@ updated: 2026-10-31
 
 ## Stato
 
+- SPEC 1.27 unita (31/10, PR #61): le decisioni dell'audit sono regole scritte, identità dei documenti per regola, cartella canonica da `vault.yaml`, riconciliazione ridotta come task `reconcile-ridotta` (09:10, Sonnet), step 13 chiuso e step 17b «Affidabilità ai riordini» aperto con criterio T11; profondità del rilevatore per libreria, soglia 5 e `fonti.canoniche` in `vault.yaml`; agenti, routine e script seguono con la sessione P1–P3 ([[2026-10-31-spec-audit-ingestion]])
 - Audit dell'ingestion (31/10): il flusso regge solo con interventi in sessione; identità dei documenti per ID, riconciliazione sottospecificata e regole in prosa sono le cause; piano in 13 interventi e 7 decisioni in `proposals/2026-10-31-audit-ingestion.md`; step 13 chiuso, l'affidabilità ai riordini diventa uno step nuovo prima del 18 ([[2026-10-31-audit-flusso-ingestion]])
 - Step 14 avviato (29/10): regole di cartella in `.claude/rules/` (`fonti.md` per `sources/`), `CLAUDE.md` da 11,3 a 10,3 KB, agenti, routine e comandi rimandano a `CLAUDE.md` §3 e §7 senza copiarli né rileggerlo, controllo delle regole nel pre-commit; test: le regole a percorso scattano con Read/Write/Edit e `cat`/`head`, non con Grep, Glob, script o redirezioni, e non tornano dopo `/compact`; SPEC 1.24. Resta la matrice delle scritture in due posti ([[2026-10-29-regole-percorso]])
 - Step 13 fatto, in osservazione (29/10): `vault.yaml` alla radice con utente, fuso, lingua, sezioni, connettori e strumenti per agente, perimetro, repository e task; `config.py` lo valida e lo serve a script, agenti, routine e comandi; il controllo del vault dà errore se gli orari di SPEC 7 e di `vault.yaml` divergono o se i permessi dei connettori non tornano; `grep -ri blueagesrl .claude` vuoto; script di setup cloud committato; 268 test; SPEC 1.23 ([[2026-10-29-cockpit-conteggi-e-step-13]])
@@ -83,7 +84,8 @@ updated: 2026-10-31
 
 ## Prossimi passi
 
-- Audit ingestion: implementare P4 e P5, poi P1–P3, in sessioni dedicate con una PR ciascuna; lo step 14 parte solo con l'ok di Lorenzo
+- Audit ingestion: P4 e P5 fatti (PR #60) e SPEC 1.27 unita (PR #61); ora la sessione P1–P3 con il prompt della PR #61, poi P6–P7, poi P8–P13; lo step 14 parte solo con l'ok di Lorenzo
+- Creare in claude.ai il task `reconcile-ridotta` (ogni giorno 09:10, Sonnet, Microsoft 365) quando la routine esiste, dopo la PR di P1–P3
 - Chiudere la consegna dei file prodotti dal cloud prima di qualunque installazione esterna
 
 ## Fonti
