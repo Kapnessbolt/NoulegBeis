@@ -102,3 +102,146 @@ def test_perimetro_da_vault_yaml(vault):
     assert esegui("perimetro.py", vault, "https://altro.sharepoint.com/sites/internal/Delivery/X.pdf").returncode == 0
     res = esegui("perimetro.py", vault, "https://altro.sharepoint.com/sites/internal/SalesMarketing/X.pdf")
     assert res.returncode == 1 and "libreria `SalesMarketing` fuori perimetro" in res.stdout
+
+
+# --- Lista di prefissi (P13) --------------------------------------------------------------
+
+def test_vince_il_primo_prefisso_della_lista(vault):
+    """Una libreria in più è una voce in più di `posizioni`: lo stesso URL passa da «libreria
+    fuori perimetro» (riconoscitore `<tenant>/sites/`) a dentro, con la sua cartella di nota."""
+    url = SP + "Archivio/2025/Verbale.pdf"
+    res = esegui("perimetro.py", vault, url, "--json")
+    assert res.returncode == 1 and json.loads(res.stdout)["motivo"] == "libreria `Archivio` fuori perimetro"
+    p = vault / "vault.yaml"
+    p.write_text(p.read_text(encoding="utf-8").replace(
+        "librerie: [SalesMarketing, Delivery, Shared Documents]",
+        "librerie: [SalesMarketing, Delivery, Shared Documents, Archivio]"), encoding="utf-8")
+    res = esegui("perimetro.py", vault, url, "--json")
+    out = json.loads(res.stdout)
+    assert res.returncode == 0 and out["motivo"] == f"prefisso `{SP}Archivio/`"
+    assert out["cartella_nota"] == "sources/sharepoint/archivio/2025"
+
+
+@pytest.mark.parametrize("url, motivo", [
+    (f"{TENANT_SP}/sites/internal", "URL di SharePoint senza libreria o file"),
+    (SP + "Delivery/", "URL di SharePoint senza libreria o file"),
+    (f"{TENANT_OD}/personal/{UTENTE_OD}/Documents", "URL di OneDrive senza libreria o file"),
+    ("https://altro.sharepoint.com/sites/internal/Delivery/X.pdf", "URL non di SharePoint o OneDrive del tenant"),
+])
+def test_url_non_riconosciuti(url, motivo):
+    r = analizza(url)
+    assert r["riconosciuto"] is False and r["motivo"] == motivo and r["fonte"] is None
+
+
+def test_link_di_condivisione_e_query_come_l_url_diretto():
+    diretto = analizza(SP + "Delivery/Velo/Stato.xlsx")
+    condiviso = analizza(f"{TENANT_SP}/:x:/r/sites/internal/Delivery/Velo/Stato.xlsx?d=w1&csf=1&web=1")
+    assert condiviso == diretto and diretto["cartella_nota"] == "sources/sharepoint/delivery/velo"
+
+
+def test_onedrive_con_doppia_barra_come_oggi():
+    """La cartella di nota si confronta per segmenti, il prefisso come testo: una doppia barra
+    lascia il file fuori ma con la sua cartella, come prima della lista di prefissi."""
+    r = analizza(f"{TENANT_OD}/personal/{UTENTE_OD}//Documents/{CARTELLA_OD}/Manini/a.pdf")
+    assert r["dentro"] is False and r["motivo"] == f"OneDrive fuori dalla cartella `{CARTELLA_OD}/`"
+    assert r["cartella_nota"] == "sources/onedrive/manini"
+
+
+# --- Profondità del rilevatore (--profondita, SPEC 6.2 passo 7, 13.1 step 18) -------------
+
+ESEMPIO_PROFONDITA = [
+    SP + "SalesMarketing/Deck/a.pdf",
+    SP + "SalesMarketing/Casi/Velo/b.pptx",
+    SP + "SalesMarketing/radice.pdf",                                   # nella radice: ignorato
+    SP + "Delivery/Customers/01 Velo-CE/Progetto Dynamics/00 Progetto/Stato.md",
+    SP + "Delivery/99 - old versions/x.pdf",                            # cartella esclusa: ignorato
+    SP + "Delivery/Customers/_originali/A/B/C/D/E/F/vecchio.pdf",       # cartella esclusa: ignorato
+    OD + "01_Materiale clienti/Manini/Gruppi.xlsx",
+    OD + "Nota.md",                                                     # nella radice: ignorato
+    SP + "Knowledge/Corso/Modulo/Lezione/M1.pdf",                       # fuori perimetro: ignorato
+    f"{TENANT_SP}/sites/partner/Partner/A/B/C/x.pdf",                   # altro sito: ignorato
+    f"{TENANT_OD}/personal/{UTENTE_OD}/Documents/Altro/A/B/C/x.pdf",    # fuori dalla cartella: ignorato
+]
+
+
+def elenco(root, urls, forma="lista"):
+    voci = [{"id": f"id-{i}", "name": u.rsplit("/", 1)[-1], "webUrl": u} for i, u in enumerate(urls)]
+    voci.append({"id": "cartella", "name": "Customers", "webUrl": SP + "Delivery/Customers", "folder": {}})
+    return scrivi(root, "elenco.json", json.dumps({"value": voci} if forma == "value" else voci))
+
+
+def con_old_versions(root):
+    """Il mini-vault non esclude `old versions`: lo aggiunge come nel vault reale."""
+    p = root / "vault.yaml"
+    p.write_text(p.read_text(encoding="utf-8").replace(
+        "cartelle: [siteassets, _originali, _sorgenti, dati]",
+        "cartelle: [siteassets, _originali, _sorgenti, dati, old versions]"), encoding="utf-8")
+
+
+def test_profondita_json(vault):
+    con_old_versions(vault)
+    res = esegui("perimetro.py", vault, "--profondita", elenco(vault, ESEMPIO_PROFONDITA, forma="value"), "--json")
+    assert res.returncode == 0, res.stderr
+    out = json.loads(res.stdout)
+    assert out["profondita"] == {"SalesMarketing": 2, "Delivery": 4, "OneDrive": 2}
+    assert list(out["profondita"]) == ["SalesMarketing", "Delivery", "OneDrive"]  # ordine del perimetro
+    assert out["senza_file"] == ["Shared Documents"]
+    assert out["file"] == 4
+    assert out["yaml"] == "profondita:\n  SalesMarketing: 2\n  Delivery: 4\n  OneDrive: 2\n"
+
+
+def test_profondita_si_ferma_alla_prima_cartella_con_file(vault):
+    """Un file in `Customers` rende `Customers` la prima cartella con file del ramo: 1."""
+    urls = [SP + "Delivery/Customers/leggimi.md",
+            SP + "Delivery/Customers/01 Velo-CE/Progetto Dynamics/00 Progetto/Stato.md"]
+    out = json.loads(esegui("perimetro.py", vault, "--profondita", elenco(vault, urls), "--json").stdout)
+    assert out["profondita"] == {"Delivery": 1}
+    assert out["senza_file"] == ["SalesMarketing", "Shared Documents", "OneDrive"]
+
+
+def test_profondita_anche_tipi_non_processati_e_al_massimo_sei(vault):
+    # web_url al posto di webUrl, come accetta riconcilia.py --elenco
+    scrivi(vault, "elenco.json", json.dumps([
+        {"web_url": SP + "Shared Documents/A/B/C/D/E/F/G/H/foto.png", "name": "foto.png"},
+        {"web_url": OD + "A/video.mp4", "name": "video.mp4"},
+    ]))
+    out = json.loads(esegui("perimetro.py", vault, "--profondita", vault / "elenco.json", "--json").stdout)
+    assert out["profondita"] == {"Shared Documents": 6, "OneDrive": 1} and out["file"] == 2
+
+
+def test_profondita_testo(vault):
+    con_old_versions(vault)
+    res = esegui("perimetro.py", vault, "--profondita", elenco(vault, ESEMPIO_PROFONDITA))
+    assert res.returncode == 0, res.stderr
+    righe = res.stdout.splitlines()
+    assert righe[:3] == ["SalesMarketing: 2", "Delivery: 4", "OneDrive: 2"]
+    assert "Shared Documents" in righe[3] and righe[4] == "4 file considerati"
+    assert res.stdout.endswith("profondita:\n  SalesMarketing: 2\n  Delivery: 4\n  OneDrive: 2\n")
+
+
+def test_profondita_snippet_valido_per_vault_yaml(vault):
+    """Lo snippet, messo sotto `fonti.rilevatore`, passa la validazione di config.py."""
+    con_old_versions(vault)
+    out = json.loads(esegui("perimetro.py", vault, "--profondita", elenco(vault, ESEMPIO_PROFONDITA),
+                            "--json").stdout)
+    blocco = "".join(f"    {r}\n" for r in out["yaml"].splitlines())
+    p = vault / "vault.yaml"
+    p.write_text(p.read_text(encoding="utf-8").replace(
+        "  tipi_processati: [pdf, docx, pptx, xlsx, md, txt]\n",
+        "  tipi_processati: [pdf, docx, pptx, xlsx, md, txt]\n  rilevatore:\n" + blocco), encoding="utf-8")
+    res = esegui("config.py", vault, "rilevatore")
+    assert res.returncode == 0, res.stderr
+    assert json.loads(res.stdout)["profondita"] == {"SalesMarketing": 2, "Delivery": 4,
+                                                    "Shared Documents": 2, "OneDrive": 2}
+
+
+@pytest.mark.parametrize("contenuto", [None, "non è json", '{"value": 3}', "[1, 2]", '[{"name": "a.pdf"}]'])
+def test_profondita_elenco_illeggibile(vault, contenuto):
+    if contenuto is not None:
+        scrivi(vault, "elenco.json", contenuto)
+    res = esegui("perimetro.py", vault, "--profondita", vault / "elenco.json")
+    assert res.returncode == 2 and "--profondita: elenco" in res.stderr and res.stdout == ""
+
+
+def test_profondita_senza_file_da_leggere(vault):
+    assert esegui("perimetro.py", vault, "--profondita").returncode == 2
