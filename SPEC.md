@@ -1,6 +1,6 @@
 # SPEC · Second Brain BlueAge (personale)
 
-Versione 1.25 · 29/10/2026 · Owner: Lorenzo Curione
+Versione 1.26 · 31/10/2026 · Owner: Lorenzo Curione
 
 Questo file è la specifica di riferimento del vault. Ogni sessione Claude Code che costruisce o modifica il sistema parte da qui. Le modifiche alla specifica si fanno con una PR dedicata.
 
@@ -341,6 +341,7 @@ Prefissi ed esclusioni del perimetro, tipi processati, fuso, task attesi e nomi 
 
 Esclusioni in qualunque punto del percorso:
 - cartelle `_originali` e `_sorgenti`;
+- cartelle `old versions` (es. `99 - old versions`): versioni superate, che la cartella tiene accanto all'ultima;
 - cartelle `Transcript` (es. `05 Transcript`): trascrizioni grezze delle riunioni, già riassunte nei verbali;
 - cartelle `Evidenze/Export` (es. `06 Evidenze/Export`): export grezzi di tabelle e dati dei sistemi del cliente;
 - cartelle di progetti software (contengono `app.json`, `package.json` o `.git`), es. `Lab AL/BlueAge-LabAL`;
@@ -395,7 +396,9 @@ Un file per fonte, così due task che lavorano su fonti diverse non toccano lo s
 
 ```jsonc
 // .state/sharepoint.json (uguale .state/onedrive.json)
-{ "watermark": "2026-10-22T04:50:00Z", "items": { "<driveId>/<itemId>": { "last_modified": "...", "note": "sources/..." } } }
+{ "watermark": "2026-10-22T04:50:00Z", "items": { "<driveId>/<itemId>": { "last_modified": "...", "note": "sources/..." } },
+  "cartelle": { "<driveId>": { "libreria": "SalesMarketing", "profondita": 2, "istante": "...",
+                               "elenco": { "<folderId>": "<percorso relativo alla libreria>" } } } }
 // .state/outlook.json
 { "watermark": "...", "threads": { "<conversationId>": { "last_message": "...", "note": "sources/mail/..." } } }
 // .state/github.json
@@ -407,24 +410,28 @@ Un file per fonte, così due task che lavorano su fonti diverse non toccano lo s
 ```
 
 Regole:
-- lo stato si legge e si scrive solo con `python3 .claude/scripts/stato.py` (`watermark`, `item`, `repo`, `elenco`, `last-run`; `set-item`, `set-watermark`, `set-repo`, `set-last-run`), mai a mano;
+- lo stato si legge e si scrive solo con `python3 .claude/scripts/stato.py` (`watermark`, `item`, `repo`, `elenco`, `last-run`, `cartelle`; `set-item`, `set-watermark`, `set-repo`, `set-last-run`, `set-cartelle`), mai a mano;
 - istanti nel formato `AAAA-MM-GGTHH:MM:SSZ`, `note` è un percorso relativo dentro `sources/`;
 - il watermark non scende mai: un valore più vecchio si ignora con un avviso (`--forza` solo per correggere a mano);
 - le voci non si cancellano (6.4): una nota rimossa ha `status: removed` e la sua voce resta;
 - scrittura atomica, JSON con indentazione 2 e chiavi ordinate, perché i diff restino leggibili;
-- conflitti git: merge driver `stato` (`.gitattributes`: `.state/*.json merge=stato`; il comando `python3 .claude/scripts/stato.py merge-driver %O %A %B` lo registra nel clone l'hook `SessionStart`). Il watermark e `last_run` più avanzati vincono; `items`, `threads` e `repos` si uniscono e per la stessa chiave vince l'istante più recente (per i repo il watermark), a parità il lato che ha cambiato la voce rispetto alla base. Se il driver non è registrato o un file non si legge, il rebase si ferma e `stato.py risolvi` applica la stessa unione dagli stadi dell'indice (11).
+- conflitti git: merge driver `stato` (`.gitattributes`: `.state/*.json merge=stato`; il comando `python3 .claude/scripts/stato.py merge-driver %O %A %B` lo registra nel clone l'hook `SessionStart`). Il watermark e `last_run` più avanzati vincono; `items`, `threads` e `repos` si uniscono e per la stessa chiave vince l'istante più recente (per i repo il watermark), a parità il lato che ha cambiato la voce rispetto alla base; per `cartelle` vince, drive per drive, la fotografia più recente. Se il driver non è registrato o un file non si legge, il rebase si ferma e `stato.py risolvi` applica la stessa unione dagli stadi dell'indice (11).
 
 ### 6.2 Algoritmo del delta (documenti)
 
 1. Leggi il `watermark` della fonte.
-2. Chiama `sharepoint_search` con `query: "*"` e `afterDateTime = watermark − 2 ore`. Scorri tutte le pagine. Le 2 ore di sovrapposizione recuperano i ritardi dell'indice di ricerca.
+2. Chiama `sharepoint_search` con `query: "*"` e `afterDateTime = watermark − finestra` (`fonti.rilevatore.finestra_ore` di `vault.yaml`, oggi 48 ore; `config.py rilevatore`). Scorri tutte le pagine. La sovrapposizione recupera i file che l'indice di ricerca restituisce in ritardo: il 31/10 cinque file caricati il pomeriggio prima, durante un riordino, non comparivano ancora la mattina dopo, mentre il watermark era già oltre. I file già registrati con lo stesso `last_modified` si saltano (passo 4), quindi la finestra larga costa solo la ricerca.
 3. Tieni solo i risultati il cui `webUrl` rientra nel perimetro (sezione 5) e non contiene percorsi esclusi.
 4. Per ogni file:
    - se `items[id].last_modified` è uguale a quello attuale, salta;
    - altrimenti leggi il contenuto con `read_resource`, individua la famiglia (4.3) e crea o aggiorna la nota.
 5. Aggiorna i progetti, clienti e temi collegati (le righe nuove vanno in `<slug>-log.md`).
 6. Imposta `watermark` all'ultimo `lastModifiedDateTime` processato con successo. Se nessun file fallisce, il watermark sale al `lastModifiedDateTime` più recente tra tutti i risultati della ricerca, compresi quelli saltati perché invariati o fuori perimetro: così la finestra di ricerca non si allarga nei giorni in cui nel perimetro non cambia nulla. Se un file fallisce, il watermark non lo supera.
-7. Commit e push su `main` (sezione 11).
+7. **Rilevatore di riordino.** Gli spostamenti e le rinomine non cambiano la data di modifica dei file, quindi il delta non li vede (riordino del 30/10: 25 note con il percorso vecchio). Due segnali, controllati a ogni giro:
+   - **cartelle**: per ogni libreria del perimetro (e per la cartella di OneDrive) elenca con `read_resource` le cartelle fino a `fonti.rilevatore.profondita` livelli (oggi 2), saltando le escluse, e salva la fotografia con `stato.py set-cartelle`, che la confronta con la precedente: cartelle nuove, sparite o con lo stesso ID e un percorso diverso sono un riordino. La prima fotografia non fa scattare niente;
+   - **ID nuovi**: almeno `fonti.rilevatore.soglia_id_nuovi` file (oggi 10) dei risultati del passo 2 hanno un ID che lo stato non conosce ma una famiglia che esiste già nella stessa cartella (`famiglia.py --cerca`): la cartella è stata ricaricata (Velo-CE il 29/10, 68 note con ID nuovi).
+   Se scatta un segnale, nello stesso giro si fa la riconciliazione ridotta (6.4) delle librerie toccate, e il digest riporta in `## Decisioni` una riga `- Riordino rilevato in <libreria>: <segnale> · riconciliazione ridotta: <n> note spostate, <m> rimosse, <k> recuperate`.
+8. Commit e push su `main` (sezione 11).
 
 Limite di lettura: oltre 30 pagine o slide, leggi le prime 30 e imposta `partial: true`.
 
@@ -442,17 +449,20 @@ Limite di lettura: oltre 30 pagine o slide, leggi le prime 30 e imposta `partial
    - se la famiglia esiste già tra le note di SharePoint o OneDrive, aggiungi la versione a quella nota e non crearne un'altra;
    - altrimenti crea `sources/attachments/<famiglia>.md`.
 6. Estrai decisioni, azioni e scadenze e portale nel progetto collegato (`## Attività` con data e fonte).
-7. Aggiorna il `watermark` e fai commit e push.
+7. Un thread che annuncia un riordino di SharePoint o OneDrive (cartelle spostate, rinominate, ricaricate) non fa niente da solo, perché il rilevatore (6.2, passo 7) se ne accorge dal giro dopo; se però arriva dopo il giro di `ingest-sharepoint` del giorno, il digest lo segnala in `## Decisioni` con `- Riordino annunciato: <libreria> · /ingest riconcilia sharepoint:<libreria> · [[fonte]]`.
+8. Aggiorna il `watermark` e fai commit e push.
 
-### 6.4 Riconciliazione settimanale
+### 6.4 Riconciliazione
 
-1. Elenca le cartelle del perimetro con `read_resource` sugli URI delle cartelle.
+Settimanale (task `reconcile`, tutte le fonti) oppure **ridotta**: una sola libreria, lanciata dal rilevatore di riordino (6.2, passo 7) dentro il giro di `ingest-sharepoint`, o a mano con `/ingest riconcilia sharepoint:<libreria>`.
+
+1. Elenca le cartelle del perimetro con `read_resource` sugli URI delle cartelle, saltando le escluse.
 2. Confronta gli ID con lo stato (`stato.py elenco <fonte>`):
    - ID non più presenti: la nota passa a `status: removed`;
-   - `webUrl` cambiato (file spostato o rinominato): aggiorna la nota;
-   - file presenti ma mai ingeriti: mettili in coda per la prossima ingestion.
+   - `webUrl` cambiato (file spostato o rinominato): aggiorna `current.web_url` e, se cambia la cartella, sposta la nota con `git mv` nella `cartella_nota` di `perimetro.py` e aggiorna il percorso nello stato (`set-item --note`); lo slug non cambia, quindi i wikilink restano validi;
+   - file presenti ma mai ingeriti: se sono più recenti del watermark li prende il prossimo delta; se sono più vecchi (il watermark li ha superati) si ingeriscono subito come compito `file`, senza toccare il watermark.
 3. Esegui il controllo del vault (4.4) e riporta errori e avvisi in `## Controllo del vault` del digest.
-4. Scrivi l'esito nel digest del giorno.
+4. Scrivi l'esito nel digest del giorno; la riconciliazione completa aggiorna `reconcile.last_run`, quella ridotta no.
 
 ### 6.5 Primo caricamento
 
@@ -474,7 +484,7 @@ Il repo deve essere presente nella sessione: nelle sessioni cloud si collega acc
 2. **File** del perimetro (5.4): `git log -1 --format='%H %cI' origin/main -- <percorso>`. Se il commit è uguale a `items[chiave].commit`, salta. Altrimenti guarda `git diff <commit vecchio>..<commit nuovo> -- <percorso>`:
    - se il diff non tocca le parti elencate in 5.4, aggiorna solo lo stato (`commit`, `last_modified`);
    - altrimenti rileggi quelle parti da `git show origin/main:<percorso>`, aggiorna la nota come nuova versione (4.3) e scrivi le differenze rilevanti nel log del progetto.
-   File sparito da `main`: la nota passa a `status: removed`.
+   File sparito da `main`: prima di segnarlo `status: removed` guarda `git diff --name-status -M <commit vecchio>..<head>`. Se il file è stato spostato o rinominato (`R`), la nota lo segue: `current.uri` sul percorso nuovo, voce nuova nello stato con la stessa nota (la vecchia resta, 6.1) e una riga nel digest `- Da aggiornare: SPEC 5.4, <percorso vecchio> → <percorso nuovo>`, perché l'elenco dei file del perimetro sta qui.
 3. **Changelog**: le voci nuove sono i titoli `## ` aggiunti tra `repos[repo].commit` e `head` (`git diff`). Per ogni giorno con voci nuove, **una** riga nel log del progetto con ciò che conta a livello di progetto (funzioni chiuse, decisioni, numeri, problemi aperti), senza dettagli tecnici, con fonte la nota del changelog. Le azioni che non sono codice (avvisi, richieste a clienti e fornitori, decisioni da prendere) vanno in `## Attività`. La nota del changelog tiene in `## Voci recenti` una riga per voce degli ultimi 30 giorni.
 4. **Issue** del perimetro: se `updated_at` è uguale a `items[chiave].last_modified`, salta. Altrimenti rigenera la nota. Le caselle non spuntate dei passi fuori dal codice diventano attività del progetto, se non ci sono già; quelle spuntate nel repo che nel progetto risultano ancora aperte vanno nel digest, sotto `## Decisioni`, come `- Da spuntare: <attività> · [[fonte]]` (il task non modifica righe esistenti).
 5. `repos[repo]` = `head` e il suo istante; aggiorna `items`. Digest, commit e push.
@@ -487,7 +497,7 @@ Orari nel fuso del vault (`vault.yaml`, oggi Europe/Rome), fuori dagli orari pie
 
 | Task | Quando | Connettori | Modello | Cosa fa |
 |---|---|---|---|---|
-| `ingest-sharepoint` | Ogni giorno alle 06:50 | Microsoft 365 | Opus | 6.2 su SharePoint e OneDrive |
+| `ingest-sharepoint` | Ogni giorno alle 06:50 | Microsoft 365 | Opus | 6.2 su SharePoint e OneDrive, con il rilevatore di riordino e, se scatta, la riconciliazione ridotta (6.4) |
 | `ingest-outlook` | Ogni giorno alle 07:05 e alle 13:15 (due task) | Microsoft 365 | Opus | 6.3 |
 | `digest` | Ogni giorno alle 07:45 | Nessuno | Sonnet | Completa `journal/AAAA-MM-GG.md`: novità, attività in scadenza, decisioni |
 | `ingest-github` | Ogni giorno alle 07:20 | GitHub (il vault e i repo di 5.4 come sorgenti) | Opus | 6.6 |
@@ -510,7 +520,7 @@ Eccezione: il `curator` non scrive nel digest e non fa push su `main` (sezione 3
 
 | Comando | Funzione |
 |---|---|
-| `/ingest [fonte] [da data]` | Esegue l'ingestion a richiesta. Senza argomenti esegue tutte le fonti dal watermark |
+| `/ingest [fonte] [da data]` | Esegue l'ingestion a richiesta. Senza argomenti esegue tutte le fonti dal watermark. `/ingest riconcilia [sharepoint:<libreria>]` esegue la riconciliazione (6.4), completa o ridotta a una libreria |
 | `/ingest-file <url o nome>` | Ingerisce un singolo documento, anche fuori dal perimetro |
 | `/oggi [giorni]` | Agenda del giorno, sola lettura: attività scadute, di oggi e entro N giorni (default 7) per progetto, progetti fermi da più di 14 giorni, inbox da smistare, novità dall'ultimo digest, esito dei task; dati da `plancia.py` e `cerca.py` |
 | `/progetto <nome>` | Stato completo di un progetto, sola lettura: stato e decisioni, attività aperte per data, ultimi passi del log, fonti degli ultimi 30 giorni, persone, cose che non tornano (attività senza data, log fermo, note `partial`) |

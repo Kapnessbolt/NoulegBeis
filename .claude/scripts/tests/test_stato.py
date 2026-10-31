@@ -220,3 +220,62 @@ def test_risolvi_a_mano_un_conflitto_rimasto(vault, tmp_path):
     assert res.returncode == 0, res.stderr
     assert leggi_stato(vault, "sharepoint")["watermark"] == "2026-10-09T00:00:00Z"
     assert git(vault, "diff", "--name-only", "--diff-filter=U").stdout.strip() == ""
+
+
+def test_cartelle_prima_fotografia_e_riordino(vault, tmp_path):
+    el = tmp_path / "elenco.json"
+    scrivi_json(el, {"f1": "Deck", "f2": "Product Portfolio", "f3": "Product Portfolio/Pulse"})
+    args = ("--libreria", "SalesMarketing", "--profondita", "2", "--elenco", el)
+    res = stato(vault, "set-cartelle", "sharepoint", "drv", "--istante", "2026-10-29T05:00:00Z", *args)
+    assert res.returncode == 0, res.stderr
+    out = json.loads(res.stdout)
+    assert out["prima"] is True and out["riordino"] is False and out["cartelle"] == 3
+    # stessa struttura il giorno dopo: niente riordino
+    out = json.loads(stato(vault, "set-cartelle", "sharepoint", "drv", "--istante", "2026-10-30T05:00:00Z", *args).stdout)
+    assert out["prima"] is False and out["riordino"] is False
+    # riordino del 30/10: una cartella rinominata, una nuova, una sparita
+    scrivi_json(el, {"f2": "02 - Offerte", "f3": "02 - Offerte/Pulse", "f4": "01 - Materiali istituzionali"})
+    out = json.loads(stato(vault, "set-cartelle", "sharepoint", "drv", "--istante", "2026-10-31T05:00:00Z", *args).stdout)
+    assert out["riordino"] is True
+    assert out["nuove"] == ["01 - Materiali istituzionali"] and out["sparite"] == ["Deck"]
+    assert out["spostate"] == [{"a": "02 - Offerte", "da": "Product Portfolio"},
+                               {"a": "02 - Offerte/Pulse", "da": "Product Portfolio/Pulse"}]
+    voce = json.loads(stato(vault, "cartelle", "sharepoint", "drv").stdout)
+    assert voce["istante"] == "2026-10-31T05:00:00Z" and voce["libreria"] == "SalesMarketing"
+    assert stato(vault, "cartelle", "sharepoint", "altro").returncode == 1
+    # gli items restano dove sono
+    assert leggi_stato(vault, "sharepoint")["items"] == STATO["sharepoint"]["items"]
+
+
+def test_set_cartelle_validazione(vault, tmp_path):
+    el = tmp_path / "elenco.json"
+    scrivi_json(el, {"f1": "A/B/C"})
+    base = ("set-cartelle", "sharepoint", "drv", "--libreria", "X", "--istante", "2026-10-31T05:00:00Z")
+    res = stato(vault, *base, "--profondita", "2", "--elenco", el)
+    assert res.returncode != 0 and "oltre la profondità" in res.stderr
+    assert stato(vault, *base, "--profondita", "0", "--elenco", el).returncode != 0
+    assert stato(vault, *base[:-2], "--istante", "ieri", "--profondita", "3", "--elenco", el).returncode != 0
+    assert stato(vault, "set-cartelle", "outlook", "drv", "--libreria", "X", "--istante",
+                 "2026-10-31T05:00:00Z", "--profondita", "3", "--elenco", el).returncode != 0
+    assert stato(vault, *base, "--profondita", "3").returncode != 0  # manca --elenco
+    # una fotografia più vecchia non sostituisce quella registrata
+    assert stato(vault, *base, "--profondita", "3", "--elenco", el).returncode == 0
+    res = stato(vault, *base[:-2], "--istante", "2026-10-30T05:00:00Z", "--profondita", "3", "--elenco", el)
+    assert res.returncode != 0 and "più vecchia" in res.stderr
+    # cambiare profondità riparte da una prima fotografia
+    scrivi_json(el, {"f1": "A"})
+    out = json.loads(stato(vault, *base[:-2], "--istante", "2026-11-01T05:00:00Z", "--profondita", "1",
+                           "--elenco", el).stdout)
+    assert out["prima"] is True and out["riordino"] is False
+
+
+def test_merge_driver_cartelle_vince_la_fotografia_piu_recente(vault, tmp_path):
+    pb, pn, pl = tmp_path / "base", tmp_path / "nostro", tmp_path / "loro"
+    vecchia = {"libreria": "D", "profondita": 2, "istante": "2026-10-30T05:00:00Z", "elenco": {"f": "A"}}
+    nuova = {"libreria": "D", "profondita": 2, "istante": "2026-10-31T05:00:00Z", "elenco": {"f": "B"}}
+    scrivi_json(pb, {"watermark": None, "items": {}})
+    scrivi_json(pn, {"watermark": None, "items": {}, "cartelle": {"d1": nuova, "d2": vecchia}})
+    scrivi_json(pl, {"watermark": None, "items": {}, "cartelle": {"d1": vecchia, "d3": vecchia}})
+    assert stato(vault, "merge-driver", pb, pn, pl).returncode == 0
+    out = json.loads(pn.read_text(encoding="utf-8"))["cartelle"]
+    assert out["d1"]["elenco"] == {"f": "B"} and set(out) == {"d1", "d2", "d3"}

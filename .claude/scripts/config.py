@@ -14,6 +14,9 @@ Uso:
   python3 .claude/scripts/config.py task [AAAA-MM-GG] [--digest] [--json]
       # giri attesi del giorno (predefinito: oggi), uno per riga `HH:MM <task>` in ordine di ora;
       # con --digest solo i task che scrivono la riga d'esito nel digest
+  python3 .claude/scripts/config.py rilevatore           # finestra del delta e rilevatore di riordino
+      # (SPEC 6.2) in JSON: `finestra_ore`, `profondita`, `soglia_id_nuovi`, con i default
+      # se `fonti.rilevatore` manca in vault.yaml
   python3 .claude/scripts/config.py verifica             # schema, orari di SPEC 7, permessi e `tools`
   python3 .claude/scripts/config.py applica              # riscrive da vault.yaml i permessi
       # `mcp__<server>__<strumento>` di `.claude/settings.json` e la parte mcp della riga
@@ -208,6 +211,15 @@ def _valida(c):
             isinstance(p, list) and len(p) == 2 and all(isinstance(x, str) for x in p) for p in dentro):
         e("fonti.esclusioni.dentro", "deve essere una lista di coppie [genitore, cartella]")
     lista_testi(f, "tipi_processati", "fonti.tipi_processati")
+    ril = f.get("rilevatore", {})
+    if not isinstance(ril, dict):
+        e("fonti.rilevatore", "deve essere un oggetto")
+        ril = {}
+    for k in ril:
+        if k not in RILEVATORE:
+            e(f"fonti.rilevatore.{k}", f"chiave sconosciuta (ammesse: {', '.join(RILEVATORE)})")
+        elif not isinstance(ril[k], int) or isinstance(ril[k], bool) or ril[k] < 1:
+            e(f"fonti.rilevatore.{k}", "deve essere un intero positivo")
     lista_testi(f, "firme_in_coda", "fonti.firme_in_coda", vuota=True)
     lista_testi(oggetto(f, "outlook", "fonti.outlook"), "mittenti_scartati",
                 "fonti.outlook.mittenti_scartati", vuota=True)
@@ -365,6 +377,16 @@ def perimetro(c=None):
         "dentro_escluse": tuple((a.lower(), b.lower()) for a, b in es.get("dentro", [])),
         "tipi": {x.lower().lstrip(".") for x in f["tipi_processati"]},
     }
+
+
+# Rilevatore di riordino e finestra del delta (SPEC 6.2): valori di default se `vault.yaml` non li ha
+RILEVATORE = {"finestra_ore": 48, "profondita": 2, "soglia_id_nuovi": 10}
+
+
+def rilevatore(c=None):
+    """Parametri del delta e del rilevatore di riordino, con i default di `RILEVATORE`."""
+    ril = (c or carica())["fonti"].get("rilevatore") or {}
+    return {k: ril.get(k, v) for k, v in RILEVATORE.items()}
 
 
 def firme_in_coda(c=None):
@@ -632,6 +654,8 @@ def main(argv):
             else:
                 for o, t in righe:
                     print(f"{o} {t}")
+        elif cmd == "rilevatore" and not args:
+            print(json.dumps(rilevatore(c), ensure_ascii=False))
         elif cmd == "applica" and not args:
             cambiati = applica(c=c)
             print("Aggiornati: " + ", ".join(cambiati) if cambiati else "Niente da cambiare")

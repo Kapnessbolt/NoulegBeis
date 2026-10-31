@@ -263,3 +263,25 @@ def test_modificati_vede_gli_errori_di_configurazione(vault):
     modifica(vault, "SPEC.md", "Domenica alle 21:10", "Domenica alle 21:40")
     res = esegui("controlla-vault.py", vault, "--modificati")
     assert res.returncode == 1 and "task `curator`: orari diversi" in res.stdout
+
+
+def test_rilevatore_default_e_valori_del_vault(vault):
+    # il mini-vault non ha `fonti.rilevatore`: valgono i default
+    res = cfg(vault, "rilevatore")
+    assert res.returncode == 0, res.stderr
+    assert json.loads(res.stdout) == {"finestra_ore": 48, "profondita": 2, "soglia_id_nuovi": 10}
+    modifica(vault, "vault.yaml", "  tipi_processati: [pdf, docx, pptx, xlsx, md, txt]\n",
+             "  tipi_processati: [pdf, docx, pptx, xlsx, md, txt]\n  rilevatore:\n    profondita: 3\n")
+    assert json.loads(cfg(vault, "rilevatore").stdout)["profondita"] == 3
+
+
+@pytest.mark.parametrize("riga, messaggio", [
+    ("    profondita: 0\n", "`fonti.rilevatore.profondita` deve essere un intero positivo"),
+    ("    finestra_ore: due\n", "`fonti.rilevatore.finestra_ore` deve essere un intero positivo"),
+    ("    soglia: 5\n", "`fonti.rilevatore.soglia` chiave sconosciuta"),
+])
+def test_rilevatore_errori(vault, riga, messaggio):
+    modifica(vault, "vault.yaml", "  tipi_processati: [pdf, docx, pptx, xlsx, md, txt]\n",
+             "  tipi_processati: [pdf, docx, pptx, xlsx, md, txt]\n  rilevatore:\n" + riga)
+    res = cfg(vault, "verifica")
+    assert res.returncode == 1 and messaggio in res.stdout

@@ -76,6 +76,10 @@ fonti:
     finali: [transcript]                 # `05 Transcript`
     dentro: [[evidenze, export]]         # `06 Evidenze/Export`
   tipi_processati: [pdf, docx, pptx, xlsx, md, txt]
+  rilevatore:                            # delta e rilevatore di riordino (SPEC 6.2, passi 2 e 7)
+    finestra_ore: 48                     # la ricerca riparte da watermark meno queste ore (ritardi dell'indice)
+    profondita: 2                        # livelli di cartelle fotografati per libreria
+    soglia_id_nuovi: 10                  # ID nuovi in famiglie già note che fanno scattare il rilevatore
   firme_in_coda: [blueage]               # firma dell'autore in coda ai nomi (`…_BlueAge.pptx`): fuori dalla famiglia
   outlook:
     mittenti_scartati: [no-reply, noreply, donotreply, notifications, notification, mailer-daemon]

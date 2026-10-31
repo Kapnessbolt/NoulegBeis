@@ -2,7 +2,9 @@
 """Stato dell'ingestion (SPEC 6.1): un file per fonte in `.state/`, letto e scritto solo da qui.
 
 File e contenuto:
-  .state/sharepoint.json  {"watermark": ..., "items": {"<driveId>/<itemId>": {"last_modified", "note"}}}
+  .state/sharepoint.json  {"watermark": ..., "items": {"<driveId>/<itemId>": {"last_modified", "note"}},
+                           "cartelle": {"<driveId>": {"libreria", "profondita", "istante",
+                                                      "elenco": {"<folderId>": "<percorso>"}}}}
   .state/onedrive.json    come sharepoint
   .state/outlook.json     {"watermark": ..., "threads": {"<conversationId>": {"last_message", "note"}}}
   .state/github.json      {"repos": {"<owner>/<repo>": {"commit", "watermark"}},
@@ -22,13 +24,22 @@ Uso (fonte: sharepoint | onedrive | outlook | github | reconcile):
   stato.py set-item <fonte> <chiave> --istante <ISO UTC> [--note sources/...] [--commit <sha>]
       --istante vale anche come --last-modified o --last-message: lo script scrive il campo
       giusto per la fonte (last_message per outlook, last_modified per le altre). --note serve
-      solo per una voce nuova; --commit solo per github
+      per una voce nuova o per spostare la nota (riconciliazione, SPEC 6.4); --commit solo
+      per github
   stato.py set-watermark <fonte> <ISO UTC> [--forza]
       non abbassa mai il watermark: se il nuovo è più vecchio esce con 0 e un avviso, a meno
       di --forza
   stato.py set-repo <owner/repo> --commit <sha> --watermark <ISO UTC> [--forza]
       stessa regola: un watermark più vecchio non sostituisce quello registrato
   stato.py set-last-run <ISO UTC>                 reconcile.last_run
+  stato.py cartelle <fonte> [<driveId>]           fotografia delle cartelle (rilevatore di riordino,
+                                                  SPEC 6.2 passo 7); 1 se il drive non ce l'ha
+  stato.py set-cartelle <fonte> <driveId> --libreria <nome> --profondita <n> --istante <ISO UTC>
+          --elenco <file.json>
+      salva la fotografia ({"<folderId>": "<percorso relativo alla libreria>"}, fino a <n>
+      livelli) e stampa il confronto con la precedente: `nuove`, `sparite`, `spostate`
+      (stesso ID, percorso diverso) e `riordino` (true se qualcosa è cambiato). La prima
+      fotografia, o una presa a una profondità diversa, ha `prima: true` e `riordino: false`
   stato.py merge-driver <base> <nostro> <loro>    merge driver di git per .state/*.json
                                                   (.gitattributes: `merge=stato`)
   stato.py risolvi [<file> ...]                   risolve a mano un conflitto rimasto su
@@ -44,7 +55,8 @@ Le voci non si cancellano mai (SPEC 6.4): una nota rimossa ha `status: removed`,
 
 Merge driver: il watermark (e last_run) più avanzato vince; items, threads e repos si uniscono
 e per la stessa chiave vince l'istante più recente (per i repo il watermark); a parità vince il
-lato che ha cambiato la voce rispetto alla base. Scrive il risultato in <nostro> ed esce con 0;
+lato che ha cambiato la voce rispetto alla base. Per `cartelle` vince, drive per drive, la
+fotografia più recente. Scrive il risultato in <nostro> ed esce con 0;
 con un file illeggibile esce con 1 e git lascia il conflitto.
 
 La variabile d'ambiente VAULT_ROOT, se presente, indica la radice del vault al posto della
@@ -284,6 +296,56 @@ def cmd_set_last_run(ist):
     return data
 
 
+def cmd_cartelle(fonte, drive=None):
+    controlla_fonte(fonte, ("sharepoint", "onedrive"))
+    cartelle = leggi(fonte).get("cartelle", {})
+    return cartelle if drive is None else cartelle.get(drive)
+
+
+def confronta_cartelle(vecchia, nuova):
+    """Confronto tra due fotografie `{folderId: percorso}`."""
+    nuove = sorted(nuova[i] for i in set(nuova) - set(vecchia))
+    sparite = sorted(vecchia[i] for i in set(vecchia) - set(nuova))
+    spostate = sorted(({"da": vecchia[i], "a": nuova[i]} for i in set(vecchia) & set(nuova)
+                       if vecchia[i] != nuova[i]), key=lambda x: x["da"])
+    return {"nuove": nuove, "sparite": sparite, "spostate": spostate,
+            "riordino": bool(nuove or sparite or spostate)}
+
+
+def cmd_set_cartelle(fonte, drive, libreria, profondita, ist, elenco):
+    controlla_fonte(fonte, ("sharepoint", "onedrive"))
+    istante(ist)
+    if not str(drive).strip():
+        raise Errore("driveId vuoto")
+    try:
+        profondita = int(profondita)
+    except (TypeError, ValueError):
+        raise Errore(f"--profondita `{profondita}` non è un numero")
+    if profondita < 1:
+        raise Errore("--profondita deve essere almeno 1")
+    if not isinstance(elenco, dict) or not all(
+            isinstance(k, str) and k and isinstance(v, str) and v.strip() for k, v in elenco.items()):
+        raise Errore("--elenco deve essere un oggetto JSON {\"<folderId>\": \"<percorso>\"}")
+    elenco = {k: v.strip().strip("/") for k, v in elenco.items()}
+    troppo = [v for v in elenco.values() if len(v.split("/")) > profondita]
+    if troppo:
+        raise Errore(f"percorsi oltre la profondità {profondita}: {', '.join(sorted(troppo)[:3])}")
+    data = leggi(fonte)
+    cartelle = data.setdefault("cartelle", {})
+    prec = cartelle.get(drive)
+    if prec and piu_recente(prec.get("istante"), ist):
+        raise Errore(f"fotografia del {ist} più vecchia di quella registrata ({prec.get('istante')})")
+    prima = not prec or prec.get("profondita") != profondita
+    out = {"fonte": fonte, "drive": drive, "libreria": libreria, "cartelle": len(elenco), "prima": prima}
+    if prima:
+        out.update({"nuove": [], "sparite": [], "spostate": [], "riordino": False})
+    else:
+        out.update(confronta_cartelle(prec.get("elenco", {}), elenco))
+    cartelle[drive] = {"libreria": libreria, "profondita": profondita, "istante": ist, "elenco": elenco}
+    scrivi(fonte, data)
+    return out
+
+
 # --- Merge driver -----------------------------------------------------------------------
 
 def _istante_voce(voce, campi=("last_modified", "last_message", "watermark")):
@@ -334,6 +396,12 @@ def unisci(base, nostro, loro):
                     coll[chiave] = _scegli(b.get(chiave), nostro[k][chiave], loro[k][chiave],
                                            lambda v: _istante_voce(v, campi))
             out[k] = coll
+        elif k == "cartelle" and isinstance(nostro[k], dict) and isinstance(loro[k], dict):
+            b = base.get(k) if isinstance(base.get(k), dict) else {}
+            out[k] = {d: (nostro[k][d] if d not in loro[k] else loro[k][d] if d not in nostro[k]
+                          else _scegli(b.get(d), nostro[k][d], loro[k][d],
+                                       lambda v: v.get("istante") if isinstance(v, dict) else None))
+                      for d in sorted(set(nostro[k]) | set(loro[k]))}
         else:
             out[k] = _scegli(base.get(k), nostro[k], loro[k], lambda v: None)
     return out
@@ -485,6 +553,28 @@ def main(argv):
         (ist,) = posizionali(args, 1, "set-last-run <ISO UTC>")
         r = cmd_set_last_run(ist)
         stampa(r if as_json else f"reconcile.last_run: {ist}", as_json)
+        return 0
+    if cmd == "cartelle":
+        if len(args) not in (1, 2):
+            raise Errore("uso: stato.py cartelle <fonte> [<driveId>]")
+        r = cmd_cartelle(*args)
+        if r is None:
+            sys.stderr.write(f"nessuna fotografia per `{args[1]}` in .state/{args[0]}.json\n")
+            return 1
+        stampa(r)
+        return 0
+    if cmd == "set-cartelle":
+        pos, opt = opzioni(args, ("--libreria", "--profondita", "--istante", "--elenco"))
+        fonte, drive = posizionali(pos, 2, "set-cartelle <fonte> <driveId> --libreria <nome> "
+                                           "--profondita <n> --istante <ISO> --elenco <file.json>")
+        mancano = [n for n in ("--libreria", "--profondita", "--istante", "--elenco") if n not in opt]
+        if mancano:
+            raise Errore("set-cartelle vuole " + ", ".join(mancano))
+        try:
+            elenco = json.loads(Path(opt["--elenco"]).read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as e:
+            raise Errore(f"--elenco `{opt['--elenco']}` illeggibile: {e}")
+        stampa(cmd_set_cartelle(fonte, drive, opt["--libreria"], opt["--profondita"], opt["--istante"], elenco))
         return 0
     if cmd == "merge-driver":
         base, nostro, loro = posizionali(args, 3, "merge-driver <base> <nostro> <loro>")

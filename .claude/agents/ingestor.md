@@ -67,10 +67,14 @@ Azione o scadenza esplicita di un progetto esistente: in `## Attività` `- [ ] <
 ## 4. `delta` documenti (SPEC 6.2)
 
 1. `stato.py watermark <fonte>`: uscita 1 (null) senza **da data** → fermati, primo caricamento (SPEC 6.5).
-2. `sharepoint_search` `query: "*"`, `afterDateTime: <watermark − 2 ore>`, `limit: 50`, seguendo `nextOffset` (a 1000 restringi con `beforeDateTime`); smista con `perimetro.py` (`sharepoint:<Libreria>`: solo quella).
+2. `sharepoint_search` `query: "*"`, `afterDateTime: <watermark − finestra_ore>` (`config.py rilevatore`), `limit: 50`, seguendo `nextOffset` (a 1000 restringi con `beforeDateTime`); smista con `perimetro.py` (`sharepoint:<Libreria>`: solo quella).
 3. Per `lastModifiedDateTime` crescente: `last_modified` uguale in `stato.py item <fonte> <driveId>/<itemId>` → salta; altrimenti nota e collegamenti (1, 3), poi `stato.py set-item <fonte> <chiave> --istante <lastModifiedDateTime> --note <nota>`.
 4. `stato.py set-watermark <fonte> <istante>` (non scende mai): `lastModifiedDateTime` dell'ultimo file riuscito prima del primo fallimento. Un file fallito ferma il watermark della sua fonte, non gli altri file. Senza fallimenti, il più recente di **tutti** i risultati, anche saltati, fuori perimetro o ignorati.
-5. Digest (8), git (9).
+5. **Rilevatore di riordino** (SPEC 6.2 passo 7), parametri da `config.py rilevatore`; per un `sharepoint:<Libreria>` solo quella:
+   - **cartelle**: per ogni libreria di `fonti.sharepoint.librerie` e per la cartella di OneDrive, `read_resource` sulla radice (`file:///<driveId>/`; il `driveId` dai risultati della ricerca o da `stato.py elenco`) e sulle sottocartelle fino a `profondita` livelli, saltando quelle che `perimetro.py` esclude. Scrivi `{"<folderId>": "<percorso relativo alla libreria>"}` in un file JSON nello scratchpad e chiama `stato.py set-cartelle <fonte> <driveId> --libreria <nome> --profondita <n> --istante <adesso UTC> --elenco <file>`: `riordino: true` → la libreria è toccata;
+   - **ID nuovi**: conta i risultati del passo 3 con ID assente dallo stato ma famiglia già presente nella stessa cartella (`famiglia.py --cerca`); almeno `soglia_id_nuovi` nella stessa libreria → toccata.
+   Libreria toccata: riconciliazione ridotta (7) di quella libreria, nello stesso giro, e in `## Decisioni` del digest `- Riordino rilevato in <libreria>: <cartelle nuove, sparite, spostate | N ID nuovi> · riconciliazione ridotta: <n> note spostate, <m> rimosse, <k> recuperate`. Un errore del connettore sul rilevatore va nel digest e non ferma il resto del giro.
+6. Digest (8), git (9).
 
 ## 5. `delta` posta (SPEC 6.3)
 
@@ -78,7 +82,8 @@ Azione o scadenza esplicita di un progetto esistente: in `## Attività` `- [ ] <
 2. Scarta: mittenti `no-reply`, `noreply`, `donotreply`, `notifications`, `notification`, `mailer-daemon`; notifiche di servizi (Teams, SharePoint, Azure, Microsoft 365, SaaS); newsletter e marketing (link di disiscrizione, mittenti di massa); thread personali o estranei al lavoro dell'organizzazione (`vault.organizzazione`) (`CLAUDE.md` §5; in `interattiva` chiedi prima). Annota ogni scarto (mittente · oggetto).
 3. Per `conversationId`: salta i messaggi fino al `last_message` di `stato.py item outlook <id>`; thread senza novità intatto; altrimenti nota (3.5) e `stato.py set-item outlook <id> --istante <ultimo messaggio> --note <nota>`.
 4. Allegati (pdf, docx, pptx, xlsx; niente `isInline: true` né immagini): famiglia già su SharePoint o OneDrive (`famiglia.py --cerca`) → versione lì, altrimenti `sources/attachments/<famiglia>.md`; nel thread `--aggiungi 'attachments=[[<famiglia>]]'`.
-5. Decisioni, azioni, scadenze → 3.6. `stato.py set-watermark outlook <ultimo messaggio riuscito>`; digest e git.
+5. Decisioni, azioni, scadenze → 3.6. Thread che annuncia un riordino di SharePoint o OneDrive (cartelle spostate, rinominate, ricaricate), arrivato dopo il giro di `ingest-sharepoint` del giorno: in `## Decisioni` del digest `- Riordino annunciato: <libreria> · /ingest riconcilia sharepoint:<libreria> · [[<slug-thread>]]` (SPEC 6.3 passo 7).
+6. `stato.py set-watermark outlook <ultimo messaggio riuscito>`; digest e git.
 
 ## 5b. `delta` GitHub (SPEC 6.6)
 
@@ -86,7 +91,7 @@ Livello della scheda progetto: cosa è chiuso, cosa è deciso, numeri, scadenze,
 
 1. Clone `../<repo>` (o `git clone` nello scratchpad; fallito → errore nel digest); `git fetch origin main`; `head` = `origin/main`.
 2. `stato.py repo <owner>/<repo>`: uscita 1 senza **da data** → fermati.
-3. File (`<owner>/<repo>:<percorso>`): ultimo commit (`git log -1 --format='%H %cI'`) già registrato → salta; diff fuori dalle parti di SPEC 5.4 → solo `stato.py set-item github <chiave> --istante <istante> --commit <sha>`; altrimenti nuova versione (3.4), `current.uri=github://<owner>/<repo>/<percorso>@<commit>`. Sparito → `status=removed`.
+3. File (`<owner>/<repo>:<percorso>`): ultimo commit (`git log -1 --format='%H %cI'`) già registrato → salta; diff fuori dalle parti di SPEC 5.4 → solo `stato.py set-item github <chiave> --istante <istante> --commit <sha>`; altrimenti nuova versione (3.4), `current.uri=github://<owner>/<repo>/<percorso>@<commit>`. Sparito → prima `git diff --name-status -M <commit vecchio>..<head>`: rinominato o spostato (`R`) → la nota segue il file (`current.uri` nuovo, `stato.py set-item github <owner>/<repo>:<percorso nuovo> --istante <istante> --commit <sha> --note <nota>`) e nel digest `- Da aggiornare: SPEC 5.4, <vecchio> → <nuovo>`; altrimenti `status=removed`.
 4. Changelog: per giorno con voci nuove **una** riga in testa al log (`- AAAA-MM-GG · <sintesi di progetto> · [[<repo>-changelog]]`); azioni fuori dal codice, con chi e scadenza → `## Attività`; nella nota `## Riassunto` e `## Voci recenti` (30 giorni).
 5. Issue (`<owner>/<repo>#<n>`): `issue_read` (o `gh issue view --json number,title,state,body,updatedAt`; senza entrambi, errore nel digest). `updated_at` invariato → salta; altrimenti rigenera; caselle aperte fuori dal codice → `## Attività`; spuntate nel repo ma aperte nel progetto → digest `- Da spuntare: <attività> · [[<nota issue>]]`.
 6. `stato.py set-item` per file e issue aggiornati, `stato.py set-repo <owner>/<repo> --commit <head> --watermark <istante di head>`; digest e git.
@@ -100,9 +105,11 @@ Livello della scheda progetto: cosa è chiuso, cosa è deciso, numeri, scadenze,
 
 ## 7. Riconciliazione (SPEC 6.4)
 
+Completa (fonte `tutte`) o ridotta (fonte `sharepoint:<Libreria>`, o lanciata dal rilevatore in 4 passo 5): stessi passi, sulle sole cartelle di quella libreria.
+
 1. Elenca ricorsivamente le cartelle del perimetro (`read_resource`), saltando le escluse.
-2. Con `stato.py elenco <fonte>`: ID sparito → `status=removed`, la voce resta; `webUrl` cambiato → `current.web_url`, più `git mv` e `set-item --note` se cambia cartella, `rinomina-nota.py` se cambia famiglia; mai ingerito → digest "in coda" (se più vecchio del watermark, compito `file`).
-3. `controlla-vault.py` → `## Controllo del vault`; `stato.py set-last-run <adesso UTC>`; git.
+2. Con `stato.py elenco <fonte>`: ID sparito → `status=removed`, la voce resta; `webUrl` cambiato → `current.web_url`, più `git mv` e `set-item --note` se cambia cartella, `rinomina-nota.py` se cambia famiglia; mai ingerito → più recente del watermark: digest "in coda"; più vecchio: compito `file` subito (6), watermark intatto.
+3. `controlla-vault.py` → `## Controllo del vault`; solo per la completa `stato.py set-last-run <adesso UTC>`; git.
 
 ## 8. Digest
 
