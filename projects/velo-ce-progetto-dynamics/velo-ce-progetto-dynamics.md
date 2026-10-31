@@ -62,6 +62,13 @@ updated: 2026-10-29
 - [ ] Passare l'invio delle mail di BC Production a OAuth 2.0 prima di spostare la casella `noreply@` (l'autenticazione di base SMTP finisce per impostazione predefinita a fine dicembre 2026) ([[velo-ce-migrazione-posta-al-tenant-unico-inventario-e-proposte-cliente]])
 - [ ] Raccogliere le risposte di Luigi Sacchi e Stefano alle domande sulla migrazione della posta (D-01…D-12) ([[velo-ce-migrazione-posta-al-tenant-unico-inventario-e-proposte-cliente]])
 - [ ] Rispondere a We Make Code con le domande W1-W10 e avvisare che la prova delle integrazioni richiede una sandbox del tenant `velo-ce.eu` con le app EOS ([[velo-ce-integrazioni-we-make-code-specifiche]])
+- [ ] Call con We Make Code sulle anagrafiche e i codici Van Nicholas (I2, F5) 📅 2026-11-04 ([[velo-ce-tabella-di-marcia-avvio-interno]])
+- [ ] Primo giro di risposte ai sette file di domande sul master, prezzi dei fornitori italiani e import, dati dei colli su circa 30 codici, listini di HS e B.C. Garage (H1, B1-B3, D3, D5) 📅 2026-11-06 ([[velo-ce-tabella-di-marcia-avvio-interno]])
+- [ ] Provare il DDT di conto lavoro verso HS senza giacenza presso HS e allinearlo all'ubicazione 04 del master (D2, C1) 📅 2026-11-06 ([[velo-ce-tabella-di-marcia-avvio-interno]])
+- [ ] Correggere il fornitore HS nel master e nella simulazione: F00167 al posto di F00035 (D3) ([[velo-ce-tabella-di-marcia-avvio-interno]])
+- [ ] In sede il 9/11: chiudere giro d'acquisto e costi accessori, decidere le proposte contabili e il valore delle giacenze d'apertura (A1-A3) 📅 2026-11-09 ([[velo-ce-tabella-di-marcia-avvio-interno]])
+- [ ] Riallineare il piano «Taglio SdI» e il deck tecnico del 14/10 alla decisione del 29/10: passaggio della fattura elettronica tutto all'8/1 (A13) ([[velo-ce-tabella-di-marcia-avvio-interno]])
+- [ ] SAL del 19/11, con tre giorni in sede la settimana del 16/11 (L1) 📅 2026-11-19 ([[velo-ce-tabella-di-marcia-avvio-interno]])
 
 ## Decisioni
 

@@ -10,7 +10,8 @@ current:
   last_modified: 2026-10-06T14:04:00Z
 versions:
   - { name: Velo-CE - SAL 01 del 6 ottobre - CLIENTE - v002.pptx, item_id: 01EFCYUZ2NQNATMPY4WZFJ7TK5ILBQAQ5V, last_modified: 2026-10-06T14:04:00Z }
-also_at: []
+also_at:
+  - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/SalesMarketing/03 - Casi e referenze/Velo-CE - Progetto Dynamics - presentazioni al cliente/261006 Velo-CE - Progetto Dynamics e Power BI - SAL 6 ottobre - v002 - INVIATO.pdf", item_id: 01EFCYUZ57LSHFGFPGKZBYFLB3XWILIPOR }
 status: active
 partial: false
 ingested_at: 2026-10-22T13:25:42Z

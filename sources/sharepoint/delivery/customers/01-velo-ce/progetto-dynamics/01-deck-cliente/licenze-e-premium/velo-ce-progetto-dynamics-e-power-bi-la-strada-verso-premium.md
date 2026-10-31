@@ -3,17 +3,19 @@ type: source-doc
 source: sharepoint
 family: velo-ce-progetto-dynamics-e-power-bi-la-strada-verso-premium
 current:
-  item_id: 01EFCYUZ27FYBJ7UKKLJEI5DF7J7BZU7GH
-  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ27FYBJ7UKKLJEI5DF7J7BZU7GH
-  web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/01 Deck cliente/Licenze e Premium/Velo-CE - Progetto Dynamics e Power BI - La strada verso Premium - v005.pptx
-  name: Velo-CE - Progetto Dynamics e Power BI - La strada verso Premium - v005.pptx
-  last_modified: 2013-01-27T09:15:58Z
+  item_id: 01EFCYUZ4HUCHMDUGOPFAZOFAFCDV7CYXA
+  uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKVSDgPuvHRsSIc3xR8AKeVG/01EFCYUZ4HUCHMDUGOPFAZOFAFCDV7CYXA
+  web_url: https://blueagesrl.sharepoint.com/sites/internal/SalesMarketing/03 - Casi e referenze/Velo-CE - Progetto Dynamics - presentazioni al cliente/260930 Velo-CE - Progetto Dynamics e Power BI - La strada verso Premium - v006 - INVIATO.pdf
+  name: 260930 Velo-CE - Progetto Dynamics e Power BI - La strada verso Premium - v006 - INVIATO.pdf
+  last_modified: 2026-10-30T12:00:40Z
 versions:
-  - { name: Velo-CE - Progetto Dynamics e Power BI - La strada verso Premium - v005.pptx, item_id: 01EFCYUZ6TPWKUS7PRCBFLA6QRILF4PETN, last_modified: 2013-01-27T09:15:58Z }
+  - { name: "260930 Velo-CE - Progetto Dynamics e Power BI - La strada verso Premium - v006 - INVIATO.pdf", item_id: 01EFCYUZ4HUCHMDUGOPFAZOFAFCDV7CYXA, last_modified: 2026-10-30T12:00:40Z }
+  - { name: "Velo-CE - Progetto Dynamics e Power BI - La strada verso Premium - v005.pptx", item_id: 01EFCYUZ27FYBJ7UKKLJEI5DF7J7BZU7GH, last_modified: 2013-01-27T09:15:58Z }
+  - { name: "Velo-CE - Progetto Dynamics e Power BI - La strada verso Premium - v005.pptx", item_id: 01EFCYUZ6TPWKUS7PRCBFLA6QRILF4PETN, last_modified: 2013-01-27T09:15:58Z }
 also_at: []
 status: active
 partial: false
-ingested_at: 2026-10-22T13:25:42Z
+ingested_at: 2026-10-31T05:56:19Z
 projects: ["[[velo-ce-progetto-dynamics]]"]
 clients: ["[[velo-ce]]"]
 topics: ["[[business-central-ai]]", "[[fatturazione-elettronica-sdi]]"]
@@ -24,11 +26,12 @@ tags: [business-central, premium, licenze, so-smart, tenant, decisioni, scheda-d
 
 ## Riassunto
 
-Deck BlueAge di 19 slide (v005 del 30 settembre 2026, materiale per il cliente) per la riunione di fase sul passaggio a Business Central Premium. Racconta il lavoro dal 21/09 (letture a sistema dal 24 al 29 settembre e confronti del 29), lo stato di Business Central e delle 54 app So Smart, le tre funzioni costruite da So Smart per Velo-CE, la posizione di So Smart su Premium, i due tenant Microsoft e le due strade per arrivare a Premium. Contiene la scheda decisione D-BC1 ("su quale Business Central si costruisce Premium?") con la proposta BlueAge per la strada B, le tappe, i costi della convivenza e i prossimi passi. È un documento distinto dal deck "Business Central oggi e la strada verso Premium" ([[velo-ce-business-central-oggi-e-la-strada-verso-premium-cliente]]), con cui condivide impianto e appendice.
+Deck BlueAge di 19 slide (v006 del 30 settembre 2026, inviata, materiale per il cliente; prima v005) per la riunione di fase sul passaggio a Business Central Premium. Racconta il lavoro dal 21/09 (letture a sistema dal 24 al 29 settembre e confronti del 29), lo stato di Business Central e delle 54 app So Smart, le cinque funzioni So Smart in uso (nella v005 erano tre), la posizione di So Smart su Premium, i due tenant Microsoft e le due strade per arrivare a Premium. Contiene la scheda decisione D-BC1 ("su quale Business Central si costruisce Premium?") con la proposta BlueAge per la strada B, le tappe, i costi della convivenza e i prossimi passi. È un documento distinto dal deck "Business Central oggi e la strada verso Premium" ([[velo-ce-business-central-oggi-e-la-strada-verso-premium-cliente]]), con cui condivide impianto e appendice.
 
 ## Punti chiave
 
-- **Cosa è emerso**: delle 54 app So Smart Velo-CE ne usa tre funzioni: flusso ordini dal portale B2B (MMI, ordini dei dealer ogni 2 minuti, verificato), configurazione Van Nicholas (tabelle di sostituzione dei componenti, riferito; il configuratore lo sta costruendo Leonardo, freelance), fattura elettronica tramite intermediario (verificato; la password si aggiorna a mano).
+- **v006**: le funzioni So Smart in uso diventano cinque: i due sviluppi fatti per Velo-CE (flusso ordini dal portale B2B, verificato; configurazione Van Nicholas, riferito) e tre app fiscali di EOS pubblicate sullo store e disponibili anche per Premium (fattura elettronica, verificata; dichiarazioni d'intento con plafond e Certificazione Unica, riferite). Le stesse cinque entrano nella strada B, nei costi di convivenza e nella scheda D-BC1; la call con So Smart è fissata al 6 ottobre.
+- **Cosa è emerso (v005)**: delle 54 app So Smart Velo-CE ne usa tre funzioni: flusso ordini dal portale B2B (MMI, ordini dei dealer ogni 2 minuti, verificato), configurazione Van Nicholas (tabelle di sostituzione dei componenti, riferito; il configuratore lo sta costruendo Leonardo, freelance), fattura elettronica tramite intermediario (verificato; la password si aggiorna a mano).
 - **Installato e fermo**: valorizzazione del magazzino che gira ogni notte ma il valore di bilancio si calcola a mano; conto lavoro, WMS e configuratore installati nel 2023 e mai configurati; collegamento al commercialista inattivo; quattro automatismi in errore; vecchio canale della fattura elettronica fermo da aprile 2024.
 - **Premium**: il 21 settembre Velo-CE ha scelto Premium. So Smart segue solo Essentials e rimanda a EOS Solutions; "So Smart for Italy" è dichiarata solo Essentials. Le tre funzioni non toccano la produzione e sulla carta reggono su Premium: la garanzia va chiesta a So Smart. Con Premium il pacchetto So Smart perde la sua ragione d'essere.
 - **Due tenant**: tenant della posta (amministratore Stefano, posta gestita da Luigi Sacchi) e tenant di Business Central impiantato da So Smart nel 2023, con gestione delle app chiusa all'utenza di Velo-CE, Teams, Office e Power BI.
@@ -58,3 +61,4 @@ Deck BlueAge di 19 slide (v005 del 30 settembre 2026, materiale per il cliente) 
 ## Versioni
 
 - Velo-CE - Progetto Dynamics e Power BI - La strada verso Premium - v005.pptx · 2013-01-27 · prima versione ingerita (v005 del 30/09/2026 nel documento). Data di ultima modifica anomala (2013): riportata così come è su SharePoint
+- 260930 Velo-CE - Progetto Dynamics e Power BI - La strada verso Premium - v006 - INVIATO.pdf · 2026-10-30 · v006 inviata, PDF nella cartella delle presentazioni al cliente di SalesMarketing: cinque funzioni So Smart in uso al posto di tre (aggiunte dichiarazioni d'intento con plafond e Certificazione Unica), call con So Smart fissata al 6/10
