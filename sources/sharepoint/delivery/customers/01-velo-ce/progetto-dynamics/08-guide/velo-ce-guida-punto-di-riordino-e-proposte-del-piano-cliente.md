@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ5YE3F6BDCZO5H3E2FA7GK3JZBB
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/08 Guide/Velo-CE - Guida punto di riordino e proposte del piano - CLIENTE - v001.pdf
   name: Velo-CE - Guida punto di riordino e proposte del piano - CLIENTE - v001.pdf
-  last_modified: 2026-10-28T08:06:13Z
+  last_modified: 2026-10-29T16:14:37Z
 versions:
-  - { name: "Velo-CE - Guida punto di riordino e proposte del piano - CLIENTE - v001.pdf", item_id: 01EFCYUZ5YE3F6BDCZO5H3E2FA7GK3JZBB, last_modified: 2026-10-28T08:06:13Z }
+  - { name: "Velo-CE - Guida punto di riordino e proposte del piano - CLIENTE - v001.pdf", item_id: 01EFCYUZ5YE3F6BDCZO5H3E2FA7GK3JZBB, last_modified: 2026-10-29T16:14:37Z }
   - { name: "Velo-CE - Guida punto di riordino e proposte del piano - CLIENTE - v001.pdf", item_id: 01EFCYUZ66IVYPERNJSNB3EHSTQJEM56YS, last_modified: 2026-10-28T08:06:13Z }
 also_at: []
 status: active

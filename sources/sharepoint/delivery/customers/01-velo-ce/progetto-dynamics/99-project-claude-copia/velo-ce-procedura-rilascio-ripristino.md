@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ4RI5VDEVDAURFIZZKE4SVN2LII
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/velo-ce-procedura-rilascio-ripristino-2026-09-22.md
   name: velo-ce-procedura-rilascio-ripristino-2026-09-22.md
-  last_modified: 2026-10-08T10:43:53Z
+  last_modified: 2026-10-29T16:14:34Z
 versions:
-  - { name: velo-ce-procedura-rilascio-ripristino-2026-09-22.md, item_id: 01EFCYUZ4RI5VDEVDAURFIZZKE4SVN2LII, last_modified: 2026-10-08T10:43:53Z }
+  - { name: velo-ce-procedura-rilascio-ripristino-2026-09-22.md, item_id: 01EFCYUZ4RI5VDEVDAURFIZZKE4SVN2LII, last_modified: 2026-10-29T16:14:34Z }
   - { name: velo-ce-procedura-rilascio-ripristino-2026-09-22.md, item_id: 01EFCYUZ5K2FUQZDBRGVHIXP6PZIXGEQZD, last_modified: 2026-10-28T08:06:16Z }
   - { name: velo-ce-procedura-rilascio-ripristino-2026-09-22.md, item_id: 01EFCYUZ65RXRKSPMBORFYWBVYZIOCXIUJ, last_modified: 2026-10-08T10:43:53Z }
 also_at:

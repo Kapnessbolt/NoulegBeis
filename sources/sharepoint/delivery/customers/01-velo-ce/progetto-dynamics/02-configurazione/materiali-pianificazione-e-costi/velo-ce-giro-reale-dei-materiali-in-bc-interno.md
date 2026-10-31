@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ7NLRE3TU4GR5BIZCOWFNQMYSNV
   web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/02 Configurazione/Materiali, pianificazione e costi/Velo-CE - Giro reale dei materiali in BC - INTERNO - v001.md"
   name: "Velo-CE - Giro reale dei materiali in BC - INTERNO - v001.md"
-  last_modified: 2026-10-08T10:44:30Z
+  last_modified: 2026-10-29T16:14:43Z
 versions:
-  - { name: "Velo-CE - Giro reale dei materiali in BC - INTERNO - v001.md", item_id: 01EFCYUZ7NLRE3TU4GR5BIZCOWFNQMYSNV, last_modified: 2026-10-08T10:44:30Z }
+  - { name: "Velo-CE - Giro reale dei materiali in BC - INTERNO - v001.md", item_id: 01EFCYUZ7NLRE3TU4GR5BIZCOWFNQMYSNV, last_modified: 2026-10-29T16:14:43Z }
   - { name: "Velo-CE - Giro reale dei materiali in BC - INTERNO - v001.md", item_id: 01EFCYUZ4DGDZTWBEKPJDKXBWJ3N2PBO5W, last_modified: 2026-10-28T08:06:27Z }
   - { name: "Velo-CE - Giro reale dei materiali in BC - INTERNO - v001.md", item_id: 01EFCYUZ6OFXE7KPGLDJD33VFH5FAQZAQD, last_modified: 2026-10-08T10:44:30Z }
 also_at: []

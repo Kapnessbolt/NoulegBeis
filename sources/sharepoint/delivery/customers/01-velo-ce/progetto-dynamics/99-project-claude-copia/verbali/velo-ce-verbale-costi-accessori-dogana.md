@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZYCN2THX4AM7BCL56ETGKFUN6PW
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/verbali/velo-ce-verbale-261021-1837-costi-accessori-dogana.md
   name: velo-ce-verbale-261021-1837-costi-accessori-dogana.md
-  last_modified: 2026-10-28T08:06:46Z
+  last_modified: 2026-10-29T16:15:51Z
 versions:
-  - { name: velo-ce-verbale-261021-1837-costi-accessori-dogana.md, item_id: 01EFCYUZYCN2THX4AM7BCL56ETGKFUN6PW, last_modified: 2026-10-28T08:06:46Z }
+  - { name: velo-ce-verbale-261021-1837-costi-accessori-dogana.md, item_id: 01EFCYUZYCN2THX4AM7BCL56ETGKFUN6PW, last_modified: 2026-10-29T16:15:51Z }
   - { name: velo-ce-verbale-261021-1837-costi-accessori-dogana.md, item_id: 01EFCYUZYS6KZNJHWIKVDZ7B7S6CHNODQ6, last_modified: 2026-10-28T08:06:46Z }
 also_at: []
 status: active

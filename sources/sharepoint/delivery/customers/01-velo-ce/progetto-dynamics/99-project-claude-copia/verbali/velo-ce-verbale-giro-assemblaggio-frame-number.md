@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ6Q6D2ZFKOWGFC3ZUTBBLKHI2BQ
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/verbali/velo-ce-verbale-261021-0845-giro-assemblaggio-frame-number.md
   name: velo-ce-verbale-261021-0845-giro-assemblaggio-frame-number.md
-  last_modified: 2026-10-28T08:06:44Z
+  last_modified: 2026-10-29T16:15:51Z
 versions:
-  - { name: velo-ce-verbale-261021-0845-giro-assemblaggio-frame-number.md, item_id: 01EFCYUZ6Q6D2ZFKOWGFC3ZUTBBLKHI2BQ, last_modified: 2026-10-28T08:06:44Z }
+  - { name: velo-ce-verbale-261021-0845-giro-assemblaggio-frame-number.md, item_id: 01EFCYUZ6Q6D2ZFKOWGFC3ZUTBBLKHI2BQ, last_modified: 2026-10-29T16:15:51Z }
   - { name: velo-ce-verbale-261021-0845-giro-assemblaggio-frame-number.md, item_id: 01EFCYUZZMNCRPYHBSUBFK7UAYRQGQ77EF, last_modified: 2026-10-28T08:06:44Z }
 also_at: []
 status: active

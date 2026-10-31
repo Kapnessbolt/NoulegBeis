@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ3KTUH7T53BYBGLNTICWTF65DZD
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/verbali/velo-ce-verbale-261005-1103-app-fiscali-piano-b.md
   name: velo-ce-verbale-261005-1103-app-fiscali-piano-b.md
-  last_modified: 2026-10-08T10:44:36Z
+  last_modified: 2026-10-29T16:15:50Z
 versions:
-  - { name: velo-ce-verbale-261005-1103-app-fiscali-piano-b.md, item_id: 01EFCYUZ3KTUH7T53BYBGLNTICWTF65DZD, last_modified: 2026-10-08T10:44:36Z }
+  - { name: velo-ce-verbale-261005-1103-app-fiscali-piano-b.md, item_id: 01EFCYUZ3KTUH7T53BYBGLNTICWTF65DZD, last_modified: 2026-10-29T16:15:50Z }
   - { name: velo-ce-verbale-261005-1103-app-fiscali-piano-b.md, item_id: 01EFCYUZ3CQIVCMVXG7VAIGFYGCNZPXYAA, last_modified: 2026-10-28T08:06:43Z }
   - { name: velo-ce-verbale-261005-1103-app-fiscali-piano-b.md, item_id: 01EFCYUZ7HWWS7TQIGOJBJAYW7IIVXB3T2, last_modified: 2026-10-08T10:44:36Z }
 also_at: []

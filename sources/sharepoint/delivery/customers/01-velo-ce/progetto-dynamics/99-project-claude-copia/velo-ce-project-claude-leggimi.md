@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ5CL66MKTOKYJCIFIO5UA3W4MPW
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/00 LEGGIMI - COPIA.md
   name: 00 LEGGIMI - COPIA.md
-  last_modified: 2026-10-08T10:43:51Z
+  last_modified: 2026-10-29T16:14:34Z
 versions:
-  - { name: 00 LEGGIMI - COPIA.md, item_id: 01EFCYUZ5CL66MKTOKYJCIFIO5UA3W4MPW, last_modified: 2026-10-08T10:43:51Z }
+  - { name: 00 LEGGIMI - COPIA.md, item_id: 01EFCYUZ5CL66MKTOKYJCIFIO5UA3W4MPW, last_modified: 2026-10-29T16:14:34Z }
   - { name: 00 LEGGIMI - COPIA.md, item_id: 01EFCYUZ5SKT6H5ZYTERFJ6AU42TZHZJ7C, last_modified: 2026-10-28T08:06:14Z }
   - { name: 00 LEGGIMI - COPIA.md, item_id: 01EFCYUZYFNAIOKYMBSRC3KPPOPRKOEOIM, last_modified: 2026-10-08T10:43:51Z }
 also_at: []

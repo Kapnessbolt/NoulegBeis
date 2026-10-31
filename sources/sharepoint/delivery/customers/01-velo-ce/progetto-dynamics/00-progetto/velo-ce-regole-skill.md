@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZYWUMWUACSIWBFLUX7QFDPT6LPF
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/00 Progetto/_regole skill.md
   name: _regole skill.md
-  last_modified: 2026-10-08T10:43:48Z
+  last_modified: 2026-10-29T16:14:31Z
 versions:
-  - { name: _regole skill.md, item_id: 01EFCYUZYWUMWUACSIWBFLUX7QFDPT6LPF, last_modified: 2026-10-08T10:43:48Z }
+  - { name: _regole skill.md, item_id: 01EFCYUZYWUMWUACSIWBFLUX7QFDPT6LPF, last_modified: 2026-10-29T16:14:31Z }
   - { name: _regole skill.md, item_id: 01EFCYUZ46KIA7WDO4RVGYBLCMOPVFQDA6, last_modified: 2026-10-28T08:04:53Z }
   - { name: _regole skill.md, item_id: 01EFCYUZ75CATPRT3RDBC3T6NW6PLKG43K, last_modified: 2026-10-08T10:43:48Z }
 also_at: []

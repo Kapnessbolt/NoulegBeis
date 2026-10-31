@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ27FPNJUV6KFRFLQDCBNSVYQCPU
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/00 Progetto/Handoff/handoff-2026-10-17-afc-ciclo-attivo-chiuso-area-4-iva.md
   name: handoff-2026-10-17-afc-ciclo-attivo-chiuso-area-4-iva.md
-  last_modified: 2026-10-28T08:06:22Z
+  last_modified: 2026-10-29T16:14:39Z
 versions:
-  - { name: handoff-2026-10-17-afc-ciclo-attivo-chiuso-area-4-iva.md, item_id: 01EFCYUZ27FPNJUV6KFRFLQDCBNSVYQCPU, last_modified: 2026-10-28T08:06:22Z }
+  - { name: handoff-2026-10-17-afc-ciclo-attivo-chiuso-area-4-iva.md, item_id: 01EFCYUZ27FPNJUV6KFRFLQDCBNSVYQCPU, last_modified: 2026-10-29T16:14:39Z }
   - { name: handoff-2026-10-17-afc-ciclo-attivo-chiuso-area-4-iva.md, item_id: 01EFCYUZZEQ5MSL3OL35CIXWAQXHCALZ7H, last_modified: 2026-10-28T08:06:22Z }
 also_at: []
 status: active

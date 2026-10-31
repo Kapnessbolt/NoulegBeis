@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ2KROTVGYFRMVAZUUMCJOCA3QER
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/00 Progetto/Handoff/handoff-2026-10-02-app-eos-ex063-chiusura-e-accruals.md
   name: handoff-2026-10-02-app-eos-ex063-chiusura-e-accruals.md
-  last_modified: 2026-10-08T10:43:54Z
+  last_modified: 2026-10-29T16:14:38Z
 versions:
-  - { name: handoff-2026-10-02-app-eos-ex063-chiusura-e-accruals.md, item_id: 01EFCYUZ2KROTVGYFRMVAZUUMCJOCA3QER, last_modified: 2026-10-08T10:43:54Z }
+  - { name: handoff-2026-10-02-app-eos-ex063-chiusura-e-accruals.md, item_id: 01EFCYUZ2KROTVGYFRMVAZUUMCJOCA3QER, last_modified: 2026-10-29T16:14:38Z }
   - { name: handoff-2026-10-02-app-eos-ex063-chiusura-e-accruals.md, item_id: 01EFCYUZ54JMQSFLQO6BD2T5X6QWG2Q4ZP, last_modified: 2026-10-28T08:06:21Z }
   - { name: handoff-2026-10-02-app-eos-ex063-chiusura-e-accruals.md, item_id: 01EFCYUZ57CF5MNSHDKRG2DST2XCIN7A3Q, last_modified: 2026-10-08T10:43:54Z }
 also_at: []

@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ3SMZC3N4DACRA2252SJWWRCAEO
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/00 Progetto/Handoff/handoff-2026-10-26-costi-accessori-ciclo-acquisto.md
   name: handoff-2026-10-26-costi-accessori-ciclo-acquisto.md
-  last_modified: 2026-10-28T08:06:23Z
+  last_modified: 2026-10-29T16:14:39Z
 versions:
-  - { name: handoff-2026-10-26-costi-accessori-ciclo-acquisto.md, item_id: 01EFCYUZ3SMZC3N4DACRA2252SJWWRCAEO, last_modified: 2026-10-28T08:06:23Z }
+  - { name: handoff-2026-10-26-costi-accessori-ciclo-acquisto.md, item_id: 01EFCYUZ3SMZC3N4DACRA2252SJWWRCAEO, last_modified: 2026-10-29T16:14:39Z }
   - { name: handoff-2026-10-26-costi-accessori-ciclo-acquisto.md, item_id: 01EFCYUZ4I34DN5ZOFHZAZFAXGITY6VGWD, last_modified: 2026-10-28T08:06:23Z }
 also_at: []
 status: active

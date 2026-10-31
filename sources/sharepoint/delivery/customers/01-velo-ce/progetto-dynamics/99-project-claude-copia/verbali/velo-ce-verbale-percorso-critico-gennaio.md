@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ3BKW4QOUOOGZGYCXKJGRFE5CFS
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/verbali/velo-ce-verbale-260930-1438-percorso-critico-gennaio.md
   name: velo-ce-verbale-260930-1438-percorso-critico-gennaio.md
-  last_modified: 2026-10-08T10:44:36Z
+  last_modified: 2026-10-29T16:15:50Z
 versions:
-  - { name: velo-ce-verbale-260930-1438-percorso-critico-gennaio.md, item_id: 01EFCYUZ3BKW4QOUOOGZGYCXKJGRFE5CFS, last_modified: 2026-10-08T10:44:36Z }
+  - { name: velo-ce-verbale-260930-1438-percorso-critico-gennaio.md, item_id: 01EFCYUZ3BKW4QOUOOGZGYCXKJGRFE5CFS, last_modified: 2026-10-29T16:15:50Z }
   - { name: velo-ce-verbale-260930-1438-percorso-critico-gennaio.md, item_id: 01EFCYUZ6HEKWJDVOQQZDZSEH3ZZTLCNB6, last_modified: 2026-10-28T08:06:43Z }
   - { name: velo-ce-verbale-260930-1438-percorso-critico-gennaio.md, item_id: 01EFCYUZ3MYGUWNSSRLBD2NHRDQ47UESMF, last_modified: 2026-10-08T10:44:36Z }
 also_at: []

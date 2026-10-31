@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ2CDC5LHTGEP5A2H7ECMMBKYSGA
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/velo-ce-stato-progetto-04-backlog.md
   name: velo-ce-stato-progetto-04-backlog.md
-  last_modified: 2026-10-08T10:43:52Z
+  last_modified: 2026-10-29T16:14:35Z
 versions:
-  - { name: velo-ce-stato-progetto-04-backlog.md, item_id: 01EFCYUZ2CDC5LHTGEP5A2H7ECMMBKYSGA, last_modified: 2026-10-08T10:43:52Z }
+  - { name: velo-ce-stato-progetto-04-backlog.md, item_id: 01EFCYUZ2CDC5LHTGEP5A2H7ECMMBKYSGA, last_modified: 2026-10-29T16:14:35Z }
   - { name: velo-ce-stato-progetto-04-backlog.md, item_id: 01EFCYUZYKGV676ZHLAJB2K62BTOWI5SES, last_modified: 2026-10-28T08:06:16Z }
   - { name: velo-ce-stato-progetto-04-backlog.md, item_id: 01EFCYUZ3ZR5JYAVFM2BD2V2AJSHMX4SKB, last_modified: 2026-10-08T10:43:52Z }
 also_at:

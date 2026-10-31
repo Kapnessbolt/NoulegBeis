@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ6BF4M3PJXIB5CIWBAKFY5MXUWZ
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/verbali/velo-ce-verbale-260930-1503-giro-materiali-pilota-lungo.md
   name: velo-ce-verbale-260930-1503-giro-materiali-pilota-lungo.md
-  last_modified: 2026-10-08T10:44:36Z
+  last_modified: 2026-10-29T16:15:50Z
 versions:
-  - { name: velo-ce-verbale-260930-1503-giro-materiali-pilota-lungo.md, item_id: 01EFCYUZ6BF4M3PJXIB5CIWBAKFY5MXUWZ, last_modified: 2026-10-08T10:44:36Z }
+  - { name: velo-ce-verbale-260930-1503-giro-materiali-pilota-lungo.md, item_id: 01EFCYUZ6BF4M3PJXIB5CIWBAKFY5MXUWZ, last_modified: 2026-10-29T16:15:50Z }
   - { name: velo-ce-verbale-260930-1503-giro-materiali-pilota-lungo.md, item_id: 01EFCYUZ5O5BAMV4MVLZHINYQTHGA76AXZ, last_modified: 2026-10-28T08:06:44Z }
   - { name: velo-ce-verbale-260930-1503-giro-materiali-pilota-lungo.md, item_id: 01EFCYUZ5O445S5ADGIVDK4MVRXX6PTPX7, last_modified: 2026-10-08T10:44:36Z }
 also_at: []

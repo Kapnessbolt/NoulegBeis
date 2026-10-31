@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ2DXSNGIDYFHVCKQQXYVJHIOTRV
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/velo-ce-censimento-app-eos-2026-09-24.md
   name: velo-ce-censimento-app-eos-2026-09-24.md
-  last_modified: 2026-10-08T10:43:52Z
+  last_modified: 2026-10-29T16:14:34Z
 versions:
-  - { name: velo-ce-censimento-app-eos-2026-09-24.md, item_id: 01EFCYUZ2DXSNGIDYFHVCKQQXYVJHIOTRV, last_modified: 2026-10-08T10:43:52Z }
+  - { name: velo-ce-censimento-app-eos-2026-09-24.md, item_id: 01EFCYUZ2DXSNGIDYFHVCKQQXYVJHIOTRV, last_modified: 2026-10-29T16:14:34Z }
   - { name: velo-ce-censimento-app-eos-2026-09-24.md, item_id: 01EFCYUZ3XVKQFK3X3WBCYW45VM6LGCIFV, last_modified: 2026-10-28T08:06:15Z }
   - { name: velo-ce-censimento-app-eos-2026-09-24.md, item_id: 01EFCYUZ4K5F3CAU2T7BHJAA4XADQ3RCKA, last_modified: 2026-10-08T10:43:52Z }
 also_at:

@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ2A5DR26Q6PZFCJJWY6RUTOEIBA
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/verbali/velo-ce-verbale-261021-1426-codice-bici-colore-variante.md
   name: velo-ce-verbale-261021-1426-codice-bici-colore-variante.md
-  last_modified: 2026-10-28T08:06:45Z
+  last_modified: 2026-10-29T16:15:51Z
 versions:
-  - { name: velo-ce-verbale-261021-1426-codice-bici-colore-variante.md, item_id: 01EFCYUZ2A5DR26Q6PZFCJJWY6RUTOEIBA, last_modified: 2026-10-28T08:06:45Z }
+  - { name: velo-ce-verbale-261021-1426-codice-bici-colore-variante.md, item_id: 01EFCYUZ2A5DR26Q6PZFCJJWY6RUTOEIBA, last_modified: 2026-10-29T16:15:51Z }
   - { name: velo-ce-verbale-261021-1426-codice-bici-colore-variante.md, item_id: 01EFCYUZ5OUK3XG2XQF5CID3RYMGJL2XCX, last_modified: 2026-10-28T08:06:45Z }
 also_at: []
 status: active

@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ763YDQO4TYYJAKI5IP2B5VB535
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/00 Progetto/Handoff/handoff-2026-10-16-ripresa-dati-so-smart-listini.md
   name: handoff-2026-10-16-ripresa-dati-so-smart-listini.md
-  last_modified: 2026-10-28T08:06:23Z
+  last_modified: 2026-10-29T16:14:39Z
 versions:
-  - { name: handoff-2026-10-16-ripresa-dati-so-smart-listini.md, item_id: 01EFCYUZ763YDQO4TYYJAKI5IP2B5VB535, last_modified: 2026-10-28T08:06:23Z }
+  - { name: handoff-2026-10-16-ripresa-dati-so-smart-listini.md, item_id: 01EFCYUZ763YDQO4TYYJAKI5IP2B5VB535, last_modified: 2026-10-29T16:14:39Z }
   - { name: handoff-2026-10-16-ripresa-dati-so-smart-listini.md, item_id: 01EFCYUZ5JIJB2MXI5NJAZ5CLEG343JD62, last_modified: 2026-10-28T08:06:23Z }
 also_at: []
 status: active

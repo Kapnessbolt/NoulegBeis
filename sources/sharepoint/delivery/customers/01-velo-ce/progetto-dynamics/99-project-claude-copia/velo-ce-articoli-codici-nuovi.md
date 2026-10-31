@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ5P54ZT5Q7EKBEJV6JC3HOKGYDY
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/velo-ce-articoli-codici-nuovi-2026-10-15.md
   name: velo-ce-articoli-codici-nuovi-2026-10-15.md
-  last_modified: 2026-10-28T08:06:15Z
+  last_modified: 2026-10-29T16:14:34Z
 versions:
-  - { name: velo-ce-articoli-codici-nuovi-2026-10-15.md, item_id: 01EFCYUZ5P54ZT5Q7EKBEJV6JC3HOKGYDY, last_modified: 2026-10-28T08:06:15Z }
+  - { name: velo-ce-articoli-codici-nuovi-2026-10-15.md, item_id: 01EFCYUZ5P54ZT5Q7EKBEJV6JC3HOKGYDY, last_modified: 2026-10-29T16:14:34Z }
   - { name: velo-ce-articoli-codici-nuovi-2026-10-15.md, item_id: 01EFCYUZ3HHGI2R3AYBBBKGAVN7TSSHICY, last_modified: 2026-10-28T08:06:15Z }
 also_at:
   - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/98 Share Team/Velo-CE - Contesto Claude per Leonardo - INTERNO - v001/velo-ce-articoli-codici-nuovi-2026-10-15.md", item_id: 01EFCYUZZ2MXZ7YHPSQZD35MRKA26N63HH }

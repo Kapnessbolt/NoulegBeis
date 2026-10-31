@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZYGRY7LCZNT45BI4MUPYV6X7FMM
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/08 Guide/Velo-CE - Guida migrazione posta al tenant unico - INTERNO - v001.pdf
   name: Velo-CE - Guida migrazione posta al tenant unico - INTERNO - v001.pdf
-  last_modified: 2026-10-28T08:06:12Z
+  last_modified: 2026-10-29T16:14:37Z
 versions:
-  - { name: "Velo-CE - Guida migrazione posta al tenant unico - INTERNO - v001.pdf", item_id: 01EFCYUZYGRY7LCZNT45BI4MUPYV6X7FMM, last_modified: 2026-10-28T08:06:12Z }
+  - { name: "Velo-CE - Guida migrazione posta al tenant unico - INTERNO - v001.pdf", item_id: 01EFCYUZYGRY7LCZNT45BI4MUPYV6X7FMM, last_modified: 2026-10-29T16:14:37Z }
   - { name: "Velo-CE - Guida migrazione posta al tenant unico - INTERNO - v001.pdf", item_id: 01EFCYUZYJF6K5NLKSQZCZSTBGR2YZLXY4, last_modified: 2026-10-28T08:06:12Z }
 also_at:
   - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/08 Guide/Velo-CE - Guida migrazione posta al tenant unico - INTERNO - v001.docx", item_id: 01EFCYUZ5REHDM5U4PVJD24NO3ONTLLXUI }

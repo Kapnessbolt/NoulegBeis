@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ4JTQW6AVU2TZD376QMPGSE5N5Y
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/98 Share Team/Velo-CE - Costi accessori e ciclo d'acquisto per Leonardo - INTERNO - v001.md
   name: Velo-CE - Costi accessori e ciclo d'acquisto per Leonardo - INTERNO - v001.md
-  last_modified: 2026-10-28T08:06:14Z
+  last_modified: 2026-10-29T16:14:38Z
 versions:
-  - { name: "Velo-CE - Costi accessori e ciclo d'acquisto per Leonardo - INTERNO - v001.md", item_id: 01EFCYUZ4JTQW6AVU2TZD376QMPGSE5N5Y, last_modified: 2026-10-28T08:06:14Z }
+  - { name: "Velo-CE - Costi accessori e ciclo d'acquisto per Leonardo - INTERNO - v001.md", item_id: 01EFCYUZ4JTQW6AVU2TZD376QMPGSE5N5Y, last_modified: 2026-10-29T16:14:38Z }
   - { name: "Velo-CE - Costi accessori e ciclo d'acquisto per Leonardo - INTERNO - v001.md", item_id: 01EFCYUZ7TUKMNCA3OKFDYMAGQIPTI7GJ4, last_modified: 2026-10-28T08:06:14Z }
 also_at: []
 status: active

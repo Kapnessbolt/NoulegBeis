@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ3EDKFTVVZSJFBJLSVZKBAA5N3Q
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/08 Guide/Velo-CE - Guida stampa etichetta collo da ordine d'acquisto - INTERNO - v001.pdf
   name: Velo-CE - Guida stampa etichetta collo da ordine d'acquisto - INTERNO - v001.pdf
-  last_modified: 2026-10-28T08:06:13Z
+  last_modified: 2026-10-29T16:14:38Z
 versions:
-  - { name: "Velo-CE - Guida stampa etichetta collo da ordine d'acquisto - INTERNO - v001.pdf", item_id: 01EFCYUZ3EDKFTVVZSJFBJLSVZKBAA5N3Q, last_modified: 2026-10-28T08:06:13Z }
+  - { name: "Velo-CE - Guida stampa etichetta collo da ordine d'acquisto - INTERNO - v001.pdf", item_id: 01EFCYUZ3EDKFTVVZSJFBJLSVZKBAA5N3Q, last_modified: 2026-10-29T16:14:38Z }
   - { name: "Velo-CE - Guida stampa etichetta collo da ordine d'acquisto - INTERNO - v001.pdf", item_id: 01EFCYUZYNAPLSOF7VZJG32XESAVV66K6H, last_modified: 2026-10-28T08:06:13Z }
 also_at: []
 status: active

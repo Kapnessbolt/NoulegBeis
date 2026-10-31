@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ7VCU77DBWVP5EYJUTLKDJNNXH3
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/01 Deck cliente/Acquisti e magazzino/Velo-CE - Capitolato etichettatura colli fornitori - CLIENTE - v001.pdf
   name: Velo-CE - Capitolato etichettatura colli fornitori - CLIENTE - v001.pdf
-  last_modified: 2026-10-08T10:44:29Z
+  last_modified: 2026-10-29T16:14:44Z
 versions:
-  - { name: Velo-CE - Capitolato etichettatura colli fornitori - CLIENTE - v001.pdf, item_id: 01EFCYUZ7VCU77DBWVP5EYJUTLKDJNNXH3, last_modified: 2026-10-08T10:44:29Z }
+  - { name: Velo-CE - Capitolato etichettatura colli fornitori - CLIENTE - v001.pdf, item_id: 01EFCYUZ7VCU77DBWVP5EYJUTLKDJNNXH3, last_modified: 2026-10-29T16:14:44Z }
   - { name: Velo-CE - Capitolato etichettatura colli fornitori - CLIENTE - v001.pdf, item_id: 01EFCYUZZF5CB5SYZCHFGIEI2DXEPM5NFN, last_modified: 2026-10-28T08:06:30Z }
   - { name: Velo-CE - Capitolato etichettatura colli fornitori - CLIENTE - v001.pdf, item_id: 01EFCYUZ2X7PJ62VGYRZGLVIGKKY4PV47U, last_modified: 2026-10-08T10:44:29Z }
   - { name: Velo-CE - Capitolato etichettatura colli fornitori - CLIENTE - v001.docx, item_id: 01EFCYUZ5GMGQ6OKAZ2BFYP5X3JROZJR2H, last_modified: 2026-10-07T10:06:16Z }

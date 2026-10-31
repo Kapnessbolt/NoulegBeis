@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ26E6YRHIUBRRDYTYHDQHASZDJF
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/velo-ce-app-eos-documentazione-ufficiale-2026-09-29.md
   name: velo-ce-app-eos-documentazione-ufficiale-2026-09-29.md
-  last_modified: 2026-10-08T10:43:52Z
+  last_modified: 2026-10-29T16:14:34Z
 versions:
-  - { name: velo-ce-app-eos-documentazione-ufficiale-2026-09-29.md, item_id: 01EFCYUZ26E6YRHIUBRRDYTYHDQHASZDJF, last_modified: 2026-10-08T10:43:52Z }
+  - { name: velo-ce-app-eos-documentazione-ufficiale-2026-09-29.md, item_id: 01EFCYUZ26E6YRHIUBRRDYTYHDQHASZDJF, last_modified: 2026-10-29T16:14:34Z }
   - { name: velo-ce-app-eos-documentazione-ufficiale-2026-09-29.md, item_id: 01EFCYUZ3AVPJB64AFE5C3WX5P5IGPCGJN, last_modified: 2026-10-28T08:06:15Z }
   - { name: velo-ce-app-eos-documentazione-ufficiale-2026-09-29.md, item_id: 01EFCYUZ464D6R3ORXYZBJJ4SWZHBLV5FY, last_modified: 2026-10-08T10:43:52Z }
 also_at:

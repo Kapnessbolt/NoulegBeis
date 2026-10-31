@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZZX4JER7HW2QZAIIOEYZKP4ARPX
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/verbali/velo-ce-verbale-260930-1424-guida-anagrafica-ondate-mrp.md
   name: velo-ce-verbale-260930-1424-guida-anagrafica-ondate-mrp.md
-  last_modified: 2026-10-08T10:44:36Z
+  last_modified: 2026-10-29T16:15:50Z
 versions:
-  - { name: velo-ce-verbale-260930-1424-guida-anagrafica-ondate-mrp.md, item_id: 01EFCYUZZX4JER7HW2QZAIIOEYZKP4ARPX, last_modified: 2026-10-08T10:44:36Z }
+  - { name: velo-ce-verbale-260930-1424-guida-anagrafica-ondate-mrp.md, item_id: 01EFCYUZZX4JER7HW2QZAIIOEYZKP4ARPX, last_modified: 2026-10-29T16:15:50Z }
   - { name: velo-ce-verbale-260930-1424-guida-anagrafica-ondate-mrp.md, item_id: 01EFCYUZZQWHKLBXDDTVDJWVD7IFL4WWPA, last_modified: 2026-10-28T08:06:43Z }
   - { name: velo-ce-verbale-260930-1424-guida-anagrafica-ondate-mrp.md, item_id: 01EFCYUZZDP2QX55DJFNFKFWR4PUJLFNR6, last_modified: 2026-10-08T10:44:36Z }
 also_at: []

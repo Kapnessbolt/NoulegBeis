@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZYBAS3P2CB4H5C3DMWHAL4RC4AR
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/verbali/velo-ce-verbale-260929-1744-allineamento-serale.md
   name: velo-ce-verbale-260929-1744-allineamento-serale.md
-  last_modified: 2026-10-08T10:44:36Z
+  last_modified: 2026-10-29T16:15:49Z
 versions:
-  - { name: velo-ce-verbale-260929-1744-allineamento-serale.md, item_id: 01EFCYUZYBAS3P2CB4H5C3DMWHAL4RC4AR, last_modified: 2026-10-08T10:44:36Z }
+  - { name: velo-ce-verbale-260929-1744-allineamento-serale.md, item_id: 01EFCYUZYBAS3P2CB4H5C3DMWHAL4RC4AR, last_modified: 2026-10-29T16:15:49Z }
   - { name: velo-ce-verbale-260929-1744-allineamento-serale.md, item_id: 01EFCYUZ6Y4RMXYX3SGRCZO5U3IMHWEYOT, last_modified: 2026-10-28T08:06:43Z }
   - { name: velo-ce-verbale-260929-1744-allineamento-serale.md, item_id: 01EFCYUZ6DRU7KP7L6RFEIYGHJCRAUHNSA, last_modified: 2026-10-08T10:44:36Z }
 also_at: []

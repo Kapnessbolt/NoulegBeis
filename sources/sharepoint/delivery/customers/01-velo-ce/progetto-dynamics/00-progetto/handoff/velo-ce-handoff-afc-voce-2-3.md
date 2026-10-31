@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZYXXFM3CS4DGRBLJHN7YFCBJ665
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/00 Progetto/Handoff/handoff-2026-10-09-afc-voce-2.3.md
   name: handoff-2026-10-09-afc-voce-2.3.md
-  last_modified: 2026-10-28T08:06:21Z
+  last_modified: 2026-10-29T16:14:39Z
 versions:
-  - { name: handoff-2026-10-09-afc-voce-2.3.md, item_id: 01EFCYUZYXXFM3CS4DGRBLJHN7YFCBJ665, last_modified: 2026-10-28T08:06:21Z }
+  - { name: handoff-2026-10-09-afc-voce-2.3.md, item_id: 01EFCYUZYXXFM3CS4DGRBLJHN7YFCBJ665, last_modified: 2026-10-29T16:14:39Z }
   - { name: handoff-2026-10-09-afc-voce-2.3.md, item_id: 01EFCYUZZPI5YIPA5EHJEILMBTNBOCCCET, last_modified: 2026-10-28T08:06:21Z }
 also_at: []
 status: active

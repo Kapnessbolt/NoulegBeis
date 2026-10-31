@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ42IW7O5PBDVNEYRYXDLTGVKKLT
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/08 Guide/Velo-CE - Guida collegare Power BI a Business Central - INTERNO - v001.pdf
   name: Velo-CE - Guida collegare Power BI a Business Central - INTERNO - v001.pdf
-  last_modified: 2026-10-28T08:06:11Z
+  last_modified: 2026-10-29T16:14:36Z
 versions:
-  - { name: "Velo-CE - Guida collegare Power BI a Business Central - INTERNO - v001.pdf", item_id: 01EFCYUZ42IW7O5PBDVNEYRYXDLTGVKKLT, last_modified: 2026-10-28T08:06:11Z }
+  - { name: "Velo-CE - Guida collegare Power BI a Business Central - INTERNO - v001.pdf", item_id: 01EFCYUZ42IW7O5PBDVNEYRYXDLTGVKKLT, last_modified: 2026-10-29T16:14:36Z }
   - { name: "Velo-CE - Guida collegare Power BI a Business Central - INTERNO - v001.pdf", item_id: 01EFCYUZYCEAIHYCKPZJDY2MG7URD4IQOS, last_modified: 2026-10-28T08:06:11Z }
 also_at: []
 status: active

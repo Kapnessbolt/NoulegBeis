@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZYFPFZHA2XHHZB256NICT5S4B42
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/08 Guide/Velo-CE - Guida produzione con conto lavoro - CLIENTE - v001.pdf
   name: Velo-CE - Guida produzione con conto lavoro - CLIENTE - v001.pdf
-  last_modified: 2026-10-28T08:06:12Z
+  last_modified: 2026-10-29T16:14:37Z
 versions:
-  - { name: "Velo-CE - Guida produzione con conto lavoro - CLIENTE - v001.pdf", item_id: 01EFCYUZYFPFZHA2XHHZB256NICT5S4B42, last_modified: 2026-10-28T08:06:12Z }
+  - { name: "Velo-CE - Guida produzione con conto lavoro - CLIENTE - v001.pdf", item_id: 01EFCYUZYFPFZHA2XHHZB256NICT5S4B42, last_modified: 2026-10-29T16:14:37Z }
   - { name: "Velo-CE - Guida produzione con conto lavoro - CLIENTE - v001.pdf", item_id: 01EFCYUZ5JF6OCOMGZCJBY4QS7RKTKZFTG, last_modified: 2026-10-28T08:06:12Z }
 also_at:
   - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/08 Guide/Velo-CE - Guida produzione con conto lavoro - CLIENTE - v001.docx", item_id: 01EFCYUZZKUJJE55MYFRBZUOL3S5RF72LQ }

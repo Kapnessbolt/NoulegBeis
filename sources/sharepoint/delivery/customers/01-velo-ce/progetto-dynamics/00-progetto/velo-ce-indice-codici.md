@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ22G5KJVOYLMZBZ4JNTHYWKWPZ2
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/00 Progetto/Velo-CE - Indice codici.md
   name: Velo-CE - Indice codici.md
-  last_modified: 2026-10-08T10:43:47Z
+  last_modified: 2026-10-29T16:14:29Z
 versions:
-  - { name: Velo-CE - Indice codici.md, item_id: 01EFCYUZ22G5KJVOYLMZBZ4JNTHYWKWPZ2, last_modified: 2026-10-08T10:43:47Z }
+  - { name: Velo-CE - Indice codici.md, item_id: 01EFCYUZ22G5KJVOYLMZBZ4JNTHYWKWPZ2, last_modified: 2026-10-29T16:14:29Z }
   - { name: Velo-CE - Indice codici.md, item_id: 01EFCYUZYTT6HZYG7FGBDZ73J3OLHZWJGT, last_modified: 2026-10-28T08:04:52Z }
   - { name: Velo-CE - Indice codici.md, item_id: 01EFCYUZZC3CHG27P26NGZNRMPDSVJFY4R, last_modified: 2026-10-08T10:43:47Z }
 also_at: []

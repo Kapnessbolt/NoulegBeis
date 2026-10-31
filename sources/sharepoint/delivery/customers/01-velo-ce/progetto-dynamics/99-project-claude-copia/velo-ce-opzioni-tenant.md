@@ -7,9 +7,9 @@ current:
   uri: file:///b!qVc_gEAkd0SrxYHP_MxTuzWhDnaUNaZKpoIpo9e_gKV-y7RZZQefRaYsG3tmobah/01EFCYUZ4LCOTZJHIEL5DJAVNMIH4CU4QL
   web_url: https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/99 Project Claude (copia)/velo-ce-opzioni-tenant-2026-10-09.md
   name: velo-ce-opzioni-tenant-2026-10-09.md
-  last_modified: 2026-10-28T08:06:15Z
+  last_modified: 2026-10-29T16:14:34Z
 versions:
-  - { name: velo-ce-opzioni-tenant-2026-10-09.md, item_id: 01EFCYUZ4LCOTZJHIEL5DJAVNMIH4CU4QL, last_modified: 2026-10-28T08:06:15Z }
+  - { name: velo-ce-opzioni-tenant-2026-10-09.md, item_id: 01EFCYUZ4LCOTZJHIEL5DJAVNMIH4CU4QL, last_modified: 2026-10-29T16:14:34Z }
   - { name: velo-ce-opzioni-tenant-2026-10-09.md, item_id: 01EFCYUZ7L2N2XOUHLCVHKKBZQED3OSV4J, last_modified: 2026-10-28T08:06:15Z }
 also_at:
   - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/98 Share Team/Velo-CE - Contesto Claude per Leonardo - INTERNO - v001/velo-ce-opzioni-tenant-2026-10-09.md", item_id: 01EFCYUZ7YZYPZUFLYORDJOIQEXDKSDRFP }
