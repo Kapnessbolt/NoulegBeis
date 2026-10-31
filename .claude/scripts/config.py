@@ -401,20 +401,45 @@ def task_del_giorno(giorno, c=None, solo_digest=False):
 
 
 def perimetro(c=None):
-    """Valori del perimetro di SharePoint e OneDrive (SPEC 5.1-5.2) per `perimetro.py`."""
+    """Valori del perimetro di SharePoint e OneDrive (SPEC 5.1-5.2) per `perimetro.py`.
+
+    `posizioni` è la lista ordinata dei prefissi che `perimetro.analizza` scorre (vince il primo
+    che apre l'URL), costruita da `fonti` senza chiavi in più. Ogni voce: `fonte`, `prefisso`,
+    `radice` (`<tenant>/sites/` o `<tenant>/personal/`: da lì si contano i segmenti del percorso),
+    `libreria`, `base` (cartella delle note) e `dentro`. Prima le posizioni del perimetro, una per
+    libreria di SharePoint (`<tenant>/sites/<sito>/<libreria>/`, base
+    `sources/sharepoint/<slug libreria>`) e la cartella di OneDrive
+    (`<tenant>/personal/<utente>/<libreria>/<cartella>/`, base `sources/onedrive`); poi i
+    riconoscitori fuori perimetro: `<tenant>/sites/` (altro sito o libreria esclusa, `libreria`
+    null, base `sources/sharepoint` a cui `perimetro.py` aggiunge `_<sito>/` e la libreria presi
+    dall'URL) e `<tenant>/personal/` (OneDrive fuori dalla cartella, base null). Le altre chiavi
+    (`prefissi`, `sharepoint`, `onedrive`, `sito`, …) restano per gli script che le usano."""
+    from famiglia import slug  # qui e non in testa: famiglia importa config
     f = (c or carica())["fonti"]
     sp, od, es = f["sharepoint"], f["onedrive"], f["esclusioni"]
     sharepoint = sp["tenant"].rstrip("/") + "/sites/"
     onedrive = od["tenant"].rstrip("/") + "/personal/"
     cartella_od = f"{onedrive}{od['utente']}/{od['libreria']}/{od['cartella']}/"
+    posizioni = [{"fonte": "sharepoint", "prefisso": f"{sharepoint}{sp['sito']}/{lib}/", "radice": sharepoint,
+                  "libreria": lib, "base": f"sources/sharepoint/{slug(lib)}", "dentro": True}
+                 for lib in sp["librerie"]]
+    posizioni += [
+        {"fonte": "onedrive", "prefisso": cartella_od, "radice": onedrive, "libreria": od["libreria"],
+         "base": "sources/onedrive", "dentro": True},
+        {"fonte": "sharepoint", "prefisso": sharepoint, "radice": sharepoint, "libreria": None,
+         "base": "sources/sharepoint", "dentro": False},
+        {"fonte": "onedrive", "prefisso": onedrive, "radice": onedrive, "libreria": None,
+         "base": None, "dentro": False},
+    ]
     return {
+        "posizioni": posizioni,
         "sharepoint": sharepoint,
         "onedrive": onedrive,
         "sito": sp["sito"],
         "onedrive_utente": od["utente"],
         "onedrive_libreria": od["libreria"],
         "onedrive_cartella": od["cartella"],
-        "prefissi": tuple(f"{sharepoint}{sp['sito']}/{lib}/" for lib in sp["librerie"]) + (cartella_od,),
+        "prefissi": tuple(x["prefisso"] for x in posizioni if x["dentro"]),
         "cartelle_escluse": {x.lower() for x in es.get("cartelle", [])},
         "finali_esclusi": tuple(x.lower() for x in es.get("finali", [])),
         "dentro_escluse": tuple((a.lower(), b.lower()) for a, b in es.get("dentro", [])),

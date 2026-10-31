@@ -31,6 +31,30 @@ def test_carica_il_vault_yaml_di_prova(vault):
     assert config.perimetro(c)["onedrive"] == f"{TENANT_OD}/personal/"
 
 
+def test_perimetro_posizioni_dal_vault_yaml(vault):
+    """`posizioni` (P13): le librerie del perimetro, la cartella di OneDrive, poi i riconoscitori
+    fuori perimetro, nell'ordine in cui perimetro.py li prova; le chiavi di prima restano."""
+    from conftest import CARTELLA_OD, TENANT_SP, UTENTE_OD  # solo questo test li usa
+    per = config.perimetro(config.carica(vault))
+    sp, od = f"{TENANT_SP}/sites/", f"{TENANT_OD}/personal/"
+    assert per["posizioni"] == [
+        {"fonte": "sharepoint", "prefisso": f"{sp}internal/SalesMarketing/", "radice": sp,
+         "libreria": "SalesMarketing", "base": "sources/sharepoint/salesmarketing", "dentro": True},
+        {"fonte": "sharepoint", "prefisso": f"{sp}internal/Delivery/", "radice": sp,
+         "libreria": "Delivery", "base": "sources/sharepoint/delivery", "dentro": True},
+        {"fonte": "sharepoint", "prefisso": f"{sp}internal/Shared Documents/", "radice": sp,
+         "libreria": "Shared Documents", "base": "sources/sharepoint/shared-documents", "dentro": True},
+        {"fonte": "onedrive", "prefisso": f"{od}{UTENTE_OD}/Documents/{CARTELLA_OD}/", "radice": od,
+         "libreria": "Documents", "base": "sources/onedrive", "dentro": True},
+        {"fonte": "sharepoint", "prefisso": sp, "radice": sp, "libreria": None,
+         "base": "sources/sharepoint", "dentro": False},
+        {"fonte": "onedrive", "prefisso": od, "radice": od, "libreria": None, "base": None, "dentro": False},
+    ]
+    assert per["prefissi"] == tuple(x["prefisso"] for x in per["posizioni"][:4])
+    assert per["sharepoint"] == sp and per["onedrive"] == od and per["sito"] == "internal"
+    assert per["onedrive_cartella"] == CARTELLA_OD
+
+
 @pytest.mark.parametrize("vecchio, nuovo, messaggio", [
     ("fuso: Europe/Rome", "fuso: Europa/Roma", "`vault.fuso` non è un fuso orario IANA valido"),
     ('orari: ["06:50"]', 'orari: ["6:50"]', "`task.ingest-sharepoint.orari` orario non valido"),
