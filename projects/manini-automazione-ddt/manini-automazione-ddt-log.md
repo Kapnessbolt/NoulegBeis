@@ -7,6 +7,7 @@ project: "[[manini-automazione-ddt]]"
 
 Una riga per avanzamento, dalla più recente: `- AAAA-MM-GG · cosa è successo · [[fonte]]`
 
+- 2026-10-31 · Il caso entrata merci entra nella v4 del one-page «AI che cresce con l'azienda» come esempio con numeri, senza nome del cliente: 11.000 DDT l'anno, da 1.860 a 520–910 ore, 33–47 mila euro l'anno; progetto indicato «in avvio» · [[blueage-ai-che-cresce-onepage]]
 - 2026-10-29 · General del 26/10: il caso diventa un deck per vendere il servizio di automazione a un interlocutore tecnico, con due-quattro slide tecniche in più sul deck di processo di Leonardo; la soluzione non si costruisce in aula; la parte è in revisione e andrà nel corso AI funzionale · [[riunione-generale-blueage-26-10-sintesi-e-azioni]]
 - 2026-10-25 · Essenziale aggiornato al 25/10 (ritest v1.1 e matching sull'estrazione) nella Library di Progetto Automazione · [[manini-ddt-essenziale]]
 - 2026-10-26 · Il repo di progetto non scrive più nel vault: lo aggiorna solo l'ingestion dalle copie in `Library/`; essenziale unito in una sola nota · [[2026-10-26-diari-mancanti-e-vault-sola-lettura]]

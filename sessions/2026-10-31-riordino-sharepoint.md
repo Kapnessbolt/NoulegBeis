@@ -34,5 +34,5 @@ Verificare l'ingestion del 31/10 dopo il riordino delle librerie SharePoint fatt
 - [ ] `famiglia.py` non riconosce `_MEETING` come suffisso (Possibilità v3 attribuita a mano alla famiglia `blueage-possibilita`)
 - [ ] SPEC 5 (cartelle escluse) da allineare con `old versions`, con una PR dedicata
 - [ ] Regola del delta dopo un riordino: il watermark non deve superare file che la ricerca non ha ancora restituito
-- [ ] Criterio dello step 13 (tre giri puliti 30/10, 31/10, 1/11): decidere come contare il giro anomalo del 31/10
+- [x] Criterio dello step 13: il giro anomalo del 31/10 non conta come errore dello step, verifica confermata all'1/11 (chiuso in [[2026-10-31-riordino-sharepoint]])
 - [ ] Verificare che la riconciliazione del 01/11 sistemi il deck Trade Spending cliente e non generi note dalle versioni vecchie

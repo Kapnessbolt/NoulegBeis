@@ -16,7 +16,7 @@ also_at: []
 status: active
 partial: false
 ingested_at: 2026-10-31T07:29:23Z
-projects: []
+projects: ["[[manini-automazione-ddt]]"]
 clients: ["[[manini]]"]
 topics: ["[[ai-che-cresce-con-lazienda]]", "[[blueage]]", "[[ai-foundation-program]]"]
 tags: [one-pager, offerta, intelligenza-artificiale, canone]
@@ -34,7 +34,7 @@ One-page dell'offerta a canone [[ai-che-cresce-con-lazienda]] di [[blueage]], pr
 - **Chi siamo (nuovo)**: direzione d'impresa (direttori generali, supply chain, controllo di gestione, oltre vent'anni dentro le aziende), processi e sistemi (ridisegno del flusso, poi gestionale, dati e strumenti AI nell'ambiente già in uso), settori di oggi (prefabbricazione per l'edilizia, biciclette, ricambi auto).
 - **A che punto siete (nuovo)**: quattro livelli, dall'uso individuale con strumenti propri, agli strumenti aziendali lasciati alle persone, all'AI dentro i processi con regole e responsabili, fino all'AI integrata nei sistemi; il percorso porta avanti di uno o due passi misurati.
 - **I sei mesi**: mese 1 fotografia e basi (uso attuale, prontezza dei dati, cosa fare in casa e cosa affidare fuori, priorità con la direzione; se mancano le basi si mettono in ordine piattaforma, ambiente e regole d'uso, il ruolo che nella v2 aveva [[ai-foundation-program]], qui non più nominato); mesi 2–4 due o tre attività reali trasformate con le persone, assistenti configurati, affiancamento uno a uno, un caso segnalato quindici giorni prima di ogni visita; mesi 5–6 risultati verificati su tempi e qualità, estensione ad altre funzioni, automazioni che diventano progetto con perimetro e investimento propri.
-- **Esempio dal lavoro di BlueAge (nuovo)**: entrata merci in un'industria manifatturiera della prefabbricazione per l'edilizia; prima un solo canale per i documenti di trasporto, poi un agente AI che legge, abbina all'ordine e prepara la registrazione; stime condivise con il cliente, progetto in avvio. Il documento non nomina il cliente: è il caso [[manini]], collegato in sessione ([[2026-10-31-riordino-sharepoint]]).
+- **Esempio dal lavoro di BlueAge (nuovo)**: entrata merci in un'industria manifatturiera della prefabbricazione per l'edilizia; prima un solo canale per i documenti di trasporto, poi un agente AI che legge, abbina all'ordine e prepara la registrazione; stime condivise con il cliente, progetto in avvio. Il documento non nomina il cliente: è il caso [[manini]] ([[manini-automazione-ddt]]), collegato in sessione ([[2026-10-31-riordino-sharepoint]]).
 - **Cosa serve dall'azienda**: uno sponsor in direzione con budget e potere di decisione, un referente per la tecnologia interno o esterno presente alle giornate, il calendario fissato a inizio percorso.
 - **Tolti rispetto alla v2**: l'elenco degli strumenti tra cui scegliere (Copilot e alternative) e il retro separato per chi presidia la tecnologia.
 
