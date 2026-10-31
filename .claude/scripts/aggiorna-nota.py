@@ -5,6 +5,7 @@ agente ingestor §3.4-3.6).
 Uso:
   python3 .claude/scripts/aggiorna-nota.py <percorso> [--campo chiave=valore ...]
           [--aggiungi lista=valore ...] [--also-at web_url=... item_id=...]
+          [--versione name=... item_id=... last_modified=... ...]
           [--nuova-versione --campo current.name=... --campo current.item_id=...
            --campo current.last_modified=... [--campo current.uri=... --campo current.web_url=...]]
           [--json]
@@ -16,6 +17,14 @@ Uso:
   o una lista `[a, b]`.
 - `--also-at web_url=... item_id=...`: aggiunge una posizione in `also_at` se nessuna voce ha
   già lo stesso `item_id` o lo stesso `web_url`.
+- `--versione name=... item_id=... last_modified=...` (source-doc, SPEC 4.3 e 6.4): registra in
+  `versions` un ID superato dello stesso documento (un file ricaricato o una copia sparita, il
+  cui ID resta nello stato), se nessuna voce ha già lo stesso `item_id`. La prima voce di
+  `versions` resta dov'è (la corrente, schema 4.2; con `versions` vuoto la prima voce diventa
+  la `current`); le altre si tengono in ordine di `last_modified` decrescente. Non tocca
+  `current` né `ingested_at`. I tre valori sono obbligatori, `last_modified` è un istante UTC;
+  l'`item_id` della `current` è rifiutato (per una nuova corrente c'è `--nuova-versione`). Si
+  può ripetere per registrare più voci.
 - `--nuova-versione` (source-doc, ingestor §3.5 passo 1): la `current` attuale entra in testa a
   `versions` se non c'è già una voce con lo stesso `item_id` e `last_modified`, poi i `--campo
   current.*` passati diventano la nuova `current` (quelli non passati restano), che entra a sua
@@ -59,7 +68,27 @@ def stessa_versione(a, b):
             and nota.normale(a.get("last_modified")) == nota.normale(b.get("last_modified")))
 
 
-def aggiorna(rel, campi, aggiunte, also_at, nuova_versione):
+def chiave_data(v):
+    """Chiave d'ordine per `last_modified` decrescente: le voci senza data in fondo."""
+    lm = nota.normale(v.get("last_modified")) if isinstance(v, dict) else None
+    return (lm is not None and lm != "", str(lm or ""))
+
+
+def aggiungi_versione(nuovo, voce):
+    cur = nuovo.get("current") if isinstance(nuovo.get("current"), dict) else {}
+    if voce["item_id"] == str(cur.get("item_id") or ""):
+        raise nota.Errore(f"--versione: `{voce['item_id']}` è l'item_id della current "
+                          "(per una nuova corrente usa --nuova-versione)")
+    versioni = list(nuovo.get("versions") or [])
+    if not versioni:
+        versioni = [voce_versione(nuovo)]
+    if any(isinstance(v, dict) and str(v.get("item_id") or "") == voce["item_id"] for v in versioni):
+        return  # già registrata: nessuna modifica
+    altre = sorted(versioni[1:] + [voce], key=chiave_data, reverse=True)
+    nuovo["versions"] = [versioni[0]] + altre
+
+
+def aggiorna(rel, campi, aggiunte, also_at, nuova_versione, versioni_da_aggiungere=()):
     p = nota.ROOT / rel
     if not p.is_file():
         raise nota.Errore(f"la nota `{rel}` non esiste: usa nuova-nota.py")
@@ -118,6 +147,14 @@ def aggiorna(rel, campi, aggiunte, also_at, nuova_versione):
             lista.append(voce)
         nuovo["also_at"] = lista
 
+    if versioni_da_aggiungere:
+        if "versions" not in sch["default"] or sch["tipo"] != "source-doc":
+            raise nota.Errore("--versione vale solo per le note source-doc")
+        for v in versioni_da_aggiungere:
+            voce = {"name": v["name"], "item_id": v["item_id"],
+                    "last_modified": nota.a_istante(v["last_modified"], "--versione last_modified")}
+            aggiungi_versione(nuovo, voce)
+
     errori, avvisi = nota.valida(nuovo, sch, extra_ammesse=gia_extra)
     if nuova_versione:
         prima, dopo = vecchio.get("current") or {}, nuovo.get("current") or {}
@@ -137,7 +174,7 @@ def main(argv):
         print(__doc__)
         return 0 if argv else 2
     rel = argv[0]
-    campi, aggiunte, also_at = [], [], {}
+    campi, aggiunte, also_at, versioni = [], [], {}, []
     nuova_versione = as_json = False
     i = 1
     while i < len(argv):
@@ -158,12 +195,22 @@ def main(argv):
                 i += 1
             if "web_url" not in also_at:
                 raise nota.Errore("--also-at vuole almeno web_url=...")
+        elif a == "--versione":
+            voce = {}
+            while i + 1 < len(argv) and re.match(r"^(name|item_id|last_modified)=", argv[i + 1]):
+                k, v = nota.campo(argv[i + 1])
+                voce[k] = v.strip()
+                i += 1
+            manca = [k for k in ("name", "item_id", "last_modified") if not voce.get(k)]
+            if manca:
+                raise nota.Errore(f"--versione vuole name=..., item_id=... e last_modified=... (manca {', '.join(manca)})")
+            versioni.append(voce)
         else:
             raise nota.Errore(f"argomento non riconosciuto: {a}")
         i += 1
-    if not (campi or aggiunte or also_at or nuova_versione):
-        raise nota.Errore("niente da fare: passa --campo, --aggiungi, --also-at o --nuova-versione")
-    cambiati, avvisi = aggiorna(rel, campi, aggiunte, also_at, nuova_versione)
+    if not (campi or aggiunte or also_at or nuova_versione or versioni):
+        raise nota.Errore("niente da fare: passa --campo, --aggiungi, --also-at, --versione o --nuova-versione")
+    cambiati, avvisi = aggiorna(rel, campi, aggiunte, also_at, nuova_versione, versioni)
     for a in avvisi:
         sys.stderr.write(f"avviso: {a}\n")
     if as_json:

@@ -295,6 +295,100 @@ def test_also_at_e_posta(vault):
     assert 'subject: "deepagent"' in testo
 
 
+def test_versione_aggiunge_un_id_superato_in_ordine(vault):
+    scrivi(vault, CP, COMPANY_PROFILE)
+    res = aggiorna(vault, CP, "--versione", "name=BlueAge_CompanyProfile.pdf", "item_id=01RICARICATO",
+                   "last_modified=2026-10-10T08:00:00Z", "--json")
+    assert res.returncode == 0, res.stderr
+    assert json.loads(res.stdout)["cambiati"] == ["versions"]
+    nuova_riga = ("  - { name: BlueAge_CompanyProfile.pdf, item_id: 01RICARICATO, "
+                  "last_modified: 2026-10-10T08:00:00Z }\n")
+    prima_v24 = "  - { name: BlueAge_CompanyProfile_v24.pdf,"
+    # la corrente resta prima, la nuova voce va tra la v24 (01/10) e la corrente, il resto è intatto
+    atteso = COMPANY_PROFILE.replace(prima_v24, nuova_riga + prima_v24)
+    assert (vault / CP).read_text(encoding="utf-8") == atteso
+    # una voce più recente della seconda va subito dopo la corrente, una più vecchia in fondo
+    assert aggiorna(vault, CP, "--versione", "name=BlueAge_CompanyProfile.pdf", "item_id=01COPIA2810",
+                    "last_modified=2026-10-28T08:06:21Z").returncode == 0
+    assert aggiorna(vault, CP, "--versione", "name=BlueAge_CompanyProfile_v20.pdf", "item_id=01V20",
+                    "last_modified=2026-08-01T09:00:00Z").returncode == 0
+    d = fm(vault, CP)
+    assert [v["item_id"] for v in d["versions"]] == [
+        "01GEQYSS5CERFZRWVHNRGIGQNT5GBJMIF5", "01COPIA2810", "01RICARICATO",
+        "01EFCYUZYLVH33U2NLBVGZ45BE6NPUJZD5", "", "01V20"]
+    assert d["current"]["item_id"] == "01GEQYSS5CERFZRWVHNRGIGQNT5GBJMIF5"
+    assert nota.normale(d["ingested_at"]) == "2026-10-22T15:05:00Z"
+
+
+def test_versione_idempotente_con_lo_stesso_item_id(vault):
+    scrivi(vault, CP, COMPANY_PROFILE)
+    args = ["--versione", "name=BlueAge_CompanyProfile.pdf", "item_id=01RICARICATO",
+            "last_modified=2026-10-10T08:00:00Z"]
+    assert aggiorna(vault, CP, *args).returncode == 0
+    dopo = (vault / CP).read_text(encoding="utf-8")
+    for altro in (args, ["--versione", "name=Altro.pdf", "item_id=01RICARICATO",
+                         "last_modified=2026-10-12T08:00:00Z"],
+                  ["--versione", "name=BlueAge_CompanyProfile_v24.pdf",
+                   "item_id=01EFCYUZYLVH33U2NLBVGZ45BE6NPUJZD5", "last_modified=2026-10-01T17:20:46Z"]):
+        res = aggiorna(vault, CP, *altro)
+        assert res.returncode == 0, res.stderr
+        assert "nessuna modifica" in res.stdout
+        assert (vault / CP).read_text(encoding="utf-8") == dopo
+
+
+def test_versione_con_versions_vuoto_mette_prima_la_corrente(vault):
+    rel = "sources/sharepoint/delivery/doc-alfa.md"  # versions: [] nel mini-vault
+    res = aggiorna(vault, rel, "--versione", "name=Doc_Alfa_v2.pdf", "item_id=item-0",
+                   "last_modified=2026-09-28T10:00:00Z")
+    assert res.returncode == 0, res.stderr
+    d = fm(vault, rel)
+    assert [v["item_id"] for v in d["versions"]] == [d["current"]["item_id"], "item-0"]
+    assert nota.normale(d["versions"][0]["last_modified"]) == "2026-10-01T10:00:00Z"
+
+
+def test_versione_lascia_com_erano_le_righe_delle_voci_invariate(vault):
+    rel = "sources/sharepoint/delivery/doc-alfa.md"
+    testo = (vault / rel).read_text(encoding="utf-8")
+    vecchie = ("versions:\n"
+               "  - { name: Doc Alfa v2.pdf, item_id: item-1, last_modified: 2026-10-01T10:00:00Z }\n"
+               "  - { name: Doc Alfa v1.docx, item_id: item-0, last_modified: 2026-09-01T10:00:00Z }\n")
+    scrivi(vault, rel, testo.replace("versions: []\n", vecchie))
+    res = aggiorna(vault, rel, "--versione", "name=Doc Alfa v2.pdf", "item_id=item-copia",
+                   "last_modified=2026-10-28T08:06:21Z")
+    assert res.returncode == 0, res.stderr
+    # le righe senza virgolette restano tali e la voce nuova segue lo stesso stile
+    nuova_riga = "  - { name: Doc Alfa v2.pdf, item_id: item-copia, last_modified: 2026-10-28T08:06:21Z }\n"
+    attesa = vecchie.replace("  - { name: Doc Alfa v1.docx", nuova_riga + "  - { name: Doc Alfa v1.docx")
+    assert (vault / rel).read_text(encoding="utf-8") == testo.replace("versions: []\n", attesa)
+    # con i nomi tra virgolette, la voce nuova va tra virgolette
+    scrivi(vault, rel, testo.replace("versions: []\n", vecchie.replace("Doc Alfa v2.pdf", '"Doc Alfa v2.pdf"')
+                                     .replace("Doc Alfa v1.docx", '"Doc Alfa v1.docx"')))
+    assert aggiorna(vault, rel, "--versione", "name=Doc Alfa v2.pdf", "item_id=item-copia",
+                    "last_modified=2026-10-28T08:06:21Z").returncode == 0
+    assert ('  - { name: "Doc Alfa v2.pdf", item_id: item-copia, last_modified: 2026-10-28T08:06:21Z }\n'
+            '  - { name: "Doc Alfa v1.docx",') in (vault / rel).read_text(encoding="utf-8")
+
+
+def test_versione_rifiuta_argomenti_mancanti_o_non_validi(vault):
+    scrivi(vault, CP, COMPANY_PROFILE)
+    scrivi(vault, ML, MAIL)
+    casi = [
+        (CP, ["--versione"]),
+        (CP, ["--versione", "name=x.pdf", "item_id=01X"]),
+        (CP, ["--versione", "item_id=01X", "last_modified=2026-10-10T08:00:00Z"]),
+        (CP, ["--versione", "name=x.pdf", "item_id=", "last_modified=2026-10-10T08:00:00Z"]),
+        (CP, ["--versione", "name=x.pdf", "item_id=01X", "last_modified=2026-10-10"]),
+        (CP, ["--versione", "name=x.pdf", "item_id=01GEQYSS5CERFZRWVHNRGIGQNT5GBJMIF5",
+              "last_modified=2026-10-10T08:00:00Z"]),  # è la current
+        (ML, ["--versione", "name=x.pdf", "item_id=01X", "last_modified=2026-10-10T08:00:00Z"]),
+    ]
+    for rel, args in casi:
+        res = aggiorna(vault, rel, *args)
+        assert res.returncode == 2, (args, res.stdout, res.stderr)
+    assert (vault / CP).read_text(encoding="utf-8") == COMPANY_PROFILE
+    assert (vault / ML).read_text(encoding="utf-8") == MAIL
+
+
 def test_aggiorna_rifiuta_e_lascia_la_nota_com_era(vault):
     scrivi(vault, CP, COMPANY_PROFILE)
     for args in (["--campo", "status=archiviato"], ["--campo", "sconosciuto=1"],

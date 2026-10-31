@@ -6,6 +6,8 @@ Stile del frontmatter scritto (quello delle note reali):
   originale le aveva, o per `conversation_id` e `subject`); istanti `2026-10-01T17:20:46Z`;
 - liste inline tra quadre, con i wikilink tra virgolette: `projects: ["[[manini]]"]`;
 - `versions` e `also_at` come lista di mappe inline: `  - { name: ..., item_id: ..., last_modified: ... }`;
+  quando la lista cambia, le righe delle voci invariate restano com'erano e le voci nuove scrivono
+  senza virgolette i valori con spazi se la nota fa già così;
 - `current` come mappa a blocchi con due spazi di rientro.
 Nell'aggiornamento le righe dei campi che non cambiano restano identiche, byte per byte.
 
@@ -283,6 +285,43 @@ def _tra_virgolette(riga):
     return valore.startswith('"') or valore.startswith("'")
 
 
+def _firma(voce):
+    return json.dumps(normale(voce), sort_keys=True, ensure_ascii=False, default=str)
+
+
+def _valore_in_mappa(y, spazi_ok):
+    """Valore di una mappa inline; con `spazi_ok` un testo con spazi resta senza virgolette
+    se in una mappa inline si rilegge uguale."""
+    if spazi_ok and isinstance(y, str) and " " in y and _semplice_ok(y, flow=False) \
+            and not any(c in y for c in ",[]{}"):
+        try:
+            if yaml.safe_load("{ x: " + y + " }") == {"x": y}:
+                return y
+        except yaml.YAMLError:
+            pass
+    return scalare(y, flow=True)
+
+
+def _voci_originali(righe_orig):
+    """Righe originali di una lista di mappe inline, per firma della voce, e se la nota scrive
+    senza virgolette i valori con spazi (allora le voci nuove fanno lo stesso)."""
+    originali, spazi_ok = {}, False
+    for r in (righe_orig or [])[1:]:
+        if not r.startswith("  - {"):
+            continue
+        try:
+            d = yaml.safe_load(r.strip()[2:])
+        except yaml.YAMLError:
+            continue
+        if not isinstance(d, dict):
+            continue
+        originali.setdefault(_firma(d), []).append(r)
+        if any(isinstance(y, str) and " " in y and not re.search(rf"\b{re.escape(str(k))}: [\"']", r)
+               for k, y in d.items()):
+            spazi_ok = True
+    return originali, spazi_ok
+
+
 def rendi(chiave, v, righe_orig=None, orig=None):
     """Righe YAML del campo; con le righe originali conserva quelle che non cambiano."""
     if isinstance(v, dict):
@@ -304,11 +343,16 @@ def rendi(chiave, v, righe_orig=None, orig=None):
         if not v:
             return [f"{chiave}: []"]
         if any(isinstance(x, dict) for x in v):
+            originali, spazi_ok = _voci_originali(righe_orig)
             out = [f"{chiave}:"]
             for x in v:
                 if not isinstance(x, dict):
                     raise Errore(f"{chiave}: lista con mappe e valori semplici insieme")
-                coppie = ", ".join(f"{k}: {scalare(y, flow=True)}" for k, y in x.items())
+                uguali = originali.get(_firma(x))
+                if uguali:  # voce invariata: la riga resta com'era
+                    out.append(uguali.pop(0))
+                    continue
+                coppie = ", ".join(f"{k}: {_valore_in_mappa(y, spazi_ok)}" for k, y in x.items())
                 out.append(f"  - {{ {coppie} }}")
             return out
         voci = ", ".join(scalare(x, flow=True, virgolette=isinstance(x, str) and x.startswith("[["))
