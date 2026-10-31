@@ -350,3 +350,59 @@ def test_canoniche_errori(vault, riga, messaggio):
     modifica(vault, "vault.yaml", RIL, RIL + riga)
     res = cfg(vault, "verifica")
     assert res.returncode == 1 and messaggio in res.stdout
+
+
+# --- Posta: finestra del delta e filtri di scarto (SPEC 5.3, 6.3; audit P10) ---------------
+
+OUTLOOK = "  outlook:\n    mittenti_scartati: [no-reply, noreply]\n"
+
+
+def test_outlook_senza_le_chiavi_nuove_usa_i_default(vault):
+    res = cfg(vault, "outlook")
+    assert res.returncode == 0, res.stderr
+    assert json.loads(res.stdout) == {"finestra_ore": 2, "mittenti_scartati": ["no-reply", "noreply"],
+                                      "domini_scartati": [], "oggetti_scartati": []}
+    assert config.outlook(config.carica(vault))["finestra_ore"] == 2
+
+
+def test_outlook_con_le_chiavi_nuove(vault):
+    modifica(vault, "vault.yaml", OUTLOOK, "  outlook:\n    finestra_ore: 6\n    mittenti_scartati: []\n"
+             "    domini_scartati: [fornitore.it]\n    oggetti_scartati: [newsletter, webinar gratuito]\n")
+    assert cfg(vault, "verifica").returncode == 0
+    assert json.loads(cfg(vault, "outlook").stdout) == {
+        "finestra_ore": 6, "mittenti_scartati": [], "domini_scartati": ["fornitore.it"],
+        "oggetti_scartati": ["newsletter", "webinar gratuito"]}
+
+
+def test_outlook_restituisce_copie(vault):
+    c = config.carica(vault)
+    config.outlook(c)["mittenti_scartati"].append("altro")
+    assert config.outlook(c)["mittenti_scartati"] == ["no-reply", "noreply"]
+
+
+@pytest.mark.parametrize("righe, messaggio", [
+    ("    finestra_ore: 0\n", "`fonti.outlook.finestra_ore` deve essere un intero positivo"),
+    ("    finestra_ore: due\n", "`fonti.outlook.finestra_ore` deve essere un intero positivo"),
+    ("    finestra_ore: true\n", "`fonti.outlook.finestra_ore` deve essere un intero positivo"),
+    ("    domini_scartati: [1, x.it]\n", "`fonti.outlook.domini_scartati` deve essere una lista di testi"),
+    ("    domini_scartati: x.it\n", "`fonti.outlook.domini_scartati` deve essere una lista di testi"),
+    ("    oggetti_scartati: [[a, b]]\n", "`fonti.outlook.oggetti_scartati` deve essere una lista di testi"),
+    ("    oggetti_scartati:\n", "`fonti.outlook.oggetti_scartati` deve essere una lista di testi"),
+    ("    dominii_scartati: [x.it]\n", "`fonti.outlook.dominii_scartati` chiave sconosciuta"),
+])
+def test_outlook_errori(vault, righe, messaggio):
+    modifica(vault, "vault.yaml", OUTLOOK, OUTLOOK + righe)
+    res = cfg(vault, "verifica")
+    assert res.returncode == 1 and messaggio in res.stdout
+    assert cfg(vault, "outlook").returncode == 1
+
+
+def test_outlook_mittenti_scartati_resta_obbligatoria(vault):
+    modifica(vault, "vault.yaml", OUTLOOK, "  outlook:\n    finestra_ore: 2\n")
+    res = cfg(vault, "verifica")
+    assert res.returncode == 1 and "`fonti.outlook.mittenti_scartati` deve essere una lista di testi" in res.stdout
+
+
+def test_outlook_nell_help_e_argomenti(vault):
+    assert "config.py outlook" in cfg(vault, "--help").stdout
+    assert cfg(vault, "outlook", "boh").returncode == 2
