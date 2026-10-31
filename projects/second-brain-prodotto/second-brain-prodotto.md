@@ -4,13 +4,14 @@ status: attivo
 role: "Product owner e sviluppatore: dal vault personale al prodotto Second Brain"
 clients: []
 people: []
-updated: 2026-10-29
+updated: 2026-10-31
 ---
 
 # Second Brain · dal vault al prodotto
 
 ## Stato
 
+- Audit dell'ingestion (31/10): il flusso regge solo con interventi in sessione; identità dei documenti per ID, riconciliazione sottospecificata e regole in prosa sono le cause; piano in 13 interventi e 7 decisioni in `proposals/2026-10-31-audit-ingestion.md`; step 13 chiuso, l'affidabilità ai riordini diventa uno step nuovo prima del 18 ([[2026-10-31-audit-flusso-ingestion]])
 - Step 14 avviato (29/10): regole di cartella in `.claude/rules/` (`fonti.md` per `sources/`), `CLAUDE.md` da 11,3 a 10,3 KB, agenti, routine e comandi rimandano a `CLAUDE.md` §3 e §7 senza copiarli né rileggerlo, controllo delle regole nel pre-commit; test: le regole a percorso scattano con Read/Write/Edit e `cat`/`head`, non con Grep, Glob, script o redirezioni, e non tornano dopo `/compact`; SPEC 1.24. Resta la matrice delle scritture in due posti ([[2026-10-29-regole-percorso]])
 - Step 13 fatto, in osservazione (29/10): `vault.yaml` alla radice con utente, fuso, lingua, sezioni, connettori e strumenti per agente, perimetro, repository e task; `config.py` lo valida e lo serve a script, agenti, routine e comandi; il controllo del vault dà errore se gli orari di SPEC 7 e di `vault.yaml` divergono o se i permessi dei connettori non tornano; `grep -ri blueagesrl .claude` vuoto; script di setup cloud committato; 268 test; SPEC 1.23 ([[2026-10-29-cockpit-conteggi-e-step-13]])
 - Rilevatore di riordino nel delta di SharePoint e OneDrive (31/10, SPEC 1.26): fotografia delle cartelle nello stato, soglia di ID nuovi, riconciliazione ridotta nello stesso giro, finestra del delta a 48 ore, rinomine GitHub seguite; fonti sorvegliate configurabili in `vault.yaml` e da scegliere in `/installa` ([[2026-10-31-riordino-sharepoint]])
@@ -37,7 +38,10 @@ updated: 2026-10-29
 - [x] Step 12 · criterio di accettazione: 3 giri dei task (27, 28, 29/10) senza differenze rispetto a prima, con `/verifica-task` ✅ 2026-10-29 ([[2026-10-26-piano-prodotto-second-brain]])
 - [ ] Step 12 · decidere le 11 famiglie e la nota del company profile in disaccordo con gli script (rinominare con `rinomina-nota.py` o lasciare): elenco nel diario ([[2026-10-26-piano-prodotto-second-brain]])
 - [x] Step 13 · Configurazione separata dal motore: `vault.yaml` (nome, fuso, lingua, fonti con perimetro ed esclusioni, nomi del connettore, repository, task con orari, modello e connettori); script, agenti e `cockpit.py` leggono da lì; setup cloud committato; nessun valore BlueAge in `.claude/` · modello: Fable ✅ 2026-10-29 ([[2026-10-26-piano-prodotto-second-brain]], [[2026-10-29-cockpit-conteggi-e-step-13]])
-- [ ] Step 13 · criterio di accettazione: 3 giri dei task (30, 31/10, 1/11) senza errori dopo il merge, con `/verifica-task`; il giro anomalo del 31/10 (indice SharePoint in ritardo) non conta come errore dello step; all'1/11 verificare anche che la riconciliazione rispetti «99 - old versions» 📅 2026-11-01 ([[2026-10-29-cockpit-conteggi-e-step-13]], [[2026-10-31-riordino-sharepoint]])
+- [x] Step 13 · criterio di accettazione chiuso il 31/10 (dall'utente, con l'audit): il giro anomalo del 31/10 non è dello step; la verifica dell'1/11 resta per la riconciliazione e «99 - old versions» ✅ 2026-10-31 ([[2026-10-31-audit-flusso-ingestion]])
+- [ ] Audit ingestion · P4 e P5: segnale di riordino persistente e registro del giro in `stato.py`, con test e avvisi nel controllo del vault, in una PR ([[2026-10-31-audit-flusso-ingestion]])
+- [ ] Audit ingestion · P1–P3: identità per famiglia e cartella nello stato, `sposta-nota.py`, `riconcilia.py` che prepara il piano dall'elenco delle cartelle ([[2026-10-31-audit-flusso-ingestion]])
+- [ ] Audit ingestion · SPEC: step nuovo sui riordini in 13.1, identità per regola, cartella canonica e soglie (profondità 4, 5 ID) in `vault.yaml`, con la PR dedicata ([[2026-10-31-audit-flusso-ingestion]]) ([[2026-10-29-cockpit-conteggi-e-step-13]], [[2026-10-31-riordino-sharepoint]])
 - [x] Step 13 · nell'interfaccia di claude.ai lo script di setup dell'ambiente richiama `.claude/setup/ambiente-cloud.sh` (con installazione diretta se il file non c'è ancora); verificato in una sessione nuova: pyyaml, pytest, python-pptx e fonttools presenti ✅ 2026-10-29 ([[2026-10-29-cockpit-conteggi-e-step-13]])
 - [ ] Step 14 · Fonte unica delle regole: matrice delle scritture e perimetro in un posto solo, con rimandi da CLAUDE.md e dagli agenti · modello: Fable ([[2026-10-26-piano-prodotto-second-brain]])
 - [ ] Step 15 · Retention delle note hub: interazioni recenti alle ultime 20, `## Fonti` da backlink o generate, ripresa delle note `partial`, archivio dei progetti chiusi · modello: Sonnet ([[2026-10-26-piano-prodotto-second-brain]])
@@ -79,7 +83,7 @@ updated: 2026-10-29
 
 ## Prossimi passi
 
-- Step 13: osservare tre giri dei task dopo il merge con `/verifica-task`, poi chiudere il criterio; lo step 14 parte solo con l'ok di Lorenzo
+- Audit ingestion: implementare P4 e P5, poi P1–P3, in sessioni dedicate con una PR ciascuna; lo step 14 parte solo con l'ok di Lorenzo
 - Chiudere la consegna dei file prodotti dal cloud prima di qualunque installazione esterna
 
 ## Fonti
