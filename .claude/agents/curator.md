@@ -77,7 +77,8 @@ I wikilink fuori dai blocchi di codice devono puntare a note esistenti. Dentro i
    - **Proposte**: per ognuna file, `kind`, titolo, una riga di motivazione, numero di diari;
    - **Aperti spuntati**: diario, aperto, prova;
    - **Pattern non proposti**: una riga ciascuno con il motivo (oltre le 5, già coperto, già proposto);
-   - **Da verificare**: aperti chiusi in parte o con prova incerta, aperti da più di 7 giorni, proposte `accettata` non ancora applicate (il testo non è nel file di destinazione), commit di sessione o di lavoro interattivo senza diario (sezione 2, punto 5).
+   - **Da verificare**: aperti chiusi in parte o con prova incerta, aperti da più di 7 giorni, proposte `accettata` non ancora applicate (il testo non è nel file di destinazione), commit di sessione o di lavoro interattivo senza diario (sezione 2, punto 5);
+   - **Metriche** (una riga, dai `conteggi` di `python3 .claude/scripts/plancia.py --anomalie --json`): hub da rileggere, totali e da più di 7 giorni (SPEC 4.3: una nuova versione non si propaga da sola alle hub); riconciliazioni dovute; note con voci dello stato orfane; giri mancanti o in errore di oggi e di ieri. Con `hub_da_rileggere_scadute` sopra 5 per due giri di seguito, proponi una sessione di rilettura nel resoconto, non una proposta.
 
    In `schedulata` il resoconto è anche il corpo della PR: scrivilo per l'utente che lo legge su GitHub.
 
