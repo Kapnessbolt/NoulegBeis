@@ -72,7 +72,7 @@ fonti:
     cartella: BlueAge
     cartella_chat_finale: chat           # la cartella che finisce così riceve i riassunti delle chat
   esclusioni:                            # SharePoint e OneDrive, in qualunque punto del percorso
-    cartelle: [siteassets, _originali, _sorgenti, dati]
+    cartelle: [siteassets, _originali, _sorgenti, dati, old versions]   # `old versions`: «99 - old versions», versioni superate
     finali: [transcript]                 # `05 Transcript`
     dentro: [[evidenze, export]]         # `06 Evidenze/Export`
   tipi_processati: [pdf, docx, pptx, xlsx, md, txt]
