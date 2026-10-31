@@ -63,14 +63,14 @@ Azione o scadenza esplicita di un progetto esistente: `## Attività` `- [ ] <azi
 4. Per fonte `stato.py set-giro <fonte> --inizio <ISO> --fine <adesso UTC> --risultati <n> --piu-recente <ISO> --falliti <n>` (risultati e istante più recente di **tutta** la ricerca, anche fuori perimetro), poi `stato.py set-watermark <fonte> --da-giro`; con falliti, prima di `--da-giro` l'istante dell'ultimo file riuscito prima del primo fallito.
 5. **Rilevatore di riordino** (SPEC 6.2 passo 7; parametri `config.py rilevatore`, solo sulle sue `fonti`):
    - **cartelle**: `read_resource` dalla radice (`file:///<driveId>/`) fino a `profondita` livelli, saltando le escluse; `{"<folderId>": "<percorso relativo>"}` in un JSON nello scratchpad e `stato.py set-cartelle <fonte> <driveId> --libreria <nome> --profondita <n> --istante <adesso UTC> --elenco <file>` (`riordino: true` segna `riconciliazione_dovuta`);
-   - **ID nuovi**: risultati del passo 3 con ID assente dallo stato ma famiglia già nella stessa cartella (`famiglia.py --cerca`); da `soglia_id_nuovi` in su nella stessa libreria → `stato.py set-riconciliazione-dovuta <fonte> "<libreria>" --istante <adesso UTC> --motivo "<n> ID nuovi"`.
+   - **ID nuovi**: risultati del passo 3 con ID nuovo ma famiglia già nella stessa cartella (`famiglia.py --cerca`); da `soglia_id_nuovi` in su nella stessa libreria → `stato.py set-riconciliazione-dovuta <fonte> "<libreria>" --istante <adesso UTC> --motivo "<n> ID nuovi"`.
    Il giro **non** riconcilia: lo fa `reconcile-ridotta` (7). Digest, `## Decisioni`: al rilevamento `- Riordino rilevato in <libreria | OneDrive>: <segnale>`; ogni giorno le righe di `stato.py riconciliazione-dovuta sharepoint` e `onedrive`. Un errore del connettore qui va nel digest e non ferma il giro.
 6. Digest (8), git (9).
 
 ## 5. `delta` posta (SPEC 6.3)
 
 1. `stato.py watermark outlook`; `outlook_email_search` `query: "*"`, `afterDateTime: <watermark − finestra_ore>` (`config.py outlook`), `limit: 25`, con `nextOffset` o `nextCursor`, senza `folderName`.
-2. Scarta: `scarta.py --mittente "<mittente>" --oggetto "<oggetto>"` applica gli elenchi di `vault.yaml` (uscita 1 → scarta); a te restano notifiche di servizi, newsletter e thread personali o estranei (SPEC 5.3; in `interattiva` chiedi). Annota ogni scarto (mittente · oggetto).
+2. Scarta: `scarta.py --mittente "<mittente>" --oggetto "<oggetto>"` applica gli elenchi di `vault.yaml` (uscita 1 → scarta, 2 → mittente non filtrabile); a te restano notifiche di servizi, newsletter e thread personali o estranei (SPEC 5.3; in `interattiva` chiedi). Annota ogni scarto (mittente · oggetto).
 3. Per `conversationId`: salta i messaggi fino al `last_message` di `stato.py item outlook <id>`; con novità, nota (3.5) e `stato.py set-item outlook <id> --istante <ultimo messaggio> --note <nota>`.
 4. Allegati (SPEC 6.3 passo 5): famiglia già su SharePoint o OneDrive (`famiglia.py --cerca`) → versione lì, altrimenti `sources/attachments/<famiglia>.md`; nel thread `--aggiungi 'attachments=[[<famiglia>]]'`.
 5. Decisioni, azioni, scadenze → 3.6. Riordino annunciato dopo il giro di `ingest-sharepoint` del giorno: digest `- Riordino annunciato: <libreria | OneDrive> · /ingest riconcilia sharepoint:<libreria> | onedrive · [[<slug-thread>]]` (SPEC 6.3 passo 7).
@@ -103,4 +103,4 @@ Come `CLAUDE.md` §7. Messaggio: `ingest(<fonte>): <n> note nuove, <m> aggiornat
 
 ## 10. Risposta
 
-Note create e aggiornate, file falliti con il motivo, proposte, watermark, push.
+Note create e aggiornate, file falliti e motivo, proposte, watermark, push.
