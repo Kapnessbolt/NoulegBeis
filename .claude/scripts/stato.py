@@ -4,9 +4,12 @@
 File e contenuto:
   .state/sharepoint.json  {"watermark": ..., "items": {"<driveId>/<itemId>": {"last_modified", "note"}},
                            "cartelle": {"<driveId>": {"libreria", "profondita", "istante",
-                                                      "elenco": {"<folderId>": "<percorso>"}}}}
+                                                      "elenco": {"<folderId>": "<percorso>"}}},
+                           "riconciliazione_dovuta": {"<libreria>": "<istante del riordino>"},
+                           "ultimo_giro": {"inizio", "fine", "risultati", "piu_recente", "falliti"}}
   .state/onedrive.json    come sharepoint
-  .state/outlook.json     {"watermark": ..., "threads": {"<conversationId>": {"last_message", "note"}}}
+  .state/outlook.json     {"watermark": ..., "threads": {"<conversationId>": {"last_message", "note"}},
+                           "ultimo_giro": {...}}
   .state/github.json      {"repos": {"<owner>/<repo>": {"commit", "watermark"}},
                            "items": {"<owner>/<repo>:<percorso>": {"last_modified", "commit", "note"},
                                      "<owner>/<repo>#<numero>": {"last_modified", "note"}}}
@@ -27,8 +30,21 @@ Uso (fonte: sharepoint | onedrive | outlook | github | reconcile):
       per una voce nuova o per spostare la nota (riconciliazione, SPEC 6.4); --commit solo
       per github
   stato.py set-watermark <fonte> <ISO UTC> [--forza]
+  stato.py set-watermark <fonte> [<ISO UTC>] --da-giro
       non abbassa mai il watermark: se il nuovo è più vecchio esce con 0 e un avviso, a meno
-      di --forza
+      di --forza. Con --da-giro applica la regola di SPEC 6.2 passo 6 all'`ultimo_giro`
+      registrato con set-giro e stampa cosa ha fatto: senza file falliti il watermark sale al
+      `piu_recente` dei risultati (l'istante passato, se c'è, è ignorato); con file falliti
+      serve <ISO UTC>, il lastModified dell'ultimo file riuscito prima del primo fallimento,
+      e il watermark non lo supera. In entrambi i casi mai oltre `piu_recente`; un giro senza
+      risultati lascia il watermark com'è. Non si combina con --forza
+  stato.py set-giro <fonte> --inizio <ISO UTC> --fine <ISO UTC> --risultati <n>
+          [--piu-recente <ISO UTC>] --falliti <n>
+      registra `ultimo_giro` della fonte (sharepoint, onedrive, outlook): inizio e fine del
+      giro, risultati della ricerca (tutti, anche saltati, fuori perimetro o scartati), il
+      lastModified (o receivedDateTime) più recente tra quei risultati, obbligatorio se
+      risultati > 0, e i file o thread falliti. Non tocca il watermark: dopo, set-watermark
+      --da-giro
   stato.py set-repo <owner/repo> --commit <sha> --watermark <ISO UTC> [--forza]
       stessa regola: un watermark più vecchio non sostituisce quello registrato
   stato.py set-last-run <ISO UTC>                 reconcile.last_run
@@ -39,14 +55,27 @@ Uso (fonte: sharepoint | onedrive | outlook | github | reconcile):
       salva la fotografia ({"<folderId>": "<percorso relativo alla libreria>"}, fino a <n>
       livelli) e stampa il confronto con la precedente: `nuove`, `sparite`, `spostate`
       (stesso ID, percorso diverso) e `riordino` (true se qualcosa è cambiato). La prima
-      fotografia, o una presa a una profondità diversa, ha `prima: true` e `riordino: false`
+      fotografia, o una presa a una profondità diversa, ha `prima: true` e `riordino: false`.
+      Con `riordino: true` la libreria entra in `riconciliazione_dovuta` con l'istante della
+      fotografia (se c'era già, l'istante resta quello); l'uscita riporta in
+      `riconciliazione_dovuta` l'istante della libreria, o null, anche quando il confronto
+      non trova niente
+  stato.py riconciliazione-dovuta <fonte>         librerie con una riconciliazione dovuta
+                                                  (sharepoint, onedrive), una riga
+                                                  «Riconciliazione dovuta: <libreria> dal
+                                                  <data>» ciascuna (data nel fuso del vault);
+                                                  esce con 1 se non ce ne sono
+  stato.py set-riconciliata <fonte> <libreria>    toglie la libreria da `riconciliazione_dovuta`
+                                                  a riconciliazione finita (SPEC 6.4); se non
+                                                  era dovuta esce con 0 e un avviso
   stato.py merge-driver <base> <nostro> <loro>    merge driver di git per .state/*.json
                                                   (.gitattributes: `merge=stato`)
   stato.py risolvi [<file> ...]                   risolve a mano un conflitto rimasto su
                                                   .state/*.json (dagli stadi dell'indice), poi
                                                   `git add`; senza file, tutti quelli in conflitto
 
-Opzione comune: --json per le risposte dei comandi di scrittura.
+Opzioni comuni: --json per le risposte dei comandi di scrittura e di riconciliazione-dovuta;
+`stato.py <comando> --help` stampa l'uso di quel comando.
 
 Regole: istanti nel formato AAAA-MM-GGTHH:MM:SSZ (errore altrimenti); --note è un percorso
 relativo dentro sources/ (avviso se il file non esiste ancora: l'agente può scrivere la nota
@@ -56,7 +85,9 @@ Le voci non si cancellano mai (SPEC 6.4): una nota rimossa ha `status: removed`,
 Merge driver: il watermark (e last_run) più avanzato vince; items, threads e repos si uniscono
 e per la stessa chiave vince l'istante più recente (per i repo il watermark); a parità vince il
 lato che ha cambiato la voce rispetto alla base. Per `cartelle` vince, drive per drive, la
-fotografia più recente. Scrive il risultato in <nostro> ed esce con 0;
+fotografia più recente; `riconciliazione_dovuta` si unisce (tutte le librerie dei due lati, per
+la stessa libreria l'istante più vecchio), `ultimo_giro` è quello con la `fine` più recente.
+Scrive il risultato in <nostro> ed esce con 0;
 con un file illeggibile esce con 1 e git lascia il conflitto.
 
 La variabile d'ambiente VAULT_ROOT, se presente, indica la radice del vault al posto della
@@ -89,6 +120,8 @@ CAMPO_ISTANTE = {"sharepoint": "last_modified", "onedrive": "last_modified",
 ISTANTE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$")
 COMMIT_RE = re.compile(r"^[0-9a-f]{7,40}$")
 REPO_RE = re.compile(r"^[\w.-]+/[\w.-]+$")
+FONTI_CARTELLE = ("sharepoint", "onedrive")          # rilevatore di riordino (SPEC 6.2 passo 7)
+FONTI_GIRO = ("sharepoint", "onedrive", "outlook")   # fonti con watermark e registro del giro
 
 
 class Errore(Exception):
@@ -271,6 +304,69 @@ def cmd_set_watermark(fonte, ist, forza=False):
     return {"fonte": fonte, "watermark": ist, "cambiato": cambiato}
 
 
+def numero(valore, nome):
+    if isinstance(valore, int) and not isinstance(valore, bool):
+        n = valore
+    elif isinstance(valore, str) and valore.isdigit():
+        n = int(valore)
+    else:
+        raise Errore(f"{nome} `{valore}` non è un intero maggiore o uguale a 0")
+    if n < 0:
+        raise Errore(f"{nome} `{valore}` non è un intero maggiore o uguale a 0")
+    return n
+
+
+def cmd_set_giro(fonte, inizio, fine, risultati, piu_rec, falliti):
+    controlla_fonte(fonte, FONTI_GIRO)
+    istante(inizio, "--inizio")
+    istante(fine, "--fine")
+    if piu_recente(inizio, fine):
+        raise Errore(f"--fine {fine} è prima di --inizio {inizio}")
+    risultati = numero(risultati, "--risultati")
+    falliti = numero(falliti, "--falliti")
+    if falliti > risultati:
+        raise Errore(f"--falliti {falliti} è più di --risultati {risultati}")
+    if piu_rec is not None:
+        istante(piu_rec, "--piu-recente")
+    elif risultati > 0:
+        raise Errore("con risultati > 0 serve --piu-recente (il lastModified più recente tra i risultati)")
+    giro = {"inizio": inizio, "fine": fine, "risultati": risultati,
+            "piu_recente": piu_rec if risultati > 0 else None, "falliti": falliti}
+    data = leggi(fonte)
+    data["ultimo_giro"] = giro
+    scrivi(fonte, data)
+    return {"fonte": fonte, "ultimo_giro": giro}
+
+
+def cmd_set_watermark_da_giro(fonte, ist=None):
+    """Regola di SPEC 6.2 passo 6 applicata all'ultimo giro registrato."""
+    controlla_fonte(fonte, FONTI_GIRO)
+    if ist is not None:
+        istante(ist)
+    data = leggi(fonte)
+    giro = data.get("ultimo_giro")
+    if not isinstance(giro, dict):
+        raise Errore(f"nessun ultimo_giro in .state/{fonte}.json: prima stato.py set-giro {fonte} ...")
+    prima = data.get("watermark")
+    risultati, falliti, piu_rec = giro.get("risultati") or 0, giro.get("falliti") or 0, giro.get("piu_recente")
+    if risultati == 0 or not piu_rec:
+        return {"fonte": fonte, "watermark": prima, "prima": prima, "cambiato": False,
+                "regola": "giro senza risultati: watermark invariato"}
+    if ist is not None and piu_recente(ist, piu_rec):
+        raise Errore(f"{ist} è oltre il più recente dei risultati del giro ({piu_rec})")
+    if falliti:
+        if ist is None:
+            raise Errore(f"il giro ha {falliti} file falliti: passa l'istante dell'ultimo file riuscito "
+                         "prima del primo fallimento (set-watermark <fonte> <ISO> --da-giro)")
+        obiettivo = ist
+        regola = f"{falliti} file falliti: il watermark non supera {ist}, l'ultimo riuscito prima del primo fallimento"
+    else:
+        obiettivo = piu_rec
+        regola = f"nessun file fallito: il watermark sale al più recente dei {risultati} risultati ({piu_rec})"
+    r = cmd_set_watermark(fonte, obiettivo)
+    return {**r, "prima": prima, "regola": regola}
+
+
 def cmd_set_repo(repo, sha, wm, forza=False):
     repo_valido(repo)
     commit(sha)
@@ -297,7 +393,7 @@ def cmd_set_last_run(ist):
 
 
 def cmd_cartelle(fonte, drive=None):
-    controlla_fonte(fonte, ("sharepoint", "onedrive"))
+    controlla_fonte(fonte, FONTI_CARTELLE)
     cartelle = leggi(fonte).get("cartelle", {})
     return cartelle if drive is None else cartelle.get(drive)
 
@@ -313,8 +409,10 @@ def confronta_cartelle(vecchia, nuova):
 
 
 def cmd_set_cartelle(fonte, drive, libreria, profondita, ist, elenco):
-    controlla_fonte(fonte, ("sharepoint", "onedrive"))
+    controlla_fonte(fonte, FONTI_CARTELLE)
     istante(ist)
+    if not str(libreria).strip():
+        raise Errore("--libreria vuota")
     if not str(drive).strip():
         raise Errore("driveId vuoto")
     try:
@@ -342,8 +440,48 @@ def cmd_set_cartelle(fonte, drive, libreria, profondita, ist, elenco):
     else:
         out.update(confronta_cartelle(prec.get("elenco", {}), elenco))
     cartelle[drive] = {"libreria": libreria, "profondita": profondita, "istante": ist, "elenco": elenco}
+    if out["riordino"]:
+        # Il segnale resta finché la riconciliazione non è finita (set-riconciliata): una seconda
+        # fotografia identica non lo consuma, e un secondo riordino non sposta l'istante.
+        data.setdefault("riconciliazione_dovuta", {}).setdefault(libreria, ist)
+    out["riconciliazione_dovuta"] = (data.get("riconciliazione_dovuta") or {}).get(libreria)
     scrivi(fonte, data)
     return out
+
+
+def cmd_riconciliazione_dovuta(fonte):
+    controlla_fonte(fonte, FONTI_CARTELLE)
+    return dict(sorted((leggi(fonte).get("riconciliazione_dovuta") or {}).items()))
+
+
+def cmd_set_riconciliata(fonte, libreria):
+    controlla_fonte(fonte, FONTI_CARTELLE)
+    if not str(libreria).strip():
+        raise Errore("libreria vuota")
+    data = leggi(fonte)
+    dovute = data.get("riconciliazione_dovuta") or {}
+    dal = dovute.pop(libreria, None)
+    if dal is None:
+        avviso(f"{libreria} non era dovuta in .state/{fonte}.json: niente da togliere")
+    else:
+        if dovute:
+            data["riconciliazione_dovuta"] = dovute
+        else:
+            data.pop("riconciliazione_dovuta", None)
+        scrivi(fonte, data)
+    return {"fonte": fonte, "libreria": libreria, "cambiato": dal is not None, "dovuta_dal": dal,
+            "riconciliazione_dovuta": dict(sorted(dovute.items()))}
+
+
+def data_locale(ist):
+    """Data di un istante UTC nel fuso del vault (vault.yaml); in UTC se la configurazione manca."""
+    giorno = dt.datetime.strptime(ist, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=dt.timezone.utc)
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import config
+        return giorno.astimezone(config.fuso()).date().isoformat()
+    except Exception:
+        return giorno.date().isoformat()
 
 
 # --- Merge driver -----------------------------------------------------------------------
@@ -396,6 +534,12 @@ def unisci(base, nostro, loro):
                     coll[chiave] = _scegli(b.get(chiave), nostro[k][chiave], loro[k][chiave],
                                            lambda v: _istante_voce(v, campi))
             out[k] = coll
+        elif k == "riconciliazione_dovuta" and isinstance(nostro[k], dict) and isinstance(loro[k], dict):
+            # Unione: una libreria dovuta da un lato resta dovuta; vale il riordino più vecchio
+            out[k] = {lib: min([v for v in (nostro[k].get(lib), loro[k].get(lib)) if v] or [None])
+                      for lib in sorted(set(nostro[k]) | set(loro[k]))}
+        elif k == "ultimo_giro" and isinstance(nostro[k], dict) and isinstance(loro[k], dict):
+            out[k] = _scegli(base.get(k), nostro[k], loro[k], lambda v: v.get("fine"))
         elif k == "cartelle" and isinstance(nostro[k], dict) and isinstance(loro[k], dict):
             b = base.get(k) if isinstance(base.get(k), dict) else {}
             out[k] = {d: (nostro[k][d] if d not in loro[k] else loro[k][d] if d not in nostro[k]
@@ -474,11 +618,31 @@ def stampa(valore, as_json=True):
     print(json.dumps(valore, ensure_ascii=False, indent=2, sort_keys=True) if as_json else valore)
 
 
+def uso_comando(cmd):
+    """Le righe del docstring che descrivono `cmd`: la sua riga `stato.py <cmd>` e le seguenti
+    più rientrate, fino al comando dopo."""
+    righe, dentro = [], False
+    for riga in __doc__.splitlines():
+        if riga.startswith("  stato.py "):
+            dentro = riga.split()[1] == cmd
+        elif dentro and not riga.startswith("      ") and not riga.startswith(" " * 40):
+            dentro = False
+        if dentro:
+            righe.append(riga[2:])
+    return "\n".join(righe)
+
+
 def main(argv):
     if not argv or argv[0] in ("-h", "--help"):
         print(__doc__)
         return 0 if argv else 2
     cmd, args = argv[0], argv[1:]
+    if "--help" in args or "-h" in args:
+        uso = uso_comando(cmd)
+        if not uso:
+            raise Errore(f"comando sconosciuto `{cmd}` (stato.py --help)")
+        print(uso)
+        return 0
     as_json = "--json" in args
     args = [a for a in args if a != "--json"]
 
@@ -536,10 +700,48 @@ def main(argv):
         stampa({"fonte": fonte, "chiave": chiave, **voce} if as_json else f"{fonte} `{chiave}` aggiornata", as_json)
         return 0
     if cmd == "set-watermark":
-        pos, opt = opzioni(args, (), ("--forza",))
+        pos, opt = opzioni(args, (), ("--forza", "--da-giro"))
+        if "--da-giro" in opt:
+            if "--forza" in opt:
+                raise Errore("--da-giro e --forza non vanno insieme")
+            if len(pos) not in (1, 2):
+                raise Errore("uso: stato.py set-watermark <fonte> [<ISO UTC>] --da-giro")
+            r = cmd_set_watermark_da_giro(*pos)
+            testo = (f"watermark {r['fonte']}: {r['prima'] or 'null'} → {r['watermark'] or 'null'} ({r['regola']})"
+                     if r["cambiato"] else f"watermark {r['fonte']} invariato: {r['watermark'] or 'null'} ({r['regola']})")
+            stampa(r if as_json else testo, as_json)
+            return 0
         fonte, ist = posizionali(pos, 2, "set-watermark <fonte> <ISO UTC> [--forza]")
         r = cmd_set_watermark(fonte, ist, "--forza" in opt)
         stampa(r if as_json else f"watermark {fonte}: {r['watermark']}", as_json)
+        return 0
+    if cmd == "set-giro":
+        nomi = ("--inizio", "--fine", "--risultati", "--piu-recente", "--falliti")
+        pos, opt = opzioni(args, nomi)
+        (fonte,) = posizionali(pos, 1, "set-giro <fonte> --inizio <ISO> --fine <ISO> --risultati <n> "
+                                       "[--piu-recente <ISO>] --falliti <n>")
+        mancano = [n for n in nomi if n != "--piu-recente" and n not in opt]
+        if mancano:
+            raise Errore("set-giro vuole " + ", ".join(mancano))
+        r = cmd_set_giro(fonte, opt["--inizio"], opt["--fine"], opt["--risultati"],
+                         opt.get("--piu-recente"), opt["--falliti"])
+        g = r["ultimo_giro"]
+        stampa(r if as_json else f"ultimo giro {fonte}: {g['risultati']} risultati, {g['falliti']} falliti, "
+                                  f"più recente {g['piu_recente'] or 'nessuno'}", as_json)
+        return 0
+    if cmd == "riconciliazione-dovuta":
+        (fonte,) = posizionali(args, 1, "riconciliazione-dovuta <fonte>")
+        dovute = cmd_riconciliazione_dovuta(fonte)
+        if as_json:
+            stampa({"fonte": fonte, "riconciliazione_dovuta": dovute})
+        elif dovute:
+            print("\n".join(f"Riconciliazione dovuta: {lib} dal {data_locale(ist)}" for lib, ist in dovute.items()))
+        return 0 if dovute else 1
+    if cmd == "set-riconciliata":
+        fonte, libreria = posizionali(args, 2, "set-riconciliata <fonte> <libreria>")
+        r = cmd_set_riconciliata(fonte, libreria)
+        stampa(r if as_json else (f"{fonte}: riconciliazione di {libreria} registrata (dovuta dal {r['dovuta_dal']})"
+                                  if r["cambiato"] else f"{fonte}: {libreria} non era dovuta"), as_json)
         return 0
     if cmd == "set-repo":
         pos, opt = opzioni(args, ("--commit", "--watermark"), ("--forza",))

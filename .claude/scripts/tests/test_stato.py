@@ -279,3 +279,219 @@ def test_merge_driver_cartelle_vince_la_fotografia_piu_recente(vault, tmp_path):
     assert stato(vault, "merge-driver", pb, pn, pl).returncode == 0
     out = json.loads(pn.read_text(encoding="utf-8"))["cartelle"]
     assert out["d1"]["elenco"] == {"f": "B"} and set(out) == {"d1", "d2", "d3"}
+
+
+# --- P4 · Segnale di riordino persistente (audit 2026-10-31) ----------------------------
+
+def fotografia(vault, el, ist, elenco, libreria="SalesMarketing", fonte="sharepoint", drive="drv"):
+    scrivi_json(el, elenco)
+    res = stato(vault, "set-cartelle", fonte, drive, "--libreria", libreria, "--profondita", "2",
+                "--istante", ist, "--elenco", el)
+    assert res.returncode == 0, res.stderr
+    return json.loads(res.stdout)
+
+
+PRIMA = {"f1": "Deck", "f2": "Product Portfolio"}
+DOPO = {"f2": "02 - Offerte", "f4": "01 - Materiali istituzionali"}
+
+
+def test_riordino_lascia_la_riconciliazione_dovuta(vault, tmp_path):
+    el = tmp_path / "elenco.json"
+    out = fotografia(vault, el, "2026-10-29T05:00:00Z", PRIMA)
+    assert out["riconciliazione_dovuta"] is None
+    assert "riconciliazione_dovuta" not in leggi_stato(vault, "sharepoint")
+    out = fotografia(vault, el, "2026-10-30T05:00:00Z", PRIMA)  # nessun riordino: niente segnale
+    assert out["riconciliazione_dovuta"] is None
+    out = fotografia(vault, el, "2026-10-31T05:00:00Z", DOPO)
+    assert out["riordino"] is True and out["riconciliazione_dovuta"] == "2026-10-31T05:00:00Z"
+    assert leggi_stato(vault, "sharepoint")["riconciliazione_dovuta"] == {"SalesMarketing": "2026-10-31T05:00:00Z"}
+
+
+def test_seconda_fotografia_identica_dopo_il_riordino_senza_riconciliazione(vault, tmp_path):
+    """Scenario 5 dell'audit (A3): la riconciliazione si ferma a metà, il giorno dopo la fotografia
+    coincide con quella salvata. Il confronto dice `riordino: false`, ma il segnale resta."""
+    el = tmp_path / "elenco.json"
+    fotografia(vault, el, "2026-10-30T05:00:00Z", PRIMA)
+    fotografia(vault, el, "2026-10-31T05:00:00Z", DOPO)
+    out = fotografia(vault, el, "2026-11-01T05:00:00Z", DOPO)
+    assert out["riordino"] is False
+    assert out["riconciliazione_dovuta"] == "2026-10-31T05:00:00Z"
+    res = stato(vault, "riconciliazione-dovuta", "sharepoint")
+    assert res.returncode == 0, res.stderr
+    assert res.stdout.strip() == "Riconciliazione dovuta: SalesMarketing dal 2026-10-31"
+
+
+def test_riordino_su_libreria_gia_dovuta_non_cambia_l_istante(vault, tmp_path):
+    el = tmp_path / "elenco.json"
+    fotografia(vault, el, "2026-10-30T05:00:00Z", PRIMA)
+    fotografia(vault, el, "2026-10-31T05:00:00Z", DOPO)
+    out = fotografia(vault, el, "2026-11-01T05:00:00Z", PRIMA)  # secondo riordino
+    assert out["riordino"] is True and out["riconciliazione_dovuta"] == "2026-10-31T05:00:00Z"
+    # un'altra libreria si aggiunge con il suo istante
+    fotografia(vault, el, "2026-10-30T05:00:00Z", PRIMA, libreria="Delivery", drive="drv2")
+    fotografia(vault, el, "2026-11-01T06:00:00Z", DOPO, libreria="Delivery", drive="drv2")
+    assert leggi_stato(vault, "sharepoint")["riconciliazione_dovuta"] == {
+        "Delivery": "2026-11-01T06:00:00Z", "SalesMarketing": "2026-10-31T05:00:00Z"}
+
+
+def test_riconciliazione_dovuta_e_set_riconciliata(vault, tmp_path):
+    res = stato(vault, "riconciliazione-dovuta", "sharepoint")
+    assert res.returncode == 1 and res.stdout.strip() == ""
+    res = stato(vault, "riconciliazione-dovuta", "sharepoint", "--json")
+    assert res.returncode == 1
+    assert json.loads(res.stdout) == {"fonte": "sharepoint", "riconciliazione_dovuta": {}}
+    el = tmp_path / "elenco.json"
+    fotografia(vault, el, "2026-10-30T05:00:00Z", PRIMA, fonte="onedrive", libreria="BlueAge")
+    fotografia(vault, el, "2026-10-31T05:00:00Z", DOPO, fonte="onedrive", libreria="BlueAge")
+    res = stato(vault, "riconciliazione-dovuta", "onedrive", "--json")
+    assert res.returncode == 0
+    assert json.loads(res.stdout) == {"fonte": "onedrive",
+                                      "riconciliazione_dovuta": {"BlueAge": "2026-10-31T05:00:00Z"}}
+    # la riconciliazione finita toglie il segnale
+    res = stato(vault, "set-riconciliata", "onedrive", "BlueAge", "--json")
+    assert res.returncode == 0, res.stderr
+    assert json.loads(res.stdout) == {"fonte": "onedrive", "libreria": "BlueAge", "cambiato": True,
+                                      "dovuta_dal": "2026-10-31T05:00:00Z", "riconciliazione_dovuta": {}}
+    assert "riconciliazione_dovuta" not in leggi_stato(vault, "onedrive")
+    assert stato(vault, "riconciliazione-dovuta", "onedrive").returncode == 1
+    # una seconda volta non cambia niente e lo dice
+    res = stato(vault, "set-riconciliata", "onedrive", "BlueAge")
+    assert res.returncode == 0 and "non era dovuta" in res.stderr
+    # validazione
+    assert stato(vault, "riconciliazione-dovuta", "outlook").returncode == 2
+    assert stato(vault, "set-riconciliata", "outlook", "X").returncode == 2
+    assert stato(vault, "set-riconciliata", "sharepoint").returncode == 2
+    assert stato(vault, "set-riconciliata", "sharepoint", " ").returncode == 2
+
+
+def test_merge_driver_riconciliazione_dovuta_si_unisce(vault, tmp_path):
+    pb, pn, pl = tmp_path / "base", tmp_path / "nostro", tmp_path / "loro"
+    scrivi_json(pb, {"watermark": None, "items": {}})
+    scrivi_json(pn, {"watermark": None, "items": {}, "riconciliazione_dovuta": {
+        "Delivery": "2026-10-31T05:00:00Z", "SalesMarketing": "2026-10-30T05:00:00Z"}})
+    scrivi_json(pl, {"watermark": None, "items": {}, "riconciliazione_dovuta": {
+        "Delivery": "2026-10-29T05:00:00Z", "Shared Documents": "2026-11-01T05:00:00Z"}})
+    assert stato(vault, "merge-driver", pb, pn, pl).returncode == 0
+    assert json.loads(pn.read_text(encoding="utf-8"))["riconciliazione_dovuta"] == {
+        "Delivery": "2026-10-29T05:00:00Z", "SalesMarketing": "2026-10-30T05:00:00Z",
+        "Shared Documents": "2026-11-01T05:00:00Z"}
+
+
+# --- P5 · Registro del giro (audit 2026-10-31) ------------------------------------------
+
+GIRO = ("--inizio", "2026-10-31T05:50:00Z", "--fine", "2026-10-31T06:20:00Z")
+
+
+def test_set_giro_scrive_ultimo_giro(vault):
+    res = stato(vault, "set-giro", "sharepoint", *GIRO, "--risultati", "21", "--piu-recente",
+                "2026-10-30T16:22:49Z", "--falliti", "0", "--json")
+    assert res.returncode == 0, res.stderr
+    atteso = {"inizio": "2026-10-31T05:50:00Z", "fine": "2026-10-31T06:20:00Z", "risultati": 21,
+              "piu_recente": "2026-10-30T16:22:49Z", "falliti": 0}
+    assert json.loads(res.stdout) == {"fonte": "sharepoint", "ultimo_giro": atteso}
+    assert leggi_stato(vault, "sharepoint")["ultimo_giro"] == atteso
+    # giro senza risultati: --piu-recente non serve
+    res = stato(vault, "set-giro", "outlook", *GIRO, "--risultati", "0", "--falliti", "0")
+    assert res.returncode == 0, res.stderr
+    assert leggi_stato(vault, "outlook")["ultimo_giro"]["piu_recente"] is None
+    # il watermark non si tocca
+    assert leggi_stato(vault, "sharepoint")["watermark"] == "2026-10-02T06:50:00Z"
+
+
+def test_set_giro_validazione(vault):
+    ok = ("--risultati", "3", "--piu-recente", "2026-10-30T16:22:49Z", "--falliti", "0")
+    assert stato(vault, "set-giro", "sharepoint", *GIRO, *ok).returncode == 0
+    valido = leggi_stato(vault, "sharepoint")["ultimo_giro"]
+    assert stato(vault, "set-giro", "github", *GIRO, *ok).returncode == 2
+    assert stato(vault, "set-giro", "reconcile", *GIRO, *ok).returncode == 2
+    assert stato(vault, "set-giro", "sharepoint", "--inizio", "ieri", "--fine", GIRO[3], *ok).returncode == 2
+    # fine prima dell'inizio
+    assert stato(vault, "set-giro", "sharepoint", "--inizio", GIRO[3], "--fine", GIRO[1], *ok).returncode == 2
+    for n in ("-1", "tre", "1.5"):
+        assert stato(vault, "set-giro", "sharepoint", *GIRO, "--risultati", n, "--piu-recente",
+                     "2026-10-30T16:22:49Z", "--falliti", "0").returncode == 2
+    # più falliti che risultati
+    assert stato(vault, "set-giro", "sharepoint", *GIRO, "--risultati", "2", "--piu-recente",
+                 "2026-10-30T16:22:49Z", "--falliti", "3").returncode == 2
+    # risultati senza il più recente
+    assert stato(vault, "set-giro", "sharepoint", *GIRO, "--risultati", "2", "--falliti", "0").returncode == 2
+    # manca un'opzione obbligatoria
+    assert stato(vault, "set-giro", "sharepoint", *GIRO, "--risultati", "2").returncode == 2
+    assert leggi_stato(vault, "sharepoint")["ultimo_giro"] == valido  # nessuna chiamata sbagliata scrive
+
+
+def giro(vault, fonte, risultati, piu_recente, falliti):
+    extra = ("--piu-recente", piu_recente) if piu_recente else ()
+    res = stato(vault, "set-giro", fonte, *GIRO, "--risultati", str(risultati), *extra, "--falliti", str(falliti))
+    assert res.returncode == 0, res.stderr
+
+
+def test_watermark_da_giro_senza_falliti_sale_al_piu_recente(vault):
+    """Giro del 27/10 (A2): 21 risultati, tutti già registrati; il watermark deve salire lo stesso."""
+    giro(vault, "sharepoint", 21, "2026-10-26T18:00:00Z", 0)
+    res = stato(vault, "set-watermark", "sharepoint", "--da-giro", "--json")
+    assert res.returncode == 0, res.stderr
+    out = json.loads(res.stdout)
+    assert out["watermark"] == "2026-10-26T18:00:00Z" and out["cambiato"] is True
+    assert out["prima"] == "2026-10-02T06:50:00Z" and "nessun file fallito" in out["regola"]
+    assert leggi_stato(vault, "sharepoint")["watermark"] == "2026-10-26T18:00:00Z"
+    # testo leggibile senza --json
+    res = stato(vault, "set-watermark", "sharepoint", "--da-giro")
+    assert res.returncode == 0 and "invariato" in res.stdout
+
+
+def test_watermark_da_giro_con_falliti_non_supera_l_istante(vault):
+    giro(vault, "sharepoint", 21, "2026-10-26T18:00:00Z", 2)
+    res = stato(vault, "set-watermark", "sharepoint", "--da-giro")
+    assert res.returncode == 2 and "ultimo file riuscito" in res.stderr  # serve l'istante
+    res = stato(vault, "set-watermark", "sharepoint", "2026-10-20T09:00:00Z", "--da-giro", "--json")
+    assert res.returncode == 0, res.stderr
+    out = json.loads(res.stdout)
+    assert out["watermark"] == "2026-10-20T09:00:00Z" and "2 file falliti" in out["regola"]
+    # un istante oltre il più recente dei risultati è un errore
+    assert stato(vault, "set-watermark", "sharepoint", "2026-10-27T00:00:00Z", "--da-giro").returncode == 2
+    # non scende mai
+    res = stato(vault, "set-watermark", "sharepoint", "2026-10-01T00:00:00Z", "--da-giro")
+    assert res.returncode == 0 and "non abbassato" in res.stderr
+    assert leggi_stato(vault, "sharepoint")["watermark"] == "2026-10-20T09:00:00Z"
+
+
+def test_watermark_da_giro_casi_limite(vault):
+    # senza giro registrato
+    res = stato(vault, "set-watermark", "outlook", "--da-giro")
+    assert res.returncode == 2 and "set-giro" in res.stderr
+    # giro senza risultati: invariato
+    giro(vault, "outlook", 0, None, 0)
+    res = stato(vault, "set-watermark", "outlook", "--da-giro", "--json")
+    assert res.returncode == 0, res.stderr
+    assert json.loads(res.stdout)["cambiato"] is False
+    assert leggi_stato(vault, "outlook")["watermark"] is None
+    # senza falliti l'istante passato non serve e non può superare il più recente
+    giro(vault, "sharepoint", 5, "2026-10-26T18:00:00Z", 0)
+    assert stato(vault, "set-watermark", "sharepoint", "2026-10-27T00:00:00Z", "--da-giro").returncode == 2
+    res = stato(vault, "set-watermark", "sharepoint", "2026-10-25T00:00:00Z", "--da-giro")
+    assert res.returncode == 0, res.stderr
+    assert leggi_stato(vault, "sharepoint")["watermark"] == "2026-10-26T18:00:00Z"
+    # --da-giro e --forza insieme no; senza --da-giro l'istante resta obbligatorio
+    assert stato(vault, "set-watermark", "sharepoint", "2026-10-26T18:00:00Z", "--da-giro", "--forza").returncode == 2
+    assert stato(vault, "set-watermark", "sharepoint").returncode == 2
+
+
+def test_merge_driver_ultimo_giro_vince_il_piu_recente(vault, tmp_path):
+    pb, pn, pl = tmp_path / "base", tmp_path / "nostro", tmp_path / "loro"
+    vecchio = {"inizio": "2026-10-30T05:50:00Z", "fine": "2026-10-30T06:10:00Z", "risultati": 3,
+               "piu_recente": "2026-10-29T10:00:00Z", "falliti": 0}
+    nuovo = {**vecchio, "inizio": "2026-10-31T05:50:00Z", "fine": "2026-10-31T06:10:00Z"}
+    scrivi_json(pb, {"watermark": None, "items": {}})
+    scrivi_json(pn, {"watermark": None, "items": {}, "ultimo_giro": vecchio})
+    scrivi_json(pl, {"watermark": None, "items": {}, "ultimo_giro": nuovo})
+    assert stato(vault, "merge-driver", pb, pn, pl).returncode == 0
+    assert json.loads(pn.read_text(encoding="utf-8"))["ultimo_giro"] == nuovo
+
+
+def test_help_dei_comandi_nuovi(vault):
+    for cmd in ("set-giro", "set-riconciliata", "riconciliazione-dovuta", "set-watermark"):
+        res = stato(vault, cmd, "--help")
+        assert res.returncode == 0, res.stderr
+        assert res.stdout.lstrip().startswith(f"stato.py {cmd}"), res.stdout
+    assert "--da-giro" in stato(vault, "set-watermark", "--help").stdout

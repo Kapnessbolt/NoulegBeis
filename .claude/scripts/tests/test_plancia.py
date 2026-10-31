@@ -134,3 +134,21 @@ def test_digest_nuova_versione_e_aggiornamento(vault, tmp_path):
 def test_digest_conta_le_decisioni_senza_data(vault, tmp_path):
     """Contano i punti di primo livello di `## Decisioni`, con o senza data; non "-" né i "nessun…"."""
     assert leggi_digest(vault, tmp_path)["decisioni"] == 3
+
+
+def test_task_espone_l_ultimo_giro_per_fonte(vault, tmp_path):
+    """P5 dell'audit 2026-10-31: `ultimo_giro` di ogni fonte nelle righe dei task di ingestion."""
+    giro = {"inizio": "2026-10-31T05:50:00Z", "fine": "2026-10-31T06:20:00Z", "risultati": 21,
+            "piu_recente": "2026-10-30T16:22:49Z", "falliti": 0}
+    p = vault / ".state" / "sharepoint.json"
+    stato = json.loads(p.read_text(encoding="utf-8"))
+    stato["ultimo_giro"] = giro
+    p.write_text(json.dumps(stato), encoding="utf-8")
+    out = tmp_path / "plancia"
+    res = esegui("plancia.py", vault, out)
+    assert res.returncode == 0, res.stderr
+    task = json.loads((out / "task.json").read_text(encoding="utf-8"))
+    per_task = {t["task"]: t for t in task}
+    assert per_task["ingest-sharepoint"]["ultimo_giro"] == {"sharepoint": giro, "onedrive": None}
+    assert per_task["ingest-outlook"]["ultimo_giro"] == {"outlook": None}
+    assert per_task["digest"]["ultimo_giro"] == {}

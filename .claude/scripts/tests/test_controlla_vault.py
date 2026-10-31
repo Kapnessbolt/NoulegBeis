@@ -179,3 +179,77 @@ def test_regola_su_cartella_inesistente_e_avviso(vault):
     res = controlla(vault)
     assert res.returncode == 0, res.stdout
     assert "non esiste nel vault" in res.stdout
+
+
+# --- Stato dell'ingestion: riconciliazione dovuta e watermark fermo (audit 2026-10-31, P4 e P5)
+
+import datetime as dt  # noqa: E402
+import json  # noqa: E402
+
+
+def fa(**kw):
+    """Istante UTC di `kw` fa (giorni=, ore=), nel formato dello stato."""
+    t = dt.datetime.now(dt.timezone.utc) - dt.timedelta(**kw)
+    return t.strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def modifica_stato(vault, fonte, **chiavi):
+    p = vault / ".state" / f"{fonte}.json"
+    data = json.loads(p.read_text(encoding="utf-8"))
+    data.update(chiavi)
+    p.write_text(json.dumps(data, indent=2), encoding="utf-8")
+
+
+def test_riconciliazione_dovuta_avviso_dopo_un_giorno_errore_dopo_sette(vault):
+    modifica_stato(vault, "sharepoint", riconciliazione_dovuta={"SalesMarketing": fa(hours=5)})
+    res = controlla(vault)
+    assert res.returncode == 0 and "riconciliazione dovuta" not in res.stdout
+    modifica_stato(vault, "sharepoint", riconciliazione_dovuta={"SalesMarketing": fa(days=2)})
+    res = controlla(vault)
+    assert res.returncode == 0, res.stdout
+    assert "riconciliazione dovuta per SalesMarketing" in res.stdout.split("## Avvisi")[1]
+    modifica_stato(vault, "onedrive", riconciliazione_dovuta={"Lavoro": fa(days=8)})
+    res = controlla(vault)
+    assert res.returncode == 1
+    errori_txt = res.stdout.split("## Errori")[1].split("## Avvisi")[0]
+    assert "riconciliazione dovuta per Lavoro" in errori_txt and "/ingest riconcilia onedrive" in errori_txt
+
+
+def test_riconciliazione_dovuta_non_blocca_il_commit_dell_ingestion(vault):
+    """L'errore resta nel rapporto e in CI, ma il pre-commit non ferma il giro che scrive lo stato:
+    bloccarlo perderebbe le note del giro e allargherebbe il ritardo."""
+    modifica_stato(vault, "sharepoint", riconciliazione_dovuta={"Delivery": fa(days=9)})
+    res = controlla(vault, "--modificati")
+    assert res.returncode == 0, res.stdout
+    assert controlla(vault).returncode == 1
+
+
+def test_riconciliazione_dovuta_illeggibile_e_errore(vault):
+    modifica_stato(vault, "sharepoint", riconciliazione_dovuta={"Delivery": "ieri"})
+    res = controlla(vault)
+    assert res.returncode == 1 and "riconciliazione_dovuta" in res.stdout
+
+
+def test_watermark_fermo_con_risultati_nel_giro_e_avviso(vault):
+    """27/10 (A2): 21 risultati fino al 26/10, watermark fermo al 19/10."""
+    giro = {"inizio": fa(hours=2), "fine": fa(hours=1), "risultati": 21,
+            "piu_recente": "2026-10-26T18:00:00Z", "falliti": 0}
+    modifica_stato(vault, "sharepoint", watermark="2026-10-19T16:22:49Z", ultimo_giro=giro)
+    res = controlla(vault)
+    assert res.returncode == 0
+    avvisi = res.stdout.split("## Avvisi")[1]
+    assert "watermark di sharepoint fermo al 2026-10-19T16:22:49Z" in avvisi and "21 risultati" in avvisi
+
+
+def test_watermark_al_passo_o_giro_vuoto_nessun_avviso(vault):
+    giro = {"inizio": fa(hours=2), "fine": fa(hours=1), "risultati": 21,
+            "piu_recente": "2026-10-26T18:00:00Z", "falliti": 0}
+    # weekend senza modifiche: i risultati sono quelli già visti, il watermark è il più recente
+    modifica_stato(vault, "sharepoint", watermark="2026-10-26T18:00:00Z", ultimo_giro=giro)
+    # giro senza risultati con watermark vecchio
+    modifica_stato(vault, "outlook", watermark="2026-10-01T00:00:00Z",
+                   ultimo_giro={**giro, "risultati": 0, "piu_recente": None})
+    # meno di 2 giorni di distacco
+    modifica_stato(vault, "onedrive", watermark="2026-10-25T00:00:00Z", ultimo_giro=giro)
+    res = controlla(vault)
+    assert res.returncode == 0 and "fermo al" not in res.stdout

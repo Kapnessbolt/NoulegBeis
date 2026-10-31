@@ -4,7 +4,11 @@ possibili dati riservati (CLAUDE.md §5) nel corpo delle note, e la configurazio
 valido, orari dei task uguali a SPEC 7, permessi mcp di `.claude/settings.json` e `tools` degli
 agenti uguali a quelli che `vault.yaml` dà (config.py, `verifica`), regole di `.claude/rules/`
 con il frontmatter leggibile e `paths` valido (una regola con il frontmatter rotto verrebbe
-caricata in ogni sessione, senza avvisare).
+caricata in ogni sessione, senza avvisare). Dallo stato dell'ingestion (`.state/`): una
+riconciliazione dovuta (`riconciliazione_dovuta`) da più di 1 giorno è un avviso, da più di 7
+un errore; un watermark più di 2 giorni dietro il risultato più recente dell'ultimo giro
+(`ultimo_giro` con risultati) è un avviso. Questi errori non bloccano `--modificati`: il giro
+che scrive lo stato deve poter fare commit.
 
 Dati riservati: controllo a pattern sul corpo delle note (non sul frontmatter, che contiene
 legittimamente `item_id`, `uri` e `conversation_id` lunghi). Ogni corrispondenza è un errore,
@@ -92,14 +96,21 @@ SLUG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 WIKILINK_RE = re.compile(r"\[\[([^\]|#^]+)(?:[#^][^\]|]*)?(?:\|[^\]]*)?\]\]")
 ENUM_RE = re.compile(r"#\s*([a-z-]+(?:\s*\|\s*[a-z-]+)+)\s*$")
 SIMILAR = 0.85
+# Stato dell'ingestion (audit 2026-10-31, P4 e P5): giorni oltre i quali una riconciliazione
+# dovuta è un avviso e poi un errore, e distacco massimo tra il watermark e il risultato più
+# recente dell'ultimo giro
+DOVUTA_AVVISO_GIORNI = 1
+DOVUTA_ERRORE_GIORNI = 7
+WATERMARK_FERMO_GIORNI = 2
 
 errori, avvisi = [], []
 
 
-def err(paths, msg, target=None):
-    """paths: nota o note coinvolte; target: slug citato (per i link rotti)."""
+def err(paths, msg, target=None, blocca_commit=True):
+    """paths: nota o note coinvolte; target: slug citato (per i link rotti); blocca_commit=False
+    per gli errori che restano nel rapporto e in CI ma non fermano il pre-commit (`--modificati`)."""
     paths = [str(p) for p in (paths if isinstance(paths, (list, tuple)) else [paths])]
-    errori.append({"paths": paths, "msg": msg, "target": target})
+    errori.append({"paths": paths, "msg": msg, "target": target, "blocca_commit": blocca_commit})
 
 
 def avv(path, msg):
@@ -381,6 +392,48 @@ def controlla_regole():
                 avv(rel, f"`paths` `{pat}`: `{base}` non esiste nel vault")
 
 
+def istante_utc(v):
+    try:
+        return dt.datetime.strptime(str(v), "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=dt.timezone.utc)
+    except ValueError:
+        return None
+
+
+def controlla_giro_e_riconciliazione(fonte, rel_stato, state, adesso=None):
+    """Riconciliazione dovuta da troppo tempo (P4) e watermark fermo dietro l'ultimo giro (P5).
+    Gli errori non bloccano il pre-commit: fermare il giro che scrive lo stato perderebbe le
+    sue note e allargherebbe il ritardo; restano nel rapporto, nel digest e in CI."""
+    adesso = adesso or dt.datetime.now(dt.timezone.utc)
+    dovute = state.get("riconciliazione_dovuta") or {}
+    if not isinstance(dovute, dict):
+        err(rel_stato, "`riconciliazione_dovuta` illeggibile: deve essere {libreria: istante}", blocca_commit=False)
+        dovute = {}
+    for libreria, ist in sorted(dovute.items()):
+        t = istante_utc(ist)
+        if t is None:
+            err(rel_stato, f"`riconciliazione_dovuta` di {libreria}: istante `{ist}` non valido", blocca_commit=False)
+            continue
+        giorni = (adesso - t).total_seconds() / 86400
+        comando = "/ingest riconcilia onedrive" if fonte == "onedrive" else f"/ingest riconcilia sharepoint:{libreria}"
+        msg = (f"riconciliazione dovuta per {libreria} dal {ist} ({int(giorni)} giorni): {comando}, "
+               f"poi `stato.py set-riconciliata {fonte} \"{libreria}\"`")
+        if giorni > DOVUTA_ERRORE_GIORNI:
+            err(rel_stato, msg, blocca_commit=False)
+        elif giorni > DOVUTA_AVVISO_GIORNI:
+            avv(rel_stato, msg)
+    giro = state.get("ultimo_giro")
+    if not isinstance(giro, dict) or not giro.get("risultati"):
+        return
+    wm, piu_rec = istante_utc(state.get("watermark")), istante_utc(giro.get("piu_recente"))
+    if wm and piu_rec and (piu_rec - wm).total_seconds() > WATERMARK_FERMO_GIORNI * 86400:
+        falliti = giro.get("falliti") or 0
+        causa = (f"{falliti} falliti lo tengono fermo: riprova quei file" if falliti
+                 else "nessun fallito: `stato.py set-watermark " + fonte + " --da-giro`")
+        avv(rel_stato, f"watermark di {fonte} fermo al {state.get('watermark')}: l'ultimo giro "
+                       f"({giro.get('fine')}) ha {giro.get('risultati')} risultati fino al "
+                       f"{giro.get('piu_recente')}, più di {WATERMARK_FERMO_GIORNI} giorni dopo ({causa})")
+
+
 def main():
     indice = "--indice" in sys.argv
     solo_modificati = "--modificati" in sys.argv
@@ -541,6 +594,7 @@ def main():
             tracked.add(note)
             if not (ROOT / note).is_file():
                 err([rel_stato, note], f"{fonte} `{key}` punta a una nota inesistente: `{note}`")
+        controlla_giro_e_riconciliazione(fonte, rel_stato, state)
     for rel, (d, _) in parsed.items():
         if rel.parts[0] != "sources" or d.get("type") != "source-doc":
             continue
@@ -553,8 +607,8 @@ def main():
     if solo_modificati:
         changed = changed_files()
         changed_stems = {Path(c).stem for c in changed}
-        mostrati = [e for e in errori
-                    if set(e["paths"]) & changed or (e["target"] and e["target"] in changed_stems)]
+        mostrati = [e for e in errori if e["blocca_commit"] and (
+                    set(e["paths"]) & changed or (e["target"] and e["target"] in changed_stems))]
         if mostrati:
             print("Controllo del vault: errori nei file che stai per committare.\n")
             print("\n".join(f"- `{e['paths'][0]}` · {e['msg']}" for e in mostrati))

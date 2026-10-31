@@ -13,7 +13,9 @@ La pagina la genera `cockpit.py` da questa cartella (più `calendario.json`, se 
 In progetti.json, per ogni progetto, oltre ai contatori: `percorso` (la scheda, relativo
 alla radice del vault), `clienti_slug`, `prossimi_passi` (i punti di `## Prossimi passi`,
 senza la fonte in coda), `scadute` (attività aperte con 📅 prima di oggi) e
-`prossima_fonte` (la fonte della prossima attività con data).
+`prossima_fonte` (la fonte della prossima attività con data). In task.json ogni riga ha
+`ultimo_giro`: per i task di ingestion delle fonti con watermark, `{"<fonte>": <ultimo_giro di
+.state/<fonte>.json o null>}` (registro del giro, `stato.py set-giro`), per gli altri `{}`.
 
 Fuso, nomi delle sezioni e task attesi (orari e giorni) vengono da `vault.yaml` (config.py).
 
@@ -58,6 +60,8 @@ NIENTE = re.compile(r"^(?:nessun|[^:]*:\s*nessun)", re.I)
 # d'esito nel digest, con i loro orari e giorni.
 TOLLERANZA_MIN = 45   # dopo l'ora attesa, prima di dire "mancante"
 FINESTRA_MIN = 180    # un'esecuzione oltre l'ora attesa + finestra non conta per quell'orario
+# Fonti dello stato che ogni task di ingestion aggiorna (routine in .claude/routines/)
+FONTI_DEL_TASK = {"ingest-sharepoint": ("sharepoint", "onedrive"), "ingest-outlook": ("outlook",)}
 
 
 def split_note(path):
@@ -165,6 +169,19 @@ def esiti_del_giorno(giorno, ora):
         r["id"] = f"{r['task']}-{r['atteso'] or r['eseguito']}-{n}"
         r["giorno"] = giorno
     return righe
+
+
+def ultimi_giri():
+    """`ultimo_giro` di ogni fonte con watermark (null se non c'è o lo stato non si legge)."""
+    out = {}
+    for fonte in {f for fonti in FONTI_DEL_TASK.values() for f in fonti}:
+        try:
+            stato = json.loads((ROOT / ".state" / f"{fonte}.json").read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            stato = {}
+        giro = stato.get("ultimo_giro") if isinstance(stato, dict) else None
+        out[fonte] = giro if isinstance(giro, dict) else None
+    return out
 
 
 def digest(giorno, ora):
@@ -280,6 +297,9 @@ def main():
         })
 
     task = esiti_del_giorno(oggi, ora)
+    giri = ultimi_giri()
+    for t in task:
+        t["ultimo_giro"] = {f: giri[f] for f in FONTI_DEL_TASK.get(t["task"], ())}
     files = (("progetti", progetti), ("attivita", attivita), ("log", passi), ("inbox", inbox),
              ("task", task), ("digest", digest(oggi, ora)))
     for name, rows in files:
