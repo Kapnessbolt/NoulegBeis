@@ -356,5 +356,5 @@ def test_t11_segnale_non_chiuso_resta_e_diventa_anomalia(vault_t11, tmp_path):
     assert (dovuta["libreria"], dovuta["fonte"], dovuta["dal"], dovuta["livello"]) == (
         "Delivery", "sharepoint", rilevato, "avviso")
     assert dovuta["riga"] == (f"- Anomalia · riconciliazione dovuta: Delivery (sharepoint) dal {rilevato} "
-                              "(1 giorni) · /ingest riconcilia sharepoint:Delivery")
+                              "(1 giorno) · /ingest riconcilia sharepoint:Delivery")
     assert r["conteggi"]["riconciliazioni_dovute"] == 1

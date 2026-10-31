@@ -264,6 +264,10 @@ def frontmatter_fonti():
     return out
 
 
+def _giorni(n):
+    return "1 giorno" if n == 1 else f"{n} giorni"
+
+
 def anomalie_del_giorno(giorno, ora, adesso):
     """Il risultato di `--anomalie` (il dizionario dell'uscita JSON, più `hub_recenti`)."""
     ieri = (datetime.fromisoformat(giorno).date() - timedelta(days=1)).isoformat()
@@ -299,7 +303,7 @@ def anomalie_del_giorno(giorno, ora, adesso):
                               "riga": f"{PREFISSO}stato di {fonte} illeggibile: {d['messaggio']}"})
             elif d["livello"] in anomalie.LIVELLI_ANOMALI:
                 riga = (f"riconciliazione dovuta: {d['libreria']} ({fonte}) dal {d['dal']} "
-                        f"({d['giorni']} giorni) · {d['comando']}")
+                        f"({_giorni(d['giorni'])}) · {d['comando']}")
                 esito.append({"tipo": "riconciliazione_dovuta", "riga": PREFISSO + riga, **d})
     orfane = anomalie.voci_orfane(frontmatter_fonti(), voci) if voci else []
     if orfane:
@@ -310,7 +314,7 @@ def anomalie_del_giorno(giorno, ora, adesso):
     hub = anomalie.hub_da_rileggere(ROOT, giorno)
     decisioni = [{"tipo": "hub_da_rileggere",
                   "riga": f"- Da rileggere: [[{h['hub']}]] · dopo [[{h['fonte']}]] {h['versione']} "
-                          f"del {h['data']} ({h['giorni']} giorni)",
+                          f"del {h['data']} ({_giorni(h['giorni'])})",
                   **{k: h[k] for k in ("hub", "nota", "fonte", "versione", "data", "giorni")}}
                  for h in hub if h["scaduta"]]
 
