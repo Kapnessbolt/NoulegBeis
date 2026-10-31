@@ -10,6 +10,7 @@ current:
   last_modified: 2026-10-08T10:43:55Z
 versions:
   - { name: handoff-2026-10-04-strade-tenant-unico.md, item_id: 01EFCYUZZMWFPWXVPJRVHYVI5IO4PBTNDU, last_modified: 2026-10-08T10:43:55Z }
+  - { name: handoff-2026-10-04-strade-tenant-unico.md, item_id: 01EFCYUZ2RDIVUAJPUQBF3SJU5LELKQZSG, last_modified: 2026-10-28T08:06:21Z }
 also_at: []
 status: active
 partial: false

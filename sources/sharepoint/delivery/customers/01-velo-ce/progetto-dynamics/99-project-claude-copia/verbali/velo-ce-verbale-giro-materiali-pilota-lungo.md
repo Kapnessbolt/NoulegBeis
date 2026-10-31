@@ -10,6 +10,7 @@ current:
   last_modified: 2026-10-08T10:44:36Z
 versions:
   - { name: velo-ce-verbale-260930-1503-giro-materiali-pilota-lungo.md, item_id: 01EFCYUZ5O445S5ADGIVDK4MVRXX6PTPX7, last_modified: 2026-10-08T10:44:36Z }
+  - { name: velo-ce-verbale-260930-1503-giro-materiali-pilota-lungo.md, item_id: 01EFCYUZ5O5BAMV4MVLZHINYQTHGA76AXZ, last_modified: 2026-10-28T08:06:44Z }
 also_at: []
 status: active
 partial: false

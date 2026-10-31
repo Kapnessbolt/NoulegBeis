@@ -10,6 +10,7 @@ current:
   last_modified: 2026-10-08T10:43:52Z
 versions:
   - { name: velo-ce-stato-progetto-04-backlog.md, item_id: 01EFCYUZ3ZR5JYAVFM2BD2V2AJSHMX4SKB, last_modified: 2026-10-08T10:43:52Z }
+  - { name: velo-ce-stato-progetto-04-backlog.md, item_id: 01EFCYUZYKGV676ZHLAJB2K62BTOWI5SES, last_modified: 2026-10-28T08:06:16Z }
 also_at:
   - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/98 Share Team/Velo-CE - Contesto Claude per Leonardo - INTERNO - v001/velo-ce-stato-progetto-04-backlog.md", item_id: 01EFCYUZ5FEGKBSVB3GNHLI4Y5EEFWNCAX }
 status: active

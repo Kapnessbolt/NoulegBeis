@@ -10,6 +10,7 @@ current:
   last_modified: 2026-10-08T10:44:36Z
 versions:
   - { name: velo-ce-verbale-260930-1754-strada-premium-tenant-unico.md, item_id: 01EFCYUZY7KUVQ22PWD5HY3BL6LCGXXAEG, last_modified: 2026-10-08T10:44:36Z }
+  - { name: velo-ce-verbale-260930-1754-strada-premium-tenant-unico.md, item_id: 01EFCYUZYFPZMJ7TLKVJCLR5IIJIY6HEPE, last_modified: 2026-10-28T08:06:43Z }
 also_at: []
 status: active
 partial: false

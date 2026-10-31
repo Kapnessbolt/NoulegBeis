@@ -10,6 +10,8 @@ current:
   last_modified: 2026-10-08T10:44:36Z
 versions:
   - { name: velo-ce-verbale-261005-1103-app-fiscali-piano-b.md, item_id: 01EFCYUZ7HWWS7TQIGOJBJAYW7IIVXB3T2, last_modified: 2026-10-08T10:44:36Z }
+  - { name: velo-ce-verbale-261005-1103-app-fiscali-piano-b.md, item_id: 01EFCYUZ3CQIVCMVXG7VAIGFYGCNZPXYAA, last_modified: 2026-10-28T08:06:43Z }
+  - { name: velo-ce-verbale-261005-1103-app-fiscali-piano-b.md, item_id: 01EFCYUZ3CQIVMCVXG7VAIGFYGCNZPXYAA, last_modified: 2026-10-08T10:44:36Z }
 also_at: []
 status: active
 partial: false

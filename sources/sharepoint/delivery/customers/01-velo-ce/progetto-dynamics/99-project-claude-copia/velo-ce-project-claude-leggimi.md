@@ -10,6 +10,7 @@ current:
   last_modified: 2026-10-08T10:43:51Z
 versions:
   - { name: 00 LEGGIMI - COPIA.md, item_id: 01EFCYUZYFNAIOKYMBSRC3KPPOPRKOEOIM, last_modified: 2026-10-08T10:43:51Z }
+  - { name: 00 LEGGIMI - COPIA.md, item_id: 01EFCYUZ5SKT6H5ZYTERFJ6AU42TZHZJ7C, last_modified: 2026-10-28T08:06:14Z }
 also_at: []
 status: active
 partial: false

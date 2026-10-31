@@ -10,6 +10,7 @@ current:
   last_modified: 2026-10-08T10:44:37Z
 versions:
   - { name: velo-ce-verbale-261005-1520-rilasci-giacenze-ciclo-acquisti.md, item_id: 01EFCYUZ3NJAEAPZVQMVAZB3A64ACWDUQ5, last_modified: 2026-10-08T10:44:37Z }
+  - { name: velo-ce-verbale-261005-1520-rilasci-giacenze-ciclo-acquisti.md, item_id: 01EFCYUZ6HKGZ7YPI4XBDYGRWXSV7EVBZ4, last_modified: 2026-10-28T08:06:43Z }
 also_at: []
 status: active
 partial: false

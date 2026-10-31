@@ -10,6 +10,7 @@ current:
   last_modified: 2026-10-08T10:43:54Z
 versions:
   - { name: handoff-2026-10-01-app-eos-premium-fattura-elettronica.md, item_id: 01EFCYUZZW4SDQETT3RFHLBAOIUDQSTLQT, last_modified: 2026-10-08T10:43:54Z }
+  - { name: handoff-2026-10-01-app-eos-premium-fattura-elettronica.md, item_id: 01EFCYUZYY6KXQ5KB5D5AYYSZNFUPX5CAN, last_modified: 2026-10-28T08:06:20Z }
 also_at: []
 status: active
 partial: false

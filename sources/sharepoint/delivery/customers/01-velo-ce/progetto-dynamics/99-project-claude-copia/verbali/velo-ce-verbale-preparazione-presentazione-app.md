@@ -10,6 +10,7 @@ current:
   last_modified: 2026-10-08T10:44:36Z
 versions:
   - { name: velo-ce-verbale-260929-1557-preparazione-presentazione-app.md, item_id: 01EFCYUZ4NZC7SVOITZNGID7WBUQEP2HH2, last_modified: 2026-10-08T10:44:36Z }
+  - { name: velo-ce-verbale-260929-1557-preparazione-presentazione-app.md, item_id: 01EFCYUZ5HAXERHWEZ2BEJI27HVC4P6B5N, last_modified: 2026-10-28T08:06:42Z }
 also_at: []
 status: active
 partial: false

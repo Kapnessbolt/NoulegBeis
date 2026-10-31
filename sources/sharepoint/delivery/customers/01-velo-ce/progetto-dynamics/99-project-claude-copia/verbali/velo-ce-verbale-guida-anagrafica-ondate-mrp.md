@@ -10,6 +10,7 @@ current:
   last_modified: 2026-10-08T10:44:36Z
 versions:
   - { name: velo-ce-verbale-260930-1424-guida-anagrafica-ondate-mrp.md, item_id: 01EFCYUZZDP2QX55DJFNFKFWR4PUJLFNR6, last_modified: 2026-10-08T10:44:36Z }
+  - { name: velo-ce-verbale-260930-1424-guida-anagrafica-ondate-mrp.md, item_id: 01EFCYUZZQWHKLBXDDTVDJWVD7IFL4WWPA, last_modified: 2026-10-28T08:06:43Z }
 also_at: []
 status: active
 partial: false

@@ -10,6 +10,7 @@ current:
   last_modified: 2026-10-08T10:43:50Z
 versions:
   - { name: Velo-CE - Sintesi area AFC per Leonardo - INTERNO - v001.md, item_id: 01EFCYUZ2EIXRT76BHWRB37PUGYJE6XMYT, last_modified: 2026-10-08T10:43:50Z }
+  - { name: Velo-CE - Sintesi area AFC per Leonardo - INTERNO - v001.md, item_id: 01EFCYUZ35ZPGRRMVNBRG236F36GBD4ZVF, last_modified: 2026-10-28T08:06:14Z }
 also_at: []
 status: active
 partial: false

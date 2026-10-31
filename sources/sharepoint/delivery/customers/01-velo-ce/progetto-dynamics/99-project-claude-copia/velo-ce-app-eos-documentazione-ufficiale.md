@@ -10,6 +10,7 @@ current:
   last_modified: 2026-10-08T10:43:52Z
 versions:
   - { name: velo-ce-app-eos-documentazione-ufficiale-2026-09-29.md, item_id: 01EFCYUZ464D6R3ORXYZBJJ4SWZHBLV5FY, last_modified: 2026-10-08T10:43:52Z }
+  - { name: velo-ce-app-eos-documentazione-ufficiale-2026-09-29.md, item_id: 01EFCYUZ3AVPJB64AFE5C3WX5P5IGPCGJN, last_modified: 2026-10-28T08:06:15Z }
 also_at:
   - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/98 Share Team/Velo-CE - Contesto Claude per Leonardo - INTERNO - v001/velo-ce-app-eos-documentazione-ufficiale-2026-09-29.md", item_id: 01EFCYUZZACYYK4ZDSIBHYNERWLH37OWIM }
 status: active

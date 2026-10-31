@@ -10,6 +10,7 @@ current:
   last_modified: 2026-10-08T10:43:53Z
 versions:
   - { name: velo-ce-procedura-rilascio-ripristino-2026-09-22.md, item_id: 01EFCYUZ65RXRKSPMBORFYWBVYZIOCXIUJ, last_modified: 2026-10-08T10:43:53Z }
+  - { name: velo-ce-procedura-rilascio-ripristino-2026-09-22.md, item_id: 01EFCYUZ5K2FUQZDBRGVHIXP6PZIXGEQZD, last_modified: 2026-10-28T08:06:16Z }
 also_at:
   - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/98 Share Team/Velo-CE - Contesto Claude per Leonardo - INTERNO - v001/velo-ce-procedura-rilascio-ripristino-2026-09-22.md", item_id: 01EFCYUZZLYVEQQSDPNJHKJFEE7BLVY5YT }
 status: active
