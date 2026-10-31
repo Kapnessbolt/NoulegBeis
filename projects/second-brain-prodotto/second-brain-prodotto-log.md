@@ -7,6 +7,7 @@ project: "[[second-brain-prodotto]]"
 
 Una riga per avanzamento, dalla più recente: `- AAAA-MM-GG · cosa è successo · [[fonte]]`
 
+- 2026-10-31 · PR #63 unita; SPEC 1.28 in PR #64; 36 voci orfane di 33 note Velo-CE registrate in `versions` (`aggiorna-nota.py --versione`), avvisi da 112 a 79; task `reconcile-ridotta` attivo, T11 reale in attesa della cartella di prova · [[2026-10-31-audit-p8-p13]]
 - 2026-10-31 · Step 17b, P8, P10, P11, P13 implementati (PR `claude/audit-p8-p13`): `anomalie.py` e `plancia.py --anomalie` nel task `digest` e nelle metriche del curator, `scarta.py` e finestra della posta in `vault.yaml`, `perimetro.py` a lista di prefissi con `--profondita`, T11 simulato sul mini-vault; 512 test; restano il T11 reale e la PR della SPEC · [[2026-10-31-audit-p8-p13]]
 - 2026-10-31 · Step 17b, P1–P3, P6, P7 implementati (PR `claude/audit-p1-p3`): identità per regola in `stato.py`, `sposta-nota.py`, `riconcilia.py` con piano e `--applica` collaudati con T1–T10, controlli stato ↔ note e golden test in CI, merge per campo, routine `reconcile-ridotta`, `ingestor.md` sotto le 1.500 parole; 405 test; resta T11 e la PR della SPEC · [[2026-10-31-audit-p1-p3]]
 - 2026-10-31 · SPEC 1.27 unita (PR #61): decisioni dell'audit in 6.1, 6.2, 6.3, 6.4 riscritta, 4.3, 4.4, 7 e 13.1; step 13 chiuso, step 17b «Affidabilità ai riordini» aperto; `vault.yaml` con profondità per libreria, soglia 5, `fonti.canoniche` e task `reconcile-ridotta`; 308 test · [[2026-10-31-spec-audit-ingestion]]
