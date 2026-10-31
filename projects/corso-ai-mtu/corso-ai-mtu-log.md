@@ -7,6 +7,7 @@ project: "[[corso-ai-mtu]]"
 
 Una riga per avanzamento, dalla più recente: `- AAAA-MM-GG · cosa è successo · [[fonte]]`
 
+- 2026-10-30 · Riordino di SharePoint: il deck M1 v15 con gli inserti MTU è ora in Sales & Marketing > 02 - Offerte > AI in azienda; il link del 21/10 non funziona più · [[sharepoint-cartelle-semplificate-e-ultimi-materiali-commerciali]]
 - 2026-10-26 · Chiusa l'attività sul calendario del 19/10 con UBS e MTU: data passata, superata secondo l'utente · [[2026-10-26-punti-aperti-vault]]
 - 2026-10-23 · Tolta dalle attività la sessione da remoto del 26/10 (chiusura parte generale): Lorenzo non è coinvolto in quella sessione · [[2026-10-23-plancia-dashboard]]
 - 2026-10-22 · Progetto creato nel vault su indicazione dell'utente; la proposta in inbox è chiusa · [[2026-10-22-primo-caricamento-shared-documents-onedrive]]

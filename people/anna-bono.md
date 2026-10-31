@@ -16,6 +16,7 @@ Office Manager di [[blueage]]: organizza le General e le cene dei soci, cura la 
 
 ## Interazioni recenti
 
+- 2026-10-30 · SharePoint: cartelle semplificate e ultimi materiali commerciali · [[sharepoint-cartelle-semplificate-e-ultimi-materiali-commerciali]]
 - 2026-10-29 · Riunione generale BlueAge 26/10 · sintesi e azioni · [[riunione-generale-blueage-26-10-sintesi-e-azioni]]
 - 2026-10-28 · Linkedin BlueAge · Hai venduto al cliente. Ma il consumatore ha comprato? · [[linkedin-blueage-hai-venduto-al-cliente-ma-il-consumatore-ha-comprato]]
 - 2026-10-22 · LIUC · call con Francesco Bollazzi e proposta di osservatorio sull'AI nelle PMI (idee entro mercoledì sera) · [[liuc-call-con-francesco-bollazzi-e-proposta-di-osservatorio-sull-ai-nelle-pmi-idee-entro-mercoledi-sera]]
