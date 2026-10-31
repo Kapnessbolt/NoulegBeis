@@ -11,7 +11,6 @@ current:
 versions:
   - { name: handoff-2026-10-27-costi-accessori-chiusura-incontro-claudia.md, item_id: 01EFCYUZ6XN7WX5S26HBCK7SR3MSLBOOYE, last_modified: 2026-10-28T08:06:23Z }
   - { name: handoff-2026-10-27-costi-accessori-chiusura-incontro-claudia.md, item_id: 01EFCYUZZ3SEV4COHAHBB3IWLGNH2JWDBO, last_modified: 2026-10-28T08:06:23Z }
-  - { name: handoff-2026-10-27-costi-accessori-chiusura-incontro-claudia.md, item_id: 01EFCYUZZ3SEV4COHAHBB3IWGLNH2JWDBO, last_modified: 2026-10-28T08:06:23Z }
 also_at: []
 status: active
 partial: false
