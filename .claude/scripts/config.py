@@ -15,7 +15,7 @@ Uso:
       # giri attesi del giorno (predefinito: oggi), uno per riga `HH:MM <task>` in ordine di ora;
       # con --digest solo i task che scrivono la riga d'esito nel digest
   python3 .claude/scripts/config.py rilevatore           # finestra del delta e rilevatore di riordino
-      # (SPEC 6.2) in JSON: `finestra_ore`, `profondita`, `soglia_id_nuovi`, con i default
+      # (SPEC 6.2) in JSON: `finestra_ore`, `profondita`, `soglia_id_nuovi`, `fonti`, con i default
       # se `fonti.rilevatore` manca in vault.yaml
   python3 .claude/scripts/config.py verifica             # schema, orari di SPEC 7, permessi e `tools`
   python3 .claude/scripts/config.py applica              # riscrive da vault.yaml i permessi
@@ -218,6 +218,10 @@ def _valida(c):
     for k in ril:
         if k not in RILEVATORE:
             e(f"fonti.rilevatore.{k}", f"chiave sconosciuta (ammesse: {', '.join(RILEVATORE)})")
+        elif k == "fonti":
+            v = ril[k]
+            if not isinstance(v, list) or not all(x in FONTI_RILEVATORE for x in v):
+                e("fonti.rilevatore.fonti", f"deve essere una lista tra {', '.join(FONTI_RILEVATORE)}")
         elif not isinstance(ril[k], int) or isinstance(ril[k], bool) or ril[k] < 1:
             e(f"fonti.rilevatore.{k}", "deve essere un intero positivo")
     lista_testi(f, "firme_in_coda", "fonti.firme_in_coda", vuota=True)
@@ -380,13 +384,15 @@ def perimetro(c=None):
 
 
 # Rilevatore di riordino e finestra del delta (SPEC 6.2): valori di default se `vault.yaml` non li ha
-RILEVATORE = {"finestra_ore": 48, "profondita": 2, "soglia_id_nuovi": 10}
+# `fonti`: dove il rilevatore guarda (le fonti di documenti del vault, scelte all'installazione)
+FONTI_RILEVATORE = ("sharepoint", "onedrive", "github")
+RILEVATORE = {"finestra_ore": 48, "profondita": 2, "soglia_id_nuovi": 10, "fonti": list(FONTI_RILEVATORE)}
 
 
 def rilevatore(c=None):
     """Parametri del delta e del rilevatore di riordino, con i default di `RILEVATORE`."""
     ril = (c or carica())["fonti"].get("rilevatore") or {}
-    return {k: ril.get(k, v) for k, v in RILEVATORE.items()}
+    return {k: ril.get(k, list(v) if isinstance(v, list) else v) for k, v in RILEVATORE.items()}
 
 
 def firme_in_coda(c=None):

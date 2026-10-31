@@ -25,6 +25,7 @@ Verificare l'ingestion del 31/10 dopo il riordino delle librerie SharePoint fatt
 
 - Niente agente nuovo: il rilevatore è un passo del delta di SharePoint (SPEC 6.2 passo 7) e il lavoro grosso resta la riconciliazione dell'`ingestor`, ridotta a una libreria (6.4). Segnali: fotografia delle cartelle fino a 2 livelli in `.state/sharepoint.json` (`stato.py set-cartelle`), almeno 10 ID nuovi in famiglie già note nella stessa cartella; GitHub con `git diff -M`; la posta segnala nel digest un riordino annunciato dopo il giro.
 - Finestra del delta di SharePoint da 2 a 48 ore; parametri in `vault.yaml` (`fonti.rilevatore`), letti con `config.py rilevatore`.
+- Il rilevatore copre SharePoint, OneDrive (riconciliazione ridotta anche della cartella di OneDrive, `/ingest riconcilia onedrive`) e GitHub; quali fonti sorvegliare è configurazione (`fonti.rilevatore.fonti` in `vault.yaml`) e nel prodotto lo sceglie il cliente all'installazione con `/installa` (step 18).
 - La riconciliazione ridotta gira dentro `ingest-sharepoint`, quindi con Opus; quella settimanale resta con Sonnet. A mano: `/ingest riconcilia sharepoint:<libreria>`, senza un comando nuovo.
 
 ## File toccati
