@@ -19,7 +19,10 @@ Uso:
       # se `fonti.rilevatore` manca in vault.yaml. `profondita` è un intero (uguale per tutte le
       # librerie) oppure {libreria: livelli} con una chiave per ogni libreria di SharePoint e
       # `OneDrive`, completato con il default dove vault.yaml non dice niente
-  python3 .claude/scripts/config.py verifica             # schema, orari di SPEC 7, permessi e `tools`
+  python3 .claude/scripts/config.py outlook              # delta della posta (SPEC 6.3) e filtri di
+      # scarto (SPEC 5.3) in JSON: `finestra_ore`, `mittenti_scartati`, `domini_scartati`,
+      # `oggetti_scartati`, con i default se le chiavi mancano. Li applica `scarta.py`
+  python3 .claude/scripts/config.py verifica            # schema, orari di SPEC 7, permessi e `tools`
   python3 .claude/scripts/config.py applica              # riscrive da vault.yaml i permessi
       # `mcp__<server>__<strumento>` di `.claude/settings.json` e la parte mcp della riga
       # `tools:` degli agenti in `agenti`; il resto resta com'è. Idempotente.
@@ -33,6 +36,12 @@ copia nella prima posizione dell'elenco è `current`, le altre vanno in `also_at
 ogni libreria di `fonti.sharepoint.librerie` e `onedrive`, senza doppioni; se manca vale l'ordine
 delle librerie, poi `onedrive`, poi `sharepoint:*`. Lo leggono gli script con `canoniche()` e
 `rango_canonico()`, la riga di comando con `valore fonti.canoniche`.
+
+`fonti.outlook` (SPEC 5.3, 6.3): `finestra_ore` (intero ≥ 1, default 2) dice di quante ore la
+ricerca della posta riparte prima del watermark; `mittenti_scartati` (obbligatoria, anche vuota),
+`domini_scartati` e `oggetti_scartati` (facoltative, default vuote) sono gli elenchi che
+`scarta.py` applica a mittente e oggetto. Il giudizio su notifiche di servizi, newsletter e thread
+personali resta all'agente. Lo leggono gli script con `outlook()`, la riga di comando con `outlook`.
 
 Permessi attesi: in `.claude/settings.json` tutti gli strumenti di tutti i gruppi di ogni
 connettore, per ogni nome di server; nei `tools` di ogni agente in `.claude/agents/` gli
@@ -264,8 +273,16 @@ def _valida(c):
             if mancano:
                 e("fonti.canoniche", f"mancano {', '.join(mancano)}: ogni libreria e `onedrive` devono avere un posto")
     lista_testi(f, "firme_in_coda", "fonti.firme_in_coda", vuota=True)
-    lista_testi(oggetto(f, "outlook", "fonti.outlook"), "mittenti_scartati",
-                "fonti.outlook.mittenti_scartati", vuota=True)
+    ol = oggetto(f, "outlook", "fonti.outlook")
+    lista_testi(ol, "mittenti_scartati", "fonti.outlook.mittenti_scartati", vuota=True)
+    for k in ol:
+        if k not in OUTLOOK:
+            e(f"fonti.outlook.{k}", f"chiave sconosciuta (ammesse: {', '.join(OUTLOOK)})")
+        elif k == "finestra_ore":
+            if not intero_positivo(ol[k]):
+                e("fonti.outlook.finestra_ore", "deve essere un intero positivo")
+        elif k != "mittenti_scartati":
+            lista_testi(ol, k, f"fonti.outlook.{k}", vuota=True)
     repo = oggetto(f, "github", "fonti.github").get("repository", [])
     if not isinstance(repo, list):
         e("fonti.github.repository", "deve essere una lista")
@@ -401,20 +418,45 @@ def task_del_giorno(giorno, c=None, solo_digest=False):
 
 
 def perimetro(c=None):
-    """Valori del perimetro di SharePoint e OneDrive (SPEC 5.1-5.2) per `perimetro.py`."""
+    """Valori del perimetro di SharePoint e OneDrive (SPEC 5.1-5.2) per `perimetro.py`.
+
+    `posizioni` è la lista ordinata dei prefissi che `perimetro.analizza` scorre (vince il primo
+    che apre l'URL), costruita da `fonti` senza chiavi in più. Ogni voce: `fonte`, `prefisso`,
+    `radice` (`<tenant>/sites/` o `<tenant>/personal/`: da lì si contano i segmenti del percorso),
+    `libreria`, `base` (cartella delle note) e `dentro`. Prima le posizioni del perimetro, una per
+    libreria di SharePoint (`<tenant>/sites/<sito>/<libreria>/`, base
+    `sources/sharepoint/<slug libreria>`) e la cartella di OneDrive
+    (`<tenant>/personal/<utente>/<libreria>/<cartella>/`, base `sources/onedrive`); poi i
+    riconoscitori fuori perimetro: `<tenant>/sites/` (altro sito o libreria esclusa, `libreria`
+    null, base `sources/sharepoint` a cui `perimetro.py` aggiunge `_<sito>/` e la libreria presi
+    dall'URL) e `<tenant>/personal/` (OneDrive fuori dalla cartella, base null). Le altre chiavi
+    (`prefissi`, `sharepoint`, `onedrive`, `sito`, …) restano per gli script che le usano."""
+    from famiglia import slug  # qui e non in testa: famiglia importa config
     f = (c or carica())["fonti"]
     sp, od, es = f["sharepoint"], f["onedrive"], f["esclusioni"]
     sharepoint = sp["tenant"].rstrip("/") + "/sites/"
     onedrive = od["tenant"].rstrip("/") + "/personal/"
     cartella_od = f"{onedrive}{od['utente']}/{od['libreria']}/{od['cartella']}/"
+    posizioni = [{"fonte": "sharepoint", "prefisso": f"{sharepoint}{sp['sito']}/{lib}/", "radice": sharepoint,
+                  "libreria": lib, "base": f"sources/sharepoint/{slug(lib)}", "dentro": True}
+                 for lib in sp["librerie"]]
+    posizioni += [
+        {"fonte": "onedrive", "prefisso": cartella_od, "radice": onedrive, "libreria": od["libreria"],
+         "base": "sources/onedrive", "dentro": True},
+        {"fonte": "sharepoint", "prefisso": sharepoint, "radice": sharepoint, "libreria": None,
+         "base": "sources/sharepoint", "dentro": False},
+        {"fonte": "onedrive", "prefisso": onedrive, "radice": onedrive, "libreria": None,
+         "base": None, "dentro": False},
+    ]
     return {
+        "posizioni": posizioni,
         "sharepoint": sharepoint,
         "onedrive": onedrive,
         "sito": sp["sito"],
         "onedrive_utente": od["utente"],
         "onedrive_libreria": od["libreria"],
         "onedrive_cartella": od["cartella"],
-        "prefissi": tuple(f"{sharepoint}{sp['sito']}/{lib}/" for lib in sp["librerie"]) + (cartella_od,),
+        "prefissi": tuple(x["prefisso"] for x in posizioni if x["dentro"]),
         "cartelle_escluse": {x.lower() for x in es.get("cartelle", [])},
         "finali_esclusi": tuple(x.lower() for x in es.get("finali", [])),
         "dentro_escluse": tuple((a.lower(), b.lower()) for a, b in es.get("dentro", [])),
@@ -470,6 +512,17 @@ def rango_canonico(fonte, libreria=None, c=None):
     if chiave not in ordine:
         chiave = CANONICA_ALTRI_SITI
     return ordine.index(chiave) if chiave in ordine else len(ordine)
+
+
+# Delta della posta (SPEC 6.3) e filtri di scarto (SPEC 5.3): default se `fonti.outlook` non li ha
+# (`mittenti_scartati` in vault.yaml è obbligatoria: il default serve solo a `outlook()`)
+OUTLOOK = {"finestra_ore": 2, "mittenti_scartati": [], "domini_scartati": [], "oggetti_scartati": []}
+
+
+def outlook(c=None):
+    """Finestra del delta della posta e filtri di scarto, con i default di `OUTLOOK`."""
+    ol = (c or carica())["fonti"]["outlook"]
+    return {k: list(ol.get(k, v)) if isinstance(v, list) else ol.get(k, v) for k, v in OUTLOOK.items()}
 
 
 def firme_in_coda(c=None):
@@ -739,6 +792,8 @@ def main(argv):
                     print(f"{o} {t}")
         elif cmd == "rilevatore" and not args:
             print(json.dumps(rilevatore(c), ensure_ascii=False))
+        elif cmd == "outlook" and not args:
+            print(json.dumps(outlook(c), ensure_ascii=False))
         elif cmd == "applica" and not args:
             cambiati = applica(c=c)
             print("Aggiornati: " + ", ".join(cambiati) if cambiati else "Niente da cambiare")

@@ -33,7 +33,7 @@ Disponibili: `/oggi`, `/progetto`, `/cattura`, `/smista`, `/ingest`, `/ingest-fi
 | `_templates/` | Template delle note |
 | `.state/` | Stato dell'ingestion, un file per fonte (`sharepoint.json`, `onedrive.json`, `outlook.json`, `github.json`, `reconcile.json`); si legge e si scrive con `stato.py` |
 | `.claude/` | Comandi, agenti, skill, hook, procedure dei task schedulati e script di Claude Code |
-| `.claude/scripts/` | Script di servizio testati (`tests/`): controllo e rinomina delle note, famiglia e slug (`famiglia.py`), perimetro delle fonti (`perimetro.py`), stato dell'ingestion (`stato.py`), note dal template (`nuova-nota.py`, `aggiorna-nota.py`), dati della dashboard (`plancia.py`) |
+| `.claude/scripts/` | Script di servizio testati (`tests/`): controllo e rinomina delle note, famiglia e slug (`famiglia.py`), perimetro delle fonti (`perimetro.py`), scarti della posta (`scarta.py`), stato dell'ingestion (`stato.py`), note dal template (`nuova-nota.py`, `aggiorna-nota.py`), spostamento e riconciliazione delle note fonte (`sposta-nota.py`, `riconcilia.py`), dati della dashboard e anomalie dei giri (`plancia.py`, modulo `anomalie.py`) |
 | `.githooks/` | Pre-commit di git che lancia il controllo del vault |
 | `.gitattributes` | Merge driver `stato` per i conflitti su `.state/*.json` |
 | `.github/workflows/` | Controllo del vault su ogni push e PR |

@@ -92,8 +92,11 @@ fonti:
     - onedrive
     - sharepoint:*
   firme_in_coda: [blueage]               # firma dell'autore in coda ai nomi (`…_BlueAge.pptx`): fuori dalla famiglia
-  outlook:
+  outlook:                               # delta della posta e filtri di scarto: li applica `scarta.py` (SPEC 5.3)
+    finestra_ore: 2                      # la ricerca della posta riparte da watermark meno queste ore (SPEC 6.3)
     mittenti_scartati: [no-reply, noreply, donotreply, notifications, notification, mailer-daemon]
+    domini_scartati: []                  # domini (anche con sottodomini) le cui mail non si ingeriscono
+    oggetti_scartati: []                 # parole o frasi nell'oggetto (senza maiuscole) che fanno scartare
   github:
     repository:
       - repo: cristian-schifone/parts-radar

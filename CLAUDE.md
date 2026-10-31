@@ -77,7 +77,7 @@ Il curator non modifica mai `CLAUDE.md`, `.claude/` o `SPEC.md`: propone, e le m
 
 I valori del vault (tenant, librerie, cartella OneDrive, esclusioni, repository, task con orari, fuso, nomi dei connettori e delle sezioni) stanno in `vault.yaml` (SPEC 2.1): gli script li leggono da lì, e in sessione si leggono con `python3 .claude/scripts/config.py` (`oggi`, `ora`, `valore <chiave>`). Un valore del vault non si scrive in `.claude/`.
 
-Cosa si ingerisce e cosa no lo decide `python3 .claude/scripts/perimetro.py "<webUrl>" --json` (SharePoint e OneDrive) e l'agente `ingestor` (filtri di scarto della posta, file e issue dei repo GitHub di SPEC 5.4). Un documento fuori perimetro si ingerisce solo a richiesta con `/ingest-file`. Nel vault va il livello di progetto (stato, decisioni, scadenze, azioni), mai il dettaglio tecnico o i dati reali dei clienti (§5).
+Cosa si ingerisce e cosa no lo decidono `python3 .claude/scripts/perimetro.py "<webUrl>" --json` (SharePoint e OneDrive), `python3 .claude/scripts/scarta.py --mittente <indirizzo> --oggetto "<oggetto>"` (elenchi di scarto della posta da `vault.yaml`, `fonti.outlook`) e l'agente `ingestor` (giudizio sugli altri scarti della posta di SPEC 5.3, file e issue dei repo GitHub di SPEC 5.4). Un documento fuori perimetro si ingerisce solo a richiesta con `/ingest-file`. Nel vault va il livello di progetto (stato, decisioni, scadenze, azioni), mai il dettaglio tecnico o i dati reali dei clienti (§5).
 
 ## 7. Git
 

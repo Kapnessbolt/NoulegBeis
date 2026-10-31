@@ -31,6 +31,30 @@ def test_carica_il_vault_yaml_di_prova(vault):
     assert config.perimetro(c)["onedrive"] == f"{TENANT_OD}/personal/"
 
 
+def test_perimetro_posizioni_dal_vault_yaml(vault):
+    """`posizioni` (P13): le librerie del perimetro, la cartella di OneDrive, poi i riconoscitori
+    fuori perimetro, nell'ordine in cui perimetro.py li prova; le chiavi di prima restano."""
+    from conftest import CARTELLA_OD, TENANT_SP, UTENTE_OD  # solo questo test li usa
+    per = config.perimetro(config.carica(vault))
+    sp, od = f"{TENANT_SP}/sites/", f"{TENANT_OD}/personal/"
+    assert per["posizioni"] == [
+        {"fonte": "sharepoint", "prefisso": f"{sp}internal/SalesMarketing/", "radice": sp,
+         "libreria": "SalesMarketing", "base": "sources/sharepoint/salesmarketing", "dentro": True},
+        {"fonte": "sharepoint", "prefisso": f"{sp}internal/Delivery/", "radice": sp,
+         "libreria": "Delivery", "base": "sources/sharepoint/delivery", "dentro": True},
+        {"fonte": "sharepoint", "prefisso": f"{sp}internal/Shared Documents/", "radice": sp,
+         "libreria": "Shared Documents", "base": "sources/sharepoint/shared-documents", "dentro": True},
+        {"fonte": "onedrive", "prefisso": f"{od}{UTENTE_OD}/Documents/{CARTELLA_OD}/", "radice": od,
+         "libreria": "Documents", "base": "sources/onedrive", "dentro": True},
+        {"fonte": "sharepoint", "prefisso": sp, "radice": sp, "libreria": None,
+         "base": "sources/sharepoint", "dentro": False},
+        {"fonte": "onedrive", "prefisso": od, "radice": od, "libreria": None, "base": None, "dentro": False},
+    ]
+    assert per["prefissi"] == tuple(x["prefisso"] for x in per["posizioni"][:4])
+    assert per["sharepoint"] == sp and per["onedrive"] == od and per["sito"] == "internal"
+    assert per["onedrive_cartella"] == CARTELLA_OD
+
+
 @pytest.mark.parametrize("vecchio, nuovo, messaggio", [
     ("fuso: Europe/Rome", "fuso: Europa/Roma", "`vault.fuso` non è un fuso orario IANA valido"),
     ('orari: ["06:50"]', 'orari: ["6:50"]', "`task.ingest-sharepoint.orari` orario non valido"),
@@ -350,3 +374,59 @@ def test_canoniche_errori(vault, riga, messaggio):
     modifica(vault, "vault.yaml", RIL, RIL + riga)
     res = cfg(vault, "verifica")
     assert res.returncode == 1 and messaggio in res.stdout
+
+
+# --- Posta: finestra del delta e filtri di scarto (SPEC 5.3, 6.3; audit P10) ---------------
+
+OUTLOOK = "  outlook:\n    mittenti_scartati: [no-reply, noreply]\n"
+
+
+def test_outlook_senza_le_chiavi_nuove_usa_i_default(vault):
+    res = cfg(vault, "outlook")
+    assert res.returncode == 0, res.stderr
+    assert json.loads(res.stdout) == {"finestra_ore": 2, "mittenti_scartati": ["no-reply", "noreply"],
+                                      "domini_scartati": [], "oggetti_scartati": []}
+    assert config.outlook(config.carica(vault))["finestra_ore"] == 2
+
+
+def test_outlook_con_le_chiavi_nuove(vault):
+    modifica(vault, "vault.yaml", OUTLOOK, "  outlook:\n    finestra_ore: 6\n    mittenti_scartati: []\n"
+             "    domini_scartati: [fornitore.it]\n    oggetti_scartati: [newsletter, webinar gratuito]\n")
+    assert cfg(vault, "verifica").returncode == 0
+    assert json.loads(cfg(vault, "outlook").stdout) == {
+        "finestra_ore": 6, "mittenti_scartati": [], "domini_scartati": ["fornitore.it"],
+        "oggetti_scartati": ["newsletter", "webinar gratuito"]}
+
+
+def test_outlook_restituisce_copie(vault):
+    c = config.carica(vault)
+    config.outlook(c)["mittenti_scartati"].append("altro")
+    assert config.outlook(c)["mittenti_scartati"] == ["no-reply", "noreply"]
+
+
+@pytest.mark.parametrize("righe, messaggio", [
+    ("    finestra_ore: 0\n", "`fonti.outlook.finestra_ore` deve essere un intero positivo"),
+    ("    finestra_ore: due\n", "`fonti.outlook.finestra_ore` deve essere un intero positivo"),
+    ("    finestra_ore: true\n", "`fonti.outlook.finestra_ore` deve essere un intero positivo"),
+    ("    domini_scartati: [1, x.it]\n", "`fonti.outlook.domini_scartati` deve essere una lista di testi"),
+    ("    domini_scartati: x.it\n", "`fonti.outlook.domini_scartati` deve essere una lista di testi"),
+    ("    oggetti_scartati: [[a, b]]\n", "`fonti.outlook.oggetti_scartati` deve essere una lista di testi"),
+    ("    oggetti_scartati:\n", "`fonti.outlook.oggetti_scartati` deve essere una lista di testi"),
+    ("    dominii_scartati: [x.it]\n", "`fonti.outlook.dominii_scartati` chiave sconosciuta"),
+])
+def test_outlook_errori(vault, righe, messaggio):
+    modifica(vault, "vault.yaml", OUTLOOK, OUTLOOK + righe)
+    res = cfg(vault, "verifica")
+    assert res.returncode == 1 and messaggio in res.stdout
+    assert cfg(vault, "outlook").returncode == 1
+
+
+def test_outlook_mittenti_scartati_resta_obbligatoria(vault):
+    modifica(vault, "vault.yaml", OUTLOOK, "  outlook:\n    finestra_ore: 2\n")
+    res = cfg(vault, "verifica")
+    assert res.returncode == 1 and "`fonti.outlook.mittenti_scartati` deve essere una lista di testi" in res.stdout
+
+
+def test_outlook_nell_help_e_argomenti(vault):
+    assert "config.py outlook" in cfg(vault, "--help").stdout
+    assert cfg(vault, "outlook", "boh").returncode == 2
