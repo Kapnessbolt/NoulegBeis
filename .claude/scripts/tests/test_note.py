@@ -398,3 +398,117 @@ def test_aggiorna_rifiuta_e_lascia_la_nota_com_era(vault):
         assert res.returncode == 2, (args, res.stdout)
     assert (vault / CP).read_text(encoding="utf-8") == COMPANY_PROFILE
     assert aggiorna(vault, "sources/non-esiste.md", "--campo", "status=active").returncode == 2
+
+
+# --- aggiorna-nota.py --versioni-in-ordine ----------------------------------------------
+
+RIGA_CUR = ("  - { name: BlueAge_CompanyProfile.pdf, item_id: 01GEQYSS5CERFZRWVHNRGIGQNT5GBJMIF5, "
+            "last_modified: 2026-10-19T16:12:01Z }\n")
+RIGA_V24 = ("  - { name: BlueAge_CompanyProfile_v24.pdf, item_id: 01EFCYUZYLVH33U2NLBVGZ45BE6NPUJZD5, "
+            "last_modified: 2026-10-01T17:20:46Z }\n")
+RIGA_V21 = '  - { name: BlueAge_CompanyProfile_v21.pdf, item_id: "", last_modified: 2026-09-07T12:11:59Z }\n'
+RIGA_RIC = "  - { name: BlueAge_CompanyProfile.pdf, item_id: 01RICARICATO, last_modified: 2026-10-28T08:06:21Z }\n"
+
+
+def con_versioni(*righe):
+    """COMPANY_PROFILE con queste righe in `versions` al posto delle sue."""
+    vecchie = RIGA_CUR + RIGA_V24 + RIGA_V21
+    assert vecchie in COMPANY_PROFILE
+    return COMPANY_PROFILE.replace(vecchie, "".join(righe))
+
+
+def in_ordine(root, rel):
+    return aggiorna(root, rel, "--versioni-in-ordine", "--json")
+
+
+def test_versioni_in_ordine_inserisce_la_current_mancante_in_testa(vault):
+    # come le note Velo-CE del 29/10: la current non è in versions, la prima voce è un ID superato
+    scrivi(vault, CP, con_versioni(RIGA_V24, RIGA_RIC, RIGA_V21))
+    res = in_ordine(vault, CP)
+    assert res.returncode == 0, res.stderr
+    out = json.loads(res.stdout)
+    assert out["cambiati"] == ["versions"]
+    assert out["versioni_in_ordine"] == {"creata": True, "aggiornata": False, "spostata": False,
+                                         "doppioni_tolti": 0, "riordinate": True}
+    # in testa la current, poi le altre per data; le righe delle voci che c'erano restano identiche,
+    # current, also_at, ingested_at e corpo pure
+    assert (vault / CP).read_text(encoding="utf-8") == con_versioni(RIGA_CUR, RIGA_RIC, RIGA_V24, RIGA_V21)
+
+
+def test_versioni_in_ordine_sposta_in_testa_la_current_e_la_allinea(vault):
+    scrivi(vault, CP, con_versioni(RIGA_V24, RIGA_CUR, RIGA_V21))
+    res = in_ordine(vault, CP)
+    assert res.returncode == 0, res.stderr
+    esito = json.loads(res.stdout)["versioni_in_ordine"]
+    assert esito["spostata"] and not esito["creata"] and not esito["aggiornata"]
+    assert (vault / CP).read_text(encoding="utf-8") == COMPANY_PROFILE
+    # la voce della current con name e last_modified diversi prende quelli di current
+    vecchia = RIGA_CUR.replace("BlueAge_CompanyProfile.pdf", "BlueAge_CP.pdf").replace("16:12:01", "09:00:00")
+    scrivi(vault, CP, con_versioni(RIGA_V24, vecchia, RIGA_V21))
+    res = in_ordine(vault, CP)
+    assert res.returncode == 0, res.stderr
+    esito = json.loads(res.stdout)["versioni_in_ordine"]
+    assert esito["spostata"] and esito["aggiornata"] and not esito["creata"]
+    assert (vault / CP).read_text(encoding="utf-8") == COMPANY_PROFILE
+
+
+def test_versioni_in_ordine_ordina_le_altre_per_data_e_toglie_i_doppioni(vault):
+    senza_data = "  - { name: BlueAge_CompanyProfile_v1.pdf, item_id: 01V1, last_modified: null }\n"
+    doppia_ric = RIGA_RIC.replace("BlueAge_CompanyProfile.pdf", "Altro_nome.pdf")
+    doppia_cur = RIGA_CUR.replace("16:12:01", "08:00:00")
+    scrivi(vault, CP, con_versioni(senza_data, RIGA_V21, RIGA_CUR, RIGA_V24, RIGA_RIC, doppia_ric,
+                                   doppia_cur, RIGA_V21))
+    res = in_ordine(vault, CP)
+    assert res.returncode == 0, res.stderr
+    esito = json.loads(res.stdout)["versioni_in_ordine"]
+    assert esito["doppioni_tolti"] == 3 and esito["riordinate"] and esito["spostata"]
+    # dei doppioni resta il primo; le voci senza data vanno in fondo
+    assert (vault / CP).read_text(encoding="utf-8") == con_versioni(RIGA_CUR, RIGA_RIC, RIGA_V24, RIGA_V21,
+                                                                    senza_data)
+
+
+def test_versioni_in_ordine_idempotente(vault):
+    scrivi(vault, CP, COMPANY_PROFILE)
+    res = aggiorna(vault, CP, "--versioni-in-ordine")
+    assert res.returncode == 0, res.stderr
+    assert "nessuna modifica" in res.stdout
+    assert (vault / CP).read_text(encoding="utf-8") == COMPANY_PROFILE
+    assert json.loads(in_ordine(vault, CP).stdout)["versioni_in_ordine"] == {
+        "creata": False, "aggiornata": False, "spostata": False, "doppioni_tolti": 0, "riordinate": False}
+    # dopo un riordino, il secondo giro non cambia niente
+    scrivi(vault, CP, con_versioni(RIGA_V21, RIGA_V24))
+    assert aggiorna(vault, CP, "--versioni-in-ordine").returncode == 0
+    dopo = (vault / CP).read_text(encoding="utf-8")
+    assert dopo == COMPANY_PROFILE
+    res = aggiorna(vault, CP, "--versioni-in-ordine")
+    assert "nessuna modifica" in res.stdout and (vault / CP).read_text(encoding="utf-8") == dopo
+
+
+def test_versioni_in_ordine_con_versions_vuoto_e_su_github(vault):
+    rel = "sources/sharepoint/delivery/doc-alfa.md"  # versions: [] nel mini-vault
+    assert in_ordine(vault, rel).returncode == 0
+    d = fm(vault, rel)
+    assert [v["item_id"] for v in d["versions"]] == [d["current"]["item_id"]]
+    # GitHub: l'item_id è lo stesso per tutte le versioni, lo storico resta
+    gh = "sources/github/repo/docs/repo-a.md"
+    assert nuova(vault, "source-doc", gh, "--titolo", "Repo A",
+                 "--campo", "current.item_id=owner/repo:docs/a.md",
+                 "--campo", "current.uri=github://owner/repo/docs/a.md@fe70fa4000000000000000000000000000000000",
+                 "--campo", "current.web_url=https://github.com/owner/repo/blob/main/docs/a.md",
+                 "--campo", "current.name=docs/a.md", "--campo", "current.last_modified=2026-10-25T23:55:16Z",
+                 "--campo", "topics=[[tema-uno]]").returncode == 0
+    testo = (vault / gh).read_text(encoding="utf-8")
+    vecchia = "  - { name: docs/a.md@61b833c, item_id: owner/repo:docs/a.md, last_modified: 2026-10-22T16:51:29Z }\n"
+    scrivi(vault, gh, testo.replace("versions:\n", "versions:\n" + vecchia, 1))
+    res = in_ordine(vault, gh)
+    assert res.returncode == 0, res.stderr
+    assert json.loads(res.stdout)["versioni_in_ordine"]["spostata"]
+    assert [v["name"] for v in fm(vault, gh)["versions"]] == ["docs/a.md@fe70fa4", "docs/a.md@61b833c"]
+
+
+def test_versioni_in_ordine_solo_per_source_doc(vault):
+    scrivi(vault, ML, MAIL)
+    res = aggiorna(vault, ML, "--versioni-in-ordine")
+    assert res.returncode == 2
+    assert "solo per le note source-doc" in res.stderr
+    assert (vault / ML).read_text(encoding="utf-8") == MAIL

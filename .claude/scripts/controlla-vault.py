@@ -12,6 +12,12 @@ che scrive lo stato deve poter fare commit. Le regole e le soglie di queste due 
 voci orfane (sotto) stanno in `anomalie.py`, che le condivide con `plancia.py --anomalie` (le
 righe del digest): qui diventano errori e avvisi del rapporto.
 
+Schema delle note `source-doc` (SPEC 4.2): `versions` tiene lo storico dalla più recente e la
+prima voce è la `current`. Una nota con `versions` vuoto, o con la prima voce che ha un
+`item_id` diverso da `current.item_id` (per GitHub, dove l'`item_id` è lo stesso per tutte le
+versioni, anche un `last_modified` diverso), è un avviso, con il comando che la riallinea
+(`aggiorna-nota.py <nota> --versioni-in-ordine`).
+
 Stato ↔ note ↔ fonti (SPEC 4.4 e 6.4, audit 2026-10-31 P6), sulle note `source-doc` con
 `source` sharepoint o onedrive (tranne quelle con il tag `fuori-perimetro`) e sulle voci di
 `.state/sharepoint.json` e `.state/onedrive.json`:
@@ -168,6 +174,18 @@ def notes():
         if rel.parts[:2] == ("sessions", "_raw"):
             continue
         yield rel, p
+
+
+def current_in_testa(data):
+    """True se la prima voce di `versions` è la `current` (schema 4.2): stesso `item_id`; per
+    GitHub, dove l'`item_id` è lo stesso per tutte le versioni, anche stesso `last_modified`.
+    `versions` vuoto o non lista è False."""
+    cur, vs = data.get("current") or {}, data.get("versions")
+    if not isinstance(vs, list) or not vs or not isinstance(vs[0], dict):
+        return False
+    if str(vs[0].get("item_id") or "") != str(cur.get("item_id") or ""):
+        return False
+    return data.get("source") != "github" or vs[0].get("last_modified") == cur.get("last_modified")
 
 
 def strip_code(text):
@@ -508,6 +526,9 @@ def main():
             cur = data.get("current") or {}
             if not isinstance(cur, dict) or t["current"] - set(cur):
                 err(rel, "`current` incompleto")
+            elif tipo == "source-doc" and not current_in_testa(data):
+                avv(rel, "prima voce di `versions` diversa da `current` (schema 4.2): "
+                         f"`python3 .claude/scripts/aggiorna-nota.py {rel} --versioni-in-ordine`")
         for key, valori in t["enums"].items():
             if key in data and data[key] not in valori:
                 err(rel, f"{key}: {data[key]!r} non è tra {' | '.join(sorted(valori))}")

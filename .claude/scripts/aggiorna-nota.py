@@ -5,7 +5,7 @@ agente ingestor §3.4-3.6).
 Uso:
   python3 .claude/scripts/aggiorna-nota.py <percorso> [--campo chiave=valore ...]
           [--aggiungi lista=valore ...] [--also-at web_url=... item_id=...]
-          [--versione name=... item_id=... last_modified=... ...]
+          [--versione name=... item_id=... last_modified=... ...] [--versioni-in-ordine]
           [--nuova-versione --campo current.name=... --campo current.item_id=...
            --campo current.last_modified=... [--campo current.uri=... --campo current.web_url=...]]
           [--json]
@@ -31,6 +31,16 @@ Uso:
   volta in testa a `versions` (lo schema 4.2 tiene la corrente come prima voce). `ingested_at`
   diventa l'istante attuale UTC, se non lo passi. Per GitHub il nome in `versions` porta il
   commit abbreviato preso da `current.uri`.
+- `--versioni-in-ordine` (source-doc, schema 4.2): riporta `versions` allo schema. In testa la
+  voce della `current` (stesso `item_id`; per GitHub, dove l'`item_id` è lo stesso per tutte le
+  versioni, stesso `item_id` e `last_modified`): se manca si crea da `current` come in
+  `--nuova-versione`, se c'è con `name` o `last_modified` diversi prende quelli di `current`.
+  Dopo, le altre voci in ordine di `last_modified` decrescente (quelle senza data in fondo, a
+  parità di data nell'ordine di prima), senza doppioni (stesso `item_id`, o per GitHub stessi
+  `item_id` e `last_modified`; senza `item_id` stessi `name` e `last_modified`: resta la prima). Non
+  tocca `current`, `also_at`, `ingested_at` né il corpo; su una nota già in ordine non cambia
+  niente. Con `--json` dice anche cosa ha fatto (`versioni_in_ordine`: `creata`, `aggiornata`,
+  `spostata`, `doppioni_tolti`, `riordinate`). Insieme ad altre opzioni si applica per ultima.
 
 Le righe dei campi che non cambiano restano identiche; i campi cambiati si scrivono nello stile
 delle note reali (liste inline, `versions` come mappe inline). Il risultato si valida contro il
@@ -88,7 +98,51 @@ def aggiungi_versione(nuovo, voce):
     nuovo["versions"] = [versioni[0]] + altre
 
 
-def aggiorna(rel, campi, aggiunte, also_at, nuova_versione, versioni_da_aggiungere=()):
+def chiave_voce(v, github):
+    """Identità di una voce di `versions`: l'`item_id`; per GitHub, dove l'`item_id` (percorso o
+    issue) è lo stesso per tutte le versioni, `item_id` e `last_modified`. Una voce senza
+    `item_id` (versione vecchia di cui l'ID non si conosce) si riconosce da `name` e
+    `last_modified`."""
+    iid = str(v.get("item_id") or "")
+    if not iid:
+        return ("", str(v.get("name") or ""), nota.normale(v.get("last_modified")))
+    return (iid, nota.normale(v.get("last_modified"))) if github else iid
+
+
+def versioni_in_ordine(nuovo):
+    """`versions` secondo lo schema 4.2: la voce della `current` in testa, le altre per
+    `last_modified` decrescente, senza doppioni. Ritorna che cosa è cambiato."""
+    github = nuovo.get("source") == "github"
+    testa = voce_versione(nuovo)
+    if not testa["item_id"]:
+        raise nota.Errore("--versioni-in-ordine: `current.item_id` è vuoto")
+    k_testa = chiave_voce(testa, github)
+    trovata, posizione, altre, visti, doppioni = None, None, [], set(), 0
+    for i, v in enumerate(nuovo.get("versions") or []):
+        if not isinstance(v, dict):
+            altre.append(v)  # la validazione la rifiuta
+            continue
+        k = chiave_voce(v, github)
+        if k == k_testa:
+            if trovata is None:
+                trovata, posizione = v, i
+            else:
+                doppioni += 1
+            continue
+        if k in visti:
+            doppioni += 1
+            continue
+        visti.add(k)
+        altre.append(v)
+    uguale = trovata is not None and all(nota.normale(trovata.get(c)) == nota.normale(testa[c]) for c in testa)
+    ordinate = sorted(altre, key=chiave_data, reverse=True)  # stabile: a pari data resta l'ordine di prima
+    nuovo["versions"] = [trovata if uguale else testa] + ordinate
+    return {"creata": trovata is None, "aggiornata": trovata is not None and not uguale,
+            "spostata": posizione not in (None, 0), "doppioni_tolti": doppioni,
+            "riordinate": ordinate != altre}
+
+
+def aggiorna(rel, campi, aggiunte, also_at, nuova_versione, versioni_da_aggiungere=(), in_ordine=False):
     p = nota.ROOT / rel
     if not p.is_file():
         raise nota.Errore(f"la nota `{rel}` non esiste: usa nuova-nota.py")
@@ -155,6 +209,12 @@ def aggiorna(rel, campi, aggiunte, also_at, nuova_versione, versioni_da_aggiunge
                     "last_modified": nota.a_istante(v["last_modified"], "--versione last_modified")}
             aggiungi_versione(nuovo, voce)
 
+    esito_ordine = None
+    if in_ordine:
+        if sch["tipo"] != "source-doc":
+            raise nota.Errore("--versioni-in-ordine vale solo per le note source-doc")
+        esito_ordine = versioni_in_ordine(nuovo)
+
     errori, avvisi = nota.valida(nuovo, sch, extra_ammesse=gia_extra)
     if nuova_versione:
         prima, dopo = vecchio.get("current") or {}, nuovo.get("current") or {}
@@ -166,7 +226,7 @@ def aggiorna(rel, campi, aggiunte, also_at, nuova_versione, versioni_da_aggiunge
     cambiati = [k for k in nuovo if nota.normale(nuovo.get(k)) != nota.normale(vecchio.get(k))]
     if cambiati:
         nota.scrivi_atomico(p, nota.unisci(nota.riscrivi_frontmatter(fm, vecchio, nuovo), resto))
-    return cambiati, avvisi
+    return cambiati, avvisi, esito_ordine
 
 
 def main(argv):
@@ -175,7 +235,7 @@ def main(argv):
         return 0 if argv else 2
     rel = argv[0]
     campi, aggiunte, also_at, versioni = [], [], {}, []
-    nuova_versione = as_json = False
+    nuova_versione = as_json = in_ordine = False
     i = 1
     while i < len(argv):
         a = argv[i]
@@ -183,6 +243,8 @@ def main(argv):
             as_json = True
         elif a == "--nuova-versione":
             nuova_versione = True
+        elif a == "--versioni-in-ordine":
+            in_ordine = True
         elif a in ("--campo", "--aggiungi"):
             if i + 1 >= len(argv):
                 raise nota.Errore(f"{a} vuole chiave=valore")
@@ -208,13 +270,18 @@ def main(argv):
         else:
             raise nota.Errore(f"argomento non riconosciuto: {a}")
         i += 1
-    if not (campi or aggiunte or also_at or nuova_versione or versioni):
-        raise nota.Errore("niente da fare: passa --campo, --aggiungi, --also-at, --versione o --nuova-versione")
-    cambiati, avvisi = aggiorna(rel, campi, aggiunte, also_at, nuova_versione, versioni)
+    if not (campi or aggiunte or also_at or nuova_versione or versioni or in_ordine):
+        raise nota.Errore("niente da fare: passa --campo, --aggiungi, --also-at, --versione, "
+                          "--nuova-versione o --versioni-in-ordine")
+    cambiati, avvisi, esito_ordine = aggiorna(rel, campi, aggiunte, also_at, nuova_versione, versioni,
+                                              in_ordine)
     for a in avvisi:
         sys.stderr.write(f"avviso: {a}\n")
     if as_json:
-        print(json.dumps({"nota": rel, "cambiati": cambiati, "avvisi": avvisi}, ensure_ascii=False))
+        out = {"nota": rel, "cambiati": cambiati, "avvisi": avvisi}
+        if esito_ordine is not None:
+            out["versioni_in_ordine"] = esito_ordine
+        print(json.dumps(out, ensure_ascii=False))
     else:
         print(f"{rel}: " + (", ".join(cambiati) if cambiati else "nessuna modifica"))
     return 0

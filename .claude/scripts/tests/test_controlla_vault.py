@@ -404,3 +404,30 @@ def test_stesso_nome_in_cartelle_diverse_su_note_diverse_e_avviso(coerente):
     # una nota non registrata nello stato non conta (ha già il suo avviso)
     scrivi_voci(coerente, "sharepoint", {k: v for k, v in voci.items() if v["note"] != copia})
     assert "stesso nome di file" not in controlla(coerente).stdout
+
+
+# --- Schema di `versions` (SPEC 4.2): la prima voce è la current ------------------------
+
+PRIMA_VOCE = "prima voce di `versions` diversa da `current` (schema 4.2)"
+
+
+def test_current_non_in_testa_a_versions_e_avviso_che_sparisce_con_versioni_in_ordine(coerente):
+    # la current in seconda posizione, dopo un ID superato (come le note Velo-CE del 29/10)
+    sostituisci(coerente, DOC_ALFA, "versions: []", "versions:\n"
+                "  - { name: Doc_Alfa_v2.pdf, item_id: item-ricaricato, last_modified: 2026-10-28T08:06:21Z }\n"
+                f"  - {{ name: Doc_Alfa_v2.pdf, item_id: {ITEM_ALFA}, last_modified: 2026-10-01T10:00:00Z }}")
+    res = controlla(coerente)
+    assert res.returncode == 0, res.stdout  # avviso, non errore
+    righe = [r for r in res.stdout.split("## Avvisi")[1].splitlines() if PRIMA_VOCE in r]
+    assert righe == [f"- `{DOC_ALFA}` · {PRIMA_VOCE}: "
+                     f"`python3 .claude/scripts/aggiorna-nota.py {DOC_ALFA} --versioni-in-ordine`"], res.stdout
+    res = esegui("aggiorna-nota.py", coerente, DOC_ALFA, "--versioni-in-ordine")
+    assert res.returncode == 0, res.stderr
+    assert PRIMA_VOCE not in controlla(coerente).stdout
+
+
+def test_versions_vuoto_e_avviso(coerente):
+    # il mini-vault di conftest ha `versions: []` su doc-alfa
+    assert f"- `{DOC_ALFA}` · {PRIMA_VOCE}" in controlla(coerente).stdout
+    assert esegui("aggiorna-nota.py", coerente, DOC_ALFA, "--versioni-in-ordine").returncode == 0
+    assert PRIMA_VOCE not in controlla(coerente).stdout
