@@ -288,3 +288,65 @@ def test_rilevatore_errori(vault, riga, messaggio):
              "  tipi_processati: [pdf, docx, pptx, xlsx, md, txt]\n  rilevatore:\n" + riga)
     res = cfg(vault, "verifica")
     assert res.returncode == 1 and messaggio in res.stdout
+
+
+# --- Profondità per libreria e cartella canonica (SPEC 6.2 passo 7, 6.4; audit del 31/10) -----
+
+RIL = "  tipi_processati: [pdf, docx, pptx, xlsx, md, txt]\n"
+
+
+def test_profondita_per_libreria_completata_con_il_default(vault):
+    modifica(vault, "vault.yaml", RIL, RIL + "  rilevatore:\n    profondita:\n      Delivery: 4\n      OneDrive: 1\n")
+    ril = json.loads(cfg(vault, "rilevatore").stdout)
+    assert ril["profondita"] == {"SalesMarketing": 2, "Delivery": 4, "Shared Documents": 2, "OneDrive": 1}
+    c = config.carica(vault)
+    assert config.profondita("Delivery", c) == 4 and config.profondita("SalesMarketing", c) == 2
+    assert config.profondita("OneDrive", c) == 1
+
+
+def test_profondita_intera_vale_per_tutte(vault):
+    c = config.carica(vault)
+    assert config.rilevatore(c)["profondita"] == 2
+    assert config.profondita("Delivery", c) == 2
+
+
+@pytest.mark.parametrize("riga, messaggio", [
+    ("    profondita:\n      Archivio: 2\n", "`fonti.rilevatore.profondita.Archivio` libreria sconosciuta"),
+    ("    profondita:\n      Delivery: 0\n", "`fonti.rilevatore.profondita.Delivery` deve essere un intero positivo"),
+    ("    profondita: due\n", "`fonti.rilevatore.profondita` deve essere un intero positivo o un oggetto"),
+])
+def test_profondita_errori(vault, riga, messaggio):
+    modifica(vault, "vault.yaml", RIL, RIL + "  rilevatore:\n" + riga)
+    res = cfg(vault, "verifica")
+    assert res.returncode == 1 and messaggio in res.stdout
+
+
+def test_canoniche_default_e_dal_vault(vault):
+    c = config.carica(vault)
+    assert config.canoniche(c) == ["sharepoint:SalesMarketing", "sharepoint:Delivery",
+                                   "sharepoint:Shared Documents", "onedrive", "sharepoint:*"]
+    modifica(vault, "vault.yaml", RIL, RIL + "  canoniche: [sharepoint:Delivery, onedrive, sharepoint:SalesMarketing, "
+             "sharepoint:Shared Documents, sharepoint:*]\n")
+    assert cfg(vault, "verifica").returncode == 0
+    config.imposta(None, vault)   # dimentica la configurazione in memoria
+    c = config.carica(vault)
+    assert config.canoniche(c)[0] == "sharepoint:Delivery"
+    assert config.rango_canonico("sharepoint", "Delivery", c) == 0
+    assert config.rango_canonico("onedrive", c=c) == 1
+    assert config.rango_canonico("sharepoint", "SitoPartner", c) == 4   # libreria di un altro sito → `sharepoint:*`
+    assert cfg(vault, "valore", "fonti.canoniche").stdout.splitlines()[0] == "sharepoint:Delivery"
+
+
+@pytest.mark.parametrize("riga, messaggio", [
+    ("  canoniche: [sharepoint:Archivio, sharepoint:SalesMarketing, sharepoint:Delivery, sharepoint:Shared Documents, onedrive]\n",
+     "posizione `sharepoint:Archivio` sconosciuta"),
+    ("  canoniche: [sharepoint:SalesMarketing, sharepoint:Delivery, sharepoint:Shared Documents, onedrive, onedrive]\n",
+     "posizioni ripetute: onedrive"),
+    ("  canoniche: [sharepoint:SalesMarketing, sharepoint:Delivery]\n",
+     "mancano sharepoint:Shared Documents, onedrive"),
+    ("  canoniche: onedrive\n", "`fonti.canoniche` deve essere una lista"),
+])
+def test_canoniche_errori(vault, riga, messaggio):
+    modifica(vault, "vault.yaml", RIL, RIL + riga)
+    res = cfg(vault, "verifica")
+    assert res.returncode == 1 and messaggio in res.stdout

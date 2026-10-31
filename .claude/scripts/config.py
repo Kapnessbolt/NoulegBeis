@@ -16,7 +16,9 @@ Uso:
       # con --digest solo i task che scrivono la riga d'esito nel digest
   python3 .claude/scripts/config.py rilevatore           # finestra del delta e rilevatore di riordino
       # (SPEC 6.2) in JSON: `finestra_ore`, `profondita`, `soglia_id_nuovi`, `fonti`, con i default
-      # se `fonti.rilevatore` manca in vault.yaml
+      # se `fonti.rilevatore` manca in vault.yaml. `profondita` è un intero (uguale per tutte le
+      # librerie) oppure {libreria: livelli} con una chiave per ogni libreria di SharePoint e
+      # `OneDrive`, completato con il default dove vault.yaml non dice niente
   python3 .claude/scripts/config.py verifica             # schema, orari di SPEC 7, permessi e `tools`
   python3 .claude/scripts/config.py applica              # riscrive da vault.yaml i permessi
       # `mcp__<server>__<strumento>` di `.claude/settings.json` e la parte mcp della riga
@@ -24,6 +26,13 @@ Uso:
 
 Uscita: 0 se va tutto bene; 1 se `vault.yaml` non è valido, se `verifica` trova errori o se
 la chiave di `valore` non esiste; 2 se gli argomenti non sono validi. Richiede PyYAML.
+
+`fonti.canoniche` (SPEC 6.4) è l'ordine di precedenza tra le posizioni di un documento copiato
+in più posti: `sharepoint:<libreria>`, `onedrive`, `sharepoint:*` (gli altri siti del tenant). La
+copia nella prima posizione dell'elenco è `current`, le altre vanno in `also_at`. Deve nominare
+ogni libreria di `fonti.sharepoint.librerie` e `onedrive`, senza doppioni; se manca vale l'ordine
+delle librerie, poi `onedrive`, poi `sharepoint:*`. Lo leggono gli script con `canoniche()` e
+`rango_canonico()`, la riga di comando con `valore fonti.canoniche`.
 
 Permessi attesi: in `.claude/settings.json` tutti gli strumenti di tutti i gruppi di ogni
 connettore, per ogni nome di server; nei `tools` di ogni agente in `.claude/agents/` gli
@@ -215,6 +224,12 @@ def _valida(c):
     if not isinstance(ril, dict):
         e("fonti.rilevatore", "deve essere un oggetto")
         ril = {}
+    librerie = [x for x in (sp.get("librerie") or []) if isinstance(x, str)] if isinstance(sp, dict) else []
+    posizioni = librerie + [ONEDRIVE_PROFONDITA]
+
+    def intero_positivo(v):
+        return isinstance(v, int) and not isinstance(v, bool) and v >= 1
+
     for k in ril:
         if k not in RILEVATORE:
             e(f"fonti.rilevatore.{k}", f"chiave sconosciuta (ammesse: {', '.join(RILEVATORE)})")
@@ -222,8 +237,32 @@ def _valida(c):
             v = ril[k]
             if not isinstance(v, list) or not all(x in FONTI_RILEVATORE for x in v):
                 e("fonti.rilevatore.fonti", f"deve essere una lista tra {', '.join(FONTI_RILEVATORE)}")
-        elif not isinstance(ril[k], int) or isinstance(ril[k], bool) or ril[k] < 1:
-            e(f"fonti.rilevatore.{k}", "deve essere un intero positivo")
+        elif k == "profondita" and isinstance(ril[k], dict):
+            # per libreria (SPEC 6.2 passo 7): chiavi tra le librerie di SharePoint e `OneDrive`
+            for lib, v in ril[k].items():
+                if lib not in posizioni:
+                    e(f"fonti.rilevatore.profondita.{lib}",
+                      f"libreria sconosciuta (ammesse: {', '.join(posizioni)})")
+                elif not intero_positivo(v):
+                    e(f"fonti.rilevatore.profondita.{lib}", "deve essere un intero positivo")
+        elif not intero_positivo(ril[k]):
+            e(f"fonti.rilevatore.{k}", "deve essere un intero positivo"
+              + (" o un oggetto {libreria: livelli}" if k == "profondita" else ""))
+    can = f.get("canoniche")
+    if can is not None:
+        ammesse = [f"sharepoint:{lib}" for lib in librerie] + ["onedrive", CANONICA_ALTRI_SITI]
+        if not isinstance(can, list) or not all(isinstance(x, str) and x.strip() for x in can):
+            e("fonti.canoniche", "deve essere una lista di posizioni (`sharepoint:<libreria>`, `onedrive`, `sharepoint:*`)")
+        else:
+            for x in can:
+                if x not in ammesse:
+                    e("fonti.canoniche", f"posizione `{x}` sconosciuta (ammesse: {', '.join(ammesse)})")
+            doppie = sorted({x for x in can if can.count(x) > 1})
+            if doppie:
+                e("fonti.canoniche", f"posizioni ripetute: {', '.join(doppie)}")
+            mancano = [x for x in ammesse[:-1] if x not in can]
+            if mancano:
+                e("fonti.canoniche", f"mancano {', '.join(mancano)}: ogni libreria e `onedrive` devono avere un posto")
     lista_testi(f, "firme_in_coda", "fonti.firme_in_coda", vuota=True)
     lista_testi(oggetto(f, "outlook", "fonti.outlook"), "mittenti_scartati",
                 "fonti.outlook.mittenti_scartati", vuota=True)
@@ -387,12 +426,50 @@ def perimetro(c=None):
 # `fonti`: dove il rilevatore guarda (le fonti di documenti del vault, scelte all'installazione)
 FONTI_RILEVATORE = ("sharepoint", "onedrive", "github")
 RILEVATORE = {"finestra_ore": 48, "profondita": 2, "soglia_id_nuovi": 10, "fonti": list(FONTI_RILEVATORE)}
+ONEDRIVE_PROFONDITA = "OneDrive"      # chiave della cartella di OneDrive in `profondita` per libreria
+CANONICA_ALTRI_SITI = "sharepoint:*"  # gli altri siti del tenant in `fonti.canoniche`
 
 
 def rilevatore(c=None):
-    """Parametri del delta e del rilevatore di riordino, con i default di `RILEVATORE`."""
-    ril = (c or carica())["fonti"].get("rilevatore") or {}
-    return {k: ril.get(k, list(v) if isinstance(v, list) else v) for k, v in RILEVATORE.items()}
+    """Parametri del delta e del rilevatore di riordino, con i default di `RILEVATORE`.
+    `profondita` resta un intero se vale per tutte le librerie; se in `vault.yaml` è per libreria
+    esce come {libreria: livelli} con tutte le librerie di SharePoint e `OneDrive`, completato con
+    il default dove manca."""
+    c = c or carica()
+    ril = c["fonti"].get("rilevatore") or {}
+    out = {k: ril.get(k, list(v) if isinstance(v, list) else v) for k, v in RILEVATORE.items()}
+    if isinstance(out["profondita"], dict):
+        posizioni = list(c["fonti"]["sharepoint"]["librerie"]) + [ONEDRIVE_PROFONDITA]
+        out["profondita"] = {p: out["profondita"].get(p, RILEVATORE["profondita"]) for p in posizioni}
+    return out
+
+
+def profondita(libreria, c=None):
+    """Livelli di cartelle da fotografare per una libreria di SharePoint o per `OneDrive`."""
+    p = rilevatore(c)["profondita"]
+    return p.get(libreria, RILEVATORE["profondita"]) if isinstance(p, dict) else p
+
+
+def canoniche(c=None):
+    """Ordine di precedenza tra le posizioni di un documento copiato in più posti (SPEC 6.4):
+    `fonti.canoniche` di `vault.yaml` oppure, se manca, le librerie di SharePoint nell'ordine
+    del perimetro, poi `onedrive`, poi gli altri siti (`sharepoint:*`)."""
+    c = c or carica()
+    can = c["fonti"].get("canoniche")
+    if can:
+        return list(can)
+    return [f"sharepoint:{lib}" for lib in c["fonti"]["sharepoint"]["librerie"]] + ["onedrive", CANONICA_ALTRI_SITI]
+
+
+def rango_canonico(fonte, libreria=None, c=None):
+    """Posizione (0 = la più alta) di una copia in `canoniche()`: `fonte` è `sharepoint` o
+    `onedrive`, `libreria` la libreria di SharePoint del sito del perimetro; una libreria che non
+    è nel perimetro (altro sito) vale `sharepoint:*`. Più basso vince: quella copia è `current`."""
+    ordine = canoniche(c)
+    chiave = "onedrive" if fonte == "onedrive" else f"sharepoint:{libreria}"
+    if chiave not in ordine:
+        chiave = CANONICA_ALTRI_SITI
+    return ordine.index(chiave) if chiave in ordine else len(ordine)
 
 
 def firme_in_coda(c=None):
