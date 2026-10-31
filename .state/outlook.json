@@ -140,6 +140,10 @@
       "last_message": "2026-10-21T19:35:59Z",
       "note": "sources/mail/2026-10/deck-corso-ai-m1-v15-su-sharepoint.md"
     },
+    "AAQkAGMyY2M5ZTczLTYwNDEtNGZiOC1iYjJjLTFhZjJhOGY1YjFiMQAQAKXkfsFqB0Hhr6f9Ki4Zy-c=": {
+      "last_message": "2026-10-31T10:35:09Z",
+      "note": "sources/mail/2026-10/architettura-ai-blueage.md"
+    },
     "AAQkAGMyY2M5ZTczLTYwNDEtNGZiOC1iYjJjLTFhZjJhOGY1YjFiMQAQAL4Xjc6SU7NNusLsH1TuF8k=": {
       "last_message": "2026-10-22T14:26:43Z",
       "note": "sources/mail/2026-10/liuc-call-con-francesco-bollazzi-e-proposta-di-osservatorio-sull-ai-nelle-pmi-idee-entro-mercoledi-sera.md"
@@ -213,5 +217,12 @@
       "note": "sources/mail/2026-10/call-di-oggi-prossimi-passi-architettura-copilot-manini-meccanotecnica-second-brain.md"
     }
   },
-  "watermark": "2026-10-30T18:03:52Z"
+  "ultimo_giro": {
+    "falliti": 0,
+    "fine": "2026-10-31T12:18:50Z",
+    "inizio": "2026-10-30T16:03:52Z",
+    "piu_recente": "2026-10-31T10:35:09Z",
+    "risultati": 2
+  },
+  "watermark": "2026-10-31T10:35:09Z"
 }
