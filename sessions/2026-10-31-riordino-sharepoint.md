@@ -39,7 +39,7 @@ Verificare l'ingestion del 31/10 dopo il riordino delle librerie SharePoint fatt
 ## Aperti
 
 - [ ] Rileggere `## Punti chiave` di [[ai-che-cresce-con-lazienda]] (descrive ancora la v2) e dei temi segnalati da `controlla-vault.py`: [[pulse]], [[parts-radar]], [[trade-spending]], [[manager-operativo]]
-- [ ] `famiglia.py` non riconosce `_MEETING` come suffisso (Possibilità v3 attribuita a mano alla famiglia `blueage-possibilita`)
+- [x] `famiglia.py` non riconosce `_MEETING` come suffisso (Possibilità v3 attribuita a mano alla famiglia `blueage-possibilita`) (chiuso in [[2026-10-31-audit-p1-p3]])
 - [x] SPEC 5 (cartelle escluse) da allineare con `old versions`, con una PR dedicata (chiuso: PR #56 unita)
 - [x] Regola del delta dopo un riordino: finestra di 48 ore e rilevatore di riordino con riconciliazione ridotta, SPEC 1.26 (chiuso: PR #56 unita)
 - [x] Criterio dello step 13: il giro anomalo del 31/10 non conta come errore dello step, verifica confermata all'1/11, dall'utente (chiuso: PR #55 unita)

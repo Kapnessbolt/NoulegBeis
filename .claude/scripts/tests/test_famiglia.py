@@ -50,6 +50,13 @@ COPPIE_REALI = [
      "velo-ce-guida-ciclo-dacquisto-ordine-ricevimento-fattura-cliente"),
     ("Velo-CE - Flusso operativo telaio a scorta, acquisto-sabbiato - INTERNO - v001.xlsx",
      "velo-ce-flusso-operativo-telaio-a-scorta-acquisto-sabbiato-interno"),
+    # audit 2026-10-31, P9: casi che prima uscivano dalla famiglia
+    ("BlueAge_Possibilita_v3_MEETING.pdf", "blueage-possibilita"),
+    ("PULSE_K.pdf", "pulse"),
+    ("260930 Velo-CE - Progetto Dynamics e Power BI - La strada verso Premium - v006 - INVIATO.pdf",
+     "velo-ce-progetto-dynamics-e-power-bi-la-strada-verso-premium"),
+    ("Velo-CE - Pilota BC Lungo Bosch v006 - Guida societa e pagine sbx-studio - v001.xlsx",
+     "velo-ce-pilota-bc-lungo-bosch-guida-societa-e-pagine-sbx-studio"),
 ]
 
 
@@ -79,6 +86,26 @@ def test_coppie_reali_del_vault(nome, attesa):
     ("Deck - Copia.pptx", "deck"),
     ("Deck_v3_final (1).pptx", "deck"),
     ("Articoli version 1.xlsx", "articoli"),
+    # stati in coda (P9): `_MEETING` e `_OLD` solo dopo `_`, `vecchia`, `- INVIATO`, `- INVIATA`
+    ("Listino_OLD.xlsx", "listino"),
+    ("Listino_v2_old.xlsx", "listino"),
+    ("Listino vecchio.xlsx", "listino"),
+    ("Offerta - vecchia - v003.docx", "offerta"),
+    ("Offerta - v002 - INVIATA.pdf", "offerta"),
+    ("Offerta - v002 - INVIATO.pdf", "offerta"),
+    ("Kickoff meeting.pptx", "kickoff-meeting"),
+    ("Gold old.pdf", "gold-old"),
+    # lettera di versione: una maiuscola isolata come ultimo segmento
+    ("PULSE_K.pdf", "pulse"),
+    ("Piano B.docx", "piano"),
+    ("Piano - B.docx", "piano"),
+    ("PULSE_I_EN.pptx", "pulse-i-en"),
+    ("Meccanotecnica Umbra S.p.A.docx", "meccanotecnica-umbra-s-p-a"),
+    # versione a metà nome: tolta solo se seguita da un altro segmento ` - `
+    ("Deck v2 - Allegato tecnico.pptx", "deck-allegato-tecnico"),
+    ("Deck_v2 - Allegato - v001.pptx", "deck-allegato"),
+    ("Deck_v2_Allegato.pptx", "deck-v2-allegato"),
+    ("v2 - Allegato.pptx", "v2-allegato"),
     # niente da togliere o il nome resterebbe vuoto
     ("Report 6625.docx", "report-6625"),
     ("v2.pdf", "v2"),
@@ -160,3 +187,25 @@ def test_verifica_sul_mini_vault(vault):
     assert out["note"] == 1 and out["uguali"] == 0
     assert out["disaccordi"][0]["calcolata"] == "doc-alfa"
     assert res.returncode == 1
+
+
+def test_verifica_soglia_al_95_per_cento_con_il_prefisso(vault):
+    """19 note su 20 d'accordo (una con il prefisso di disambiguazione) passano; 18 su 20 no."""
+    base = (vault / "sources/sharepoint/delivery/doc-alfa.md").read_text(encoding="utf-8")
+    (vault / "sources/sharepoint/delivery/doc-alfa.md").unlink()
+
+    def nota(i, family):
+        scrivi(vault, f"sources/sharepoint/delivery/doc-{i}.md",
+               base.replace('family: "delivery/doc-alfa"', f"family: {family}")
+               .replace("Doc_Alfa_v2.pdf", f"Doc_{i}_v2.pdf"))
+
+    for i in range(18):
+        nota(i, f"doc-{i}")
+    nota(18, "cliente-doc-18")  # prefisso di disambiguazione: conta come accordo
+    nota(19, "altro-nome")
+    out = json.loads(esegui("famiglia.py", vault, "--verifica", "--json").stdout)
+    assert (out["note"], out["uguali"], out["con_prefisso"], out["accordo_con_prefisso"]) == (20, 18, 1, 95.0)
+    assert esegui("famiglia.py", vault, "--verifica").returncode == 0
+    nota(18, "altro-ancora")
+    res = esegui("famiglia.py", vault, "--verifica")
+    assert res.returncode == 1 and "(accordo complessivo 90.0%)" in res.stdout

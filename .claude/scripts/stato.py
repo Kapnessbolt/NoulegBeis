@@ -2,7 +2,8 @@
 """Stato dell'ingestion (SPEC 6.1): un file per fonte in `.state/`, letto e scritto solo da qui.
 
 File e contenuto:
-  .state/sharepoint.json  {"watermark": ..., "items": {"<driveId>/<itemId>": {"last_modified", "note"}},
+  .state/sharepoint.json  {"watermark": ..., "items": {"<driveId>/<itemId>": {"last_modified", "note",
+                                                                         ["assente"]}},
                            "cartelle": {"<driveId>": {"libreria", "profondita", "istante",
                                                       "elenco": {"<folderId>": "<percorso>"}}},
                            "riconciliazione_dovuta": {"<libreria>": "<istante del riordino>"},
@@ -24,11 +25,41 @@ Uso (fonte: sharepoint | onedrive | outlook | github | reconcile):
   stato.py item <fonte> <chiave>                  JSON della voce; esce con 1 se manca
   stato.py repo <owner/repo>                      JSON del repo in github.repos; 1 se manca
   stato.py elenco <fonte>                         JSON di tutte le voci (items o threads)
+  stato.py voci <fonte> <nota>                    JSON {chiave: voce} delle voci che puntano alla
+                                                  nota (percorso relativo sources/...); esce con
+                                                  1 se nessuna
+  stato.py indice <fonte>                         indice inverso della fonte: JSON {nota: [chiavi]}
+  stato.py trova <fonte> [--famiglia <f>] [--nome <nome file>] [--cartella sources/...]
+          [--libreria <nome>] [--json]
+      regola dell'identità di SPEC 6.4 (sharepoint, onedrive): tra le note puntate dallo stato
+      della fonte, quelle con un nome uguale a --nome (`current.name`, `versions[].name`,
+      ultimo segmento di `also_at[].web_url`; senza maiuscole e con i %xx decodificati) o con
+      una famiglia uguale a --famiglia (`family`, o la famiglia calcolata da uno dei nomi: così
+      si ritrova anche una `family` con il prefisso di disambiguazione `<prefisso>-<famiglia>`,
+      mentre il solo suffisso di `family` non basta). Serve almeno uno dei
+      due; con --nome e senza --famiglia la famiglia si calcola dal nome e valgono entrambi.
+      --cartella è la cartella della nota (`cartella_nota` di perimetro.py): i candidati nella
+      stessa cartella vengono prima, poi quelli della stessa libreria. --libreria (solo
+      sharepoint) restringe alle note sotto sources/sharepoint/<slug della libreria>/. Uscita:
+      {"famiglia", "candidati": [{"nota", "family", "status", "stessa_cartella",
+      "stessa_libreria", "motivo", "chiavi", "chiave_corrente"}]}, con --json; senza, una riga
+      per candidato. Esce con 1 se non ce ne sono
   stato.py set-item <fonte> <chiave> --istante <ISO UTC> [--note sources/...] [--commit <sha>]
       --istante vale anche come --last-modified o --last-message: lo script scrive il campo
       giusto per la fonte (last_message per outlook, last_modified per le altre). --note serve
       per una voce nuova o per spostare la nota (riconciliazione, SPEC 6.4); --commit solo
-      per github
+      per github. Su una voce esistente toglie `assente`: la voce è stata rivista
+  stato.py collega <fonte> <chiave nuova> --stessa-nota-di <chiave vecchia> --istante <ISO UTC>
+      voce nuova sulla stessa nota della voce vecchia (sharepoint, onedrive; SPEC 6.4: copia,
+      ricaricamento o versione con un ID nuovo): `note` copiato dalla vecchia, che deve
+      esistere, e `last_modified` = --istante; la vecchia resta. Se la voce nuova punta già
+      a quella nota non scrive niente e lo dice (l'istante registrato, se più recente, resta).
+      Toglie `assente` dalla voce nuova
+  stato.py set-assente <fonte> <chiave> [--azzera]
+      conteggio delle riconciliazioni consecutive che non hanno trovato la voce (sharepoint,
+      onedrive; SPEC 6.4: `status: removed` solo alla seconda): incrementa `assente` (da 0) e
+      stampa il valore; con --azzera toglie il campo (la nota è stata ritrovata), e se non
+      c'era non scrive niente (`cambiato: false`)
   stato.py set-watermark <fonte> <ISO UTC> [--forza]
   stato.py set-watermark <fonte> [<ISO UTC>] --da-giro
       non abbassa mai il watermark: se il nuovo è più vecchio esce con 0 e un avviso, a meno
@@ -65,6 +96,11 @@ Uso (fonte: sharepoint | onedrive | outlook | github | reconcile):
                                                   «Riconciliazione dovuta: <libreria> dal
                                                   <data>» ciascuna (data nel fuso del vault);
                                                   esce con 1 se non ce ne sono
+  stato.py set-riconciliazione-dovuta <fonte> <libreria> --istante <ISO UTC> [--motivo "<testo>"]
+      segna la libreria in `riconciliazione_dovuta` per un segnale diverso dalle cartelle
+      (SPEC 6.2 passo 7: ID nuovi), con la regola di set-cartelle: se è già dovuta l'istante
+      resta quello vecchio, e la toglie solo set-riconciliata. Il motivo va solo nel testo
+      stampato. Uscita come set-riconciliata
   stato.py set-riconciliata <fonte> <libreria>    toglie la libreria da `riconciliazione_dovuta`
                                                   a riconciliazione finita (SPEC 6.4); se non
                                                   era dovuta esce con 0 e un avviso
@@ -74,7 +110,7 @@ Uso (fonte: sharepoint | onedrive | outlook | github | reconcile):
                                                   .state/*.json (dagli stadi dell'indice), poi
                                                   `git add`; senza file, tutti quelli in conflitto
 
-Opzioni comuni: --json per le risposte dei comandi di scrittura e di riconciliazione-dovuta;
+Opzioni comuni: --json per le risposte dei comandi di scrittura, di riconciliazione-dovuta e di trova;
 `stato.py <comando> --help` stampa l'uso di quel comando.
 
 Regole: istanti nel formato AAAA-MM-GGTHH:MM:SSZ (errore altrimenti); --note è un percorso
@@ -82,9 +118,14 @@ relativo dentro sources/ (avviso se il file non esiste ancora: l'agente può scr
 dopo). Scrittura atomica (file temporaneo e rename), JSON con indentazione 2 e chiavi ordinate.
 Le voci non si cancellano mai (SPEC 6.4): una nota rimossa ha `status: removed`, la voce resta.
 
-Merge driver: il watermark (e last_run) più avanzato vince; items, threads e repos si uniscono
-e per la stessa chiave vince l'istante più recente (per i repo il watermark); a parità vince il
-lato che ha cambiato la voce rispetto alla base. Per `cartelle` vince, drive per drive, la
+Merge driver: il watermark (e last_run) più avanzato vince; items, threads e repos si uniscono.
+Per la stessa chiave di items e threads l'unione è campo per campo: `last_modified` e
+`last_message` il più recente; `note` e `assente` dal lato che li ha cambiati rispetto alla
+base (cambiati da entrambi: il lato con l'istante più recente, a parità il nostro; per `assente`
+vince chi l'ha tolto, perché la nota è stata ritrovata); `commit` e gli altri campi dal lato con
+l'istante più recente, a parità da chi li ha cambiati. Così uno spostamento della nota non si
+perde contro una versione nuova registrata dall'altro lato (audit 31/10, M1). Per i repo vince
+la voce con il watermark più recente, a parità quella cambiata rispetto alla base. Per `cartelle` vince, drive per drive, la
 fotografia più recente; `riconciliazione_dovuta` si unisce (tutte le librerie dei due lati, per
 la stessa libreria l'istante più vecchio), `ultimo_giro` è quello con la `fine` più recente.
 Scrive il risultato in <nostro> ed esce con 0;
@@ -102,6 +143,7 @@ import subprocess
 import sys
 import tempfile
 from pathlib import Path
+from urllib.parse import unquote
 
 ROOT = Path(os.environ.get("VAULT_ROOT") or Path(__file__).resolve().parents[2]).resolve()
 STATE = ROOT / ".state"
@@ -280,6 +322,7 @@ def cmd_set_item(fonte, chiave, ist, note=None, sha=None):
     if piu_recente(voce.get(campo), ist):
         avviso(f"`{chiave}`: {campo} {ist} è più vecchio di quello registrato ({voce.get(campo)})")
     voce[campo] = ist
+    voce.pop("assente", None)  # la voce è stata rivista (SPEC 6.4)
     if note is not None:
         voce["note"] = nota(note)
     if sha is not None:
@@ -473,6 +516,185 @@ def cmd_set_riconciliata(fonte, libreria):
             "riconciliazione_dovuta": dict(sorted(dovute.items()))}
 
 
+def cmd_set_riconciliazione_dovuta(fonte, libreria, ist):
+    """Segnale «ID nuovi» (SPEC 6.2 passo 7): stessa regola di set-cartelle."""
+    controlla_fonte(fonte, FONTI_CARTELLE)
+    istante(ist)
+    if not str(libreria).strip():
+        raise Errore("libreria vuota")
+    data = leggi(fonte)
+    dovute = data.setdefault("riconciliazione_dovuta", {})
+    cambiato = libreria not in dovute
+    if cambiato:
+        dovute[libreria] = ist
+        scrivi(fonte, data)
+    return {"fonte": fonte, "libreria": libreria, "cambiato": cambiato, "dovuta_dal": dovute[libreria],
+            "riconciliazione_dovuta": dict(sorted(dovute.items()))}
+
+
+# --- Identità dei documenti (SPEC 6.4) --------------------------------------------------
+
+def _rel_nota(valore):
+    """Percorso relativo di una nota come lo registra lo stato (anche da un percorso assoluto)."""
+    p = Path(str(valore))
+    if p.is_absolute():
+        try:
+            p = p.resolve().relative_to(ROOT)
+        except ValueError:
+            raise Errore(f"`{valore}` non è dentro il vault")
+    return p.as_posix()
+
+
+def indice_note(fonte):
+    """Indice inverso nota → chiavi delle voci che la puntano: {nota: [chiave, ...]}."""
+    controlla_fonte(fonte, COLLEZIONE)
+    indice = {}
+    for chiave, voce in leggi(fonte)[COLLEZIONE[fonte]].items():
+        if isinstance(voce, dict) and voce.get("note"):
+            indice.setdefault(voce["note"], []).append(chiave)
+    return {n: sorted(ch) for n, ch in sorted(indice.items())}
+
+
+def voci_della_nota(fonte, nota_rel):
+    """Le voci della fonte che puntano alla nota: {chiave: voce}."""
+    controlla_fonte(fonte, COLLEZIONE)
+    nota_rel = _rel_nota(nota_rel)
+    coll = leggi(fonte)[COLLEZIONE[fonte]]
+    return {k: v for k, v in sorted(coll.items()) if isinstance(v, dict) and v.get("note") == nota_rel}
+
+
+def _modulo_famiglia():
+    cartella = str(Path(__file__).resolve().parent)
+    if cartella not in sys.path:
+        sys.path.insert(0, cartella)
+    import famiglia as modulo  # famiglia.py: calcolo della famiglia e lettura del frontmatter
+    return modulo
+
+
+def _nome_confronto(nome):
+    """Nome di file da confrontare: ultimo segmento, %xx decodificati, senza maiuscole."""
+    return unquote(str(nome)).replace("\\", "/").rstrip("/").rsplit("/", 1)[-1].strip().lower()
+
+
+def _radice_libreria(cartella):
+    """`sources/sharepoint/<libreria>` (o `.../_<sito>/<libreria>`, `sources/onedrive`) di una cartella."""
+    parti = Path(cartella).parts
+    if parti[:2] == ("sources", "onedrive"):
+        return "sources/onedrive"
+    if parti[:2] == ("sources", "sharepoint") and len(parti) >= 3:
+        n = 4 if parti[2].startswith("_") else 3
+        return "/".join(parti[:n]) if len(parti) >= n else None
+    return None
+
+
+def _sotto(nota_rel, radice):
+    return bool(radice) and (nota_rel + "/").startswith(radice.rstrip("/") + "/")
+
+
+def trova(fonte, famiglia=None, nome=None, cartella=None, libreria=None):
+    """Candidati della regola dell'identità (SPEC 6.4) tra le note puntate dallo stato della fonte.
+
+    Restituisce {"famiglia": <cercata>, "candidati": [...]} (vedi `stato.py trova --help`)."""
+    controlla_fonte(fonte, FONTI_CARTELLE)
+    if not (famiglia and str(famiglia).strip()) and not (nome and str(nome).strip()):
+        raise Errore("trova vuole almeno uno tra --famiglia e --nome")
+    fam = _modulo_famiglia()
+    cercata = str(famiglia).strip() if famiglia and str(famiglia).strip() else fam.famiglia(nome)
+    nome_cercato = _nome_confronto(nome) if nome and str(nome).strip() else None
+    cartella = str(cartella).strip().rstrip("/") if cartella and str(cartella).strip() else None
+    radice = None
+    if libreria and str(libreria).strip() and fonte == "sharepoint":
+        radice = f"sources/sharepoint/{fam.slug(libreria)}"
+    radice_stessa = radice or (_radice_libreria(cartella) if cartella else None)
+    candidati = []
+    for nota_rel, chiavi in indice_note(fonte).items():
+        if radice and not _sotto(nota_rel, radice):
+            continue
+        p = ROOT / nota_rel
+        d = fam._frontmatter(p) if p.is_file() else None
+        if not isinstance(d, dict):
+            continue
+        corrente = d.get("current") if isinstance(d.get("current"), dict) else {}
+        nomi = [corrente.get("name")]
+        nomi += [v.get("name") for v in d.get("versions") or [] if isinstance(v, dict)]
+        nomi += [str(a.get("web_url")).rstrip("/").rsplit("/", 1)[-1]
+                 for a in d.get("also_at") or [] if isinstance(a, dict) and a.get("web_url")]
+        nomi = [str(n) for n in nomi if n]
+        family = str(d.get("family") or "")
+        motivi = []
+        if nome_cercato and any(_nome_confronto(n) == nome_cercato for n in nomi):
+            motivi.append("nome")
+        # Una `family` con il prefisso di disambiguazione (`<prefisso>-<calcolata>`, ingestor §3.2)
+        # si ritrova dalla famiglia calcolata dai nomi della nota. Il solo confronto del suffisso
+        # di `family` no: `articoli` troverebbe anche `...-codifica-articoli`.
+        if family == cercata or any(fam.famiglia(n) == cercata for n in nomi):
+            motivi.append("famiglia")
+        if not motivi:
+            continue
+        item_corrente = str(corrente.get("item_id") or "")
+        chiave_corrente = next((k for k in chiavi if item_corrente and k.rsplit("/", 1)[-1] == item_corrente), None)
+        candidati.append({
+            "nota": nota_rel,
+            "family": d.get("family"),
+            "status": d.get("status"),
+            "stessa_cartella": bool(cartella) and str(Path(nota_rel).parent) == cartella,
+            "stessa_libreria": _sotto(nota_rel, radice_stessa),
+            "motivo": ", ".join(motivi),
+            "chiavi": chiavi,
+            "chiave_corrente": chiave_corrente,
+        })
+    candidati.sort(key=lambda c: (not c["stessa_cartella"], not c["stessa_libreria"], c["nota"]))
+    return {"famiglia": cercata, "candidati": candidati}
+
+
+def cmd_collega(fonte, nuova, vecchia, ist):
+    """Voce nuova sulla stessa nota di una voce esistente (SPEC 6.4); idempotente."""
+    controlla_fonte(fonte, FONTI_CARTELLE)
+    istante(ist)
+    if not str(nuova).strip():
+        raise Errore("chiave nuova vuota")
+    data = leggi(fonte)
+    coll = data[COLLEZIONE[fonte]]
+    origine = coll.get(vecchia)
+    if not isinstance(origine, dict) or not origine.get("note"):
+        raise Errore(f"nessuna voce `{vecchia}` con una nota in .state/{fonte}.json")
+    nota_rel = origine["note"]
+    prima = coll.get(nuova)
+    voce = dict(prima) if isinstance(prima, dict) else {}
+    if voce.get("note") and voce["note"] != nota_rel:
+        avviso(f"`{nuova}` puntava a {voce['note']}: ora punta a {nota_rel}")
+    if voce.get("note") != nota_rel or not piu_recente(voce.get("last_modified"), ist):
+        voce["last_modified"] = ist
+    voce["note"] = nota_rel
+    voce.pop("assente", None)
+    cambiato = voce != prima
+    if cambiato:
+        coll[nuova] = voce
+        scrivi(fonte, data)
+    return {"fonte": fonte, "chiave": nuova, "stessa_nota_di": vecchia, "cambiato": cambiato, **voce}
+
+
+def cmd_set_assente(fonte, chiave, azzera=False):
+    """Conteggio delle riconciliazioni consecutive che non hanno trovato la voce (SPEC 6.4)."""
+    controlla_fonte(fonte, FONTI_CARTELLE)
+    data = leggi(fonte)
+    coll = data[COLLEZIONE[fonte]]
+    voce = coll.get(chiave)
+    if not isinstance(voce, dict):
+        raise Errore(f"nessuna voce `{chiave}` in .state/{fonte}.json")
+    if azzera:
+        cambiato = "assente" in voce
+        voce.pop("assente", None)
+        n = 0
+    else:
+        n = numero(voce.get("assente", 0), "assente") + 1
+        voce["assente"] = n
+        cambiato = True
+    if cambiato:
+        scrivi(fonte, data)
+    return {"fonte": fonte, "chiave": chiave, "assente": n, "cambiato": cambiato}
+
+
 def data_locale(ist):
     """Data di un istante UTC nel fuso del vault (vault.yaml); in UTC se la configurazione manca."""
     giorno = dt.datetime.strptime(ist, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=dt.timezone.utc)
@@ -510,6 +732,57 @@ def _scegli(base, nostro, loro, chiave_istante):
     return nostro
 
 
+CAMPI_ISTANTE_VOCE = ("last_modified", "last_message")
+
+
+def _unisci_voce(base, nostro, loro):
+    """Unione campo per campo di due versioni della stessa voce di items o threads (P7)."""
+    if nostro == loro:
+        return nostro
+    if not isinstance(nostro, dict) or not isinstance(loro, dict):
+        return _scegli(base, nostro, loro, lambda v: _istante_voce(v, CAMPI_ISTANTE_VOCE))
+    base = base if isinstance(base, dict) else {}
+    a, b = _istante_voce(nostro, CAMPI_ISTANTE_VOCE), _istante_voce(loro, CAMPI_ISTANTE_VOCE)
+    recente = nostro if not piu_recente(b, a) else loro       # a parità di istante, il nostro
+    pari = not piu_recente(a, b) and not piu_recente(b, a)
+    manca = object()
+
+    def cambiato_da(campo):
+        """Valore del lato che ha cambiato il campo rispetto alla base; `manca` se l'hanno cambiato entrambi."""
+        n, l, o = nostro.get(campo, manca), loro.get(campo, manca), base.get(campo, manca)
+        if n == l:
+            return n
+        if n == o:
+            return l
+        if l == o:
+            return n
+        return manca
+
+    out = {}
+    for campo in sorted(set(nostro) | set(loro)):
+        n, l = nostro.get(campo, manca), loro.get(campo, manca)
+        if campo in CAMPI_ISTANTE_VOCE:
+            v = n if l is manca or (n is not manca and not piu_recente(l, n)) else l
+        elif campo in ("note", "assente"):
+            v = cambiato_da(campo)
+            if v is manca:  # cambiato da entrambi
+                if campo == "assente" and manca in (n, l):
+                    v = manca  # uno l'ha tolto: la nota è stata ritrovata
+                else:
+                    v = recente.get(campo, manca)
+        elif pari:
+            v = cambiato_da(campo)
+            if v is manca:
+                v = n
+        else:
+            v = recente.get(campo, manca)
+            if v is manca and campo == "commit":
+                v = l if recente is nostro else n  # un commit non si perde se il lato recente non lo ha
+        if v is not manca:
+            out[campo] = v
+    return out
+
+
 def unisci(base, nostro, loro):
     """Unione a tre vie del contenuto di un file di stato."""
     base = base if isinstance(base, dict) else {}
@@ -523,16 +796,17 @@ def unisci(base, nostro, loro):
             out[k] = nostro[k] if not piu_recente(loro[k], nostro[k]) else loro[k]
         elif k in ("items", "threads", "repos") and isinstance(nostro[k], dict) and isinstance(loro[k], dict):
             b = base.get(k) if isinstance(base.get(k), dict) else {}
-            campi = ("watermark",) if k == "repos" else ("last_modified", "last_message")
             coll = {}
             for chiave in sorted(set(nostro[k]) | set(loro[k])):
                 if chiave not in loro[k]:
                     coll[chiave] = nostro[k][chiave]
                 elif chiave not in nostro[k]:
                     coll[chiave] = loro[k][chiave]
-                else:
+                elif k == "repos":
                     coll[chiave] = _scegli(b.get(chiave), nostro[k][chiave], loro[k][chiave],
-                                           lambda v: _istante_voce(v, campi))
+                                           lambda v: _istante_voce(v, ("watermark",)))
+                else:
+                    coll[chiave] = _unisci_voce(b.get(chiave), nostro[k][chiave], loro[k][chiave])
             out[k] = coll
         elif k == "riconciliazione_dovuta" and isinstance(nostro[k], dict) and isinstance(loro[k], dict):
             # Unione: una libreria dovuta da un lato resta dovuta; vale il riordino più vecchio
@@ -688,6 +962,70 @@ def main(argv):
         (fonte,) = posizionali(args, 1, "elenco <fonte>")
         controlla_fonte(fonte, COLLEZIONE)
         stampa(leggi(fonte)[COLLEZIONE[fonte]])
+        return 0
+    if cmd == "voci":
+        fonte, nota_rel = posizionali(args, 2, "voci <fonte> <nota>")
+        voci = voci_della_nota(fonte, nota_rel)
+        stampa(voci)
+        if not voci:
+            sys.stderr.write(f"nessuna voce verso `{nota_rel}` in .state/{fonte}.json\n")
+            return 1
+        return 0
+    if cmd == "indice":
+        (fonte,) = posizionali(args, 1, "indice <fonte>")
+        stampa(indice_note(fonte))
+        return 0
+    if cmd == "trova":
+        pos, opt = opzioni(args, ("--famiglia", "--nome", "--cartella", "--libreria"))
+        (fonte,) = posizionali(pos, 1, "trova <fonte> [--famiglia <f>] [--nome <nome file>] "
+                                       "[--cartella sources/...] [--libreria <nome>]")
+        r = trova(fonte, opt.get("--famiglia"), opt.get("--nome"), opt.get("--cartella"), opt.get("--libreria"))
+        if as_json:
+            stampa(r)
+        elif r["candidati"]:
+            print("\n".join(
+                f"{c['nota']} · family {c['family']} · {c['status']} · {c['motivo']}"
+                + (" · stessa cartella" if c["stessa_cartella"] else " · stessa libreria" if c["stessa_libreria"] else "")
+                + f" · {len(c['chiavi'])} voci" for c in r["candidati"]))
+        if not r["candidati"]:
+            sys.stderr.write(f"nessun candidato per la famiglia `{r['famiglia']}` in .state/{fonte}.json\n")
+            return 1
+        return 0
+    if cmd == "collega":
+        pos, opt = opzioni(args, ("--stessa-nota-di", "--istante"))
+        fonte, nuova = posizionali(pos, 2, "collega <fonte> <chiave nuova> --stessa-nota-di <chiave vecchia> "
+                                           "--istante <ISO UTC>")
+        mancano = [n for n in ("--stessa-nota-di", "--istante") if n not in opt]
+        if mancano:
+            raise Errore("collega vuole " + ", ".join(mancano))
+        r = cmd_collega(fonte, nuova, opt["--stessa-nota-di"], opt["--istante"])
+        testo = (f"{fonte} `{nuova}` collegata a {r['note']} (stessa nota di `{r['stessa_nota_di']}`)"
+                 if r["cambiato"] else f"{fonte} `{nuova}` già collegata a {r['note']}: nessuna modifica")
+        stampa(r if as_json else testo, as_json)
+        return 0
+    if cmd == "set-assente":
+        pos, opt = opzioni(args, (), ("--azzera",))
+        fonte, chiave = posizionali(pos, 2, "set-assente <fonte> <chiave> [--azzera]")
+        r = cmd_set_assente(fonte, chiave, "--azzera" in opt)
+        if "--azzera" in opt:
+            testo = (f"{fonte} `{chiave}`: assente azzerato" if r["cambiato"]
+                     else f"{fonte} `{chiave}`: assente non c'era, nessuna modifica")
+        else:
+            testo = f"{fonte} `{chiave}`: assente {r['assente']}"
+        stampa(r if as_json else testo, as_json)
+        return 0
+    if cmd == "set-riconciliazione-dovuta":
+        pos, opt = opzioni(args, ("--istante", "--motivo"))
+        fonte, libreria = posizionali(pos, 2, "set-riconciliazione-dovuta <fonte> <libreria> --istante <ISO UTC> "
+                                              "[--motivo \"<testo>\"]")
+        if "--istante" not in opt:
+            raise Errore("set-riconciliazione-dovuta vuole --istante")
+        r = cmd_set_riconciliazione_dovuta(fonte, libreria, opt["--istante"])
+        motivo = f" ({opt['--motivo']})" if opt.get("--motivo") else ""
+        testo = (f"{fonte}: riconciliazione di {libreria} dovuta dal {data_locale(r['dovuta_dal'])}{motivo}"
+                 if r["cambiato"] else
+                 f"{fonte}: {libreria} già dovuta dal {data_locale(r['dovuta_dal'])}, istante invariato{motivo}")
+        stampa(r if as_json else testo, as_json)
         return 0
     if cmd == "set-item":
         nomi = ("--istante", "--last-modified", "--last-message", "--note", "--commit")

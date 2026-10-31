@@ -10,6 +10,7 @@ Regole che valgono quando scrivi o rileggi una nota in `sources/`. Le regole gen
 ## Percorso
 
 - `<percorso>` riproduce le cartelle dell'originale, in slug (`SalesMarketing/Offerte 2026/` → `salesmarketing/offerte-2026/`); lo calcola `python3 .claude/scripts/perimetro.py "<webUrl>" --json` (`cartella_nota`).
+- Una nota fonte di SharePoint o OneDrive si sposta o si rinomina solo con `python3 .claude/scripts/sposta-nota.py <nota> --web-url "<nuovo webUrl>"` (cartella da `perimetro.py`, `git mv`, `current.*`, `family` e slug con i wikilink, stato; con `--item-id`/`--uri` anche la voce nuova dello stato), mai con `git mv` o `rinomina-nota.py` a mano (SPEC 6.4).
 - Posta: `sources/mail/AAAA-MM/<slug-oggetto>.md`, dove `AAAA-MM` è il mese del primo messaggio del thread e `<slug-oggetto>` è l'oggetto senza prefissi di risposta e inoltro (`RE:`, `R:`, `FW:`, `FWD:`, `I:`): `python3 .claude/scripts/famiglia.py --oggetto "<oggetto>"`.
 - I partecipanti di un thread si collegano a `people/<nome-cognome>.md`. Se la persona non ha una nota, creala dal template (prima cerca la sua email in `people/`, `CLAUDE.md` §4).
 

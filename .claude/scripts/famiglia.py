@@ -9,10 +9,15 @@ suffissi di versione, di stato e di copia; poi applica lo slug. Esempio obbligat
   `260918` (AAMMGG) e l'ora che segue una data (`260929-1744`), `ott26`, `ottobre 2026`,
   `del 6 ottobre`, un anno isolato (`_2026`).
 - Suffissi in coda, anche ripetuti: versione (`_v24`, ` v2`, `- v001`, `_v1.2`, `_rev3`,
-  `version 1`, una lettera maiuscola isolata dopo `_` come `PULSE_Sintesi_C`), stato
-  (`_final`, `_def`, `_definitivo`, `_signed`, `_firmato`, `_sent`, `_inviato`, `_bozza`,
-  `_draft`), copia (`(1)`, `- Copia`, `copy`), firma dell'autore (`fonti.firme_in_coda` in
-  `vault.yaml`, es. `_<Firma>`).
+  `version 1`, una lettera maiuscola isolata come ultimo segmento, dopo `_`, spazio o `-`:
+  `PULSE_Sintesi_C`, `PULSE_K`, `Piano B`; `PULSE_I_EN` resta com'è), stato (`_final`, `_def`,
+  `_definitivo`, `_signed`, `_firmato`, `_sent`, `_inviato`, `- INVIATO`, `- INVIATA`, `_bozza`,
+  `_draft`, `vecchia`, `vecchio`; solo dopo `_`: `_MEETING`, `_OLD`, che dopo uno spazio sono
+  parte del titolo, `Kickoff meeting`), copia (`(1)`, `- Copia`, `copy`), firma dell'autore
+  (`fonti.firme_in_coda` in `vault.yaml`, es. `_<Firma>`).
+- Versione a metà nome, tolta solo se seguita da un altro segmento ` - `:
+  `Velo-CE - Pilota BC Lungo Bosch v006 - Guida societa - v001` →
+  `velo-ce-pilota-bc-lungo-bosch-guida-societa`.
 - Slug: minuscolo, senza accenti, apostrofi tolti (`d'acquisto` → `dacquisto`), ogni altro
   carattere che non è lettera o cifra diventa `-`, trattini doppi ridotti, niente trattini ai bordi.
 
@@ -28,7 +33,8 @@ Uso:
       # o un'altra famiglia resta all'agente (ingestor §3.2).
   python3 .claude/scripts/famiglia.py --verifica [--json]
       # golden test sul vault: famiglia calcolata da `current.name` contro `family` per le
-      # note sharepoint, onedrive e attachment; esce con 1 se l'accordo è sotto il 90%.
+      # note sharepoint, onedrive e attachment; esce con 1 se l'accordo con il prefisso di
+      # disambiguazione (`accordo_con_prefisso`) è sotto il 95% (SOGLIA_VERIFICA; in CI, SPEC 4.4).
 
 La variabile d'ambiente VAULT_ROOT, se presente, indica la radice del vault al posto della
 cartella che contiene `.claude/` (serve ai test in `.claude/scripts/tests/`).
@@ -86,9 +92,17 @@ DATA_RE = re.compile(rf"{INIZIO}(?:{'|'.join(DATE)})(?:[\s_\-]{ORA})?{FINE}", re
 
 # Suffissi in coda: versione, stato, copia (si tolgono ripetutamente)
 VERSIONE = r"(?:v|ver|rev|version|versione)[\s_.]?\d+(?:[._]\d+)*"
-STATO = r"(?:final|finale|def|definitivo|definitiva|signed|firmato|firmata|sent|inviato|inviata|bozza|draft)"
+STATO = (r"(?:final|finale|def|definitivo|definitiva|signed|firmato|firmata|sent|inviato|inviata|bozza|draft"
+         r"|vecchia|vecchio)")
+# Stati che contano solo dopo `_` (`BlueAge_Possibilita_v3_MEETING`, `Listino_OLD`): dopo uno
+# spazio sono parte del titolo (`Kickoff meeting`, `Gold old`)
+STATO_SOTTOLINEATO = r"(?:meeting|old)"
 COPIA = r"(?:copia|copy)"
-CODA_RE = re.compile(rf"(?:(?:{SEP}+|^)(?:{VERSIONE}|{STATO}|{COPIA})|\s*\(\d+\))\s*$", re.I)
+CODA_RE = re.compile(rf"(?:(?:{SEP}+|^)(?:{VERSIONE}|{STATO}|{COPIA})|_+{STATO_SOTTOLINEATO}|\s*\(\d+\))\s*$",
+                     re.I)
+# Versione a metà nome seguita da un altro segmento ` - ` (`… Bosch v006 - Guida … - v001`)
+VERSIONE_IN_MEZZO_RE = re.compile(rf"(?<=[\s_]){VERSIONE}(?=\s*[-–—]\s+\S)", re.I)
+SOGLIA_VERIFICA = 95  # accordo minimo (%) del golden test, con il prefisso di disambiguazione
 # Firma dell'autore in coda (`Manini_G1_Strategia_<Firma>.pptx`): non distingue il documento.
 # Le firme sono in `vault.yaml` (`fonti.firme_in_coda`).
 _FIRMA = {}
@@ -100,7 +114,9 @@ def firma_re():
         _FIRMA[firme] = re.compile(rf"{SEP}+(?:{'|'.join(map(re.escape, firme))})\s*$", re.I) if firme else None
     return _FIRMA[firme]
 
-LETTERA_RE = re.compile(r"_[A-Z]$")  # PULSE_Sintesi_C: lettera di versione (maiuscola, dopo `_`)
+# Lettera di versione: una maiuscola isolata come ultimo segmento (`PULSE_Sintesi_C`, `PULSE_K`,
+# `Piano B`), non dopo un punto (`S.p.A`)
+LETTERA_RE = re.compile(r"[\s_\-–—]+[A-Z]$")
 ESTENSIONE_RE = re.compile(r"\.[A-Za-z0-9]{1,5}$")
 SPAZZATURA_RE = re.compile(rf"{SEP}+$")
 
@@ -132,7 +148,7 @@ def famiglia(nome):
     """Chiave di famiglia da un nome di file (anche con percorso o URL)."""
     base = unquote(str(nome)).replace("\\", "/").rstrip("/").rsplit("/", 1)[-1].strip()
     stem = ESTENSIONE_RE.sub("", base) if "." in base else base
-    s = DATA_RE.sub(" ", stem)
+    s = VERSIONE_IN_MEZZO_RE.sub(" ", DATA_RE.sub(" ", stem))
     while True:
         s, tolto = togli_coda(s.rstrip())
         if not tolto:
@@ -279,7 +295,7 @@ def main(argv):
                   f"(accordo complessivo {r['accordo_con_prefisso']}%)")
             for d in r["disaccordi"]:
                 print(f"- [{d['esito']}] {d['nome']} → {d['calcolata']} ≠ {d['registrata']}")
-        return 0 if r["accordo_con_prefisso"] >= 90 else 1
+        return 0 if r["accordo_con_prefisso"] >= SOGLIA_VERIFICA else 1
     if op.startswith("--"):
         sys.stderr.write(f"opzione sconosciuta: {op}\n")
         return 2
