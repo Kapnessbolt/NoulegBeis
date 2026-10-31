@@ -9,6 +9,7 @@ current:
   name: Velo-CE - App So Smart, che cosa serve - CLIENTE - v002.pdf
   last_modified: 2026-09-29T18:00:31Z
 versions:
+  - { name: "Velo-CE - App So Smart, che cosa serve - CLIENTE - v002.pdf", item_id: 01EFCYUZY4FVCFJRDOYVHZFMO23TWDBW3L, last_modified: 2026-09-29T18:00:31Z }
   - { name: "Velo-CE - App So Smart, che cosa serve - CLIENTE - v002.pdf", item_id: 01EFCYUZ2RP2PAVY2TRBE3SFEPKXMJBPFN, last_modified: 2026-09-29T18:00:31Z }
 also_at: []
 status: active

@@ -9,6 +9,7 @@ current:
   name: Velo-CE - Criticità di configurazione per macroarea - v004.xlsx
   last_modified: 2026-09-28T15:31:54Z
 versions:
+  - { name: Velo-CE - Criticità di configurazione per macroarea - v004.xlsx, item_id: 01EFCYUZZYQPOCJSFOABDZ6FF2I2AE47U3, last_modified: 2026-09-28T15:31:54Z }
   - { name: Velo-CE - Criticità di configurazione per macroarea - v004.xlsx, item_id: 01EFCYUZ3BKNERSEK2DBFLLRUUHRAMX6YS, last_modified: 2026-09-28T15:31:54Z }
 also_at: []
 status: active

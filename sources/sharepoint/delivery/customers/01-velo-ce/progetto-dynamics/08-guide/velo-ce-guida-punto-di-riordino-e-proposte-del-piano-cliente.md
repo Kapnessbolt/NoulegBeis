@@ -9,6 +9,7 @@ current:
   name: Velo-CE - Guida punto di riordino e proposte del piano - CLIENTE - v001.pdf
   last_modified: 2026-10-28T08:06:13Z
 versions:
+  - { name: "Velo-CE - Guida punto di riordino e proposte del piano - CLIENTE - v001.pdf", item_id: 01EFCYUZ5YE3F6BDCZO5H3E2FA7GK3JZBB, last_modified: 2026-10-28T08:06:13Z }
   - { name: "Velo-CE - Guida punto di riordino e proposte del piano - CLIENTE - v001.pdf", item_id: 01EFCYUZ66IVYPERNJSNB3EHSTQJEM56YS, last_modified: 2026-10-28T08:06:13Z }
 also_at: []
 status: active

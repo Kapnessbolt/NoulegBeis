@@ -9,6 +9,7 @@ current:
   name: "Velo-CE - Layout etichetta da ordine acquisto prova - INTERNO - v001.docx"
   last_modified: 2022-02-07T14:22:00Z
 versions:
+  - { name: "Velo-CE - Layout etichetta da ordine acquisto prova - INTERNO - v001.docx", item_id: 01EFCYUZ7ESF6DXQGAS5EIE3XBXZIGQ3YB, last_modified: 2022-02-07T14:22:00Z }
   - { name: "Velo-CE - Layout etichetta da ordine acquisto prova - INTERNO - v001.docx", item_id: 01EFCYUZZKBA4WDDULGNH26LZE47HVB6GP, last_modified: 2022-02-07T14:22:00Z }
 also_at: []
 status: active

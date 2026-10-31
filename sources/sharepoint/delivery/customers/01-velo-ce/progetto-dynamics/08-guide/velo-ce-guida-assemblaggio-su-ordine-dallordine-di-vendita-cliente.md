@@ -9,6 +9,7 @@ current:
   name: Velo-CE - Guida assemblaggio su ordine dall'ordine di vendita - CLIENTE - v001.pdf
   last_modified: 2026-10-28T08:06:10Z
 versions:
+  - { name: "Velo-CE - Guida assemblaggio su ordine dall'ordine di vendita - CLIENTE - v001.pdf", item_id: 01EFCYUZZZ7VF6ECJ2F5G2GTICID4UGJWQ, last_modified: 2026-10-28T08:06:10Z }
   - { name: "Velo-CE - Guida assemblaggio su ordine dall'ordine di vendita - CLIENTE - v001.pdf", item_id: 01EFCYUZZCCUT5CRT3Z5DKHULR42QRZWB7, last_modified: 2026-10-28T08:06:10Z }
 also_at:
   - { web_url: "https://blueagesrl.sharepoint.com/sites/internal/Delivery/Customers/01 - Velo-CE/Progetto Dynamics/08 Guide/Velo-CE - Guida assemblaggio su ordine dall'ordine di vendita - CLIENTE - v001.docx", item_id: 01EFCYUZ3TX4DT3OWWPBH3JHVCGBUYPCOK }

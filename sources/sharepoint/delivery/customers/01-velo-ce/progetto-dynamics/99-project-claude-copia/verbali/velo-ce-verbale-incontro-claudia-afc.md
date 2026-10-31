@@ -9,6 +9,7 @@ current:
   name: velo-ce-verbale-261013-1357-incontro-claudia-afc.md
   last_modified: 2026-10-28T08:06:44Z
 versions:
+  - { name: velo-ce-verbale-261013-1357-incontro-claudia-afc.md, item_id: 01EFCYUZ73B2PCEVXLM5BZL5UZZ5IBM4OH, last_modified: 2026-10-28T08:06:44Z }
   - { name: velo-ce-verbale-261013-1357-incontro-claudia-afc.md, item_id: 01EFCYUZ2BOWMFEPXW4JFJ4UQ26Y5GZDPD, last_modified: 2026-10-28T08:06:44Z }
 also_at: []
 status: active

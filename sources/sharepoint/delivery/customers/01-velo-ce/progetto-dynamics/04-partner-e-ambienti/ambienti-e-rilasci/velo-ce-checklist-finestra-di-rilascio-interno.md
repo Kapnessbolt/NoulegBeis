@@ -9,6 +9,7 @@ current:
   name: Velo-CE - Checklist finestra di rilascio - INTERNO - v002.xlsx
   last_modified: 2026-09-27T18:32:52Z
 versions:
+  - { name: Velo-CE - Checklist finestra di rilascio - INTERNO - v002.xlsx, item_id: 01EFCYUZ6J3Z66K5RK4FH3IYLL3FKXXVPM, last_modified: 2026-09-27T18:32:52Z }
   - { name: Velo-CE - Checklist finestra di rilascio - INTERNO - v002.xlsx, item_id: 01EFCYUZ7SV6SW3MXQ3VD2XDOXE5BUVOXN, last_modified: 2026-09-27T18:32:52Z }
 also_at: []
 status: active

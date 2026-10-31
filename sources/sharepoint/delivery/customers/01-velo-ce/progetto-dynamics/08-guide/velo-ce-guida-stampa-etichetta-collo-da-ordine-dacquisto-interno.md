@@ -9,6 +9,7 @@ current:
   name: Velo-CE - Guida stampa etichetta collo da ordine d'acquisto - INTERNO - v001.pdf
   last_modified: 2026-10-28T08:06:13Z
 versions:
+  - { name: "Velo-CE - Guida stampa etichetta collo da ordine d'acquisto - INTERNO - v001.pdf", item_id: 01EFCYUZ3EDKFTVVZSJFBJLSVZKBAA5N3Q, last_modified: 2026-10-28T08:06:13Z }
   - { name: "Velo-CE - Guida stampa etichetta collo da ordine d'acquisto - INTERNO - v001.pdf", item_id: 01EFCYUZYNAPLSOF7VZJG32XESAVV66K6H, last_modified: 2026-10-28T08:06:13Z }
 also_at: []
 status: active

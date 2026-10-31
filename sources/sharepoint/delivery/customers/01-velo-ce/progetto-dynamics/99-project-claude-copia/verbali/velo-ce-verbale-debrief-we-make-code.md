@@ -9,6 +9,7 @@ current:
   name: velo-ce-verbale-261022-1605-debrief-we-make-code.md
   last_modified: 2026-10-28T08:06:45Z
 versions:
+  - { name: velo-ce-verbale-261022-1605-debrief-we-make-code.md, item_id: 01EFCYUZ3JTV7YASS3HRA3RTQORI7NFKUC, last_modified: 2026-10-28T08:06:45Z }
   - { name: velo-ce-verbale-261022-1605-debrief-we-make-code.md, item_id: 01EFCYUZ2BSEYYXYBFCZFLWJJVSQLYWE5V, last_modified: 2026-10-28T08:06:45Z }
 also_at: []
 status: active

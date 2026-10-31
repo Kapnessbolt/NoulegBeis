@@ -9,8 +9,9 @@ current:
   name: handoff-2026-10-08-afc-voci-2.1-2.2.md
   last_modified: 2026-10-08T10:43:55Z
 versions:
-  - { name: handoff-2026-10-08-afc-voci-2.1-2.2.md, item_id: 01EFCYUZ3WBFADKRR3SNAJGYQZV6RY7QRA, last_modified: 2026-10-08T10:43:55Z }
+  - { name: handoff-2026-10-08-afc-voci-2.1-2.2.md, item_id: 01EFCYUZ4LU4AXCMGNAJDJPALBMNXGZSO7, last_modified: 2026-10-08T10:43:55Z }
   - { name: handoff-2026-10-08-afc-voci-2.1-2.2.md, item_id: 01EFCYUZ6FJRYH2EB5IZDYQTNG5YEUROJD, last_modified: 2026-10-28T08:06:21Z }
+  - { name: handoff-2026-10-08-afc-voci-2.1-2.2.md, item_id: 01EFCYUZ3WBFADKRR3SNAJGYQZV6RY7QRA, last_modified: 2026-10-08T10:43:55Z }
 also_at: []
 status: active
 partial: false

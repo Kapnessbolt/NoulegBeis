@@ -9,6 +9,7 @@ current:
   name: "Velo-CE - Layout etichetta collo stile fornitore da ordine acquisto prova - INTERNO - v002.docx"
   last_modified: 2022-02-07T14:22:00Z
 versions:
+  - { name: "Velo-CE - Layout etichetta collo stile fornitore da ordine acquisto prova - INTERNO - v002.docx", item_id: 01EFCYUZ3DJJC2CJLNWZHJ66TDEUKPI7JT, last_modified: 2022-02-07T14:22:00Z }
   - { name: "Velo-CE - Layout etichetta collo stile fornitore da ordine acquisto prova - INTERNO - v002.docx", item_id: 01EFCYUZ5CAHJ5SF6O65HK2DVGLU7BHSDX, last_modified: 2022-02-07T14:22:00Z }
 also_at: []
 status: active

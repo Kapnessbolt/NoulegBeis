@@ -9,8 +9,9 @@ current:
   name: handoff-2026-10-05-app-eos-adr-chiusa-e-ivc.md
   last_modified: 2026-10-08T10:43:55Z
 versions:
-  - { name: handoff-2026-10-05-app-eos-adr-chiusa-e-ivc.md, item_id: 01EFCYUZ4F5XHYIXXIRJEIP23DPFVJTL24, last_modified: 2026-10-08T10:43:55Z }
+  - { name: handoff-2026-10-05-app-eos-adr-chiusa-e-ivc.md, item_id: 01EFCYUZ7YAJBOGIDLYJCLOUFYUDKEQ3LL, last_modified: 2026-10-08T10:43:55Z }
   - { name: handoff-2026-10-05-app-eos-adr-chiusa-e-ivc.md, item_id: 01EFCYUZZMSJQ26GLY2FC3OZQ2TUENK6JM, last_modified: 2026-10-28T08:06:21Z }
+  - { name: handoff-2026-10-05-app-eos-adr-chiusa-e-ivc.md, item_id: 01EFCYUZ4F5XHYIXXIRJEIP23DPFVJTL24, last_modified: 2026-10-08T10:43:55Z }
 also_at: []
 status: active
 partial: false

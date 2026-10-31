@@ -9,6 +9,7 @@ current:
   name: velo-ce-verbale-261014-1119-proposta-codifica-articoli.md
   last_modified: 2026-10-28T08:06:44Z
 versions:
+  - { name: velo-ce-verbale-261014-1119-proposta-codifica-articoli.md, item_id: 01EFCYUZ6TBUOWMFMC6JDKMWACC63BCGCH, last_modified: 2026-10-28T08:06:44Z }
   - { name: velo-ce-verbale-261014-1119-proposta-codifica-articoli.md, item_id: 01EFCYUZYY7VHOCG6ZZNC2J2H23Q2BMJAQ, last_modified: 2026-10-28T08:06:44Z }
 also_at: []
 status: active

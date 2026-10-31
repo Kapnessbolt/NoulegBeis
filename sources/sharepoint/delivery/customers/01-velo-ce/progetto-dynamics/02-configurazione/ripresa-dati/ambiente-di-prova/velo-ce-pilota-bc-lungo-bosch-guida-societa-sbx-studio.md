@@ -9,6 +9,7 @@ current:
   name: "Velo-CE - Pilota BC Lungo Bosch v006 - Guida societa e pagine sbx-studio - v001.xlsx"
   last_modified: 2026-09-28T18:53:00Z
 versions:
+  - { name: "Velo-CE - Pilota BC Lungo Bosch v006 - Guida societa e pagine sbx-studio - v001.xlsx", item_id: 01EFCYUZ2IICO7XPBJWBDKSUOFJ2MD3FVF, last_modified: 2026-09-28T18:53:00Z }
   - { name: "Velo-CE - Pilota BC Lungo Bosch v006 - Guida societa e pagine sbx-studio - v001.xlsx", item_id: 01EFCYUZ2WLDNSK5BXYFF3NYTRIWIL3NHG, last_modified: 2026-09-28T18:53:00Z }
 also_at: []
 status: active

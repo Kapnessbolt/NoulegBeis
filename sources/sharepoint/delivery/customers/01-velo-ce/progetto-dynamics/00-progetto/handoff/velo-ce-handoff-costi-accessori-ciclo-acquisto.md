@@ -9,6 +9,7 @@ current:
   name: handoff-2026-10-26-costi-accessori-ciclo-acquisto.md
   last_modified: 2026-10-28T08:06:23Z
 versions:
+  - { name: handoff-2026-10-26-costi-accessori-ciclo-acquisto.md, item_id: 01EFCYUZ3SMZC3N4DACRA2252SJWWRCAEO, last_modified: 2026-10-28T08:06:23Z }
   - { name: handoff-2026-10-26-costi-accessori-ciclo-acquisto.md, item_id: 01EFCYUZ4I34DN5ZOFHZAZFAXGITY6VGWD, last_modified: 2026-10-28T08:06:23Z }
 also_at: []
 status: active

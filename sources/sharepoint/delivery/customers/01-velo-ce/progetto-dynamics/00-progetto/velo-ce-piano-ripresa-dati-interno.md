@@ -9,6 +9,7 @@ current:
   name: Velo-CE - Piano ripresa dati - INTERNO - v001.xlsx
   last_modified: 2026-10-08T07:59:37Z
 versions:
+  - { name: Velo-CE - Piano ripresa dati - INTERNO - v001.xlsx, item_id: 01EFCYUZ45ABRXUWVOZZEIFLHIECSEJD7E, last_modified: 2026-10-08T07:59:37Z }
   - { name: Velo-CE - Piano ripresa dati - INTERNO - v001.xlsx, item_id: 01EFCYUZZHZIFH3MEBO5DJCYOEUSMIKJGA, last_modified: 2026-10-08T07:59:37Z }
 also_at: []
 status: active

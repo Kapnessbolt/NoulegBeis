@@ -9,8 +9,9 @@ current:
   name: Velo-CE - Guida stampa etichetta articolo con codice a barre - INTERNO - v002.pdf
   last_modified: 2026-10-08T10:43:51Z
 versions:
-  - { name: Velo-CE - Guida stampa etichetta articolo con codice a barre - INTERNO - v002.pdf, item_id: 01EFCYUZZSGZTVDM746NGZKLZXO4KIUL22, last_modified: 2026-10-08T10:43:51Z }
+  - { name: Velo-CE - Guida stampa etichetta articolo con codice a barre - INTERNO - v002.pdf, item_id: 01EFCYUZ7M6DI55WZPH5HYXKAIWYX372MK, last_modified: 2026-10-08T10:43:51Z }
   - { name: Velo-CE - Guida stampa etichetta articolo con codice a barre - INTERNO - v002.pdf, item_id: 01EFCYUZ4IJQUJK7RJJVGIDPS2D7J53W6P, last_modified: 2026-10-28T08:06:13Z }
+  - { name: Velo-CE - Guida stampa etichetta articolo con codice a barre - INTERNO - v002.pdf, item_id: 01EFCYUZZSGZTVDM746NGZKLZXO4KIUL22, last_modified: 2026-10-08T10:43:51Z }
   - { name: Velo-CE - Guida stampa etichetta articolo con codice a barre - INTERNO - v002.docx, item_id: 01EFCYUZ4EHWZXOABV2ZEJUZKD6XAVSQFL, last_modified: 2026-10-07T10:04:03Z }
 also_at: []
 status: active

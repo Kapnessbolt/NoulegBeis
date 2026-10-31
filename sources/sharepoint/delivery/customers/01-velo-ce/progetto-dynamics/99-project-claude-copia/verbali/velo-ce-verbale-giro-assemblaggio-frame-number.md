@@ -9,6 +9,7 @@ current:
   name: velo-ce-verbale-261021-0845-giro-assemblaggio-frame-number.md
   last_modified: 2026-10-28T08:06:44Z
 versions:
+  - { name: velo-ce-verbale-261021-0845-giro-assemblaggio-frame-number.md, item_id: 01EFCYUZ6Q6D2ZFKOWGFC3ZUTBBLKHI2BQ, last_modified: 2026-10-28T08:06:44Z }
   - { name: velo-ce-verbale-261021-0845-giro-assemblaggio-frame-number.md, item_id: 01EFCYUZZMNCRPYHBSUBFK7UAYRQGQ77EF, last_modified: 2026-10-28T08:06:44Z }
 also_at: []
 status: active

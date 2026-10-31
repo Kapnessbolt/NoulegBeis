@@ -9,6 +9,7 @@ current:
   name: velo-ce-verbale-261022-1104-revisione-file-codifica-articoli.md
   last_modified: 2026-10-28T08:06:46Z
 versions:
+  - { name: velo-ce-verbale-261022-1104-revisione-file-codifica-articoli.md, item_id: 01EFCYUZ2LGWU5VQCBRZEKWE7MSZ6DQJ4W, last_modified: 2026-10-28T08:06:46Z }
   - { name: velo-ce-verbale-261022-1104-revisione-file-codifica-articoli.md, item_id: 01EFCYUZ5KYQQAJ7VPGZA33ULE2ZMQDX3J, last_modified: 2026-10-28T08:06:46Z }
 also_at: []
 status: active

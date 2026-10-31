@@ -9,6 +9,7 @@ current:
   name: handoff-2026-10-27-costi-accessori-sezione-6.md
   last_modified: 2026-10-28T08:06:23Z
 versions:
+  - { name: handoff-2026-10-27-costi-accessori-sezione-6.md, item_id: 01EFCYUZY6LW7G2EXCXJEKR3SHU6AXDGOQ, last_modified: 2026-10-28T08:06:23Z }
   - { name: handoff-2026-10-27-costi-accessori-sezione-6.md, item_id: 01EFCYUZY4DVIDHCOKNBBLZ47DGDSBG3GG, last_modified: 2026-10-28T08:06:23Z }
 also_at: []
 status: active

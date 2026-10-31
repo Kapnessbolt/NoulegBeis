@@ -9,6 +9,7 @@ current:
   name: handoff-2026-10-09-afc-voce-2.3.md
   last_modified: 2026-10-28T08:06:21Z
 versions:
+  - { name: handoff-2026-10-09-afc-voce-2.3.md, item_id: 01EFCYUZYXXFM3CS4DGRBLJHN7YFCBJ665, last_modified: 2026-10-28T08:06:21Z }
   - { name: handoff-2026-10-09-afc-voce-2.3.md, item_id: 01EFCYUZZPI5YIPA5EHJEILMBTNBOCCCET, last_modified: 2026-10-28T08:06:21Z }
 also_at: []
 status: active

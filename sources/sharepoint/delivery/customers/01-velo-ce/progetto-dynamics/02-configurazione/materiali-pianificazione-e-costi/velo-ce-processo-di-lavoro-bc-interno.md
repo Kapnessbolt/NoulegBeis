@@ -9,6 +9,7 @@ current:
   name: "Velo-CE - Processo di lavoro BC - INTERNO - v001.xlsx"
   last_modified: 2026-10-05T08:48:20Z
 versions:
+  - { name: "Velo-CE - Processo di lavoro BC - INTERNO - v001.xlsx", item_id: 01EFCYUZ5PVHA4CG2N65GZ6ELO6VP55VCQ, last_modified: 2026-10-05T08:48:20Z }
   - { name: "Velo-CE - Processo di lavoro BC - INTERNO - v001.xlsx", item_id: 01EFCYUZ7DWFSTPPXDC5AIIGLJ7MOQUVLV, last_modified: 2026-10-05T08:48:20Z }
 also_at: []
 status: active

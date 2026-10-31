@@ -9,6 +9,7 @@ current:
   name: "Velo-CE - Layout etichetta articolo standard report 6625 - INTERNO - v001.docx"
   last_modified: 2023-08-03T12:06:00Z
 versions:
+  - { name: "Velo-CE - Layout etichetta articolo standard report 6625 - INTERNO - v001.docx", item_id: 01EFCYUZ47HIUHRJH2HFB3QBTT6GATNTM2, last_modified: 2023-08-03T12:06:00Z }
   - { name: "Velo-CE - Layout etichetta articolo standard report 6625 - INTERNO - v001.docx", item_id: 01EFCYUZ6BN6SILI43QNAY3DG2EO7UOTV2, last_modified: 2023-08-03T12:06:00Z }
 also_at: []
 status: active

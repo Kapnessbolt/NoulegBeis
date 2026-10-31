@@ -9,8 +9,9 @@ current:
   name: handoff-2026-10-08-afc-contesti-minori.md
   last_modified: 2026-10-08T10:43:55Z
 versions:
-  - { name: handoff-2026-10-08-afc-contesti-minori.md, item_id: 01EFCYUZZXQ3YMAIU7YZAY4V57ZATS73Y4, last_modified: 2026-10-08T10:43:55Z }
+  - { name: handoff-2026-10-08-afc-contesti-minori.md, item_id: 01EFCYUZ4BYCCVQQBMC5F36NFJOEEBPRQH, last_modified: 2026-10-08T10:43:55Z }
   - { name: handoff-2026-10-08-afc-contesti-minori.md, item_id: 01EFCYUZ2IJGBYCIHH5NAKC2MM4CSUX4B2, last_modified: 2026-10-28T08:06:21Z }
+  - { name: handoff-2026-10-08-afc-contesti-minori.md, item_id: 01EFCYUZZXQ3YMAIU7YZAY4V57ZATS73Y4, last_modified: 2026-10-08T10:43:55Z }
 also_at: []
 status: active
 partial: false

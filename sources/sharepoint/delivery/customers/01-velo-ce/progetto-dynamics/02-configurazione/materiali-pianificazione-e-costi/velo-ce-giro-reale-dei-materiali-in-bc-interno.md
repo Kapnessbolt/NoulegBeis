@@ -9,8 +9,9 @@ current:
   name: "Velo-CE - Giro reale dei materiali in BC - INTERNO - v001.md"
   last_modified: 2026-10-08T10:44:30Z
 versions:
-  - { name: "Velo-CE - Giro reale dei materiali in BC - INTERNO - v001.md", item_id: 01EFCYUZ6OFXE7KPGLDJD33VFH5FAQZAQD, last_modified: 2026-10-08T10:44:30Z }
+  - { name: "Velo-CE - Giro reale dei materiali in BC - INTERNO - v001.md", item_id: 01EFCYUZ7NLRE3TU4GR5BIZCOWFNQMYSNV, last_modified: 2026-10-08T10:44:30Z }
   - { name: "Velo-CE - Giro reale dei materiali in BC - INTERNO - v001.md", item_id: 01EFCYUZ4DGDZTWBEKPJDKXBWJ3N2PBO5W, last_modified: 2026-10-28T08:06:27Z }
+  - { name: "Velo-CE - Giro reale dei materiali in BC - INTERNO - v001.md", item_id: 01EFCYUZ6OFXE7KPGLDJD33VFH5FAQZAQD, last_modified: 2026-10-08T10:44:30Z }
 also_at: []
 status: active
 partial: false

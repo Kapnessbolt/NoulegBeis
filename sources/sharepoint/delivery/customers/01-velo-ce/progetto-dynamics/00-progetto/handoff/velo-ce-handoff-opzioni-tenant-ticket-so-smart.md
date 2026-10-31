@@ -9,6 +9,7 @@ current:
   name: handoff-2026-10-09-opzioni-tenant-ticket-so-smart.md
   last_modified: 2026-10-28T08:06:22Z
 versions:
+  - { name: handoff-2026-10-09-opzioni-tenant-ticket-so-smart.md, item_id: 01EFCYUZYEADPCEISLARAJLP4BSYHPMUX4, last_modified: 2026-10-28T08:06:22Z }
   - { name: handoff-2026-10-09-opzioni-tenant-ticket-so-smart.md, item_id: 01EFCYUZ4COZ2MRTOTFZFJ56QDMQYMCEAS, last_modified: 2026-10-28T08:06:22Z }
 also_at: []
 status: active

@@ -9,6 +9,7 @@ current:
   name: velo-ce-verbale-261013-1020-allineamento-consegna-14-10.md
   last_modified: 2026-10-28T08:06:44Z
 versions:
+  - { name: velo-ce-verbale-261013-1020-allineamento-consegna-14-10.md, item_id: 01EFCYUZ2OUBDJ6UNGZRFYT3H56HI33GRE, last_modified: 2026-10-28T08:06:44Z }
   - { name: velo-ce-verbale-261013-1020-allineamento-consegna-14-10.md, item_id: 01EFCYUZ3GLQ4KM7QQOVB27WX7O2O7BRQJ, last_modified: 2026-10-28T08:06:44Z }
 also_at: []
 status: active

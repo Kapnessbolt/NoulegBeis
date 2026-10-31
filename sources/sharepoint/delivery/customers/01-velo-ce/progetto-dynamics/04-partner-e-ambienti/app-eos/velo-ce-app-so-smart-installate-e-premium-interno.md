@@ -9,6 +9,7 @@ current:
   name: Velo-CE - App So Smart installate e Premium - INTERNO - v002.xlsx
   last_modified: 2026-10-06T11:35:37Z
 versions:
+  - { name: Velo-CE - App So Smart installate e Premium - INTERNO - v002.xlsx, item_id: 01EFCYUZ65VF7UOKXBE5BKKEDZNAMEOFWX, last_modified: 2026-10-06T11:35:37Z }
   - { name: Velo-CE - App So Smart installate e Premium - INTERNO - v001.xlsx, item_id: 01EFCYUZ6QBDKWOAGRNRFIWFMFHFQHAHAU, last_modified: 2026-10-06T11:35:37Z }
 also_at: []
 status: active

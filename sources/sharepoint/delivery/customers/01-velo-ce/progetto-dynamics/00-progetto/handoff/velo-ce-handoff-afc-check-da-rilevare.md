@@ -9,6 +9,7 @@ current:
   name: handoff-2026-10-09-afc-check-da-rilevare.md
   last_modified: 2026-10-28T08:06:21Z
 versions:
+  - { name: handoff-2026-10-09-afc-check-da-rilevare.md, item_id: 01EFCYUZ5XJS5AVADKEZAYAJ6XOWCYRHDI, last_modified: 2026-10-28T08:06:21Z }
   - { name: handoff-2026-10-09-afc-check-da-rilevare.md, item_id: 01EFCYUZ2JZMEWU2ORKVGYNA6JUP6BGEWK, last_modified: 2026-10-28T08:06:21Z }
 also_at: []
 status: active

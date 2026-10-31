@@ -9,6 +9,7 @@ current:
   name: "Velo-CE - Pilota BC Lungo Bosch - Fetta telaio verniciato - nota per Trif - v001.docx"
   last_modified: 2026-09-27T21:38:14Z
 versions:
+  - { name: "Velo-CE - Pilota BC Lungo Bosch - Fetta telaio verniciato - nota per Trif - v001.docx", item_id: 01EFCYUZ7UYFCLZED26VBZBYVY7HMWOXZA, last_modified: 2026-09-27T21:38:14Z }
   - { name: "Velo-CE - Pilota BC Lungo Bosch - Fetta telaio verniciato - nota per Trif - v001.docx", item_id: 01EFCYUZ7KO4GIJ6WTZFGYAAGSST4TUV7H, last_modified: 2026-09-27T21:38:14Z }
 also_at: []
 status: active

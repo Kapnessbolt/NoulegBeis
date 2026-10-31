@@ -9,8 +9,9 @@ current:
   name: velo-ce-verbale-260929-1744-allineamento-serale.md
   last_modified: 2026-10-08T10:44:36Z
 versions:
-  - { name: velo-ce-verbale-260929-1744-allineamento-serale.md, item_id: 01EFCYUZ6DRU7KP7L6RFEIYGHJCRAUHNSA, last_modified: 2026-10-08T10:44:36Z }
+  - { name: velo-ce-verbale-260929-1744-allineamento-serale.md, item_id: 01EFCYUZYBAS3P2CB4H5C3DMWHAL4RC4AR, last_modified: 2026-10-08T10:44:36Z }
   - { name: velo-ce-verbale-260929-1744-allineamento-serale.md, item_id: 01EFCYUZ6Y4RMXYX3SGRCZO5U3IMHWEYOT, last_modified: 2026-10-28T08:06:43Z }
+  - { name: velo-ce-verbale-260929-1744-allineamento-serale.md, item_id: 01EFCYUZ6DRU7KP7L6RFEIYGHJCRAUHNSA, last_modified: 2026-10-08T10:44:36Z }
 also_at: []
 status: active
 partial: false

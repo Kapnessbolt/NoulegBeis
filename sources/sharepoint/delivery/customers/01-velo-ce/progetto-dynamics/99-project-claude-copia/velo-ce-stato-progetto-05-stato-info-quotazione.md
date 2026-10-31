@@ -9,8 +9,9 @@ current:
   name: velo-ce-stato-progetto-05-stato-info-quotazione.md
   last_modified: 2026-10-08T10:43:52Z
 versions:
-  - { name: velo-ce-stato-progetto-05-stato-info-quotazione.md, item_id: 01EFCYUZ5UHRWPQPA2URGITRMTLBLNSHJ5, last_modified: 2026-10-08T10:43:52Z }
+  - { name: velo-ce-stato-progetto-05-stato-info-quotazione.md, item_id: 01EFCYUZYURPBCUT6H7NCKACHRYKKNY3K6, last_modified: 2026-10-08T10:43:52Z }
   - { name: velo-ce-stato-progetto-05-stato-info-quotazione.md, item_id: 01EFCYUZYQ7B4FJHNKRJBLV5RXTI4YJ4V6, last_modified: 2026-10-28T08:06:16Z }
+  - { name: velo-ce-stato-progetto-05-stato-info-quotazione.md, item_id: 01EFCYUZ5UHRWPQPA2URGITRMTLBLNSHJ5, last_modified: 2026-10-08T10:43:52Z }
 also_at: []
 status: active
 partial: false

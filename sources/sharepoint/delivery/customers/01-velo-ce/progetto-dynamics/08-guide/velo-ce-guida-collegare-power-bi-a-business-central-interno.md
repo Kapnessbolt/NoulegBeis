@@ -9,6 +9,7 @@ current:
   name: Velo-CE - Guida collegare Power BI a Business Central - INTERNO - v001.pdf
   last_modified: 2026-10-28T08:06:11Z
 versions:
+  - { name: "Velo-CE - Guida collegare Power BI a Business Central - INTERNO - v001.pdf", item_id: 01EFCYUZ42IW7O5PBDVNEYRYXDLTGVKKLT, last_modified: 2026-10-28T08:06:11Z }
   - { name: "Velo-CE - Guida collegare Power BI a Business Central - INTERNO - v001.pdf", item_id: 01EFCYUZYCEAIHYCKPZJDY2MG7URD4IQOS, last_modified: 2026-10-28T08:06:11Z }
 also_at: []
 status: active

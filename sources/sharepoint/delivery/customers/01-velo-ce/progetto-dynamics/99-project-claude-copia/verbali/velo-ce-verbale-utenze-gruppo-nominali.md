@@ -9,6 +9,7 @@ current:
   name: velo-ce-verbale-261021-1524-utenze-gruppo-nominali.md
   last_modified: 2026-10-28T08:06:45Z
 versions:
+  - { name: velo-ce-verbale-261021-1524-utenze-gruppo-nominali.md, item_id: 01EFCYUZ7CQI5F3TN3XVCKIBORVYPWMPY4, last_modified: 2026-10-28T08:06:45Z }
   - { name: velo-ce-verbale-261021-1524-utenze-gruppo-nominali.md, item_id: 01EFCYUZ7JNTITFET7QBDYACUBGUDS6QN2, last_modified: 2026-10-28T08:06:45Z }
 also_at: []
 status: active

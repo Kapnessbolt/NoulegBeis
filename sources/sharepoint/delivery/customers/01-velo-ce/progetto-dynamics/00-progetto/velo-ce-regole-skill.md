@@ -9,8 +9,9 @@ current:
   name: _regole skill.md
   last_modified: 2026-10-08T10:43:48Z
 versions:
-  - { name: _regole skill.md, item_id: 01EFCYUZ75CATPRT3RDBC3T6NW6PLKG43K, last_modified: 2026-10-08T10:43:48Z }
+  - { name: _regole skill.md, item_id: 01EFCYUZYWUMWUACSIWBFLUX7QFDPT6LPF, last_modified: 2026-10-08T10:43:48Z }
   - { name: _regole skill.md, item_id: 01EFCYUZ46KIA7WDO4RVGYBLCMOPVFQDA6, last_modified: 2026-10-28T08:04:53Z }
+  - { name: _regole skill.md, item_id: 01EFCYUZ75CATPRT3RDBC3T6NW6PLKG43K, last_modified: 2026-10-08T10:43:48Z }
 also_at: []
 status: active
 partial: false

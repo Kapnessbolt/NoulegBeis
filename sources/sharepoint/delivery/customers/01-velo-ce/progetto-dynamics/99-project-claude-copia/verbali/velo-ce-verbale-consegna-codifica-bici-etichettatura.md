@@ -9,6 +9,7 @@ current:
   name: velo-ce-verbale-261014-1328-consegna-codifica-bici-etichettatura.md
   last_modified: 2026-10-28T08:06:44Z
 versions:
+  - { name: velo-ce-verbale-261014-1328-consegna-codifica-bici-etichettatura.md, item_id: 01EFCYUZ7FC3XPHF4EJ5D2THO3PETZUXE3, last_modified: 2026-10-28T08:06:44Z }
   - { name: velo-ce-verbale-261014-1328-consegna-codifica-bici-etichettatura.md, item_id: 01EFCYUZYHIF7KVUWOKBAJRWPQIXDEM2BP, last_modified: 2026-10-28T08:06:44Z }
 also_at: []
 status: active

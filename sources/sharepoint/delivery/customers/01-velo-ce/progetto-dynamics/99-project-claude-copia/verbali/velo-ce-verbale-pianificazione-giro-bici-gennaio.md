@@ -9,6 +9,7 @@ current:
   name: velo-ce-verbale-261021-1619-pianificazione-giro-bici-gennaio.md
   last_modified: 2026-10-28T08:06:45Z
 versions:
+  - { name: velo-ce-verbale-261021-1619-pianificazione-giro-bici-gennaio.md, item_id: 01EFCYUZ46IL4QF3KPZZFYRL5XBFVI5YF6, last_modified: 2026-10-28T08:06:45Z }
   - { name: velo-ce-verbale-261021-1619-pianificazione-giro-bici-gennaio.md, item_id: 01EFCYUZ43WSUHMPSNVFHJ6SNPZMKKQGXY, last_modified: 2026-10-28T08:06:45Z }
 also_at: []
 status: active

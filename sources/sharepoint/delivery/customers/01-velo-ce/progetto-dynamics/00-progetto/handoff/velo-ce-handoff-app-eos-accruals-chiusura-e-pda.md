@@ -9,8 +9,9 @@ current:
   name: handoff-2026-10-04-app-eos-accruals-chiusura-e-pda.md
   last_modified: 2026-10-08T10:43:54Z
 versions:
-  - { name: handoff-2026-10-04-app-eos-accruals-chiusura-e-pda.md, item_id: 01EFCYUZ5A275GXBDMXFCKOEDYJ2LYGLHQ, last_modified: 2026-10-08T10:43:54Z }
+  - { name: handoff-2026-10-04-app-eos-accruals-chiusura-e-pda.md, item_id: 01EFCYUZ6U5577QBRWLJHITRCV25FEYSWX, last_modified: 2026-10-08T10:43:54Z }
   - { name: handoff-2026-10-04-app-eos-accruals-chiusura-e-pda.md, item_id: 01EFCYUZ6OBEXVJ4K3ZZELYJ5EZ6CNUMBC, last_modified: 2026-10-28T08:06:21Z }
+  - { name: handoff-2026-10-04-app-eos-accruals-chiusura-e-pda.md, item_id: 01EFCYUZ5A275GXBDMXFCKOEDYJ2LYGLHQ, last_modified: 2026-10-08T10:43:54Z }
 also_at: []
 status: active
 partial: false

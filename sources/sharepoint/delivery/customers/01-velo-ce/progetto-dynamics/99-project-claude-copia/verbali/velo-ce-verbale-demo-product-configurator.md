@@ -9,6 +9,7 @@ current:
   name: velo-ce-verbale-261023-1500-demo-product-configurator.md
   last_modified: 2026-10-28T08:06:45Z
 versions:
+  - { name: velo-ce-verbale-261023-1500-demo-product-configurator.md, item_id: 01EFCYUZZA4JAOSHY3B5F3TFOXXDZPBWXY, last_modified: 2026-10-28T08:06:45Z }
   - { name: velo-ce-verbale-261023-1500-demo-product-configurator.md, item_id: 01EFCYUZ3PFHWYN4I7JBFYUOHU4ZGGEISX, last_modified: 2026-10-28T08:06:45Z }
 also_at: []
 status: active

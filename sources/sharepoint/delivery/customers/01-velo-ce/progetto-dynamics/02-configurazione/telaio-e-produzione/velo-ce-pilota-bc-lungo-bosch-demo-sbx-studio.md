@@ -9,6 +9,7 @@ current:
   name: "Velo-CE - Pilota BC Lungo Bosch v006 - Demo sbx-studio - contenuti, copione e risposte a Leo - v001.docx"
   last_modified: 2026-09-28T18:50:51Z
 versions:
+  - { name: "Velo-CE - Pilota BC Lungo Bosch v006 - Demo sbx-studio - contenuti, copione e risposte a Leo - v001.docx", item_id: 01EFCYUZ5SV5SXXWRF2BBLR4IDJ7YZPS2J, last_modified: 2026-09-28T18:50:51Z }
   - { name: "Velo-CE - Pilota BC Lungo Bosch v006 - Demo sbx-studio - contenuti, copione e risposte a Leo - v001.docx", item_id: 01EFCYUZ7D6FTGQN7DQVFZXBJUYCNSQJ55, last_modified: 2026-09-28T18:50:51Z }
 also_at: []
 status: active

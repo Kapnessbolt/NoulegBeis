@@ -9,6 +9,7 @@ current:
   name: Velo-CE - Registro temi di governance - INTERNO - v002.xlsx
   last_modified: 2026-10-04T10:33:22Z
 versions:
+  - { name: Velo-CE - Registro temi di governance - INTERNO - v002.xlsx, item_id: 01EFCYUZ2DGKPVEMEBNFAZN2TYHMIFYK3V, last_modified: 2026-10-04T10:33:22Z }
   - { name: Velo-CE - Registro temi di governance - INTERNO - v002.xlsx, item_id: 01EFCYUZ7NEVGECNAS6VAYGKM3M3AROGWF, last_modified: 2026-10-04T10:33:22Z }
 also_at: []
 status: active

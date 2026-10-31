@@ -9,6 +9,7 @@ current:
   name: Velo-CE - Procedura di rilascio condivisa - SO SMART - v002.docx
   last_modified: 2026-09-23T11:40:40Z
 versions:
+  - { name: Velo-CE - Procedura di rilascio condivisa - SO SMART - v002.docx, item_id: 01EFCYUZ55TDM5CLF23BAIHMOAAWWV6RHZ, last_modified: 2026-09-23T11:40:40Z }
   - { name: Velo-CE - Procedura di rilascio condivisa - SO SMART - v002.docx, item_id: 01EFCYUZ22YPHBOGH7V5GYEDKYAUC7Y2RH, last_modified: 2026-09-23T11:40:40Z }
 also_at: []
 status: active

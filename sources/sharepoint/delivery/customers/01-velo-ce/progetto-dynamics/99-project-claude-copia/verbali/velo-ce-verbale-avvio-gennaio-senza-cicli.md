@@ -9,8 +9,9 @@ current:
   name: velo-ce-verbale-261005-1500-avvio-gennaio-senza-cicli.md
   last_modified: 2026-10-08T10:44:37Z
 versions:
-  - { name: velo-ce-verbale-261005-1500-avvio-gennaio-senza-cicli.md, item_id: 01EFCYUZZJON6LJ57VRFE2AKNRUT57BAC6, last_modified: 2026-10-08T10:44:37Z }
+  - { name: velo-ce-verbale-261005-1500-avvio-gennaio-senza-cicli.md, item_id: 01EFCYUZ6PSI2RYOHGDVDKOZHYRJA7VSJ5, last_modified: 2026-10-08T10:44:37Z }
   - { name: velo-ce-verbale-261005-1500-avvio-gennaio-senza-cicli.md, item_id: 01EFCYUZ25HP4K2AU2YRFLNVR22ZDYI44R, last_modified: 2026-10-28T08:06:43Z }
+  - { name: velo-ce-verbale-261005-1500-avvio-gennaio-senza-cicli.md, item_id: 01EFCYUZZJON6LJ57VRFE2AKNRUT57BAC6, last_modified: 2026-10-08T10:44:37Z }
 also_at: []
 status: active
 partial: false

@@ -9,6 +9,7 @@ current:
   name: Velo-CE - Business Central oggi e la strada verso Premium - CLIENTE - v003.pptx
   last_modified: 2026-09-30T07:46:52Z
 versions:
+  - { name: Velo-CE - Business Central oggi e la strada verso Premium - CLIENTE - v003.pptx, item_id: 01EFCYUZY5IFCNOWGV7JDYBJL3NWI26XYQ, last_modified: 2026-09-30T07:46:52Z }
   - { name: Velo-CE - Business Central oggi e la strada verso Premium - CLIENTE - v003.pptx, item_id: 01EFCYUZ6JJNZDZF7HUJAIJCVO5ZDMMJCN, last_modified: 2026-09-30T07:46:52Z }
 also_at: []
 status: active

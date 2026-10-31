@@ -9,8 +9,9 @@ current:
   name: velo-ce-verbale-261005-1117-fornitore-fiscale-premium-ams.md
   last_modified: 2026-10-08T10:44:36Z
 versions:
-  - { name: velo-ce-verbale-261005-1117-fornitore-fiscale-premium-ams.md, item_id: 01EFCYUZ36NM34PT5ABNC3OAJOQRV26VQZ, last_modified: 2026-10-08T10:44:36Z }
+  - { name: velo-ce-verbale-261005-1117-fornitore-fiscale-premium-ams.md, item_id: 01EFCYUZ7OEVI4OUXFWZBZ3JB545RRZKIP, last_modified: 2026-10-08T10:44:36Z }
   - { name: velo-ce-verbale-261005-1117-fornitore-fiscale-premium-ams.md, item_id: 01EFCYUZZQSEHCZZ2Y2NFYXJIMFTC37IJM, last_modified: 2026-10-28T08:06:43Z }
+  - { name: velo-ce-verbale-261005-1117-fornitore-fiscale-premium-ams.md, item_id: 01EFCYUZ36NM34PT5ABNC3OAJOQRV26VQZ, last_modified: 2026-10-08T10:44:36Z }
 also_at: []
 status: active
 partial: false

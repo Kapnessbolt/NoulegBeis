@@ -9,6 +9,7 @@ current:
   name: handoff-2026-10-16-ripresa-dati-so-smart-listini.md
   last_modified: 2026-10-28T08:06:23Z
 versions:
+  - { name: handoff-2026-10-16-ripresa-dati-so-smart-listini.md, item_id: 01EFCYUZ763YDQO4TYYJAKI5IP2B5VB535, last_modified: 2026-10-28T08:06:23Z }
   - { name: handoff-2026-10-16-ripresa-dati-so-smart-listini.md, item_id: 01EFCYUZ5JIJB2MXI5NJAZ5CLEG343JD62, last_modified: 2026-10-28T08:06:23Z }
 also_at: []
 status: active

@@ -9,6 +9,7 @@ current:
   name: handoff-2026-10-19-prova-varianti-copia-vc-nbc-prova.md
   last_modified: 2026-10-28T08:06:22Z
 versions:
+  - { name: handoff-2026-10-19-prova-varianti-copia-vc-nbc-prova.md, item_id: 01EFCYUZ7NOVOHUETWSVEYGBR4YFJOSRMY, last_modified: 2026-10-28T08:06:22Z }
   - { name: handoff-2026-10-19-prova-varianti-copia-vc-nbc-prova.md, item_id: 01EFCYUZ4T5EIXFRRC3RFIIQJLWXRWQ2AT, last_modified: 2026-10-28T08:06:22Z }
 also_at: []
 status: active

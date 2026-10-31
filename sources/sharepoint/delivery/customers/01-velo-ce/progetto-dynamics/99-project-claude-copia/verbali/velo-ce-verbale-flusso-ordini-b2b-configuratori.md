@@ -9,8 +9,9 @@ current:
   name: velo-ce-verbale-260929-1241-flusso-ordini-b2b-configuratori.md
   last_modified: 2026-10-08T10:44:36Z
 versions:
-  - { name: velo-ce-verbale-260929-1241-flusso-ordini-b2b-configuratori.md, item_id: 01EFCYUZ5FQQJG7T2S5JC32H5D2LDU2SDC, last_modified: 2026-10-08T10:44:36Z }
+  - { name: velo-ce-verbale-260929-1241-flusso-ordini-b2b-configuratori.md, item_id: 01EFCYUZ45ZVBA6VCQHVAZ6EW2WOGUWAAD, last_modified: 2026-10-08T10:44:36Z }
   - { name: velo-ce-verbale-260929-1241-flusso-ordini-b2b-configuratori.md, item_id: 01EFCYUZ3LMY7D5ZSKD5AY7YKNAZCE35JB, last_modified: 2026-10-28T08:06:42Z }
+  - { name: velo-ce-verbale-260929-1241-flusso-ordini-b2b-configuratori.md, item_id: 01EFCYUZ5FQQJG7T2S5JC32H5D2LDU2SDC, last_modified: 2026-10-08T10:44:36Z }
 also_at: []
 status: active
 partial: false

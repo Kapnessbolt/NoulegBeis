@@ -9,6 +9,7 @@ current:
   name: Velo-CE - Costi accessori e ciclo d'acquisto per Leonardo - INTERNO - v001.md
   last_modified: 2026-10-28T08:06:14Z
 versions:
+  - { name: "Velo-CE - Costi accessori e ciclo d'acquisto per Leonardo - INTERNO - v001.md", item_id: 01EFCYUZ4JTQW6AVU2TZD376QMPGSE5N5Y, last_modified: 2026-10-28T08:06:14Z }
   - { name: "Velo-CE - Costi accessori e ciclo d'acquisto per Leonardo - INTERNO - v001.md", item_id: 01EFCYUZ7TUKMNCA3OKFDYMAGQIPTI7GJ4, last_modified: 2026-10-28T08:06:14Z }
 also_at: []
 status: active

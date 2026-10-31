@@ -9,6 +9,7 @@ current:
   name: Velo-CE - Riorganizzazione cartella - Mappa file - v001.xlsx
   last_modified: 2026-10-02T08:29:59Z
 versions:
+  - { name: Velo-CE - Riorganizzazione cartella - Mappa file - v001.xlsx, item_id: 01EFCYUZ5JBEWNIX6S65H2Y5ZB2VDNTQLA, last_modified: 2026-10-02T08:29:59Z }
   - { name: Velo-CE - Riorganizzazione cartella - Mappa file - v001.xlsx, item_id: 01EFCYUZ2NXKPAXDHVI5HYPAVTOGZZ2FF5, last_modified: 2026-10-02T08:29:59Z }
 also_at: []
 status: active

@@ -9,6 +9,7 @@ current:
   name: "Velo-CE - Layout etichetta scatola prova Code39 - INTERNO - v002.docx"
   last_modified: 2023-08-03T12:06:00Z
 versions:
+  - { name: "Velo-CE - Layout etichetta scatola prova Code39 - INTERNO - v002.docx", item_id: 01EFCYUZYKS4ERHVQ6P5FZGXRINKLZYJ3I, last_modified: 2023-08-03T12:06:00Z }
   - { name: "Velo-CE - Layout etichetta scatola prova Code39 - INTERNO - v002.docx", item_id: 01EFCYUZ4C7OVPTYOCDVGJZQ7TG4YBBSB3, last_modified: 2023-08-03T12:06:00Z }
 also_at: []
 status: active

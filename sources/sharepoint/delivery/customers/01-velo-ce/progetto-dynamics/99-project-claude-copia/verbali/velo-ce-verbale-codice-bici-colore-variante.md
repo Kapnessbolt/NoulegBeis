@@ -9,6 +9,7 @@ current:
   name: velo-ce-verbale-261021-1426-codice-bici-colore-variante.md
   last_modified: 2026-10-28T08:06:45Z
 versions:
+  - { name: velo-ce-verbale-261021-1426-codice-bici-colore-variante.md, item_id: 01EFCYUZ2A5DR26Q6PZFCJJWY6RUTOEIBA, last_modified: 2026-10-28T08:06:45Z }
   - { name: velo-ce-verbale-261021-1426-codice-bici-colore-variante.md, item_id: 01EFCYUZ5OUK3XG2XQF5CID3RYMGJL2XCX, last_modified: 2026-10-28T08:06:45Z }
 also_at: []
 status: active

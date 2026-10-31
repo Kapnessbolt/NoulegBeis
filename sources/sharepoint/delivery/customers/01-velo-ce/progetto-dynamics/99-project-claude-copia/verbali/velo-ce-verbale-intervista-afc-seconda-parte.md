@@ -9,6 +9,7 @@ current:
   name: velo-ce-verbale-261013-1550-intervista-afc-seconda-parte.md
   last_modified: 2026-10-28T08:06:44Z
 versions:
+  - { name: velo-ce-verbale-261013-1550-intervista-afc-seconda-parte.md, item_id: 01EFCYUZ7L4HZXJLWIGNFLNDYKNBI4V3IV, last_modified: 2026-10-28T08:06:44Z }
   - { name: velo-ce-verbale-261013-1550-intervista-afc-seconda-parte.md, item_id: 01EFCYUZ6QFWGZBLGPEBG3DSIZRMDINWJW, last_modified: 2026-10-28T08:06:44Z }
 also_at: []
 status: active

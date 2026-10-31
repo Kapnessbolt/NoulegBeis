@@ -9,8 +9,9 @@ current:
   name: Velo-CE - Capitolato etichettatura colli fornitori - CLIENTE - v001.pdf
   last_modified: 2026-10-08T10:44:29Z
 versions:
-  - { name: Velo-CE - Capitolato etichettatura colli fornitori - CLIENTE - v001.pdf, item_id: 01EFCYUZ2X7PJ62VGYRZGLVIGKKY4PV47U, last_modified: 2026-10-08T10:44:29Z }
+  - { name: Velo-CE - Capitolato etichettatura colli fornitori - CLIENTE - v001.pdf, item_id: 01EFCYUZ7VCU77DBWVP5EYJUTLKDJNNXH3, last_modified: 2026-10-08T10:44:29Z }
   - { name: Velo-CE - Capitolato etichettatura colli fornitori - CLIENTE - v001.pdf, item_id: 01EFCYUZZF5CB5SYZCHFGIEI2DXEPM5NFN, last_modified: 2026-10-28T08:06:30Z }
+  - { name: Velo-CE - Capitolato etichettatura colli fornitori - CLIENTE - v001.pdf, item_id: 01EFCYUZ2X7PJ62VGYRZGLVIGKKY4PV47U, last_modified: 2026-10-08T10:44:29Z }
   - { name: Velo-CE - Capitolato etichettatura colli fornitori - CLIENTE - v001.docx, item_id: 01EFCYUZ5GMGQ6OKAZ2BFYP5X3JROZJR2H, last_modified: 2026-10-07T10:06:16Z }
 also_at: []
 status: active

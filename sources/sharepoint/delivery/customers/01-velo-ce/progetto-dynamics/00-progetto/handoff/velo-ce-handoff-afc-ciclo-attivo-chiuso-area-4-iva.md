@@ -9,6 +9,7 @@ current:
   name: handoff-2026-10-17-afc-ciclo-attivo-chiuso-area-4-iva.md
   last_modified: 2026-10-28T08:06:22Z
 versions:
+  - { name: handoff-2026-10-17-afc-ciclo-attivo-chiuso-area-4-iva.md, item_id: 01EFCYUZ27FPNJUV6KFRFLQDCBNSVYQCPU, last_modified: 2026-10-28T08:06:22Z }
   - { name: handoff-2026-10-17-afc-ciclo-attivo-chiuso-area-4-iva.md, item_id: 01EFCYUZZEQ5MSL3OL35CIXWAQXHCALZ7H, last_modified: 2026-10-28T08:06:22Z }
 also_at: []
 status: active

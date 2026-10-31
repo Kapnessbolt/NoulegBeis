@@ -9,6 +9,7 @@ current:
   name: handoff-2026-10-15-afc-migliorie-e-secondo-giro.md
   last_modified: 2026-10-28T08:06:23Z
 versions:
+  - { name: handoff-2026-10-15-afc-migliorie-e-secondo-giro.md, item_id: 01EFCYUZ2QH3GCBVT2NBEZWHFWGQRSBXWX, last_modified: 2026-10-28T08:06:23Z }
   - { name: handoff-2026-10-15-afc-migliorie-e-secondo-giro.md, item_id: 01EFCYUZYLZDNO7XYBRFDZN4HAWGKRBPZX, last_modified: 2026-10-28T08:06:23Z }
 also_at: []
 status: active

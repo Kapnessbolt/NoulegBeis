@@ -9,6 +9,7 @@ current:
   name: velo-ce-verbale-261021-0920-riepilogo-giro-assemblaggio.md
   last_modified: 2026-10-28T08:06:44Z
 versions:
+  - { name: velo-ce-verbale-261021-0920-riepilogo-giro-assemblaggio.md, item_id: 01EFCYUZ3JD7UK7E4PKFAYZSV433QSITCG, last_modified: 2026-10-28T08:06:44Z }
   - { name: velo-ce-verbale-261021-0920-riepilogo-giro-assemblaggio.md, item_id: 01EFCYUZ3OGGA52P5EAVDIY772AR5PLZGK, last_modified: 2026-10-28T08:06:44Z }
 also_at: []
 status: active

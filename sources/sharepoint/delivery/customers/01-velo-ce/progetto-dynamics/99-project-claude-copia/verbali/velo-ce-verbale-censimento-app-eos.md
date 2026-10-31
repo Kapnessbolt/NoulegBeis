@@ -9,8 +9,9 @@ current:
   name: velo-ce-verbale-260929-1230-censimento-app-eos.md
   last_modified: 2026-10-08T10:44:36Z
 versions:
-  - { name: velo-ce-verbale-260929-1230-censimento-app-eos.md, item_id: 01EFCYUZ2C2VCUDMMTEFBJ2Y2HDQ5ZO5GW, last_modified: 2026-10-08T10:44:36Z }
+  - { name: velo-ce-verbale-260929-1230-censimento-app-eos.md, item_id: 01EFCYUZ4HBKRKHVT4SJG2T5GSVD7LYDHD, last_modified: 2026-10-08T10:44:36Z }
   - { name: velo-ce-verbale-260929-1230-censimento-app-eos.md, item_id: 01EFCYUZ5VYOSTUD6AKFDYDHQVQZ47Q5GB, last_modified: 2026-10-28T08:06:42Z }
+  - { name: velo-ce-verbale-260929-1230-censimento-app-eos.md, item_id: 01EFCYUZ2C2VCUDMMTEFBJ2Y2HDQ5ZO5GW, last_modified: 2026-10-08T10:44:36Z }
 also_at: []
 status: active
 partial: false
