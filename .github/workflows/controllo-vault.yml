@@ -18,6 +18,16 @@ jobs:
       # Step 11 di SPEC 13.1: i test degli script, su un mini-vault di prova, prima del controllo
       - name: Test degli script
         run: python3 -m pytest .claude/scripts/tests -q
+      # SPEC 4.4: golden test sul vault reale dopo i test e prima del controllo. Un accordo sotto la
+      # soglia dello script (perimetro 90%, famiglie 95% con il prefisso di disambiguazione) esce
+      # con 1 e la CI è rossa: un disaccordo tra ciò che gli script calcolano e ciò che le note
+      # registrano è il punto in cui una riconciliazione sbaglia cartella o famiglia (6.4).
+      - name: Golden test del perimetro
+        shell: bash
+        run: python3 .claude/scripts/perimetro.py --verifica | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Golden test delle famiglie
+        shell: bash
+        run: python3 .claude/scripts/famiglia.py --verifica | tee -a "$GITHUB_STEP_SUMMARY"
       # Esce con 1 se ci sono errori, anche di configurazione (vault.yaml non valido, orari dei task
       # diversi da SPEC 7, permessi mcp diversi da vault.yaml): il job fallisce. Con `shell: bash`
       # vale pipefail, quindi tee non nasconde il codice d'uscita; il rapporto va nel log e nel riepilogo.

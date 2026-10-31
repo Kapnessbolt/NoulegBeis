@@ -253,3 +253,134 @@ def test_watermark_al_passo_o_giro_vuoto_nessun_avviso(vault):
     modifica_stato(vault, "onedrive", watermark="2026-10-25T00:00:00Z", ultimo_giro=giro)
     res = controlla(vault)
     assert res.returncode == 0 and "fermo al" not in res.stdout
+
+
+# --- Stato ↔ note ↔ fonti: cartella, ID, famiglia, stesso nome (audit 2026-10-31, P6)
+
+from conftest import leggi_stato  # noqa: E402
+
+DOC_ALFA = "sources/sharepoint/delivery/doc-alfa.md"
+ITEM_ALFA = "01EFCYUZYLVH33U2NLBVGZ45BE6NPUJZD5aGVsbG8gd29ybGQgdGhpcyBpcyBhIHNlY3JldA"
+URL_SP = "https://example.sharepoint.com/sites/internal"
+MESSAGGI_P6 = ("non ha seguito il file", "senza versione o copia nella nota", "`family`", "stesso nome di file")
+
+
+def scrivi_voci(vault, fonte, items):
+    data = leggi_stato(vault, fonte)
+    data["items"] = items
+    (vault / ".state" / f"{fonte}.json").write_text(json.dumps(data, indent=2), encoding="utf-8")
+
+
+def sostituisci(vault, rel, vecchio, nuovo):
+    p = vault / rel
+    testo = p.read_text(encoding="utf-8")
+    assert vecchio in testo, vecchio
+    p.write_text(testo.replace(vecchio, nuovo, 1), encoding="utf-8")
+
+
+@pytest.fixture
+def coerente(vault):
+    """Il mini-vault con stato e nota allineati: la chiave della voce finisce con
+    `current.item_id` e `family` è quella calcolata da `current.name` (conftest usa ancora la
+    forma vecchia `delivery/doc-alfa` e la chiave `item-1`)."""
+    sostituisci(vault, DOC_ALFA, 'family: "delivery/doc-alfa"', "family: doc-alfa")
+    scrivi_voci(vault, "sharepoint", {f"drive-1/{ITEM_ALFA}": {
+        "last_modified": "2026-10-01T10:00:00Z", "note": DOC_ALFA}})
+    git(vault, "commit", "-q", "-am", "stato allineato")
+    return vault
+
+
+def test_stato_e_note_coerenti_nessun_errore_ne_avviso(coerente):
+    res = controlla(coerente)
+    assert res.returncode == 0, res.stdout
+    assert errori(res) == 0
+    assert not any(m in res.stdout for m in MESSAGGI_P6), res.stdout
+
+
+def test_mini_vault_di_conftest_ha_family_e_id_non_allineati(vault):
+    res = controlla(vault)
+    assert res.returncode == 0, res.stdout
+    avvisi = res.stdout.split("## Avvisi")[1]
+    assert "`family` `delivery/doc-alfa` diversa da `doc-alfa`" in avvisi
+    assert "1 voce dello stato (su 1) senza versione o copia nella nota" in avvisi
+
+
+def test_nota_che_non_ha_seguito_il_file_e_errore_che_non_blocca_il_commit(coerente):
+    nuovo = f"{URL_SP}/SalesMarketing/Offerte/Doc_Alfa_v2.pdf"
+    sostituisci(coerente, DOC_ALFA, f"{URL_SP}/Delivery/Doc_Alfa_v2.pdf", nuovo)
+    res = controlla(coerente)
+    assert res.returncode == 1
+    errori_txt = res.stdout.split("## Errori")[1].split("## Avvisi")[0]
+    assert "la nota non ha seguito il file (cartella attesa `sources/sharepoint/salesmarketing/offerte`)" in errori_txt
+    assert f'sposta-nota.py {DOC_ALFA} --web-url "{nuovo}"' in errori_txt
+    assert errori(res) == 1
+    # il pre-commit non ferma il giro (o la sessione) che tocca la nota
+    res = controlla(coerente, "--modificati")
+    assert res.returncode == 0, res.stdout
+
+
+@pytest.mark.parametrize("web_url", [
+    "https://altro.example.org/documenti/Doc_Alfa_v2.pdf",  # URL non del tenant
+    "https://example-my.sharepoint.com/personal/utente_prova_example_com/Documents/Altro/Doc_Alfa_v2.pdf",
+])
+def test_url_non_riconosciuto_o_senza_cartella_non_e_errore_di_cartella(coerente, web_url):
+    sostituisci(coerente, DOC_ALFA, f"{URL_SP}/Delivery/Doc_Alfa_v2.pdf", web_url)
+    res = controlla(coerente)
+    assert res.returncode == 0, res.stdout
+    assert "non ha seguito il file" not in res.stdout
+
+
+def test_nota_fuori_perimetro_si_salta(coerente):
+    sostituisci(coerente, DOC_ALFA, f"{URL_SP}/Delivery/Doc_Alfa_v2.pdf", f"{URL_SP}/Knowledge/Doc_Alfa_v2.pdf")
+    sostituisci(coerente, DOC_ALFA, "tags: []", "tags: [fuori-perimetro]")
+    res = controlla(coerente)
+    assert res.returncode == 0, res.stdout
+    assert "non ha seguito il file" not in res.stdout
+
+
+def test_voce_dello_stato_senza_versione_nella_nota_e_avviso(coerente):
+    voci = leggi_stato(coerente, "sharepoint")["items"]
+    voci["drive-1/item-vecchio"] = {"last_modified": "2026-09-01T10:00:00Z", "note": DOC_ALFA}
+    voci["drive-2/item-copia"] = {"last_modified": "2026-09-02T10:00:00Z", "note": DOC_ALFA}
+    scrivi_voci(coerente, "sharepoint", voci)
+    res = controlla(coerente)
+    assert res.returncode == 0, res.stdout
+    righe = [r for r in res.stdout.splitlines() if "senza versione o copia nella nota" in r]
+    assert len(righe) == 1 and "2 voci dello stato (su 3)" in righe[0], righe  # una riga per nota
+    assert "`stato.py voci sharepoint <nota>`" in righe[0]
+    # la versione vecchia in `versions` e la copia in `also_at`: l'avviso sparisce
+    sostituisci(coerente, DOC_ALFA, "versions: []",
+                'versions: [{name: "Doc_Alfa_v1.pdf", item_id: "item-vecchio", last_modified: 2026-09-01T10:00:00Z}]')
+    sostituisci(coerente, DOC_ALFA, "also_at: []",
+                f'also_at: [{{web_url: "{URL_SP}/SalesMarketing/Doc_Alfa_v2.pdf", item_id: "item-copia"}}]')
+    res = controlla(coerente)
+    assert res.returncode == 0, res.stdout
+    assert "senza versione o copia nella nota" not in res.stdout
+
+
+def test_family_diversa_da_famiglia_py_e_avviso_salvo_il_prefisso(coerente):
+    sostituisci(coerente, DOC_ALFA, "family: doc-alfa", "family: documento-alfa")
+    res = controlla(coerente)
+    assert res.returncode == 0, res.stdout
+    assert "`family` `documento-alfa` diversa da `doc-alfa`" in res.stdout.split("## Avvisi")[1]
+    sostituisci(coerente, DOC_ALFA, "family: documento-alfa", "family: cliente-uno-doc-alfa")
+    res = controlla(coerente)
+    assert res.returncode == 0, res.stdout
+    assert "`family`" not in res.stdout
+
+
+def test_stesso_nome_in_cartelle_diverse_su_note_diverse_e_avviso(coerente):
+    copia = "sources/sharepoint/salesmarketing/doc-alfa-copia.md"
+    testo = (coerente / DOC_ALFA).read_text(encoding="utf-8")
+    scrivi(coerente, copia, testo.replace("family: doc-alfa", "family: salesmarketing-doc-alfa")
+           .replace(ITEM_ALFA, "item-copia").replace(f"{URL_SP}/Delivery/", f"{URL_SP}/SalesMarketing/"))
+    voci = leggi_stato(coerente, "sharepoint")["items"]
+    voci["drive-2/item-copia"] = {"last_modified": "2026-10-01T10:00:00Z", "note": copia}
+    scrivi_voci(coerente, "sharepoint", voci)
+    res = controlla(coerente)
+    assert res.returncode == 0, res.stdout
+    righe = [r for r in res.stdout.splitlines() if "stesso nome di file `doc_alfa_v2.pdf`" in r]
+    assert len(righe) == 1 and copia in righe[0], res.stdout
+    # una nota non registrata nello stato non conta (ha già il suo avviso)
+    scrivi_voci(coerente, "sharepoint", {k: v for k, v in voci.items() if v["note"] != copia})
+    assert "stesso nome di file" not in controlla(coerente).stdout

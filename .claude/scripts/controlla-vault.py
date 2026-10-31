@@ -10,6 +10,22 @@ un errore; un watermark più di 2 giorni dietro il risultato più recente dell'u
 (`ultimo_giro` con risultati) è un avviso. Questi errori non bloccano `--modificati`: il giro
 che scrive lo stato deve poter fare commit.
 
+Stato ↔ note ↔ fonti (SPEC 4.4 e 6.4, audit 2026-10-31 P6), sulle note `source-doc` con
+`source` sharepoint o onedrive (tranne quelle con il tag `fuori-perimetro`) e sulle voci di
+`.state/sharepoint.json` e `.state/onedrive.json`:
+- errore (non blocca `--modificati`, come gli altri errori sullo stato): la nota non sta nella
+  cartella che `perimetro.py` calcola dal suo `current.web_url` (la nota non ha seguito il file:
+  `sposta-nota.py`); un URL non riconosciuto o senza cartella (`cartella_nota` null) non conta;
+- avviso: voci dello stato il cui itemId (la parte della chiave dopo l'ultima `/`) non compare né
+  in `current.item_id`, né in `versions`, né in `also_at` della nota a cui puntano. Una riga per
+  nota, con il numero di queste voci su quelle della nota: copre sia la voce con l'ID orfano
+  sia la nota con più voci senza le `versions` o le `also_at` corrispondenti (SPEC 4.4 elenca
+  i due casi, che sono gli stessi ID visti dalla voce o dalla nota);
+- avviso: `family` diversa da `famiglia.famiglia(current.name)`, salvo il prefisso di
+  disambiguazione (`family` che finisce con `-<calcolata>`);
+- avviso: lo stesso `current.name` (senza maiuscole) in cartelle diverse su note diverse dello
+  stato: candidati alla stessa nota (regola dell'identità, 6.4).
+
 Dati riservati: controllo a pattern sul corpo delle note (non sul frontmatter, che contiene
 legittimamente `item_id`, `uri` e `conversation_id` lunghi). Ogni corrispondenza è un errore,
 con la categoria e al massimo i primi 4 caratteri del valore: IBAN; telefoni italiani (`+39`
@@ -49,6 +65,8 @@ except ImportError:
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import config  # noqa: E402
+import famiglia  # noqa: E402
+import perimetro  # noqa: E402
 
 ROOT = Path(os.environ.get("VAULT_ROOT") or Path(__file__).resolve().parents[2]).resolve()
 
@@ -434,6 +452,58 @@ def controlla_giro_e_riconciliazione(fonte, rel_stato, state, adesso=None):
                        f"{giro.get('piu_recente')}, più di {WATERMARK_FERMO_GIORNI} giorni dopo ({causa})")
 
 
+def controlla_stato_note(parsed, voci):
+    """Controlli incrociati tra stato, note e fonti (SPEC 4.4, 6.4; audit P6). `voci`:
+    {fonte: {chiave: voce}} di sharepoint e onedrive. Richiede una configurazione valida
+    (perimetro e firme in coda vengono da `vault.yaml`)."""
+    per_nota = defaultdict(list)  # nota → [(fonte, chiave)]
+    for fonte, items in voci.items():
+        for chiave, v in items.items():
+            if isinstance(v, dict) and v.get("note"):
+                per_nota[v["note"]].append((fonte, chiave))
+    per_nome = defaultdict(list)  # current.name senza maiuscole → [nota]
+    for rel, (d, _) in sorted(parsed.items()):
+        fonte = d.get("source")
+        if (rel.parts[0] != "sources" or d.get("type") != "source-doc" or fonte not in voci
+                or "fuori-perimetro" in as_list(d.get("tags"))):
+            continue
+        cur = d.get("current") if isinstance(d.get("current"), dict) else {}
+        web_url, nome = str(cur.get("web_url") or ""), str(cur.get("name") or "")
+        # Cartella: la nota sta dove perimetro.py mette il suo current.web_url
+        if web_url:
+            r = perimetro.analizza(web_url)
+            attesa = r["cartella_nota"] if r["riconosciuto"] else None
+            if attesa and attesa != str(rel.parent):
+                err(rel, f"la nota non ha seguito il file (cartella attesa `{attesa}`): "
+                         f"`python3 .claude/scripts/sposta-nota.py {rel} --web-url \"{web_url}\"`",
+                    blocca_commit=False)
+        # Famiglia: quella di famiglia.py dal current.name, salvo il prefisso di disambiguazione
+        if nome:
+            calcolata, registrata = famiglia.famiglia(nome), str(d.get("family") or "")
+            if registrata != calcolata and not registrata.endswith("-" + calcolata):
+                avv(rel, f"`family` `{registrata}` diversa da `{calcolata}`, calcolata da `current.name`: "
+                         f"correggila (`aggiorna-nota.py <nota> --campo family={calcolata}`, `rinomina-nota.py` "
+                         f"se cambia lo slug) o, se è voluta, usa `<prefisso>-{calcolata}`")
+        # ID dello stato senza versione o copia nella nota (una riga per nota)
+        ids = {str(cur.get("item_id") or "")}
+        for k in ("versions", "also_at"):
+            ids |= {str(x.get("item_id") or "") for x in as_list(d.get(k)) if isinstance(x, dict)}
+        chiavi = per_nota.get(str(rel), [])
+        orfane = [c for _, c in chiavi if c.rsplit("/", 1)[-1] not in ids]
+        if orfane:
+            quante = "1 voce" if len(orfane) == 1 else f"{len(orfane)} voci"
+            avv(rel, f"{quante} dello stato (su {len(chiavi)}) senza versione o copia nella nota: l'ID non è "
+                     f"né in `current`, né in `versions`, né in `also_at` (`stato.py voci {fonte} <nota>`)")
+        if nome and chiavi:
+            per_nome[nome.lower()].append(rel)
+    # Stesso nome in cartelle diverse su note diverse: candidati alla stessa nota (6.4)
+    for nome, note_nome in sorted(per_nome.items()):
+        if len({n.parent for n in note_nome}) > 1:
+            avv(note_nome[0], f"stesso nome di file `{nome}` in altre note dello stato, in cartelle diverse: "
+                              + ", ".join(f"`{n}`" for n in note_nome[1:])
+                              + " (stessa nota? regola dell'identità, SPEC 6.4)")
+
+
 def main():
     indice = "--indice" in sys.argv
     solo_modificati = "--modificati" in sys.argv
@@ -580,6 +650,7 @@ def main():
 
     # 6. Stato dell'ingestion: un file per fonte in .state/ (SPEC 6.1)
     tracked = set()
+    voci_documenti = {}  # sharepoint e onedrive: {fonte: {chiave: voce}}, per i controlli incrociati
     for fonte, coll in (("sharepoint", "items"), ("onedrive", "items"), ("outlook", "threads"), ("github", "items")):
         rel_stato = f".state/{fonte}.json"
         try:
@@ -589,6 +660,8 @@ def main():
         except (OSError, json.JSONDecodeError) as e:
             err(rel_stato, f"illeggibile ({e})")
             continue
+        if fonte in ("sharepoint", "onedrive"):
+            voci_documenti[fonte] = state.get(coll) or {}
         for key, v in (state.get(coll) or {}).items():
             note = v.get("note", "")
             tracked.add(note)
@@ -602,6 +675,10 @@ def main():
         if fonte in ("sharepoint", "onedrive", "github") and "fuori-perimetro" not in as_list(d.get("tags")):
             if str(rel) not in tracked:
                 avv(rel, f"documento non registrato nello stato (.state/{fonte}.json)")
+
+    # 7. Stato ↔ note ↔ fonti (SPEC 4.4, 6.4): servono perimetro e firme di vault.yaml
+    if conf:
+        controlla_stato_note(parsed, voci_documenti)
 
     # Solo gli errori che dipendono dalle modifiche in corso (hook di commit)
     if solo_modificati:
