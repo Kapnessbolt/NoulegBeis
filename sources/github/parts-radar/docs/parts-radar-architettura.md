@@ -4,11 +4,12 @@ source: github
 family: parts-radar-architettura
 current:
   item_id: "cristian-schifone/parts-radar:docs/architettura.md"
-  uri: "github://cristian-schifone/parts-radar/docs/architettura.md@2be8540128a7fb61cdf4f7c7b2eb2c1385ef5e9e"
+  uri: "github://cristian-schifone/parts-radar/docs/architettura.md@e5926bacdd88656f9091a65e1eab6fc26b9b9dd9"
   web_url: "https://github.com/cristian-schifone/parts-radar/blob/main/docs/architettura.md"
   name: "docs/architettura.md"
-  last_modified: 2026-10-29T22:57:06Z
+  last_modified: 2026-10-30T15:15:52Z
 versions:
+  - { name: docs/architettura.md@e5926ba, item_id: cristian-schifone/parts-radar:docs/architettura.md, last_modified: 2026-10-30T15:15:52Z }
   - { name: docs/architettura.md@2be8540, item_id: cristian-schifone/parts-radar:docs/architettura.md, last_modified: 2026-10-29T22:57:06Z }
   - { name: docs/architettura.md@733d0a6, item_id: cristian-schifone/parts-radar:docs/architettura.md, last_modified: 2026-10-28T23:22:29Z }
   - { name: docs/architettura.md@53f469d, item_id: cristian-schifone/parts-radar:docs/architettura.md, last_modified: 2026-10-27T22:36:39Z }
@@ -18,7 +19,7 @@ versions:
 also_at: []
 status: active
 partial: true
-ingested_at: 2026-10-30T06:30:05Z
+ingested_at: 2026-10-31T06:23:46Z
 projects: ["[[parts-radar-sviluppo]]"]
 clients: ["[[adac-bologna]]", "[[solera]]"]
 topics: ["[[parts-radar]]"]
@@ -29,7 +30,7 @@ tags: []
 
 ## Riassunto
 
-Documento di stato del repo di sviluppo: com'è fatto il sistema oggi, a che punto sono le fasi, le decisioni aperte e i rischi. Si aggiorna a ogni PR (la testata dice lo stato del giorno). Nel vault si leggono solo §1 (scopo), §5 (stato e sequenza), §8 (decisioni aperte) e §9 (rischi); componenti e decisioni tecniche in vigore (§4, §6) restano nel repo. Stato letto: 30/10/2026, dopo la misura della voce sulle chat e il lessico della voce (29/10) e il nuovo metodo di lavoro a sessione unica.
+Documento di stato del repo di sviluppo: com'è fatto il sistema oggi, a che punto sono le fasi, le decisioni aperte e i rischi. Si aggiorna a ogni PR (la testata dice lo stato del giorno). Nel vault si leggono solo §1 (scopo), §5 (stato e sequenza), §8 (decisioni aperte) e §9 (rischi); componenti e decisioni tecniche in vigore (§4, §6) restano nel repo. Stato letto: 31/10/2026, dopo il benchmark del router per modello (30/10) e le prime misure del ciclo a sessione unica.
 
 ## Punti chiave
 
@@ -50,6 +51,7 @@ Documento di stato del repo di sviluppo: com'è fatto il sistema oggi, a che pun
 - 29/10: fornitore WhatsApp deciso (D47): 360dialog Regular a nome di ADAC, coi vincoli del webhook senza firma da verificare prima dell'attivazione del numero
 - 29/10: misurata la voce sulle chat reali, l'ultimo anello della catena senza misura: voce giusta tra le prime tre 94,9% sullo sviluppo e 93,8% sul test (soglia 90%), voce sbagliata data per sicura 1,4% e 0,6% (soglia 2%). Il lessico dei meccanici aggiunto al prompt migliora lo sviluppo e sul test è neutro (93,6% e 0,7%)
 - 29/10: metodo di lavoro, ogni feature o fix in una sessione sola con piano e documenti affidati a sotto-agenti; il risparmio si misura sulla prima feature (D50)
+- 30/10: benchmark del router per modello sul test: Sonnet 5.5, Opus 5.5 e Haiku a sforzo alto non spostano le soglie del pilot; il router resta Haiku 5.5 (richieste false 6,1%, proposte non preparate 4,2%, soglie 5%). Il confronto per contratto della #319 resta aperto, con l'estrazione con Sonnet e Opus nella #526
 
 ## Numeri
 
@@ -70,7 +72,7 @@ Decisioni aperte (§8) che toccano il livello di progetto:
 - D48 · targhe nel vecchio formato provinciale (2 casi su 550 gruppi del test): oggi nessun passo le accetta; proposta «dritte al banco», da decidere una volta (Lorenzo)
 - D45 · gruppi WhatsApp: chiesto ad ADAC se quei clienti passano alla chat singola
 - D46 · hosting e rete del webhook (Cristian): un server con tutto lo stack; è anche la condizione per accendere l'invio in produzione
-- D50 · il ciclo a sessione unica fa risparmiare davvero? Si misura sulla prima feature col nuovo metodo, a confronto con le sessioni di prima (Lorenzo)
+- D50 · il ciclo a sessione unica fa risparmiare davvero? (Lorenzo) Prime misure del 30/10: la prima feature non è confrontabile (26,78 $ di misure dentro la sessione), il primo fix costa come prima (10,58 $ contro 10,47); il pianificatore costa quanto o più del piano di prima, per riscritture e cache scaduta, ora corrette. Restano da misurare una feature senza giri a pagamento e da decidere il pianificatore sui fix piccoli
 - D47 · fornitore WhatsApp: 360dialog con la Coexistence (19/10); il 29/10 Lorenzo sceglie il piano Regular a nome di ADAC (Partner di BlueAge dal secondo cliente). Il webhook senza firma è un rischio accettato coi vincoli V1-V8, da verificare prima dell'attivazione (Cristian per server e proxy, Lorenzo per IP di 360dialog, segreto e controlli del servizio); il contratto sui dati con 360dialog lo accetta ADAC
 - Domande a Solera ancora da mandare (Lorenzo): cache oltre le 24 ore, versioni degli affini, copia del dizionario, fasce di consumo, URL delle foto (D12)
 - Nodi aperti fuori dal codice: Rihag/Cati per lo Step 2 e nome e API del gestionale ADAC per lo Step 3 (chiesti a Luca il 22/10); messaggi fuori orario; segreti e backup in produzione
@@ -79,6 +81,7 @@ Rischi principali (§9): scadenza della demo Kromeda; webhook di 360dialog senza
 
 ## Versioni
 
+- docs/architettura.md@e5926ba · 2026-10-30 · §8: D38 e D43 col benchmark del router per modello (resta Haiku 5.5), D50 con le prime misure del ciclo unico; §1, §5 e §9 invariati
 - docs/architettura.md@2be8540 · 2026-10-29 · §8: D43 con la voce misurata sulle chat e il lessico (29/10), nuova D50 sul risparmio del ciclo a sessione unica; §1, §5 e §9 invariati
 - docs/architettura.md@733d0a6 · 2026-10-29 · §5, §8 e §9: prova a secco del pilot e correzioni del 28/10, misura dei vocali sul test (cancello caduto e rientrato, da ascoltare sopra soglia), codici dettati all'80%; D47 decisa (Regular a nome di ADAC, vincoli V1-V8 del webhook, anche nei rischi); §1 invariato
 - docs/architettura.md@53f469d · 2026-10-27 · §5 e §8: misura della targa dei pezzi aggiunti chiusa (D41), doppia lettura dei vocali con Soniox primo motore e targa da ascoltare (D44, condizioni di accensione), regole delle prove del pilot; §1 e §9 invariati

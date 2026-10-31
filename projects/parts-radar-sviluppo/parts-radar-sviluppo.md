@@ -69,6 +69,8 @@ updated: 2026-10-26
 - [ ] Lorenzo: decidere la mappatura dei brand per il pilot (basta l'ordine di fascia?) e le targhe provinciali (proposta «dritte al banco») ([[parts-radar-issue-379]], [[parts-radar-architettura]])
 - [ ] Cristian: allineare il clone dello staging dopo il lessico della voce (il prompt si legge da lì, niente immagine da ricostruire); l'avviso lo dà Lorenzo ([[parts-radar-changelog]])
 - [ ] Lorenzo: confermare il testo della riga alzavetro nel prompt della voce (A tenuto senza di lui, oppure C) ([[parts-radar-changelog]])
+- [ ] Attivazione del numero business nuovo di ADAC in ascolto, con 2-3 officine come clienti non attivi, per raccogliere le chat vere (passi e responsabili nella #417) 📅 2026-11-05 ([[parts-radar-issue-379]])
+- [ ] Fissare la data della prova controllata, non più nel giorno dell'attivazione 📅 2026-11-11 ([[parts-radar-issue-379]])
 
 ## Decisioni
 

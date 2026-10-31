@@ -4,11 +4,12 @@ source: github
 family: parts-radar-kromeda-impatto
 current:
   item_id: "cristian-schifone/parts-radar:docs/kromeda-impatto-parts-radar.md"
-  uri: "github://cristian-schifone/parts-radar/docs/kromeda-impatto-parts-radar.md@222c6cb001c476a87939e31d8c0ca81700b2a6e3"
+  uri: "github://cristian-schifone/parts-radar/docs/kromeda-impatto-parts-radar.md@2926357b72528c7e34e300cd8b6244caef5918ea"
   web_url: "https://github.com/cristian-schifone/parts-radar/blob/main/docs/kromeda-impatto-parts-radar.md"
   name: "docs/kromeda-impatto-parts-radar.md"
-  last_modified: 2026-10-28T17:09:10Z
+  last_modified: 2026-10-30T12:17:45Z
 versions:
+  - { name: docs/kromeda-impatto-parts-radar.md@2926357, item_id: cristian-schifone/parts-radar:docs/kromeda-impatto-parts-radar.md, last_modified: 2026-10-30T12:17:45Z }
   - { name: docs/kromeda-impatto-parts-radar.md@222c6cb, item_id: cristian-schifone/parts-radar:docs/kromeda-impatto-parts-radar.md, last_modified: 2026-10-28T17:09:10Z }
   - { name: docs/kromeda-impatto-parts-radar.md@cfbf3b2, item_id: cristian-schifone/parts-radar:docs/kromeda-impatto-parts-radar.md, last_modified: 2026-10-27T15:11:05Z }
   - { name: docs/kromeda-impatto-parts-radar.md@48bd26c, item_id: cristian-schifone/parts-radar:docs/kromeda-impatto-parts-radar.md, last_modified: 2026-10-26T23:47:59Z }
@@ -16,7 +17,7 @@ versions:
 also_at: []
 status: active
 partial: true
-ingested_at: 2026-10-29T06:23:58Z
+ingested_at: 2026-10-31T06:23:46Z
 projects: ["[[parts-radar-sviluppo]]"]
 clients: ["[[solera]]", "[[adac-bologna]]"]
 topics: ["[[parts-radar]]"]
@@ -27,7 +28,7 @@ tags: []
 
 ## Riassunto
 
-Analisi d'impatto del passaggio da TecDoc a Kromeda_WS di [[solera]]; nel vault si legge solo il §9, la stima viva di chiamate, crediti targa e costi, aggiornata a ogni dato nuovo (ultima revisione 28/10/2026, con la prima misura dal vivo sul flusso intero). Il resto del documento è in parte superato dal passaggio a Python.
+Analisi d'impatto del passaggio da TecDoc a Kromeda_WS di [[solera]]; nel vault si legge solo il §9, la stima viva di chiamate, crediti targa e costi, aggiornata a ogni dato nuovo (ultima revisione 30/10/2026, col costo del router misurato per modello; formula invariata). Il resto del documento è in parte superato dal passaggio a Python.
 
 ## Punti chiave
 
@@ -35,7 +36,7 @@ Analisi d'impatto del passaggio da TecDoc a Kromeda_WS di [[solera]]; nel vault 
 - La fascia di chiamate si dimensiona sul picco: oltre la fascia Solera sospende l'account fino alle 05:00 del giorno dopo. Il servizio tiene un contatore proprio e vicino alla soglia passa le richieste all'operatore
 - I crediti targa si pagano a parte; una targa già cercata nello stesso giorno non consuma credito
 - La ricerca per codice (senza targa) non consuma crediti targa: in media 3,7 chiamate per codice
-- Il router in ingresso costa circa 0,3 $ al giorno di LLM al ritmo del pilot e riduce le richieste false
+- Il router in ingresso riduce le richieste false; misurato da solo il 30/10 costa 0,0013 $ a gruppo con Haiku 5.5, circa 0,2 $ al giorno al ritmo del pilot (i 0,3 $ del 22/10 comprendevano l'estrazione). Sonnet costerebbe 16 volte tanto e Opus 33: il router resta Haiku 5.5
 - Con la modalità ascolto i clienti non abilitati non consumano né chiamate Kromeda né crediti targa
 - Trascrizione dei vocali (integrata ma spenta): dal 27/10 ogni vocale lo leggono due motori, Soniox UE primo e Gemini 3.5 Transcribe di controllo, con un tetto di spesa di 1 $ al giorno. Costo ancora trascurabile e nessuna chiamata Kromeda: una targa da ascoltare non fa ricerche, quindi 0 crediti targa. L'effetto indiretto (più targhe vere alla ricerca, più crediti sulle richieste nate dai vocali) non è ancora misurato. Il consenso di ADAC deve nominare Soniox e Google
 - 28/10, prova a secco: la prima misura dal vivo sul flusso intero sta sotto la formula (niente lacune costose, affini rari); la formula resta prudente finché non c'è il traffico vero
@@ -50,6 +51,7 @@ Analisi d'impatto del passaggio da TecDoc a Kromeda_WS di [[solera]]; nel vault 
 - Crediti targa: circa 2.200-2.600 al mese
 - VIN dal 2027: circa 220-330 decodifiche al mese a 1,30 €, cioè 290-430 €/mese
 - Tempo operatore sui casi che vogliono il VIN: 10-15 casi al giorno, 30-45 minuti
+- Router per modello (30/10, costo a gruppo e latenza media): Haiku 5.5 0,0013 $ (4,5 s), Haiku a sforzo alto 0,0015 $ (6,0 s), Sonnet 5.5 0,0206 $ (2,5 s), Opus 5.5 0,0436 $ (4,2 s); misura costata 26,78 $ sul credito personale di Lorenzo, 0 chiamate Kromeda
 - Prova a secco (28/10): 38 messaggi, 39 richieste, 254 chiamate Kromeda, 7,5 per richiesta; modello circa 0,003 $ a richiesta (0,12 $ in tutto); 0 crediti targa
 - Trascrizione: con due motori circa 0,0068 $ al minuto (Soniox circa 0,0017 $, Gemini circa 0,0051 $), un terzo in più del solo Gemini; tetto 1 $ al giorno, 10 vocali per lavoro, 2 MB o 5 minuti per vocale. Spesa della sessione di sviluppo circa 0,06 $. Sul test di H la trascrizione fa salire la targa giusta dal 19,5% al 78,4% dei pezzi
 
@@ -60,6 +62,7 @@ Analisi d'impatto del passaggio da TecDoc a Kromeda_WS di [[solera]]; nel vault 
 
 ## Versioni
 
+- docs/kromeda-impatto-parts-radar.md@2926357 · 2026-10-30 · §9: costo e latenza del router misurati per modello (Haiku 0,0013 $ a gruppo, Sonnet 16 volte, Opus 33); il router resta Haiku, formula invariata
 - docs/kromeda-impatto-parts-radar.md@222c6cb · 2026-10-28 · §9: prima misura dal vivo della prova a secco (7,5 chiamate e 0,003 $ di modello a richiesta), stime delle correzioni del 28/10; formula invariata
 - docs/kromeda-impatto-parts-radar.md@cfbf3b2 · 2026-10-27 · §9: doppia lettura dei vocali (Soniox più Gemini), costo al minuto dei due motori, tetto giornaliero di 1 $, nessun effetto sui crediti targa
 - docs/kromeda-impatto-parts-radar.md@48bd26c · 2026-10-27 · §9: nuova riga sul costo della trascrizione dei vocali (misurato dal vivo) e sul suo effetto sui crediti targa

@@ -1,7 +1,7 @@
 {
   "items": {
     "cristian-schifone/parts-radar#379": {
-      "last_modified": "2026-10-29T11:47:04Z",
+      "last_modified": "2026-10-30T17:34:33Z",
       "note": "sources/github/parts-radar/issues/parts-radar-issue-379.md"
     },
     "cristian-schifone/parts-radar#420": {
@@ -9,13 +9,13 @@
       "note": "sources/github/parts-radar/issues/parts-radar-issue-420.md"
     },
     "cristian-schifone/parts-radar:docs/architettura.md": {
-      "commit": "2be8540128a7fb61cdf4f7c7b2eb2c1385ef5e9e",
-      "last_modified": "2026-10-29T22:57:06Z",
+      "commit": "e5926bacdd88656f9091a65e1eab6fc26b9b9dd9",
+      "last_modified": "2026-10-30T15:15:52Z",
       "note": "sources/github/parts-radar/docs/parts-radar-architettura.md"
     },
     "cristian-schifone/parts-radar:docs/changelog.md": {
-      "commit": "2be8540128a7fb61cdf4f7c7b2eb2c1385ef5e9e",
-      "last_modified": "2026-10-29T22:57:06Z",
+      "commit": "e5926bacdd88656f9091a65e1eab6fc26b9b9dd9",
+      "last_modified": "2026-10-30T15:15:52Z",
       "note": "sources/github/parts-radar/docs/parts-radar-changelog.md"
     },
     "cristian-schifone/parts-radar:docs/decisione-stack-python.md": {
@@ -29,8 +29,8 @@
       "note": "sources/github/parts-radar/docs/parts-radar-kromeda-fase0-risultati.md"
     },
     "cristian-schifone/parts-radar:docs/kromeda-impatto-parts-radar.md": {
-      "commit": "222c6cb001c476a87939e31d8c0ca81700b2a6e3",
-      "last_modified": "2026-10-28T17:09:10Z",
+      "commit": "2926357b72528c7e34e300cd8b6244caef5918ea",
+      "last_modified": "2026-10-30T12:17:45Z",
       "note": "sources/github/parts-radar/docs/parts-radar-kromeda-impatto.md"
     },
     "cristian-schifone/parts-radar:docs/whatsapp-fornitori.md": {
@@ -41,8 +41,8 @@
   },
   "repos": {
     "cristian-schifone/parts-radar": {
-      "commit": "a775f4fb6529dcd8bb3a60d9bb1d612be635d878",
-      "watermark": "2026-10-29T23:44:12Z"
+      "commit": "05d085fb043478d3de5dfbd2d3903e9a6b6b3e82",
+      "watermark": "2026-10-30T15:18:07Z"
     }
   }
 }

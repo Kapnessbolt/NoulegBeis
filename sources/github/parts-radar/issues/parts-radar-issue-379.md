@@ -6,9 +6,10 @@ current:
   item_id: "cristian-schifone/parts-radar#379"
   uri: "github://cristian-schifone/parts-radar/issues/379"
   web_url: "https://github.com/cristian-schifone/parts-radar/issues/379"
-  name: "Issue #379 · Pilot ADAC: ordine dei lavori verso il test reale (rifatto il 21/10, rivisto il 28/10)"
-  last_modified: 2026-10-29T11:47:04Z
+  name: "Issue"
+  last_modified: 2026-10-30T17:34:33Z
 versions:
+  - { name: Issue, item_id: cristian-schifone/parts-radar#379, last_modified: 2026-10-30T17:34:33Z }
   - { name: "Issue #379", item_id: cristian-schifone/parts-radar#379, last_modified: 2026-10-29T11:47:04Z }
   - { name: "Issue #379", item_id: cristian-schifone/parts-radar#379, last_modified: 2026-10-28T23:18:54Z }
   - { name: "Issue #379", item_id: cristian-schifone/parts-radar#379, last_modified: 2026-10-27T17:13:27Z }
@@ -18,7 +19,7 @@ versions:
 also_at: []
 status: active
 partial: false
-ingested_at: 2026-10-30T06:30:05Z
+ingested_at: 2026-10-31T06:23:46Z
 projects: ["[[parts-radar-sviluppo]]"]
 clients: ["[[adac-bologna]]", "[[solera]]"]
 topics: ["[[parts-radar]]"]
@@ -29,7 +30,7 @@ tags: []
 
 ## Riassunto
 
-Issue di pianificazione della milestone "Pilot ADAC", rifatta il 21/10/2026 con Lorenzo, rivista il 27/10 e due volte il 28/10 (l'ordine in vigore è la revisione del 28/10 sera). Fissa il traguardo (il test reale della #420, prima della scadenza della demo Kromeda intorno al 18/11) e un piano in quattro settimane, più i passi fuori dal codice di Lorenzo e di [[cristian-schifone]]. Al 28/10 sera del codice della settimana 2 resta solo la voce: il percorso critico non è più il codice ma l'attivazione del numero di ADAC, che dipende dai passi fuori dal codice.
+Issue di pianificazione della milestone "Pilot ADAC", rifatta il 21/10/2026 con Lorenzo, rivista il 27/10 e due volte il 28/10 (l'ordine in vigore è la revisione del 28/10 sera). Fissa il traguardo (il test reale della #420, prima della scadenza della demo Kromeda intorno al 18/11) e un piano in quattro settimane, più i passi fuori dal codice di Lorenzo e di [[cristian-schifone]]. Al 28/10 sera del codice della settimana 2 resta solo la voce: il percorso critico non è più il codice ma l'attivazione del numero di ADAC, che dipende dai passi fuori dal codice. Revisione del 30/10 (commento): il numero business nuovo di ADAC si attiva giovedì 5/11 in ascolto, solo per raccogliere le chat vere.
 
 ## Punti chiave
 
@@ -40,6 +41,8 @@ Issue di pianificazione della milestone "Pilot ADAC", rifatta il 21/10/2026 con 
 - Col credito API personale di Lorenzo (100 $ al mese dal 28/10, con l'accordo di ADAC sui dati veri): benchmark del router su 810 gruppi con Haiku, Sonnet e Opus (~50 $) ed estrazione e voce con Sonnet e Opus (~50 $), anticipando la parte costosa del confronto finale dei modelli
 - Revisione del 28/10 sera: tredici voci chiuse; regole congelate di slittamento: numero non attivo entro circa l'11/11 → la prova controllata va in settimana 4; non attivo entro circa il 16/11 → niente test con le targhe prima della fine della demo
 - Codice dei prossimi sette giorni (29/10-04/11), tutto senza il numero: la voce (ultimo anello senza misura), la nota per il banco, il benchmark del router; il giro degli alberi è chiuso il 29/10, restano la sonda dei modelli (6 chiamate, 0 crediti targa, con l'utenza libera da Cristian) e i codici delle voci frequenti, dopo la voce; se l'attivazione slitta oltre il 4/11 si anticipano le PR di sola estrazione, foto e modelli
+- Revisione del 30/10 (commento): attivazione del numero business nuovo di ADAC giovedì 05/11 con 2-3 officine come clienti non attivi; l'ascolto serve solo a raccogliere il dataset delle chat vere, la catena gira dopo in locale (passi e responsabili nella #417). La prova controllata non coincide più con l'attivazione: data da fissare, entro circa l'11/11
+- Per l'ascolto non servono più la nomina a responsabile, i progetti di trascrizione a nome di BlueAge e la chiave del modello sul server: tornano prima del primo cliente attivo; anche l'allarme sui rifiuti del webhook (V8) passa a dopo l'attivazione
 - Settimana 3 alleggerita; valvola nell'ordine: seconda parte dell'estrazione strutturata, poi il pezzo senza etichetta in foto
 
 ## Numeri
@@ -50,7 +53,7 @@ Issue di pianificazione della milestone "Pilot ADAC", rifatta il 21/10/2026 con 
 
 ## Decisioni e azioni
 
-Fuori dal codice, in ordine di urgenza (revisione del 28/10 sera, aggiornata al 29/10):
+Fuori dal codice, in ordine di urgenza (revisione del 28/10 sera, aggiornata al 29/10; il 30/10 l'attivazione in ascolto è fissata al 05/11):
 - 360dialog: deciso il 29/10, Regular a nome di ADAC (Partner dal secondo cliente, ADAC non migra). Ora ADAC si registra e passa la chiave
 - Vincoli del webhook senza firma (#531), prima dell'attivazione: server e proxy a Cristian; domanda a 360dialog sugli IP fissi, segreto nuovo e controlli del servizio a Lorenzo; l'allarme sui rifiuti va col canale degli allarmi
 - Nomina a responsabile da ADAC a BlueAge (art. 28) coi sub-responsabili (LLM, Soniox e Google, server del pilot): prende il posto del consenso scritto; l'informativa alle officine la fa ADAC
@@ -63,6 +66,7 @@ Fuori dal codice, in ordine di urgenza (revisione del 28/10 sera, aggiornata al 
 
 ## Versioni
 
+- Issue #379 · 2026-10-30 · commento di revisione: attivazione del numero di ADAC in ascolto il 05/11 come raccolta del dataset, prova controllata da fissare entro ~11/11, nomina, progetti di trascrizione e V8 spostati a prima del primo cliente attivo
 - Issue #379 · 2026-10-29 · giro degli alberi chiuso il 29/10 (268 coppie su 268, 767 chiamate, crediti invariati); restano la sonda dei modelli e i codici delle voci frequenti dopo la voce
 - Issue #379 · 2026-10-28 · due revisioni del 28/10 (dopo la prova a secco e la sera): tredici voci chiuse, percorso critico sui passi fuori dal codice, regole di slittamento (~11/11, ~16/11), benchmark col credito personale; 360dialog spuntato (Regular a nome di ADAC, 29/10), nomina a responsabile al posto del consenso, vincoli del webhook (#531)
 - Issue #379 · 2026-10-27 · revisione del 27/10: piano della #420 in testa alla settimana 2, allarme Coexistence dopo l'attivazione, settimana 1 chiusa salvo la voce; nuovi passi fuori dal codice (trascrizione a nome di BlueAge, canale degli allarmi), avviso a Cristian spuntato

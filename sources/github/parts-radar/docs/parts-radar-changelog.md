@@ -4,11 +4,12 @@ source: github
 family: parts-radar-changelog
 current:
   item_id: "cristian-schifone/parts-radar:docs/changelog.md"
-  uri: "github://cristian-schifone/parts-radar/docs/changelog.md@2be8540128a7fb61cdf4f7c7b2eb2c1385ef5e9e"
+  uri: "github://cristian-schifone/parts-radar/docs/changelog.md@e5926bacdd88656f9091a65e1eab6fc26b9b9dd9"
   web_url: "https://github.com/cristian-schifone/parts-radar/blob/main/docs/changelog.md"
   name: "docs/changelog.md"
-  last_modified: 2026-10-29T22:57:06Z
+  last_modified: 2026-10-30T15:15:52Z
 versions:
+  - { name: docs/changelog.md@e5926ba, item_id: cristian-schifone/parts-radar:docs/changelog.md, last_modified: 2026-10-30T15:15:52Z }
   - { name: docs/changelog.md@2be8540, item_id: cristian-schifone/parts-radar:docs/changelog.md, last_modified: 2026-10-29T22:57:06Z }
   - { name: docs/changelog.md@733d0a6, item_id: cristian-schifone/parts-radar:docs/changelog.md, last_modified: 2026-10-28T23:22:29Z }
   - { name: docs/changelog.md@a6cfb1f, item_id: cristian-schifone/parts-radar:docs/changelog.md, last_modified: 2026-10-27T22:43:07Z }
@@ -18,7 +19,7 @@ versions:
 also_at: []
 status: active
 partial: true
-ingested_at: 2026-10-30T06:30:05Z
+ingested_at: 2026-10-31T06:23:46Z
 projects: ["[[parts-radar-sviluppo]]"]
 clients: ["[[adac-bologna]]"]
 topics: ["[[parts-radar]]"]
@@ -29,7 +30,7 @@ tags: []
 
 ## Riassunto
 
-Diario delle sessioni di sviluppo del repo, una voce per sessione, dalla più recente: obiettivo, cosa è stato fatto, decisioni, cosa resta aperto, prossimi passi. Il ritmo a ottobre è di 3-6 voci al giorno. Nel vault non si copia: ogni giorno con voci nuove diventa una riga nel log di [[parts-radar-sviluppo]], e qui restano le voci degli ultimi 30 giorni in una riga ciascuna. Ultime settimane: chiusa la migrazione a Python e Kromeda (02-05/10), lavoro sulla milestone del pilot ADAC, chat del banco e canale WhatsApp con 360dialog (18-20/10), dataset delle chat reali, router e modalità ascolto (21-22/10), metodo di lavoro e glossario (25-26/10), revisione del router sulle etichette di sviluppo con i prompt congelati (26/10), etichette del test e misura del router sul test (26/10), vocali: motore deciso e trascrizione nel servizio, spenta (26-27/10), poi doppia lettura con Soniox primo motore e targa da ascoltare (27/10); regole delle prove del pilot e prova a secco preparata (27/10); prova a secco fatta e cinque correzioni nate da lì, misura dei vocali sul test e correzioni del cancello e dei codici dettati (28/10); 360dialog Regular a nome di ADAC coi vincoli del webhook (29/10); etichette e misura della voce sulle chat, lessico della voce e ciclo di lavoro in una sessione sola (29/10).
+Diario delle sessioni di sviluppo del repo, una voce per sessione, dalla più recente: obiettivo, cosa è stato fatto, decisioni, cosa resta aperto, prossimi passi. Il ritmo a ottobre è di 3-6 voci al giorno. Nel vault non si copia: ogni giorno con voci nuove diventa una riga nel log di [[parts-radar-sviluppo]], e qui restano le voci degli ultimi 30 giorni in una riga ciascuna. Ultime settimane: chiusa la migrazione a Python e Kromeda (02-05/10), lavoro sulla milestone del pilot ADAC, chat del banco e canale WhatsApp con 360dialog (18-20/10), dataset delle chat reali, router e modalità ascolto (21-22/10), metodo di lavoro e glossario (25-26/10), revisione del router sulle etichette di sviluppo con i prompt congelati (26/10), etichette del test e misura del router sul test (26/10), vocali: motore deciso e trascrizione nel servizio, spenta (26-27/10), poi doppia lettura con Soniox primo motore e targa da ascoltare (27/10); regole delle prove del pilot e prova a secco preparata (27/10); prova a secco fatta e cinque correzioni nate da lì, misura dei vocali sul test e correzioni del cancello e dei codici dettati (28/10); 360dialog Regular a nome di ADAC coi vincoli del webhook (29/10); etichette e misura della voce sulle chat, lessico della voce e ciclo di lavoro in una sessione sola (29/10); benchmark del router per modello (resta Haiku 5.5), due correzioni di sicurezza e costo dei sotto-agenti del ciclo unico (30/10).
 
 ## Punti chiave
 
@@ -39,13 +40,19 @@ Diario delle sessioni di sviluppo del repo, una voce per sessione, dalla più re
 
 ## Numeri
 
-- 90 voci al 30/10/2026
+- 95 voci al 31/10/2026
 
 ## Decisioni e azioni
 
 - Le decisioni di ogni voce rimandano ad `architettura.md` §6; quelle di livello progetto sono nel log di [[parts-radar-sviluppo]]
 
 ## Voci recenti
+
+- 2026-10-30 · Cache dei sotto-agenti di sviluppo · circa 30 $ persi in tre settimane per la cache scaduta; un'ora di cache a un solo agente e richiami durante le revisioni, risparmio atteso 7-10 $ in tre settimane
+- 2026-10-30 · Il pianificatore cambia il piano a pezzi · il primo piano del ciclo unico è costato il doppio (riscritto cinque volte, cache scaduta); corretto. Da decidere (Lorenzo): il pianificatore sui fix piccoli
+- 2026-10-30 · Rimandi spenti nei client di Anthropic e Gemini (fix #555) · difesa di sicurezza, nessuna spesa; rebuild del servizio dopo il merge. Resta la #557 sul token di Google
+- 2026-10-30 · Eccezione per una CVE di CPython (fix #553) · la CI torna verde; l'aggiornamento dell'immagine Python lo decide Cristian (#554)
+- 2026-10-30 · Benchmark del router per modello (#525) · Sonnet, Opus e Haiku a sforzo alto non spostano le soglie: il router resta Haiku 5.5 (richieste false 6,1% contro la soglia del 5%, proposte non preparate 4,2%); 26,78 $ sul credito di Lorenzo, ne restano ~64 $ per la #526
 
 - 2026-10-29 · Ciclo unico per feature e fix · una sessione sola, piano e documenti in sotto-agenti, documenti nella stessa PR; Lorenzo interviene su scelte, spese, giudizi di revisione e proposte della retro; il risparmio si misura sulla prima feature
 - 2026-10-29 · Lessico della voce dalle chat di sviluppo · sviluppo 95,6% giusta tra le prime tre, test 93,6% (neutro, dentro il criterio deciso prima); 4,50 $ sul credito di Lorenzo; staging da allineare (Cristian), riga alzavetro da confermare (Lorenzo)
@@ -122,6 +129,7 @@ Diario delle sessioni di sviluppo del repo, una voce per sessione, dalla più re
 
 ## Versioni
 
+- docs/changelog.md@e5926ba · 2026-10-30 · 5 voci nuove (30/10): benchmark del router per modello, eccezione CVE e rimandi spenti nei client, costo e cache del pianificatore e dei sotto-agenti
 - docs/changelog.md@2be8540 · 2026-10-29 · 4 voci nuove (29/10): etichette e misura della voce sulle chat, lessico della voce, ciclo unico per feature e fix
 - docs/changelog.md@733d0a6 · 2026-10-29 · 9 voci nuove (28-29/10): prova a secco e le sue correzioni, misura dei vocali e correzioni del cancello e dei codici dettati, ordine dei lavori e 360dialog Regular
 - docs/changelog.md@a6cfb1f · 2026-10-27 · 7 voci nuove (27/10): misura della targa, regola di sicurezza e doppia lettura dei vocali, ritocchi dalla retro, graphify, regole delle prove del pilot, prova a secco
