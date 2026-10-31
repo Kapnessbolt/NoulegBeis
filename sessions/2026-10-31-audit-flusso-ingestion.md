@@ -29,6 +29,6 @@ Verificare, solo sul repo e senza connettori, se il flusso ingestion → riconci
 
 ## Aperti
 
-- [ ] Implementare P4 e P5 del report (segnale di riordino persistente e registro del giro in `stato.py`, con test e controllo) in una PR, poi P1–P3
+- [x] Implementare P4 e P5 del report (segnale di riordino persistente e registro del giro in `stato.py`, con test e controllo) in una PR, poi P1–P3 (chiuso in [[2026-10-31-spec-1-29]]): PR #60 e #62 unite
 - [x] Aggiungere a SPEC 13.1 lo step sull'affidabilità ai riordini (criterio: test T11 del report) con la PR dedicata, insieme alle decisioni 1, 2 e 5 (identità, cartella canonica, soglie in `vault.yaml`) (chiuso in [[2026-10-31-spec-audit-ingestion]])
 - [ ] `/verifica-task` dell'1/11 come da [[2026-10-31-riordino-sharepoint]]: con lo step 13 chiuso resta da verificare la riconciliazione e la prima fotografia delle cartelle 📅 2026-11-01
