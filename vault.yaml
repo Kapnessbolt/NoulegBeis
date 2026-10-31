@@ -78,9 +78,19 @@ fonti:
   tipi_processati: [pdf, docx, pptx, xlsx, md, txt]
   rilevatore:                            # delta e rilevatore di riordino (SPEC 6.2, passi 2 e 7)
     finestra_ore: 48                     # la ricerca riparte da watermark meno queste ore (ritardi dell'indice)
-    profondita: 2                        # livelli di cartelle fotografati per libreria
-    soglia_id_nuovi: 10                  # ID nuovi in famiglie già note che fanno scattare il rilevatore
+    profondita:                          # livelli di cartelle fotografati, per libreria (`OneDrive` è la cartella di OneDrive);
+      SalesMarketing: 2                  # un intero vale per tutte. Delivery tiene i progetti al livello 4 (handoff di Velo-CE)
+      Delivery: 4
+      Shared Documents: 2
+      OneDrive: 2
+    soglia_id_nuovi: 5                   # ID nuovi in famiglie già note che fanno scattare il rilevatore
     fonti: [sharepoint, onedrive, github] # dove il rilevatore guarda: si sceglie all'installazione (SPEC 13.1, step 18)
+  canoniche:                             # quale copia di un documento è `current` quando sta in più posti (SPEC 6.4):
+    - sharepoint:SalesMarketing          # vince la prima voce dell'elenco in cui compare, le altre copie vanno in `also_at`.
+    - sharepoint:Delivery                # `sharepoint:*` sono gli altri siti del tenant (`sources/sharepoint/_<sito>/`)
+    - sharepoint:Shared Documents
+    - onedrive
+    - sharepoint:*
   firme_in_coda: [blueage]               # firma dell'autore in coda ai nomi (`…_BlueAge.pptx`): fuori dalla famiglia
   outlook:
     mittenti_scartati: [no-reply, noreply, donotreply, notifications, notification, mailer-daemon]
@@ -123,6 +133,11 @@ task:
   - nome: reconcile
     orari: ["08:45"]
     giorni: domenica
+    modello: sonnet
+    connettori: [microsoft365]
+  - nome: reconcile-ridotta
+    orari: ["09:10"]
+    giorni: ogni-giorno
     modello: sonnet
     connettori: [microsoft365]
   - nome: curator
