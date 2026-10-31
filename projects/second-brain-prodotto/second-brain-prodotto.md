@@ -11,7 +11,7 @@ updated: 2026-10-31
 
 ## Stato
 
-- SPEC 1.29 in PR #65 (31/10): `versions` con la `current` in testa e scritto solo da `aggiorna-nota.py` (`--versione`, `--versioni-in-ordine`, `--togli-versione`), `stato.py rimuovi-voce` unica eccezione a «le voci non si cancellano», solo per i refusi; l'audit ingestion è chiuso nel codice (P1–P13), restano le verifiche dei giri dell'1/11 e il T11 reale ([[2026-10-31-spec-1-29]])
+- SPEC 1.29 unita (31/10, PR #65): `versions` con la `current` in testa e scritto solo da `aggiorna-nota.py` (`--versione`, `--versioni-in-ordine`, `--togli-versione`), `stato.py rimuovi-voce` unica eccezione a «le voci non si cancellano», solo per i refusi; l'audit ingestion è chiuso nel codice (P1–P13), restano le verifiche dei giri dell'1/11 e il T11 reale ([[2026-10-31-spec-1-29]])
 - Note Velo-CE a schema (31/10): 95 note con la `current` in testa a `versions` (`aggiorna-nota.py --versioni-in-ordine` e avviso del controllo), 68 con `current.last_modified` allineato allo stato, due ID refuso del 29/10 tolti da stato e note (`stato.py rimuovi-voce`, `--togli-versione`); SPEC 1.28 unita (PR #64); controllo a 0 errori e 79 avvisi, 534 test ([[2026-10-31-audit-p8-p13]])
 - PR #63 unita e seguito del 31/10: SPEC 1.28 in PR #64; le 36 voci dello stato orfane delle 33 note Velo-CE (copia del 28/10 superata dal ricaricamento del 29/10, ID spariti da SharePoint) registrate in `versions` con `aggiorna-nota.py --versione`, avvisi del controllo da 112 a 79; task `reconcile-ridotta` attivo in claude.ai, per il T11 reale manca solo la cartella di prova spostata da Leonardo ([[2026-10-31-audit-p8-p13]])
 - Step 17b, interventi P8, P10, P11 e P13 fatti (31/10, PR del branch `claude/audit-p8-p13`): modulo `anomalie.py` con le regole dei giri in un posto solo e `plancia.py --anomalie` che il task `digest` copia nel digest (giri mancanti o in errore, watermark fermo, riconciliazione dovuta, voci orfane, hub da rileggere da più di 7 giorni; il curator ne conta le metriche); `scarta.py` applica gli elenchi di scarto della posta e la finestra della posta sta in `vault.yaml` (`fonti.outlook`); `perimetro.py` a lista di prefissi con golden test identico e `--profondita` che misura la profondità del rilevatore per `/installa`; T11 simulato sul mini-vault (riordino di una cartella di prova in Delivery rilevato, riconciliato e chiuso senza intervento); 512 test. Resta il T11 reale e la PR della SPEC ([[2026-10-31-audit-p8-p13]])
@@ -48,7 +48,7 @@ updated: 2026-10-31
 - [x] Audit ingestion · P4 e P5: segnale di riordino persistente e registro del giro in `stato.py`, con test e avvisi nel controllo del vault, in una PR ✅ 2026-10-31 ([[2026-10-31-audit-flusso-ingestion]], [[2026-10-31-audit-p4-p5]])
 - [x] Audit ingestion · P1–P3: identità per famiglia e cartella nello stato, `sposta-nota.py`, `riconcilia.py` che prepara il piano dall'elenco delle cartelle ✅ 2026-10-31 ([[2026-10-31-audit-flusso-ingestion]], [[2026-10-31-audit-p1-p3]])
 - [x] Step 17b · unire la PR #62 (`claude/audit-p1-p3`) e creare il task `reconcile-ridotta` in claude.ai (09:10, Sonnet, Microsoft 365) ✅ 2026-10-31 ([[2026-10-31-audit-p1-p3]], [[2026-10-31-audit-p8-p13]])
-- [ ] Step 17b · unire la PR #65 (SPEC 1.29: versioni e voci dello stato dopo l'audit P8–P13) ([[2026-10-31-spec-1-29]])
+- [x] Step 17b · unire la PR #65 (SPEC 1.29: versioni e voci dello stato dopo l'audit P8–P13) ✅ 2026-10-31 ([[2026-10-31-spec-1-29]])
 - [ ] Step 17b · criterio T11: riordino reale di una cartella di prova in Delivery (spostata e rinominata da Leonardo) rilevato dal giro e riconciliato da `reconcile-ridotta` senza sessione ([[2026-10-31-audit-p1-p3]])
 - [x] Step 17b · P8–P13 con il prompt della PR ✅ 2026-10-31 ([[2026-10-31-audit-p1-p3]], [[2026-10-31-audit-p8-p13]])
 - [x] Step 17b · unire la PR #64 (SPEC 1.28) ✅ 2026-10-31, che copre: 5.3 e 6.3 (elenchi di scarto e finestra della posta in `vault.yaml`, `scarta.py`), 4.3 (hub da rileggere da `plancia.py --anomalie`), 4.4 (script nuovi, note di transizione da togliere), 7 (digest con le anomalie), 13.1 step 17b e 18, 14 (`perimetro.py` a prefissi); comandi nuovi di `stato.py` in 6.1 ([[2026-10-31-audit-p1-p3]], [[2026-10-31-audit-p8-p13]])
@@ -95,7 +95,7 @@ updated: 2026-10-31
 
 ## Prossimi passi
 
-- Audit ingestion chiuso nel codice (P1–P13): unire la PR #65 (SPEC 1.29), verificare i giri dell'1/11 (fotografia delle cartelle, `ultimo_giro`, primo digest con le anomalie, primo `reconcile-ridotta`), poi il T11 reale con Leonardo
+- Audit ingestion chiuso nel codice (P1–P13): verificare i giri dell'1/11 (fotografia delle cartelle, `ultimo_giro`, primo digest con le anomalie, primo `reconcile-ridotta`), poi il T11 reale con Leonardo
 - Pulizia del controllo: 8 `family` da decidere, hub superate da rileggere, 7 persone senza email; lo step 14 parte solo con l'ok di Lorenzo
 - Chiudere la consegna dei file prodotti dal cloud prima di qualunque installazione esterna
 
